@@ -81,5 +81,5 @@ RTCM 1062 G SSR hr clock   G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G
 
 ## ライセンス
 
-[BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``libbit.py``にRTKLIB（https://github.com/tomojitakasu/RTKLIB）の成果を利用しています。
+[BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``libbit.py``に[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の成果を利用しています。
 
