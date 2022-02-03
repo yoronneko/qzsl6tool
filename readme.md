@@ -10,7 +10,7 @@ Pythonの``bitstring``モジュールを利用しますので、あらかじめ`
 
 ## 機能
 
-このツール集の主要なプログラムは、Allystar HD9310オプションCのL6信号の生データを解釈してみちびきL6帯ペイロードを抽出するプログラム（alst2qzssl6.py）、L6帯ペイロードからCLAS（centimeter level augmentation service）またはMADOCA（multi-GNSS advanced demonstration tool for orbit and clock analysis）の種別を読み出してRTCM（Radio Technical Commission for Maritime Services）形式のメッセージに変換するプログラム（qzsl62rtcm.py）です。ただし、現時点では、CLASメッセージからRTCMメッセージへの変換は未実装です。
+このツール集の主要なプログラムは、Allystar HD9310オプションCや[PocketSDR](https://github.com/tomojitakasu/PocketSDR)のL6信号の生データを解釈してみちびきL6帯ペイロードを抽出するプログラム（alst2qzsl6.py、pksdr2qzsl6.py）、L6帯ペイロードからCLAS（centimeter level augmentation service）またはMADOCA（multi-GNSS advanced demonstration tool for orbit and clock analysis）の種別を読み出してRTCM（Radio Technical Commission for Maritime Services）形式のメッセージに変換するプログラム（qzsl62rtcm.py）です。ただし、現時点では、CLASメッセージからRTCMメッセージへの変換は未実装です。
 
 このツールは、みちびきメッセージ等をパイプを用いてリアルタイム逐次的に処理することを意図しています。シリアルポートやTCP/IPストリームのAllystar HD9310オプションC生データやNTRIP（networked transport of RTCM via Internet protocol）を標準入力で受け取り、変換結果を標準出力に出力します。また、デバッグメッセージを標準エラー出力に出力します。したがって、不要なメッセージを``/dev/null``にリダイレクトしてご使用ください。また、ファイルから入力するときは``cat``コマンドなどをご利用ください。
 
@@ -39,6 +39,10 @@ nc IPアドレス 2000 | ./alst2qzsl6.py > /dev/null
 ```
 
 1列目はPRN番号、2列目と3列目はGPS週番号と秒、4列目はC/No [dB Hz]、5列目はエラーがあればその内容です。
+
+### pksdr2qzsl6.py
+
+同様に[PocketSDR](https://github.com/tomojitakasu/PocketSDR)のログファイルからL6メッセージを抽出するプログラムです。[PocketSDRすごい（L6信号デコード編）](https://s-taka.org/awesome-pocketsdr-l6/#l6e)をご参照ください。
 
 ### qzsl62rtcm.py
 
