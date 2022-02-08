@@ -10,6 +10,7 @@
 
 import sys
 from libbit import *
+from gps2utc import *
 
 class alst_t:
     dict_snr = {}; dict_data = {}; last_gpst = 0
@@ -70,8 +71,8 @@ class alst_t:
         return prn, snr, data
 
     def show (self):
-        print ("{} {} {} {} {}".format (
-            self.prn, self.gpsw, self.gpst, self.snr, self.err),
+        print ("{} {} {} {}".format (
+            self.prn, gps2utc (self.gpsw, self.gpst), self.snr, self.err),
             file=sys.stderr)
 
 def send_l6raw (data):
@@ -82,7 +83,7 @@ def send_ubxl6 (prn, snr, data):
     ubxpld = b'\x02\x72'                             # class ID
     ubxpld += (264).to_bytes (2, byteorder='little') # message length
     ubxpld += b'\x01'                                # message version
-    ubxpld += prn.to_bytes (2, byteorder='little')   # SVID
+    ubxpld += (prn-192).to_bytes (2, byteorder='little')   # SVID
     ubxpld += snr.to_bytes (2, byteorder='little')   # C/No
     ubxpld += (0).to_bytes (4, byteorder='little')   # local time tag
     ubxpld += (0).to_bytes (1, byteorder='little')   # L6 group delay
