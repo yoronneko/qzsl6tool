@@ -110,57 +110,10 @@ class qzsl6_t:
         self.pos    = pos
         return True
 
-    def decode_clas_head (self):
-        dpart         = self.dpart
-        pos           = 0
-        self.msgnum   = dpart[pos:pos+12].uint; pos += 12 # message num, 4073
-        self.subtype  = dpart[pos:pos+ 4].uint; pos +=  4 # subtype
-        self.epoch    = dpart[pos:pos+20].uint; pos += 20 # GPS epoch time 1s
-        self.interval = dpart[pos:pos+ 4].uint; pos +=  4 # update interval
-        self.mmi      = dpart[pos:pos+ 1].uint; pos +=  1 # multiple message
-        self.iod      = dpart[pos:pos+ 4].uint; pos +=  4 # IOD SSR
-        self.numaug   = dpart[pos:pos+15].uint; pos +=  4 # num of aug sats
-        self.dpart    = dpart[pos:] # update datapart
-
-    def decode_clas_st1 (self):
-        pos     = self.pos
-        dpart   = self.dpart
-        masksat = [[0 for i in range (40)] for j in range (self.numaug)]
-        masksig = [[0 for i in range (40)] for j in range (self.numaug)]
-        for satnum in range (self.numaug):
-            gnssid = dpart[pos:pos+3]; pos += 3
-            for i in range (40):
-                if dpart[pos:pos+1]: mask_sat[gnssid][i] = i + 1
-                pos += 1
-                numsat[gnssid] += 1
-            for i in range (16):
-                mask_sig[gnssid][i] = dpart[pos:pos+1]; pos += 1
-                numsig[gnssid] += 1
-            avail = dpart[pos:pos+ 1]; pos +=  1
-            numcell = 0
-        self.pos = pos
-
     def clas2rtcm (self):
-        if self.sf_ind: # first data part
-            qzsl6.decode_clas_head ()
-            self.dpn = 1
-            self.sfn = 0
-            if self.subtype == 1: self.subframe = 1
-            else:
-                self.sfn += 1
-                if self.sfn == 7: # reception error
-                    self.dpn = 0;
-                    self.sfn = 0
-                    return False
-        else: # continual data part
-            self.dpn += 1
-            if self.dpn == 6: # reception error
-                self.dpn = 0; self.sfn = 0
-                return False
-        print ("{} {:13s}{} {} {}".format (self.prn, self.facility,
-            "*" if self.alert else " ", self.sfn, self.dpn), file=sys.stderr)
-        if self.dpn == 0 and self.sfn == 0: return False
-        return True
+        print ("Sorry, the CLAS decode function is not implemented yet.",
+            file = sys.stderr)
+        sys.exit (1)
 
 def send_rtcm (rtcm_data):
     rtcm = b'\xd3' + len (rtcm_data).to_bytes(2, 'big') + rtcm_data;
