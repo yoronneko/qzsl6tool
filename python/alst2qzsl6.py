@@ -8,12 +8,25 @@
 #
 # Released under BSD 2-clause license.
 
+import argparse
 import sys
-from libbit import *
-from gps2utc import *
+from   libbit  import *
+from   gps2utc import *
 
 class alst_t:
-    dict_snr = {}; dict_data = {}; last_gpst = 0
+    fp_trace  = sys.stdout      # file pointer for trace
+    fp_l6  = None            # file pointer for QZS L6 output
+    fp_ubx    = None            # file pointer for u-blox L6 raw output
+    fp_msg    = sys.stdout      # message output file pointer
+    t_level   = 0               # trace level
+    dict_snr  = {}              # SNR dictionary
+    dict_data = {}              # payload data dictionary
+    last_gpst = 0               # last received GPS time
+
+    def trace (self, level, *args):
+        if level <= self.t_level and self.fp_trace:
+            for arg in args:
+                print (arg, file=self.fp_trace)
 
     def receive (self):
         sync = [b'0x00' for i in range (4)]
@@ -56,58 +69,89 @@ class alst_t:
         return True
 
     def pick_up (self):
-        prn = 0; snr = 0; data = b''
+        p_prn = 0; p_snr = 0; p_data = b''
         if self.last_gpst != self.gpst and len (self.dict_snr) != 0:
             self.last_gpst = self.gpst
-            prn = sorted (self.dict_snr.items(),
+            p_prn = sorted (self.dict_snr.items(),
                 key=lambda x:x[1], reverse=True)[0][0]
-            snr  = self.dict_snr[prn]
-            data = self.dict_data[prn]
-            print ("---> prn {} (snr {})" .format (prn, snr), file=sys.stderr)
+            p_snr  = self.dict_snr[p_prn]
+            p_data = self.dict_data[p_prn]
+            print (f"---> prn {p_prn} (snr {p_snr})", file=self.fp_msg)
             self.dict_snr.clear (); self.dict_data.clear ();
         elif not self.err:
             self.dict_snr [self.prn] = self.snr
             self.dict_data[self.prn] = self.data
-        return prn, snr, data
+        self.p_prn  = p_prn  # picked up PRN
+        self.p_snr  = p_snr  # picked up SNR
+        self.p_data = p_data # picked up data
 
     def show (self):
-        print ("{} {} {} {}".format (
-            self.prn, gps2utc (self.gpsw, self.gpst), self.snr, self.err),
-            file=sys.stderr)
+        if self.prn == 0 or not self.fp_msg: return
+        print (f"{self.prn} {gps2utc (self.gpsw, self.gpst)} {self.snr} {self.err}", file=self.fp_msg)
 
-def send_l6raw (data):
-    sys.stdout.buffer.write (data)
-    sys.stdout.flush ()
+    def send_l6raw (self):
+        if self.p_prn == 0 or not self.fp_l6: return
+        self.fp_l6.buffer.write (self.p_data)
+        self.fp_l6.flush ()
 
-def send_ubxl6 (prn, snr, data):
-    ubxpld = b'\x02\x72'                             # class ID
-    ubxpld += (264).to_bytes (2, byteorder='little') # message length
-    ubxpld += b'\x01'                                # message version
-    ubxpld += (prn-192).to_bytes (2, byteorder='little')   # SVID
-    ubxpld += snr.to_bytes (2, byteorder='little')   # C/No
-    ubxpld += (0).to_bytes (4, byteorder='little')   # local time tag
-    ubxpld += (0).to_bytes (1, byteorder='little')   # L6 group delay
-    ubxpld += (0).to_bytes (1, byteorder='little')   # corrected bit num
-    ubxpld += (0).to_bytes (1, byteorder='little')   # chanel info.
-    ubxpld += (0).to_bytes (2, byteorder='little')   # reserved
-    ubxpld += data                                   # CLAS data
-    csum1, csum2 = rtk_checksum (ubxpld)
-    sys.stdout.buffer.write( 
-        b'\xb5\x62' + \
-        csum1.to_bytes (1, 'little') + \
-        csum2.to_bytes (1, 'little') + \
-        ubxpld
-    )
-    sys.stdout.flush()
+    def send_ubxl6 (self):
+        if self.p_prn == 0 or not self.fp_ubx: return
+        ubxpld = b'\x02\x72'                             # class ID
+        ubxpld += (264).to_bytes (2, byteorder='little') # message length
+        ubxpld += b'\x01'                                # message version
+        ubxpld += (self.p_prn-192).to_bytes (2, byteorder='little') # SVID
+        ubxpld += self.p_snr.to_bytes (2, byteorder='little')       # C/No
+        ubxpld += (0).to_bytes (4, byteorder='little')   # local time tag
+        ubxpld += (0).to_bytes (1, byteorder='little')   # L6 group delay
+        ubxpld += (0).to_bytes (1, byteorder='little')   # corrected bit num
+        ubxpld += (0).to_bytes (1, byteorder='little')   # chanel info.
+        ubxpld += (0).to_bytes (2, byteorder='little')   # reserved
+        ubxpld += self.p_data                              # CLAS data
+        csum1, csum2 = rtk_checksum (ubxpld)
+        self.fp_ubx.buffer.write(
+            b'\xb5\x62' + \
+            csum1.to_bytes (1, 'little') + \
+            csum2.to_bytes (1, 'little') + \
+            ubxpld
+        )
+        self.fp_ubx.flush()
 
 if __name__ == '__main__':
     alst = alst_t ()
+    parser = argparse.ArgumentParser (
+        description = 'Allystar HD9310 to Quasi-zenith satellite (QZS) L6 message converter')
+    parser_group = parser.add_mutually_exclusive_group ()
+    parser.add_argument (
+        '-t', '--trace', type = int, default = 0,
+        help = 'trace level (integer) for debug')
+    parser_group.add_argument (
+        '-l', '--l6', action='store_true',
+        help = 'L6 message output')
+    parser_group.add_argument (
+        '-u', '--ubx', action='store_true',
+        help = 'u-blox L6 raw  message output')
+    parser.add_argument (
+        '-m', '--message', action='store_true',
+        help = 'show Allystar messages to stderr')
+    args = parser.parse_args ()
+    if 0 < args.trace: alst.t_level = args.trace
+    if args.l6: # QZS L6 raw output to stdout
+        alst.fp_l6 = sys.stdout
+        alst.fp_trace = sys.stderr
+        alst.fp_ubx = None
+        alst.fp_msg = None
+    if args.ubx: # u-blox L6 raw output to stdout
+        alst.fp_l6 = None
+        alst.fp_trace = sys.stderr
+        alst.fp_ubx = sys.stdout
+        alst.fp_msg = None
+    if args.message: # show Allystar message to stderr
+        fp_msg = sys.stderr
     while alst.receive ():
-        prn, snr, data = alst.pick_up ()
+        alst.pick_up ()
         try:
-            if prn:
-                # send_ubxl6 (prn, snr, data)
-                send_l6raw (data)
+            alst.send_l6raw ()
+            alst.send_ubxl6 ()
             alst.show ()
         except BrokenPipeError:
             sys.exit ()

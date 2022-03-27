@@ -9,8 +9,8 @@
 # Released under BSD 2-clause license.
 
 import sys
-from libbit import *
-from ecef2llh import *
+from   ecef2llh import *
+from   libbit   import *
 
 class rtcm_t:
     class ssr_t: pass
@@ -98,25 +98,27 @@ class rtcm_t:
     def mnum2mtype (self, mnum = 0): # message number to message type
         mtype = ''
         if mnum == 0: mnum = self.mnum
-        if mnum in {1001, 1009}: mtype = 'Obs Comp L1'
-        if mnum in {1002, 1010}: mtype = 'Obs Full L1'
-        if mnum in {1003, 1011}: mtype = 'Obs Comp L1L2'
-        if mnum in {1004, 1012}: mtype = 'Obs Full L1L2'
+        if mnum in {1001, 1009}                  : mtype = 'Obs Comp L1'
+        if mnum in {1002, 1010}                  : mtype = 'Obs Full L1'
+        if mnum in {1003, 1011}                  : mtype = 'Obs Comp L1L2'
+        if mnum in {1004, 1012}                  : mtype = 'Obs Full L1L2'
         if mnum in {1019, 1020, 1044, 1042, 1041, 63}: mtype = 'NAV'
-        if mnum == 1230: mtype = 'CodePhase bias'
-        if mnum == 1045: mtype = 'F/NAV'
-        if mnum == 1046: mtype = 'I/NAV'
+        if mnum == 1230                          : mtype = 'CodePhase bias'
+        if mnum == 1045                          : mtype = 'F/NAV'
+        if mnum == 1046                          : mtype = 'I/NAV'
         if (1071 <= mnum and mnum <= 1097) or \
-           (1101 <= mnum and mnum <= 1137): mtype = 'MSM' + str (mnum % 10)
+           (1101 <= mnum and mnum <= 1137)       : mtype = f'MSM{mnum % 10}'
+        #   (1101 <= mnum and mnum <= 1137): mtype = 'MSM' + str (mnum % 10)
         if mnum in {1057, 1063, 1240, 1246, 1258}: mtype = 'SSR orbit'
         if mnum in {1058, 1064, 1241, 1247, 1259}: mtype = 'SSR clock'
         if mnum in {1059, 1065, 1242, 1248, 1260}: mtype = 'SSR code bias'
         if mnum in {1060, 1066, 1243, 1249, 1261}: mtype = 'SSR obt/clk'
         if mnum in {1061, 1067, 1244, 1250, 1262}: mtype = 'SSR URA'
         if mnum in {1062, 1068, 1245, 1251, 1263}: mtype = 'SSR hr clock'
-        if mnum in {11, 12, 13, 14}: mtype = 'SSR phase bias'
-        if mnum in {1007, 1008, 1033}: mtype = 'Ant/Rcv info'
-        if mnum in {1005, 1006}: mtype = 'Position'
+        if mnum in {11, 12, 13, 14}              : mtype = 'SSR phase bias'
+        if mnum in {1007, 1008, 1033}            : mtype = 'Ant/Rcv info'
+        if mnum in {1005, 1006}                  : mtype = 'Position'
+        if mnum == 4073                          : mtype = 'CSSR'
         return mtype
 
     def ssr_head_decode (self): # ssr
@@ -127,24 +129,24 @@ class rtcm_t:
         ssr     = self.ssr
         bw = 20 # bit width changes according to satellite system
         if satsys == 'R': bw = 17
-        ssr.epoch     = getbitu (payload, pos, bw); pos += bw # ephch time
-        ssr.intvl     = getbitu (payload, pos,  4); pos +=  4 # ssr update interval
-        ssr.mmi       = getbitu (payload, pos,  1); pos +=  1 # multiple message indicator
+        ssr.epoch = getbitu (payload, pos, bw); pos += bw # ephch time
+        ssr.intvl = getbitu (payload, pos,  4); pos +=  4 # ssr update interval
+        ssr.mmi   = getbitu (payload, pos,  1); pos +=  1 # multiple message indicator
         if mtype == 'SSR orbit' or mtype == 'SSR obt/clk':
             ssr.sdat  = getbitu (payload, pos,  1); pos +=  1 # satellite ref datum
-        ssr.iod       = getbitu (payload, pos,  4); pos +=  4 # iod ssr
-        ssr.pid       = getbitu (payload, pos, 16); pos += 16 # ssr provider id
-        ssr.sid       = getbitu (payload, pos,  4); pos +=  4 # ssr solution id
+        ssr.iod   = getbitu (payload, pos,  4); pos +=  4 # iod ssr
+        ssr.pid   = getbitu (payload, pos, 16); pos += 16 # ssr provider id
+        ssr.sid   = getbitu (payload, pos,  4); pos +=  4 # ssr solution id
         bw = 6 # bit width changes according to satellite system
         if satsys == 'J': bw = 4
-        ssr.nsat      = getbitu (payload, pos, bw); pos += bw # number of satellites
+        ssr.nsat = getbitu (payload, pos, bw); pos += bw # number of satellites
         self.pos = pos # update pos
         self.ssr = ssr # update ssr
 
     def ssr_decode_orbit (self): # decode SSR orbit correction
         payload = self.payload
         pos     = self.pos
-        strsat = ''
+        strsat  = ''
         for i in range (self.ssr.nsat):
             bw = 6 # bit width changes according to satellite system
             if self.satsys == 'J': bw = 4
@@ -157,10 +159,9 @@ class rtcm_t:
             ddrad  = getbits (payload, pos, 21); pos += 21 # delta radial
             ddalng = getbits (payload, pos, 19); pos += 19 # delta along track
             ddcrs  = getbits (payload, pos, 19); pos += 19 # delta cross track
-            strsat += self.satsys + '{:02} '.format (satid)
-        self.string = '{}(nsat={} iod={}{})'.format (
-            strsat, self.ssr.nsat, self.ssr.iod,
-            ' cont.' if self.ssr.mmi else '')
+            strsat += f"{self.satsys}{satid:02} "
+        self.string = f"{strsat}(nsat={self.ssr.nsat} iod={self.ssr.iod}" + \
+                      f"{' cont.' if self.ssr.mmi else ''})"
 
     def ssr_decode_clock (self): # decode SSR clock correction
         payload = self.payload
@@ -174,10 +175,9 @@ class rtcm_t:
             dc0    = getbits (payload, pos, 22); pos += 22 # delta clock c0
             dc1    = getbits (payload, pos, 21); pos += 21 # delta clock c1
             dc2    = getbits (payload, pos, 27); pos += 27 # delta clock c2
-            strsat += self.satsys + '{:02} '.format (satid)
-        self.string = '{}(nsat={} iod={}{})'.format (
-            strsat, self.ssr.nsat, self.ssr.iod,
-            ' cont.' if self.ssr.mmi else '')
+            strsat += f"{self.satsys}{satid:02} "
+        self.string = f"{strsat}(nsat={self.ssr.nsat} iod={self.ssr.iod}" + \
+                      f"{' cont.' if self.ssr.mmi else ''})"
 
     def ssr_decode_code_bias (self): # decode SSR code bias
         payload = self.payload
@@ -189,7 +189,7 @@ class rtcm_t:
             if self.satsys == 'R': bw = 5
             satid = getbitu (payload, pos, bw); pos += bw # satellite ID
             ncb   = getbitu (payload, pos,  5); pos +=  5 # code bias number
-            strsat += self.satsys + '{:02} '.format (satid)
+            strsat += f"{self.satsys}{satid:02} "
             for j in range (ncb):
                 stmi = getbitu (payload, pos,  5); pos +=  5 # signal & tracking mode indicator
                 cb   = getbits (payload, pos, 14); pos += 14 # code bias
@@ -202,9 +202,8 @@ class rtcm_t:
                 #if self.satsys == 'J' and stmi == 6: strsat += 'L5I '
                 #if self.satsys == 'J' and stmi == 7: strsat += 'L5Q '
                 #if self.satsys == 'J' and stmi == 8: strsat += 'L5I+Q '
-        self.string = '{}(nsat={} iod={}{})'.format (
-            strsat, self.ssr.nsat, self.ssr.iod,
-            ' cont.' if self.ssr.mmi else '')
+        self.string = f"{strsat}(nsat={self.ssr.nsat} iod={self.ssr.iod}" + \
+                      f"{' cont.' if self.ssr.mmi else ''})"
 
     def ssr_decode_ura (self): # decode SSR user range accuracy
         payload = self.payload
@@ -216,10 +215,9 @@ class rtcm_t:
             if self.satsys == 'R': bw = 5
             satid = getbitu (payload, pos, bw); pos += bw # satellite ID
             ura   = getbits (payload, pos,  6); pos +=  6 # user range accuracy
-            strsat += self.satsys + '{:02} '.format (satid)
-        self.string = '{}(nsat={} iod={}{})'.format (
-            strsat, self.ssr.nsat, self.ssr.iod,
-            ' cont.' if self.ssr.mmi else '')
+            strsat += f"{self.satsys}{satid:02} "
+        self.string = f"{strsat}(nsat={self.ssr.nsat} iod={self.ssr.iod}" + \
+                      f"{' cont.' if self.ssr.mmi else ''})"
 
     def ssr_decode_hr_clock (self): # decode SSR high rate clock
         payload = self.payload
@@ -231,10 +229,27 @@ class rtcm_t:
             if self.satsys == 'R': bw = 5
             satid = getbitu (payload, pos, bw); pos += bw # satellite ID
             hrc   = getbits (payload, pos, 22); pos += 22 # high rate clock
-            strsat += self.satsys + '{:02} '.format (satid)
-        self.string = '{}(nsat={} iod={}{})'.format (
-            strsat, self.ssr.nsat, self.ssr.iod,
-            ' cont.' if self.ssr.mmi else '')
+            strsat += f"{self.satsys}{satid:02} "
+        self.string = f"{strsat}(nsat={self.ssr.nsat} iod={self.ssr.iod}" + \
+                      f"{' cont.' if self.ssr.mmi else ''})"
+
+    def decode_cssr (self): # decode CSSR
+        payload = self.payload
+        pos = self.pos
+        subtype = getbitu (payload, pos, 4); pos += 4
+        self.mtype += f' ST{subtype}'
+        if subtype == 1: # mask information
+            epoch = getbitu (payload, pos, 20); pos += 20
+            self.string += f' epoch={epoch}'
+        elif subtype == 10: # service information
+            pass
+        else:
+            hepoch = getbitu (payload, pos, 12); pos += 12
+            self.string += f' hepoch={hepoch}'
+        interval = getbitu (payload, pos, 4); pos += 4 # update interval
+        mmi      = getbitu (payload, pos, 1); pos += 1 # multiple message
+        iod      = getbitu (payload, pos, 4); pos += 4 # issue of data
+        self.string += f' iod={iod}'
 
     def decode_pos (self): # decode antenna position
         payload = self.payload
@@ -248,8 +263,8 @@ class rtcm_t:
         if self.mnum == 1006:
             ahgt = getbitu (payload, pos, 16) * 1e-4
         lat, lon, height = ecef2llh (px, py, pz)
-        string = '{:.7f} {:.7f} {:.3f}'.format(lat, lon, height)
-        if ahgt != 0: string += ' (ant {:.3f})'.format(ahgt)
+        string = f'{lat:.7f} {lon:.7f} {height:.3f}'
+        if ahgt != 0: string += f' (ant {ahgt:.3f})'
         self.string = string # update string
 
     def decode_ant_info (self): # decode antenna and receiver info
@@ -283,11 +298,11 @@ class rtcm_t:
             if 31 < l: l = 31
             for i in range (l):
                 str_rsn += chr (getbitu (payload, pos, 8)); pos += 8
-        string = '{} "{}" {}'.format (stid, str_ant, ant_setup)
-        if str_ser != '': string += ' s/n '  + str_ser
-        if str_rcv != '': string += ' rcv "' + str_rcv + '"'
-        if str_ver != '': string += ' ver '  + str_ver
-        if str_rsn != '': string += ' s/n '  + str_rsn
+        string = f'{stid} "{str_ant}" {ant_setup}'
+        if str_ser != '': string += f' s/n {str_ser}'
+        if str_rcv != '': string += f' rcv "{str_rcv}"'
+        if str_ver != '': string += f' ver {str_ver}'
+        if str_rsn != '': string += f' s/n {str_rsn}'
         self.string = string # update string
 
     def decode_ephemerides (self):
@@ -339,8 +354,8 @@ class rtcm_t:
         #    streph += '{:02x}'.format (getbitu (payload, postop, lenrd))
         #    postop += lenrd
         #    leneph -= lenrd
-        string = satsys + "{:02d}".format (svid)
-        if svh != 0xff: string += ' svh={:02x}'.format (svh)
+        string = f"{satsys}{svid:02d}"
+        if svh != 0xff: string += f' svh={svh:02x}'
         self.string = string  # update string
 
     def decode_msm (self): # decode MSM message
@@ -395,14 +410,15 @@ class rtcm_t:
         #    cnr[i] = getbitu (payload, pos, 7); pos += 6
         string = ''
         for i in range (n_sat_mask):
-            string += self.satsys + '{:02} '.format (sat_mask[i] + 1)
+            string += f'{self.satsys}{sat_mask[i]+1:02} '
         self.string = string # update string
 
 if __name__ == '__main__':
     rtcm = rtcm_t ()
     while rtcm.receive ():
         rtcm.parse_head ()
-        if 'SSR' in rtcm.mtype:
+        if rtcm.mtype == 'CSSR'               : rtcm.decode_cssr ()
+        elif 'SSR' in rtcm.mtype:
             rtcm.ssr_head_decode ()
             if   rtcm.mtype == 'SSR orbit'    : rtcm.ssr_decode_orbit ()
             elif rtcm.mtype == 'SSR clock'    : rtcm.ssr_decode_clock ()
@@ -412,10 +428,13 @@ if __name__ == '__main__':
         elif rtcm.mtype == 'Position'         : rtcm.decode_pos ()
         elif rtcm.mtype == 'Ant/Rcv info'     : rtcm.decode_ant_info ()
         elif 'NAV' in rtcm.mtype              : rtcm.decode_ephemerides ()
-        elif rtcm.mtype in {'MSM4', 'MSM7'}   : rtcm.decode_msm()
+        elif rtcm.mtype in {'MSM4', 'MSM7'}   : rtcm.decode_msm ()
+        elif rtcm.mtype == 'CodePhase bias'   : pass
+        else: raise Exception (f'unknown message type: {rtcm.mtype}')
         try:
-            print ("RTCM {} {:1} {:14} {}".format(
-                rtcm.mnum, rtcm.satsys, rtcm.mtype, rtcm.string))
+            print (f"RTCM {rtcm.mnum} {rtcm.satsys:1} {rtcm.mtype:14}"
+                   f"{rtcm.string}")
+            sys.stdout.flush ()
         except BrokenPipeError:
             sys.exit ()
 # EOF
