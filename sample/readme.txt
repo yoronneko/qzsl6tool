@@ -28,7 +28,7 @@ Date Time : 2022-03-26 23:12:00 UTC
 Duration  : 30 seconds
 Note      : L6 band signal reception and L6E decode sample of Pocket SDR by
 Note      : Prof. Tomoji Takasu. https://github.com/tomojitakasu/PocketSDR
-Note      : pocket_trk.py ../sample/L6_20211226_082212_12MHz_IQ.bin -prn 204 -f 12 -sig L6D -log 20211226-082212mdc-pocketsdr.txt
+Note      : pocket_trk.py ../sample/L6_20211226_082212_12MHz_IQ.bin -prn 204 -f 12 -sig L6E -log 20211226-082212mdc-pocketsdr.txt
 
 File Path : 20220326-231200clas.alst
 Date Time : 2022-03-26 23:12:00 UTC
