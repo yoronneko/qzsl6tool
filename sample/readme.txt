@@ -17,14 +17,14 @@ Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
 Note      : curl https://sys.qzss.go.jp/archives/l6/2022/2022001A.l6 -o 2022001A.l6
 
 File Path : 20211226-082212pocketsdr-clas.txt
-Date Time : 2022-03-26 23:12:00 UTC
+Date Time : 2021-12-26 08:22:12 UTC
 Duration  : 30 seconds
 Note      : L6 band signal reception and L6D decode sample of Pocket SDR by
 Note      : Prof. Tomoji Takasu. https://github.com/tomojitakasu/PocketSDR
 Note      : pocket_trk.py ../sample/L6_20211226_082212_12MHz_IQ.bin -prn 194 -f 12 -sig L6D -log 20211226-082212clas-pocketsdr.txt
 
 File Path : 20211226-082212pocketsdr-mdc.txt
-Date Time : 2022-03-26 23:12:00 UTC
+Date Time : 2021-12-26 08:22:12 UTC
 Duration  : 30 seconds
 Note      : L6 band signal reception and L6E decode sample of Pocket SDR by
 Note      : Prof. Tomoji Takasu. https://github.com/tomojitakasu/PocketSDR
