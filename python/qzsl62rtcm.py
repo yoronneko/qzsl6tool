@@ -23,6 +23,12 @@ class qzsl6_t:
     l6msg    = bitstring.BitArray ()    # QZS L6 message
     run      = False                    # CSSR decode start
     t_level  = 0                        # trace level
+    ipntj_nsat = 0
+    ipntj_nsig = 0
+    ipntj_bsat = 0
+    ipntj_bsig = 0
+    ipntj_both = 0
+    ipntj_bnull = 0
 
     def trace (self, level, *args):
         if level <= self.t_level and self.fp_trace:
@@ -177,15 +183,15 @@ class qzsl6_t:
         if l6msglen < 12 + 4: return False
         self.msgnum = l6msg[pos:pos+12].uint; pos += 12 # message num, 4073
         if self.msgnum == 0:
-            self.trace (2, f"CSSR Header: Null packet")
+            self.trace (2, f"CSSR Header: Null data {len(self.l6msg.bin)} bits")
             self.trace (2, f"CSSR dump: {self.l6msg.bin}")
+            self.ipntj_bnull += len(self.l6msg.bin)
+            self.l6msg = bitstring.BitArray ()
             return False
         if self.msgnum != 4073:
             self.trace (2, f"CSSR dump: {self.l6msg.bin}")
             self.trace (2, f"4073={bitstring.Bits(uint=4073, length=12).bin}")
             raise Exception (f"wrong CSSR message number: {self.msgnum}")
-            self.l6msg = bitstring.BitArray ()
-            return False
         self.subtype = l6msg[pos:pos+ 4].uint; pos +=  4 # subtype
         if self.subtype == 1:    # Mask message
             if l6msglen < pos + 20: return False
@@ -305,24 +311,35 @@ class qzsl6_t:
         self.gsys     = gsys        # dict of sat   name from system name
         self.gsig     = gsig        # dict of sigal name from system name
         if self.fp_trace:
+            self.ipntj_nsat = 0
+            self.ipntj_nsig = 0
             for i, satsys in enumerate (self.satsys):
                 pos_mask = 0 # mask position
                 for j, gsys in enumerate (self.gsys[satsys]):
+                    self.ipntj_nsat += 1
                     msg_trace = 'ST1 '+ gsys
                     for gsig in self.gsig[satsys]:
                         mask = self.cellmask[i][pos_mask]
                         pos_mask += 1
                         if not mask: continue
                         msg_trace += ' ' + gsig
+                        self.ipntj_nsig += 1
                     self.trace (1, msg_trace)
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST1 message
+# IPNTJ
+        if self.fp_trace: self.trace (3, f'IPNTJ {self.ipntj_nsat} {self.ipntj_nsig} {self.ipntj_bsat} {self.ipntj_bsig} {self.ipntj_both} {self.ipntj_bnull} {self.ipntj_bsat + self.ipntj_bsig + self.ipntj_both + self.ipntj_bnull}')
+        self.ipntj_bsat = 0
+        self.ipntj_bsig = 0
+        self.ipntj_both = pos
+        self.ipntj_bnull= 0
         return True
 
     def decode_cssr_st2 (self):
         l6msg = self.l6msg
         l6msglen = len (l6msg)
         pos = self.pos
+        ipntj_pos = pos
         for satsys in self.satsys:
             w_iode = 10 if satsys == 'E' else 8 # IODE bit width
             for gsys in self.gsys[satsys]:
@@ -337,12 +354,15 @@ class qzsl6_t:
                 self.trace (1, f"ST2 {gsys} IODE={iode:3d} radial={radial:4.1f} along={along:4.1f} cross={cross:4.1f}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST2 message
+        self.ipntj_both += ipntj_pos
+        self.ipntj_bsat += pos - ipntj_pos
         return True
 
     def decode_cssr_st3 (self):
         l6msg = self.l6msg
         l6msglen = len (l6msg)
         pos = self.pos
+        ipntj_pos = pos
         for i, satsys in enumerate (self.satsys):
             for gsys in self.gsys[satsys]:
                 if l6msglen < pos + 15: return False
@@ -351,6 +371,8 @@ class qzsl6_t:
                 self.trace (1, f"ST3 {gsys} {c0:4.1f}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # rmoval of ST3 message
+        self.ipntj_both += ipntj_pos
+        self.ipntj_bsat += pos - ipntj_pos
         return True
 
     def decode_cssr_st4 (self):
@@ -366,6 +388,7 @@ class qzsl6_t:
                     nsigsat += 1
         if len (l6msg) < 37 + 11 * nsigsat: return False
         pos = self.pos # mask position
+        ipntj_pos = pos
         for i, satsys in enumerate (self.satsys):
             pos_mask = 0 # mask position
             for j, gsys in enumerate (self.gsys[satsys]):
@@ -378,12 +401,15 @@ class qzsl6_t:
                     self.trace (1, f"ST4 {gsys} {gsig:13s} code_bias={code_bias:4.1f}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST4 message
+        self.ipntj_both += ipntj_pos
+        self.ipntj_bsig += pos - ipntj_pos
         return True
 
     def decode_cssr_st5 (self):
         l6msg = self.l6msg
         l6msglen = len (l6msg)
         pos = self.pos
+        ipntj_pos = pos
         for i, satsys in enumerate (self.satsys):
             pos_mask = 0
             for gsys in self.gsys[satsys]:
@@ -398,6 +424,8 @@ class qzsl6_t:
                     self.trace (1, f"ST5 {gsys} {gsig:13s} phase_bias={phase_bias:4.1f} discont={di}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST5 message
+        self.ipntj_both += ipntj_pos
+        self.ipntj_bsig += pos - ipntj_pos
         return True
 
     def decode_cssr_st6 (self):
@@ -405,6 +433,7 @@ class qzsl6_t:
         l6msglen = len (l6msg)
         if l6msglen < 45: return False
         pos = self.pos
+        ipntj_pos = pos
         f_cb = l6msg[pos:pos+1].uint; pos += 1 # code bias existing flag
         f_pb = l6msg[pos:pos+1].uint; pos += 1 # phase bias existing flag
         f_nb = l6msg[pos:pos+1].uint; pos += 1 # network bias existing flag
@@ -440,6 +469,8 @@ class qzsl6_t:
                     self.trace (1, f"ST6 {gsys} {gsig:13s} code_bias={code_bias:4.1f} phase_bias={phase_bias:6.3f} discont={di}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST6 message
+        self.ipntj_both += ipntj_pos + 3
+        self.ipntj_bsig += pos-ipntj_pos-3
         return True
 
     def decode_cssr_st7 (self):
@@ -447,6 +478,7 @@ class qzsl6_t:
         l6msglen = len (l6msg)
         if l6msglen < 37: return False
         pos = self.pos
+        ipntj_pos = pos
         for satsys in self.satsys:
             for gsys in self.gsys[satsys]:
                 if l6msglen < pos + 6: return False
@@ -454,6 +486,8 @@ class qzsl6_t:
                 self.trace (1, f"ST7 {gsys} URA {ura}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST7 message
+        self.ipntj_both += ipntj_pos
+        self.ipntj_bsat += pos-ipntj_pos
         return True
 
     def decode_cssr_st8 (self):
@@ -461,6 +495,7 @@ class qzsl6_t:
         l6msglen = len (l6msg)
         if l6msglen < 44: return False
         pos = self.pos
+        ipntj_pos = pos
         stec_type = l6msg[pos:pos+2].uint; pos += 2 # STEC correction type
         cnid      = l6msg[pos:pos+5].uint; pos += 5 # compact network ID
         svmask = {}
@@ -496,6 +531,8 @@ class qzsl6_t:
                 self.trace (1, f"ST8 {gsys} c00={c00:.2f} c01={c01:.2f} c10={c10:.2f} c11={c11:.2f} c02={c02:.2f} c20={c20:.2f}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST8 message
+        self.ipntj_both += ipntj_pos + 7
+        self.ipntj_bsat += pos-ipntj_pos-7
         return True
 
     def decode_cssr_st9 (self):
@@ -535,6 +572,7 @@ class qzsl6_t:
         self.trace (1, f"ST9 correct_type={ctype} correction_range={crange} NID={cnid} quality={tqi} ngrid={ngrid}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST9 message
+        self.both += pos
         return True
 
     def decode_cssr_st10 (self):
@@ -547,6 +585,7 @@ class qzsl6_t:
         l6msglen = len (l6msg)
         if l6msglen < 40: return False
         pos = self.pos
+        ipntj_pos = pos
         f_o = l6msg[pos:pos+1].uint; pos += 1 # orbit existing flag
         f_c = l6msg[pos:pos+1].uint; pos += 1 # clock existing flag
         f_n = l6msg[pos:pos+1].uint; pos += 1 # network correction
@@ -583,6 +622,11 @@ class qzsl6_t:
                     self.trace (1, f"ST11 {gsys} radial={d_radial:5.1f} along={d_along:5.1f} cross={d_cross:5.1f} c0={c0:5.1f}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST11 message
+        self.ipntj_both += ipntj_pos + 3
+        self.ipntj_bsat += pos - ipntj_pos - 3
+        if f_n: # NIDをbsatとしてカウントしてしまったことを補正する
+            self.ipntj_both += 5
+            self.ipntj_bsat -= 5
         return True
 
     def decode_cssr_st12 (self):
@@ -629,6 +673,7 @@ class qzsl6_t:
                 if (trs == 0 and itr != -32) or (trs == 1 and itr != -128):
                     tr = 9999
                 self.trace (2, f"ST12 Tropo grid {i+1}/{ngrid} residual={tr:5.2f}")
+        ipntj_pos = pos
         if stec[0]:
             svmask = {}
             for satsys in self.satsys:
@@ -682,6 +727,8 @@ class qzsl6_t:
                         self.trace (1, f"ST12 STEC {gsys} grid {i+1:2d}/{ngrid:2d} residual={sr:5.2f}")
         self.rtcm  = l6msg[:pos].tobytes ()
         self.l6msg = l6msg[pos:] # removal of ST12 message
+        self.ipntj_both += ipntj_pos
+        self.ipntj_bsat += pos - ipntj_pos
         return True
 
     def show (self, message):
@@ -740,5 +787,6 @@ if __name__ == '__main__':
             message += qzsl6.vendor
         else: raise Exception (f"Unknown vender name: {qzssl6.vendor}")
         qzsl6.show (message)
+    if qzsl6.fp_trace: qzsl6.trace (3, f'IPNTJ {qzsl6.ipntj_nsat} {qzsl6.ipntj_nsig} {qzsl6.ipntj_bsat} {qzsl6.ipntj_bsig} {qzsl6.ipntj_both} {qzsl6.ipntj_bnull} {qzsl6.ipntj_bsat + qzsl6.ipntj_bsig + qzsl6.ipntj_both + qzsl6.ipntj_bnull}')
 
 # EOF
