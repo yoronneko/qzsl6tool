@@ -21,7 +21,9 @@ class qzsl6_t:
     fp_msg = sys.stdout           # message output file pointer
     dpn = 0                       # data part number
     sfn = 0                       # subframe number
+    vendor = ''                   # QZS L6 vendor name
     l6msg = bitstring.BitArray()  # QZS L6 message
+    subtype = 0                   # CSSR subtype number
     run = False                   # CSSR decode start
     t_level = 0                   # trace level
     stat = False                  # statistics output
@@ -37,11 +39,14 @@ class qzsl6_t:
 
     def __del__(self):
         if self.stat:
-            print(
-                f'stat {qzsl6.stat_nsat} {qzsl6.stat_nsig} {qzsl6.stat_bsat}' +
-                f'{qzsl6.stat_bsig} {qzsl6.stat_both} {qzsl6.stat_bnull} ' +
-                f'{qzsl6.stat_bsat + qzsl6.stat_bsig + qzsl6.stat_both + qzsl6.stat_bnull}',
-                file=self.fp_trace)
+            self.show_stat()
+
+    def show_stat(self):
+            msg = f'stat n_sat {self.stat_nsat} n_sig {self.stat_nsig} ' + \
+                  f'bit_sat {self.stat_bsat} bit_sig {self.stat_bsig} ' + \
+                  f'bit_other {self.stat_both} bit_null {self.stat_bnull} ' + \
+                  f'bit_total {self.stat_bsat + self.stat_bsig + self.stat_both + self.stat_bnull}'
+            print(msg, file=self.fp_trace)
 
     def trace(self, level, *args):
         if level <= self.t_level:
@@ -196,13 +201,16 @@ class qzsl6_t:
             self.dpn = 1
             self.l6msg = bitstring.BitArray(self.dpart)
             if not self.decode_cssr_head():
+                self.l6msg = bitstring.BitArray()
                 return False
             if self.subtype == 1:
                 self.sfn = 1
                 self.run = True
             else:
-                if self.run:
+                if self.run:  # first data part but subtype is not ST1
                     self.sfn += 1
+                else:  # first data part but ST1 has not beed received
+                    self.l6msg = bitstring.BitArray()
         else:  # continual data part
             if not self.run:
                 return False
@@ -215,6 +223,7 @@ class qzsl6_t:
                 self.l6msg = bitstring.BitArray()
                 return False
             self.l6msg.append(self.dpart)
+        return True
 
     def cssr2rtcm(self):
         if not self.run:
@@ -251,7 +260,9 @@ class qzsl6_t:
         l6msg = self.l6msg
         l6msglen = len(l6msg)
         pos = 0
-        if l6msglen < 12 + 4:
+        if l6msglen < 12:
+            self.msgnum = 0   # could not retreve the message number
+            self.subtype = 0  # could not retreve the subtype number
             return False
         self.msgnum = l6msg[pos:pos + 12].uint
         pos += 12  # message num, 4073
@@ -260,6 +271,7 @@ class qzsl6_t:
             self.trace(2, f"CSSR dump: {self.l6msg.bin}")
             self.stat_bnull += len(self.l6msg.bin)
             self.l6msg = bitstring.BitArray()
+            self.subtype = 0  # could not retreve the subtype number
             return False
         if self.msgnum != 4073:
             self.trace(2, f"CSSR dump: {self.l6msg.bin}")
@@ -267,6 +279,9 @@ class qzsl6_t:
                 2,
                 f"(bit image 4073: {bitstring.Bits(uint=4073, length=12).bin})")
             raise Exception(f"CSSR message# should be 4073: {self.msgnum}")
+        if l6msglen < 12 + 4:
+            self.subtype = 0  # could not retreve the subtype number
+            return False
         self.subtype = l6msg[pos:pos + 4].uint
         pos += 4  # subtype
         if self.subtype == 1:  # Mask message
@@ -274,7 +289,7 @@ class qzsl6_t:
                 return False
             self.epoch = l6msg[pos:pos + 20].uint
             pos += 20  # GPS epoch time 1s
-        elif self.subtype == 10:  # Service Information
+        elif self.subtype == 10:  # Service Information --- not implemented
             self.pos = pos
             return False
         else:
@@ -474,11 +489,7 @@ class qzsl6_t:
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST1 message
         if self.stat:
-            print(
-                f'stat {self.stat_nsat} {self.stat_nsig} {self.stat_bsat} ' +
-                f'{self.stat_bsig} {self.stat_both} {self.stat_bnull} ' +
-                f'{self.stat_bsat + self.stat_bsig + self.stat_both + self.stat_bnull}',
-                file=self.fp_trace)
+            self.show_stat()
         self.stat_bsat = 0
         self.stat_bsig = 0
         self.stat_both = pos
@@ -624,6 +635,7 @@ class qzsl6_t:
             f"network_bias={'on' if f_nb else 'off'}")
         if f_nb:
             cnid = l6msg[pos:pos + 5].uint
+            self.trace(1, f"ST6 NID={cnid}")
             pos += 5  # compact network ID
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
@@ -631,8 +643,6 @@ class qzsl6_t:
                     return False
                 svmask[satsys] = l6msg[pos:pos + ngsys]
                 pos += ngsys
-                self.trace(
-                    2, f"ST6 {satsys} NID={cnid} mask={svmask[satsys].bin}")
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0  # mask position
             for j, gsys in enumerate(self.gsys[satsys]):
@@ -819,9 +829,9 @@ class qzsl6_t:
         self.both += pos
         return True
 
-    def decode_cssr_st10(self):
-        self.trace(1, f"ST10")
-        self.l6msg = bitstring.BitArray()
+    def decode_cssr_st10(self):  # not implemented
+        self.trace(1, f"ST10 --- not implemented")
+        self.l6msg = bitstring.BitArray()  # removal of ST10 message
         return False
 
     def decode_cssr_st11(self):
@@ -968,8 +978,9 @@ class qzsl6_t:
                 tr = itr * 0.004
                 if (trs == 0 and itr != -32) or (trs == 1 and itr != -128):
                     tr = 9999
-                self.trace(2,
-                           f"ST12 Tropo grid {i+1}/{ngrid} residual={tr:5.2f}")
+                self.trace(
+                    2,
+                    f"ST12 Tropo grid {i+1:2d}/{ngrid:2d} residual={tr:5.2f}")
         stat_pos = pos
         if stec[0]:
             svmask = {}
@@ -1067,14 +1078,12 @@ class qzsl6_t:
         return True
 
     def qznma_l6_head(self):
-        self.l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"QZNMA dump: {self.l6msg.bin}")
-        self.l6msg = bitstring.BitArray()
+        l6msg = bitstring.BitArray(self.dpart)
+        self.trace(2, f"QZNMA dump: {l6msg.bin}")
 
     def unknown_l6_head(self):
-        self.l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"Unknown dump: {self.l6msg.bin}")
-        self.l6msg = bitstring.BitArray()
+        l6msg = bitstring.BitArray(self.dpart)
+        self.trace(2, f"Unknown dump: {l6msg.bin}")
 
     def show_message(self, message):
         if self.fp_msg:
@@ -1121,7 +1130,7 @@ if __name__ == '__main__':
     if args.statistics:  # show CLAS statistics
         qzsl6.stat = True
     while qzsl6.receive():
-        message = ''
+        message = qzsl6.vendor + ' '
         if qzsl6.vendor == "MADOCA":
             qzsl6.mdc_l6_head()
             message += gps2utc(qzsl6.wn, qzsl6.tow) + ' '
@@ -1131,19 +1140,27 @@ if __name__ == '__main__':
                 qzsl6.send_rtcm()
         elif qzsl6.vendor in {"CLAS", "MADOCA-PPP"}:
             qzsl6.cssr_l6_head()
-            message += qzsl6.vendor + ' '
             if qzsl6.sfn != 0:
                 message += 'SF' + str(qzsl6.sfn) + ' DP' + str(qzsl6.dpn)
                 if qzsl6.vendor == "MADOCA-PPP":
                     message += f' ({qzsl6.servid} {qzsl6.msg_ext})'
-            while qzsl6.cssr2rtcm():
+            if not qzsl6.cssr2rtcm():  # could not decode any message
+                if qzsl6.run and qzsl6.subtype == 0:  # whole message is null
+                    message += ' (null)'
+                elif qzsl6.run:  # continual message
+                    message += f' ST{qzsl6.subtype}...'
+            else:
                 message += f' ST{qzsl6.subtype}'
                 qzsl6.send_rtcm()
+                while qzsl6.cssr2rtcm():  # try to decode next message
+                    message += f' ST{qzsl6.subtype}'
+                    qzsl6.send_rtcm()
+                if len(qzsl6.l6msg) != 0:  # subtype message continues to next datapart
+                    message += f' ST{qzsl6.subtype}...'
+                    # print (f'CSSR cont dump (len={len(qzsl6.l6msg)}, subtype={qzsl6.subtype}, run={qzsl6.run}): {qzsl6.l6msg.bin}') # aaaaa
         elif qzsl6.vendor == "QZNMA":
             qzsl6.qznma_l6_head()
-            message += qzsl6.vendor
         else: # unknown vendor
             qzsl6.unknown_l6_head()
-            message += qzsl6.vendor
         qzsl6.show_message(message)
 # EOF
