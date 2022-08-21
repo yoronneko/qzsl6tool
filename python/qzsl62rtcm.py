@@ -14,6 +14,7 @@ import sys
 from gps2utc import *
 from libbit import *
 
+INVALID = 0  #  value indicatin invalid
 
 class qzsl6_t:
     fp_trace = sys.stdout         # file pointer for trace
@@ -51,7 +52,10 @@ class qzsl6_t:
     def trace(self, level, *args):
         if level <= self.t_level:
             for arg in args:
-                print(arg, file=self.fp_trace)
+                try:
+                    print(arg, end='', file=self.fp_trace)
+                except (BrokenPipeError, IOError):
+                    sys.exit()
 
     def receive(self):
         sync = [b'0x00' for i in range(4)]
@@ -84,7 +88,7 @@ class qzsl6_t:
             vendor = f"unknown (vendor ID 0b{vid:03b})"
         facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
         facility += ":" + str((mtid >> 3) & 1)
-        servid = "Ionospheric" if (mtid >> 2) & 1 else "Clock/Ephemeris"
+        servid = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
         msg_ext = "CNAV" if (mtid >> 1) & 1 else "LNAV"
         sf_ind = mtid & 1  # subframe indicator
         self.prn = prn
@@ -125,7 +129,7 @@ class qzsl6_t:
             be = 17
             bs = 6  # bit size of epoch and numsat for GLONASS
         else:
-            self.trace(1, f"Unknown message number {msgnum}")
+            self.trace(1, f"Unknown message number {msgnum}\n")
             return False
         epoch = dpart[pos:pos + be].uint
         pos += be
@@ -184,8 +188,8 @@ class qzsl6_t:
         elif msgnum == 1068:
             pos += 27 * numsat  # GLONASS hr clock correction
         else:
-            self.trace(1, f"Warning: msgnum {msgnum} drop {len (dpart)} bit:")
-            self.trace(1, f"{dpart.bin}")
+            self.trace(1, f"Warning: msgnum {msgnum} drop {len (dpart)} bit:\n")
+            self.trace(1, f"{dpart.bin}\n")
             return False
         if pos % 8 != 0:
             pos += 8 - (pos % 8)  # byte align
@@ -216,7 +220,7 @@ class qzsl6_t:
                 return False
             self.dpn += 1
             if self.dpn == 6:  # data part number should be less than 6
-                self.trace(1, f"Warning: too many datapart")
+                self.trace(1, "Warning: too many datapart\n")
                 self.run = False
                 self.dpn = 0
                 self.sfn = 0
@@ -267,19 +271,19 @@ class qzsl6_t:
         self.msgnum = l6msg[pos:pos + 12].uint
         pos += 12  # message num, 4073
         if self.msgnum == 0:
-            self.trace(2, f"CSSR null data {len(self.l6msg.bin)} bits")
-            self.trace(2, f"CSSR dump: {self.l6msg.bin}")
+            self.trace(2, f"CSSR null data {len(self.l6msg.bin)} bits\n")
+            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
             self.stat_bnull += len(self.l6msg.bin)
             self.l6msg = bitstring.BitArray()
             self.subtype = 0  # could not retreve the subtype number
             return False
         if self.msgnum != 4073:
-            self.trace(2, f"CSSR dump: {self.l6msg.bin}")
+            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
             self.trace(
                 2,
-                f"(bit image 4073: {bitstring.Bits(uint=4073, length=12).bin})")
-            raise Exception(f"CSSR message# should be 4073: {self.msgnum}")
-        if l6msglen < 12 + 4:
+                f"(bit image 4073: {bitstring.Bits(uint=4073, length=12).bin})\n")
+            raise Exception(f"CSSR message# should be 4073: {self.msgnum}\n")
+        if l6msglen < pos + 4:
             self.subtype = 0  # could not retreve the subtype number
             return False
         self.subtype = l6msg[pos:pos + 4].uint
@@ -473,21 +477,23 @@ class qzsl6_t:
         self.gsig = gsig          # dict of sigal name from system name
         self.stat_nsat = 0
         self.stat_nsig = 0
+        msg_trace1 = ''
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0  # mask position
             for j, gsys in enumerate(self.gsys[satsys]):
                 self.stat_nsat += 1
-                msg_trace = 'ST1 ' + gsys
+                msg_trace1 += 'ST1 ' + gsys
                 for gsig in self.gsig[satsys]:
                     mask = self.cellmask[i][pos_mask]
                     pos_mask += 1
                     if not mask:
                         continue
-                    msg_trace += ' ' + gsig
+                    msg_trace1 += ' ' + gsig
                     self.stat_nsig += 1
-                self.trace(1, msg_trace)
+                msg_trace1 += '\n'
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST1 message
+        self.trace(1, msg_trace1)
         if self.stat:
             self.show_stat()
         self.stat_bsat = 0
@@ -501,6 +507,7 @@ class qzsl6_t:
         l6msglen = len(l6msg)
         pos = self.pos
         stat_pos = pos
+        msg_trace1 = ''
         for satsys in self.satsys:
             w_iode = 10 if satsys == 'E' else 8  # IODE bit width
             for gsys in self.gsys[satsys]:
@@ -508,21 +515,22 @@ class qzsl6_t:
                     return False
                 iode = l6msg[pos:pos + w_iode].uint
                 pos += w_iode
-                d_radial = l6msg[pos:pos + 15].int
+                i_radial = l6msg[pos:pos + 15].int
+                d_radial = i_radial * 0.0016 if i_radial != -16384 else INVALID
                 pos += 15
-                d_along = l6msg[pos:pos + 13].int
+                i_along = l6msg[pos:pos + 13].int
+                d_along = i_radial * 0.0064 if i_along != -16384 else INVALID
                 pos += 13
-                d_cross = l6msg[pos:pos + 13].int
+                i_cross = l6msg[pos:pos + 13].int
+                d_cross = i_radial * 0.0064 if i_cross != -16384 else INVALID
                 pos += 13
-                radial = d_radial * 0.0016 if d_radial != -16384 else 9999
-                along = d_radial * 0.0064 if d_along != -16384 else 9999
-                cross = d_radial * 0.0064 if d_cross != -16384 else 9999
-                self.trace(
-                    1,
-                    f'ST2 {gsys} IODE={iode:3d} radial={radial:4.1f} ' +
-                    f'along={along:4.1f} cross={cross:4.1f}')
+                msg_trace1 += f'ST2 {gsys} IODE={iode:4d}' + \
+                              f' d_radial={d_radial:4.1f}m' + \
+                              f' d_along={d_along:4.1f}m' + \
+                              f' d_cross={d_cross:4.1f}m\n'
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST2 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
         return True
@@ -532,16 +540,18 @@ class qzsl6_t:
         l6msglen = len(l6msg)
         pos = self.pos
         stat_pos = pos
+        msg_trace1 = ''
         for i, satsys in enumerate(self.satsys):
             for gsys in self.gsys[satsys]:
                 if l6msglen < pos + 15:
                     return False
                 ic0 = l6msg[pos:pos + 15].int
                 pos += 15
-                c0 = ic0 * 0.0016 if ic0 != -16384 else 9999
-                self.trace(1, f"ST3 {gsys} {c0:4.1f}")
+                c0 = ic0 * 0.0016 if ic0 != -16384 else INVALID
+                msg_trace1 += f"ST3 {gsys} d_clock={c0:4.1f}m\n"
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # rmoval of ST3 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
         return True
@@ -562,6 +572,7 @@ class qzsl6_t:
             return False
         pos = self.pos  # mask position
         stat_pos = pos
+        msg_trace1 = ''
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0  # mask position
             for j, gsys in enumerate(self.gsys[satsys]):
@@ -572,11 +583,12 @@ class qzsl6_t:
                         continue
                     cb = l6msg[pos:pos + 11].int
                     pos += 11
-                    code_bias = cb * 0.02 if cb != -1024 else 9999
-                    self.trace(
-                        1, f"ST4 {gsys} {gsig:13s} code_bias={code_bias:4.1f}")
+                    code_bias = cb * 0.02 if cb != -1024 else INVALID
+                    msg_trace1 += f"ST4 {gsys} {gsig:13s} " +  \
+                                  f"code_bias={code_bias:4.1f}m\n"
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST4 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += pos - stat_pos
         return True
@@ -586,6 +598,7 @@ class qzsl6_t:
         l6msglen = len(l6msg)
         pos = self.pos
         stat_pos = pos
+        msg_trace1 = ''
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0
             for gsys in self.gsys[satsys]:
@@ -600,13 +613,13 @@ class qzsl6_t:
                     pos += 15
                     di = l6msg[pos:pos + 2].uint
                     pos += 2
-                    phase_bias = pb * 0.001 if pb != -16384 else 9999
-                    self.trace(
-                        1,
-                        f'ST5 {gsys} {gsig:13s} ' +
-                        f'phase_bias={phase_bias:4.1f} discont={di}')
+                    phase_bias = pb * 0.001 if pb != -16384 else INVALID
+                    msg_trace1 += f'ST5 {gsys} {gsig:13s}' + \
+                                  f' phase_bias={phase_bias:4.1f}m' + \
+                                  f' discont_indicator={di}\n'
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST5 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += pos - stat_pos
         return True
@@ -628,14 +641,13 @@ class qzsl6_t:
         cnid = 0
         for satsys in self.satsys:
             bcellmask = bitstring.BitArray('0b1') * len(self.gsys[satsys])
-        self.trace(
-            1,
-            f"ST6 code_bias={'on' if f_cb else 'off'} " +
-            f"phase_bias={'on' if f_pb else 'off'} " +
-            f"network_bias={'on' if f_nb else 'off'}")
+        msg_trace1 = \
+            f"ST6 code_bias={'on' if f_cb else 'off'}" + \
+            f" phase_bias={'on' if f_pb else 'off'}" + \
+            f" network_bias={'on' if f_nb else 'off'}\n"
         if f_nb:
             cnid = l6msg[pos:pos + 5].uint
-            self.trace(1, f"ST6 NID={cnid}")
+            msg_trace1 += f"ST6 NID={cnid}\n"
             pos += 5  # compact network ID
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
@@ -651,29 +663,28 @@ class qzsl6_t:
                     pos_mask += 1
                     if not svmask[satsys][j] or not mask:
                         continue
-                    cb = -1024
-                    pb = -16384
-                    pdi = 0
+                    msg_trace1 += f"ST6 {gsys} {gsig:13s}"
                     if f_cb:
                         if l6msglen < pos + 11:
                             return False
                         cb = l6msg[pos:pos + 11].int
+                        code_bias = cb * 0.02 if cb != -1024 else INVALID
                         pos += 11  # code bias
+                        msg_trace1 += f" code_bias={code_bias:4.1f}m"
                     if f_pb:
                         if l6msglen < pos + 15 + 2:
                             return False
                         pb = l6msg[pos:pos + 15].int
+                        phase_bias = pb * 0.001 if pb != -16384 else INVALID
                         pos += 15
                         di = l6msg[pos:pos + 2].uint
                         pos += 2
-                    code_bias = cb * 0.02 if cb != -1024 else 9999
-                    phase_bias = pb * 0.001 if cb != -16384 else 9999
-                    self.trace(
-                        1,
-                        f"ST6 {gsys} {gsig:13s} code_bias={code_bias:4.1f} " +
-                        f"phase_bias={phase_bias:6.3f} discont={di}")
+                        msg_trace1 += f" phase_bias={phase_bias:6.3f}m" +  \
+                                      f" discont_indi={di}"
+                    msg_trace1 += '\n'
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST6 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
         self.stat_bsig += pos - stat_pos - 3
         return True
@@ -685,15 +696,17 @@ class qzsl6_t:
             return False
         pos = self.pos
         stat_pos = pos
+        msg_trace1 = ''
         for satsys in self.satsys:
             for gsys in self.gsys[satsys]:
                 if l6msglen < pos + 6:
                     return False
                 ura = l6msg[pos:pos + 6].uint
                 pos += 6
-                self.trace(1, f"ST7 {gsys} URA {ura}")
+                msg_trace1 += f"ST7 {gsys} URA {ura}\n"
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST7 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
         return True
@@ -716,6 +729,7 @@ class qzsl6_t:
                 return False
             svmask[satsys] = l6msg[pos:pos + ngsys]
             pos += ngsys
+        msg_trace1 = ''
         for satsys in self.satsys:
             for i, gsys in enumerate(self.gsys[satsys]):
                 if not svmask[satsys][i]:
@@ -725,43 +739,40 @@ class qzsl6_t:
                 qi = l6msg[pos:pos + 6].uint
                 pos += 6  # quality indicator
                 ic00 = l6msg[pos:pos + 14].int
+                c00 = ic00 * 0.05 if ic00 != -8192 else INVALID
+                msg_trace1 += f"ST8 {gsys} c00={c00:5.2f}TECU"
                 pos += 14
-                ic01 = -2048
-                ic10 = -2048
-                ic11 = -512
-                ic02 = -128
-                ic20 = -128
                 if 1 <= stec_type:
                     if l6msglen < pos + 12 + 12:
                         return False
                     ic01 = l6msg[pos:pos + 12].int
+                    c01 = ic01 * 0.02 if ic01 != -2048 else INVALID
                     pos += 12
                     ic10 = l6msg[pos:pos + 12].int
+                    c10 = ic10 * 0.02 if ic10 != -2048 else INVALID
                     pos += 12
+                    msg_trace1 +=f" c01={c01:5.2f}TECU/deg c10={c10:5.2f}TECU/deg"
                 if 2 <= stec_type:
                     if l6msglen < pos + 10:
                         return False
                     ic11 = l6msg[pos:pos + 10].int
+                    c11 = ic11 * 0.02 if ic11 != -512 else INVALID
                     pos += 10
+                    msg_trace1 += f" c11={c11:5.2f}TECU/deg^2"
                 if 3 <= stec_type:
                     if l6msglen < pos + 8 + 8:
                         return False
                     ic02 = l6msg[pos:pos + 8].int
+                    c02 = ic02 * 0.005 if ic02 != -128 else INVALID
                     pos += 8
                     ic20 = l6msg[pos:pos + 8].int
+                    c20 = ic20 * 0.005 if ic20 != -128 else INVALID
                     pos += 8
-                c00 = ic00 * 0.05 if ic00 != -8192 else 9999
-                c01 = ic01 * 0.02 if ic01 != -2048 else 9999
-                c10 = ic10 * 0.02 if ic10 != -2048 else 9999
-                c11 = ic11 * 0.02 if ic11 != -512 else 9999
-                c02 = ic02 * 0.005 if ic02 != -128 else 9999
-                c20 = ic20 * 0.005 if ic20 != -128 else 9999
-                self.trace(
-                    1,
-                    f"ST8 {gsys} c00={c00:.2f} c01={c01:.2f} c10={c10:.2f} " +
-                    f"c11={c11:.2f} c02={c02:.2f} c20={c20:.2f}")
+                    msg_trace1 += f" c02={c02:5.2f}TECU/deg^2 c20={c20:5.2f}TECU/deg^2"
+                msg_trace1 += '\n'
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST8 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 7
         self.stat_bsat += pos - stat_pos - 7
         return True
@@ -772,12 +783,13 @@ class qzsl6_t:
         if l6msglen < 45:
             return False
         pos = self.pos
-        ctype = l6msg[pos:pos + 2].uint
-        pos += 2  # correction type
+        tctype = l6msg[pos:pos + 2].uint
+        pos += 2  # tropospheric correction type
         crange = l6msg[pos:pos + 1].uint
-        pos += 1  # correction range
+        bw = 16 if crange else 7
+        pos += 1  # tropospheric correction range
         cnid = l6msg[pos:pos + 5].uint
-        pos += 5
+        pos += 5  # compact network ID
         svmask = {}
         for satsys in self.satsys:
             ngsys = len(self.gsys[satsys])
@@ -788,45 +800,42 @@ class qzsl6_t:
         if l6msglen < pos + 6 + 6:
             return False
         tqi = l6msg[pos:pos + 6].uint
-        pos += 6  # tropo quality indicator
+        pos += 6  # tropospheric quality indicator
         ngrid = l6msg[pos:pos + 6].uint
         pos += 6  # number of grids
+        msg_trace1 = f"ST9 Trop correct_type={tctype}" + \
+                     f" NID={cnid} quality={tqi} ngrid={ngrid}\n"
         for i in range(ngrid):
             if l6msglen < pos + 9 + 8:
                 return False
-            ivd_hs = l6msg[pos:pos + 9].int
+            ivd_h = l6msg[pos:pos + 9].int
+            vd_h = ivd_h * 0.004 if ivd_h != -256 else INVALID
             pos += 9  # hydrostatic vertical delay
             ivd_w = l6msg[pos:pos + 8].int
+            vd_w = ivd_w * 0.004 if ivd_w != -128 else INVALID
             pos += 8  # wet vertical delay
-            vd_hs = ivd_hs * 0.004 if ivd_hs != -256 else 9999
-            vd_w = ivd_w * 0.004 if ivd_w != -128 else 9999
+            msg_trace1 += \
+                f'ST9 Trop     grid {i+1:2d}/{ngrid:2d}' + \
+                f' dry-delay={vd_h:6.3f}m wet-delay={vd_w:6.3f}m\n'
             for satsys in self.satsys:
                 for j, gsys in enumerate(self.gsys[satsys]):
                     if not svmask[satsys][j]:
                         continue
-                    if crange:
-                        if l6msglen < pos + 16:
-                            return False
-                        res = l6msg[pos:pos + 16].int
-                        pos += 16
-                        residual = res * 0.04 if res != -32767 else 9999
-                    else:
-                        if l6msglen < pos + 7:
-                            return False
-                        res = l6msg[pos:pos + 7].int
-                        pos += 7
-                        residual = res * 0.04 if res != -64 else 9999
-                    self.trace(
-                        1,
-                        f'ST9 grid {i+1:2d}/{ngrid:2d} {gsys} ' +
-                        f'dry-delay={vd_hs:6.3f} wet-delay={vd_w:6.3f} ' +
-                        f'residual={residual:5.2f}')
-        self.trace(1,
-                   f"ST9 correct_type={ctype} correction_range={crange} " +
-                   f"NID={cnid} quality={tqi} ngrid={ngrid}")
+                    if l6msglen < pos + bw:
+                        return False
+                    res = l6msg[pos:pos + bw].int
+                    residual = res * 0.04
+                    if (crange == 1 and res == -32767) or \
+                       (crange == 0 and res == -64):
+                        residual = INVALID
+                    pos += bw
+                    msg_trace1 += \
+                        f'ST9 STEC {gsys} grid {i+1:2d}/{ngrid:2d}' + \
+                        f' residual={residual:5.2f}TECU ({bw}bit)\n'
+        self.trace(1, msg_trace1)
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST9 message
-        self.both += pos
+        self.stat_both += pos
         return True
 
     def decode_cssr_st10(self):  # not implemented
@@ -847,16 +856,15 @@ class qzsl6_t:
         pos += 1  # clock existing flag
         f_n = l6msg[pos:pos + 1].uint
         pos += 1  # network correction
-        self.trace(
-            1,
-            f"ST11 Orb={'on' if f_o else 'off'} " +
-            f"Clk={'on' if f_c else 'off'} Net={'on' if f_n else 'off'}")
+        msg_trace1 = f"ST11 Orb={'on' if f_o else 'off'} " + \
+                     f"Clk={'on' if f_c else 'off'} " + \
+                     f"Net={'on' if f_n else 'off'}\n"
         if f_n:
             if l6msglen < pos + 5:
                 return False
             cnid = l6msg[pos:pos + 5].uint
             pos += 5  # compact network ID
-            self.trace(1, f"ST11 NID={cnid}")
+            msg_trace1 += f"ST11 NID={cnid}\n"
             svmask = {}
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
@@ -868,11 +876,7 @@ class qzsl6_t:
                 for i, gsys in enumerate(self.gsys[satsys]):
                     if not svmask[satsys][i]:
                         continue
-                    iode = 0
-                    id_radial = -16384
-                    id_along = -4096
-                    id_cross = -4096
-                    id_clock = -16384
+                    msg_trace1 += f"ST11 {gsys}"
                     if f_o:
                         w_iode = 10 if satsys == 'E' else 8  # IODE width
                         if l6msglen < pos + w_iode + 15 + 13 + 13:
@@ -880,29 +884,33 @@ class qzsl6_t:
                         iode = l6msg[pos:pos + w_iode].uint
                         pos += w_iode
                         id_radial = l6msg[pos:pos + 15].int
+                        d_radial = id_radial * 0.0016 if id_radial != -16384 else INVALID
                         pos += 15
                         id_along = l6msg[pos:pos + 13].int
+                        d_along = id_along * 0.0064 if id_along != -4096 else INVALID
                         pos += 13
                         id_cross = l6msg[pos:pos + 13].int
+                        d_cross = id_cross * 0.0064 if id_cross != -4096 else INVALID
                         pos += 13
+                        msg_trace1 += \
+                               f" IODE={iode:4d}" +\
+                               f" d_radial={d_radial:5.1f}m" + \
+                               f" d_along={d_along:5.1f}m" + \
+                               f" d_cross={d_cross:5.1f}m"
                     if f_c:
                         if l6msglen < pos + 15:
                             return False
                         ic0 = l6msg[pos:pos + 15].int
+                        c0 = ic0 * 0.0016 if ic0 != -16384 else INVALID
                         pos += 15
-                    d_radial = id_radial * 0.0016 if id_radial != -16384 else 9999
-                    d_along = id_along * 0.0064 if id_along != -4096 else 9999
-                    d_cross = id_cross * 0.0064 if id_cross != -4096 else 9999
-                    c0 = ic0 * 0.0016 if ic0 != -16384 else 9999
-                    self.trace(1,
-                               f"ST11 {gsys} radial={d_radial:5.1f} " +
-                               f"along={d_along:5.1f} cross={d_cross:5.1f} " +
-                               f"c0={c0:5.1f}")
+                        msg_trace1 += f" c0={c0:5.1f}m"
+                    msg_trace1 += "\n"
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST11 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
         self.stat_bsat += pos - stat_pos - 3
-        if f_n:  # NIDをbsatとしてカウントしてしまったことを補正する
+        if f_n:  # correct bit number because because we count up bsat as NID
             self.stat_both += 5
             self.stat_bsat -= 5
         return True
@@ -914,22 +922,16 @@ class qzsl6_t:
             return False
         pos = self.pos
         tropo = l6msg[pos:pos + 2]
-        pos += 2  # Tropo correction avail
+        pos += 2  # Tropospheric correction avail
         stec = l6msg[pos:pos + 2]
         pos += 2  # STEC correction avail
         cnid = l6msg[pos:pos + 5].uint
         pos += 5  # compact network ID
         ngrid = l6msg[pos:pos + 6].uint
         pos += 6  # number of grids
-        self.trace(
-            1,
-            f"ST12 tropo={tropo} stec={stec} NID={cnid} ngrid={ngrid}")
-        it00 = -256
-        it01 = -64
-        it10 = -64
-        it11 = -64
-        tro = 9999
-        trs = 9999
+        msg_trace1 = \
+            f"ST12 tropo={tropo} stec={stec} NID={cnid} ngrid={ngrid}\n" + \
+            f"ST12 Trop"
         if tropo[0]:
             # 0 <= ttype (forward reference)
             if l6msglen < pos + 6 + 2 + 9:
@@ -939,48 +941,49 @@ class qzsl6_t:
             ttype = l6msg[pos:pos + 2].uint
             pos += 2  # tropo correction type
             it00 = l6msg[pos:pos + 9].int
+            t00 = it00 * 0.004 if it00 != -256 else INVALID
             pos += 9  # tropo poly coeff
+            msg_trace1 += f" quality={tqi} correct_type(0-2)={ttype}" + \
+                          f" t00={t00:6.2f}m"
             if 1 <= ttype:
                 if l6msglen < pos + 7 + 7:
                     return False
                 it01 = l6msg[pos:pos + 7].int
+                t01 = it01 * 0.002 if it01 != -64 else INVALID
                 pos += 7
                 it10 = l6msg[pos:pos + 7].int
+                t10 = it10 * 0.002 if it10 != -64 else INVALID
                 pos += 7
+                msg_trace1 += f" t01={t01:5.2f}m/deg t10={t10:5.2f}m/deg"
             if 2 <= ttype:
                 if l6msglen < pos + 7:
                     return False
                 it11 = l6msg[pos:pos + 7].int
+                t11 = it11 * 0.001 if it11 != -64 else INVALID
                 pos += 7
-            t00 = it00 * 0.004 if it00 != -256 else 9999
-            t01 = it01 * 0.002 if it01 != -64 else 9999
-            t10 = it10 * 0.002 if it10 != -64 else 9999
-            t11 = it11 * 0.001 if it11 != -64 else 9999
-            self.trace(
-                1,
-                f"ST12 Tropo quality={tqi} correction_type(0-2)={ttype} " +
-                f"t00={t00} t01={t01} t10={t10} t11={t11}")
+                msg_trace1 += f" t11={t11:5.2f}m/deg^2"
+            msg_trace1 += '\n'
         if tropo[1]:
             if l6msglen < pos + 1 + 4:
                 return False
             trs = l6msg[pos:pos + 1].uint
+            bw = 8 if trs else 6
             pos += 1  # tropo residual size
             itro = l6msg[pos:pos + 4].uint
-            pos += 4  # tropo residual offset
             tro = itro * 0.02
-            self.trace(2, f"ST12 Tropo offset={tro}")
-            wb = 8 if trs else 6
-            if l6msglen < pos + wb * ngrid:
+            pos += 4  # tropo residual offset
+            msg_trace1 += f"ST12 Trop offset={tro:5.2f}m\n"
+            if l6msglen < pos + bw * ngrid:
                 return False
             for i in range(ngrid):
-                itr = l6msg[pos:pos + wb].int
-                pos += wb  # troposphere residual
+                itr = l6msg[pos:pos + bw].int
+                pos += bw  # troposphere residual
                 tr = itr * 0.004
                 if (trs == 0 and itr != -32) or (trs == 1 and itr != -128):
-                    tr = 9999
-                self.trace(
-                    2,
-                    f"ST12 Tropo grid {i+1:2d}/{ngrid:2d} residual={tr:5.2f}")
+                    tr = INVALID
+                msg_trace1 += \
+                    f"ST12 Trop grid {i+1:2d}/{ngrid:2d}" + \
+                    f" residual={tr:5.2f}m ({bw}bit)\n"
         stat_pos = pos
         if stec[0]:
             svmask = {}
@@ -1001,42 +1004,39 @@ class qzsl6_t:
                     sct = l6msg[pos:pos + 2].uint
                     pos += 2  # correction type
                     ic00 = l6msg[pos:pos + 14].int
+                    c00 = ic00 * 0.05 if ic00 != -8192 else INVALID
                     pos += 14
-                    ic01 = -2048
-                    ic10 = -2048
-                    ic11 = -512
-                    ic02 = -128
-                    ic20 = -128
+                    msg_trace1 += \
+                        f"ST12 STEC {gsys} quality={sqi:02x} type={sct}" + \
+                        f" c00={c00:.1f}TECU"
                     if 1 <= sct:
                         if l6msglen < pos + 12 + 12:
                             return False
                         ic01 = l6msg[pos:pos + 12].int
+                        c01 = ic01 * 0.02 if ic01 != -2048 else INVALID
                         pos += 12
                         ic10 = l6msg[pos:pos + 12].int
+                        c10 = ic10 * 0.02 if ic10 != -2048 else INVALID
                         pos += 12
+                        msg_trace1 += f" c01={c01:.1f}TECU/deg c10={c10:.1f}TECU/deg"
                     if 2 <= sct:
                         if l6msglen < pos + 10:
                             return False
                         ic11 = l6msg[pos:pos + 10].int
+                        c11 = ic11 * 0.02 if ic11 != -512 else INVALID
                         pos += 10
+                        msg_trace1 += f" c11={c11:.1f}TECU/deg^2"
                     if 3 <= sct:
                         if l6msglen < pos + 8 + 8:
                             return False
                         ic02 = l6msg[pos:pos + 8].int
+                        c02 = ic02 * 0.005 if ic02 != -128 else INVALID
                         pos += 8
                         ic20 = l6msg[pos:pos + 8].int
+                        c20 = ic20 * 0.005 if ic20 != -128 else INVALID
                         pos += 8
-                    c00 = ic00 * 0.05 if ic00 != -8192 else 9999
-                    c01 = ic01 * 0.02 if ic01 != -2048 else 9999
-                    c10 = ic10 * 0.02 if ic10 != -2048 else 9999
-                    c11 = ic11 * 0.02 if ic11 != -512 else 9999
-                    c02 = ic02 * 0.005 if ic02 != -128 else 9999
-                    c20 = ic20 * 0.005 if ic20 != -128 else 9999
-                    self.trace(
-                        1,
-                        f"ST12 STEC {gsys} quality={sqi:02x} type={sct} " +
-                        f"c00={c00:.1f} c01={c01:.1f} c10={c10:.1f} " +
-                        f"c11={c11:.1f} c02={c02:.1f} c20={c20:.1f}")
+                        msg_trace1 += f" c02={c02:.1f}TECU/deg^2 c20={c20:.1f}TECU/deg^2"
+                    msg_trace1 += '\n'
                     if l6msglen < pos + 2:
                         return False
                     srs = l6msg[pos:pos + 2].uint
@@ -1056,39 +1056,38 @@ class qzsl6_t:
                         if l6msglen < pos + bw:
                             return False
                         isr = l6msg[pos:pos + bw].int
+                        sr = isr * lsb
+                        if (srs == 0 and isr ==  -8) or \
+                           (srs == 1 and isr ==  -8) or \
+                           (srs == 2 and isr == -16) or \
+                           (srs == 3 and isr == -64):
+                            sr = INVALID
                         pos += bw
-                        if srs == 0 and isr != -8:
-                            sr = isr * 0.04
-                        elif srs == 1 and isr != -8:
-                            sr = isr * 0.12
-                        elif srs == 2 and isr != -16:
-                            sr = isr * 0.16
-                        elif srs == 3 and isr != -64:
-                            sr = isr * 0.24
-                        else:
-                            sr = 9999
-                        self.trace(
-                            1,
-                            f"ST12 STEC {gsys} grid {i+1:2d}/{ngrid:2d} " +
-                            f"residual={sr:5.2f}")
+                        msg_trace1 += \
+                            f"ST12 STEC {gsys} grid {i+1:2d}/{ngrid:2d} " + \
+                            f"residual={sr:5.2f}TECU ({bw}bit)\n"
         self.rtcm = l6msg[:pos].tobytes()
         self.l6msg = l6msg[pos:]  # removal of ST12 message
+        self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
         return True
 
     def qznma_l6_head(self):
         l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"QZNMA dump: {l6msg.bin}")
+        self.trace(2, f"QZNMA dump: {l6msg.bin}\n")
 
     def unknown_l6_head(self):
         l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"Unknown dump: {l6msg.bin}")
+        self.trace(2, f"Unknown dump: {l6msg.bin}\n")
 
     def show_message(self, message):
         if self.fp_msg:
-            print(f'{self.prn} {self.facility:13s}' +
-                  f'{"*" if self.alert else " "} {message}', file=self.fp_msg)
+            try:
+                print(f'{self.prn} {self.facility:13s}' +
+                    f'{"*" if self.alert else " "} {message}', file=self.fp_msg)
+            except (BrokenPipeError, IOError):
+                sys.exit()
 
     def send_rtcm(self):
         if not self.fp_rtcm:
@@ -1141,7 +1140,7 @@ if __name__ == '__main__':
         elif qzsl6.vendor in {"CLAS", "MADOCA-PPP"}:
             qzsl6.cssr_l6_head()
             if qzsl6.sfn != 0:
-                message += 'SF' + str(qzsl6.sfn) + ' DP' + str(qzsl6.dpn)
+                message += ' SF' + str(qzsl6.sfn) + ' DP' + str(qzsl6.dpn)
                 if qzsl6.vendor == "MADOCA-PPP":
                     message += f' ({qzsl6.servid} {qzsl6.msg_ext})'
             if not qzsl6.cssr2rtcm():  # could not decode any message
@@ -1157,7 +1156,6 @@ if __name__ == '__main__':
                     qzsl6.send_rtcm()
                 if len(qzsl6.l6msg) != 0:  # subtype message continues to next datapart
                     message += f' ST{qzsl6.subtype}...'
-                    # print (f'CSSR cont dump (len={len(qzsl6.l6msg)}, subtype={qzsl6.subtype}, run={qzsl6.run}): {qzsl6.l6msg.bin}') # aaaaa
         elif qzsl6.vendor == "QZNMA":
             qzsl6.qznma_l6_head()
         else: # unknown vendor
