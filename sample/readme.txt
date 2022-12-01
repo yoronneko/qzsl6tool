@@ -41,3 +41,11 @@ Date Time : 2022-03-26 23:12:00 UTC
 Duration  : 1 minute
 Note      : Allystar raw data observed at Hiroshima, JP
 Note      : with HD9310 (TAU1302) option C MADOCA firmware
+
+File Path : 20221130-125237mdc-ppp.alst
+Date Time : 2022-11-30 12:52:37 UTC
+Duration  : 1 minute
+Note      : Allystar raw data observed at Hiroshima, JP
+Note      : with HD9310 (TAU1302) option C MADOCA firmware
+
+EOF
