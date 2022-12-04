@@ -6,7 +6,7 @@ https://github.com/yoronneko/qzsl6tool
 
 これは、準天頂衛星みちびき（QZS: quasi-zenith satellite）がL6周波数帯にて放送するCompact SSRメッセージを解釈して表示するツール集です。自らの調査研究のために作成したものですが、多くの方にも役立つと思っています。
 
-![QZS L6 Tool](img/pocketsdr-production-third-report-4.jpg)
+![QZS L6 Tool](img/test-transmission-of-qzss-madoca-ppp.jpg)
 
 ## 機能
 
