@@ -1688,9 +1688,9 @@ class Rtcm:
         string = ''
         if stid != 0:
             string += f'{stid} '
-        string += '{str_ant}'
+        string += f'{str_ant}'
         if ant_setup != 0:
-            string += ' {ant_setup}'
+            string += f' {ant_setup}'
         if str_ser != '':
             string += f' s/n {str_ser}'
         if str_rcv != '':

@@ -16,8 +16,8 @@ do_test() {
     rm ${BASENAME}.${EXT_TO}
 }
 
-# ------ test 1: pksdr2l6.py ------
-CODE=../python/pksdr2l6.py ARG= EXT_FROM=txt EXT_TO=l6
+# ------ test 1: pksdr2qzsl6.py ------
+CODE=../python/pksdr2qzsl6.py ARG= EXT_FROM=txt EXT_TO=l6
 echo "1. Pocket SDR to QZS L6 message conversion (${CODE})"
 
 SRCDIR=../sample/
@@ -43,7 +43,7 @@ BASENAME=20221130-125237mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 echo ""
-# ------ test 3: qzsl62rtcm.py message ------
+# ------ test 3: qzsl62rtcm.py L6 message ------
 CODE=../python/qzsl62rtcm.py ARG='-t 2' EXT_FROM=l6 EXT_TO=txt
 echo "3. QZS L6 message dump (${CODE})"
 
@@ -73,9 +73,9 @@ BASENAME=20221130-125237mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 echo ""
-# ------ test 5: showrtcm.py RTCM conversion ------
+# ------ test 5: showrtcm.py RTCM message ------
 CODE=../python/showrtcm.py ARG= EXT_FROM=rtcm EXT_TO=rtcm.txt
-echo "5. QZS L6 to RTCM3 message conversion (${CODE})"
+echo "5. RTCM message dump (${CODE})"
 
 SRCDIR=expect/
 BASENAME=20220326-231200clas
@@ -86,5 +86,7 @@ do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 BASENAME=20221130-125237mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+echo ""
 
 # EOF
