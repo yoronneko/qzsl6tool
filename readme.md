@@ -21,8 +21,52 @@ https://github.com/yoronneko/qzsl6tool
 また、このツール集は、
 - RTCMメッセージを表示するコード（``showrtcm.py``）、
 - GPS時刻とUTC（universal coordinate time）とを相互変換するコード（``gps2utc.py``, ``utc2gps.py``）、
-- 緯度・経度・楕円体高とECEF（earth-centered earth-fixed）座標とを相互変換するコード（``llh2ecef.py``、``ecef2llh.py``
-を含みます。``showrtcm.py``は、MADOCAの状態空間表現（SSR: space state representation）を解釈します。
+- 緯度・経度・楕円体高とECEF（earth-centered earth-fixed）座標とを相互変換するコード（``llh2ecef.py``、``ecef2llh.py``）を含みます。
+
+ディレクトリ構造は次のとおりです。
+```
+├── img
+│   └── test-transmission-of-qzss-madoca-ppp.jpg
+├── license.txt
+├── python
+│   ├── alst2qzsl6.py
+│   ├── ecef2llh.py
+│   ├── gps2utc.py
+│   ├── libqzsl6tool.py
+│   ├── llh2ecef.py
+│   ├── pksdr2qzsl6.py
+│   ├── qzsl62rtcm.py
+│   ├── showrtcm.py
+│   └── utc2gps.py
+├── readme.md
+├── sample
+│   ├── 2018001A.l6
+│   ├── 20211226-082212pocketsdr-clas.txt
+│   ├── 20211226-082212pocketsdr-mdc.txt
+│   ├── 2022001A.l6
+│   ├── 20220326-231200clas.alst
+│   ├── 20220326-231200mdc.alst
+│   ├── 20221130-125237mdc-ppp.alst
+│   └── readme.txt
+└── test
+    ├── do_test.sh
+    ├── expect
+    │   ├── 20211226-082212pocketsdr-clas.l6
+    │   ├── 20211226-082212pocketsdr-mdc.l6
+    │   ├── 20220326-231200clas.l6
+    │   ├── 20220326-231200clas.rtcm
+    │   ├── 20220326-231200clas.rtcm.txt
+    │   ├── 20220326-231200clas.txt
+    │   ├── 20220326-231200mdc.l6
+    │   ├── 20220326-231200mdc.rtcm
+    │   ├── 20220326-231200mdc.rtcm.txt
+    │   ├── 20220326-231200mdc.txt
+    │   ├── 20221130-125237mdc-ppp.l6
+    │   ├── 20221130-125237mdc-ppp.rtcm
+    │   ├── 20221130-125237mdc-ppp.rtcm.txt
+    │   └── 20221130-125237mdc-ppp.txt
+    └── readme.md
+```
 
 ## アプリケーション・プログラム
 
@@ -135,7 +179,7 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/MADOCA 2> /dev/null | 
 
 ### showrtcm.py
 
-これは、標準入力にてRTCMメッセージを受け取り、標準出力にその内容を表示するコードです。例えば、次のように利用します。
+``showrtcm.py``は、標準入力にてRTCMメッセージを受け取り、標準出力にその内容を表示するコードです。これは、MADOCAの状態空間表現（SSR: space state representation）を解釈することもできます。``showrtcm.py``は、例えば、次のように利用します。
 
 ```
 cat ../sample/20220326-231200mdc.alst | python alst2qzsl6.py -l | python qzsl62rtcm.py -r | python showrtcm.py
@@ -182,7 +226,7 @@ options:
 
 ``-l``オプションを与えて実行すると、状態表示の代わりに、L6メッセージを標準出力に出力します。これは、受信できる複数のみちびき衛星のうちで最も信号強度の高い衛星を選択して、その2,000バイトL6生データを標準出力に出力します。``-l``オプションと合わせて``-m``オプションを指定すると、標準出力にL6生データを、標準エラー出力に受信状態を、それぞれ出力します。
 
-``-u``オプションを与えると、標準出力にu-bloxフォーマットでのL6メッセージを出力します。u-blox F9P受信機にこのメッセージを与えると、D9C受信機と同様に、CLAS測位ができるはずですが、まだ誤りがあるようで、動作しません。
+``-u``オプションを与えると、標準出力にu-bloxフォーマットでのL6メッセージを出力します。u-blox F9P受信機にこのメッセージを与えると、D9C受信機にて生成したメッセージとと同様に、CLAS測位ができるはずです。しかし、まだコードに誤りがあるようで、動作しません。
 
 ### pksdr2qzsl6.py
 
