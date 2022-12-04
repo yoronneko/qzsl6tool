@@ -1,14 +1,14 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool {#qzsl6tool}
+# QZS L6 Tool: quasi-zenith satellite L6-band tool
 
 https://github.com/yoronneko/qzsl6tool
 
-## 概要 {#summary}
+## 概要
 
 これは、準天頂衛星みちびき（QZS: quasi-zenith satellite）がL6周波数帯にて放送するCompact SSRメッセージを解釈して表示するツール集です。自らの調査研究のために作成したものですが、多くの方にも役立つと思っています。
 
-<video src="https://s-taka.org/xfer/pocketsdr-production-third-report-4.mov" poster="img/pocketsdr-production-third-report-4.jpg"  controls></video>
+![QZS L6 Tool](img/pocketsdr-production-third-report-4.jpg)
 
-## 機能 {#function}
+## 機能
 
 このツール集は、みちびきメッセージなどを標準入力で受け取り、変換結果などを標準出力に出力して、逐次的に処理することを前提にしています。必要に応じて、標準エラー出力も利用できます。
 
@@ -24,7 +24,7 @@ https://github.com/yoronneko/qzsl6tool
 - 緯度・経度・楕円体高とECEF（earth-centered earth-fixed）座標とを相互変換するコード（``llh2ecef.py``、``ecef2llh.py``
 を含みます。``showrtcm.py``は、MADOCAの状態空間表現（SSR: space state representation）を解釈します。
 
-## アプリケーション・プログラム {#application-program}
+## アプリケーション・プログラム
 
 このコードは、Pythonの``bitstring``モジュールを利用します。``pip3 install bitstring``により、このモジュールをインストールしてください。
 
@@ -48,7 +48,7 @@ options:
   -m, --message         show QZS messages and statistics to stderr
 ```
 
-#### CLASの例 {#example-clas}
+#### CLASの例
 
 例えば、``python``ディレクトリで、次のコマンドにより、``qzsl62rtcm.py``の標準入力にL6生データを与えます。``alst2qzsl6.py``は、Allystar受信機で採取したサンプルデータを読み込むコードで、``-l``オプションにより標準出力にL6生データを出力します。
 ```
@@ -78,7 +78,7 @@ stat n_sat 17 n_sig 48 bit_sat 13050 bit_sig 5114 bit_other 1931 bit_null 5330 b
 
 ``qzsl62rtcm.py``に対して、``-r``オプションを与えると、メッセージ内容表示を抑制し、標準出力にRTCMメッセージを出力します。ただし、CLASやMADOCA-PPPのCompact SSRメッセージでは、RTCMメッセージタイプ4073として出力しますので、そのままではRTKLIBなどの補強メッセージとしては利用できません。また、MADOCAメッセージ対して、このとき、``-m``オプションも指定すると、標準出力にはRTCMメッセージを、標準エラー出力にはメッセージ内容表示を、それぞれ出力します。
 
-#### MADOCAの例 {#example-madoca}
+#### MADOCAの例
 
 例えば、``python``ディレクトリで、次のコマンドを実行すると、MADOCAメッセージの内容を表示できます。
 ```
@@ -105,7 +105,7 @@ RTCM 1057 G SSR orbit     G10 G12 G13 G15 G16 G17 G19 G20 (nsat=8 iod=13 cont.)
 (...snip...)
 ```
 
-#### MADOCA-PPPの例 {#example-madoca-ppp}
+#### MADOCA-PPPの例
 
 次のコマンド実行を実行すると、MADOCA-PPPメッセージ内容例が出力されます。
 ```
@@ -224,7 +224,7 @@ python utc2gps.py 2022-11-30 12:52:37
 2238 305575
 ```
 
-## ライセンス {#license}
+## ライセンス
 
 [BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``libqzsl6tool.py``の一部（関数 getbitu(), getbits(), setbitu(), setbits(), getbits38(), getbits38(), rtk_crc32(), rtk_crc24q (), rtk_crc16 ()）に[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の成果を利用しています。
 
