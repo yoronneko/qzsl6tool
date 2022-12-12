@@ -1,5 +1,7 @@
 # QZS L6 Tool: quasi-zenith satellite L6-band tool
 
+https://github.com/yoronneko/qzsl6tool
+
 （日本語の説明は[こちら](readme.md)です）
 
 ## Summary
