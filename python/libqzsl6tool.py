@@ -419,50 +419,53 @@ class QzsL6:
         l6msg = self.l6msg
         l6msglen = len(l6msg)
         pos = 0
+        if '0b1' not in l6msg:  # Zero padding detection
+            self.trace(2, f"CSSR null data {len(self.l6msg.bin)} bits\n")
+            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
+            self.stat_bnull += len(self.l6msg.bin)
+            self.l6msg = bitstring.BitArray()
+            self.subtype = 0  # no subtype number
+            return False
         if l6msglen < 12:
             self.msgnum = 0   # could not retreve the message number
             self.subtype = 0  # could not retreve the subtype number
             return False
         self.msgnum = l6msg[pos:pos + 12].uint
         pos += 12  # message num, 4073
-        if self.msgnum == 0:
-            self.trace(2, f"CSSR null data {len(self.l6msg.bin)} bits\n")
+        if self.msgnum != 4073:  # CSSR message number should be 4073
+            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n")
+            self.trace(2, f"{len(self.l6msg.bin)} bits\n")
             self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
             self.stat_bnull += len(self.l6msg.bin)
             self.l6msg = bitstring.BitArray()
-            self.subtype = 0  # could not retreve the subtype number
+            self.subtype = 0  # no subtype number
             return False
-        if self.msgnum != 4073:
-            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
-            self.trace(
-                2, f"(bit image 4073: {bitstring.Bits(uint=4073, length=12).bin})\n")
-            raise Exception(f"CSSR message# should be 4073: {self.msgnum}\n")
         if l6msglen < pos + 4:
             self.subtype = 0  # could not retreve the subtype number
             return False
-        self.subtype = l6msg[pos:pos + 4].uint
-        pos += 4  # subtype
-        if self.subtype == 1:  # Mask message
-            if l6msglen < pos + 20:
-                return False
-            self.epoch = l6msg[pos:pos + 20].uint
-            pos += 20  # GPS epoch time 1s
-        elif self.subtype == 10:  # Service Information --- not implemented
+        self.subtype = l6msg[pos:pos + 4].uint  # subtype
+        pos += 4
+        if self.subtype == 10:  # Service Information --- not implemented
             self.pos = pos
             return False
-        else:
-            if l6msglen < pos + 12:
+        elif self.subtype == 1:  # Mask message
+            if l6msglen < pos + 20:  # could not retreve the epoch
                 return False
-            self.hepoch = l6msg[pos:pos + 12].uint
-            pos += 12  # GNSS hourly epoch
+            self.epoch = l6msg[pos:pos + 20].uint  # GPS epoch time 1s
+            pos += 20
+        else:
+            if l6msglen < pos + 12:  # could not retreve the hourly epoch
+                return False
+            self.hepoch = l6msg[pos:pos + 12].uint  # GNSS hourly epoch
+            pos += 12
         if l6msglen < pos + 4 + 1 + 4:
             return False
-        self.interval = l6msg[pos:pos + 4].uint
-        pos += 4  # update interval
-        self.mmi = l6msg[pos:pos + 1].uint
-        pos += 1  # multiple message
-        self.iod = l6msg[pos:pos + 4].uint
-        pos += 4  # IOD SSR
+        self.interval = l6msg[pos:pos + 4].uint  # update interval
+        pos += 4
+        self.mmi = l6msg[pos:pos + 1].uint  # multiple message indication
+        pos += 1
+        self.iod = l6msg[pos:pos + 4].uint  # IOD SSR
+        pos += 4
         self.pos = pos
         return True
 
@@ -1292,7 +1295,7 @@ class QzsL6:
             while self.cssr2rtcm():  # try to decode next message
                 message += f' ST{self.subtype}'
                 self.send_rtcm()
-            if len(self.l6msg) != 0:  # subtype message continues to next datapart
+            if len(self.l6msg) != 0:  # continues to next datapart
                 message += f' ST{self.subtype}...'
         self.show_message(message)
 
