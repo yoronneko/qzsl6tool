@@ -22,7 +22,6 @@ if __name__ == '__main__':
     if 0 < args.trace:
         rtcm.t_level = args.trace
     while rtcm.receive():
-        rtcm.parse_head()
         rtcm.decode_message()
 
 # EOF

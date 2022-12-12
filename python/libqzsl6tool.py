@@ -1367,12 +1367,6 @@ class Rtcm:
         self.string = ''
         return True
 
-    def parse_head(self):  # parse RTCM header
-        self.msgnum = getbitu(self.payload, 0, 12)  # message number
-        self.pos = 12
-        self.satsys = self.msgnum2satsys()
-        self.mtype = self.msgnum2mtype()
-
     def msgnum2satsys(self, msgnum=0):  # message number to satellite system
         satsys = ''
         if msgnum == 0:
@@ -1818,6 +1812,11 @@ class Rtcm:
         self.string = string  # update string
 
     def decode_message(self):  # decode RTCM message
+        # parse RTCM header
+        self.msgnum = getbitu(self.payload, 0, 12)  # message number
+        self.pos = 12
+        self.satsys = self.msgnum2satsys()
+        self.mtype = self.msgnum2mtype()
         if self.mtype == 'CSSR':
             self.decode_cssr()
         elif 'SSR' in self.mtype:
