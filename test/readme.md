@@ -31,5 +31,6 @@ This test compares the code result with the previously obtained result stored in
   20220326-231200clas.rtcm: Passed.
   20220326-231200mdc.rtcm: Passed.
   20221130-125237mdc-ppp.rtcm: Passed.
+  20221213-010900.rtcm: Passed.
 ```
 

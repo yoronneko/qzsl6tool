@@ -48,4 +48,10 @@ Duration  : 1 minute
 Note      : Allystar raw data observed at Hiroshima, JP
 Note      : with HD9310 (TAU1302) option C MADOCA firmware
 
-EOF
+File Path : 20221213-010900.rtcm
+Date Time : 2022-12-13 01:09:00 UTC
+Duration  : 1 minute
+Note      : RTCM message obtained at Hiroshima, JP
+Note      : with OEM729 and RTKLIB 2.4.3b34 str2str
+
+# EOF

@@ -48,6 +48,7 @@ English description is available [here](readme-en.md).
 │   ├── 20220326-231200clas.alst
 │   ├── 20220326-231200mdc.alst
 │   ├── 20221130-125237mdc-ppp.alst
+│   ├── 20221213-010900.rtcm
 │   └── readme.txt
 └── test
     ├── do_test.sh
@@ -65,7 +66,8 @@ English description is available [here](readme-en.md).
     │   ├── 20221130-125237mdc-ppp.l6
     │   ├── 20221130-125237mdc-ppp.rtcm
     │   ├── 20221130-125237mdc-ppp.rtcm.txt
-    │   └── 20221130-125237mdc-ppp.txt
+    │   ├── 20221130-125237mdc-ppp.txt
+    │   └── 20221213-010900.rtcm.txt
     └── readme.md
 ```
 
