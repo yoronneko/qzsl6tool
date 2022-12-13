@@ -20,7 +20,7 @@ if __name__ == '__main__':
         help='trace level for debug: 1=subtype detail, 2=subtype and bit image')
     parser.add_argument(
         '-r', '--rtcm', action='store_true',
-        help='RTCM message output, supress QZS messages (unless -s is specified)')
+        help='RTCM message output, supress QZS messages (unless -m is specified)')
     parser.add_argument(
         '-s', '--statistics', action='store_true',
         help='show CSSR statistics')

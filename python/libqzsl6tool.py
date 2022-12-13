@@ -168,31 +168,97 @@ def rtk_checksum(payload):
     return checksum1, checksum2
 
 
-class QzsL6:
-    fp_trace = sys.stdout         # file pointer for trace
-    fp_rtcm = None                # file pointer for rtcm output
-    fp_msg = sys.stdout           # message output file pointer
-    dpn = 0                       # data part number
-    sfn = 0                       # subframe number
-    vendor = ''                   # QZS L6 vendor name
-    l6msg = bitstring.BitArray()  # QZS L6 message
-    subtype = 0                   # CSSR subtype number
-    run = False                   # CSSR decode start
-    t_level = 0                   # trace level
-    stat = False                  # statistics output
-    stat_nsat = 0                 # stat: number of satellites
-    stat_nsig = 0                 # stat: number of signals
-    stat_bsat = 0                 # stat: bit number of satellites
-    stat_bsig = 0                 # stat: bit number of signals
-    stat_both = 0                 # stat: bit number of other information
-    stat_bnull = 0                # stat: bit number of null
+class Ssr:
+    """Base class of space state representation (SSR)"""
+    def decode_ssr(self, msgnum, payload):
+        pos = self.pos
+        if msgnum in {1057, 1059, 1061, 1062}:
+            be = 20  # bit size of epoch and numsat for GPS
+            bs = 6
+        elif msgnum in {1246, 1248, 1250, 1251}:
+            be = 20  # bit size of epoch and numsat for QZSS
+            bs = 4
+        elif msgnum in {1063, 1065, 1067, 1068}:
+            be = 17  # bit size of epoch and numsat for GLONASS
+            bs = 6
+        else:
+            self.trace(1, f"Unknown message number {msgnum}\n")
+            return False
+        epoch = payload[pos:pos + be].uint
+        pos += be
+        interval = payload[pos:pos + 4].uint
+        pos += 4
+        multind = payload[pos:pos + 1].uint
+        pos += 1
+        if msgnum in {1057, 1246, 1063}:
+            satref = payload[pos:pos + 1].uint
+            pos += 1
+        iod = payload[pos:pos + 4].uint
+        pos += 4
+        provider = payload[pos:pos + 16].uint
+        pos += 16
+        solution = payload[pos:pos + 4].uint
+        pos += 4
+        numsat = payload[pos:pos + bs].uint
+        pos += bs
+        if msgnum == 1057:  # GPS orbit correction
+            pos += 135 * numsat
+        elif msgnum == 1059:  # GPS code bias
+            for i in range(numsat):
+                satid = payload[pos:pos + 6].uint
+                pos += 6
+                numcb = payload[pos:pos + 5].uint
+                pos += 5
+                pos += numcb * 19
+        elif msgnum == 1061:  # GPS URA
+            pos += 12 * numsat
+        elif msgnum == 1062:  # GPS hr clock correction
+            pos += 28 * numsat
+        elif msgnum == 1246:  # QZSS orbit correction
+            pos += 133 * numsat
+        elif msgnum == 1248: # QZSS code bias
+            for i in range(numsat):
+                satid = payload[pos:pos + 4].uint
+                pos += 4
+                numcb = payload[pos:pos + 5].uint
+                pos += 5
+                pos += numcb * 19
+        elif msgnum == 1250:  # QZSS URA
+            pos += 10 * numsat
+        elif msgnum == 1251:  # QZSS hr clock correction
+            pos += 26 * numsat
+        elif msgnum == 1063:  # GLONASS orbit correction
+            pos += 134 * numsat
+        elif msgnum == 1065:  # GLONASS code bias
+            for i in range(numsat):
+                satid = payload[pos:pos + 5].uint
+                pos += 5
+                numcb = payload[pos:pos + 5].uint
+                pos += 5
+                pos += numcb * 19
+        elif msgnum == 1067:  # GLONASS URA
+            pos += 11 * numsat
+        elif msgnum == 1068:  # GLONASS hr clock correction
+            pos += 27 * numsat
+        else:
+            self.trace(
+                1, f"Warning: msgnum {msgnum} drop {len (payload)} bit:\n")
+            self.trace(1, f"{payload.bin}\n")
+            return False
+        self.pos = pos
+        self.numsat = numsat
+        return True
 
-    def __init__(self):
-        pass
 
-    def __del__(self):
-        if self.stat:
-            self.show_cssr_stat()
+class Cssr:
+    """Base class of compact space state representation (CSSR)"""
+    stat = False    # statistics output
+    stat_nsat = 0   # stat: number of satellites
+    stat_nsig = 0   # stat: number of signals
+    stat_bsat = 0   # stat: bit number of satellites
+    stat_bsig = 0   # stat: bit number of signals
+    stat_both = 0   # stat: bit number of other information
+    stat_bnull = 0  # stat: bit number of null
 
     def show_cssr_stat(self):
         msg = f'stat n_sat {self.stat_nsat} n_sig {self.stat_nsig} ' + \
@@ -200,235 +266,6 @@ class QzsL6:
               f'bit_other {self.stat_both} bit_null {self.stat_bnull} ' + \
               f'bit_total {self.stat_bsat + self.stat_bsig + self.stat_both + self.stat_bnull}'
         print(msg, file=self.fp_trace)
-
-    def trace(self, level, *args):
-        if self.t_level < level:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_trace)
-            except (BrokenPipeError, IOError):
-                sys.exit()
-
-    def receive_l6_msg(self):
-        sync = [b'0x00' for i in range(4)]
-        ok = False
-        try:
-            while not ok:
-                b = sys.stdin.buffer.read(1)
-                if not b:
-                    return False
-                sync = sync[1:4] + [b]
-                if sync == [b'\x1a', b'\xcf', b'\xfc', b'\x1d']:
-                    ok = True
-            prn = int.from_bytes(sys.stdin.buffer.read(1), 'big')
-            mtid = int.from_bytes(sys.stdin.buffer.read(1), 'big')
-            dpart = bitstring.BitArray(sys.stdin.buffer.read(212))
-            rs = sys.stdin.buffer.read(32)
-        except KeyboardInterrupt:
-            print("User break - terminated", file=sys.stderr)
-            return False
-        vid = mtid >> 5  # vender ID
-        if vid == 0b001:
-            vendor = "MADOCA"
-        elif vid == 0b010:
-            vendor = "MADOCA-PPP"
-        elif vid == 0b011:
-            vendor = "QZNMA"
-        elif vid == 0b101:
-            vendor = "CLAS"
-        else:
-            vendor = f"unknown (vendor ID 0b{vid:03b})"
-        facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
-        facility += ":" + str((mtid >> 3) & 1)
-        servid = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
-        msg_ext = "CNAV" if (mtid >> 1) & 1 else "LNAV"
-        sf_ind = mtid & 1  # subframe indicator
-        self.prn = prn
-        self.vendor = vendor
-        self.facility = facility
-        self.servid = servid
-        self.msg_ext = msg_ext
-        self.sf_ind = sf_ind
-        self.alert = dpart[0:1].uint
-        self.dpart = dpart[1:]
-        return True
-
-    def mdc2rtcm(self):
-        dpart = self.dpart
-        if len(dpart) < 12:
-            return False
-        pos = 0
-        msgnum = dpart[pos:pos + 12].uint
-        pos += 12
-        if msgnum == 0:
-            return False
-        elif msgnum in {1057, 1059, 1061, 1062}:
-            be = 20
-            bs = 6  # bit size of epoch and numsat for GPS
-        elif msgnum in {1246, 1248, 1250, 1251}:
-            be = 20
-            bs = 4  # bit size of epoch and numsat for QZSS
-        elif msgnum in {1063, 1065, 1067, 1068}:
-            be = 17
-            bs = 6  # bit size of epoch and numsat for GLONASS
-        else:
-            self.trace(1, f"Unknown message number {msgnum}\n")
-            return False
-        epoch = dpart[pos:pos + be].uint
-        pos += be
-        interval = dpart[pos:pos + 4].uint
-        pos += 4
-        multind = dpart[pos:pos + 1].uint
-        pos += 1
-        if msgnum in {1057, 1246, 1063}:
-            satref = dpart[pos:pos + 1].uint
-            pos += 1
-        iod = dpart[pos:pos + 4].uint
-        pos += 4
-        provider = dpart[pos:pos + 16].uint
-        pos += 16
-        solution = dpart[pos:pos + 4].uint
-        pos += 4
-        numsat = dpart[pos:pos + bs].uint
-        pos += bs
-        if msgnum == 1057:
-            pos += 135 * numsat  # GPS orbit correction
-        elif msgnum == 1059:     # GPS code bias
-            for i in range(numsat):
-                satid = dpart[pos:pos + 6].uint
-                pos += 6
-                numcb = dpart[pos:pos + 5].uint
-                pos += 5
-                pos += numcb * 19
-        elif msgnum == 1061:
-            pos += 12 * numsat  # GPS URA
-        elif msgnum == 1062:
-            pos += 28 * numsat  # GPS hr clock correction
-        elif msgnum == 1246:
-            pos += 133 * numsat  # QZSS orbit correction
-        elif msgnum == 1248:     # QZSS code bias
-            for i in range(numsat):
-                satid = dpart[pos:pos + 4].uint
-                pos += 4
-                numcb = dpart[pos:pos + 5].uint
-                pos += 5
-                pos += numcb * 19
-        elif msgnum == 1250:
-            pos += 10 * numsat  # QZSS URA
-        elif msgnum == 1251:
-            pos += 26 * numsat  # QZSS hr clock correction
-        elif msgnum == 1063:
-            pos += 134 * numsat  # GLONASS orbit correction
-        elif msgnum == 1065:     # GLONASS code bias
-            for i in range(numsat):
-                satid = dpart[pos:pos + 5].uint
-                pos += 5
-                numcb = dpart[pos:pos + 5].uint
-                pos += 5
-                pos += numcb * 19
-        elif msgnum == 1067:
-            pos += 11 * numsat  # GLONASS URA
-        elif msgnum == 1068:
-            pos += 27 * numsat  # GLONASS hr clock correction
-        else:
-            self.trace(
-                1, f"Warning: msgnum {msgnum} drop {len (dpart)} bit:\n")
-            self.trace(1, f"{dpart.bin}\n")
-            return False
-        if pos % 8 != 0:
-            pos += 8 - (pos % 8)  # byte align
-        self.rtcm = dpart[0:pos].tobytes()
-        del dpart[0:pos]
-        self.dpart = dpart
-        self.msgnum = msgnum
-        self.numsat = numsat
-        return True
-
-    def cssr2rtcm(self):
-        if not self.run:
-            return False
-        if not self.decode_cssr_head():
-            return False
-        if self.subtype == 1:
-            return self.decode_cssr_st1()
-        elif self.subtype == 2:
-            return self.decode_cssr_st2()
-        elif self.subtype == 3:
-            return self.decode_cssr_st3()
-        elif self.subtype == 4:
-            return self.decode_cssr_st4()
-        elif self.subtype == 5:
-            return self.decode_cssr_st5()
-        elif self.subtype == 6:
-            return self.decode_cssr_st6()
-        elif self.subtype == 7:
-            return self.decode_cssr_st7()
-        elif self.subtype == 8:
-            return self.decode_cssr_st8()
-        elif self.subtype == 9:
-            return self.decode_cssr_st9()
-        elif self.subtype == 10:
-            return self.decode_cssr_st10()
-        elif self.subtype == 11:
-            return self.decode_cssr_st11()
-        elif self.subtype == 12:
-            return self.decode_cssr_st12()
-        raise Exception(f"Unknown CSSR subtype: {self.subtype}")
-
-    def decode_cssr_head(self):
-        l6msg = self.l6msg
-        l6msglen = len(l6msg)
-        pos = 0
-        if '0b1' not in l6msg:  # Zero padding detection
-            self.trace(2, f"CSSR null data {len(self.l6msg.bin)} bits\n")
-            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
-            self.stat_bnull += len(self.l6msg.bin)
-            self.l6msg = bitstring.BitArray()
-            self.subtype = 0  # no subtype number
-            return False
-        if l6msglen < 12:
-            self.msgnum = 0   # could not retreve the message number
-            self.subtype = 0  # could not retreve the subtype number
-            return False
-        self.msgnum = l6msg[pos:pos + 12].uint
-        pos += 12  # message num, 4073
-        if self.msgnum != 4073:  # CSSR message number should be 4073
-            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n")
-            self.trace(2, f"{len(self.l6msg.bin)} bits\n")
-            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
-            self.stat_bnull += len(self.l6msg.bin)
-            self.l6msg = bitstring.BitArray()
-            self.subtype = 0  # no subtype number
-            return False
-        if l6msglen < pos + 4:
-            self.subtype = 0  # could not retreve the subtype number
-            return False
-        self.subtype = l6msg[pos:pos + 4].uint  # subtype
-        pos += 4
-        if self.subtype == 10:  # Service Information --- not implemented
-            self.pos = pos
-            return False
-        elif self.subtype == 1:  # Mask message
-            if l6msglen < pos + 20:  # could not retreve the epoch
-                return False
-            self.epoch = l6msg[pos:pos + 20].uint  # GPS epoch time 1s
-            pos += 20
-        else:
-            if l6msglen < pos + 12:  # could not retreve the hourly epoch
-                return False
-            self.hepoch = l6msg[pos:pos + 12].uint  # GNSS hourly epoch
-            pos += 12
-        if l6msglen < pos + 4 + 1 + 4:
-            return False
-        self.interval = l6msg[pos:pos + 4].uint  # update interval
-        pos += 4
-        self.mmi = l6msg[pos:pos + 1].uint  # multiple message indication
-        pos += 1
-        self.iod = l6msg[pos:pos + 4].uint  # IOD SSR
-        pos += 4
-        self.pos = pos
-        return True
 
     def gnssid2satsys(self, gnssid):
         if gnssid == 0:
@@ -1191,160 +1028,58 @@ class QzsL6:
         self.stat_bsat += pos - stat_pos
         return True
 
-    def send_rtcm(self):
-        if not self.fp_rtcm:
-            return
-        rtcm = b'\xd3' + len(self.rtcm).to_bytes(2, 'big') + self.rtcm
-        rtcm_crc = rtk_crc24q(rtcm, len(rtcm))
-        self.fp_rtcm.buffer.write(rtcm)
-        self.fp_rtcm.buffer.write(rtcm_crc)
-        self.fp_rtcm.flush()
-
-    def show_l6_msg(self):
-        if self.vendor == "MADOCA":
-            self.show_mdc_msg()
-        elif self.vendor in {"CLAS", "MADOCA-PPP"}:
-            self.show_cssr_msg()
-        elif self.vendor == "QZNMA":
-            self.show_qznma_msg()
-        else:  # unknown vendor
-            self.show_unknown_msg()
-
-    def show_msg(self, message):
-        if not self.fp_msg:
-            return
-        try:
-            print(
-                f'{self.prn} {self.facility:13s}' +
-                f'{"*" if self.alert else " "} {self.vendor} {message}',
-                file=self.fp_msg)
-        except (BrokenPipeError, IOError):
-            sys.exit()
-
-    def show_mdc_msg(self):
-        dpart = self.dpart
-        pos = 0
-        self.tow = dpart[pos:pos + 20].uint
-        pos += 20
-        self.wn = dpart[pos:pos + 13].uint
-        pos += 13
-        self.dpart = dpart[pos:]
-        message = gps2utc.gps2utc(self.wn, self.tow) + ' '
-        while self.mdc2rtcm():
-            message += 'RTCM ' + str(self.msgnum) + \
-                       '(' + str(self.numsat) + ') '
-            self.send_rtcm()
-        self.show_msg(message)
-
-    def show_cssr_msg(self):
-        if self.sf_ind:  # first data part
-            self.dpn = 1
-            self.l6msg = bitstring.BitArray(self.dpart)
-            if not self.decode_cssr_head():
-                self.l6msg = bitstring.BitArray()
-            elif self.subtype == 1:
-                self.sfn = 1
-                self.run = True
-            else:
-                if self.run:  # first data part but subtype is not ST1
-                    self.sfn += 1
-                else:  # first data part but ST1 has not beed received
-                    self.l6msg = bitstring.BitArray()
-        else:  # continual data part
-            if self.run:
-                self.dpn += 1
-                if self.dpn == 6:  # data part number should be less than 6
-                    self.trace(1, "Warning: too many datapart\n")
-                    self.run = False
-                    self.dpn = 0
-                    self.sfn = 0
-                    self.l6msg = bitstring.BitArray()
-                else:
-                    self.l6msg.append(self.dpart)
-        message = ''
-        if self.sfn != 0:
-            message += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
-            if self.vendor == "MADOCA-PPP":
-                message += f' ({self.servid} {self.msg_ext})'
-        if not self.cssr2rtcm():  # could not decode any message
-            if self.run and self.subtype == 0:  # whole message is null
-                message += ' (null)'
-            elif self.run:  # continual message
-                message += f' ST{self.subtype}...'
-        else:
-            message += f' ST{self.subtype}'
-            self.send_rtcm()
-            while self.cssr2rtcm():  # try to decode next message
-                message += f' ST{self.subtype}'
-                self.send_rtcm()
-            if len(self.l6msg) != 0:  # continues to next datapart
-                message += f' ST{self.subtype}...'
-        self.show_msg(message)
-
-    def show_qznma_msg(self):
-        l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"QZNMA dump: {l6msg.bin}\n")
-        self.show_msg('')
-
-    def show_unknown_msg():
-        l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"Unknown dump: {l6msg.bin}\n")
-        self.show_msg('')
-
 
 class Rtcm:
+    "RTCM message process class"
+    rtcm_buf = b''
     t_level = 0  # trace level
 
     def receive_rtcm_msg(self):
-        b = b''
+        BUFMAX = 1000  # maximum length of buffering RTCM message
+        BUFADD =   20  # length of buffering additional RTCM message
         try:
-            while (b != b'\xd3'):
-                b = sys.stdin.buffer.read(1)
-                if not b:
-                    return False
-            bl = sys.stdin.buffer.read(2)     # possible length
-            mlen = getbitu(bl, 6, 10)         # message length
-            bp = sys.stdin.buffer.read(mlen)  # possible payload
-            bc = sys.stdin.buffer.read(3)     # possible CRC
-            if not bl or not bp or not bc:
-                return False
-            frame = b'\xd3' + bl + bp
             ok = False
             while not ok:
+                if BUFMAX < len(self.rtcm_buf):
+                    print("RTCM buffer exhausted", file=sys.stderr)
+                    return False
+                b = sys.stdin.buffer.read(BUFADD)
+                if not b:
+                    return False
+                self.rtcm_buf += b
+                len_rtcm_buf = len(self.rtcm_buf)
+                pos = 0
+                found_sync = False
+                while pos != len_rtcm_buf and not found_sync:
+                    if self.rtcm_buf[pos:pos+1] == b'\xd3':
+                        found_sync = True
+                    else:
+                        pos += 1
+                if not found_sync:
+                    self.rtcm_buf = b''
+                    continue
+                if len_rtcm_buf < pos + 3:  # cannot read message length
+                    self.rtcm_buf = self.rtcm_buf[pos:]
+                    continue
+                bl = self.rtcm_buf[pos+1:pos+3]  # possible message length
+                mlen = getbitu(bl, 6, 10)
+                if len_rtcm_buf < pos + 3 + mlen + 3:  # cannot read message
+                    self.rtcm_buf = self.rtcm_buf[pos:]
+                    continue
+                bp = self.rtcm_buf[pos+3:pos+3+mlen]  # possible payload
+                bc = self.rtcm_buf[pos+3+mlen:pos+3+mlen+3]  # possible CRC
+                frame = b'\xd3' + bl + bp
                 if bc == rtk_crc24q(frame, len(frame)):
                     ok = True
+                    self.rtcm_buf = self.rtcm_buf[pos+3+mlen+3:]
                 else:  # CRC error
-                    frame = frame[1:] + bc
-                    syncpos = -1
-                    for i in range(len(frame)):
-                        if frame[i] == b'\xd3':
-                            syncpos = i
-                            break
-                    if 0 <= syncpos:
-                        print("CRC error, using previously loaded data",
-                              file=sys.stderr)
-                        frame = frame[syncpos:]
-                        bl = frame[1:3]
-                        mlen = getbitu(bl, 6, 10)
-                        frame += sys.stdin.buffer.read(mlen - len(frame))
-                        bc = sys.stdin.buffer.read(3)
-                    else:
-                        print("CRC error, reloading data", file=sys.stderr)
-                        while (b != b'\xd3'):
-                            b = sys.stdin.buffer.read(1)
-                            if not b:
-                                return False
-                        bl = sys.stdin.buffer.read(2)     # possible length
-                        mlen = getbitu(bl, 6, 10)
-                        bp = sys.stdin.buffer.read(mlen)  # possible payload
-                        bc = sys.stdin.buffer.read(3)     # possible CRC
-                        if not bl or not bp or not bc:
-                            return False
-                        frame = b'\xd3' + bl + bp
+                    print("RTCM CRC error", file=sys.stderr)
+                    self.rtcm_buf = self.rtcm_buf[pos + 1:]
+                    continue
         except KeyboardInterrupt:
             print("User break - terminated", file=sys.stderr)
             return False
-        self.payload = frame[3:]
+        self.payload = bp
         self.mlen = mlen
         self.string = ''
         return True
@@ -1831,5 +1566,281 @@ class Rtcm:
             sys.stdout.flush()
         except BrokenPipeError:
             sys.exit()
+
+
+class QzsL6(Ssr, Cssr):
+    "Quasi-Zenith Satellite L6 message process class"
+    fp_trace = sys.stdout         # file pointer for trace
+    fp_rtcm = None                # file pointer for rtcm output
+    fp_msg = sys.stdout           # message output file pointer
+    dpn = 0                       # data part number
+    sfn = 0                       # subframe number
+    vendor = ''                   # QZS L6 vendor name
+    l6msg = bitstring.BitArray()  # QZS L6 message
+    subtype = 0                   # CSSR subtype number
+    run = False                   # CSSR decode start
+    t_level = 0                   # trace level
+
+    def __init__(self):
+        pass
+
+    def __del__(self):
+        if self.stat:
+            self.show_cssr_stat()
+
+    def trace(self, level, *args):
+        if self.t_level < level:
+            return
+        for arg in args:
+            try:
+                print(arg, end='', file=self.fp_trace)
+            except (BrokenPipeError, IOError):
+                sys.exit()
+
+    def receive_l6_msg(self):
+        sync = [b'0x00' for i in range(4)]
+        ok = False
+        try:
+            while not ok:
+                b = sys.stdin.buffer.read(1)
+                if not b:
+                    return False
+                sync = sync[1:4] + [b]
+                if sync == [b'\x1a', b'\xcf', b'\xfc', b'\x1d']:
+                    ok = True
+            prn = int.from_bytes(sys.stdin.buffer.read(1), 'big')
+            mtid = int.from_bytes(sys.stdin.buffer.read(1), 'big')
+            dpart = bitstring.BitArray(sys.stdin.buffer.read(212))
+            rs = sys.stdin.buffer.read(32)
+        except KeyboardInterrupt:
+            print("User break - terminated", file=sys.stderr)
+            return False
+        vid = mtid >> 5  # vender ID
+        if vid == 0b001:
+            vendor = "MADOCA"
+        elif vid == 0b010:
+            vendor = "MADOCA-PPP"
+        elif vid == 0b011:
+            vendor = "QZNMA"
+        elif vid == 0b101:
+            vendor = "CLAS"
+        else:
+            vendor = f"unknown (vendor ID 0b{vid:03b})"
+        facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
+        facility += ":" + str((mtid >> 3) & 1)
+        servid = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
+        msg_ext = "CNAV" if (mtid >> 1) & 1 else "LNAV"
+        sf_ind = mtid & 1  # subframe indicator
+        self.prn = prn
+        self.vendor = vendor
+        self.facility = facility
+        self.servid = servid
+        self.msg_ext = msg_ext
+        self.sf_ind = sf_ind
+        self.alert = dpart[0:1].uint
+        self.dpart = dpart[1:]
+        return True
+
+    def mdc2rtcm(self):
+        if len(self.dpart) < 12:
+            return False
+        self.pos = 0
+        msgnum = self.dpart[self.pos:self.pos + 12].uint
+        self.pos += 12
+        if msgnum == 0:
+            return False
+        if not self.decode_ssr(msgnum, self.dpart):
+            return False
+        if self.pos % 8 != 0:
+            self.pos += 8 - (self.pos % 8)  # byte align
+        self.rtcm = self.dpart[0:self.pos].tobytes()
+        del self.dpart[0:self.pos]
+        self.msgnum = msgnum
+        return True
+
+    def cssr2rtcm(self):
+        if not self.run:
+            return False
+        if not self.decode_cssr_head():
+            return False
+        if self.subtype == 1:
+            return self.decode_cssr_st1()
+        elif self.subtype == 2:
+            return self.decode_cssr_st2()
+        elif self.subtype == 3:
+            return self.decode_cssr_st3()
+        elif self.subtype == 4:
+            return self.decode_cssr_st4()
+        elif self.subtype == 5:
+            return self.decode_cssr_st5()
+        elif self.subtype == 6:
+            return self.decode_cssr_st6()
+        elif self.subtype == 7:
+            return self.decode_cssr_st7()
+        elif self.subtype == 8:
+            return self.decode_cssr_st8()
+        elif self.subtype == 9:
+            return self.decode_cssr_st9()
+        elif self.subtype == 10:
+            return self.decode_cssr_st10()
+        elif self.subtype == 11:
+            return self.decode_cssr_st11()
+        elif self.subtype == 12:
+            return self.decode_cssr_st12()
+        raise Exception(f"Unknown CSSR subtype: {self.subtype}")
+
+    def decode_cssr_head(self):
+        l6msg = self.l6msg
+        l6msglen = len(l6msg)
+        pos = 0
+        if '0b1' not in l6msg:  # Zero padding detection
+            self.trace(2, f"CSSR null data {len(self.l6msg.bin)} bits\n")
+            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
+            self.stat_bnull += len(self.l6msg.bin)
+            self.l6msg = bitstring.BitArray()
+            self.subtype = 0  # no subtype number
+            return False
+        if l6msglen < 12:
+            self.msgnum = 0   # could not retreve the message number
+            self.subtype = 0  # could not retreve the subtype number
+            return False
+        self.msgnum = l6msg[pos:pos + 12].uint
+        pos += 12  # message num, 4073
+        if self.msgnum != 4073:  # CSSR message number should be 4073
+            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n")
+            self.trace(2, f"{len(self.l6msg.bin)} bits\n")
+            self.trace(2, f"CSSR dump: {self.l6msg.bin}\n")
+            self.stat_bnull += len(self.l6msg.bin)
+            self.l6msg = bitstring.BitArray()
+            self.subtype = 0  # no subtype number
+            return False
+        if l6msglen < pos + 4:
+            self.subtype = 0  # could not retreve the subtype number
+            return False
+        self.subtype = l6msg[pos:pos + 4].uint  # subtype
+        pos += 4
+        if self.subtype == 10:  # Service Information --- not implemented
+            self.pos = pos
+            return False
+        elif self.subtype == 1:  # Mask message
+            if l6msglen < pos + 20:  # could not retreve the epoch
+                return False
+            self.epoch = l6msg[pos:pos + 20].uint  # GPS epoch time 1s
+            pos += 20
+        else:
+            if l6msglen < pos + 12:  # could not retreve the hourly epoch
+                return False
+            self.hepoch = l6msg[pos:pos + 12].uint  # GNSS hourly epoch
+            pos += 12
+        if l6msglen < pos + 4 + 1 + 4:
+            return False
+        self.interval = l6msg[pos:pos + 4].uint  # update interval
+        pos += 4
+        self.mmi = l6msg[pos:pos + 1].uint  # multiple message indication
+        pos += 1
+        self.iod = l6msg[pos:pos + 4].uint  # IOD SSR
+        pos += 4
+        self.pos = pos
+        return True
+
+    def send_rtcm(self):
+        if not self.fp_rtcm:
+            return
+        rtcm = b'\xd3' + len(self.rtcm).to_bytes(2, 'big') + self.rtcm
+        rtcm_crc = rtk_crc24q(rtcm, len(rtcm))
+        self.fp_rtcm.buffer.write(rtcm)
+        self.fp_rtcm.buffer.write(rtcm_crc)
+        self.fp_rtcm.flush()
+
+    def show_l6_msg(self):
+        if self.vendor == "MADOCA":
+            self.show_mdc_msg()
+        elif self.vendor in {"CLAS", "MADOCA-PPP"}:
+            self.show_cssr_msg()
+        elif self.vendor == "QZNMA":
+            self.show_qznma_msg()
+        else:  # unknown vendor
+            self.show_unknown_msg()
+
+    def show_msg(self, message):
+        if not self.fp_msg:
+            return
+        try:
+            print(
+                f'{self.prn} {self.facility:13s}' +
+                f'{"*" if self.alert else " "} {self.vendor} {message}',
+                file=self.fp_msg)
+        except (BrokenPipeError, IOError):
+            sys.exit()
+
+    def show_mdc_msg(self):
+        dpart = self.dpart
+        pos = 0
+        self.tow = dpart[pos:pos + 20].uint
+        pos += 20
+        self.wn = dpart[pos:pos + 13].uint
+        pos += 13
+        self.dpart = dpart[pos:]
+        message = gps2utc.gps2utc(self.wn, self.tow) + ' '
+        while self.mdc2rtcm():
+            message += 'RTCM ' + str(self.msgnum) + \
+                       '(' + str(self.numsat) + ') '
+            self.send_rtcm()
+        self.show_msg(message)
+
+    def show_cssr_msg(self):
+        if self.sf_ind:  # first data part
+            self.dpn = 1
+            self.l6msg = bitstring.BitArray(self.dpart)
+            if not self.decode_cssr_head():
+                self.l6msg = bitstring.BitArray()
+            elif self.subtype == 1:
+                self.sfn = 1
+                self.run = True
+            else:
+                if self.run:  # first data part but subtype is not ST1
+                    self.sfn += 1
+                else:  # first data part but ST1 has not beed received
+                    self.l6msg = bitstring.BitArray()
+        else:  # continual data part
+            if self.run:
+                self.dpn += 1
+                if self.dpn == 6:  # data part number should be less than 6
+                    self.trace(1, "Warning: too many datapart\n")
+                    self.run = False
+                    self.dpn = 0
+                    self.sfn = 0
+                    self.l6msg = bitstring.BitArray()
+                else:
+                    self.l6msg.append(self.dpart)
+        message = ''
+        if self.sfn != 0:
+            message += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
+            if self.vendor == "MADOCA-PPP":
+                message += f' ({self.servid} {self.msg_ext})'
+        if not self.cssr2rtcm():  # could not decode any message
+            if self.run and self.subtype == 0:  # whole message is null
+                message += ' (null)'
+            elif self.run:  # continual message
+                message += f' ST{self.subtype}...'
+        else:
+            message += f' ST{self.subtype}'
+            self.send_rtcm()
+            while self.cssr2rtcm():  # try to decode next message
+                message += f' ST{self.subtype}'
+                self.send_rtcm()
+            if len(self.l6msg) != 0:  # continues to next datapart
+                message += f' ST{self.subtype}...'
+        self.show_msg(message)
+
+    def show_qznma_msg(self):
+        l6msg = bitstring.BitArray(self.dpart)
+        self.trace(2, f"QZNMA dump: {l6msg.bin}\n")
+        self.show_msg('')
+
+    def show_unknown_msg():
+        l6msg = bitstring.BitArray(self.dpart)
+        self.trace(2, f"Unknown dump: {l6msg.bin}\n")
+        self.show_msg('')
 
 # EOF
