@@ -9,7 +9,7 @@
 # Released under BSD 2-clause license.
 
 import argparse
-from libqzsl6tool import *
+import libqzsl6tool
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -18,10 +18,10 @@ if __name__ == '__main__':
         '-t', '--trace', type=int, default=0,
         help='trace level for debug: 1=subtype detail, 2=subtype and bit image')
     args = parser.parse_args()
-    rtcm = Rtcm()
+    rtcm = libqzsl6tool.Rtcm()
     if 0 < args.trace:
         rtcm.t_level = args.trace
-    while rtcm.receive():
-        rtcm.decode_message()
+    while rtcm.receive_rtcm_msg():
+        rtcm.decode_rtcm_msg()
 
 # EOF

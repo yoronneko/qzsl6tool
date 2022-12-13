@@ -15,9 +15,8 @@
 
 import sys
 import bitstring
-import sys
-from ecef2llh import *
-from gps2utc import *
+import ecef2llh
+import gps2utc
 
 INVALID = 0  # invalid value indication for CSSR message show
 
@@ -193,9 +192,9 @@ class QzsL6:
 
     def __del__(self):
         if self.stat:
-            self.show_stat()
+            self.show_cssr_stat()
 
-    def show_stat(self):
+    def show_cssr_stat(self):
         msg = f'stat n_sat {self.stat_nsat} n_sig {self.stat_nsig} ' + \
               f'bit_sat {self.stat_bsat} bit_sig {self.stat_bsig} ' + \
               f'bit_other {self.stat_both} bit_null {self.stat_bnull} ' + \
@@ -211,7 +210,7 @@ class QzsL6:
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def receive(self):
+    def receive_l6_msg(self):
         sync = [b'0x00' for i in range(4)]
         ok = False
         try:
@@ -254,15 +253,6 @@ class QzsL6:
         self.alert = dpart[0:1].uint
         self.dpart = dpart[1:]
         return True
-
-    def mdc_l6_head(self):
-        dpart = self.dpart
-        pos = 0
-        self.tow = dpart[pos:pos + 20].uint
-        pos += 20
-        self.wn = dpart[pos:pos + 13].uint
-        pos += 13
-        self.dpart = dpart[pos:]
 
     def mdc2rtcm(self):
         dpart = self.dpart
@@ -353,35 +343,6 @@ class QzsL6:
         self.dpart = dpart
         self.msgnum = msgnum
         self.numsat = numsat
-        return True
-
-    def cssr_l6_head(self):
-        if self.sf_ind:  # first data part
-            self.dpn = 1
-            self.l6msg = bitstring.BitArray(self.dpart)
-            if not self.decode_cssr_head():
-                self.l6msg = bitstring.BitArray()
-                return False
-            if self.subtype == 1:
-                self.sfn = 1
-                self.run = True
-            else:
-                if self.run:  # first data part but subtype is not ST1
-                    self.sfn += 1
-                else:  # first data part but ST1 has not beed received
-                    self.l6msg = bitstring.BitArray()
-        else:  # continual data part
-            if not self.run:
-                return False
-            self.dpn += 1
-            if self.dpn == 6:  # data part number should be less than 6
-                self.trace(1, "Warning: too many datapart\n")
-                self.run = False
-                self.dpn = 0
-                self.sfn = 0
-                self.l6msg = bitstring.BitArray()
-                return False
-            self.l6msg.append(self.dpart)
         return True
 
     def cssr2rtcm(self):
@@ -652,7 +613,7 @@ class QzsL6:
         self.l6msg = l6msg[pos:]  # removal of ST1 message
         self.trace(1, msg_trace1)
         if self.stat:
-            self.show_stat()
+            self.show_cssr_stat()
         self.stat_bsat = 0
         self.stat_bsig = 0
         self.stat_both = pos
@@ -1230,14 +1191,6 @@ class QzsL6:
         self.stat_bsat += pos - stat_pos
         return True
 
-    def qznma_l6_head(self):
-        l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"QZNMA dump: {l6msg.bin}\n")
-
-    def unknown_l6_head(self):
-        l6msg = bitstring.BitArray(self.dpart)
-        self.trace(2, f"Unknown dump: {l6msg.bin}\n")
-
     def send_rtcm(self):
         if not self.fp_rtcm:
             return
@@ -1247,17 +1200,17 @@ class QzsL6:
         self.fp_rtcm.buffer.write(rtcm_crc)
         self.fp_rtcm.flush()
 
-    def show_l6_message(self):
+    def show_l6_msg(self):
         if self.vendor == "MADOCA":
-            self.show_mdc_message()
+            self.show_mdc_msg()
         elif self.vendor in {"CLAS", "MADOCA-PPP"}:
-            self.show_cssr_message()
+            self.show_cssr_msg()
         elif self.vendor == "QZNMA":
-            self.show_qznma_message()
+            self.show_qznma_msg()
         else:  # unknown vendor
-            self.show_unknown_message()
+            self.show_unknown_msg()
 
-    def show_message(self, message):
+    def show_msg(self, message):
         if not self.fp_msg:
             return
         try:
@@ -1268,17 +1221,46 @@ class QzsL6:
         except (BrokenPipeError, IOError):
             sys.exit()
 
-    def show_mdc_message(self):
-        self.mdc_l6_head()
-        message = gps2utc(self.wn, self.tow) + ' '
+    def show_mdc_msg(self):
+        dpart = self.dpart
+        pos = 0
+        self.tow = dpart[pos:pos + 20].uint
+        pos += 20
+        self.wn = dpart[pos:pos + 13].uint
+        pos += 13
+        self.dpart = dpart[pos:]
+        message = gps2utc.gps2utc(self.wn, self.tow) + ' '
         while self.mdc2rtcm():
             message += 'RTCM ' + str(self.msgnum) + \
                        '(' + str(self.numsat) + ') '
             self.send_rtcm()
-        self.show_message(message)
+        self.show_msg(message)
 
-    def show_cssr_message(self):
-        self.cssr_l6_head()
+    def show_cssr_msg(self):
+        if self.sf_ind:  # first data part
+            self.dpn = 1
+            self.l6msg = bitstring.BitArray(self.dpart)
+            if not self.decode_cssr_head():
+                self.l6msg = bitstring.BitArray()
+            elif self.subtype == 1:
+                self.sfn = 1
+                self.run = True
+            else:
+                if self.run:  # first data part but subtype is not ST1
+                    self.sfn += 1
+                else:  # first data part but ST1 has not beed received
+                    self.l6msg = bitstring.BitArray()
+        else:  # continual data part
+            if self.run:
+                self.dpn += 1
+                if self.dpn == 6:  # data part number should be less than 6
+                    self.trace(1, "Warning: too many datapart\n")
+                    self.run = False
+                    self.dpn = 0
+                    self.sfn = 0
+                    self.l6msg = bitstring.BitArray()
+                else:
+                    self.l6msg.append(self.dpart)
         message = ''
         if self.sfn != 0:
             message += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
@@ -1297,23 +1279,23 @@ class QzsL6:
                 self.send_rtcm()
             if len(self.l6msg) != 0:  # continues to next datapart
                 message += f' ST{self.subtype}...'
-        self.show_message(message)
+        self.show_msg(message)
 
-    def show_qznma_message(self):
-        message = ''
-        self.qznma_l6_head()
-        self.show_message(message)
+    def show_qznma_msg(self):
+        l6msg = bitstring.BitArray(self.dpart)
+        self.trace(2, f"QZNMA dump: {l6msg.bin}\n")
+        self.show_msg('')
 
-    def show_unknown_message():
-        message = ''
-        self.unknown_l6_head()
-        self.show_message(message)
+    def show_unknown_msg():
+        l6msg = bitstring.BitArray(self.dpart)
+        self.trace(2, f"Unknown dump: {l6msg.bin}\n")
+        self.show_msg('')
 
 
 class Rtcm:
     t_level = 0  # trace level
 
-    def receive(self):
+    def receive_rtcm_msg(self):
         b = b''
         try:
             while (b != b'\xd3'):
@@ -1631,7 +1613,7 @@ class Rtcm:
             ahgt = getbitu(payload, pos, 16) * 1e-4
             if ahgt != 0:
                 string += f' (ant {ahgt:.3f})'
-        lat, lon, height = ecef2llh(px, py, pz)
+        lat, lon, height = ecef2llh.ecef2llh(px, py, pz)
         string = f'{lat:.7f} {lon:.7f} {height:.3f}'
         self.string = string  # update string
 
@@ -1811,7 +1793,7 @@ class Rtcm:
             string += f'{self.satsys}{sat_mask[i]+1:02} '
         self.string = string  # update string
 
-    def decode_message(self):  # decode RTCM message
+    def decode_rtcm_msg(self):  # decode RTCM message
         # parse RTCM header
         self.msgnum = getbitu(self.payload, 0, 12)  # message number
         self.pos = 12

@@ -10,7 +10,7 @@
 
 import argparse
 import sys
-from libqzsl6tool import *
+import libqzsl6tool
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -28,11 +28,10 @@ if __name__ == '__main__':
         '-m', '--message', action='store_true',
         help='show QZS messages and statistics to stderr')
     args = parser.parse_args()
-    qzsl6 = QzsL6()
+    qzsl6 = libqzsl6tool.QzsL6()
     if 0 < args.trace:
         qzsl6.t_level = args.trace
     if args.rtcm:  # RTCM message output to stdout
-        qzsl6.t_level = 0
         qzsl6.fp_rtcm = sys.stdout
         qzsl6.fp_msg = None
         qzsl6.fp_trace = sys.stderr
@@ -41,7 +40,7 @@ if __name__ == '__main__':
         qzsl6.fp_trace = sys.stderr
     if args.statistics:  # show CLAS statistics
         qzsl6.stat = True
-    while qzsl6.receive():
-        qzsl6.show_l6_message()
+    while qzsl6.receive_l6_msg():
+        qzsl6.show_l6_msg()
 
 # EOF
