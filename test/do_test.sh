@@ -4,18 +4,17 @@ CODEDIR=../python/
 #CODEDIR=
 
 do_test() {
-    CODE=$1
-    EXT_FROM=$2
-    EXT_TO=$3
-    BASENAME=$4
-    SRCDIR=$5
-    ARG=${@:6:($#-5)}
+    local CODE=$1
+    local EXT_FROM=$2
+    local EXT_TO=$3
+    local BASENAME=$4
+    local SRCDIR=$5
+    local ARG=${@:6:($#-5)}
     echo -n "  ${BASENAME}.${EXT_FROM}: "
     cat ${SRCDIR}${BASENAME}.${EXT_FROM} | ${CODE} ${ARG} \
         > ${BASENAME}.${EXT_TO}
-    diff -q ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO} > /dev/null \
-        && echo "Passed." \
-        || echo "Failed."
+    cmp -s ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO}
+    [[ $? -eq 0 ]] && echo "Passed." || echo "Failed."
     rm ${BASENAME}.${EXT_TO}
 }
 
