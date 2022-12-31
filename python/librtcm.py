@@ -10,59 +10,74 @@
 
 import sys
 import ecef2llh
-import libqzsl6tool
 import libcolor
+import libqzsl6tool
 
 class Rtcm:
     "RTCM message process class"
-    rtcm_buf = b''
-    t_level = 0  # trace level
+# public
+    fp_trace = sys.stdout  # file pointer for trace
+    t_level = 0            # trace level
+    fp_rtcm = None         # file pointer for RTCM message output
+# private
+    rtcm_buf = b''         # receive buffer
+    payload = ''           # message payload excluding head, length, and CRC
+    mlen = 0               # message length
+
+    def trace(self, level, *args):
+        if self.t_level < level:
+            return
+        for arg in args:
+            try:
+                print(arg, end='', file=self.fp_trace)
+            except (BrokenPipeError, IOError):
+                sys.exit()
 
     def receive_rtcm_msg(self):
         BUFMAX = 1000  # maximum length of buffering RTCM message
         BUFADD =   20  # length of buffering additional RTCM message
-        try:
-            ok = False
-            while not ok:
-                if BUFMAX < len(self.rtcm_buf):
-                    print("RTCM buffer exhausted", file=sys.stderr)
-                    return False
+        ok = False
+        while not ok:
+            if BUFMAX < len(self.rtcm_buf):
+                print("RTCM buffer exhausted", file=sys.stderr)
+                return False
+            try:
                 b = sys.stdin.buffer.read(BUFADD)
-                if not b:
-                    return False
-                self.rtcm_buf += b
-                len_rtcm_buf = len(self.rtcm_buf)
-                pos = 0
-                found_sync = False
-                while pos != len_rtcm_buf and not found_sync:
-                    if self.rtcm_buf[pos:pos+1] == b'\xd3':
-                        found_sync = True
-                    else:
-                        pos += 1
-                if not found_sync:
-                    self.rtcm_buf = b''
-                    continue
-                if len_rtcm_buf < pos + 3:  # cannot read message length
-                    self.rtcm_buf = self.rtcm_buf[pos:]
-                    continue
-                bl = self.rtcm_buf[pos+1:pos+3]  # possible message length
-                mlen = libqzsl6tool.getbitu(bl, 6, 10)
-                if len_rtcm_buf < pos + 3 + mlen + 3:  # cannot read message
-                    self.rtcm_buf = self.rtcm_buf[pos:]
-                    continue
-                bp = self.rtcm_buf[pos+3:pos+3+mlen]  # possible payload
-                bc = self.rtcm_buf[pos+3+mlen:pos+3+mlen+3]  # possible CRC
-                frame = b'\xd3' + bl + bp
-                if bc == libqzsl6tool.rtk_crc24q(frame, len(frame)):
-                    ok = True
-                    self.rtcm_buf = self.rtcm_buf[pos+3+mlen+3:]
-                else:  # CRC error
-                    print("RTCM CRC error", file=sys.stderr)
-                    self.rtcm_buf = self.rtcm_buf[pos + 1:]
-                    continue
-        except KeyboardInterrupt:
-            print("User break - terminated", file=sys.stderr)
-            return False
+            except KeyboardInterrupt:
+                print("User break - terminated", file=sys.stderr)
+                return False
+            if not b:
+                return False
+            self.rtcm_buf += b
+            len_rtcm_buf = len(self.rtcm_buf)
+            pos = 0
+            found_sync = False
+            while pos != len_rtcm_buf and not found_sync:
+                if self.rtcm_buf[pos:pos+1] == b'\xd3':
+                    found_sync = True
+                else:
+                    pos += 1
+            if not found_sync:
+                self.rtcm_buf = b''
+                continue
+            if len_rtcm_buf < pos + 3:  # cannot read message length
+                self.rtcm_buf = self.rtcm_buf[pos:]
+                continue
+            bl = self.rtcm_buf[pos+1:pos+3]  # possible message length
+            mlen = libqzsl6tool.getbitu(bl, 6, 10)
+            if len_rtcm_buf < pos + 3 + mlen + 3:  # cannot read message
+                self.rtcm_buf = self.rtcm_buf[pos:]
+                continue
+            bp = self.rtcm_buf[pos+3:pos+3+mlen]  # possible payload
+            bc = self.rtcm_buf[pos+3+mlen:pos+3+mlen+3]  # possible CRC
+            frame = b'\xd3' + bl + bp
+            if bc == libqzsl6tool.rtk_crc24q(frame, len(frame)):
+                ok = True
+                self.rtcm_buf = self.rtcm_buf[pos+3+mlen+3:]
+            else:  # CRC error
+                print("RTCM CRC error", file=sys.stderr)
+                self.rtcm_buf = self.rtcm_buf[pos + 1:]
+                continue
         self.payload = bp
         self.mlen = mlen
         self.string = ''
@@ -116,7 +131,9 @@ class Rtcm:
             mtype = 'F/NAV'
         if msgnum == 1046:
             mtype = 'I/NAV'
-        if (1071 <= msgnum and msgnum <= 1097) or \
+        if (1071 <= msgnum and msgnum <= 1077) or \
+           (1081 <= msgnum and msgnum <= 1087) or \
+           (1091 <= msgnum and msgnum <= 1097) or \
            (1101 <= msgnum and msgnum <= 1137):
             mtype = f'MSM{msgnum % 10}'
         if msgnum in {1057, 1063, 1240, 1246, 1258}:
@@ -513,7 +530,8 @@ class Rtcm:
         self.string = string  # update string
 
     def decode_ssr(self, msgnum, payload):
-        pos = self.pos
+        # returns the number of processed bits
+        pos = 0
         if msgnum in {1057, 1059, 1061, 1062}:
             be = 20  # bit size of epoch and numsat for GPS
             bs = 6
@@ -587,9 +605,8 @@ class Rtcm:
                 1, f"Warning: msgnum {msgnum} drop {len (payload)} bit:\n")
             self.trace(1, f"{payload.bin}\n")
             return False
-        self.pos = pos
         self.numsat = numsat
-        return True
+        return pos
 
     def decode_rtcm_msg(self):  # decode RTCM message
         # parse RTCM header
@@ -633,5 +650,14 @@ class Rtcm:
             sys.stdout.flush()
         except BrokenPipeError:
             sys.exit()
+
+    def send_rtcm(self, self_rtcm):
+        if not self.fp_rtcm:
+            return
+        rtcm = b'\xd3' + len(self_rtcm).to_bytes(2, 'big') + self_rtcm
+        rtcm_crc = libqzsl6tool.rtk_crc24q(rtcm, len(rtcm))
+        self.fp_rtcm.buffer.write(rtcm)
+        self.fp_rtcm.buffer.write(rtcm_crc)
+        self.fp_rtcm.flush()
 
 # EOF

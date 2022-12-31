@@ -3,6 +3,8 @@
 CODEDIR=../python/
 #CODEDIR=
 
+ESC=$(printf '\033')
+
 do_test() {
     local CODE=$1
     local EXT_FROM=$2
@@ -14,8 +16,12 @@ do_test() {
     cat ${SRCDIR}${BASENAME}.${EXT_FROM} | ${CODE} ${ARG} \
         > ${BASENAME}.${EXT_TO}
     cmp -s ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO}
-    [[ $? -eq 0 ]] && echo "Passed." || echo "Failed."
-    rm ${BASENAME}.${EXT_TO}
+    if [[ $? -eq 0 ]]; then
+        printf "${ESC}[32mPassed.${ESC}[m\n"
+        rm ${BASENAME}.${EXT_TO}
+    else
+        printf  "${ESC}[31mFailed.${ESC}[m\n"
+    fi
 }
 
 # ------ test 1: pksdr2qzsl6.py ------

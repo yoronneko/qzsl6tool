@@ -111,7 +111,14 @@ cat ../sample/20220326-231200clas.alst | python alst2qzsl6.py -l | python qzsl62
 
 ``alst2qzsl6.py`` is a program that reads the sample data collected by the Allystar receiver. If you give it the ``-l`` option, it will output L6 raw data to standard output.
 
-Upon receiving a Subtype 1 message, this program will start decoding the CLAS message. ``...`` indicates the message continues to the next data part. On the other hand, ``(null)`` indicates the entire data part is null. The first number in each line is the PRN (pseudo random noise) number, the next column is the control station (Hitachi-Ota or Kobe), the next number (0 or 1) is the transmitting system number, and the next column indicates the CLAS message. increase. ``SF`` is the subframe number, and ``DP`` is the data part number.  
+The first number in each line is the PRN (pseudo random noise) number, the next column is the control station (Hitachi-Ota or Kobe), the next number (0 or 1) is the transmitting system number, and the next column indicates the CLAS message. increase. ``SF`` is the subframe number, and ``DP`` is the data part number.  
+
+Upon receiving a Subtype 1 message, this program will start decoding the CLAS message. 
+
+``...`` indicates that the message continues to the next data part. In the example above, ``ST1 ST3 ST2 ST4...`` is shown in DP1 row, and ``ST4 ST7 ST11 ST6 ST12...`` is shown in DP2 row. This indicates that DP1 has ST1, ST3, ST2, ST4, and another message following the next data part. There is ``ST4`` at the beginning of DP2, which is a ST4 message continued from DP1 (this ``ST4`` is different from the last ``ST4`` of DP1).
+
+On the other hand, ``(null)`` indicates the entire data part is null.
+
 Reference: [Compact SSR display capability on QZS L6 Tool](https://s-taka.org/en/qzsl6tool-20220329upd/)
 
 By using RTKLIB's command line application ``str2str``, we can use real-time stream data provided on the Internet.
