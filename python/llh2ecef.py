@@ -12,7 +12,6 @@
 import math
 import sys
 
-
 def llh2ecef(lat, lon, height):
     wgs84er = 6378137.
     wgs84ef = 1. / 298.257223563

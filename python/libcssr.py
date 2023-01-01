@@ -144,6 +144,58 @@ class Cssr:
                             f'and sigmask={sigmask}')
         return signame
 
+    def decode_cssr_head(self, payload):
+        '''returns bit size of cssr header'''
+        len_payload = len(payload)
+        pos = 0
+        if '0b1' not in payload:  # Zero padding detection
+            self.trace(2, f"CSSR null data {len(self.payload.bin)} bits\n")
+            self.trace(2, f"CSSR dump: {self.payload.bin}\n")
+            self.stat_bnull += len(self.payload.bin)
+            self.payload = bitstring.BitArray()
+            self.subtype = 0  # no subtype number
+            return 0
+        if len_payload < 12:
+            self.msgnum = 0   # could not retreve the message number
+            self.subtype = 0  # could not retreve the subtype number
+            return 0
+        self.msgnum = payload[pos:pos + 12].uint
+        pos += 12  # message num, 4073
+        if self.msgnum != 4073:  # CSSR message number should be 4073
+            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n")
+            self.trace(2, f"{len(self.payload.bin)} bits\n")
+            self.trace(2, f"CSSR dump: {self.payload.bin}\n")
+            self.stat_bnull += len(self.payload.bin)
+            self.payload = bitstring.BitArray()
+            self.subtype = 0  # no subtype number
+            return 0
+        if len_payload < pos + 4:
+            self.subtype = 0  # could not retreve the subtype number
+            return 0
+        self.subtype = payload[pos:pos + 4].uint  # subtype
+        pos += 4
+        if self.subtype == 1:  # Mask message
+            if len_payload < pos + 20:  # could not retreve the epoch
+                return 0
+            self.epoch = payload[pos:pos + 20].uint  # GPS epoch time 1s
+            pos += 20
+        elif self.subtype == 10:  # Service Information
+            return pos
+        else:
+            if len_payload < pos + 12:  # could not retreve the hourly epoch
+                return 0
+            self.hepoch = payload[pos:pos + 12].uint  # GNSS hourly epoch
+            pos += 12
+        if len_payload < pos + 4 + 1 + 4:
+            return 0
+        self.interval = payload[pos:pos + 4].uint  # update interval
+        pos += 4
+        self.mmi = payload[pos:pos + 1].uint  # multiple message indication
+        pos += 1
+        self.iod = payload[pos:pos + 4].uint  # SSR issue of data
+        pos += 4
+        return pos
+
     def decode_cssr_st1(self, payload, pos):
         len_payload = len(payload)
         if len_payload < 49:

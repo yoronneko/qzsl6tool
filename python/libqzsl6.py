@@ -11,7 +11,6 @@
 import sys
 import gps2utc
 import libcolor
-import libcssr
 import libqzsl6tool
 import librtcm
 try:
@@ -23,31 +22,27 @@ except ModuleNotFoundError:
     ''', file=sys.stderr)
     sys.exit(1)
 
-class QzsL6(libcssr.Cssr, librtcm.Rtcm):
+class QzsL6(librtcm.Rtcm):
     "Quasi-Zenith Satellite L6 message process class"
-# public
-    fp_msg = sys.stdout             # message output file pointer
 # private
     dpart = bitstring.BitArray()    # data part
     dpn = 0                         # data part number
     sfn = 0                         # subframe number
-    vendor = ''                     # QZS L6 vendor name
     prn = 0                         # psedudo random noise number
     vendor = ''                     # vendor name
     facility = ''                   # facility name
-    servid = ''                     # L6 message service name
-    msg_ext = ''                    # L6 message extension (LNAV or CNAV)
+    servid = ''                     # service name
+    msg_ext = ''                    # extension (LNAV or CNAV)
     sf_ind = 0                      # subframe indicator (0 or 1)
     alert = 0                       # alert flag (0 or 1)
     run = False                     # CSSR decode in progress
     payload = bitstring.BitArray()  # QZS L6 payload
-    msgnum = 0                      # L6 message type number
-    subtype = 0                     # L6 subtype number
-    hepoch = 0                      # L6 hourly epoch
-    interval = 0                    # L6 update interval
-    mmi = 0                         # L6 multiple message indication
+    msgnum = 0                      # message type number
+    subtype = 0                     # subtype number
+    hepoch = 0                      # hourly epoch
+    interval = 0                    # update interval
+    mmi = 0                         # multiple message indication
     iod = 0                         # SSR issue of data
-    rtcm = bitstring.BitArray()     # RTCM payload
 
     def __init__(self):
         pass
@@ -56,7 +51,7 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
         if self.stat:
             self.show_cssr_stat()
 
-    def receive_l6_msg(self):
+    def read_l6_msg(self):
         sync = [b'0x00' for i in range(4)]
         ok = False
         try:
@@ -71,7 +66,10 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
             if not b:
                 return False
         except KeyboardInterrupt:
-            print("User break - terminated", file=sys.stderr)
+            msg_color = libcolor.Color(sys.stderr, self.ansi_color)
+            print(msg_color.fg('yellow') + \
+                  "User break - terminated" + \
+                  msg_color.fg('default'), file=sys.stderr)
             return False
         pos = 0
         self.prn = int.from_bytes(b[pos:pos+1], 'big')
@@ -83,23 +81,21 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
         rs = b[pos:pos+32]
         vid = mtid >> 5  # vender ID
         if vid == 0b001:
-            vendor = "MADOCA"
+            self.vendor = "MADOCA"
         elif vid == 0b010:
-            vendor = "MADOCA-PPP"
+            self.vendor = "MADOCA-PPP"
         elif vid == 0b011:
-            vendor = "QZNMA"
+            self.vendor = "QZNMA"
         elif vid == 0b101:
-            vendor = "CLAS"
+            self.vendor = "CLAS"
         else:
-            vendor = f"unknown (vendor ID 0b{vid:03b})"
-        self.vendor = vendor
-        facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
-        facility += ":" + str((mtid >> 3) & 1)
-        self.facility = facility
+            self.vendor = f"vendor 0b{vid:03b}"
+        self.facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
+        self.facility += ":" + str((mtid >> 3) & 1)
         self.servid = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
         self.msg_ext = "CNAV" if (mtid >> 1) & 1 else "LNAV"
         self.sf_ind = mtid & 1  # subframe indicator
-        self.alert = dpart[0:1].uint
+        self.alert = dpart[0:1]
         self.dpart = dpart[1:]
         return True
 
@@ -112,13 +108,24 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
         pos += 12
         if msgnum == 0:
             return False
-        num_processed_bits = self.decode_ssr(msgnum, self.dpart[pos:])
-        if num_processed_bits == 0:
-            return False
-        pos += num_processed_bits
+        satsys = self.msgnum2satsys(msgnum)
+        mtype = self.msgnum2mtype(msgnum)
+        pos += self.ssr_head_decode(self.dpart[pos:], satsys, mtype)
+        if mtype == 'SSR orbit':
+            pos += self.ssr_decode_orbit(self.dpart[pos:], satsys)
+        elif mtype == 'SSR clock':
+            pos += self.ssr_decode_clock(self.dpart[pos:], satsys)
+        elif mtype == 'SSR code bias':
+            pos += self.ssr_decode_code_bias(self.dpart[pos:], satsys)
+        elif mtype == 'SSR URA':
+            pos += self.ssr_decode_ura(self.dpart[pos:], satsys)
+        elif mtype == 'SSR hr clock':
+            pos += self.ssr_decode_hr_clock(self.dpart[pos:], satsys)
+        else:
+            raise Exception(f'unsupported message type: {msgnum}')
         if pos % 8 != 0:  # byte align
             pos += 8 - (pos % 8)
-        self.rtcm = self.dpart[0:pos].tobytes()
+        self.send_rtcm(self.dpart[0:pos])
         del self.dpart[0:pos]
         self.msgnum = msgnum
         return True
@@ -127,91 +134,38 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
         '''returns bit size of CSSR data'''
         if not self.run:
             return 0
-        datasize = self.decode_cssr_head()
-        if datasize == 0:
+        pos = self.decode_cssr_head(self.payload)
+        if pos == 0:
             return 0
         if self.subtype == 1:
-            datasize = self.decode_cssr_st1(self.payload, datasize)
+            pos = self.decode_cssr_st1(self.payload, pos)
         elif self.subtype == 2:
-            datasize = self.decode_cssr_st2(self.payload, datasize)
+            pos = self.decode_cssr_st2(self.payload, pos)
         elif self.subtype == 3:
-            datasize = self.decode_cssr_st3(self.payload, datasize)
+            pos = self.decode_cssr_st3(self.payload, pos)
         elif self.subtype == 4:
-            datasize = self.decode_cssr_st4(self.payload, datasize)
+            pos = self.decode_cssr_st4(self.payload, pos)
         elif self.subtype == 5:
-            datasize = self.decode_cssr_st5(self.payload, datasize)
+            pos = self.decode_cssr_st5(self.payload, pos)
         elif self.subtype == 6:
-            datasize = self.decode_cssr_st6(self.payload, datasize)
+            pos = self.decode_cssr_st6(self.payload, pos)
         elif self.subtype == 7:
-            datasize = self.decode_cssr_st7(self.payload, datasize)
+            pos = self.decode_cssr_st7(self.payload, pos)
         elif self.subtype == 8:
-            datasize = self.decode_cssr_st8(self.payload, datasize)
+            pos = self.decode_cssr_st8(self.payload, pos)
         elif self.subtype == 9:
-            datasize = self.decode_cssr_st9(self.payload, datasize)
+            pos = self.decode_cssr_st9(self.payload, pos)
         elif self.subtype == 10:
-            datasize = self.decode_cssr_st10(self.payload, datasize)
+            pos = self.decode_cssr_st10(self.payload, pos)
         elif self.subtype == 11:
-            datasize = self.decode_cssr_st11(self.payload, datasize)
+            pos = self.decode_cssr_st11(self.payload, pos)
         elif self.subtype == 12:
-            datasize = self.decode_cssr_st12(self.payload, datasize)
+            pos = self.decode_cssr_st12(self.payload, pos)
         else:
             raise Exception(f"Unknown CSSR subtype: {self.subtype}")
-        if 0 < datasize:
-            self.rtcm = self.payload[:datasize].tobytes()
-            self.payload = self.payload[datasize:]
-        return datasize
-
-    def decode_cssr_head(self):
-        '''returns bit size of cssr header'''
-        payload = self.payload
-        len_payload = len(payload)
-        pos = 0
-        if '0b1' not in payload:  # Zero padding detection
-            self.trace(2, f"CSSR null data {len(self.payload.bin)} bits\n")
-            self.trace(2, f"CSSR dump: {self.payload.bin}\n")
-            self.stat_bnull += len(self.payload.bin)
-            self.payload = bitstring.BitArray()
-            self.subtype = 0  # no subtype number
-            return 0
-        if len_payload < 12:
-            self.msgnum = 0   # could not retreve the message number
-            self.subtype = 0  # could not retreve the subtype number
-            return 0
-        self.msgnum = payload[pos:pos + 12].uint
-        pos += 12  # message num, 4073
-        if self.msgnum != 4073:  # CSSR message number should be 4073
-            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n")
-            self.trace(2, f"{len(self.payload.bin)} bits\n")
-            self.trace(2, f"CSSR dump: {self.payload.bin}\n")
-            self.stat_bnull += len(self.payload.bin)
-            self.payload = bitstring.BitArray()
-            self.subtype = 0  # no subtype number
-            return 0
-        if len_payload < pos + 4:
-            self.subtype = 0  # could not retreve the subtype number
-            return 0
-        self.subtype = payload[pos:pos + 4].uint  # subtype
-        pos += 4
-        if self.subtype == 1:  # Mask message
-            if len_payload < pos + 20:  # could not retreve the epoch
-                return 0
-            self.epoch = payload[pos:pos + 20].uint  # GPS epoch time 1s
-            pos += 20
-        elif self.subtype == 10:  # Service Information
-            return pos
-        else:
-            if len_payload < pos + 12:  # could not retreve the hourly epoch
-                return 0
-            self.hepoch = payload[pos:pos + 12].uint  # GNSS hourly epoch
-            pos += 12
-        if len_payload < pos + 4 + 1 + 4:
-            return 0
-        self.interval = payload[pos:pos + 4].uint  # update interval
-        pos += 4
-        self.mmi = payload[pos:pos + 1].uint  # multiple message indication
-        pos += 1
-        self.iod = payload[pos:pos + 4].uint  # SSR issue of data
-        pos += 4
+        if 0 < pos:
+            self.send_rtcm(self.payload[:pos])
+            self.payload = self.payload[pos:]
         return pos
 
     def show_l6_msg(self):
@@ -228,7 +182,7 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
         if not self.fp_msg:
             return
         try:
-            msg_color = libcolor.Color(self.fp_msg)
+            msg_color = libcolor.Color(self.fp_msg, self.ansi_color)
             message = msg_color.fg('green')
             message += f'{self.prn} {self.facility:13s}'
             if self.alert:
@@ -244,23 +198,22 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
     def show_mdc_msg(self):
         dpart = self.dpart
         pos = 0
-        self.tow = dpart[pos:pos + 20].uint
+        self.tow = dpart[pos:pos+20].uint
         pos += 20
-        self.wn = dpart[pos:pos + 13].uint
+        self.wn = dpart[pos:pos+13].uint
         pos += 13
         self.dpart = dpart[pos:]
         message = gps2utc.gps2utc(self.wn, self.tow) + ' '
         while self.mdc2rtcm():
             message += 'RTCM ' + str(self.msgnum) + \
-                       '(' + str(self.numsat) + ') '
-            self.send_rtcm(self.rtcm)
+                       '(' + str(self.ssr_nsat) + ') '
         self.show_msg(message)
 
     def show_cssr_msg(self):
         if self.sf_ind:  # first data part
             self.dpn = 1
             self.payload = bitstring.BitArray(self.dpart)
-            if not self.decode_cssr_head():
+            if not self.decode_cssr_head(self.payload):
                 self.payload = bitstring.BitArray()
             elif self.subtype == 1:
                 self.sfn = 1
@@ -282,26 +235,29 @@ class QzsL6(libcssr.Cssr, librtcm.Rtcm):
                 else:
                     self.payload.append(self.dpart)
         message = ''
-        msg_color = libcolor.Color(self.fp_msg)
+        msg_color = libcolor.Color(self.fp_msg, self.ansi_color)
         if self.sfn != 0:
             message += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
             if self.vendor == "MADOCA-PPP":
                 message += f' ({self.servid} {self.msg_ext})'
-        if not self.cssr2rtcm():  # could not decode any message
+        if not self.cssr2rtcm():  # could not decode CSSR any message
             if self.run and self.subtype == 0:  # whole message is null
                 message += msg_color.dec('dark')
                 message += ' (null)'
                 message += msg_color.dec('default')
-            elif self.run:  # continual message
+            elif self.run:  # or, continual message
                 message += f' ST{self.subtype}' + \
                     msg_color.fg('yellow') + '...' + \
                     msg_color.fg('default')
-        else:
+            else:  # ST1 mask message has not been found yet
+                message += msg_color.dec('dark')
+                message += ' (syncing)'
+                message += msg_color.dec('default')
+
+        else:  # found CSSR message
             message += f' ST{self.subtype}'
-            self.send_rtcm(self.rtcm)
             while self.cssr2rtcm():  # try to decode next message
                 message += f' ST{self.subtype}'
-                self.send_rtcm(self.rtcm)
             if len(self.payload) != 0:  # continues to next datapart
                 message += f' ST{self.subtype}' + \
                     msg_color.fg('yellow') + '...' + \

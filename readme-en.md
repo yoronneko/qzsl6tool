@@ -32,7 +32,11 @@ Here is the directory structure:
 │   ├── alst2qzsl6.py
 │   ├── ecef2llh.py
 │   ├── gps2utc.py
+│   ├── libcolor.py
+│   ├── libcssr.py
+│   ├── libqzsl6.py
 │   ├── libqzsl6tool.py
+│   ├── librtcm.py
 │   ├── llh2ecef.py
 │   ├── pksdr2qzsl6.py
 │   ├── qzsl62rtcm.py
@@ -115,7 +119,7 @@ The first number in each line is the PRN (pseudo random noise) number, the next 
 
 Upon receiving a Subtype 1 message, this program will start decoding the CLAS message. 
 
-``...`` indicates that the message continues to the next data part. In the example above, ``ST1 ST3 ST2 ST4...`` is shown in DP1 row, and ``ST4 ST7 ST11 ST6 ST12...`` is shown in DP2 row. This indicates that DP1 has ST1, ST3, ST2, ST4, and another message following the next data part. There is ``ST4`` at the beginning of DP2, which is a ST4 message continued from DP1 (this ``ST4`` is different from the last ``ST4`` of DP1).
+``...`` indicates that the message continues to the next data part. In the example above, ``ST1 ST3 ST2 ST4...`` is shown in DP1 row, and ``ST4 ST7 ST11 ST6 ST12...`` is shown in DP2 row. This indicates that DP1 has ST1, ST3, ST2, and ST4 follows the next data part. DP2 is headed by ``ST4``, which is the continuation ST4 message from DP1.
 
 On the other hand, ``(null)`` indicates the entire data part is null.
 

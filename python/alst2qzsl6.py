@@ -11,8 +11,9 @@
 
 import argparse
 import sys
-from gps2utc import *
-from libqzsl6tool import *
+import gps2utc
+import libcolor
+import libqzsl6tool
 
 class AllystarReceiver:
     fp_l6 = None          # file pointer for QZS L6 output
@@ -21,6 +22,7 @@ class AllystarReceiver:
     dict_snr = {}         # SNR dictionary
     dict_data = {}        # payload data dictionary
     last_gpst = 0         # last received GPS time
+    ansi_color = False    # ANSI escape sequence
 
     def receive(self):
         sync = [b'0x00' for i in range(4)]
@@ -38,7 +40,10 @@ class AllystarReceiver:
             if not payld or not csum:
                 return False
         except KeyboardInterrupt:
-            print("User break - terminated", file=sys.stderr)
+            msg_color = libcolor.Color(sys.stderr)
+            print(msg_color.fg('yellow') + \
+                  "User break - terminated" + \
+                  msg_color.fg('default'), file=sys.stderr)
             return False
         len_payld = int.from_bytes(payld[2: 4], 'little')
         self.prn = int.from_bytes(payld[4: 6], 'little') - 700
@@ -50,7 +55,7 @@ class AllystarReceiver:
         flag = int.from_bytes(payld[15: 16], 'big')
         self.data = payld[16:268]
         self.err = ""
-        csum1, csum2 = rtk_checksum(payld)
+        csum1, csum2 = libqzsl6tool.rtk_checksum(payld)
         if csum[0] != csum1 or csum[1] != csum2:
             self.err += "CS "
         if len_payld != 264:
@@ -90,8 +95,12 @@ class AllystarReceiver:
     def show(self):
         if self.prn == 0 or not self.fp_msg:
             return
-        msg = f"{self.prn} {gps2utc(self.gpsw, self.gpst)} " + \
-              f"{self.snr} {self.err}"
+        msg_color = libcolor.Color(self.fp_msg, self.ansi_color)
+        msg = msg_color.fg('green') + f'{self.prn} ' + \
+              msg_color.fg('yellow') + gps2utc.gps2utc(self.gpsw, self.gpst) + \
+              msg_color.fg('default') + f' {self.snr}'
+        if self.err:
+            msg += msg_color.fg('red') + ' ' + self.err + msg_color.fg('default')
         print(msg, file=self.fp_msg)
 
     def send_l6raw(self):
@@ -128,15 +137,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Allystar HD9310 to Quasi-zenith satellite (QZS) L6 message converter')
     parser_group = parser.add_mutually_exclusive_group()
+    parser.add_argument(
+        '-c', '--color', action='store_true',
+        help='allow ANSI escape sequences for text color decoration')
     parser_group.add_argument(
         '-l', '--l6', action='store_true',
         help='L6 message output')
-    parser_group.add_argument(
-        '-u', '--ubx', action='store_true',
-        help='u-blox L6 raw  message output')
     parser.add_argument(
         '-m', '--message', action='store_true',
-        help='show Allystar messages to stderr')
+        help='redirect Allystar messages to stderr')
+    parser_group.add_argument(
+        '-u', '--ubx', action='store_true',
+        help='u-blox L6 raw message output (experimental)')
     args = parser.parse_args()
     alst = AllystarReceiver()
     if args.l6:  # QZS L6 raw output to stdout
@@ -149,6 +161,8 @@ if __name__ == '__main__':
         alst.fp_msg = None
     if args.message:  # show Allystar message to stderr
         fp_msg = sys.stderr
+    if args.color:
+        alst.ansi_color = True
     while alst.receive():
         alst.pick_up()
         try:

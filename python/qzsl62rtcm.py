@@ -16,8 +16,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Quasi-zenith satellite (QZS) L6 message to RTCM converter')
     parser.add_argument(
-        '-t', '--trace', type=int, default=0,
-        help='trace level for debug: 1=subtype detail, 2=subtype and bit image')
+        '-c', '--color', action='store_true',
+        help='allow ANSI escape sequences for text color decoration')
+    parser.add_argument(
+        '-m', '--message', action='store_true',
+        help='show QZS messages and statistics to stderr')
     parser.add_argument(
         '-r', '--rtcm', action='store_true',
         help='RTCM message output, supress QZS messages (unless -m is specified)')
@@ -25,8 +28,8 @@ if __name__ == '__main__':
         '-s', '--statistics', action='store_true',
         help='show CSSR statistics')
     parser.add_argument(
-        '-m', '--message', action='store_true',
-        help='show QZS messages and statistics to stderr')
+        '-t', '--trace', type=int, default=0,
+        help='trace level for debug: 1=subtype detail, 2=subtype and bit image')
     args = parser.parse_args()
     qzsl6 = libqzsl6.QzsL6()
     if 0 < args.trace:
@@ -40,7 +43,9 @@ if __name__ == '__main__':
         qzsl6.fp_trace = sys.stderr
     if args.statistics:  # show CLAS statistics
         qzsl6.stat = True
-    while qzsl6.receive_l6_msg():
+    if args.color:
+        qzsl6.ansi_color = True
+    while qzsl6.read_l6_msg():
         qzsl6.show_l6_msg()
 
 # EOF

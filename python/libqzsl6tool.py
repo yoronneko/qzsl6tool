@@ -7,8 +7,7 @@
 # Copyright (c) 2022 Satoshi Takahashi
 # Copyright (c) 2007-2020 by T.TAKASU
 #
-# Functions of getbitu(), getbits(), setbitu(), setbits(), getbits38(),
-# getbits38(), rtk_crc32(), rtk_crc24q (), rtk_crc16 () are from
+# Functions of rtk_crc32(), rtk_crc24q (), rtk_crc16 () are from
 # rtkcmn.c of RTKLIB 2.4.3b34, https://github.com/tomojitakasu/RTKLIB
 #
 # Released under BSD 2-clause license.
@@ -82,45 +81,6 @@ tbl_CRC24Q = [
     0xE37B16, 0x6537ED, 0x69AE1B, 0xEFE2E0, 0x709DF7, 0xF6D10C, 0xFA48FA, 0x7C0401,
     0x42FA2F, 0xC4B6D4, 0xC82F22, 0x4E63D9, 0xD11CCE, 0x575035, 0x5BC9C3, 0xDD8538
 ]
-
-
-def getbitu(buff, pos, length):
-    bits = 0
-    for i in range(pos, pos + length):
-        bits = (bits << 1) + ((buff[i // 8] >> (7 - i % 8)) & 1)
-    return bits
-
-
-def getbits(buff, pos, length):
-    bits = getbitu(buff, pos, length)
-    # if length <= 0 or 32 <= length or not bits & (1 << (length - 1)):
-    if length <= 0 or 32 < length or not bits & (1 << (length - 1)):
-        return bits
-    return bits | (~0 << length)
-
-
-def setbitu(buff, pos, length, data):
-    mask = 1 << (length - 1)
-    if length <= 0 or 32 < length:
-        return
-    for i in range(pos, pos + length):
-        if data & mask:
-            buff[i // 8] |= 1 << (7 - i % 8)
-        else:
-            buff[i // 8] &= ~(1 << (7 - i % 8))
-        mask >>= 1
-
-
-def setbits(buff, pos, length, data):
-    if data < 0:
-        data |= 1 << (length - 1)
-    else:
-        data &= ~(1 << (length - 1))
-    setbitu(buff, pos, length, data)
-
-
-def getbits38(buff, pos):
-    return getbits(buff, pos, 32) * 64. + getbitu(buff, pos + 32, 6)
 
 
 def rtk_crc32(buff, length):

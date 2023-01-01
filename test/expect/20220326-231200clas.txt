@@ -1,17 +1,17 @@
-199 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-196 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
-194 Hitachi-Ota:1  CLAS 
+199 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+196 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
+194 Hitachi-Ota:1  CLAS  (syncing)
 ST1 G10 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
 ST1 G12 L1 C/A L2 L2C(M+L) L2 Z-tracking
 ST1 G22 L1 C/A L2 Z-tracking

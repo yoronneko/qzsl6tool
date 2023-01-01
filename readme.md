@@ -32,7 +32,11 @@ English description is available [here](readme-en.md).
 │   ├── alst2qzsl6.py
 │   ├── ecef2llh.py
 │   ├── gps2utc.py
+│   ├── libcolor.py
+│   ├── libcssr.py
+│   ├── libqzsl6.py
 │   ├── libqzsl6tool.py
+│   ├── librtcm.py
 │   ├── llh2ecef.py
 │   ├── pksdr2qzsl6.py
 │   ├── qzsl62rtcm.py
@@ -115,7 +119,7 @@ cat ../sample/20220326-231200clas.alst | python alst2qzsl6.py -l | python qzsl62
 
 Subtype 1メッセージを受信すると、このプログラムはCLASメッセージ解読を開始します。
 
-``...``は、次のデータパートにまでメッセージが続くことを示しています。例えば、上の例において、DP1には、``ST1 ST3 ST2 ST4...``と、DP2には、``ST4 ST7 ST11 ST6 ST12...``と表示されています。これは、DP1にST1、ST3、ST2、ST4、そして次のデータパートに続く別メッセージがあることを示します。DP2の先頭には``ST4``があり、これはDP1から続いたST4メッセージです（この``ST4``と、DP1の最後の``ST4``とは内容が異なります）。
+``...``は、次のデータパートにまでメッセージが続くことを示しています。例えば、上の例において、DP1には、``ST1 ST3 ST2 ST4...``と、DP2には、``ST4 ST7 ST11 ST6 ST12...``と表示されています。これは、DP1にST1、ST3、ST2があり、さらにST4が次のデータパートに続くことを示します。DP2の先頭には``ST4``があり、これはDP1からの継続ST4メッセージです。
 
 一方、``(null)``は、データパート全体が無情報（ヌル）であることを示します。
 
