@@ -290,7 +290,7 @@ python utc2gps.py 2022-11-30 12:52:37
 
 ## License
 
-The [BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause) is applied to this toolkit. You may use this program for commercial or non-commercial purposes, with or without modification, but this copyright notice is required. A part of [RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34 functions of getbitu(), getbits(), setbitu(), setbits(), getbits38(), getbits38(), rtk_crc32(), rtk_crc24q (), rtk_crc16 () are used in ``libqzsl6tool.py``.
+The [BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause) is applied to this toolkit. You may use this program for commercial or non-commercial purposes, with or without modification, but this copyright notice is required. A part of [RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34 functions of rtk_crc32(), rtk_crc24q (), rtk_crc16 () are used in ``libqzsl6tool.py``.
 
 Copyright (c) 2022 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU

@@ -15,7 +15,16 @@ INVALID = 0  # invalid value indication for CSSR message show
 
 class Cssr:
     """Base class of compact space state representation (CSSR)"""
+# public
+    fp_trace = sys.stdout  # file pointer for trace
+    t_level = 0            # trace level
 # private
+    subtype = 0     # subtype number
+    epoch = 0       # epoch
+    hepoch = 0      # hourly epoch
+    interval = 0    # update interval
+    mmi = 0         # multiple message indication
+    iod = 0         # issue of data
     satsys = []     # array of satellite system
     nsatmask = []   # array of number of satellite mask
     nsigmask = []   # array of number of signal mask
@@ -29,6 +38,15 @@ class Cssr:
     stat_bsig = 0   # stat: bit number of signals
     stat_both = 0   # stat: bit number of other information
     stat_bnull = 0  # stat: bit number of null
+
+    def trace(self, level, *args):
+        if self.t_level < level:
+            return
+        for arg in args:
+            try:
+                print(arg, end='', file=self.fp_trace)
+            except (BrokenPipeError, IOError):
+                sys.exit()
 
     def show_cssr_stat(self):
         msg = f'stat n_sat {self.stat_nsat} n_sig {self.stat_nsig} ' + \

@@ -19,10 +19,11 @@ class AllystarReceiver:
     fp_l6 = None          # file pointer for QZS L6 output
     fp_ubx = None         # file pointer for u-blox L6 raw output
     fp_msg = sys.stdout   # message output file pointer
+    ansi_color = False    # ANSI escape sequence
+    msg_color = libcolor.Color(fp_msg, ansi_color)  # color object
     dict_snr = {}         # SNR dictionary
     dict_data = {}        # payload data dictionary
     last_gpst = 0         # last received GPS time
-    ansi_color = False    # ANSI escape sequence
 
     def receive(self):
         sync = [b'0x00' for i in range(4)]
@@ -95,12 +96,11 @@ class AllystarReceiver:
     def show(self):
         if self.prn == 0 or not self.fp_msg:
             return
-        msg_color = libcolor.Color(self.fp_msg, self.ansi_color)
-        msg = msg_color.fg('green') + f'{self.prn} ' + \
-              msg_color.fg('yellow') + gps2utc.gps2utc(self.gpsw, self.gpst) + \
-              msg_color.fg('default') + f' {self.snr}'
+        msg = self.msg_color.fg('green') + f'{self.prn} ' + \
+              self.msg_color.fg('yellow') + gps2utc.gps2utc(self.gpsw, self.gpst) + \
+              self.msg_color.fg('default') + f' {self.snr}'
         if self.err:
-            msg += msg_color.fg('red') + ' ' + self.err + msg_color.fg('default')
+            msg += self.msg_color.fg('red') + ' ' + self.err + self.msg_color.fg('default')
         print(msg, file=self.fp_msg)
 
     def send_l6raw(self):
@@ -155,14 +155,18 @@ if __name__ == '__main__':
         alst.fp_l6 = sys.stdout
         alst.fp_ubx = None
         alst.fp_msg = None
+        alst.msg_color = libcolor.Color(alst.fp_msg, alst.ansi_color)
     if args.ubx:  # u-blox L6 raw output to stdout
         alst.fp_l6 = None
         alst.fp_ubx = sys.stdout
         alst.fp_msg = None
+        alst.msg_color = libcolor.Color(alst.fp_msg, alst.ansi_color)
     if args.message:  # show Allystar message to stderr
         fp_msg = sys.stderr
+        alst.msg_color = libcolor.Color(alst.fp_msg, alst.ansi_color)
     if args.color:
         alst.ansi_color = True
+        alst.msg_color = libcolor.Color(alst.fp_msg, alst.ansi_color)
     while alst.receive():
         alst.pick_up()
         try:

@@ -7,6 +7,21 @@
 # Copyright (c) 2022 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
+#
+# References:
+# 1. Radio Technical Commission for Maritime Services (RTCM),
+#    Differential GNSS (Global Navigation Satellite Systems) Services
+#    - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
+# 2. Global Positioning Augmentation Service Corporation (GPAS),
+#    Quasi-Zenith Satellite System Correction Data on Centimeter Level
+#    Augmentation Serice for Experiment Data Format Specification,
+#    1st ed., Nov. 2017.
+# 3. Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
+#    Specification Centimeter Level Augmentation Service,
+#    IS-QZSS-L6-005, Sept. 21, 2022.
+# 4. Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
+#    Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+#    - Precise Point Positioning, IS-QZSS-MDC-001, Feb., 2022.
 
 import sys
 import gps2utc
@@ -182,15 +197,14 @@ class QzsL6(librtcm.Rtcm):
         if not self.fp_msg:
             return
         try:
-            msg_color = libcolor.Color(self.fp_msg, self.ansi_color)
-            message = msg_color.fg('green')
+            message = self.msg_color.fg('green')
             message += f'{self.prn} {self.facility:13s}'
             if self.alert:
-                message += msg_color.fg('red') + '* '
+                message += self.msg_color.fg('red') + '* '
             else:
                 message += '  '
-            message += msg_color.fg('yellow') + self.vendor
-            message += msg_color.fg('default') + ' ' + msg
+            message += self.msg_color.fg('yellow') + self.vendor
+            message += self.msg_color.fg('default') + ' ' + msg
             print(message, file=self.fp_msg)
         except (BrokenPipeError, IOError):
             sys.exit()
@@ -235,24 +249,23 @@ class QzsL6(librtcm.Rtcm):
                 else:
                     self.payload.append(self.dpart)
         message = ''
-        msg_color = libcolor.Color(self.fp_msg, self.ansi_color)
         if self.sfn != 0:
             message += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
             if self.vendor == "MADOCA-PPP":
                 message += f' ({self.servid} {self.msg_ext})'
         if not self.cssr2rtcm():  # could not decode CSSR any message
             if self.run and self.subtype == 0:  # whole message is null
-                message += msg_color.dec('dark')
+                message += self.msg_color.dec('dark')
                 message += ' (null)'
-                message += msg_color.dec('default')
+                message += self.msg_color.dec('default')
             elif self.run:  # or, continual message
                 message += f' ST{self.subtype}' + \
-                    msg_color.fg('yellow') + '...' + \
-                    msg_color.fg('default')
+                    self.msg_color.fg('yellow') + '...' + \
+                    self.msg_color.fg('default')
             else:  # ST1 mask message has not been found yet
-                message += msg_color.dec('dark')
+                message += self.msg_color.dec('dark')
                 message += ' (syncing)'
-                message += msg_color.dec('default')
+                message += self.msg_color.dec('default')
 
         else:  # found CSSR message
             message += f' ST{self.subtype}'
@@ -260,8 +273,8 @@ class QzsL6(librtcm.Rtcm):
                 message += f' ST{self.subtype}'
             if len(self.payload) != 0:  # continues to next datapart
                 message += f' ST{self.subtype}' + \
-                    msg_color.fg('yellow') + '...' + \
-                    msg_color.fg('default')
+                    self.msg_color.fg('yellow') + '...' + \
+                    self.msg_color.fg('default')
         self.show_msg(message)
 
     def show_qznma_msg(self):

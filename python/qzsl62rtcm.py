@@ -10,6 +10,7 @@
 
 import argparse
 import sys
+import libcolor
 import libqzsl6
 
 if __name__ == '__main__':
@@ -37,14 +38,17 @@ if __name__ == '__main__':
     if args.rtcm:  # RTCM message output to stdout
         qzsl6.fp_rtcm = sys.stdout
         qzsl6.fp_msg = None
+        qzsl6.msg_color = libcolor.Color(qzsl6.fp_msg, qzsl6.ansi_color)
         qzsl6.fp_trace = sys.stderr
     if args.message:  # show QZS message to stderr
         qzsl6.fp_msg = sys.stderr
+        qzsl6.msg_color = libcolor.Color(qzsl6.fp_msg, qzsl6.ansi_color)
         qzsl6.fp_trace = sys.stderr
     if args.statistics:  # show CLAS statistics
         qzsl6.stat = True
     if args.color:
         qzsl6.ansi_color = True
+        qzsl6.msg_color = libcolor.Color(qzsl6.fp_msg, qzsl6.ansi_color)
     while qzsl6.read_l6_msg():
         qzsl6.show_l6_msg()
 

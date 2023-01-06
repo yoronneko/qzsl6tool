@@ -291,7 +291,7 @@ python utc2gps.py 2022-11-30 12:52:37
 
 ## ライセンス
 
-このツールキットに[BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``libqzsl6tool.py``の関数 getbitu(), getbits(), setbitu(), setbits(), getbits38(), getbits38(), rtk_crc32(), rtk_crc24q (), rtk_crc16 ()に[RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34の成果を利用しています。
+このツールキットに[BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``libqzsl6tool.py``の関数 rtk_crc32(), rtk_crc24q (), rtk_crc16 ()に[RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34の成果を利用しています。
 
 Copyright (c) 2022 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU

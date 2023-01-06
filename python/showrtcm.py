@@ -9,6 +9,7 @@
 # Released under BSD 2-clause license.
 
 import argparse
+import libcolor
 import librtcm
 
 if __name__ == '__main__':
@@ -24,6 +25,7 @@ if __name__ == '__main__':
     rtcm = librtcm.Rtcm()
     if args.color:
         rtcm.ansi_color = True
+        rtcm.msg_color = libcolor.Color(rtcm.fp_msg, rtcm.ansi_color)
     if 0 < args.trace:
         rtcm.t_level = args.trace
     while rtcm.read_rtcm_msg():
