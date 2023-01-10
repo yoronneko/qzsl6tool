@@ -56,24 +56,24 @@ RTCM 1127 C MSM7          C59
 RTCM 1137 I MSM7          I01 I03 I04 I05 I07 I09 
 RTCM 1005   Position      34.4401061 132.4147804 233.362
 RTCM 1033   Ant/Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810RN0000
-RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0
-RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0*
+RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E05 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E05 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E03 WN=1216 IODnav=32 OS_health=0*
 RTCM 1046 E I/NAV         E03 WN=1216 IODnav=32 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E34 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E34 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E02 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E02 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1077 G MSM7          G02 G05 G10 G12 G13 G15 G18 G23 G24 G25 G32 
 RTCM 1087 R MSM7          R01 R02 R03 R11 R12 R13 R17 R18 R19 
 RTCM 1097 E MSM7          E02 E03 E05 E08 E13 E15 E24 E25 E34 
@@ -197,24 +197,24 @@ RTCM 1127 C MSM7          C59
 RTCM 1137 I MSM7          I01 I03 I04 I05 I07 I09 
 RTCM 1005   Position      34.4401061 132.4147804 233.362
 RTCM 1033   Ant/Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810RN0000
-RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0
-RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0*
+RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E05 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E05 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E03 WN=1216 IODnav=32 OS_health=0*
 RTCM 1046 E I/NAV         E03 WN=1216 IODnav=32 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E34 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E34 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E02 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E02 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1077 G MSM7          G02 G05 G10 G12 G13 G15 G18 G23 G24 G25 G32 
 RTCM 1087 R MSM7          R01 R02 R03 R11 R12 R13 R17 R18 R19 
 RTCM 1097 E MSM7          E02 E03 E05 E08 E13 E15 E24 E25 E34 
@@ -361,10 +361,10 @@ RTCM 1127 C MSM7          C02 C05 C06 C16 C19 C20 C36 C38 C39 C46
 RTCM 1127 C MSM7          C01 C03 C04 C08 C09 C13 C22 C35 C37 C60 
 RTCM 1127 C MSM7          C59 
 RTCM 1137 I MSM7          I01 I03 I04 I05 I07 I09 
-RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1005   Position      34.4401061 132.4147804 233.362
 RTCM 1033   Ant/Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810RN0000
 RTCM 1077 G MSM7          G02 G05 G10 G12 G13 G15 G18 G23 G24 G25 G32 
@@ -377,14 +377,14 @@ RTCM 1127 C MSM7          C59
 RTCM 1137 I MSM7          I01 I03 I04 I05 I07 I09 
 RTCM 1045 E F/NAV         E05 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E05 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0
-RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0*
+RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1005   Position      34.4401061 132.4147804 233.362
 RTCM 1033   Ant/Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810RN0000
-RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E03 WN=1216 IODnav=32 OS_health=0*
 RTCM 1046 E I/NAV         E03 WN=1216 IODnav=32 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E34 WN=1216 IODnav=37 OS_health=0*
@@ -450,26 +450,26 @@ RTCM 1127 C MSM7          C02 C05 C06 C16 C19 C20 C36 C38 C39 C46
 RTCM 1127 C MSM7          C01 C03 C04 C08 C09 C13 C22 C35 C37 C60 
 RTCM 1127 C MSM7          C59 
 RTCM 1137 I MSM7          I01 I03 I04 I05 I07 I09 
-RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0
-RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0*
+RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E05 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E05 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E03 WN=1216 IODnav=32 OS_health=0*
 RTCM 1046 E I/NAV         E03 WN=1216 IODnav=32 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E34 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E34 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E02 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E02 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1005   Position      34.4401061 132.4147804 233.362
 RTCM 1033   Ant/Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810RN0000
-RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1077 G MSM7          G02 G05 G10 G12 G13 G15 G18 G23 G24 G25 G32 
 RTCM 1087 R MSM7          R01 R02 R03 R11 R12 R13 R17 R18 R19 
 RTCM 1097 E MSM7          E02 E03 E05 E08 E13 E15 E24 E25 E34 
@@ -593,24 +593,24 @@ RTCM 1127 C MSM7          C59
 RTCM 1137 I MSM7          I01 I03 I04 I05 I07 I09 
 RTCM 1005   Position      34.4401061 132.4147804 233.362
 RTCM 1033   Ant/Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810RN0000
-RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0
-RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E15 WN=1216 IODnav=33 OS_health=0*
+RTCM 1046 E I/NAV         E15 WN=1216 IODnav=33 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E13 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E13 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E05 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E05 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E03 WN=1216 IODnav=32 OS_health=0*
 RTCM 1046 E I/NAV         E03 WN=1216 IODnav=32 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E34 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E34 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E08 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E08 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1045 E F/NAV         E02 WN=1216 IODnav=37 OS_health=0*
 RTCM 1046 E I/NAV         E02 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
-RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
-RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0
-RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0
+RTCM 1045 E F/NAV         E24 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E24 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
+RTCM 1045 E F/NAV         E25 WN=1216 IODnav=37 OS_health=0*
+RTCM 1046 E I/NAV         E25 WN=1216 IODnav=37 E5b_health=0* E1b_health=0*
 RTCM 1077 G MSM7          G02 G05 G10 G12 G13 G15 G18 G23 G24 G25 G32 
 RTCM 1087 R MSM7          R01 R02 R03 R11 R12 R13 R17 R18 R19 
 RTCM 1097 E MSM7          E02 E03 E05 E08 E13 E15 E24 E25 E34 
