@@ -15,40 +15,40 @@ import libqzsl6
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Quasi-zenith satellite (QZS) L6 message to RTCM converter')
+        description='Quasi-zenith satellite (QZS) L6 message to RTCM message converter')
     parser.add_argument(
         '-c', '--color', action='store_true',
-        help='allow ANSI escape sequences for text color decoration')
+        help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
         '-m', '--message', action='store_true',
-        help='show QZS messages and statistics to stderr')
+        help='show display messages to stderr')
     parser.add_argument(
         '-r', '--rtcm', action='store_true',
-        help='RTCM message output, supress QZS messages (unless -m is specified)')
+        help='send RTCM messages to stdout (it also turns off display messages unless -m is specified).')
     parser.add_argument(
         '-s', '--statistics', action='store_true',
-        help='show CSSR statistics')
+        help='show CSSR statistics in display messages.')
     parser.add_argument(
         '-t', '--trace', type=int, default=0,
-        help='trace level for debug: 1=subtype detail, 2=subtype and bit image')
+        help='show display verbosely: 1=subtype detail, 2=subtype and bit image.')
     args = parser.parse_args()
-    qzsl6 = libqzsl6.QzsL6()
+    fp_rtcm = None
+    fp_disp = sys.stdout
+    t_level = 0
+    force_ansi_color = False
+    stat = False
     if 0 < args.trace:
-        qzsl6.t_level = args.trace
+        t_level = args.trace
     if args.rtcm:  # RTCM message output to stdout
-        qzsl6.fp_rtcm = sys.stdout
-        qzsl6.fp_msg = None
-        qzsl6.msg_color = libcolor.Color(qzsl6.fp_msg, qzsl6.ansi_color)
-        qzsl6.fp_trace = sys.stderr
+        fp_rtcm = sys.stdout
+        fp_disp = None
     if args.message:  # show QZS message to stderr
-        qzsl6.fp_msg = sys.stderr
-        qzsl6.msg_color = libcolor.Color(qzsl6.fp_msg, qzsl6.ansi_color)
-        qzsl6.fp_trace = sys.stderr
+        fp_disp = sys.stderr
     if args.statistics:  # show CLAS statistics
-        qzsl6.stat = True
+        stat = True
     if args.color:
-        qzsl6.ansi_color = True
-        qzsl6.msg_color = libcolor.Color(qzsl6.fp_msg, qzsl6.ansi_color)
+        force_ansi_color = True
+    qzsl6 = libqzsl6.QzsL6(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
     while qzsl6.read_l6_msg():
         qzsl6.show_l6_msg()
 

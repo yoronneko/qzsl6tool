@@ -1,25 +1,41 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# libcssr.py: library for compact SSR message processing
+# libssr.py: library for SSR and compact SSR message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
+#
+# References:
+# [1] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
+#     Specification Centimeter Level Augmentation Service,
+#     IS-QZSS-L6-005, Sept. 21, 2022.
+# [2] Global Positioning Augmentation Service Corporation (GPAS),
+#     Quasi-Zenith Satellite System Correction Data on Centimeter Level
+#     Augmentation Serice for Experiment Data Format Specification,
+#     1st ed., Nov. 2017.
+# [3] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
+#     Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+#     - Precise Point Positioning, IS-QZSS-MDC-001, Feb., 2022.
+# [4] Radio Technical Commission for Maritime Services (RTCM),
+#     Differential GNSS (Global Navigation Satellite Systems) Services
+#     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
 
 import sys
 import bitstring
 
 INVALID = 0  # invalid value indication for CSSR message show
 
-class Cssr:
-    """Base class of compact space state representation (CSSR)"""
-# public
-    fp_trace = sys.stdout  # file pointer for trace
-    t_level = 0            # trace level
-# private
+class Ssr:
+    """class of space state representation (SSR) and compact SSR process"""
+# --- public
     subtype = 0     # subtype number
+# --- private
+    ssr_nsat = 0    # number of satellites
+    ssr_mmi = 0     # multiple message indicator
+    ssr_iod = 0     # iod ssr
     epoch = 0       # epoch
     hepoch = 0      # hourly epoch
     interval = 0    # update interval
@@ -39,138 +55,223 @@ class Cssr:
     stat_both = 0   # stat: bit number of other information
     stat_bnull = 0  # stat: bit number of null
 
+    def __init__(self, fp_disp, t_level, msg_color):
+        self.fp_disp = fp_disp
+        self.t_level = t_level
+        self.msg_color = msg_color
+
     def trace(self, level, *args):
         if self.t_level < level:
             return
         for arg in args:
             try:
-                print(arg, end='', file=self.fp_trace)
+                print(arg, end='', file=self.fp_disp)
             except (BrokenPipeError, IOError):
                 sys.exit()
 
+    def ssr_decode_head(self, payload, pos, satsys, mtype):
+        '''returns SSR header pos'''
+        bw = 20 if satsys != 'R' else 17
+        # bit width changes according to satellite system
+        ssr_epoch = payload[pos:pos+bw].uint  # epoch time
+        pos += bw
+        ssr_interval = payload[pos:pos+4].uint  # ssr update interval
+        pos += 4
+        self.ssr_mmi = payload[pos:pos+1].uint  # multiple message indicator
+        pos += 1
+        if mtype == 'SSR orbit' or mtype == 'SSR obt/clk':
+            ssr_sdat = payload[pos:pos+1].uint  # satellite ref datum
+            pos += 1
+        self.ssr_iod = payload[pos:pos+4].uint  # iod ssr
+        pos += 4
+        ssr_pid = payload[pos:pos+16].uint  # ssr provider id
+        pos += 16
+        ssr_sid = payload[pos:pos+4].uint  # ssr solution id
+        pos += 4
+        bw = 6 if satsys != 'J' else 4
+        # bit width changes according to satellite system
+        self.ssr_nsat = payload[pos:pos+bw].uint  # number of satellites
+        pos += bw
+        return pos
+
+    def ssr_decode_orbit(self, payload, pos, satsys):
+        '''decodes SSR orbit correction and returns pos and string'''
+        strsat = ''
+        # satid bit width changes according to satellite system
+        if satsys == 'J':    # ref. [2]
+            bw = 4
+        elif satsys == 'R':  # ref. [1]
+            bw = 5
+        else:                # ref. [1]
+            bw = 6
+        for i in range(self.ssr_nsat):
+            satid = payload[pos:pos+bw].uint  # satellite ID
+            pos += bw
+            iode = payload[pos:pos+8].uint    # IODE
+            pos += 8
+            drad = payload[pos:pos+22].int    # delta radial
+            pos += 22
+            dalng = payload[pos:pos+20].int   # delta along track
+            pos += 20
+            dcrs = payload[pos:pos+20].int    # delta cross track
+            pos += 20
+            ddrad = payload[pos:pos+21].int   # delta^2 radial
+            pos += 21
+            ddalng = payload[pos:pos+19].int  # delta^2 along track
+            pos += 19
+            ddcrs = payload[pos:pos+19].int   # delta^2 cross track
+            pos += 19
+            strsat += f"{satsys}{satid:02} "
+        string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
+                      f"{' cont.' if self.ssr_mmi else ''})"
+        return pos, string
+
+    def ssr_decode_clock(self, payload, pos, satsys):
+        '''decodes SSR clock correction and returns pos and string'''
+        strsat = ''
+        # satid bit width changes according to satellite system
+        if satsys == 'J':    # ref. [2]
+            bw = 4
+        elif satsys == 'R':  # ref. [1]
+            bw = 5
+        else:                # ref. [1]
+            bw = 6
+        for i in range(self.ssr_nsat):
+            satid = payload[pos:pos+bw].uint  # satellite ID
+            pos += bw
+            dc0 = payload[pos:pos+22].int     # delta clock c0
+            pos += 22
+            dc1 = payload[pos:pos+21].int     # delta clock c1
+            pos += 21
+            dc2 = payload[pos:pos+27].int     # delta clock c2
+            pos += 27
+            strsat += f"{satsys}{satid:02} "
+        string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
+                      f"{' cont.' if self.ssr_mmi else ''})"
+        return pos, string
+
+    def ssr_decode_code_bias(self, payload, pos, satsys):
+        '''decodes SSR code bias and returns pos and string'''
+        strsat = ''
+        # satid bit width changes according to satellite system
+        if satsys == 'J':    # ref. [2]
+            bw = 4
+        elif satsys == 'R':  # ref. [1]
+            bw = 5
+        else:                # ref. [1]
+            bw = 6
+        for i in range(self.ssr_nsat):
+            satid = payload[pos:pos+bw].uint  # satellite ID
+            pos += bw
+            ncb = payload[pos:pos+5].uint     # code bias number
+            pos += 5
+            strsat += f"{satsys}{satid:02} "
+            for j in range(ncb):
+                stmi = payload[pos:pos+5].uint
+                        # signal & tracking mode indicator
+                pos += 5
+                cb = payload[pos:pos+14].int  # code bias
+                pos += 14
+        string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
+                      f"{' cont.' if self.ssr_mmi else ''})"
+        return pos, string
+
+    def ssr_decode_ura(self, payload, pos, satsys):
+        '''decodes SSR user range accuracy and returns pos and string'''
+        strsat = ''
+        # satid bit width changes according to satellite system
+        if satsys == 'J':    # ref. [2]
+            bw = 4
+        elif satsys == 'R':  # ref. [1]
+            bw = 5
+        else:                # ref. [1]
+            bw = 6
+        for i in range(self.ssr_nsat):
+            satid = payload[pos:pos+bw].uint  # satellite ID
+            pos += bw
+            ura = payload[pos:pos+6].uint  # user range accuracy
+            pos += 6
+            strsat += f"{satsys}{satid:02} "
+        string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
+                      f"{' cont.' if self.ssr_mmi else ''})"
+        return pos, string
+
+    def ssr_decode_hr_clock(self, payload, pos, satsys):
+        '''decodes SSR high rate clock and returns pos and string'''
+        strsat = ''
+        # satid bit width changes according to satellite system
+        if satsys == 'J':
+            bw = 4
+        elif satsys == 'R':
+            bw = 5
+        else:
+            bw = 6
+        for i in range(self.ssr_nsat):
+            satid = payload[pos:pos+bw].uint  # satellite ID
+            pos += bw
+            hrc = payload[pos:pos+22].int  # high rate clock
+            pos += 22
+            strsat += f"{satsys}{satid:02} "
+        string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
+                      f"{' cont.' if self.ssr_mmi else ''})"
+        return pos, string
+
+    def decode_cssr(self, payload):
+        "returns pos and string"
+        pos = self.decode_cssr_head(payload)
+        if pos == 0:
+            return 0, ''
+        if self.subtype == 1:
+            pos = self.decode_cssr_st1(payload, pos)
+        elif self.subtype == 2:
+            pos = self.decode_cssr_st2(payload, pos)
+        elif self.subtype == 3:
+            pos = self.decode_cssr_st3(payload, pos)
+        elif self.subtype == 4:
+            pos = self.decode_cssr_st4(payload, pos)
+        elif self.subtype == 5:
+            pos = self.decode_cssr_st5(payload, pos)
+        elif self.subtype == 6:
+            pos = self.decode_cssr_st6(payload, pos)
+        elif self.subtype == 7:
+            pos = self.decode_cssr_st7(payload, pos)
+        elif self.subtype == 8:
+            pos = self.decode_cssr_st8(payload, pos)
+        elif self.subtype == 9:
+            pos = self.decode_cssr_st9(payload, pos)
+        elif self.subtype == 10:
+            pos = self.decode_cssr_st10(payload, pos)
+        elif self.subtype == 11:
+            pos = self.decode_cssr_st11(payload, pos)
+        elif self.subtype == 12:
+            pos = self.decode_cssr_st12(payload, pos)
+        else:
+            raise Exception(f"Unknown CSSR subtype: {self.subtype}")
+        string = f'ST{self.subtype:<2d}'
+        if self.subtype == 1:
+            string += f' epoch={self.epoch} iod={self.iod}'
+        else:
+            string += f' hepoch={self.hepoch} iod={self.iod}'
+        return pos, string
+
     def show_cssr_stat(self):
+        bit_total = self.stat_bsat + self.stat_bsig + self.stat_both + \
+                self.stat_bnull
         msg = f'stat n_sat {self.stat_nsat} n_sig {self.stat_nsig} ' + \
               f'bit_sat {self.stat_bsat} bit_sig {self.stat_bsig} ' + \
               f'bit_other {self.stat_both} bit_null {self.stat_bnull} ' + \
-              f'bit_total {self.stat_bsat + self.stat_bsig + self.stat_both + self.stat_bnull}'
-        print(msg, file=self.fp_trace)
-
-    def gnssid2satsys(self, gnssid):
-        if gnssid == 0:
-            satsys = 'G'
-        elif gnssid == 1:
-            satsys = 'R'
-        elif gnssid == 2:
-            satsys = 'E'
-        elif gnssid == 3:
-            satsys = 'C'
-        elif gnssid == 4:
-            satsys = 'J'
-        elif gnssid == 5:
-            satsys = 'S'
-        else:
-            raise Exception(f'undefined gnssid {gnssid}')
-        return satsys
-
-    def sigmask2signame(self, satsys, sigmask):
-        signame = f'satsys={satsys} sigmask={sigmask}'
-        if satsys == 'G':
-            signame = [
-                "L1 C/A",
-                "L1 P",
-                "L1 Z-tracking",
-                "L1 L1C(D)",
-                "L1 L1C(P)",
-                "L1 L1C(D+P)",
-                "L2 L2C(M)",
-                "L2 L2C(L)",
-                "L2 L2C(M+L)",
-                "L2 P",
-                "L2 Z-tracking",
-                "L5 I",
-                "L5 Q",
-                "L5 I+Q",
-                "", ""][sigmask]
-        elif satsys == 'R':
-            signame = [
-                "G1 C/A",
-                "G1 P",
-                "G2 C/A",
-                "G2 P",
-                "G1a(D)",
-                "G1a(P)",
-                "G1a(D+P)",
-                "G2a(D)",
-                "G2a(P)",
-                "G2a(D+P)",
-                "G3 I",
-                "G3 Q",
-                "G3 I+Q",
-                "", "", "", ""][sigmask]
-        elif satsys == 'E':
-            signame = [
-                "E1 B I/NAV OS/CS/SoL",
-                "E1 C no data",
-                "E1 B+C",
-                "E5a I F/NAV OS",
-                "E5a Q no data",
-                "E5a I+Q",
-                "E5b I I/NAV OS/CS/SoL",
-                "E5b Q no data",
-                "E5b I+Q",
-                "E5 I",
-                "E5 Q",
-                "E5 I+Q",
-                "Service specific 1",
-                "Service specific 2",
-                "Service specific 3",
-                ""][sigmask]
-        elif satsys == 'C':
-            signame = [
-                "B1 I",
-                "B1 Q",
-                "B1 I+Q",
-                "B3 I",
-                "B3 Q",
-                "B3 I+Q",
-                "B2 I",
-                "B2 Q",
-                "B2 I+Q",
-                "", "", "", "", "", "", "", ""][sigmask]
-        elif satsys == 'J':
-            signame = [
-                "L1 C/A",
-                "L1 L1C(D)",
-                "L1 L1C(P)",
-                "L1 L1C(D+P)",
-                "L2 L2C(M)",
-                "L2 L2C(L)",
-                "L2 L2C(M+L)",
-                "L5 I",
-                "L5 Q",
-                "L5 I+Q",
-                "", "", "", "", "", ""][sigmask]
-        elif satsys == 'S':
-            signame = [
-                "L1 C/A",
-                "L5 I",
-                "L5 Q",
-                "L5 I+Q",
-                "", "", "", "", "", "", "", "", "", "", "", "", ""][sigmask]
-        else:
-            raise Exception(f'unassigned signal name for satsys={satsys} ' +
-                            f'and sigmask={sigmask}')
-        return signame
+              f'bit_total {bit_total}'
+        self.trace(0, msg)
 
     def decode_cssr_head(self, payload):
         '''returns bit size of cssr header'''
         len_payload = len(payload)
         pos = 0
         if '0b1' not in payload:  # Zero padding detection
-            self.trace(2, f"CSSR null data {len(self.payload.bin)} bits\n")
-            self.trace(2, f"CSSR dump: {self.payload.bin}\n")
-            self.stat_bnull += len(self.payload.bin)
-            self.payload = bitstring.BitArray()
+            self.trace(2,
+                f"CSSR null data {len(payload.bin)} bits\n",
+                f"CSSR dump: {payload.bin}\n")
+            self.stat_bnull += len(payload.bin)
             self.subtype = 0  # no subtype number
             return 0
         if len_payload < 12:
@@ -180,11 +281,11 @@ class Cssr:
         self.msgnum = payload[pos:pos + 12].uint
         pos += 12  # message num, 4073
         if self.msgnum != 4073:  # CSSR message number should be 4073
-            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n")
-            self.trace(2, f"{len(self.payload.bin)} bits\n")
-            self.trace(2, f"CSSR dump: {self.payload.bin}\n")
-            self.stat_bnull += len(self.payload.bin)
-            self.payload = bitstring.BitArray()
+            self.trace(2,
+                f"CSSR msgnum should be 4073 ({self.msgnum})\n",
+                f"{len(payload.bin)} bits\n",
+                f"CSSR dump: {payload.bin}\n")
+            self.stat_bnull += len(payload.bin)
             self.subtype = 0  # no subtype number
             return 0
         if len_payload < pos + 4:
@@ -218,11 +319,11 @@ class Cssr:
         len_payload = len(payload)
         if len_payload < 49:
             return 0
-        ngnss = payload[pos:pos + 4].uint
-        pos += 4  # numer of GNSS
+        ngnss = payload[pos:pos + 4].uint  # numer of GNSS
+        pos += 4
         if len(payload) < 49 + 61 * ngnss:
             return 0
-        satsys = [None for i in range(ngnss)]
+        satsys   = [None for i in range(ngnss)]
         nsatmask = [None for i in range(ngnss)]
         nsigmask = [None for i in range(ngnss)]
         cellmask = [None for i in range(ngnss)]
@@ -237,7 +338,7 @@ class Cssr:
             pos += 16
             cmavail = payload[pos:pos + 1]
             pos += 1
-            t_satsys = self.gnssid2satsys(ugnssid)
+            t_satsys = gnssid2satsys(ugnssid)
             t_satmask = 0
             t_sigmask = 0
             t_gsys = []
@@ -249,7 +350,7 @@ class Cssr:
             for i, val in enumerate(bsigmask):
                 if val:
                     t_sigmask += 1
-                    t_gsig.append(self.sigmask2signame(t_satsys, i))
+                    t_gsig.append(sigmask2signame(t_satsys, i))
             ncell = t_satmask * t_sigmask
             if cmavail:
                 bcellmask = payload[pos:pos + ncell]
@@ -313,10 +414,9 @@ class Cssr:
                 i_cross = payload[pos:pos + 13].int
                 d_cross = i_radial * 0.0064 if i_cross != -16384 else INVALID
                 pos += 13
-                msg_trace1 += f'ST2 {gsys} IODE={iode:4d}' + \
-                              f' d_radial={d_radial:4.1f}m' + \
-                              f' d_along={d_along:4.1f}m' + \
-                              f' d_cross={d_cross:4.1f}m\n'
+                msg_trace1 += \
+                    f'ST2 {gsys} IODE={iode:4d} d_radial={d_radial:4.1f}m' + \
+                    f' d_along={d_along:4.1f}m d_cross={d_cross:4.1f}m\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
@@ -365,8 +465,8 @@ class Cssr:
                     cb = payload[pos:pos + 11].int
                     pos += 11
                     code_bias = cb * 0.02 if cb != -1024 else INVALID
-                    msg_trace1 += f"ST4 {gsys} {gsig:13s} " +  \
-                                  f"code_bias={code_bias:4.1f}m\n"
+                    msg_trace1 += \
+                        f"ST4 {gsys} {gsig:13s} code_bias={code_bias:4.1f}m\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += pos - stat_pos
@@ -391,9 +491,10 @@ class Cssr:
                     di = payload[pos:pos + 2].uint
                     pos += 2
                     phase_bias = pb * 0.001 if pb != -16384 else INVALID
-                    msg_trace1 += f'ST5 {gsys} {gsig:13s}' + \
-                                  f' phase_bias={phase_bias:4.1f}m' + \
-                                  f' discont_indicator={di}\n'
+                    msg_trace1 += \
+                        f'ST5 {gsys} {gsig:13s}' + \
+                        f' phase_bias={phase_bias:4.1f}m' + \
+                        f' discont_indicator={di}\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += pos - stat_pos
@@ -452,8 +553,8 @@ class Cssr:
                         pos += 15
                         di = payload[pos:pos + 2].uint
                         pos += 2
-                        msg_trace1 += f" phase_bias={phase_bias:6.3f}m" +  \
-                                      f" discont_indi={di}"
+                        msg_trace1 += \
+                        f" phase_bias={phase_bias:6.3f}m discont_indi={di}"
                     msg_trace1 += '\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
@@ -516,7 +617,8 @@ class Cssr:
                     ic10 = payload[pos:pos + 12].int
                     c10 = ic10 * 0.02 if ic10 != -2048 else INVALID
                     pos += 12
-                    msg_trace1 += f" c01={c01:5.2f}TECU/deg c10={c10:5.2f}TECU/deg"
+                    msg_trace1 += \
+                        f" c01={c01:5.2f}TECU/deg c10={c10:5.2f}TECU/deg"
                 if 2 <= stec_type:
                     if len_payload < pos + 10:
                         return 0
@@ -533,7 +635,8 @@ class Cssr:
                     ic20 = payload[pos:pos + 8].int
                     c20 = ic20 * 0.005 if ic20 != -128 else INVALID
                     pos += 8
-                    msg_trace1 += f" c02={c02:5.2f}TECU/deg^2 c20={c20:5.2f}TECU/deg^2"
+                    msg_trace1 += \
+                        f" c02={c02:5.2f}TECU/deg^2 c20={c20:5.2f}TECU/deg^2"
                 msg_trace1 += '\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 7
@@ -564,8 +667,9 @@ class Cssr:
         pos += 6
         ngrid = payload[pos:pos + 6].uint  # number of grids
         pos += 6
-        msg_trace1 = f"ST9 Trop correct_type={tctype}" + \
-                     f" NID={cnid} quality={tqi} ngrid={ngrid}\n"
+        msg_trace1 = \
+            f"ST9 Trop correct_type={tctype}" + \
+            f" NID={cnid} quality={tqi} ngrid={ngrid}\n"
         for i in range(ngrid):
             if len_payload < pos + 9 + 8:
                 return 0
@@ -624,9 +728,10 @@ class Cssr:
         pos += 1
         f_n = payload[pos:pos + 1].uint  # network correction
         pos += 1
-        msg_trace1 = f"ST11 Orb={'on' if f_o else 'off'} " + \
-                     f"Clk={'on' if f_c else 'off'} " + \
-                     f"Net={'on' if f_n else 'off'}\n"
+        msg_trace1 = \
+            f"ST11 Orb={'on' if f_o else 'off'} " + \
+            f"Clk={'on' if f_c else 'off'} " + \
+            f"Net={'on' if f_n else 'off'}\n"
         if f_n:
             if len_payload < pos + 5:
                 return 0
@@ -652,19 +757,20 @@ class Cssr:
                         iode = payload[pos:pos + w_iode].uint
                         pos += w_iode
                         id_radial = payload[pos:pos + 15].int
-                        d_radial = id_radial * 0.0016 if id_radial != -16384 else INVALID
+                        d_radial = id_radial * 0.0016 if id_radial != -16384 \
+                                   else INVALID
                         pos += 15
                         id_along = payload[pos:pos + 13].int
-                        d_along = id_along * 0.0064 if id_along != -4096 else INVALID
+                        d_along = id_along * 0.0064 if id_along != -4096 \
+                                    else INVALID
                         pos += 13
                         id_cross = payload[pos:pos + 13].int
-                        d_cross = id_cross * 0.0064 if id_cross != -4096 else INVALID
+                        d_cross = id_cross * 0.0064 if id_cross != -4096 \
+                                    else INVALID
                         pos += 13
                         msg_trace1 += \
-                            f" IODE={iode:4d}" +\
-                            f" d_radial={d_radial:5.1f}m" + \
-                            f" d_along={d_along:5.1f}m" + \
-                            f" d_cross={d_cross:5.1f}m"
+                            f" IODE={iode:4d} d_radial={d_radial:5.1f}m" + \
+                            f" d_along={d_along:5.1f}m d_cross={d_cross:5.1f}m"
                     if f_c:
                         if len_payload < pos + 15:
                             return 0
@@ -782,7 +888,8 @@ class Cssr:
                         ic10 = payload[pos:pos + 12].int
                         c10 = ic10 * 0.02 if ic10 != -2048 else INVALID
                         pos += 12
-                        msg_trace1 += f" c01={c01:.1f}TECU/deg c10={c10:.1f}TECU/deg"
+                        msg_trace1 += \
+                            f" c01={c01:.1f}TECU/deg c10={c10:.1f}TECU/deg"
                     if 2 <= sct:
                         if len_payload < pos + 10:
                             return 0
@@ -799,7 +906,8 @@ class Cssr:
                         ic20 = payload[pos:pos + 8].int
                         c20 = ic20 * 0.005 if ic20 != -128 else INVALID
                         pos += 8
-                        msg_trace1 += f" c02={c02:.1f}TECU/deg^2 c20={c20:.1f}TECU/deg^2"
+                        msg_trace1 += \
+                            f" c02={c02:.1f}TECU/deg^2 c20={c20:.1f}TECU/deg^2"
                     msg_trace1 += '\n'
                     if len_payload < pos + 2:
                         return 0
@@ -834,5 +942,112 @@ class Cssr:
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
         return pos
+
+def gnssid2satsys(gnssid):
+    if gnssid == 0:
+        satsys = 'G'
+    elif gnssid == 1:
+        satsys = 'R'
+    elif gnssid == 2:
+        satsys = 'E'
+    elif gnssid == 3:
+        satsys = 'C'
+    elif gnssid == 4:
+        satsys = 'J'
+    elif gnssid == 5:
+        satsys = 'S'
+    else:
+        raise Exception(f'undefined gnssid {gnssid}')
+    return satsys
+
+def sigmask2signame(satsys, sigmask):
+    signame = f'satsys={satsys} sigmask={sigmask}'
+    if satsys == 'G':
+        signame = [
+            "L1 C/A",
+            "L1 P",
+            "L1 Z-tracking",
+            "L1 L1C(D)",
+            "L1 L1C(P)",
+            "L1 L1C(D+P)",
+            "L2 L2C(M)",
+            "L2 L2C(L)",
+            "L2 L2C(M+L)",
+            "L2 P",
+            "L2 Z-tracking",
+            "L5 I",
+            "L5 Q",
+            "L5 I+Q",
+            "", ""][sigmask]
+    elif satsys == 'R':
+        signame = [
+            "G1 C/A",
+            "G1 P",
+            "G2 C/A",
+            "G2 P",
+            "G1a(D)",
+            "G1a(P)",
+            "G1a(D+P)",
+            "G2a(D)",
+            "G2a(P)",
+            "G2a(D+P)",
+            "G3 I",
+            "G3 Q",
+            "G3 I+Q",
+            "", "", "", ""][sigmask]
+    elif satsys == 'E':
+        signame = [
+            "E1 B I/NAV OS/CS/SoL",
+            "E1 C no data",
+            "E1 B+C",
+            "E5a I F/NAV OS",
+            "E5a Q no data",
+            "E5a I+Q",
+            "E5b I I/NAV OS/CS/SoL",
+            "E5b Q no data",
+            "E5b I+Q",
+            "E5 I",
+            "E5 Q",
+            "E5 I+Q",
+            "Service specific 1",
+            "Service specific 2",
+            "Service specific 3",
+            ""][sigmask]
+    elif satsys == 'C':
+        signame = [
+            "B1 I",
+            "B1 Q",
+            "B1 I+Q",
+            "B3 I",
+            "B3 Q",
+            "B3 I+Q",
+            "B2 I",
+            "B2 Q",
+            "B2 I+Q",
+            "", "", "", "", "", "", "", ""][sigmask]
+    elif satsys == 'J':
+        signame = [
+            "L1 C/A",
+            "L1 L1C(D)",
+            "L1 L1C(P)",
+            "L1 L1C(D+P)",
+            "L2 L2C(M)",
+            "L2 L2C(L)",
+            "L2 L2C(M+L)",
+            "L5 I",
+            "L5 Q",
+            "L5 I+Q",
+            "", "", "", "", "", ""][sigmask]
+    elif satsys == 'S':
+        signame = [
+            "L1 C/A",
+            "L5 I",
+            "L5 Q",
+            "L5 I+Q",
+            "", "", "", "", "", "", "", "", "", "", "", "", ""][sigmask]
+    else:
+        raise Exception(f'unassigned signal name for satsys={satsys} ' +
+                        f'and sigmask={sigmask}')
+    return signame
 
 # EOF

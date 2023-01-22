@@ -4,20 +4,20 @@ https://github.com/yoronneko/qzsl6tool
 
 （日本語の説明は[こちら](readme.md)です）
 
-## Summary
+# Summary
 
 This is a collection of tools that display messages broadcast by the Quasi-Zenith Satellite, petnamed Michibiki, in the L6 frequency band. This was created for my own research, but I think it would be useful for many people.
 
 ![QZS L6 Tool](img/test-transmission-of-qzss-madoca-ppp.jpg)
 
-## Application program
+# Application program
 
 This toolkit consists of a python program that receives messages on standard input and sequentially outputs the conversion results to standard output. By using ``nc`` of netcat or ``str2str`` of [RTKLIB](https://github.com/tomojitakasu/RTKLIB), it is possible to utilize information on the network. Standard error output is also available if desired.
 
 This Python code makes use of the ``bitstring`` module. Please install this module with a command ``pip3 install bitstring``.
 
 This toolkit consists of the following programs:
-- A program to convert raw data in Michibiki L6 format to RTCM format (``qzsl62rtcm``)
+- A program to convert raw data in Michibiki L6 format to RTCM format (``qzsl62rtcm.py``)
 - Programs to extract payload from raw data output of Michibiki L6 band signal receiver (Allystar HD9310C: ``alst2qzsl6.py``, [Pocket SDR](https://github.com/tomojitakasu/PocketSDR): ``pksdr2qzsl6.py``)
 - A program to display RTCM messages (``showrtcm.py``)
 - Programs to mutually convert between GPS time and UTC (universal coordinate time) (``gps2utc.py``, ``utc2gps.py``)
@@ -33,17 +33,18 @@ Here is the directory structure:
 │   ├── ecef2llh.py
 │   ├── gps2utc.py
 │   ├── libcolor.py
-│   ├── libcssr.py
+│   ├── libeph.py
+│   ├── libobs.py
 │   ├── libqzsl6.py
-│   ├── libqzsl6tool.py
 │   ├── librtcm.py
+│   ├── libssr.py
 │   ├── llh2ecef.py
 │   ├── pksdr2qzsl6.py
 │   ├── qzsl62rtcm.py
 │   ├── showrtcm.py
 │   └── utc2gps.py
-├── readme.md
 ├── readme-en.md
+├── readme.md
 ├── sample
 │   ├── 2018001A.l6
 │   ├── 20211226-082212pocketsdr-clas.txt
@@ -75,31 +76,43 @@ Here is the directory structure:
     └── readme.md
 ```
 
-### qzsl62rtcm.py
+## qzsl62rtcm.py
 
 This is a program that converts raw data in Michibiki L6 format into RTCM format. If no options are specified, the results of decoding Michibiki control station and L6 messages are displayed on the standard output.
 
 CLAS (centimeter level augmentation service), MADOCA (multi-GNSS advanced demonstration tool for orbit and clock analysis), MADOCA-PPP (Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning) can be handled as raw data in L6 format. It can also be converted to messages in RTCM (Radio Technical Commission for Maritime Services) format.
 
+However, for CSSR (compact space state representation) messages, such as used in CLAS and MADOCA-PPP, are converted to RTCM messages with the message type of 4073. Therefore, we cannot use these RTCM-converted CSSR messages directly as the augmentation messages for, say, RTKLIB.
+
 We can display the options it accepts by giving the ``--help`` option.
 
 ```
-usage: qzsl62rtcm.py [-h] [-t TRACE] [-r] [-s] [-m]
+usage: qzsl62rtcm.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
-Quasi-zenith satellite (QZS) L6 message to RTCM converter
+Quasi-zenith satellite (QZS) L6 message to RTCM message converter
 
 options:
   -h, --help            show this help message and exit
+  -c, --color           apply ANSI color escape sequences even for non-
+                        terminal.
+  -m, --message         show display messages to stderr
+  -r, --rtcm            send RTCM messages to stdout (it also turns off
+                        display messages unless -m is specified).
+  -s, --statistics      show CSSR statistics in display messages.
   -t TRACE, --trace TRACE
-                        trace level for debug: 1=subtype detail, 2=subtype and
-                        bit image
-  -r, --rtcm            RTCM message output, supress QZS messages (unless -s
-                        is specified)
-  -s, --statistics      show CSSR statistics
-  -m, --message         show QZS messages and statistics to stderr
+                        show display verbosely: 1=subtype detail, 2=subtype
+                        and bit image.
 ```
 
-Decryption example of CLAS message
+Terminal output is colored using ANSI color escape sequences.
+![ANSI color escape sequence](img/ansi-color-escape-sequence.jpg)
+Escape sequences are not included when redirecting terminal output. Coloring can be turned off using a redirect (``cat qzss_file.l6 | qzsl62rtcm.py | cat``). On the other hand, to display in color on a pager such as ``less`` or ``lv``, use the ``-c`` option.
+```
+cat qzss_file.l6 | qzsl62rtcm.py -c | lv
+cat qzss_file.l6 | qzsl62rtcm.py -c | less -R
+```
+
+### Deode example of CLAS message
 
 For example, in the ``python`` directory, if you give the L6 raw data to the standard input of ``qzsl62rtcm.py`` with the following command, the contents will be displayed.
 ```
@@ -141,9 +154,7 @@ Reference: [Capacity analysis of CLAS satellite augmentation information using Q
 
 Giving the ``-r`` option to ``qzsl62rtcm.py`` suppresses the display of message contents and outputs RTCM messages to the standard output. At this time, if the ``-m`` option is also specified, the RTCM message will be output to the standard output, while the message content will be output to the standard error output.
 
-However, Compact SSR (space state representation) messages of CLAS and MADOCA-PPP are output as RTCM message type 4073, so we cannot be directly used as the augmentation messages for, say, RTKLIB.
-
-Decoding example of MADOCA message
+### Decode example of MADOCA message
 
 No MADOCA messages are currently being sent. For example, in the ``python`` directory, we can view the contents of MADOCA messages by running the following command.
 ```
@@ -170,7 +181,7 @@ RTCM 1057 G SSR orbit     G10 G12 G13 G15 G16 G17 G19 G20 (nsat=8 iod=13 cont.)
 (...snip...)
 ```
 
-Decoding example of MADOCA-PPP message
+### Decode example of MADOCA-PPP message
 
 Running the following command prints the contents of the MADOCA-PPP message.
 ```
@@ -198,9 +209,27 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/MADOCA 2> /dev/null | 
 
 Reference: [Trial delivery of QZSS's MADOCA-PPP started](https://s-taka.org/en/test-transmission-of-qzss-madoca-ppp/)
 
-### showrtcm.py
+## showrtcm.py
 
-``showrtcm.py`` is a program that receives RTCM messages on standard input and displays the contents on standard output. It can also interpret the state-space representation (SSR) of MADOCA. For example, ``showrtcm.py`` is used as follows:
+``showrtcm.py`` is a program that receives RTCM messages on standard input and displays the contents on standard output. It can also interpret the state-space representation (SSR) of MADOCA.
+
+We can display the options it accepts by giving the ``--help`` option.
+
+```
+usage: showrtcm.py [-h] [-c] [-t TRACE]
+
+Quasi-zenith satellite (QZS) L6 message to RTCM message converter
+
+options:
+  -h, --help            show this help message and exit
+  -c, --color           apply ANSI color escape sequences even for non-
+                        terminal.
+  -t TRACE, --trace TRACE
+                        show display verbosely: 1=subtype detail, 2=subtype
+                        and bit image.
+```
+
+For example, ``showrtcm.py`` is used as follows:
 ```
 cat ../sample/20220326-231200mdc.alst | python alst2qzsl6.py -l | python qzsl62rtcm.py -r | python showrtcm.py
 
@@ -228,31 +257,34 @@ RTCM 1046 E I/NAV         E02
 RTCM 1020 R NAV           R17
 ```
 
-### alst2qzsl6.py
+## alst2qzsl6.py
 
 This program reads the raw data of the Allystar HD9310 Option C receiver from standard input and displays its status on standard output. In each row of the status display, the 1st column is the PRN number, the 2nd and 3rd columns are the GPS week number and second, the 4th column is the C/No [dB Hz], and the 5th column is the error if any. Each represents its contents. The ``--help`` option displays the options it accepts.
 ```
-usage: alst2qzsl6.py [-h] [-l | -u] [-m]
+usage: alst2qzsl6.py [-h] [-c] [-l] [-m] [-u]
 
 Allystar HD9310 to Quasi-zenith satellite (QZS) L6 message converter
 
 options:
   -h, --help     show this help message and exit
-  -l, --l6       L6 message output
-  -u, --ubx      u-blox L6 raw message output
-  -m, --message  show Allystar messages to stderr
+  -c, --color    apply ANSI color escape sequences even for non-terminal.
+  -l, --l6       send QZS L6 messages to stdout (it also turns off Allystar
+                 and u-blox messages).
+  -m, --message  show Allystar messages to stderr.
+  -u, --ubx      send u-blox L6 message to stdout (experimental, it also turns
+                 off QZS L6 and Allystar messages).
 ```
 
 If we run ``alst2qzsl6.py`` with the ``-l`` option, L6 messages will be output to the standard output instead of the status display. It selects the satellite with the highest signal strength among multiple Michibiki satellites that it can receive and outputs its 2,000 bytes L6 raw data to standard output. If we specify the ``-m`` option together with the ``-l`` option, L6 raw data will be output to the standard output, and the reception status will be output to the standard error output.
 
 If the ``-u`` option is given, it will output L6 messages in u-blox format to standard output. Given this message to a u-blox F9P receiver, it should be able to do a CLAS fix as well as a message generated by a D9C receiver. But there still seems to be an error in the code and it doesn't work.
 
-### pksdr2qzsl6.py
+## pksdr2qzsl6.py
 
 This is the code to extract L6 messages from the log file of [Pocket SDR](https://github.com/tomojitakasu/PocketSDR), a software defined radio.
-参考：[Awesome PocketSDR (L6 band signal decode)](https://s-taka.org/en/awesome-pocketsdr-l6/#l6e)
+Reference：[Awesome PocketSDR (L6 band signal decode)](https://s-taka.org/en/awesome-pocketsdr-l6/#l6e)
 
-### ecef2llh.py
+## ecef2llh.py
 
 Converts ECEF (earth-centered, earth-fix) coordinates to latitude, longitude, and ellipsoidal height. An execution example is as follows:
 ```
@@ -261,7 +293,7 @@ python ecef2llh.py -3551876.829 3887786.860 3586946.387
 34.4401061 132.4147804 233.362
 ```
 
-### llh2ecef.py
+## llh2ecef.py
 
 Convert latitude, longitude, and ellipsoidal height to ECEF coordinates. An execution example is as follows:
 ```
@@ -270,7 +302,7 @@ python llh2ecef.py 34.4401061 132.4147804 233.362
 -3551876.829 3887786.860 3586946.387
 ```
 
-### gps2utc.py
+## gps2utc.py
 
 Convert GPS time to UTC time. An execution example is as follows:
 ```
@@ -279,7 +311,7 @@ python gps2utc.py 2238 305575
 2022-11-30 12:52:37
 ```
 
-### utc2gps.py
+## utc2gps.py
 
 Convert UTC time to GPS time. An execution example is as follows:
 ```
@@ -288,9 +320,9 @@ python utc2gps.py 2022-11-30 12:52:37
 2238 305575
 ```
 
-## License
+# License
 
-The [BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause) is applied to this toolkit. You may use this program for commercial or non-commercial purposes, with or without modification, but this copyright notice is required. A part of [RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34 functions of rtk_crc32(), rtk_crc24q (), rtk_crc16 () are used in ``libqzsl6tool.py``.
+The [BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause) is applied to this toolkit. You may use this program for commercial or non-commercial purposes, with or without modification, but this copyright notice is required. A part of [RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34 functions of rtk_crc24q () is used in ``librtcm.py``.
 
 Copyright (c) 2022 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU

@@ -10,15 +10,17 @@
 
 import sys
 
-# foreground color:
-#   black, red, green, yellow, blue, magenta, cyan, white, default
-# background color:
-#   black, red, green, yellow, blue, magenta, cyan, gray, default
-# decoration style:
-#   default, bold, dark, italic, underline, bling, hblink,
-#   reverse, hide, strike
 
 class Color:
+    '''
+    foreground color (fg):
+      black, red, green, yellow, blue, magenta, cyan, white, default
+    background color (bg):
+      black, red, green, yellow, blue, magenta, cyan, gray, default
+    decoration style (dec):
+      default, bold, dark, italic, underline, bling, hblink,
+      reverse, hide, strike
+    '''
     fp = None
     def __init__(self, fp=sys.stdout, is_forced=False):
         if is_forced:
@@ -26,9 +28,9 @@ class Color:
         else:
             self.fp = None if not fp or not fp.isatty() else fp
 
-    def fg(self, color=''):  # foreground color
+    def fg(self, color='default'):  # foreground color
         "color: black, red, green, yellow, blue, magenta, cyan, white, default"
-        if not self.fp or color == '':
+        if not self.fp:
             return ''
         result = ''
         if color == "black":     # foreground: black
@@ -54,9 +56,9 @@ class Color:
             sys.exit(1)
         return result
 
-    def bg(self, color=''):  # background color
+    def bg(self, color='default'):  # background color
         "color: black, red, green, yellow, blue, magenta, cyan, gray, default"
-        if not self.fp or color == '':
+        if not self.fp:
             return ''
         result = ''
         if color == "black":     # background: black
@@ -82,10 +84,10 @@ class Color:
             sys.exit(1)
         return result
 
-    def dec(self, style=''):  # text decoration
+    def dec(self, style='default'):  # text decoration
         "style: default, bold, dark, italic, underline, bling, hblink, "
         "       reverse, hide, strike"
-        if not self.fp or style == '':
+        if not self.fp:
             return ''
         result = ''
         if style == '':
@@ -115,13 +117,13 @@ class Color:
             sys.exit(1)
         return result
 
-    def color(self, fg_color='', bg_color='', style=''):
+    def color(self, fg_color='default', bg_color='default', style='default'):
         if not self.fp:
             return ''
         return self.fg(fg_color) + self.bg(bg_color) + self.dec(style)
 
     def default(self):
-        return self.fg('default') + self.bg('default') + self.dec('default')
+        return self.fg() + self.bg() + self.dec()
 
 
 if __name__ == '__main__':

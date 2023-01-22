@@ -4,20 +4,20 @@ https://github.com/yoronneko/qzsl6tool
 
 English description is available [here](readme-en.md).
 
-## 概要
+# 概要
 
 これは、準天頂衛星みちびき（QZS: quasi-zenith satellite）がL6周波数帯にて放送するメッセージを表示するツール集です。これは自らの研究のために作成したものですが、多くの方にも役立つと思い公開します。
 
 ![QZS L6 Tool](img/test-transmission-of-qzss-madoca-ppp.jpg)
 
-## アプリケーション・プログラム
+# アプリケーション・プログラム
 
 このツール集は、メッセージを標準入力で受け取り、変換結果を逐次的に標準出力に出力するpythonプログラムからなります。netcatの``nc``や、[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の``str2str``などを用いれば、ネットワーク上にある情報を活用することも可能です。必要に応じて、標準エラー出力も利用できます。
 
 このコードは、Pythonの``bitstring``モジュールを利用します。``pip3 install bitstring``により、このモジュールをインストールしてください。
 
 このツール集は、
-- みちびきL6形式の生データからRTCM形式に変換するプログラム（``qzsl62rtcm``）
+- みちびきL6形式の生データからRTCM形式に変換するプログラム（``qzsl62rtcm.py``）
 - みちびきL6帯信号受信機の生データ出力からペイロードを抽出するプログラム（Allystar HD9310C: ``alst2qzsl6.py``、[Pocket SDR](https://github.com/tomojitakasu/PocketSDR): ``pksdr2qzsl6.py``）
 - RTCMメッセージを表示するプログラム（``showrtcm.py``）
 - GPS時刻とUTC（universal coordinate time）とを相互変換するプログラム（``gps2utc.py``、``utc2gps.py``）
@@ -33,17 +33,18 @@ English description is available [here](readme-en.md).
 │   ├── ecef2llh.py
 │   ├── gps2utc.py
 │   ├── libcolor.py
-│   ├── libcssr.py
+│   ├── libeph.py
+│   ├── libobs.py
 │   ├── libqzsl6.py
-│   ├── libqzsl6tool.py
 │   ├── librtcm.py
+│   ├── libssr.py
 │   ├── llh2ecef.py
 │   ├── pksdr2qzsl6.py
 │   ├── qzsl62rtcm.py
 │   ├── showrtcm.py
 │   └── utc2gps.py
-├── readme.md
 ├── readme-en.md
+├── readme.md
 ├── sample
 │   ├── 2018001A.l6
 │   ├── 20211226-082212pocketsdr-clas.txt
@@ -75,31 +76,44 @@ English description is available [here](readme-en.md).
     └── readme.md
 ```
 
-### qzsl62rtcm.py
+## qzsl62rtcm.py
 
 これは、みちびきL6形式の生データからRTCM形式に変換するプログラムです。オプションを指定しなければ、標準出力に、みちびき管制局やL6メッセージを表示します。
 
 L6形式の生データとして、CLAS（centimeter level augmentation service）、MADOCA（multi-GNSS advanced demonstration tool for orbit and clock analysis）、MADOCA-PPP（Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning）を扱えます。また、RTCM（Radio Technical Commission for Maritime Services）形式のメッセージに変換することもできます。
 
+ただし、現状では、CLASやMADOCA-PPPのCompact SSR（space state representation: 空間状態表現）メッセージについては、RTCMメッセージタイプ4073として出力しますので、そのままではRTKLIBなどでの補強メッセージとしては利用できません。
+
+
 ``--help``オプションを与えると、受け付けるオプションを表示できます。
 
 ```
-usage: qzsl62rtcm.py [-h] [-t TRACE] [-r] [-s] [-m]
+usage: qzsl62rtcm.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
-Quasi-zenith satellite (QZS) L6 message to RTCM converter
+Quasi-zenith satellite (QZS) L6 message to RTCM message converter
 
 options:
   -h, --help            show this help message and exit
+  -c, --color           apply ANSI color escape sequences even for non-
+                        terminal.
+  -m, --message         show display messages to stderr
+  -r, --rtcm            send RTCM messages to stdout (it also turns off
+                        display messages unless -m is specified).
+  -s, --statistics      show CSSR statistics in display messages.
   -t TRACE, --trace TRACE
-                        trace level for debug: 1=subtype detail, 2=subtype and
-                        bit image
-  -r, --rtcm            RTCM message output, supress QZS messages (unless -s
-                        is specified)
-  -s, --statistics      show CSSR statistics
-  -m, --message         show QZS messages and statistics to stderr
+                        show display verbosely: 1=subtype detail, 2=subtype
+                        and bit image.
 ```
 
-CLASメッセージの復号例
+端末出力に対しては、ANSI（アンジー）カラー・エスケープ・シーケンスによりカラー表示します。
+![ANSI color escape sequence](img/ansi-color-escape-sequence.jpg)
+端末出力のリダイレクトを行うと、エスケープ・シーケンスは含まれません。リダイレクトを利用すれば、カラー表示をオフにできます（``cat qzss_file.l6 | qzsl62rtcm.py | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します。
+```
+cat qzss_file.l6 | qzsl62rtcm.py -c | lv
+cat qzss_file.l6 | qzsl62rtcm.py -c | less -R
+```
+
+### CLASメッセージの復号例
 
 例えば、``python``ディレクトリで、次のコマンドにて``qzsl62rtcm.py``の標準入力にL6生データを与えると、その内容が表示されます。
 ```
@@ -141,9 +155,7 @@ stat n_sat 17 n_sig 48 bit_sat 13050 bit_sig 5114 bit_other 1931 bit_null 5330 b
 
 ``qzsl62rtcm.py``に対して、``-r``オプションを与えると、メッセージ内容表示を抑制し、標準出力にRTCMメッセージを出力します。このとき、``-m``オプションも指定すると、標準出力にはRTCMメッセージを、標準エラー出力にはメッセージ内容表示を、それぞれ出力します。
 
-ただし、CLASやMADOCA-PPPのCompact SSR（space state representation: 空間状態表現）メッセージについては、RTCMメッセージタイプ4073として出力しますので、そのままではRTKLIBなどの補強メッセージとしては利用できません。
-
-MADOCAメッセージの復号例
+### MADOCAメッセージの復号例
 
 現在、MADOCAメッセージは送信されていません。例えば、``python``ディレクトリで、次のコマンドを実行すると、MADOCAメッセージの内容を表示できます。
 ```
@@ -170,7 +182,7 @@ RTCM 1057 G SSR orbit     G10 G12 G13 G15 G16 G17 G19 G20 (nsat=8 iod=13 cont.)
 (...snip...)
 ```
 
-MADOCA-PPPメッセージの復号例
+### MADOCA-PPPメッセージの復号例
 
 次のコマンド実行を実行すると、MADOCA-PPPメッセージの内容が出力されます。
 ```
@@ -198,9 +210,27 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/MADOCA 2> /dev/null | 
 
 参考：[みちびきMADOCA-PPPの試験配信開始](https://s-taka.org/test-transmission-of-qzss-madoca-ppp/)
 
-### showrtcm.py
+## showrtcm.py
 
-``showrtcm.py``は、標準入力にてRTCMメッセージを受け取り、標準出力にその内容を表示するコードです。これは、MADOCAの状態空間表現（SSR: space state representation）を解釈することもできます。``showrtcm.py``は、例えば、次のように利用します。
+``showrtcm.py``は、標準入力にてRTCMメッセージを受け取り、標準出力にその内容を表示するコードです。これは、MADOCAの状態空間表現（SSR: space state representation）を解釈することもできます。
+
+``--help``オプションを与えると、受け付けるオプションを表示できます。
+
+```
+usage: showrtcm.py [-h] [-c] [-t TRACE]
+
+Quasi-zenith satellite (QZS) L6 message to RTCM message converter
+
+options:
+  -h, --help            show this help message and exit
+  -c, --color           apply ANSI color escape sequences even for non-
+                        terminal.
+  -t TRACE, --trace TRACE
+                        show display verbosely: 1=subtype detail, 2=subtype
+                        and bit image.
+```
+
+``showrtcm.py``は、例えば、次のように利用します。
 
 ```
 cat ../sample/20220326-231200mdc.alst | python alst2qzsl6.py -l | python qzsl62rtcm.py -r | python showrtcm.py
@@ -229,31 +259,34 @@ RTCM 1046 E I/NAV         E02
 RTCM 1020 R NAV           R17
 ```
 
-### alst2qzsl6.py
+## alst2qzsl6.py
 
 このプログラムは、Allystar HD9310オプションC受信機の生データを標準入力から読み取り、標準出力にその状態を表示します。状態表示の各行において、1列目はPRN番号を、2列目と3列目はGPS週番号と秒を、4列目はC/No [dB Hz]を、5列目はエラーがあればその内容を、それぞれ表します。``--help``オプションで、受け付けるオプションを表示します。
 ```
-usage: alst2qzsl6.py [-h] [-l | -u] [-m]
+usage: alst2qzsl6.py [-h] [-c] [-l] [-m] [-u]
 
 Allystar HD9310 to Quasi-zenith satellite (QZS) L6 message converter
 
 options:
   -h, --help     show this help message and exit
-  -l, --l6       L6 message output
-  -u, --ubx      u-blox L6 raw message output
-  -m, --message  show Allystar messages to stderr
+  -c, --color    apply ANSI color escape sequences even for non-terminal.
+  -l, --l6       send QZS L6 messages to stdout (it also turns off Allystar
+                 and u-blox messages).
+  -m, --message  show Allystar messages to stderr.
+  -u, --ubx      send u-blox L6 message to stdout (experimental, it also turns
+                 off QZS L6 and Allystar messages).
 ```
 
 ``-l``オプションを与えて``alst2qzsl6.py``を実行すると、状態表示の代わりに、L6メッセージを標準出力に出力します。これは、受信できる複数のみちびき衛星のうちで最も信号強度の高い衛星を選択して、その2,000バイトL6生データを標準出力に出力します。``-l``オプションと合わせて``-m``オプションを指定すると、標準出力にL6生データを、標準エラー出力に受信状態を、それぞれ出力します。
 
 ``-u``オプションを与えると、標準出力にu-bloxフォーマットでのL6メッセージを出力します。u-blox F9P受信機にこのメッセージを与えると、D9C受信機にて生成したメッセージとと同様に、CLAS測位ができるはずです。しかし、まだコードに誤りがあるようで、動作しません。
 
-### pksdr2qzsl6.py
+## pksdr2qzsl6.py
 
 ソフトウェア定義無線器[Pocket SDR](https://github.com/tomojitakasu/PocketSDR)のログファイルから、L6メッセージを抽出するコードです。  
 参考：[PocketSDRすごい（L6信号デコード編）](https://s-taka.org/awesome-pocketsdr-l6/#l6e)
 
-### ecef2llh.py
+## ecef2llh.py
 
 ECEF（earth-centered, earth-fix）座標を緯度・経度・楕円体高に変換します。実行例は、次のとおりです。
 ```
@@ -262,7 +295,7 @@ python ecef2llh.py -3551876.829 3887786.860 3586946.387
 34.4401061 132.4147804 233.362
 ```
 
-### llh2ecef.py
+## llh2ecef.py
 
 緯度・経度・楕円体高をECEF座標に変換します。実行例は、次のとおりです。
 ```
@@ -271,7 +304,7 @@ python llh2ecef.py 34.4401061 132.4147804 233.362
 -3551876.829 3887786.860 3586946.387
 ```
 
-### gps2utc.py
+## gps2utc.py
 
 GPS時刻をUTC時刻に変換します。実行例は、次のとおりです。
 ```
@@ -280,7 +313,7 @@ python gps2utc.py 2238 305575
 2022-11-30 12:52:37
 ```
 
-### utc2gps.py
+## utc2gps.py
 
 UTC時刻をGPS時刻に変換します。実行例は、次のとおりです。
 ```
@@ -289,9 +322,9 @@ python utc2gps.py 2022-11-30 12:52:37
 2238 305575
 ```
 
-## ライセンス
+# ライセンス
 
-このツールキットに[BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``libqzsl6tool.py``の関数 rtk_crc32(), rtk_crc24q (), rtk_crc16 ()に[RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34の成果を利用しています。
+このツールキットに[BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause)を適用します。利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``librtcm.py``の関数 rtk_crc24q ()[RTKLIB](https://github.com/tomojitakasu/RTKLIB) 2.4.3b34の成果を利用しています。
 
 Copyright (c) 2022 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU
