@@ -29,7 +29,7 @@ import bitstring
 INVALID = 0  # invalid value indication for CSSR message show
 
 class Ssr:
-    """class of space state representation (SSR) and compact SSR process"""
+    """class of state space representation (SSR) and compact SSR process"""
 # --- public
     subtype = 0     # subtype number
 # --- private

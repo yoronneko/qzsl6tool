@@ -82,7 +82,7 @@ This is a program that converts raw data in Michibiki L6 format into RTCM format
 
 CLAS (centimeter level augmentation service), MADOCA (multi-GNSS advanced demonstration tool for orbit and clock analysis), MADOCA-PPP (Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning) can be handled as raw data in L6 format. It can also be converted to messages in RTCM (Radio Technical Commission for Maritime Services) format.
 
-However, for CSSR (compact space state representation) messages, such as used in CLAS and MADOCA-PPP, are converted to RTCM messages with the message type of 4073. Therefore, we cannot use these RTCM-converted CSSR messages directly as the augmentation messages for, say, RTKLIB.
+However, for CSSR (compact state space representation) messages, such as used in CLAS and MADOCA-PPP, are converted to RTCM messages with the message type of 4073. Therefore, we cannot use these RTCM-converted CSSR messages directly as the augmentation messages for, say, RTKLIB.
 
 We can display the options it accepts by giving the ``--help`` option.
 
@@ -211,7 +211,7 @@ Reference: [Trial delivery of QZSS's MADOCA-PPP started](https://s-taka.org/en/t
 
 ## showrtcm.py
 
-``showrtcm.py`` is a program that receives RTCM messages on standard input and displays the contents on standard output. It can also interpret the state-space representation (SSR) of MADOCA.
+``showrtcm.py`` is a program that receives RTCM messages on standard input and displays the contents on standard output. It can also interpret the state space representation (SSR) of MADOCA.
 
 We can display the options it accepts by giving the ``--help`` option.
 

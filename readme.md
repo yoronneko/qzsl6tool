@@ -82,7 +82,7 @@ English description is available [here](readme-en.md).
 
 L6形式の生データとして、CLAS（centimeter level augmentation service）、MADOCA（multi-GNSS advanced demonstration tool for orbit and clock analysis）、MADOCA-PPP（Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning）を扱えます。また、RTCM（Radio Technical Commission for Maritime Services）形式のメッセージに変換することもできます。
 
-ただし、現状では、CLASやMADOCA-PPPのCompact SSR（space state representation: 空間状態表現）メッセージについては、RTCMメッセージタイプ4073として出力しますので、そのままではRTKLIBなどでの補強メッセージとしては利用できません。
+ただし、現状では、CLASやMADOCA-PPPのCompact SSR（state space representation: 空間状態表現）メッセージについては、RTCMメッセージタイプ4073として出力しますので、そのままではRTKLIBなどでの補強メッセージとしては利用できません。
 
 
 ``--help``オプションを与えると、受け付けるオプションを表示できます。
@@ -212,7 +212,7 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/MADOCA 2> /dev/null | 
 
 ## showrtcm.py
 
-``showrtcm.py``は、標準入力にてRTCMメッセージを受け取り、標準出力にその内容を表示するコードです。これは、MADOCAの状態空間表現（SSR: space state representation）を解釈することもできます。
+``showrtcm.py``は、標準入力にてRTCMメッセージを受け取り、標準出力にその内容を表示するコードです。これは、MADOCAの状態空間表現（SSR: state space representation）を解釈することもできます。
 
 ``--help``オプションを与えると、受け付けるオプションを表示できます。
 
