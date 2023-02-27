@@ -285,7 +285,7 @@ options:
 
 ``-l``オプションを与えて``alst2qzsl6.py``を実行すると、状態表示の代わりに、L6メッセージを標準出力に出力します。これは、受信できる複数のみちびき衛星のうちで最も信号強度の高い衛星を選択して、その2,000バイトL6生データを標準出力に出力します。``-l``オプションと合わせて``-m``オプションを指定すると、標準出力にL6生データを、標準エラー出力に受信状態を、それぞれ出力します。
 
-``-u``オプションを与えると、標準出力にu-bloxフォーマットでのL6メッセージを出力します。u-blox F9P受信機にこのメッセージを与えると、D9C受信機にて生成したメッセージとと同様に、CLAS測位ができるはずです。しかし、まだコードに誤りがあるようで、動作しません。
+``-u``オプションを与えると、標準出力にu-bloxフォーマットでのL6メッセージを出力します。u-blox F9P受信機にこのメッセージを与えると、D9C受信機にて生成したメッセージと同様に、CLAS測位ができるはずです。しかし、まだコードに誤りがあるようで、動作しません。
 
 ## pksdr2qzsl6.py
 
@@ -327,6 +327,33 @@ python utc2gps.py 2022-11-30 12:52:37
 
 2238 305575
 ```
+
+## pksdr2has.py
+
+Pocket SDR E6B信号ログファイルを読み、Galileo HAS (high accuracy service) のヘッダを表示します。実行例は、次の通りです。
+
+```
+$ python pksdr2has.py < ../sample/20230219-133831pocketsdr-e6b.txt
+OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+E14 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=117 -> A new page for MID=25
+E15 Dummy page (0xaf3bc3)
+E03 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 47
+------ HAS decode with the pages of MID=25 MS=2 ------
+0x8ef2012050099f95c32b0000ab06cbf260ba0d4ff3ff56096f9a8437cfe103fa97807b0ff5f0abfd7801dfd080079d40141b50148153f4204efd87eb00bdffbfd9013403a046fec83b7fd406ffe182dbf99fedfd801cbf3caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Time of hour TOH: 2287 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 9
+IOD Set ID      : 0
+E34 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=207 -> Enough pages for MID=25
+E05 Dummy page (0xaf3bc3)
+```
+
+参考: [Galileo HAS（high accuracy service）その2](https://s-taka.org/galileo-has-part2/)
 
 # ライセンス
 
