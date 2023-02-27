@@ -100,5 +100,17 @@ BASENAME=20221213-010900
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 echo ""
+# ------ test 6: pksdr2has.py Galileo HAS ------
+CODE=${CODEDIR}pksdr2has.py ARG= EXT_FROM=txt EXT_TO=txt
+echo "6. Galileo HAS message dump (${CODE})"
+
+SRCDIR=../sample/
+BASENAME=20220930-115617pocketsdr-e6b
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+BASENAME=20230219-133831pocketsdr-e6b
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+echo ""
 
 # EOF

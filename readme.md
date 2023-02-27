@@ -22,6 +22,7 @@ English description is available [here](readme-en.md).
 - RTCMメッセージを表示するプログラム（``showrtcm.py``）
 - GPS時刻とUTC（universal coordinate time）とを相互変換するプログラム（``gps2utc.py``、``utc2gps.py``）
 - 緯度・経度・楕円体高座標とECEF（earth-centered earth-fixed）座標とを相互変換するプログラム（``llh2ecef.py``、``ecef2llh.py``）
+- Galileo HAS (high accuracy service) ヘッダを表示するプログラム（試験中, ``pksdr2has.py``）
 
 からなります。ディレクトリ構造は次のとおりです。
 ```
@@ -39,6 +40,7 @@ English description is available [here](readme-en.md).
 │   ├── librtcm.py
 │   ├── libssr.py
 │   ├── llh2ecef.py
+│   ├── pksdr2has.py
 │   ├── pksdr2qzsl6.py
 │   ├── qzsl62rtcm.py
 │   ├── showrtcm.py
@@ -52,8 +54,10 @@ English description is available [here](readme-en.md).
 │   ├── 2022001A.l6
 │   ├── 20220326-231200clas.alst
 │   ├── 20220326-231200mdc.alst
+│   ├── 20220930-115617pocketsdr-e6b.txt
 │   ├── 20221130-125237mdc-ppp.alst
 │   ├── 20221213-010900.rtcm
+│   ├── 20230219-133831pocketsdr-e6b.txt
 │   └── readme.txt
 └── test
     ├── do_test.sh
@@ -68,11 +72,13 @@ English description is available [here](readme-en.md).
     │   ├── 20220326-231200mdc.rtcm
     │   ├── 20220326-231200mdc.rtcm.txt
     │   ├── 20220326-231200mdc.txt
+    │   ├── 20220930-115617pocketsdr-e6b.txt
     │   ├── 20221130-125237mdc-ppp.l6
     │   ├── 20221130-125237mdc-ppp.rtcm
     │   ├── 20221130-125237mdc-ppp.rtcm.txt
     │   ├── 20221130-125237mdc-ppp.txt
-    │   └── 20221213-010900.rtcm.txt
+    │   ├── 20221213-010900.rtcm.txt
+    │   └── 20230219-133831pocketsdr-e6b.txt
     └── readme.md
 ```
 

@@ -22,6 +22,7 @@ This toolkit consists of the following programs:
 - A program to display RTCM messages (``showrtcm.py``)
 - Programs to mutually convert between GPS time and UTC (universal coordinate time) (``gps2utc.py``, ``utc2gps.py``)
 - Programs to mutually convert between latitude/longitude/elliptical height coordinates and ECEF (earth-centered earth-fixed) coordinates (``llh2ecef.py``, ``ecef2llh.py``)
+- Program to display Galileo HAS (high accuracy service) header (experimental, ``pksdr2has.py``)
 
 Here is the directory structure:
 ```
@@ -39,6 +40,7 @@ Here is the directory structure:
 │   ├── librtcm.py
 │   ├── libssr.py
 │   ├── llh2ecef.py
+│   ├── pksdr2has.py
 │   ├── pksdr2qzsl6.py
 │   ├── qzsl62rtcm.py
 │   ├── showrtcm.py
@@ -52,8 +54,10 @@ Here is the directory structure:
 │   ├── 2022001A.l6
 │   ├── 20220326-231200clas.alst
 │   ├── 20220326-231200mdc.alst
+│   ├── 20220930-115617pocketsdr-e6b.txt
 │   ├── 20221130-125237mdc-ppp.alst
 │   ├── 20221213-010900.rtcm
+│   ├── 20230219-133831pocketsdr-e6b.txt
 │   └── readme.txt
 └── test
     ├── do_test.sh
@@ -68,11 +72,13 @@ Here is the directory structure:
     │   ├── 20220326-231200mdc.rtcm
     │   ├── 20220326-231200mdc.rtcm.txt
     │   ├── 20220326-231200mdc.txt
+    │   ├── 20220930-115617pocketsdr-e6b.txt
     │   ├── 20221130-125237mdc-ppp.l6
     │   ├── 20221130-125237mdc-ppp.rtcm
     │   ├── 20221130-125237mdc-ppp.rtcm.txt
     │   ├── 20221130-125237mdc-ppp.txt
-    │   └── 20221213-010900.rtcm.txt
+    │   ├── 20221213-010900.rtcm.txt
+    │   └── 20230219-133831pocketsdr-e6b.txt
     └── readme.md
 ```
 
