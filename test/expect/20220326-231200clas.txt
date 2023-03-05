@@ -12,14 +12,14 @@
 194 Hitachi-Ota:1  CLAS  (syncing)
 194 Hitachi-Ota:1  CLAS  (syncing)
 194 Hitachi-Ota:1  CLAS  (syncing)
-ST1 G10 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L2 L2C(M+L) L2 Z-tracking
+ST1 G10 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G12 L1 C/A L2 CM+CL L2 Z-tracking
 ST1 G22 L1 C/A L2 Z-tracking
-ST1 G25 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L2 L2C(M+L) L2 Z-tracking
-ST1 G31 L1 C/A L2 L2C(M+L) L2 Z-tracking
-ST1 G32 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
+ST1 G25 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G26 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G29 L1 C/A L2 CM+CL L2 Z-tracking
+ST1 G31 L1 C/A L2 CM+CL L2 Z-tracking
+ST1 G32 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 E01 E1 B+C E5a I+Q
 ST1 E04 E1 B+C E5a I+Q
 ST1 E05 E1 B+C E5a I+Q
@@ -46,72 +46,72 @@ ST3 E31 d_clock=-0.4m
 ST3 J02 d_clock=-0.4m
 ST3 J03 d_clock=-0.1m
 ST3 J04 d_clock= 0.7m
-ST2 G10 IODE=  10 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 G12 IODE=  56 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G22 IODE=  35 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G25 IODE=  42 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 G26 IODE= 101 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G29 IODE=  26 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G31 IODE=  70 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G32 IODE=  51 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 E01 IODE= 106 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E04 IODE= 106 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E05 IODE= 106 d_radial=-0.2m d_along=-0.7m d_cross=-0.7m
-ST2 E09 IODE= 106 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 E24 IODE= 106 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E31 IODE= 104 d_radial=-0.1m d_along=-0.5m d_cross=-0.5m
-ST2 J02 IODE= 221 d_radial= 1.6m d_along= 6.4m d_cross= 6.4m
-ST2 J03 IODE= 221 d_radial= 1.6m d_along= 6.4m d_cross= 6.4m
-ST2 J04 IODE= 221 d_radial=-0.2m d_along=-0.6m d_cross=-0.6m
+ST2 G10 IODE=  10 d_radial=  0.0m d_along=  0.2m d_cross= -0.6m
+ST2 G12 IODE=  56 d_radial= -0.1m d_along=  1.5m d_cross=  0.0m
+ST2 G22 IODE=  35 d_radial= -0.0m d_along= -1.3m d_cross= -0.6m
+ST2 G25 IODE=  42 d_radial= -0.1m d_along= -0.1m d_cross=  0.1m
+ST2 G26 IODE= 101 d_radial=  0.0m d_along= -0.2m d_cross=  0.7m
+ST2 G29 IODE=  26 d_radial= -0.0m d_along=  0.4m d_cross=  0.4m
+ST2 G31 IODE=  70 d_radial=  0.1m d_along=  0.6m d_cross=  0.2m
+ST2 G32 IODE=  51 d_radial=  0.1m d_along= -2.4m d_cross= -0.5m
+ST2 E01 IODE= 106 d_radial= -0.1m d_along= -0.4m d_cross=  0.2m
+ST2 E04 IODE= 106 d_radial= -0.1m d_along= -0.1m d_cross= -0.0m
+ST2 E05 IODE= 106 d_radial= -0.2m d_along=  0.0m d_cross=  0.1m
+ST2 E09 IODE= 106 d_radial=  0.1m d_along= -0.0m d_cross=  0.0m
+ST2 E24 IODE= 106 d_radial= -0.0m d_along= -0.0m d_cross=  0.3m
+ST2 E31 IODE= 104 d_radial= -0.1m d_along= -0.0m d_cross=  0.0m
+ST2 J02 IODE= 221 d_radial=  1.6m d_along= -0.2m d_cross=  0.9m
+ST2 J03 IODE= 221 d_radial=  1.6m d_along= -0.2m d_cross=  0.7m
+ST2 J04 IODE= 221 d_radial= -0.2m d_along= -0.4m d_cross= -0.5m
 194 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
-ST4 G10 L1 C/A        code_bias= 0.0m
-ST4 G10 L2 L2C(M+L)   code_bias= 0.1m
-ST4 G10 L2 Z-tracking code_bias= 0.7m
-ST4 G10 L5 I+Q        code_bias=-2.2m
-ST4 G12 L1 C/A        code_bias= 0.0m
-ST4 G12 L2 L2C(M+L)   code_bias= 0.1m
-ST4 G12 L2 Z-tracking code_bias= 0.2m
-ST4 G22 L1 C/A        code_bias= 0.0m
-ST4 G22 L2 Z-tracking code_bias= 0.1m
-ST4 G25 L1 C/A        code_bias= 0.0m
-ST4 G25 L2 L2C(M+L)   code_bias= 0.4m
-ST4 G25 L2 Z-tracking code_bias= 0.4m
-ST4 G25 L5 I+Q        code_bias=-0.5m
-ST4 G26 L1 C/A        code_bias= 0.0m
-ST4 G26 L2 L2C(M+L)   code_bias= 0.8m
-ST4 G26 L2 Z-tracking code_bias= 1.2m
-ST4 G26 L5 I+Q        code_bias=-1.0m
-ST4 G29 L1 C/A        code_bias= 0.0m
-ST4 G29 L2 L2C(M+L)   code_bias= 0.0m
-ST4 G29 L2 Z-tracking code_bias= 0.2m
-ST4 G31 L1 C/A        code_bias= 0.0m
-ST4 G31 L2 L2C(M+L)   code_bias=-0.1m
-ST4 G31 L2 Z-tracking code_bias=-0.1m
-ST4 G32 L1 C/A        code_bias= 0.0m
-ST4 G32 L2 L2C(M+L)   code_bias= 1.0m
-ST4 G32 L2 Z-tracking code_bias= 1.0m
-ST4 G32 L5 I+Q        code_bias=-0.9m
-ST4 E01 E1 B+C        code_bias= 0.0m
-ST4 E01 E5a I+Q       code_bias= 0.1m
-ST4 E04 E1 B+C        code_bias= 0.0m
-ST4 E04 E5a I+Q       code_bias= 0.2m
-ST4 E05 E1 B+C        code_bias= 0.0m
-ST4 E05 E5a I+Q       code_bias= 0.2m
-ST4 E09 E1 B+C        code_bias= 0.0m
-ST4 E09 E5a I+Q       code_bias= 0.3m
-ST4 E24 E1 B+C        code_bias= 0.0m
-ST4 E24 E5a I+Q       code_bias=-0.4m
-ST4 E31 E1 B+C        code_bias= 0.0m
-ST4 E31 E5a I+Q       code_bias= 0.4m
-ST4 J02 L1 C/A        code_bias= 0.0m
-ST4 J02 L2 L2C(M+L)   code_bias= 0.2m
-ST4 J02 L5 I+Q        code_bias=-0.3m
-ST4 J03 L1 C/A        code_bias= 0.0m
-ST4 J03 L2 L2C(M+L)   code_bias=-0.1m
-ST4 J03 L5 I+Q        code_bias=-0.2m
-ST4 J04 L1 C/A        code_bias= 0.0m
-ST4 J04 L2 L2C(M+L)   code_bias= 0.5m
-ST4 J04 L5 I+Q        code_bias= 0.8m
+ST4 G10 L1 C/A        code_bias= 0.00m
+ST4 G10 L2 CM+CL      code_bias= 0.06m
+ST4 G10 L2 Z-tracking code_bias= 0.72m
+ST4 G10 L5 I+Q        code_bias=-2.16m
+ST4 G12 L1 C/A        code_bias= 0.00m
+ST4 G12 L2 CM+CL      code_bias= 0.14m
+ST4 G12 L2 Z-tracking code_bias= 0.20m
+ST4 G22 L1 C/A        code_bias= 0.00m
+ST4 G22 L2 Z-tracking code_bias= 0.12m
+ST4 G25 L1 C/A        code_bias= 0.00m
+ST4 G25 L2 CM+CL      code_bias= 0.40m
+ST4 G25 L2 Z-tracking code_bias= 0.38m
+ST4 G25 L5 I+Q        code_bias=-0.54m
+ST4 G26 L1 C/A        code_bias= 0.00m
+ST4 G26 L2 CM+CL      code_bias= 0.80m
+ST4 G26 L2 Z-tracking code_bias= 1.18m
+ST4 G26 L5 I+Q        code_bias=-1.00m
+ST4 G29 L1 C/A        code_bias= 0.00m
+ST4 G29 L2 CM+CL      code_bias= 0.02m
+ST4 G29 L2 Z-tracking code_bias= 0.22m
+ST4 G31 L1 C/A        code_bias= 0.00m
+ST4 G31 L2 CM+CL      code_bias=-0.14m
+ST4 G31 L2 Z-tracking code_bias=-0.08m
+ST4 G32 L1 C/A        code_bias= 0.00m
+ST4 G32 L2 CM+CL      code_bias= 0.96m
+ST4 G32 L2 Z-tracking code_bias= 0.96m
+ST4 G32 L5 I+Q        code_bias=-0.94m
+ST4 E01 E1 B+C        code_bias= 0.00m
+ST4 E01 E5a I+Q       code_bias= 0.06m
+ST4 E04 E1 B+C        code_bias= 0.00m
+ST4 E04 E5a I+Q       code_bias= 0.20m
+ST4 E05 E1 B+C        code_bias= 0.00m
+ST4 E05 E5a I+Q       code_bias= 0.22m
+ST4 E09 E1 B+C        code_bias= 0.00m
+ST4 E09 E5a I+Q       code_bias= 0.28m
+ST4 E24 E1 B+C        code_bias= 0.00m
+ST4 E24 E5a I+Q       code_bias=-0.36m
+ST4 E31 E1 B+C        code_bias= 0.00m
+ST4 E31 E5a I+Q       code_bias= 0.36m
+ST4 J02 L1 C/A        code_bias= 0.00m
+ST4 J02 L2 L2C(M+L)   code_bias= 0.20m
+ST4 J02 L5 I+Q        code_bias=-0.28m
+ST4 J03 L1 C/A        code_bias= 0.00m
+ST4 J03 L2 L2C(M+L)   code_bias=-0.10m
+ST4 J03 L5 I+Q        code_bias=-0.24m
+ST4 J04 L1 C/A        code_bias= 0.00m
+ST4 J04 L2 L2C(M+L)   code_bias= 0.54m
+ST4 J04 L5 I+Q        code_bias= 0.78m
 ST7 G10 URA 34
 ST7 G12 URA 33
 ST7 G22 URA 33
@@ -149,27 +149,27 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=12
 ST6 G10 L1 C/A        phase_bias= 0.314m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.474m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.474m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.371m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.543m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-1.210m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.653m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 2.359m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 3.159m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 3.159m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 3.056m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 3.347m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-5.468m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-6.942m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-6.942m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-7.044m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-7.191m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 1.187m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 1.581m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 1.581m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 1.480m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 3.867m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 4.943m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 4.943m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 4.841m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.411m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.697m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.697m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.799m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.833m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-8.673m discont_indi=0
@@ -245,27 +245,27 @@ ST12 STEC J04 grid  2/ 2 residual= 3.84TECU (7bit)
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=2
 ST6 G10 L1 C/A        phase_bias= 0.129m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.309m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.309m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.292m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.305m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-0.864m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.190m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.431m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 0.597m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 0.597m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 0.580m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 0.610m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-2.134m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-2.802m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-2.802m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-2.818m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-2.945m discont_indi=1
 ST6 G29 L1 C/A        phase_bias=-0.258m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias=-0.363m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias=-0.363m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias=-0.377m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.253m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.555m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.555m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.539m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.546m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.721m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.721m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.736m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.670m discont_indi=1
 ST6 E04 E1 B+C        phase_bias=-0.489m discont_indi=2
@@ -525,27 +525,27 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=3
 ST6 G10 L1 C/A        phase_bias= 0.199m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.319m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.319m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.179m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.242m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-1.760m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-2.619m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.994m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.506m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.506m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.366m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.487m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.631m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.906m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.906m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 1.010m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.849m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 1.993m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 2.706m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 2.706m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 2.568m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 0.658m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 0.735m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 0.735m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 0.839m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.473m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.698m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.698m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.593m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.718m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.365m discont_indi=0
@@ -1138,27 +1138,27 @@ ST12 STEC J04 grid 32/32 residual= 0.00TECU (4bit)
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=4
 ST6 G10 L1 C/A        phase_bias= 0.160m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.229m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.229m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.255m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.246m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-2.013m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-2.705m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.715m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 0.891m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 0.891m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 0.918m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 0.948m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-0.423m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-0.709m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-0.709m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-0.682m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-0.735m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.154m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.079m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.079m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.108m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 0.940m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.081m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.081m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.107m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-1.155m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-1.588m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-1.588m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-1.562m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-1.802m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-0.701m discont_indi=0
@@ -1497,27 +1497,27 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=5
 ST6 G10 L1 C/A        phase_bias= 0.947m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 1.197m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 1.197m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 1.117m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 1.227m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-1.193m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.547m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.951m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.157m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.157m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.321m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.199m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-0.225m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-0.263m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-0.263m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-0.342m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-0.299m discont_indi=1
 ST6 G29 L1 C/A        phase_bias=-0.411m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias=-0.698m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias=-0.698m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias=-0.775m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.524m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.781m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.781m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.702m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.156m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.345m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.345m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.424m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.531m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-0.184m discont_indi=0
@@ -1822,21 +1822,21 @@ ST6 NID=6
 ST6 G22 L1 C/A        phase_bias=-0.507m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-0.656m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 1.450m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.715m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.715m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.722m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.853m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.398m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.496m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.496m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.504m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.575m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.377m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.516m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.516m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.525m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 3.398m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 4.364m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 4.364m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 4.372m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.231m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.267m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.267m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.258m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.376m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.754m discont_indi=0
@@ -2356,21 +2356,21 @@ ST6 NID=7
 ST6 G22 L1 C/A        phase_bias= 0.047m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-0.101m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 1.101m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.403m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.403m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.375m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.473m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-0.003m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.095m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.095m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.068m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.097m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.129m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.053m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.053m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.027m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.486m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.786m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.786m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.759m discont_indi=3
 ST6 G32 L1 C/A        phase_bias= 0.331m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias= 0.342m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias= 0.342m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias= 0.316m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias= 0.459m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.177m discont_indi=0
@@ -2769,26 +2769,26 @@ ST12 STEC J04 grid 22/22 residual= 0.00TECU (4bit)
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=8
 ST6 G12 L1 C/A        phase_bias=-1.822m discont_indi=3
-ST6 G12 L2 L2C(M+L)   phase_bias=-2.216m discont_indi=3
+ST6 G12 L2 CM+CL      phase_bias=-2.216m discont_indi=3
 ST6 G12 L2 Z-tracking phase_bias=-2.242m discont_indi=3
 ST6 G22 L1 C/A        phase_bias=-0.800m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.135m discont_indi=2
 ST6 G25 L1 C/A        phase_bias=-0.029m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias=-0.020m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias=-0.020m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias=-0.045m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias=-0.148m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.575m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.625m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.625m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.601m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.772m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.072m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.066m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.066m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.043m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 0.992m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.196m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.196m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.172m discont_indi=3
 ST6 G32 L1 C/A        phase_bias= 0.396m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias= 0.462m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias= 0.462m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias= 0.438m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias= 0.452m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.113m discont_indi=0
@@ -3215,26 +3215,26 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=9
 ST6 G12 L1 C/A        phase_bias=-1.545m discont_indi=3
-ST6 G12 L2 L2C(M+L)   phase_bias=-2.032m discont_indi=3
+ST6 G12 L2 CM+CL      phase_bias=-2.032m discont_indi=3
 ST6 G12 L2 Z-tracking phase_bias=-2.080m discont_indi=3
 ST6 G22 L1 C/A        phase_bias=-0.390m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-0.553m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 1.222m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.679m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.679m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.631m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.600m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.429m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.518m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.518m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.471m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.375m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.623m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.828m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.828m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.782m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 0.854m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.099m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.099m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.051m discont_indi=3
 ST6 G32 L1 C/A        phase_bias= 0.076m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias= 0.143m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias= 0.143m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias= 0.096m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias= 0.090m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.463m discont_indi=0
@@ -3566,26 +3566,26 @@ ST12 STEC J04 grid 18/18 residual= 0.08TECU (4bit)
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=10
 ST6 G12 L1 C/A        phase_bias=-1.052m discont_indi=3
-ST6 G12 L2 L2C(M+L)   phase_bias=-1.422m discont_indi=3
+ST6 G12 L2 CM+CL      phase_bias=-1.422m discont_indi=3
 ST6 G12 L2 Z-tracking phase_bias=-1.554m discont_indi=3
 ST6 G22 L1 C/A        phase_bias=-0.832m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.180m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 1.474m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.749m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.749m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.861m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.747m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.723m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.900m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.900m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.768m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.852m discont_indi=1
 ST6 G29 L1 C/A        phase_bias=-0.362m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias=-0.414m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias=-0.414m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias=-0.544m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.522m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.969m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.969m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.837m discont_indi=3
 ST6 G32 L1 C/A        phase_bias= 0.139m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.021m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.021m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias= 0.092m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.005m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.460m discont_indi=0
@@ -4037,26 +4037,26 @@ ST11 J04 IODE= 221 d_radial= -0.2m d_along= -0.4m d_cross= -0.5m c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=11
 ST6 G12 L1 C/A        phase_bias=-0.535m discont_indi=3
-ST6 G12 L2 L2C(M+L)   phase_bias=-0.884m discont_indi=3
+ST6 G12 L2 CM+CL      phase_bias=-0.884m discont_indi=3
 ST6 G12 L2 Z-tracking phase_bias=-0.787m discont_indi=3
 ST6 G22 L1 C/A        phase_bias=-1.589m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-2.084m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 1.281m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.824m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.824m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.676m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.788m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.126m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.195m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.195m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.047m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.075m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.023m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.162m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.162m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.017m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.908m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 2.545m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 2.545m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 2.642m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.248m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.190m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.190m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.336m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.472m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-0.296m discont_indi=0
@@ -4404,27 +4404,27 @@ ST12 STEC J04 grid 19/19 residual=-0.04TECU (4bit)
 ST6 code_bias=on phase_bias=on network_bias=on
 ST6 NID=1
 ST6 G10 L1 C/A        code_bias= 0.0m phase_bias= 1.939m discont_indi=3
-ST6 G10 L2 L2C(M+L)   code_bias= 0.3m phase_bias= 2.386m discont_indi=3
+ST6 G10 L2 CM+CL      code_bias= 0.3m phase_bias= 2.386m discont_indi=3
 ST6 G10 L2 Z-tracking code_bias= 0.3m phase_bias= 2.461m discont_indi=3
 ST6 G10 L5 I+Q        code_bias= 0.2m phase_bias= 2.515m discont_indi=3
 ST6 G22 L1 C/A        code_bias= 0.0m phase_bias= 0.067m discont_indi=1
 ST6 G22 L2 Z-tracking code_bias=-0.2m phase_bias=-0.088m discont_indi=1
 ST6 G25 L1 C/A        code_bias= 0.0m phase_bias= 0.495m discont_indi=3
-ST6 G25 L2 L2C(M+L)   code_bias= 0.0m phase_bias= 0.473m discont_indi=3
+ST6 G25 L2 CM+CL      code_bias= 0.0m phase_bias= 0.473m discont_indi=3
 ST6 G25 L2 Z-tracking code_bias= 0.1m phase_bias= 0.547m discont_indi=3
 ST6 G25 L5 I+Q        code_bias= 0.1m phase_bias= 0.532m discont_indi=3
 ST6 G26 L1 C/A        code_bias= 0.0m phase_bias= 0.176m discont_indi=3
-ST6 G26 L2 L2C(M+L)   code_bias= 0.1m phase_bias= 0.420m discont_indi=3
+ST6 G26 L2 CM+CL      code_bias= 0.1m phase_bias= 0.420m discont_indi=3
 ST6 G26 L2 Z-tracking code_bias= 0.1m phase_bias= 0.250m discont_indi=3
 ST6 G26 L5 I+Q        code_bias= 0.1m phase_bias= 0.212m discont_indi=3
 ST6 G29 L1 C/A        code_bias= 0.0m phase_bias=-0.531m discont_indi=3
-ST6 G29 L2 L2C(M+L)   code_bias= 0.1m phase_bias=-0.678m discont_indi=3
+ST6 G29 L2 CM+CL      code_bias= 0.1m phase_bias=-0.678m discont_indi=3
 ST6 G29 L2 Z-tracking code_bias= 0.0m phase_bias=-0.603m discont_indi=3
 ST6 G31 L1 C/A        code_bias= 0.0m phase_bias=-0.550m discont_indi=3
-ST6 G31 L2 L2C(M+L)   code_bias= 0.2m phase_bias=-0.730m discont_indi=3
+ST6 G31 L2 CM+CL      code_bias= 0.2m phase_bias=-0.730m discont_indi=3
 ST6 G31 L2 Z-tracking code_bias= 0.2m phase_bias=-0.654m discont_indi=3
 ST6 G32 L1 C/A        code_bias= 0.0m phase_bias= 0.234m discont_indi=3
-ST6 G32 L2 L2C(M+L)   code_bias= 0.1m phase_bias= 0.308m discont_indi=3
+ST6 G32 L2 CM+CL      code_bias= 0.1m phase_bias= 0.308m discont_indi=3
 ST6 G32 L2 Z-tracking code_bias= 0.1m phase_bias= 0.384m discont_indi=3
 ST6 G32 L5 I+Q        code_bias=-0.1m phase_bias= 0.202m discont_indi=3
 ST6 E04 E1 B+C        code_bias= 0.0m phase_bias= 0.284m discont_indi=3
@@ -4598,14 +4598,14 @@ CSSR dump: 000000000000000000000000000000000000000
 CSSR null data 1695 bits
 CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 194 Hitachi-Ota:1  CLAS  SF6 DP5 (null)
-ST1 G10 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L2 L2C(M+L) L2 Z-tracking
+ST1 G10 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G12 L1 C/A L2 CM+CL L2 Z-tracking
 ST1 G22 L1 C/A L2 Z-tracking
-ST1 G25 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L2 L2C(M+L) L2 Z-tracking
-ST1 G31 L1 C/A L2 L2C(M+L) L2 Z-tracking
-ST1 G32 L1 C/A L2 L2C(M+L) L2 Z-tracking L5 I+Q
+ST1 G25 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G26 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G29 L1 C/A L2 CM+CL L2 Z-tracking
+ST1 G31 L1 C/A L2 CM+CL L2 Z-tracking
+ST1 G32 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 E01 E1 B+C E5a I+Q
 ST1 E04 E1 B+C E5a I+Q
 ST1 E05 E1 B+C E5a I+Q
@@ -4632,72 +4632,72 @@ ST3 E31 d_clock=-0.4m
 ST3 J02 d_clock=-0.4m
 ST3 J03 d_clock=-0.1m
 ST3 J04 d_clock= 0.7m
-ST2 G10 IODE=  10 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 G12 IODE=  56 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G22 IODE=  35 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G25 IODE=  42 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 G26 IODE= 101 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G29 IODE=  26 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G31 IODE=  70 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G32 IODE=  51 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 E01 IODE= 106 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E04 IODE= 106 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E05 IODE= 106 d_radial=-0.2m d_along=-0.7m d_cross=-0.7m
-ST2 E09 IODE= 106 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 E24 IODE= 106 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E31 IODE= 104 d_radial=-0.1m d_along=-0.5m d_cross=-0.5m
-ST2 J02 IODE= 221 d_radial= 1.6m d_along= 6.4m d_cross= 6.4m
-ST2 J03 IODE= 221 d_radial= 1.6m d_along= 6.4m d_cross= 6.4m
-ST2 J04 IODE= 221 d_radial=-0.2m d_along=-0.6m d_cross=-0.6m
+ST2 G10 IODE=  10 d_radial=  0.0m d_along=  0.2m d_cross= -0.6m
+ST2 G12 IODE=  56 d_radial= -0.1m d_along=  1.5m d_cross=  0.0m
+ST2 G22 IODE=  35 d_radial= -0.0m d_along= -1.3m d_cross= -0.6m
+ST2 G25 IODE=  42 d_radial= -0.1m d_along= -0.1m d_cross=  0.1m
+ST2 G26 IODE= 101 d_radial=  0.0m d_along= -0.2m d_cross=  0.7m
+ST2 G29 IODE=  26 d_radial= -0.0m d_along=  0.4m d_cross=  0.4m
+ST2 G31 IODE=  70 d_radial=  0.1m d_along=  0.6m d_cross=  0.2m
+ST2 G32 IODE=  51 d_radial=  0.1m d_along= -2.4m d_cross= -0.5m
+ST2 E01 IODE= 106 d_radial= -0.1m d_along= -0.4m d_cross=  0.2m
+ST2 E04 IODE= 106 d_radial= -0.1m d_along= -0.1m d_cross= -0.0m
+ST2 E05 IODE= 106 d_radial= -0.2m d_along=  0.0m d_cross=  0.1m
+ST2 E09 IODE= 106 d_radial=  0.1m d_along= -0.0m d_cross=  0.0m
+ST2 E24 IODE= 106 d_radial= -0.0m d_along= -0.0m d_cross=  0.3m
+ST2 E31 IODE= 104 d_radial= -0.1m d_along= -0.0m d_cross=  0.0m
+ST2 J02 IODE= 221 d_radial=  1.6m d_along= -0.2m d_cross=  0.9m
+ST2 J03 IODE= 221 d_radial=  1.6m d_along= -0.2m d_cross=  0.7m
+ST2 J04 IODE= 221 d_radial= -0.2m d_along= -0.4m d_cross= -0.5m
 196 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
-ST4 G10 L1 C/A        code_bias= 0.0m
-ST4 G10 L2 L2C(M+L)   code_bias= 0.1m
-ST4 G10 L2 Z-tracking code_bias= 0.7m
-ST4 G10 L5 I+Q        code_bias=-2.2m
-ST4 G12 L1 C/A        code_bias= 0.0m
-ST4 G12 L2 L2C(M+L)   code_bias= 0.2m
-ST4 G12 L2 Z-tracking code_bias= 0.2m
-ST4 G22 L1 C/A        code_bias= 0.0m
-ST4 G22 L2 Z-tracking code_bias= 0.1m
-ST4 G25 L1 C/A        code_bias= 0.0m
-ST4 G25 L2 L2C(M+L)   code_bias= 0.4m
-ST4 G25 L2 Z-tracking code_bias= 0.4m
-ST4 G25 L5 I+Q        code_bias=-0.6m
-ST4 G26 L1 C/A        code_bias= 0.0m
-ST4 G26 L2 L2C(M+L)   code_bias= 0.8m
-ST4 G26 L2 Z-tracking code_bias= 1.2m
-ST4 G26 L5 I+Q        code_bias=-1.0m
-ST4 G29 L1 C/A        code_bias= 0.0m
-ST4 G29 L2 L2C(M+L)   code_bias= 0.0m
-ST4 G29 L2 Z-tracking code_bias= 0.2m
-ST4 G31 L1 C/A        code_bias= 0.0m
-ST4 G31 L2 L2C(M+L)   code_bias=-0.1m
-ST4 G31 L2 Z-tracking code_bias=-0.1m
-ST4 G32 L1 C/A        code_bias= 0.0m
-ST4 G32 L2 L2C(M+L)   code_bias= 1.0m
-ST4 G32 L2 Z-tracking code_bias= 1.0m
-ST4 G32 L5 I+Q        code_bias=-0.9m
-ST4 E01 E1 B+C        code_bias= 0.0m
-ST4 E01 E5a I+Q       code_bias= 0.1m
-ST4 E04 E1 B+C        code_bias= 0.0m
-ST4 E04 E5a I+Q       code_bias= 0.2m
-ST4 E05 E1 B+C        code_bias= 0.0m
-ST4 E05 E5a I+Q       code_bias= 0.2m
-ST4 E09 E1 B+C        code_bias= 0.0m
-ST4 E09 E5a I+Q       code_bias= 0.3m
-ST4 E24 E1 B+C        code_bias= 0.0m
-ST4 E24 E5a I+Q       code_bias=-0.4m
-ST4 E31 E1 B+C        code_bias= 0.0m
-ST4 E31 E5a I+Q       code_bias= 0.3m
-ST4 J02 L1 C/A        code_bias= 0.0m
-ST4 J02 L2 L2C(M+L)   code_bias= 0.2m
-ST4 J02 L5 I+Q        code_bias=-0.3m
-ST4 J03 L1 C/A        code_bias= 0.0m
-ST4 J03 L2 L2C(M+L)   code_bias=-0.1m
-ST4 J03 L5 I+Q        code_bias=-0.2m
-ST4 J04 L1 C/A        code_bias= 0.0m
-ST4 J04 L2 L2C(M+L)   code_bias= 0.5m
-ST4 J04 L5 I+Q        code_bias= 0.8m
+ST4 G10 L1 C/A        code_bias= 0.00m
+ST4 G10 L2 CM+CL      code_bias= 0.06m
+ST4 G10 L2 Z-tracking code_bias= 0.74m
+ST4 G10 L5 I+Q        code_bias=-2.16m
+ST4 G12 L1 C/A        code_bias= 0.00m
+ST4 G12 L2 CM+CL      code_bias= 0.16m
+ST4 G12 L2 Z-tracking code_bias= 0.20m
+ST4 G22 L1 C/A        code_bias= 0.00m
+ST4 G22 L2 Z-tracking code_bias= 0.12m
+ST4 G25 L1 C/A        code_bias= 0.00m
+ST4 G25 L2 CM+CL      code_bias= 0.42m
+ST4 G25 L2 Z-tracking code_bias= 0.38m
+ST4 G25 L5 I+Q        code_bias=-0.56m
+ST4 G26 L1 C/A        code_bias= 0.00m
+ST4 G26 L2 CM+CL      code_bias= 0.82m
+ST4 G26 L2 Z-tracking code_bias= 1.20m
+ST4 G26 L5 I+Q        code_bias=-1.00m
+ST4 G29 L1 C/A        code_bias= 0.00m
+ST4 G29 L2 CM+CL      code_bias= 0.02m
+ST4 G29 L2 Z-tracking code_bias= 0.24m
+ST4 G31 L1 C/A        code_bias= 0.00m
+ST4 G31 L2 CM+CL      code_bias=-0.14m
+ST4 G31 L2 Z-tracking code_bias=-0.08m
+ST4 G32 L1 C/A        code_bias= 0.00m
+ST4 G32 L2 CM+CL      code_bias= 0.96m
+ST4 G32 L2 Z-tracking code_bias= 0.96m
+ST4 G32 L5 I+Q        code_bias=-0.94m
+ST4 E01 E1 B+C        code_bias= 0.00m
+ST4 E01 E5a I+Q       code_bias= 0.06m
+ST4 E04 E1 B+C        code_bias= 0.00m
+ST4 E04 E5a I+Q       code_bias= 0.24m
+ST4 E05 E1 B+C        code_bias= 0.00m
+ST4 E05 E5a I+Q       code_bias= 0.22m
+ST4 E09 E1 B+C        code_bias= 0.00m
+ST4 E09 E5a I+Q       code_bias= 0.28m
+ST4 E24 E1 B+C        code_bias= 0.00m
+ST4 E24 E5a I+Q       code_bias=-0.38m
+ST4 E31 E1 B+C        code_bias= 0.00m
+ST4 E31 E5a I+Q       code_bias= 0.34m
+ST4 J02 L1 C/A        code_bias= 0.00m
+ST4 J02 L2 L2C(M+L)   code_bias= 0.20m
+ST4 J02 L5 I+Q        code_bias=-0.28m
+ST4 J03 L1 C/A        code_bias= 0.00m
+ST4 J03 L2 L2C(M+L)   code_bias=-0.10m
+ST4 J03 L5 I+Q        code_bias=-0.24m
+ST4 J04 L1 C/A        code_bias= 0.00m
+ST4 J04 L2 L2C(M+L)   code_bias= 0.54m
+ST4 J04 L5 I+Q        code_bias= 0.76m
 ST7 G10 URA 35
 ST7 G12 URA 31
 ST7 G22 URA 33
@@ -4735,27 +4735,27 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=12
 ST6 G10 L1 C/A        phase_bias= 0.375m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.589m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.589m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.486m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.677m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-1.184m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.603m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 2.352m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 3.159m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 3.159m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 3.056m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 3.348m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-5.441m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-6.894m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-6.894m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-6.998m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-7.137m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 1.229m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 1.636m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 1.636m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 1.536m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 3.884m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 4.970m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 4.970m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 4.871m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.430m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.720m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.720m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.822m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.857m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-8.724m discont_indi=0
@@ -4831,27 +4831,27 @@ ST12 STEC J04 grid  2/ 2 residual= 3.84TECU (7bit)
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=2
 ST6 G10 L1 C/A        phase_bias= 0.115m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.284m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.284m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.268m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.279m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-0.882m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.214m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.409m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 0.567m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 0.567m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 0.551m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 0.580m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-2.100m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-2.748m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-2.748m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-2.764m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-2.887m discont_indi=1
 ST6 G29 L1 C/A        phase_bias=-0.204m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias=-0.287m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias=-0.287m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias=-0.302m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.250m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.551m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.551m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.536m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.565m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.746m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.746m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.761m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.695m discont_indi=1
 ST6 E04 E1 B+C        phase_bias=-0.511m discont_indi=2
@@ -5111,27 +5111,27 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=3
 ST6 G10 L1 C/A        phase_bias= 0.213m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.338m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.338m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.199m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.263m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-1.732m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-2.573m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.984m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.494m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.494m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.354m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.475m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.640m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.916m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.916m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 1.020m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.858m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 2.018m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 2.732m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 2.732m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 2.593m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 0.663m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 0.744m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 0.744m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 0.849m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.481m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.707m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.707m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.603m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.729m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.332m discont_indi=0
@@ -5724,27 +5724,27 @@ ST12 STEC J04 grid 32/32 residual=-0.04TECU (4bit)
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=4
 ST6 G10 L1 C/A        phase_bias= 0.197m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 0.287m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 0.287m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 0.314m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 0.308m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-2.021m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-2.712m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.705m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 0.881m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 0.881m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 0.907m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 0.938m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-0.410m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-0.691m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-0.691m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-0.664m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-0.715m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.187m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.118m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.118m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.146m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 0.935m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.074m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.074m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.101m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-1.160m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-1.591m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-1.591m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-1.564m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-1.804m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-0.723m discont_indi=0
@@ -6083,27 +6083,27 @@ ST11 J04 c0=  1.0m
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=5
 ST6 G10 L1 C/A        phase_bias= 0.939m discont_indi=1
-ST6 G10 L2 L2C(M+L)   phase_bias= 1.185m discont_indi=1
+ST6 G10 L2 CM+CL      phase_bias= 1.185m discont_indi=1
 ST6 G10 L2 Z-tracking phase_bias= 1.105m discont_indi=1
 ST6 G10 L5 I+Q        phase_bias= 1.214m discont_indi=1
 ST6 G22 L1 C/A        phase_bias=-1.214m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-1.574m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 0.933m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.135m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.135m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.300m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.178m discont_indi=3
 ST6 G26 L1 C/A        phase_bias=-0.232m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias=-0.273m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias=-0.273m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias=-0.353m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias=-0.310m discont_indi=1
 ST6 G29 L1 C/A        phase_bias=-0.406m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias=-0.699m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias=-0.699m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias=-0.777m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 1.510m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 1.765m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 1.765m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 1.685m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.176m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.369m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.369m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.448m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.555m discont_indi=1
 ST6 E01 E1 B+C        phase_bias=-0.211m discont_indi=0
@@ -6408,21 +6408,21 @@ ST6 NID=6
 ST6 G22 L1 C/A        phase_bias=-0.507m discont_indi=2
 ST6 G22 L2 Z-tracking phase_bias=-0.656m discont_indi=2
 ST6 G25 L1 C/A        phase_bias= 1.454m discont_indi=3
-ST6 G25 L2 L2C(M+L)   phase_bias= 1.721m discont_indi=3
+ST6 G25 L2 CM+CL      phase_bias= 1.721m discont_indi=3
 ST6 G25 L2 Z-tracking phase_bias= 1.730m discont_indi=1
 ST6 G25 L5 I+Q        phase_bias= 1.859m discont_indi=3
 ST6 G26 L1 C/A        phase_bias= 0.420m discont_indi=1
-ST6 G26 L2 L2C(M+L)   phase_bias= 0.524m discont_indi=1
+ST6 G26 L2 CM+CL      phase_bias= 0.524m discont_indi=1
 ST6 G26 L2 Z-tracking phase_bias= 0.532m discont_indi=1
 ST6 G26 L5 I+Q        phase_bias= 0.602m discont_indi=1
 ST6 G29 L1 C/A        phase_bias= 0.405m discont_indi=1
-ST6 G29 L2 L2C(M+L)   phase_bias= 0.541m discont_indi=1
+ST6 G29 L2 CM+CL      phase_bias= 0.541m discont_indi=1
 ST6 G29 L2 Z-tracking phase_bias= 0.551m discont_indi=1
 ST6 G31 L1 C/A        phase_bias= 3.405m discont_indi=1
-ST6 G31 L2 L2C(M+L)   phase_bias= 4.373m discont_indi=1
+ST6 G31 L2 CM+CL      phase_bias= 4.373m discont_indi=1
 ST6 G31 L2 Z-tracking phase_bias= 4.382m discont_indi=3
 ST6 G32 L1 C/A        phase_bias=-0.230m discont_indi=1
-ST6 G32 L2 L2C(M+L)   phase_bias=-0.265m discont_indi=1
+ST6 G32 L2 CM+CL      phase_bias=-0.265m discont_indi=1
 ST6 G32 L2 Z-tracking phase_bias=-0.257m discont_indi=1
 ST6 G32 L5 I+Q        phase_bias=-0.375m discont_indi=1
 ST6 E01 E1 B+C        phase_bias= 0.755m discont_indi=0

@@ -1,20 +1,28 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # pksdr2has.py: Pocket SDR log to Galileo HAS E6B message
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2023 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
+#
+# References:
+# [1] Europea Union Agency for the Space Programme,
+#     Galileo High Accuracy Service Signal-in-Space Interface Control
+#     Document (HAS SIS ICD), Issue 1.0 May 2022.
 
+import argparse
 import sys
 import bitstring
 import galois
 import numpy as np
+import libcolor
+import libssr
 
 GF = galois.GF(256)
-g = np.array([
+g = np.array([  # Reed-Solomon generator matrix
 [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -269,97 +277,218 @@ g = np.array([
 [15,105,201,161,101,197,235,191,127,28,238,232,231,198,234,172,192,193,60,42,87,165,80,226,245,151,8,214,96,118,19,23],
 [84,157,205,255,217,251,101,194,230,208,26,232,23,201,46,29,123,221,11,53,196,102,220,130,2,70,240,1,178,74,188,195],
 [244,120,86,42,110,203,209,158,119,115,207,5,104,140,138,113,25,153,59,171,105,67,136,70,30,10,203,80,13,200,172,216],
-[116,64,52,174,54,126,16,194,162,33,33,157,176,197,225,12,59,55,253,228,148,47,179,185,24,138,253,20,142,55,172,88]])
+[116,64,52,174,54,126,16,194,162,33,33,157,176,197,225,12,59,55,253,228,148,47,179,185,24,138,253,20,142,55,172,88]
+])
 
-if __name__ == '__main__':
-    MAX_PAGES = 32
-    haspage = [bitstring.BitArray() for i in range(MAX_PAGES)]
-    hasindx = [bitstring.BitArray() for i in range(MAX_PAGES)]
-    t_HASS = ['Test', 'Operational', 'Researved', 'Don''t use']
+MAX_PAGES = 32
+T_HASS = ['Test', 'Operational', 'Researved', 'Don''t use']  # HAS status table
+
+class GalileoE6B():
     mid_prev = 0              # previous message id (MID)
-    ms_curr  = 0              # current message size
-    storing_has_pages = True  # allow decoding message with same id
-    line = True
-    while line:
-        line = sys.stdin.readline().strip()
-        if line[0:5] != '$CNAV':
-            continue
+    num_has_pages  = 0        # number of has pages of the message id
+    storing_has_pages = True  # allow storing has pages
+    haspage = [0b0 for i in range(MAX_PAGES)]
+    hasindx = [0b0 for i in range(MAX_PAGES)]
+
+    def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
+        self.fp_rtcm = fp_rtcm
+        self.fp_disp = fp_disp
+        self.t_level = t_level
+        self.msg_color = libcolor.Color(fp_disp, color)
+        self.stat = stat
+        self.ssr = libssr.Ssr(fp_disp, t_level, self.msg_color)
+
+    def __del__(self):
+        if self.stat:
+            self.ssr.show_cssr_stat()
+
+    def trace(self, level, *args):
+        if self.t_level < level:
+            return
+        for arg in args:
+            try:
+                print(arg, end='', file=self.fp_disp)
+            except (BrokenPipeError, IOError):
+                sys.exit()
+
+    def read_from_pocketsdr(self):
+        ''' returns True if E6B raw message is read '''
+        line = True
+        while line:
+            line = sys.stdin.readline().strip()
+            if not line:  # end of file
+                return False
+            if line[0:5] == '$CNAV':
+                break
         satid = line.split(',')[3]
         e6b   = line.split(',')[4]
-        print(f'E{int(satid):02d}', end=' ')
         rawb = bitstring.BitArray(bytes.fromhex(e6b))[14:-2-24]
-# discard 14 bit (researved), 2 bit (byte-align), and 24 bit (CRC)
-# HAS raw binary size is 448 bit
-        if rawb[0:24].hex == 'af3bc3':
-            print ('Dummy page (0xaf3bc3)')
-            continue
-# decode E6B header
+        # discards top 14 bit (researved)
+        # discards tail 2 bit (byte-align) and 24 bit (CRC)
+        # HAS raw binary (rawb) size is 448 bit
+        self.satid = satid
+        self.rawb  = rawb
+        return True
+
+    def ready_decoding_has(self):
+        ''' returns True if valid HAS message is ready '''
+        rawb = self.rawb
         pos = 0
-        hass = rawb[pos:pos+2].uint  ; pos += 2
-        pos += 2 # researved
-        mt   = rawb[pos:pos+2].uint  ; pos += 2
-        mid  = rawb[pos:pos+5].uint  ; pos += 5
-        ms   = rawb[pos:pos+5].uint+1; pos += 5
-        pid  = rawb[pos:pos+8].uint  ; pos += 8
-        if True:
-            print(f'HASS={t_HASS[hass]}({hass})', end=' ')
-            print(f'MT={mt}'                    , end=' ')
-            print(f'MID={mid:2d}'               , end=' ')
-            print(f'MS={ms:2d}'                 , end=' ')
-            print(f'PID={pid:3d}'               , end='' )
-        if mid != mid_prev:
-# new message id --- reset buffer and message pointer
-            print(f' -> A new page for MID={mid}', end='')
-            mid_prev = mid
-            ms_curr = 0
-            storing_has_pages = True
-# store the HAS page and its index (pid: page id)
-        haspage[ms_curr] = [x for x in rawb[pos:].tobytes()]
-        hasindx[ms_curr] = pid
-        if ms_curr < MAX_PAGES - 1:
-            ms_curr += 1
-# continue to store HAS pages
-        if ms_curr < ms:
-            print()
-            continue
-# we already have enough HAS pages related to the message id
-        if not storing_has_pages:
-            print(f' -> Enough pages for MID={mid}')
-            continue
-# start decodig the HAS message
-        print()
-        storing_has_pages = False
-        d = GF(g[np.array(hasindx[:ms])-1, :ms])
-        w = GF(haspage[:ms])
+        hass = rawb[pos:pos+2].uint  ; pos += 2  # HAS status
+        pos += 2                                 # researved
+        mt   = rawb[pos:pos+2].uint  ; pos += 2  # message type, should be 1
+        mid  = rawb[pos:pos+5].uint  ; pos += 5  # message id
+        ms   = rawb[pos:pos+5].uint+1; pos += 5  # message size
+        pid  = rawb[pos:pos+8].uint  ; pos += 8  # page id
+        disp_msg = self.msg_color.fg('green') + f'E{int(self.satid):02d}' + \
+                   self.msg_color.fg()
+        if self.rawb[0:24].hex == 'af3bc3':
+            disp_msg += self.msg_color.dec('dark')
+            disp_msg += ' Dummy page (0xaf3bc3)'
+            disp_msg += self.msg_color.dec()
+            print(disp_msg)
+            return False
+        disp_msg += self.msg_color.fg('yellow')
+        disp_msg += f' HASS={T_HASS[hass]}({hass})'
+        disp_msg += self.msg_color.fg()
+        disp_msg += f' MT={mt}'
+        disp_msg += f' MID={mid:2d}'
+        disp_msg += f' MS={ms:2d}'
+        disp_msg += f' PID={pid:3d}'
+        if mid != self.mid_prev:
+            # new message id --- reset buffer and message pointer
+            disp_msg += f' -> A new page for MID={mid}'
+            self.mid_prev = mid
+            self.num_has_pages = 0
+            self.storing_has_pages = True
+        # store the HAS page and its index (pid: page id)
+        self.haspage[self.num_has_pages] = [x for x in rawb[pos:].tobytes()]
+        self.hasindx[self.num_has_pages] = pid
+        self.mt  = mt
+        self.mid = mid
+        self.ms  = ms
+        if self.num_has_pages < MAX_PAGES - 1:
+            self.num_has_pages += 1
+        if self.num_has_pages < ms:
+            # continue to store HAS pages
+            print(disp_msg)
+            return False
+        if not self.storing_has_pages:
+            # we already have enough HAS pages related to the message id
+            disp_msg += f' -> Enough pages for MID={mid}'
+            print(disp_msg)
+            return False
+        print(disp_msg)
+        self.storing_has_pages = False  # we don't need additional HAS pages
+        return True
+
+    def obtain_has_message(self):
+        ''' returns HAS message '''
+        d = GF(g[np.array(self.hasindx[:self.ms])-1, :self.ms])
+        w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
-        msg = bitstring.BitArray(m.tobytes())
-        print(f'------ HAS decode with the pages of MID={mid} MS={ms} ------')
-        # print([x for x in m.tobytes()])
-        print(msg)
-# MT1 header
-        if mt != 1:
-            continue  # only MT=1 message is defined for HAS
+        has_msg = bitstring.BitArray(m.tobytes())
+        self.trace(2, f'------ HAS decode with the pages of MID={e6b.mid} MS={e6b.ms} ------\n')
+        self.trace(2, has_msg, '\n------\n')
+        return has_msg
+
+    def decode_has_message(self, has_msg):
+        if self.mt != 1:
+            return  # only MT=1 message is defined for HAS
+        pos = self.decode_has_header(has_msg)
+        if self.f_mask:
+            pos = self.ssr.decode_has_mt1_mask(has_msg, pos)
+        if self.f_orbit:
+            pos = self.ssr.decode_has_mt1_orbit(has_msg, pos)
+        if self.f_ckful:
+            pos = self.ssr.decode_has_mt1_ckful(has_msg, pos)
+        if self.f_cksub:
+            pos = self.ssr.decode_has_mt1_cksub(has_msg, pos)
+        if self.f_cbias:
+            pos = self.ssr.decode_has_mt1_cbias(has_msg, pos)
+        if self.f_pbias:
+            pos = self.ssr.decode_has_mt1_pbias(has_msg, pos)
+        self.trace(2, '------ padding bits ------\n')
+        self.trace(2, has_msg[pos:].bin)
+        self.trace(2, '\n------\n')
+
+    def decode_has_header(self, has_msg):
+        ''' returns new HAS message position '''
         pos = 0
-        toh     = msg[pos:pos+12].uint; pos += 12
-        f_mask  = msg[pos:pos+1]; pos += 1
-        f_orbit = msg[pos:pos+1]; pos += 1
-        f_ckful = msg[pos:pos+1]; pos += 1
-        f_cksub = msg[pos:pos+1]; pos += 1
-        f_cbias = msg[pos:pos+1]; pos += 1
-        f_pbias = msg[pos:pos+1]; pos += 1
+        self.toh     = has_msg[pos:pos+12].uint; pos += 12
+        self.f_mask  = has_msg[pos:pos+1]; pos += 1
+        self.f_orbit = has_msg[pos:pos+1]; pos += 1
+        self.f_ckful = has_msg[pos:pos+1]; pos += 1
+        self.f_cksub = has_msg[pos:pos+1]; pos += 1
+        self.f_cbias = has_msg[pos:pos+1]; pos += 1
+        self.f_pbias = has_msg[pos:pos+1]; pos += 1
         pos += 4 # researved
-        maskid  = msg[pos:pos+5].uint; pos += 5
-        iodset  = msg[pos:pos+5].uint; pos += 5
-        if True:
-            print(f'Time of hour TOH: {toh} s')
-            print(f'Mask            : {"on" if f_mask else "off"}')
-            print(f'Orbit correction: {"on" if f_orbit else "off"}')
-            print(f'Clock full-set  : {"on" if f_ckful else "off"}')
-            print(f'Clock subset    : {"on" if f_cksub else "off"}')
-            print(f'Code bias       : {"on" if f_cbias else "off"}')
-            print(f'Phase bias      : {"on" if f_pbias else "off"}')
-            print(f'Mask ID         : {maskid}')
-            print(f'IOD Set ID      : {iodset}')
+        self.maskid  = has_msg[pos:pos+5].uint; pos += 5
+        self.iodset  = has_msg[pos:pos+5].uint; pos += 5
+        disp_msg = ''
+        disp_msg += f'Time of hour TOH: {self.toh} s\n'
+        disp_msg += f'Mask            : {"on" if self.f_mask  else "off"}\n'
+        disp_msg += f'Orbit correction: {"on" if self.f_orbit else "off"}\n'
+        disp_msg += f'Clock full-set  : {"on" if self.f_ckful else "off"}\n'
+        disp_msg += f'Clock subset    : {"on" if self.f_cksub else "off"}\n'
+        disp_msg += f'Code bias       : {"on" if self.f_cbias else "off"}\n'
+        disp_msg += f'Phase bias      : {"on" if self.f_pbias else "off"}\n'
+        disp_msg += f'Mask ID         : {self.maskid}\n'
+        disp_msg += f'IOD Set ID      : {self.iodset}'
+        print(disp_msg)
+        return pos
+
+def icd_test():
+    '''self test described in [1] attached file,
+    Galileo-HAS-SIS-ICD_1.0_Annex_D_HAS_Message_Decoding_Example.txt
+    To execute this ICD test,
+    python
+    >>> import pksdr2has
+    >>> pksdr2has.icd_test()
+    '''
+    e6b = GalileoE6B(None, sys.stdout, 2, True, False)
+    e6b.mt = 1
+    has_msg = bitstring.BitArray('0x000cc00b20ffdfffff008100f7ffff7df55ffdfe0beee8a79a41241000a6000a01a01280400200200113fbc041febbf00080080042ff6822fea21807c193f7598035fd7f6a2f00080080016ff90287e7967f702580587fee217a10c9dfcc0e7f651df577d981603ffe4147f903ff9df7805c15ff9fdcff8008004004000a002407ff9d7c07df7ffe2b5fdcee305519011fd7fd24479f00500e8e7edc31401c43fdb02304007fe5030ff1ac40020020000200100100077fec06e00141feb02afcb2c400200200043ff5f6c022097f7c0e3f4412ff4fe1ff8825fe8ffcff0048081fe3fda097f4c04bf3812fe5ff27f0025fc6ff5ff40480edfa601c08ffe8023fcc0f00b00b80a825fdf00fff704bf71ffffdc097fb400c00812fe781a7f8025fe602203204801001a01607ffd006404012fec00e000825fc7fe500c04bff405605c08804004403012fe27feffbf0bb23dc94458ef0420afe1fa61544abda77c130444320a1104303d3f76f65fbbee7ccf5fe6bddf8bfcff479b7a5f1dc3bf3fce1243b44e90d1784ac350b2f29f2bd607b1a1e7bb207519201003807069f8feb7cf00c0d42d85b061f33d2fa7fa00fc3506a02015c4b09409bf07cbf950400641582a04fc8f40e88d2dd9f73efbdc40080400407c198588ad0e9f43d67aef9009c220420cdefbc9f90f920f0338660401a45a0b411a0841c8380c206c1882d0121243e87d02bf27d1fa2fc6184518a50dcb000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    e6b.decode_has_message(has_msg)
+    print()
+    has_msg = bitstring.BitArray('0x0072000b58afe4002d03000acd5826ae3000aaa5532b15581aaa572aa175b8800516e941454a28550ebd5556aa8c002001546a92c002c08020fd6ff200bbfe4fe2fec41020210207ff7f85ff8007002bfe202d000ffbc052044febaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    e6b.decode_has_message(has_msg)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='Pocket SDR E6B log to HAS message converter')
+    parser.add_argument(
+        '-c', '--color', action='store_true',
+        help='apply ANSI color escape sequences even for non-terminal.')
+    parser.add_argument(
+        '-m', '--message', action='store_true',
+        help='show display messages to stderr')
+    parser.add_argument(
+        '-s', '--statistics', action='store_true',
+        help='show HAS statistics in display messages.')
+    parser.add_argument(
+        '-t', '--trace', type=int, default=0,
+        help='show display verbosely: 1=detail, 2=bit image.')
+    args = parser.parse_args()
+    fp_rtcm = None
+    fp_disp = sys.stdout
+    t_level = 0
+    force_ansi_color = False
+    stat = False
+    if 0 < args.trace:
+        t_level = args.trace
+    if args.message:  # show HAS message to stderr
+        fp_disp = sys.stderr
+    if args.statistics:  # show HAS statistics
+        stat = True
+    if args.color:
+        force_ansi_color = True
+    e6b = GalileoE6B(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
+    while e6b.read_from_pocketsdr():
+        if not e6b.ready_decoding_has():  # we continue reading HAS pages
+            continue
+        has_msg = e6b.obtain_has_message()
+        e6b.decode_has_message(has_msg)
 
 # EOF
 

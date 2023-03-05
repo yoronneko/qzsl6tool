@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# qzsl62rtcm.py: quasi-zenith satellite (QZS) L6 message to RTCM message converter
+# pksdr2qzsl6.py: Pocket SDR log to quasi-zenith satellite (QZS) L6 message
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022 Satoshi Takahashi, all rights reserved.

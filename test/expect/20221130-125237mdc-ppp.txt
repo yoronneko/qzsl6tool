@@ -7,32 +7,32 @@ QZNMA dump: 11110000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
-ST1 G01 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G03 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G04 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G06 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G08 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G09 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G10 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G11 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G13 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G14 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G15 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G16 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G17 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G18 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G19 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G21 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G22 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G23 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G25 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G27 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G30 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G31 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G32 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
+ST1 G01 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G03 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G04 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G06 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G08 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G09 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G10 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G11 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G12 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G13 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G14 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G15 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G16 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G17 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G18 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G19 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G21 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G22 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G23 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G25 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G26 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G27 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G29 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G30 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G31 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G32 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 R01 G1 C/A G1 P G2 C/A G2 P
 ST1 R02 G1 C/A G1 P G2 C/A G2 P
 ST1 R03 G1 C/A G1 P G2 C/A G2 P
@@ -71,68 +71,68 @@ ST1 J02 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
 ST1 J03 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
-ST2 G01 IODE=  52 d_radial= 0.3m d_along= 1.1m d_cross= 1.1m
-ST2 G03 IODE=  66 d_radial= 0.1m d_along= 0.4m d_cross= 0.4m
-ST2 G04 IODE= 235 d_radial= 1.0m d_along= 4.1m d_cross= 4.1m
-ST2 G06 IODE=  13 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 G08 IODE=  92 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G09 IODE=   2 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G10 IODE=  81 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G11 IODE= 111 d_radial= 0.8m d_along= 3.1m d_cross= 3.1m
-ST2 G12 IODE=  14 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G13 IODE=  79 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 G14 IODE=  25 d_radial= 1.0m d_along= 3.9m d_cross= 3.9m
-ST2 G15 IODE=  89 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 G16 IODE=  32 d_radial= 0.3m d_along= 1.1m d_cross= 1.1m
-ST2 G17 IODE=  81 d_radial=-0.1m d_along=-0.5m d_cross=-0.5m
-ST2 G18 IODE=  94 d_radial= 0.9m d_along= 3.7m d_cross= 3.7m
-ST2 G19 IODE=  61 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G21 IODE=  55 d_radial= 0.3m d_along= 1.3m d_cross= 1.3m
-ST2 G22 IODE=   7 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G23 IODE= 146 d_radial= 1.0m d_along= 4.1m d_cross= 4.1m
-ST2 G25 IODE=  59 d_radial=-0.3m d_along=-1.4m d_cross=-1.4m
-ST2 G26 IODE=  33 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 G27 IODE=  53 d_radial= 0.2m d_along= 0.6m d_cross= 0.6m
-ST2 G29 IODE=  28 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 G30 IODE=  12 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G31 IODE=  14 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 G32 IODE=  52 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 R01 IODE=  63 d_radial= 0.3m d_along= 1.3m d_cross= 1.3m
-ST2 R02 IODE=  63 d_radial= 0.5m d_along= 2.1m d_cross= 2.1m
-ST2 R03 IODE=  63 d_radial= 0.9m d_along= 3.6m d_cross= 3.6m
-ST2 R04 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R05 IODE=  63 d_radial= 0.3m d_along= 1.2m d_cross= 1.2m
-ST2 R07 IODE=  63 d_radial= 0.2m d_along= 1.0m d_cross= 1.0m
-ST2 R08 IODE=  63 d_radial= 0.5m d_along= 1.8m d_cross= 1.8m
-ST2 R09 IODE=  63 d_radial= 0.4m d_along= 1.7m d_cross= 1.7m
-ST2 R11 IODE=  63 d_radial= 1.3m d_along= 5.1m d_cross= 5.1m
-ST2 R12 IODE=  63 d_radial=-0.2m d_along=-0.8m d_cross=-0.8m
-ST2 R13 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R14 IODE=  63 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 R15 IODE=  63 d_radial= 0.3m d_along= 1.4m d_cross= 1.4m
-ST2 R17 IODE=  63 d_radial= 0.9m d_along= 3.6m d_cross= 3.6m
-ST2 R18 IODE=  63 d_radial= 0.5m d_along= 2.2m d_cross= 2.2m
-ST2 R19 IODE=  63 d_radial= 1.0m d_along= 3.8m d_cross= 3.8m
-ST2 R21 IODE=  63 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 R24 IODE=  63 d_radial= 0.5m d_along= 2.2m d_cross= 2.2m
-ST2 E02 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E03 IODE= 124 d_radial= 0.0m d_along= 0.0m d_cross= 0.0m
-ST2 E04 IODE= 124 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 E05 IODE= 124 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 E07 IODE= 124 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 E09 IODE= 122 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 E13 IODE= 122 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E15 IODE= 124 d_radial= 0.4m d_along= 1.4m d_cross= 1.4m
-ST2 E19 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E21 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E24 IODE= 120 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E25 IODE= 118 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E27 IODE= 119 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 E30 IODE= 124 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 E33 IODE= 122 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 E36 IODE= 124 d_radial= 0.1m d_along= 0.6m d_cross= 0.6m
-ST2 J02 IODE= 113 d_radial=-1.8m d_along=-7.1m d_cross=-7.1m
-ST2 J03 IODE= 113 d_radial=-0.6m d_along=-2.3m d_cross=-2.3m
+ST2 G01 IODE=  52 d_radial=  0.3m d_along= -1.1m d_cross=  1.0m
+ST2 G03 IODE=  66 d_radial=  0.1m d_along= -0.6m d_cross= -0.4m
+ST2 G04 IODE= 235 d_radial=  1.0m d_along= -0.4m d_cross=  0.3m
+ST2 G06 IODE=  13 d_radial= -0.0m d_along= -0.5m d_cross= -0.1m
+ST2 G08 IODE=  92 d_radial=  0.1m d_along= -0.3m d_cross=  0.1m
+ST2 G09 IODE=   2 d_radial= -0.1m d_along=  0.9m d_cross=  0.6m
+ST2 G10 IODE=  81 d_radial=  0.1m d_along=  1.1m d_cross=  0.4m
+ST2 G11 IODE= 111 d_radial=  0.8m d_along=  1.0m d_cross=  0.5m
+ST2 G12 IODE=  14 d_radial=  0.0m d_along=  0.2m d_cross= -0.4m
+ST2 G13 IODE=  79 d_radial=  0.1m d_along=  1.2m d_cross= -0.1m
+ST2 G14 IODE=  25 d_radial=  1.0m d_along= -0.1m d_cross=  0.4m
+ST2 G15 IODE=  89 d_radial= -0.1m d_along=  2.3m d_cross=  0.5m
+ST2 G16 IODE=  32 d_radial=  0.3m d_along= -0.7m d_cross= -0.4m
+ST2 G17 IODE=  81 d_radial= -0.1m d_along=  0.1m d_cross= -0.2m
+ST2 G18 IODE=  94 d_radial=  0.9m d_along= -0.9m d_cross= -0.2m
+ST2 G19 IODE=  61 d_radial= -0.1m d_along= -0.9m d_cross=  0.7m
+ST2 G21 IODE=  55 d_radial=  0.3m d_along= -2.3m d_cross=  1.0m
+ST2 G22 IODE=   7 d_radial= -0.0m d_along=  0.7m d_cross= -0.5m
+ST2 G23 IODE= 146 d_radial=  1.0m d_along=  0.1m d_cross=  1.0m
+ST2 G25 IODE=  59 d_radial= -0.3m d_along= -0.5m d_cross= -0.3m
+ST2 G26 IODE=  33 d_radial=  0.1m d_along=  0.1m d_cross= -0.5m
+ST2 G27 IODE=  53 d_radial=  0.2m d_along=  0.2m d_cross= -0.3m
+ST2 G29 IODE=  28 d_radial=  0.1m d_along= -0.4m d_cross= -0.5m
+ST2 G30 IODE=  12 d_radial=  0.0m d_along= -0.3m d_cross= -0.2m
+ST2 G31 IODE=  14 d_radial= -0.0m d_along=  0.3m d_cross=  0.1m
+ST2 G32 IODE=  52 d_radial=  0.1m d_along=  0.2m d_cross=  0.5m
+ST2 R01 IODE=  63 d_radial=  0.3m d_along= -0.9m d_cross= -1.1m
+ST2 R02 IODE=  63 d_radial=  0.5m d_along=  0.9m d_cross= -1.1m
+ST2 R03 IODE=  63 d_radial=  0.9m d_along= -2.0m d_cross= -0.7m
+ST2 R04 IODE=  63 d_radial=  0.5m d_along= -1.6m d_cross= -0.4m
+ST2 R05 IODE=  63 d_radial=  0.3m d_along= -1.7m d_cross= -0.1m
+ST2 R07 IODE=  63 d_radial=  0.2m d_along=  1.0m d_cross=  1.0m
+ST2 R08 IODE=  63 d_radial=  0.5m d_along= -0.5m d_cross= -0.9m
+ST2 R09 IODE=  63 d_radial=  0.4m d_along= -8.6m d_cross=  2.8m
+ST2 R11 IODE=  63 d_radial=  1.3m d_along= -3.8m d_cross= -2.3m
+ST2 R12 IODE=  63 d_radial= -0.2m d_along=  4.1m d_cross=  2.0m
+ST2 R13 IODE=  63 d_radial=  0.5m d_along=  0.1m d_cross=  0.3m
+ST2 R14 IODE=  63 d_radial= -0.0m d_along= -3.3m d_cross=  1.2m
+ST2 R15 IODE=  63 d_radial=  0.3m d_along= -5.4m d_cross=  3.0m
+ST2 R17 IODE=  63 d_radial=  0.9m d_along= -1.0m d_cross=  0.7m
+ST2 R18 IODE=  63 d_radial=  0.5m d_along= -1.3m d_cross= -0.4m
+ST2 R19 IODE=  63 d_radial=  1.0m d_along= -2.6m d_cross= -2.2m
+ST2 R21 IODE=  63 d_radial=  0.1m d_along=  0.6m d_cross=  0.9m
+ST2 R24 IODE=  63 d_radial=  0.5m d_along=  1.5m d_cross= -2.5m
+ST2 E02 IODE= 124 d_radial=  0.0m d_along=  0.4m d_cross=  0.1m
+ST2 E03 IODE= 124 d_radial=  0.0m d_along=  0.1m d_cross=  0.1m
+ST2 E04 IODE= 124 d_radial= -0.1m d_along=  0.2m d_cross=  0.2m
+ST2 E05 IODE= 124 d_radial=  0.0m d_along= -0.1m d_cross= -0.0m
+ST2 E07 IODE= 124 d_radial= -0.1m d_along= -0.1m d_cross=  0.2m
+ST2 E09 IODE= 122 d_radial=  0.1m d_along= -0.0m d_cross= -0.0m
+ST2 E13 IODE= 122 d_radial= -0.0m d_along=  0.1m d_cross= -0.2m
+ST2 E15 IODE= 124 d_radial=  0.4m d_along= -0.4m d_cross=  0.0m
+ST2 E19 IODE= 124 d_radial=  0.0m d_along= -0.2m d_cross=  0.0m
+ST2 E21 IODE= 124 d_radial=  0.0m d_along=  0.2m d_cross=  0.1m
+ST2 E24 IODE= 120 d_radial= -0.1m d_along=  0.1m d_cross=  0.0m
+ST2 E25 IODE= 118 d_radial= -0.0m d_along=  0.4m d_cross= -0.0m
+ST2 E27 IODE= 119 d_radial=  0.1m d_along=  0.2m d_cross=  0.1m
+ST2 E30 IODE= 124 d_radial= -0.0m d_along=  0.3m d_cross=  0.0m
+ST2 E33 IODE= 122 d_radial=  0.1m d_along= -0.3m d_cross= -0.0m
+ST2 E36 IODE= 124 d_radial=  0.1m d_along= -0.0m d_cross= -0.3m
+ST2 J02 IODE= 113 d_radial= -1.8m d_along=  0.6m d_cross=  0.9m
+ST2 J03 IODE= 113 d_radial= -0.6m d_along=  0.8m d_cross=  0.2m
 ST3 G01 d_clock= 0.1m
 ST3 G03 d_clock= 1.5m
 ST3 G04 d_clock=-0.3m
@@ -342,241 +342,241 @@ CSSR null data 1695 bits
 CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 (Clk/Eph LNAV) (null)
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 (Clk/Eph LNAV) ST4...
-ST4 G01 L1 C/A        code_bias=-1.1m
-ST4 G01 L1 Z-tracking code_bias=-1.4m
-ST4 G01 L2 L2C(M+L)   code_bias=-1.4m
-ST4 G01 L2 Z-tracking code_bias=-2.3m
-ST4 G01 L5 I+Q        code_bias=-1.4m
-ST4 G03 L1 C/A        code_bias=-0.6m
-ST4 G03 L1 Z-tracking code_bias=-0.6m
-ST4 G03 L2 L2C(M+L)   code_bias=-0.6m
-ST4 G03 L2 Z-tracking code_bias=-0.9m
-ST4 G03 L5 I+Q        code_bias=-0.6m
-ST4 G04 L1 C/A        code_bias= 1.4m
-ST4 G04 L1 Z-tracking code_bias= 1.4m
-ST4 G04 L1 L1C(D+P)   code_bias= 1.4m
-ST4 G04 L2 L2C(M+L)   code_bias= 1.4m
-ST4 G04 L2 Z-tracking code_bias= 2.3m
-ST4 G04 L5 I+Q        code_bias= 1.4m
-ST4 G06 L1 C/A        code_bias=-1.1m
-ST4 G06 L1 Z-tracking code_bias=-1.1m
-ST4 G06 L2 L2C(M+L)   code_bias=-1.1m
-ST4 G06 L2 Z-tracking code_bias=-1.8m
-ST4 G06 L5 I+Q        code_bias=-1.1m
-ST4 G08 L1 C/A        code_bias=-1.5m
-ST4 G08 L1 Z-tracking code_bias=-1.5m
-ST4 G08 L2 L2C(M+L)   code_bias=-1.5m
-ST4 G08 L2 Z-tracking code_bias=-2.5m
-ST4 G08 L5 I+Q        code_bias=-1.5m
-ST4 G09 L1 C/A        code_bias=-0.3m
-ST4 G09 L1 Z-tracking code_bias=-0.3m
-ST4 G09 L2 L2C(M+L)   code_bias=-0.3m
-ST4 G09 L2 Z-tracking code_bias=-0.5m
-ST4 G09 L5 I+Q        code_bias=-0.3m
-ST4 G10 L1 C/A        code_bias=-0.7m
-ST4 G10 L1 Z-tracking code_bias=-0.7m
-ST4 G10 L2 L2C(M+L)   code_bias=-0.7m
-ST4 G10 L2 Z-tracking code_bias=-1.1m
-ST4 G10 L5 I+Q        code_bias=-0.7m
-ST4 G11 L1 C/A        code_bias= 2.7m
-ST4 G11 L1 Z-tracking code_bias= 2.7m
-ST4 G11 L2 L2C(M+L)   code_bias= 2.7m
-ST4 G11 L2 Z-tracking code_bias= 4.4m
-ST4 G11 L5 I+Q        code_bias= 2.7m
-ST4 G12 L1 C/A        code_bias= 3.8m
-ST4 G12 L1 Z-tracking code_bias= 3.8m
-ST4 G12 L2 L2C(M+L)   code_bias= 3.8m
-ST4 G12 L2 Z-tracking code_bias= 6.2m
-ST4 G13 L1 C/A        code_bias= 3.5m
-ST4 G13 L1 Z-tracking code_bias= 3.5m
-ST4 G13 L2 L2C(M+L)   code_bias= 3.5m
-ST4 G13 L2 Z-tracking code_bias= 5.8m
-ST4 G14 L1 C/A        code_bias= 2.4m
-ST4 G14 L1 Z-tracking code_bias= 2.4m
-ST4 G14 L1 L1C(D+P)   code_bias= 2.4m
-ST4 G14 L2 L2C(M+L)   code_bias= 2.4m
-ST4 G14 L2 Z-tracking code_bias= 3.9m
-ST4 G14 L5 I+Q        code_bias= 2.4m
-ST4 G15 L1 C/A        code_bias= 3.2m
-ST4 G15 L1 Z-tracking code_bias= 3.2m
-ST4 G15 L2 L2C(M+L)   code_bias= 3.2m
-ST4 G15 L2 Z-tracking code_bias= 5.3m
-ST4 G16 L1 C/A        code_bias= 3.1m
-ST4 G16 L1 Z-tracking code_bias= 3.1m
-ST4 G16 L2 L2C(M+L)   code_bias= 3.1m
-ST4 G16 L2 Z-tracking code_bias= 5.1m
-ST4 G17 L1 C/A        code_bias= 3.3m
-ST4 G17 L1 Z-tracking code_bias= 3.3m
-ST4 G17 L2 L2C(M+L)   code_bias= 3.3m
-ST4 G17 L2 Z-tracking code_bias= 5.5m
-ST4 G18 L1 C/A        code_bias= 2.5m
-ST4 G18 L1 Z-tracking code_bias= 2.5m
-ST4 G18 L2 L2C(M+L)   code_bias= 2.5m
-ST4 G18 L2 Z-tracking code_bias= 4.1m
-ST4 G18 L5 I+Q        code_bias= 2.5m
-ST4 G19 L1 C/A        code_bias= 4.6m
-ST4 G19 L1 Z-tracking code_bias= 4.6m
-ST4 G19 L2 L2C(M+L)   code_bias= 4.6m
-ST4 G19 L2 Z-tracking code_bias= 7.6m
-ST4 G21 L1 C/A        code_bias= 3.1m
-ST4 G21 L1 Z-tracking code_bias= 3.1m
-ST4 G21 L2 L2C(M+L)   code_bias= 3.1m
-ST4 G21 L2 Z-tracking code_bias= 5.1m
-ST4 G22 L1 C/A        code_bias= 2.5m
-ST4 G22 L1 Z-tracking code_bias= 2.5m
-ST4 G22 L2 L2C(M+L)   code_bias= 2.5m
-ST4 G22 L2 Z-tracking code_bias= 4.1m
-ST4 G23 L1 C/A        code_bias= 2.5m
-ST4 G23 L1 Z-tracking code_bias= 2.5m
-ST4 G23 L1 L1C(D+P)   code_bias= 2.5m
-ST4 G23 L2 L2C(M+L)   code_bias= 2.5m
-ST4 G23 L2 Z-tracking code_bias= 4.1m
-ST4 G23 L5 I+Q        code_bias= 2.5m
-ST4 G25 L1 C/A        code_bias=-1.7m
-ST4 G25 L1 Z-tracking code_bias=-1.7m
-ST4 G25 L2 L2C(M+L)   code_bias=-1.7m
-ST4 G25 L2 Z-tracking code_bias=-2.8m
-ST4 G25 L5 I+Q        code_bias=-1.7m
-ST4 G26 L1 C/A        code_bias=-2.1m
-ST4 G26 L1 Z-tracking code_bias=-2.1m
-ST4 G26 L2 L2C(M+L)   code_bias=-2.1m
-ST4 G26 L2 Z-tracking code_bias=-3.5m
-ST4 G26 L5 I+Q        code_bias=-2.1m
-ST4 G27 L1 C/A        code_bias=-0.4m
-ST4 G27 L1 Z-tracking code_bias=-0.4m
-ST4 G27 L2 L2C(M+L)   code_bias=-0.4m
-ST4 G27 L2 Z-tracking code_bias=-0.7m
-ST4 G27 L5 I+Q        code_bias=-0.4m
-ST4 G29 L1 C/A        code_bias= 3.1m
-ST4 G29 L1 Z-tracking code_bias= 3.1m
-ST4 G29 L2 L2C(M+L)   code_bias= 3.1m
-ST4 G29 L2 Z-tracking code_bias= 5.1m
-ST4 G30 L1 C/A        code_bias=-1.1m
-ST4 G30 L1 Z-tracking code_bias=-1.1m
-ST4 G30 L2 L2C(M+L)   code_bias=-1.1m
-ST4 G30 L2 Z-tracking code_bias=-1.8m
-ST4 G30 L5 I+Q        code_bias=-1.1m
-ST4 G31 L1 C/A        code_bias= 4.1m
-ST4 G31 L1 Z-tracking code_bias= 4.1m
-ST4 G31 L2 L2C(M+L)   code_bias= 4.1m
-ST4 G31 L2 Z-tracking code_bias= 6.7m
-ST4 G32 L1 C/A        code_bias=-0.1m
-ST4 G32 L1 Z-tracking code_bias=-0.1m
-ST4 G32 L2 L2C(M+L)   code_bias=-0.1m
-ST4 G32 L2 Z-tracking code_bias=-0.2m
-ST4 G32 L5 I+Q        code_bias=-0.1m
-ST4 R01 G1 C/A        code_bias= 0.0m
-ST4 R01 G1 P          code_bias= 0.0m
-ST4 R01 G2 C/A        code_bias= 0.0m
-ST4 R01 G2 P          code_bias= 0.0m
-ST4 R02 G1 C/A        code_bias= 0.0m
-ST4 R02 G1 P          code_bias= 0.0m
-ST4 R02 G2 C/A        code_bias= 0.0m
-ST4 R02 G2 P          code_bias= 0.0m
-ST4 R03 G1 C/A        code_bias= 0.0m
-ST4 R03 G1 P          code_bias= 0.0m
-ST4 R03 G2 C/A        code_bias= 0.0m
-ST4 R03 G2 P          code_bias= 0.0m
-ST4 R04 G1 C/A        code_bias= 0.0m
-ST4 R04 G1 P          code_bias= 0.0m
-ST4 R04 G2 C/A        code_bias= 0.0m
-ST4 R04 G2 P          code_bias= 0.0m
-ST4 R05 G1 C/A        code_bias= 0.0m
-ST4 R05 G1 P          code_bias= 0.0m
-ST4 R05 G2 C/A        code_bias= 0.0m
-ST4 R05 G2 P          code_bias= 0.0m
-ST4 R07 G1 C/A        code_bias= 0.0m
-ST4 R07 G1 P          code_bias= 0.0m
-ST4 R07 G2 C/A        code_bias= 0.0m
-ST4 R07 G2 P          code_bias= 0.0m
-ST4 R08 G1 C/A        code_bias= 0.0m
-ST4 R08 G1 P          code_bias= 0.0m
-ST4 R08 G2 C/A        code_bias= 0.0m
-ST4 R08 G2 P          code_bias= 0.0m
-ST4 R09 G1 C/A        code_bias= 0.0m
-ST4 R09 G1 P          code_bias= 0.0m
-ST4 R09 G2 C/A        code_bias= 0.0m
-ST4 R09 G2 P          code_bias= 0.0m
-ST4 R11 G1 C/A        code_bias= 0.0m
-ST4 R11 G1 P          code_bias= 0.0m
-ST4 R11 G2 C/A        code_bias= 0.0m
-ST4 R11 G2 P          code_bias= 0.0m
-ST4 R12 G1 C/A        code_bias= 0.0m
-ST4 R12 G1 P          code_bias= 0.0m
-ST4 R12 G2 C/A        code_bias= 0.0m
-ST4 R12 G2 P          code_bias= 0.0m
-ST4 R13 G1 C/A        code_bias= 0.0m
-ST4 R13 G1 P          code_bias= 0.0m
-ST4 R13 G2 C/A        code_bias= 0.0m
-ST4 R13 G2 P          code_bias= 0.0m
-ST4 R14 G1 C/A        code_bias= 0.0m
-ST4 R14 G1 P          code_bias= 0.0m
-ST4 R14 G2 C/A        code_bias= 0.0m
-ST4 R14 G2 P          code_bias= 0.0m
-ST4 R15 G1 C/A        code_bias= 0.0m
-ST4 R15 G1 P          code_bias= 0.0m
-ST4 R15 G2 C/A        code_bias= 0.0m
-ST4 R15 G2 P          code_bias= 0.0m
-ST4 R17 G1 C/A        code_bias= 0.0m
-ST4 R17 G1 P          code_bias= 0.0m
-ST4 R17 G2 C/A        code_bias= 0.0m
-ST4 R17 G2 P          code_bias= 0.0m
-ST4 R18 G1 C/A        code_bias= 0.0m
-ST4 R18 G1 P          code_bias= 0.0m
-ST4 R18 G2 C/A        code_bias= 0.0m
-ST4 R18 G2 P          code_bias= 0.0m
-ST4 R19 G1 C/A        code_bias= 0.0m
-ST4 R19 G1 P          code_bias= 0.0m
-ST4 R19 G2 C/A        code_bias= 0.0m
-ST4 R19 G2 P          code_bias= 0.0m
-ST4 R21 G1 C/A        code_bias= 0.0m
-ST4 R21 G1 P          code_bias= 0.0m
-ST4 R21 G2 C/A        code_bias= 0.0m
-ST4 R21 G2 P          code_bias= 0.0m
-ST4 R24 G1 C/A        code_bias= 0.0m
-ST4 R24 G1 P          code_bias= 0.0m
-ST4 R24 G2 C/A        code_bias= 0.0m
-ST4 R24 G2 P          code_bias= 0.0m
-ST4 E02 E1 B+C        code_bias= 0.4m
-ST4 E02 E5a I+Q       code_bias= 0.8m
-ST4 E03 E1 B+C        code_bias=-0.9m
-ST4 E03 E5a I+Q       code_bias=-1.6m
-ST4 E04 E1 B+C        code_bias= 0.9m
-ST4 E04 E5a I+Q       code_bias= 1.6m
-ST4 E05 E1 B+C        code_bias=-1.0m
-ST4 E05 E5a I+Q       code_bias=-1.9m
-ST4 E07 E1 B+C        code_bias=-1.7m
-ST4 E07 E5a I+Q       code_bias=-3.0m
-ST4 E09 E1 B+C        code_bias=-0.6m
-ST4 E09 E5a I+Q       code_bias=-1.0m
-ST4 E13 E1 B+C        code_bias=-0.1m
-ST4 E13 E5a I+Q       code_bias=-0.3m
-ST4 E15 E1 B+C        code_bias=-1.8m
-ST4 E15 E5a I+Q       code_bias=-3.1m
-ST4 E19 E1 B+C        code_bias= 1.1m
-ST4 E19 E5a I+Q       code_bias= 2.0m
-ST4 E21 E1 B+C        code_bias=-1.0m
-ST4 E21 E5a I+Q       code_bias=-1.8m
-ST4 E24 E1 B+C        code_bias= 0.9m
-ST4 E24 E5a I+Q       code_bias= 1.6m
-ST4 E25 E1 B+C        code_bias=-1.0m
-ST4 E25 E5a I+Q       code_bias=-1.9m
-ST4 E27 E1 B+C        code_bias=-0.8m
-ST4 E27 E5a I+Q       code_bias=-1.4m
-ST4 E30 E1 B+C        code_bias=-0.6m
-ST4 E30 E5a I+Q       code_bias=-1.0m
-ST4 E33 E1 B+C        code_bias= 0.9m
-ST4 E33 E5a I+Q       code_bias= 1.6m
-ST4 E36 E1 B+C        code_bias=-1.7m
-ST4 E36 E5a I+Q       code_bias=-3.0m
-ST4 J02 L1 C/A        code_bias=-0.1m
-ST4 J02 L1 L1C(D+P)   code_bias=-0.1m
-ST4 J02 L2 L2C(M+L)   code_bias=-0.2m
-ST4 J02 L5 I+Q        code_bias=-0.1m
-ST4 J03 L1 C/A        code_bias= 0.1m
-ST4 J03 L1 L1C(D+P)   code_bias= 0.1m
-ST4 J03 L2 L2C(M+L)   code_bias= 0.2m
-ST4 J03 L5 I+Q        code_bias= 0.1m
+ST4 G01 L1 C/A        code_bias=-1.10m
+ST4 G01 L1 Z-tracking code_bias=-1.40m
+ST4 G01 L2 CM+CL      code_bias=-1.40m
+ST4 G01 L2 Z-tracking code_bias=-2.30m
+ST4 G01 L5 I+Q        code_bias=-1.40m
+ST4 G03 L1 C/A        code_bias=-0.56m
+ST4 G03 L1 Z-tracking code_bias=-0.56m
+ST4 G03 L2 CM+CL      code_bias=-0.56m
+ST4 G03 L2 Z-tracking code_bias=-0.92m
+ST4 G03 L5 I+Q        code_bias=-0.56m
+ST4 G04 L1 C/A        code_bias= 1.40m
+ST4 G04 L1 Z-tracking code_bias= 1.40m
+ST4 G04 L1C(D+P)      code_bias= 1.40m
+ST4 G04 L2 CM+CL      code_bias= 1.40m
+ST4 G04 L2 Z-tracking code_bias= 2.30m
+ST4 G04 L5 I+Q        code_bias= 1.40m
+ST4 G06 L1 C/A        code_bias=-1.12m
+ST4 G06 L1 Z-tracking code_bias=-1.12m
+ST4 G06 L2 CM+CL      code_bias=-1.12m
+ST4 G06 L2 Z-tracking code_bias=-1.84m
+ST4 G06 L5 I+Q        code_bias=-1.12m
+ST4 G08 L1 C/A        code_bias=-1.54m
+ST4 G08 L1 Z-tracking code_bias=-1.54m
+ST4 G08 L2 CM+CL      code_bias=-1.54m
+ST4 G08 L2 Z-tracking code_bias=-2.52m
+ST4 G08 L5 I+Q        code_bias=-1.54m
+ST4 G09 L1 C/A        code_bias=-0.28m
+ST4 G09 L1 Z-tracking code_bias=-0.28m
+ST4 G09 L2 CM+CL      code_bias=-0.28m
+ST4 G09 L2 Z-tracking code_bias=-0.46m
+ST4 G09 L5 I+Q        code_bias=-0.28m
+ST4 G10 L1 C/A        code_bias=-0.70m
+ST4 G10 L1 Z-tracking code_bias=-0.70m
+ST4 G10 L2 CM+CL      code_bias=-0.70m
+ST4 G10 L2 Z-tracking code_bias=-1.14m
+ST4 G10 L5 I+Q        code_bias=-0.70m
+ST4 G11 L1 C/A        code_bias= 2.66m
+ST4 G11 L1 Z-tracking code_bias= 2.66m
+ST4 G11 L2 CM+CL      code_bias= 2.66m
+ST4 G11 L2 Z-tracking code_bias= 4.36m
+ST4 G11 L5 I+Q        code_bias= 2.66m
+ST4 G12 L1 C/A        code_bias= 3.76m
+ST4 G12 L1 Z-tracking code_bias= 3.76m
+ST4 G12 L2 CM+CL      code_bias= 3.76m
+ST4 G12 L2 Z-tracking code_bias= 6.22m
+ST4 G13 L1 C/A        code_bias= 3.50m
+ST4 G13 L1 Z-tracking code_bias= 3.50m
+ST4 G13 L2 CM+CL      code_bias= 3.50m
+ST4 G13 L2 Z-tracking code_bias= 5.76m
+ST4 G14 L1 C/A        code_bias= 2.36m
+ST4 G14 L1 Z-tracking code_bias= 2.36m
+ST4 G14 L1C(D+P)      code_bias= 2.36m
+ST4 G14 L2 CM+CL      code_bias= 2.36m
+ST4 G14 L2 Z-tracking code_bias= 3.92m
+ST4 G14 L5 I+Q        code_bias= 2.36m
+ST4 G15 L1 C/A        code_bias= 3.22m
+ST4 G15 L1 Z-tracking code_bias= 3.22m
+ST4 G15 L2 CM+CL      code_bias= 3.22m
+ST4 G15 L2 Z-tracking code_bias= 5.28m
+ST4 G16 L1 C/A        code_bias= 3.06m
+ST4 G16 L1 Z-tracking code_bias= 3.06m
+ST4 G16 L2 CM+CL      code_bias= 3.06m
+ST4 G16 L2 Z-tracking code_bias= 5.06m
+ST4 G17 L1 C/A        code_bias= 3.34m
+ST4 G17 L1 Z-tracking code_bias= 3.34m
+ST4 G17 L2 CM+CL      code_bias= 3.34m
+ST4 G17 L2 Z-tracking code_bias= 5.52m
+ST4 G18 L1 C/A        code_bias= 2.50m
+ST4 G18 L1 Z-tracking code_bias= 2.50m
+ST4 G18 L2 CM+CL      code_bias= 2.50m
+ST4 G18 L2 Z-tracking code_bias= 4.14m
+ST4 G18 L5 I+Q        code_bias= 2.50m
+ST4 G19 L1 C/A        code_bias= 4.62m
+ST4 G19 L1 Z-tracking code_bias= 4.62m
+ST4 G19 L2 CM+CL      code_bias= 4.62m
+ST4 G19 L2 Z-tracking code_bias= 7.60m
+ST4 G21 L1 C/A        code_bias= 3.06m
+ST4 G21 L1 Z-tracking code_bias= 3.06m
+ST4 G21 L2 CM+CL      code_bias= 3.06m
+ST4 G21 L2 Z-tracking code_bias= 5.06m
+ST4 G22 L1 C/A        code_bias= 2.50m
+ST4 G22 L1 Z-tracking code_bias= 2.50m
+ST4 G22 L2 CM+CL      code_bias= 2.50m
+ST4 G22 L2 Z-tracking code_bias= 4.14m
+ST4 G23 L1 C/A        code_bias= 2.50m
+ST4 G23 L1 Z-tracking code_bias= 2.50m
+ST4 G23 L1C(D+P)      code_bias= 2.50m
+ST4 G23 L2 CM+CL      code_bias= 2.50m
+ST4 G23 L2 Z-tracking code_bias= 4.14m
+ST4 G23 L5 I+Q        code_bias= 2.50m
+ST4 G25 L1 C/A        code_bias=-1.68m
+ST4 G25 L1 Z-tracking code_bias=-1.68m
+ST4 G25 L2 CM+CL      code_bias=-1.68m
+ST4 G25 L2 Z-tracking code_bias=-2.76m
+ST4 G25 L5 I+Q        code_bias=-1.68m
+ST4 G26 L1 C/A        code_bias=-2.08m
+ST4 G26 L1 Z-tracking code_bias=-2.08m
+ST4 G26 L2 CM+CL      code_bias=-2.08m
+ST4 G26 L2 Z-tracking code_bias=-3.46m
+ST4 G26 L5 I+Q        code_bias=-2.08m
+ST4 G27 L1 C/A        code_bias=-0.42m
+ST4 G27 L1 Z-tracking code_bias=-0.42m
+ST4 G27 L2 CM+CL      code_bias=-0.42m
+ST4 G27 L2 Z-tracking code_bias=-0.68m
+ST4 G27 L5 I+Q        code_bias=-0.42m
+ST4 G29 L1 C/A        code_bias= 3.06m
+ST4 G29 L1 Z-tracking code_bias= 3.06m
+ST4 G29 L2 CM+CL      code_bias= 3.06m
+ST4 G29 L2 Z-tracking code_bias= 5.06m
+ST4 G30 L1 C/A        code_bias=-1.12m
+ST4 G30 L1 Z-tracking code_bias=-1.12m
+ST4 G30 L2 CM+CL      code_bias=-1.12m
+ST4 G30 L2 Z-tracking code_bias=-1.84m
+ST4 G30 L5 I+Q        code_bias=-1.12m
+ST4 G31 L1 C/A        code_bias= 4.06m
+ST4 G31 L1 Z-tracking code_bias= 4.06m
+ST4 G31 L2 CM+CL      code_bias= 4.06m
+ST4 G31 L2 Z-tracking code_bias= 6.68m
+ST4 G32 L1 C/A        code_bias=-0.14m
+ST4 G32 L1 Z-tracking code_bias=-0.14m
+ST4 G32 L2 CM+CL      code_bias=-0.14m
+ST4 G32 L2 Z-tracking code_bias=-0.24m
+ST4 G32 L5 I+Q        code_bias=-0.14m
+ST4 R01 G1 C/A        code_bias= 0.00m
+ST4 R01 G1 P          code_bias= 0.00m
+ST4 R01 G2 C/A        code_bias= 0.00m
+ST4 R01 G2 P          code_bias= 0.00m
+ST4 R02 G1 C/A        code_bias= 0.00m
+ST4 R02 G1 P          code_bias= 0.00m
+ST4 R02 G2 C/A        code_bias= 0.00m
+ST4 R02 G2 P          code_bias= 0.00m
+ST4 R03 G1 C/A        code_bias= 0.00m
+ST4 R03 G1 P          code_bias= 0.00m
+ST4 R03 G2 C/A        code_bias= 0.00m
+ST4 R03 G2 P          code_bias= 0.00m
+ST4 R04 G1 C/A        code_bias= 0.00m
+ST4 R04 G1 P          code_bias= 0.00m
+ST4 R04 G2 C/A        code_bias= 0.00m
+ST4 R04 G2 P          code_bias= 0.00m
+ST4 R05 G1 C/A        code_bias= 0.00m
+ST4 R05 G1 P          code_bias= 0.00m
+ST4 R05 G2 C/A        code_bias= 0.00m
+ST4 R05 G2 P          code_bias= 0.00m
+ST4 R07 G1 C/A        code_bias= 0.00m
+ST4 R07 G1 P          code_bias= 0.00m
+ST4 R07 G2 C/A        code_bias= 0.00m
+ST4 R07 G2 P          code_bias= 0.00m
+ST4 R08 G1 C/A        code_bias= 0.00m
+ST4 R08 G1 P          code_bias= 0.00m
+ST4 R08 G2 C/A        code_bias= 0.00m
+ST4 R08 G2 P          code_bias= 0.00m
+ST4 R09 G1 C/A        code_bias= 0.00m
+ST4 R09 G1 P          code_bias= 0.00m
+ST4 R09 G2 C/A        code_bias= 0.00m
+ST4 R09 G2 P          code_bias= 0.00m
+ST4 R11 G1 C/A        code_bias= 0.00m
+ST4 R11 G1 P          code_bias= 0.00m
+ST4 R11 G2 C/A        code_bias= 0.00m
+ST4 R11 G2 P          code_bias= 0.00m
+ST4 R12 G1 C/A        code_bias= 0.00m
+ST4 R12 G1 P          code_bias= 0.00m
+ST4 R12 G2 C/A        code_bias= 0.00m
+ST4 R12 G2 P          code_bias= 0.00m
+ST4 R13 G1 C/A        code_bias= 0.00m
+ST4 R13 G1 P          code_bias= 0.00m
+ST4 R13 G2 C/A        code_bias= 0.00m
+ST4 R13 G2 P          code_bias= 0.00m
+ST4 R14 G1 C/A        code_bias= 0.00m
+ST4 R14 G1 P          code_bias= 0.00m
+ST4 R14 G2 C/A        code_bias= 0.00m
+ST4 R14 G2 P          code_bias= 0.00m
+ST4 R15 G1 C/A        code_bias= 0.00m
+ST4 R15 G1 P          code_bias= 0.00m
+ST4 R15 G2 C/A        code_bias= 0.00m
+ST4 R15 G2 P          code_bias= 0.00m
+ST4 R17 G1 C/A        code_bias= 0.00m
+ST4 R17 G1 P          code_bias= 0.00m
+ST4 R17 G2 C/A        code_bias= 0.00m
+ST4 R17 G2 P          code_bias= 0.00m
+ST4 R18 G1 C/A        code_bias= 0.00m
+ST4 R18 G1 P          code_bias= 0.00m
+ST4 R18 G2 C/A        code_bias= 0.00m
+ST4 R18 G2 P          code_bias= 0.00m
+ST4 R19 G1 C/A        code_bias= 0.00m
+ST4 R19 G1 P          code_bias= 0.00m
+ST4 R19 G2 C/A        code_bias= 0.00m
+ST4 R19 G2 P          code_bias= 0.00m
+ST4 R21 G1 C/A        code_bias= 0.00m
+ST4 R21 G1 P          code_bias= 0.00m
+ST4 R21 G2 C/A        code_bias= 0.00m
+ST4 R21 G2 P          code_bias= 0.00m
+ST4 R24 G1 C/A        code_bias= 0.00m
+ST4 R24 G1 P          code_bias= 0.00m
+ST4 R24 G2 C/A        code_bias= 0.00m
+ST4 R24 G2 P          code_bias= 0.00m
+ST4 E02 E1 B+C        code_bias= 0.42m
+ST4 E02 E5a I+Q       code_bias= 0.76m
+ST4 E03 E1 B+C        code_bias=-0.92m
+ST4 E03 E5a I+Q       code_bias=-1.62m
+ST4 E04 E1 B+C        code_bias= 0.92m
+ST4 E04 E5a I+Q       code_bias= 1.62m
+ST4 E05 E1 B+C        code_bias=-1.04m
+ST4 E05 E5a I+Q       code_bias=-1.88m
+ST4 E07 E1 B+C        code_bias=-1.68m
+ST4 E07 E5a I+Q       code_bias=-3.00m
+ST4 E09 E1 B+C        code_bias=-0.56m
+ST4 E09 E5a I+Q       code_bias=-1.00m
+ST4 E13 E1 B+C        code_bias=-0.14m
+ST4 E13 E5a I+Q       code_bias=-0.26m
+ST4 E15 E1 B+C        code_bias=-1.76m
+ST4 E15 E5a I+Q       code_bias=-3.14m
+ST4 E19 E1 B+C        code_bias= 1.12m
+ST4 E19 E5a I+Q       code_bias= 2.00m
+ST4 E21 E1 B+C        code_bias=-0.98m
+ST4 E21 E5a I+Q       code_bias=-1.76m
+ST4 E24 E1 B+C        code_bias= 0.92m
+ST4 E24 E5a I+Q       code_bias= 1.62m
+ST4 E25 E1 B+C        code_bias=-1.04m
+ST4 E25 E5a I+Q       code_bias=-1.88m
+ST4 E27 E1 B+C        code_bias=-0.76m
+ST4 E27 E5a I+Q       code_bias=-1.38m
+ST4 E30 E1 B+C        code_bias=-0.56m
+ST4 E30 E5a I+Q       code_bias=-1.00m
+ST4 E33 E1 B+C        code_bias= 0.92m
+ST4 E33 E5a I+Q       code_bias= 1.62m
+ST4 E36 E1 B+C        code_bias=-1.68m
+ST4 E36 E5a I+Q       code_bias=-3.00m
+ST4 J02 L1 C/A        code_bias=-0.14m
+ST4 J02 L1 L1C(D+P)   code_bias=-0.14m
+ST4 J02 L2 L2C(M+L)   code_bias=-0.24m
+ST4 J02 L5 I+Q        code_bias=-0.14m
+ST4 J03 L1 C/A        code_bias= 0.14m
+ST4 J03 L1 L1C(D+P)   code_bias= 0.14m
+ST4 J03 L2 L2C(M+L)   code_bias= 0.24m
+ST4 J03 L5 I+Q        code_bias= 0.14m
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 (Clk/Eph LNAV) ST4 ST3...
 ST3 G01 d_clock= 0.1m
 ST3 G03 d_clock= 1.5m
@@ -728,125 +728,125 @@ CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 (Clk/Eph LNAV) ST5...
 ST5 G01 L1 C/A        phase_bias=-0.3m discont_indicator=0
 ST5 G01 L1 Z-tracking phase_bias=-0.3m discont_indicator=0
-ST5 G01 L2 L2C(M+L)   phase_bias=-0.3m discont_indicator=0
+ST5 G01 L2 CM+CL      phase_bias=-0.3m discont_indicator=0
 ST5 G01 L2 Z-tracking phase_bias=-0.3m discont_indicator=0
 ST5 G01 L5 I+Q        phase_bias=-0.1m discont_indicator=0
 ST5 G03 L1 C/A        phase_bias=-0.0m discont_indicator=0
 ST5 G03 L1 Z-tracking phase_bias=-0.0m discont_indicator=0
-ST5 G03 L2 L2C(M+L)   phase_bias=-0.1m discont_indicator=0
+ST5 G03 L2 CM+CL      phase_bias=-0.1m discont_indicator=0
 ST5 G03 L2 Z-tracking phase_bias=-0.1m discont_indicator=0
 ST5 G03 L5 I+Q        phase_bias=-0.3m discont_indicator=0
 ST5 G04 L1 C/A        phase_bias=-0.4m discont_indicator=0
 ST5 G04 L1 Z-tracking phase_bias=-0.4m discont_indicator=0
-ST5 G04 L1 L1C(D+P)   phase_bias=-0.4m discont_indicator=0
-ST5 G04 L2 L2C(M+L)   phase_bias=-0.4m discont_indicator=0
+ST5 G04 L1C(D+P)      phase_bias=-0.4m discont_indicator=0
+ST5 G04 L2 CM+CL      phase_bias=-0.4m discont_indicator=0
 ST5 G04 L2 Z-tracking phase_bias=-0.4m discont_indicator=0
 ST5 G04 L5 I+Q        phase_bias=-0.7m discont_indicator=0
 ST5 G06 L1 C/A        phase_bias=-0.6m discont_indicator=0
 ST5 G06 L1 Z-tracking phase_bias=-0.6m discont_indicator=0
-ST5 G06 L2 L2C(M+L)   phase_bias=-0.7m discont_indicator=0
+ST5 G06 L2 CM+CL      phase_bias=-0.7m discont_indicator=0
 ST5 G06 L2 Z-tracking phase_bias=-0.7m discont_indicator=0
 ST5 G06 L5 I+Q        phase_bias=-1.0m discont_indicator=0
 ST5 G08 L1 C/A        phase_bias= 0.7m discont_indicator=0
 ST5 G08 L1 Z-tracking phase_bias= 0.7m discont_indicator=0
-ST5 G08 L2 L2C(M+L)   phase_bias= 1.1m discont_indicator=0
+ST5 G08 L2 CM+CL      phase_bias= 1.1m discont_indicator=0
 ST5 G08 L2 Z-tracking phase_bias= 1.1m discont_indicator=0
 ST5 G08 L5 I+Q        phase_bias= 1.0m discont_indicator=0
 ST5 G09 L1 C/A        phase_bias= 0.5m discont_indicator=0
 ST5 G09 L1 Z-tracking phase_bias= 0.5m discont_indicator=0
-ST5 G09 L2 L2C(M+L)   phase_bias= 0.6m discont_indicator=0
+ST5 G09 L2 CM+CL      phase_bias= 0.6m discont_indicator=0
 ST5 G09 L2 Z-tracking phase_bias= 0.6m discont_indicator=0
 ST5 G09 L5 I+Q        phase_bias= 0.5m discont_indicator=0
 ST5 G10 L1 C/A        phase_bias= 0.2m discont_indicator=0
 ST5 G10 L1 Z-tracking phase_bias= 0.2m discont_indicator=0
-ST5 G10 L2 L2C(M+L)   phase_bias= 0.3m discont_indicator=0
+ST5 G10 L2 CM+CL      phase_bias= 0.3m discont_indicator=0
 ST5 G10 L2 Z-tracking phase_bias= 0.3m discont_indicator=0
 ST5 G10 L5 I+Q        phase_bias= 0.2m discont_indicator=0
 ST5 G11 L1 C/A        phase_bias=-0.7m discont_indicator=0
 ST5 G11 L1 Z-tracking phase_bias=-0.7m discont_indicator=0
-ST5 G11 L2 L2C(M+L)   phase_bias=-1.2m discont_indicator=0
+ST5 G11 L2 CM+CL      phase_bias=-1.2m discont_indicator=0
 ST5 G11 L2 Z-tracking phase_bias=-1.2m discont_indicator=0
 ST5 G11 L5 I+Q        phase_bias=-1.0m discont_indicator=0
 ST5 G12 L1 C/A        phase_bias=-0.2m discont_indicator=0
 ST5 G12 L1 Z-tracking phase_bias=-0.2m discont_indicator=0
-ST5 G12 L2 L2C(M+L)   phase_bias=-0.4m discont_indicator=0
+ST5 G12 L2 CM+CL      phase_bias=-0.4m discont_indicator=0
 ST5 G12 L2 Z-tracking phase_bias=-0.4m discont_indicator=0
 ST5 G13 L1 C/A        phase_bias=-0.4m discont_indicator=0
 ST5 G13 L1 Z-tracking phase_bias=-0.4m discont_indicator=0
-ST5 G13 L2 L2C(M+L)   phase_bias=-0.6m discont_indicator=0
+ST5 G13 L2 CM+CL      phase_bias=-0.6m discont_indicator=0
 ST5 G13 L2 Z-tracking phase_bias=-0.6m discont_indicator=0
 ST5 G14 L1 C/A        phase_bias= 0.6m discont_indicator=0
 ST5 G14 L1 Z-tracking phase_bias= 0.6m discont_indicator=0
-ST5 G14 L1 L1C(D+P)   phase_bias= 0.6m discont_indicator=0
-ST5 G14 L2 L2C(M+L)   phase_bias= 0.8m discont_indicator=0
+ST5 G14 L1C(D+P)      phase_bias= 0.6m discont_indicator=0
+ST5 G14 L2 CM+CL      phase_bias= 0.8m discont_indicator=0
 ST5 G14 L2 Z-tracking phase_bias= 0.8m discont_indicator=0
 ST5 G14 L5 I+Q        phase_bias= 0.8m discont_indicator=0
 ST5 G15 L1 C/A        phase_bias=-1.5m discont_indicator=0
 ST5 G15 L1 Z-tracking phase_bias=-1.5m discont_indicator=0
-ST5 G15 L2 L2C(M+L)   phase_bias=-2.2m discont_indicator=0
+ST5 G15 L2 CM+CL      phase_bias=-2.2m discont_indicator=0
 ST5 G15 L2 Z-tracking phase_bias=-2.2m discont_indicator=0
 ST5 G16 L1 C/A        phase_bias=-0.2m discont_indicator=0
 ST5 G16 L1 Z-tracking phase_bias=-0.2m discont_indicator=0
-ST5 G16 L2 L2C(M+L)   phase_bias=-0.2m discont_indicator=0
+ST5 G16 L2 CM+CL      phase_bias=-0.2m discont_indicator=0
 ST5 G16 L2 Z-tracking phase_bias=-0.2m discont_indicator=0
 ST5 G17 L1 C/A        phase_bias= 0.4m discont_indicator=0
 ST5 G17 L1 Z-tracking phase_bias= 0.4m discont_indicator=0
-ST5 G17 L2 L2C(M+L)   phase_bias= 0.5m discont_indicator=0
+ST5 G17 L2 CM+CL      phase_bias= 0.5m discont_indicator=0
 ST5 G17 L2 Z-tracking phase_bias= 0.5m discont_indicator=0
 ST5 G18 L1 C/A        phase_bias= 0.1m discont_indicator=0
 ST5 G18 L1 Z-tracking phase_bias= 0.1m discont_indicator=0
-ST5 G18 L2 L2C(M+L)   phase_bias=-0.1m discont_indicator=0
+ST5 G18 L2 CM+CL      phase_bias=-0.1m discont_indicator=0
 ST5 G18 L2 Z-tracking phase_bias=-0.1m discont_indicator=0
 ST5 G18 L5 I+Q        phase_bias=-0.2m discont_indicator=0
 ST5 G19 L1 C/A        phase_bias=-0.7m discont_indicator=0
 ST5 G19 L1 Z-tracking phase_bias=-0.7m discont_indicator=0
-ST5 G19 L2 L2C(M+L)   phase_bias=-1.1m discont_indicator=0
+ST5 G19 L2 CM+CL      phase_bias=-1.1m discont_indicator=0
 ST5 G19 L2 Z-tracking phase_bias=-1.1m discont_indicator=0
 ST5 G21 L1 C/A        phase_bias= 0.4m discont_indicator=0
 ST5 G21 L1 Z-tracking phase_bias= 0.4m discont_indicator=0
-ST5 G21 L2 L2C(M+L)   phase_bias= 0.5m discont_indicator=0
+ST5 G21 L2 CM+CL      phase_bias= 0.5m discont_indicator=0
 ST5 G21 L2 Z-tracking phase_bias= 0.5m discont_indicator=0
 ST5 G22 L1 C/A        phase_bias= 0.3m discont_indicator=0
 ST5 G22 L1 Z-tracking phase_bias= 0.3m discont_indicator=0
-ST5 G22 L2 L2C(M+L)   phase_bias= 0.3m discont_indicator=0
+ST5 G22 L2 CM+CL      phase_bias= 0.3m discont_indicator=0
 ST5 G22 L2 Z-tracking phase_bias= 0.3m discont_indicator=0
 ST5 G23 L1 C/A        phase_bias= 0.1m discont_indicator=0
 ST5 G23 L1 Z-tracking phase_bias= 0.1m discont_indicator=0
-ST5 G23 L1 L1C(D+P)   phase_bias= 0.1m discont_indicator=0
-ST5 G23 L2 L2C(M+L)   phase_bias= 0.3m discont_indicator=0
+ST5 G23 L1C(D+P)      phase_bias= 0.1m discont_indicator=0
+ST5 G23 L2 CM+CL      phase_bias= 0.3m discont_indicator=0
 ST5 G23 L2 Z-tracking phase_bias= 0.3m discont_indicator=0
 ST5 G23 L5 I+Q        phase_bias= 0.1m discont_indicator=0
 ST5 G25 L1 C/A        phase_bias=-0.1m discont_indicator=0
 ST5 G25 L1 Z-tracking phase_bias=-0.1m discont_indicator=0
-ST5 G25 L2 L2C(M+L)   phase_bias=-0.1m discont_indicator=0
+ST5 G25 L2 CM+CL      phase_bias=-0.1m discont_indicator=0
 ST5 G25 L2 Z-tracking phase_bias=-0.1m discont_indicator=0
 ST5 G25 L5 I+Q        phase_bias=-0.3m discont_indicator=0
 ST5 G26 L1 C/A        phase_bias=-0.9m discont_indicator=0
 ST5 G26 L1 Z-tracking phase_bias=-0.9m discont_indicator=0
-ST5 G26 L2 L2C(M+L)   phase_bias=-1.3m discont_indicator=0
+ST5 G26 L2 CM+CL      phase_bias=-1.3m discont_indicator=0
 ST5 G26 L2 Z-tracking phase_bias=-1.3m discont_indicator=0
 ST5 G26 L5 I+Q        phase_bias=-1.5m discont_indicator=0
 ST5 G27 L1 C/A        phase_bias= 2.1m discont_indicator=0
 ST5 G27 L1 Z-tracking phase_bias= 2.1m discont_indicator=0
-ST5 G27 L2 L2C(M+L)   phase_bias= 2.7m discont_indicator=0
+ST5 G27 L2 CM+CL      phase_bias= 2.7m discont_indicator=0
 ST5 G27 L2 Z-tracking phase_bias= 2.7m discont_indicator=0
 ST5 G27 L5 I+Q        phase_bias= 2.6m discont_indicator=0
 ST5 G29 L1 C/A        phase_bias=-0.2m discont_indicator=0
 ST5 G29 L1 Z-tracking phase_bias=-0.2m discont_indicator=0
-ST5 G29 L2 L2C(M+L)   phase_bias=-0.5m discont_indicator=0
+ST5 G29 L2 CM+CL      phase_bias=-0.5m discont_indicator=0
 ST5 G29 L2 Z-tracking phase_bias=-0.5m discont_indicator=0
 ST5 G30 L1 C/A        phase_bias=-0.6m discont_indicator=0
 ST5 G30 L1 Z-tracking phase_bias=-0.6m discont_indicator=0
-ST5 G30 L2 L2C(M+L)   phase_bias=-0.7m discont_indicator=0
+ST5 G30 L2 CM+CL      phase_bias=-0.7m discont_indicator=0
 ST5 G30 L2 Z-tracking phase_bias=-0.7m discont_indicator=0
 ST5 G30 L5 I+Q        phase_bias=-0.9m discont_indicator=0
 ST5 G31 L1 C/A        phase_bias= 0.3m discont_indicator=0
 ST5 G31 L1 Z-tracking phase_bias= 0.3m discont_indicator=0
-ST5 G31 L2 L2C(M+L)   phase_bias= 0.1m discont_indicator=0
+ST5 G31 L2 CM+CL      phase_bias= 0.1m discont_indicator=0
 ST5 G31 L2 Z-tracking phase_bias= 0.1m discont_indicator=0
 ST5 G32 L1 C/A        phase_bias=-0.8m discont_indicator=0
 ST5 G32 L1 Z-tracking phase_bias=-0.8m discont_indicator=0
-ST5 G32 L2 L2C(M+L)   phase_bias=-1.2m discont_indicator=0
+ST5 G32 L2 CM+CL      phase_bias=-1.2m discont_indicator=0
 ST5 G32 L2 Z-tracking phase_bias=-1.2m discont_indicator=0
 ST5 G32 L5 I+Q        phase_bias=-1.3m discont_indicator=0
 ST5 R01 G1 C/A        phase_bias= 0.0m discont_indicator=0
@@ -1107,32 +1107,32 @@ CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000
 CSSR null data 1695 bits
 CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 (Clk/Eph LNAV) (null)
-ST1 G01 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G03 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G04 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G06 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G08 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G09 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G10 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G11 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G13 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G14 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G15 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G16 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G17 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G18 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G19 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G21 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G22 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G23 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G25 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G27 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G30 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G31 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G32 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
+ST1 G01 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G03 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G04 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G06 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G08 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G09 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G10 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G11 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G12 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G13 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G14 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G15 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G16 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G17 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G18 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G19 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G21 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G22 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G23 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G25 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G26 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G27 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G29 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G30 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G31 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G32 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 R01 G1 C/A G1 P G2 C/A G2 P
 ST1 R02 G1 C/A G1 P G2 C/A G2 P
 ST1 R03 G1 C/A G1 P G2 C/A G2 P
@@ -1171,68 +1171,68 @@ ST1 J02 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
 ST1 J03 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
-ST2 G01 IODE=  52 d_radial= 0.3m d_along= 1.1m d_cross= 1.1m
-ST2 G03 IODE=  66 d_radial= 0.1m d_along= 0.4m d_cross= 0.4m
-ST2 G04 IODE= 235 d_radial= 1.0m d_along= 4.0m d_cross= 4.0m
-ST2 G06 IODE=  13 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 G08 IODE=  92 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G09 IODE=   2 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G10 IODE=  81 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G11 IODE= 111 d_radial= 0.8m d_along= 3.1m d_cross= 3.1m
-ST2 G12 IODE=  14 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G13 IODE=  79 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 G14 IODE=  25 d_radial= 1.0m d_along= 3.9m d_cross= 3.9m
-ST2 G15 IODE=  89 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 G16 IODE=  32 d_radial= 0.3m d_along= 1.1m d_cross= 1.1m
-ST2 G17 IODE=  81 d_radial=-0.1m d_along=-0.5m d_cross=-0.5m
-ST2 G18 IODE=  94 d_radial= 0.9m d_along= 3.7m d_cross= 3.7m
-ST2 G19 IODE=  61 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G21 IODE=  55 d_radial= 0.3m d_along= 1.3m d_cross= 1.3m
-ST2 G22 IODE=   7 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G23 IODE= 146 d_radial= 1.0m d_along= 4.0m d_cross= 4.0m
-ST2 G25 IODE=  59 d_radial=-0.3m d_along=-1.4m d_cross=-1.4m
-ST2 G26 IODE=  33 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 G27 IODE=  53 d_radial= 0.2m d_along= 0.6m d_cross= 0.6m
-ST2 G29 IODE=  28 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 G30 IODE=  12 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G31 IODE=  14 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 G32 IODE=  52 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 R01 IODE=  63 d_radial= 0.3m d_along= 1.4m d_cross= 1.4m
-ST2 R02 IODE=  63 d_radial= 0.5m d_along= 2.1m d_cross= 2.1m
-ST2 R03 IODE=  63 d_radial= 0.9m d_along= 3.7m d_cross= 3.7m
-ST2 R04 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R05 IODE=  63 d_radial= 0.3m d_along= 1.3m d_cross= 1.3m
-ST2 R07 IODE=  63 d_radial= 0.2m d_along= 0.9m d_cross= 0.9m
-ST2 R08 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R09 IODE=  63 d_radial= 0.4m d_along= 1.7m d_cross= 1.7m
-ST2 R11 IODE=  63 d_radial= 1.3m d_along= 5.0m d_cross= 5.0m
-ST2 R12 IODE=  63 d_radial=-0.2m d_along=-0.8m d_cross=-0.8m
-ST2 R13 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R14 IODE=  63 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 R15 IODE=  63 d_radial= 0.3m d_along= 1.4m d_cross= 1.4m
-ST2 R17 IODE=  63 d_radial= 0.9m d_along= 3.6m d_cross= 3.6m
-ST2 R18 IODE=  63 d_radial= 0.5m d_along= 2.2m d_cross= 2.2m
-ST2 R19 IODE=  63 d_radial= 1.0m d_along= 3.8m d_cross= 3.8m
-ST2 R21 IODE=  63 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 R24 IODE=  63 d_radial= 0.5m d_along= 2.2m d_cross= 2.2m
-ST2 E02 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E03 IODE= 124 d_radial= 0.0m d_along= 0.0m d_cross= 0.0m
-ST2 E04 IODE= 124 d_radial=-0.1m d_along=-0.2m d_cross=-0.2m
-ST2 E05 IODE= 124 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 E07 IODE= 124 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 E09 IODE= 122 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 E13 IODE= 122 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E15 IODE= 124 d_radial= 0.4m d_along= 1.4m d_cross= 1.4m
-ST2 E19 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E21 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E24 IODE= 120 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E25 IODE= 118 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E27 IODE= 119 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 E30 IODE= 124 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 E33 IODE= 122 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 E36 IODE= 124 d_radial= 0.1m d_along= 0.6m d_cross= 0.6m
-ST2 J02 IODE= 113 d_radial=-1.8m d_along=-7.1m d_cross=-7.1m
-ST2 J03 IODE= 113 d_radial=-0.6m d_along=-2.3m d_cross=-2.3m
+ST2 G01 IODE=  52 d_radial=  0.3m d_along= -1.1m d_cross=  1.0m
+ST2 G03 IODE=  66 d_radial=  0.1m d_along= -0.6m d_cross= -0.4m
+ST2 G04 IODE= 235 d_radial=  1.0m d_along= -0.4m d_cross=  0.3m
+ST2 G06 IODE=  13 d_radial= -0.0m d_along= -0.5m d_cross= -0.1m
+ST2 G08 IODE=  92 d_radial=  0.1m d_along= -0.4m d_cross=  0.1m
+ST2 G09 IODE=   2 d_radial= -0.1m d_along=  0.9m d_cross=  0.6m
+ST2 G10 IODE=  81 d_radial=  0.1m d_along=  1.1m d_cross=  0.4m
+ST2 G11 IODE= 111 d_radial=  0.8m d_along=  1.0m d_cross=  0.5m
+ST2 G12 IODE=  14 d_radial=  0.0m d_along=  0.2m d_cross= -0.4m
+ST2 G13 IODE=  79 d_radial=  0.1m d_along=  1.2m d_cross= -0.1m
+ST2 G14 IODE=  25 d_radial=  1.0m d_along= -0.1m d_cross=  0.4m
+ST2 G15 IODE=  89 d_radial= -0.1m d_along=  2.3m d_cross=  0.5m
+ST2 G16 IODE=  32 d_radial=  0.3m d_along= -0.7m d_cross= -0.4m
+ST2 G17 IODE=  81 d_radial= -0.1m d_along=  0.0m d_cross= -0.2m
+ST2 G18 IODE=  94 d_radial=  0.9m d_along= -0.9m d_cross= -0.2m
+ST2 G19 IODE=  61 d_radial= -0.1m d_along= -0.9m d_cross=  0.7m
+ST2 G21 IODE=  55 d_radial=  0.3m d_along= -2.3m d_cross=  1.0m
+ST2 G22 IODE=   7 d_radial= -0.0m d_along=  0.7m d_cross= -0.5m
+ST2 G23 IODE= 146 d_radial=  1.0m d_along=  0.1m d_cross=  1.0m
+ST2 G25 IODE=  59 d_radial= -0.3m d_along= -0.5m d_cross= -0.3m
+ST2 G26 IODE=  33 d_radial=  0.1m d_along=  0.1m d_cross= -0.5m
+ST2 G27 IODE=  53 d_radial=  0.2m d_along=  0.2m d_cross= -0.3m
+ST2 G29 IODE=  28 d_radial=  0.1m d_along= -0.4m d_cross= -0.5m
+ST2 G30 IODE=  12 d_radial=  0.0m d_along= -0.3m d_cross= -0.2m
+ST2 G31 IODE=  14 d_radial= -0.0m d_along=  0.4m d_cross=  0.1m
+ST2 G32 IODE=  52 d_radial=  0.1m d_along=  0.2m d_cross=  0.5m
+ST2 R01 IODE=  63 d_radial=  0.3m d_along= -0.9m d_cross= -1.1m
+ST2 R02 IODE=  63 d_radial=  0.5m d_along=  1.0m d_cross= -1.1m
+ST2 R03 IODE=  63 d_radial=  0.9m d_along= -2.1m d_cross= -0.7m
+ST2 R04 IODE=  63 d_radial=  0.5m d_along= -1.6m d_cross= -0.4m
+ST2 R05 IODE=  63 d_radial=  0.3m d_along= -1.7m d_cross= -0.1m
+ST2 R07 IODE=  63 d_radial=  0.2m d_along=  1.0m d_cross=  1.0m
+ST2 R08 IODE=  63 d_radial=  0.5m d_along= -0.5m d_cross= -0.9m
+ST2 R09 IODE=  63 d_radial=  0.4m d_along= -8.6m d_cross=  2.8m
+ST2 R11 IODE=  63 d_radial=  1.3m d_along= -3.8m d_cross= -2.3m
+ST2 R12 IODE=  63 d_radial= -0.2m d_along=  4.1m d_cross=  2.0m
+ST2 R13 IODE=  63 d_radial=  0.5m d_along=  0.1m d_cross=  0.3m
+ST2 R14 IODE=  63 d_radial= -0.0m d_along= -3.3m d_cross=  1.2m
+ST2 R15 IODE=  63 d_radial=  0.3m d_along= -5.4m d_cross=  3.0m
+ST2 R17 IODE=  63 d_radial=  0.9m d_along= -1.0m d_cross=  0.7m
+ST2 R18 IODE=  63 d_radial=  0.5m d_along= -1.3m d_cross= -0.3m
+ST2 R19 IODE=  63 d_radial=  1.0m d_along= -2.6m d_cross= -2.2m
+ST2 R21 IODE=  63 d_radial=  0.0m d_along=  0.6m d_cross=  0.9m
+ST2 R24 IODE=  63 d_radial=  0.5m d_along=  1.5m d_cross= -2.5m
+ST2 E02 IODE= 124 d_radial=  0.0m d_along=  0.4m d_cross=  0.1m
+ST2 E03 IODE= 124 d_radial=  0.0m d_along=  0.1m d_cross=  0.1m
+ST2 E04 IODE= 124 d_radial= -0.1m d_along=  0.2m d_cross=  0.2m
+ST2 E05 IODE= 124 d_radial=  0.0m d_along= -0.1m d_cross= -0.0m
+ST2 E07 IODE= 124 d_radial= -0.1m d_along= -0.1m d_cross=  0.2m
+ST2 E09 IODE= 122 d_radial=  0.1m d_along= -0.0m d_cross= -0.0m
+ST2 E13 IODE= 122 d_radial= -0.0m d_along=  0.1m d_cross= -0.2m
+ST2 E15 IODE= 124 d_radial=  0.4m d_along= -0.4m d_cross=  0.0m
+ST2 E19 IODE= 124 d_radial=  0.0m d_along= -0.2m d_cross=  0.0m
+ST2 E21 IODE= 124 d_radial=  0.0m d_along=  0.2m d_cross=  0.1m
+ST2 E24 IODE= 120 d_radial= -0.1m d_along=  0.1m d_cross=  0.0m
+ST2 E25 IODE= 118 d_radial= -0.0m d_along=  0.4m d_cross= -0.0m
+ST2 E27 IODE= 119 d_radial=  0.1m d_along=  0.2m d_cross=  0.1m
+ST2 E30 IODE= 124 d_radial= -0.0m d_along=  0.3m d_cross=  0.0m
+ST2 E33 IODE= 122 d_radial=  0.1m d_along= -0.3m d_cross= -0.0m
+ST2 E36 IODE= 124 d_radial=  0.1m d_along= -0.0m d_cross= -0.3m
+ST2 J02 IODE= 113 d_radial= -1.8m d_along=  0.6m d_cross=  0.9m
+ST2 J03 IODE= 113 d_radial= -0.6m d_along=  0.8m d_cross=  0.2m
 ST3 G01 d_clock= 0.1m
 ST3 G03 d_clock= 1.5m
 ST3 G04 d_clock=-0.3m
@@ -1442,241 +1442,241 @@ CSSR null data 1695 bits
 CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 (Clk/Eph LNAV) (null)
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 (Clk/Eph LNAV) ST4...
-ST4 G01 L1 C/A        code_bias=-1.1m
-ST4 G01 L1 Z-tracking code_bias=-1.4m
-ST4 G01 L2 L2C(M+L)   code_bias=-1.4m
-ST4 G01 L2 Z-tracking code_bias=-2.3m
-ST4 G01 L5 I+Q        code_bias=-1.4m
-ST4 G03 L1 C/A        code_bias=-0.6m
-ST4 G03 L1 Z-tracking code_bias=-0.6m
-ST4 G03 L2 L2C(M+L)   code_bias=-0.6m
-ST4 G03 L2 Z-tracking code_bias=-0.9m
-ST4 G03 L5 I+Q        code_bias=-0.6m
-ST4 G04 L1 C/A        code_bias= 1.4m
-ST4 G04 L1 Z-tracking code_bias= 1.4m
-ST4 G04 L1 L1C(D+P)   code_bias= 1.4m
-ST4 G04 L2 L2C(M+L)   code_bias= 1.4m
-ST4 G04 L2 Z-tracking code_bias= 2.3m
-ST4 G04 L5 I+Q        code_bias= 1.4m
-ST4 G06 L1 C/A        code_bias=-1.1m
-ST4 G06 L1 Z-tracking code_bias=-1.1m
-ST4 G06 L2 L2C(M+L)   code_bias=-1.1m
-ST4 G06 L2 Z-tracking code_bias=-1.8m
-ST4 G06 L5 I+Q        code_bias=-1.1m
-ST4 G08 L1 C/A        code_bias=-1.5m
-ST4 G08 L1 Z-tracking code_bias=-1.5m
-ST4 G08 L2 L2C(M+L)   code_bias=-1.5m
-ST4 G08 L2 Z-tracking code_bias=-2.5m
-ST4 G08 L5 I+Q        code_bias=-1.5m
-ST4 G09 L1 C/A        code_bias=-0.3m
-ST4 G09 L1 Z-tracking code_bias=-0.3m
-ST4 G09 L2 L2C(M+L)   code_bias=-0.3m
-ST4 G09 L2 Z-tracking code_bias=-0.5m
-ST4 G09 L5 I+Q        code_bias=-0.3m
-ST4 G10 L1 C/A        code_bias=-0.7m
-ST4 G10 L1 Z-tracking code_bias=-0.7m
-ST4 G10 L2 L2C(M+L)   code_bias=-0.7m
-ST4 G10 L2 Z-tracking code_bias=-1.1m
-ST4 G10 L5 I+Q        code_bias=-0.7m
-ST4 G11 L1 C/A        code_bias= 2.7m
-ST4 G11 L1 Z-tracking code_bias= 2.7m
-ST4 G11 L2 L2C(M+L)   code_bias= 2.7m
-ST4 G11 L2 Z-tracking code_bias= 4.4m
-ST4 G11 L5 I+Q        code_bias= 2.7m
-ST4 G12 L1 C/A        code_bias= 3.8m
-ST4 G12 L1 Z-tracking code_bias= 3.8m
-ST4 G12 L2 L2C(M+L)   code_bias= 3.8m
-ST4 G12 L2 Z-tracking code_bias= 6.2m
-ST4 G13 L1 C/A        code_bias= 3.5m
-ST4 G13 L1 Z-tracking code_bias= 3.5m
-ST4 G13 L2 L2C(M+L)   code_bias= 3.5m
-ST4 G13 L2 Z-tracking code_bias= 5.8m
-ST4 G14 L1 C/A        code_bias= 2.4m
-ST4 G14 L1 Z-tracking code_bias= 2.4m
-ST4 G14 L1 L1C(D+P)   code_bias= 2.4m
-ST4 G14 L2 L2C(M+L)   code_bias= 2.4m
-ST4 G14 L2 Z-tracking code_bias= 3.9m
-ST4 G14 L5 I+Q        code_bias= 2.4m
-ST4 G15 L1 C/A        code_bias= 3.2m
-ST4 G15 L1 Z-tracking code_bias= 3.2m
-ST4 G15 L2 L2C(M+L)   code_bias= 3.2m
-ST4 G15 L2 Z-tracking code_bias= 5.3m
-ST4 G16 L1 C/A        code_bias= 3.1m
-ST4 G16 L1 Z-tracking code_bias= 3.1m
-ST4 G16 L2 L2C(M+L)   code_bias= 3.1m
-ST4 G16 L2 Z-tracking code_bias= 5.1m
-ST4 G17 L1 C/A        code_bias= 3.3m
-ST4 G17 L1 Z-tracking code_bias= 3.3m
-ST4 G17 L2 L2C(M+L)   code_bias= 3.3m
-ST4 G17 L2 Z-tracking code_bias= 5.5m
-ST4 G18 L1 C/A        code_bias= 2.5m
-ST4 G18 L1 Z-tracking code_bias= 2.5m
-ST4 G18 L2 L2C(M+L)   code_bias= 2.5m
-ST4 G18 L2 Z-tracking code_bias= 4.1m
-ST4 G18 L5 I+Q        code_bias= 2.5m
-ST4 G19 L1 C/A        code_bias= 4.6m
-ST4 G19 L1 Z-tracking code_bias= 4.6m
-ST4 G19 L2 L2C(M+L)   code_bias= 4.6m
-ST4 G19 L2 Z-tracking code_bias= 7.6m
-ST4 G21 L1 C/A        code_bias= 3.1m
-ST4 G21 L1 Z-tracking code_bias= 3.1m
-ST4 G21 L2 L2C(M+L)   code_bias= 3.1m
-ST4 G21 L2 Z-tracking code_bias= 5.1m
-ST4 G22 L1 C/A        code_bias= 2.5m
-ST4 G22 L1 Z-tracking code_bias= 2.5m
-ST4 G22 L2 L2C(M+L)   code_bias= 2.5m
-ST4 G22 L2 Z-tracking code_bias= 4.1m
-ST4 G23 L1 C/A        code_bias= 2.5m
-ST4 G23 L1 Z-tracking code_bias= 2.5m
-ST4 G23 L1 L1C(D+P)   code_bias= 2.5m
-ST4 G23 L2 L2C(M+L)   code_bias= 2.5m
-ST4 G23 L2 Z-tracking code_bias= 4.1m
-ST4 G23 L5 I+Q        code_bias= 2.5m
-ST4 G25 L1 C/A        code_bias=-1.7m
-ST4 G25 L1 Z-tracking code_bias=-1.7m
-ST4 G25 L2 L2C(M+L)   code_bias=-1.7m
-ST4 G25 L2 Z-tracking code_bias=-2.8m
-ST4 G25 L5 I+Q        code_bias=-1.7m
-ST4 G26 L1 C/A        code_bias=-2.1m
-ST4 G26 L1 Z-tracking code_bias=-2.1m
-ST4 G26 L2 L2C(M+L)   code_bias=-2.1m
-ST4 G26 L2 Z-tracking code_bias=-3.5m
-ST4 G26 L5 I+Q        code_bias=-2.1m
-ST4 G27 L1 C/A        code_bias=-0.4m
-ST4 G27 L1 Z-tracking code_bias=-0.4m
-ST4 G27 L2 L2C(M+L)   code_bias=-0.4m
-ST4 G27 L2 Z-tracking code_bias=-0.7m
-ST4 G27 L5 I+Q        code_bias=-0.4m
-ST4 G29 L1 C/A        code_bias= 3.1m
-ST4 G29 L1 Z-tracking code_bias= 3.1m
-ST4 G29 L2 L2C(M+L)   code_bias= 3.1m
-ST4 G29 L2 Z-tracking code_bias= 5.1m
-ST4 G30 L1 C/A        code_bias=-1.1m
-ST4 G30 L1 Z-tracking code_bias=-1.1m
-ST4 G30 L2 L2C(M+L)   code_bias=-1.1m
-ST4 G30 L2 Z-tracking code_bias=-1.8m
-ST4 G30 L5 I+Q        code_bias=-1.1m
-ST4 G31 L1 C/A        code_bias= 4.1m
-ST4 G31 L1 Z-tracking code_bias= 4.1m
-ST4 G31 L2 L2C(M+L)   code_bias= 4.1m
-ST4 G31 L2 Z-tracking code_bias= 6.7m
-ST4 G32 L1 C/A        code_bias=-0.1m
-ST4 G32 L1 Z-tracking code_bias=-0.1m
-ST4 G32 L2 L2C(M+L)   code_bias=-0.1m
-ST4 G32 L2 Z-tracking code_bias=-0.2m
-ST4 G32 L5 I+Q        code_bias=-0.1m
-ST4 R01 G1 C/A        code_bias= 0.0m
-ST4 R01 G1 P          code_bias= 0.0m
-ST4 R01 G2 C/A        code_bias= 0.0m
-ST4 R01 G2 P          code_bias= 0.0m
-ST4 R02 G1 C/A        code_bias= 0.0m
-ST4 R02 G1 P          code_bias= 0.0m
-ST4 R02 G2 C/A        code_bias= 0.0m
-ST4 R02 G2 P          code_bias= 0.0m
-ST4 R03 G1 C/A        code_bias= 0.0m
-ST4 R03 G1 P          code_bias= 0.0m
-ST4 R03 G2 C/A        code_bias= 0.0m
-ST4 R03 G2 P          code_bias= 0.0m
-ST4 R04 G1 C/A        code_bias= 0.0m
-ST4 R04 G1 P          code_bias= 0.0m
-ST4 R04 G2 C/A        code_bias= 0.0m
-ST4 R04 G2 P          code_bias= 0.0m
-ST4 R05 G1 C/A        code_bias= 0.0m
-ST4 R05 G1 P          code_bias= 0.0m
-ST4 R05 G2 C/A        code_bias= 0.0m
-ST4 R05 G2 P          code_bias= 0.0m
-ST4 R07 G1 C/A        code_bias= 0.0m
-ST4 R07 G1 P          code_bias= 0.0m
-ST4 R07 G2 C/A        code_bias= 0.0m
-ST4 R07 G2 P          code_bias= 0.0m
-ST4 R08 G1 C/A        code_bias= 0.0m
-ST4 R08 G1 P          code_bias= 0.0m
-ST4 R08 G2 C/A        code_bias= 0.0m
-ST4 R08 G2 P          code_bias= 0.0m
-ST4 R09 G1 C/A        code_bias= 0.0m
-ST4 R09 G1 P          code_bias= 0.0m
-ST4 R09 G2 C/A        code_bias= 0.0m
-ST4 R09 G2 P          code_bias= 0.0m
-ST4 R11 G1 C/A        code_bias= 0.0m
-ST4 R11 G1 P          code_bias= 0.0m
-ST4 R11 G2 C/A        code_bias= 0.0m
-ST4 R11 G2 P          code_bias= 0.0m
-ST4 R12 G1 C/A        code_bias= 0.0m
-ST4 R12 G1 P          code_bias= 0.0m
-ST4 R12 G2 C/A        code_bias= 0.0m
-ST4 R12 G2 P          code_bias= 0.0m
-ST4 R13 G1 C/A        code_bias= 0.0m
-ST4 R13 G1 P          code_bias= 0.0m
-ST4 R13 G2 C/A        code_bias= 0.0m
-ST4 R13 G2 P          code_bias= 0.0m
-ST4 R14 G1 C/A        code_bias= 0.0m
-ST4 R14 G1 P          code_bias= 0.0m
-ST4 R14 G2 C/A        code_bias= 0.0m
-ST4 R14 G2 P          code_bias= 0.0m
-ST4 R15 G1 C/A        code_bias= 0.0m
-ST4 R15 G1 P          code_bias= 0.0m
-ST4 R15 G2 C/A        code_bias= 0.0m
-ST4 R15 G2 P          code_bias= 0.0m
-ST4 R17 G1 C/A        code_bias= 0.0m
-ST4 R17 G1 P          code_bias= 0.0m
-ST4 R17 G2 C/A        code_bias= 0.0m
-ST4 R17 G2 P          code_bias= 0.0m
-ST4 R18 G1 C/A        code_bias= 0.0m
-ST4 R18 G1 P          code_bias= 0.0m
-ST4 R18 G2 C/A        code_bias= 0.0m
-ST4 R18 G2 P          code_bias= 0.0m
-ST4 R19 G1 C/A        code_bias= 0.0m
-ST4 R19 G1 P          code_bias= 0.0m
-ST4 R19 G2 C/A        code_bias= 0.0m
-ST4 R19 G2 P          code_bias= 0.0m
-ST4 R21 G1 C/A        code_bias= 0.0m
-ST4 R21 G1 P          code_bias= 0.0m
-ST4 R21 G2 C/A        code_bias= 0.0m
-ST4 R21 G2 P          code_bias= 0.0m
-ST4 R24 G1 C/A        code_bias= 0.0m
-ST4 R24 G1 P          code_bias= 0.0m
-ST4 R24 G2 C/A        code_bias= 0.0m
-ST4 R24 G2 P          code_bias= 0.0m
-ST4 E02 E1 B+C        code_bias= 0.4m
-ST4 E02 E5a I+Q       code_bias= 0.8m
-ST4 E03 E1 B+C        code_bias=-0.9m
-ST4 E03 E5a I+Q       code_bias=-1.6m
-ST4 E04 E1 B+C        code_bias= 0.9m
-ST4 E04 E5a I+Q       code_bias= 1.6m
-ST4 E05 E1 B+C        code_bias=-1.0m
-ST4 E05 E5a I+Q       code_bias=-1.9m
-ST4 E07 E1 B+C        code_bias=-1.7m
-ST4 E07 E5a I+Q       code_bias=-3.0m
-ST4 E09 E1 B+C        code_bias=-0.6m
-ST4 E09 E5a I+Q       code_bias=-1.0m
-ST4 E13 E1 B+C        code_bias=-0.1m
-ST4 E13 E5a I+Q       code_bias=-0.3m
-ST4 E15 E1 B+C        code_bias=-1.8m
-ST4 E15 E5a I+Q       code_bias=-3.1m
-ST4 E19 E1 B+C        code_bias= 1.1m
-ST4 E19 E5a I+Q       code_bias= 2.0m
-ST4 E21 E1 B+C        code_bias=-1.0m
-ST4 E21 E5a I+Q       code_bias=-1.8m
-ST4 E24 E1 B+C        code_bias= 0.9m
-ST4 E24 E5a I+Q       code_bias= 1.6m
-ST4 E25 E1 B+C        code_bias=-1.0m
-ST4 E25 E5a I+Q       code_bias=-1.9m
-ST4 E27 E1 B+C        code_bias=-0.8m
-ST4 E27 E5a I+Q       code_bias=-1.4m
-ST4 E30 E1 B+C        code_bias=-0.6m
-ST4 E30 E5a I+Q       code_bias=-1.0m
-ST4 E33 E1 B+C        code_bias= 0.9m
-ST4 E33 E5a I+Q       code_bias= 1.6m
-ST4 E36 E1 B+C        code_bias=-1.7m
-ST4 E36 E5a I+Q       code_bias=-3.0m
-ST4 J02 L1 C/A        code_bias=-0.1m
-ST4 J02 L1 L1C(D+P)   code_bias=-0.1m
-ST4 J02 L2 L2C(M+L)   code_bias=-0.2m
-ST4 J02 L5 I+Q        code_bias=-0.1m
-ST4 J03 L1 C/A        code_bias= 0.1m
-ST4 J03 L1 L1C(D+P)   code_bias= 0.1m
-ST4 J03 L2 L2C(M+L)   code_bias= 0.2m
-ST4 J03 L5 I+Q        code_bias= 0.1m
+ST4 G01 L1 C/A        code_bias=-1.10m
+ST4 G01 L1 Z-tracking code_bias=-1.40m
+ST4 G01 L2 CM+CL      code_bias=-1.40m
+ST4 G01 L2 Z-tracking code_bias=-2.30m
+ST4 G01 L5 I+Q        code_bias=-1.40m
+ST4 G03 L1 C/A        code_bias=-0.56m
+ST4 G03 L1 Z-tracking code_bias=-0.56m
+ST4 G03 L2 CM+CL      code_bias=-0.56m
+ST4 G03 L2 Z-tracking code_bias=-0.92m
+ST4 G03 L5 I+Q        code_bias=-0.56m
+ST4 G04 L1 C/A        code_bias= 1.40m
+ST4 G04 L1 Z-tracking code_bias= 1.40m
+ST4 G04 L1C(D+P)      code_bias= 1.40m
+ST4 G04 L2 CM+CL      code_bias= 1.40m
+ST4 G04 L2 Z-tracking code_bias= 2.30m
+ST4 G04 L5 I+Q        code_bias= 1.40m
+ST4 G06 L1 C/A        code_bias=-1.12m
+ST4 G06 L1 Z-tracking code_bias=-1.12m
+ST4 G06 L2 CM+CL      code_bias=-1.12m
+ST4 G06 L2 Z-tracking code_bias=-1.84m
+ST4 G06 L5 I+Q        code_bias=-1.12m
+ST4 G08 L1 C/A        code_bias=-1.54m
+ST4 G08 L1 Z-tracking code_bias=-1.54m
+ST4 G08 L2 CM+CL      code_bias=-1.54m
+ST4 G08 L2 Z-tracking code_bias=-2.52m
+ST4 G08 L5 I+Q        code_bias=-1.54m
+ST4 G09 L1 C/A        code_bias=-0.28m
+ST4 G09 L1 Z-tracking code_bias=-0.28m
+ST4 G09 L2 CM+CL      code_bias=-0.28m
+ST4 G09 L2 Z-tracking code_bias=-0.46m
+ST4 G09 L5 I+Q        code_bias=-0.28m
+ST4 G10 L1 C/A        code_bias=-0.70m
+ST4 G10 L1 Z-tracking code_bias=-0.70m
+ST4 G10 L2 CM+CL      code_bias=-0.70m
+ST4 G10 L2 Z-tracking code_bias=-1.14m
+ST4 G10 L5 I+Q        code_bias=-0.70m
+ST4 G11 L1 C/A        code_bias= 2.66m
+ST4 G11 L1 Z-tracking code_bias= 2.66m
+ST4 G11 L2 CM+CL      code_bias= 2.66m
+ST4 G11 L2 Z-tracking code_bias= 4.36m
+ST4 G11 L5 I+Q        code_bias= 2.66m
+ST4 G12 L1 C/A        code_bias= 3.76m
+ST4 G12 L1 Z-tracking code_bias= 3.76m
+ST4 G12 L2 CM+CL      code_bias= 3.76m
+ST4 G12 L2 Z-tracking code_bias= 6.22m
+ST4 G13 L1 C/A        code_bias= 3.50m
+ST4 G13 L1 Z-tracking code_bias= 3.50m
+ST4 G13 L2 CM+CL      code_bias= 3.50m
+ST4 G13 L2 Z-tracking code_bias= 5.76m
+ST4 G14 L1 C/A        code_bias= 2.36m
+ST4 G14 L1 Z-tracking code_bias= 2.36m
+ST4 G14 L1C(D+P)      code_bias= 2.36m
+ST4 G14 L2 CM+CL      code_bias= 2.36m
+ST4 G14 L2 Z-tracking code_bias= 3.92m
+ST4 G14 L5 I+Q        code_bias= 2.36m
+ST4 G15 L1 C/A        code_bias= 3.22m
+ST4 G15 L1 Z-tracking code_bias= 3.22m
+ST4 G15 L2 CM+CL      code_bias= 3.22m
+ST4 G15 L2 Z-tracking code_bias= 5.28m
+ST4 G16 L1 C/A        code_bias= 3.06m
+ST4 G16 L1 Z-tracking code_bias= 3.06m
+ST4 G16 L2 CM+CL      code_bias= 3.06m
+ST4 G16 L2 Z-tracking code_bias= 5.06m
+ST4 G17 L1 C/A        code_bias= 3.34m
+ST4 G17 L1 Z-tracking code_bias= 3.34m
+ST4 G17 L2 CM+CL      code_bias= 3.34m
+ST4 G17 L2 Z-tracking code_bias= 5.52m
+ST4 G18 L1 C/A        code_bias= 2.50m
+ST4 G18 L1 Z-tracking code_bias= 2.50m
+ST4 G18 L2 CM+CL      code_bias= 2.50m
+ST4 G18 L2 Z-tracking code_bias= 4.14m
+ST4 G18 L5 I+Q        code_bias= 2.50m
+ST4 G19 L1 C/A        code_bias= 4.62m
+ST4 G19 L1 Z-tracking code_bias= 4.62m
+ST4 G19 L2 CM+CL      code_bias= 4.62m
+ST4 G19 L2 Z-tracking code_bias= 7.60m
+ST4 G21 L1 C/A        code_bias= 3.06m
+ST4 G21 L1 Z-tracking code_bias= 3.06m
+ST4 G21 L2 CM+CL      code_bias= 3.06m
+ST4 G21 L2 Z-tracking code_bias= 5.06m
+ST4 G22 L1 C/A        code_bias= 2.50m
+ST4 G22 L1 Z-tracking code_bias= 2.50m
+ST4 G22 L2 CM+CL      code_bias= 2.50m
+ST4 G22 L2 Z-tracking code_bias= 4.14m
+ST4 G23 L1 C/A        code_bias= 2.50m
+ST4 G23 L1 Z-tracking code_bias= 2.50m
+ST4 G23 L1C(D+P)      code_bias= 2.50m
+ST4 G23 L2 CM+CL      code_bias= 2.50m
+ST4 G23 L2 Z-tracking code_bias= 4.14m
+ST4 G23 L5 I+Q        code_bias= 2.50m
+ST4 G25 L1 C/A        code_bias=-1.68m
+ST4 G25 L1 Z-tracking code_bias=-1.68m
+ST4 G25 L2 CM+CL      code_bias=-1.68m
+ST4 G25 L2 Z-tracking code_bias=-2.76m
+ST4 G25 L5 I+Q        code_bias=-1.68m
+ST4 G26 L1 C/A        code_bias=-2.08m
+ST4 G26 L1 Z-tracking code_bias=-2.08m
+ST4 G26 L2 CM+CL      code_bias=-2.08m
+ST4 G26 L2 Z-tracking code_bias=-3.46m
+ST4 G26 L5 I+Q        code_bias=-2.08m
+ST4 G27 L1 C/A        code_bias=-0.42m
+ST4 G27 L1 Z-tracking code_bias=-0.42m
+ST4 G27 L2 CM+CL      code_bias=-0.42m
+ST4 G27 L2 Z-tracking code_bias=-0.68m
+ST4 G27 L5 I+Q        code_bias=-0.42m
+ST4 G29 L1 C/A        code_bias= 3.06m
+ST4 G29 L1 Z-tracking code_bias= 3.06m
+ST4 G29 L2 CM+CL      code_bias= 3.06m
+ST4 G29 L2 Z-tracking code_bias= 5.06m
+ST4 G30 L1 C/A        code_bias=-1.12m
+ST4 G30 L1 Z-tracking code_bias=-1.12m
+ST4 G30 L2 CM+CL      code_bias=-1.12m
+ST4 G30 L2 Z-tracking code_bias=-1.84m
+ST4 G30 L5 I+Q        code_bias=-1.12m
+ST4 G31 L1 C/A        code_bias= 4.06m
+ST4 G31 L1 Z-tracking code_bias= 4.06m
+ST4 G31 L2 CM+CL      code_bias= 4.06m
+ST4 G31 L2 Z-tracking code_bias= 6.68m
+ST4 G32 L1 C/A        code_bias=-0.14m
+ST4 G32 L1 Z-tracking code_bias=-0.14m
+ST4 G32 L2 CM+CL      code_bias=-0.14m
+ST4 G32 L2 Z-tracking code_bias=-0.24m
+ST4 G32 L5 I+Q        code_bias=-0.14m
+ST4 R01 G1 C/A        code_bias= 0.00m
+ST4 R01 G1 P          code_bias= 0.00m
+ST4 R01 G2 C/A        code_bias= 0.00m
+ST4 R01 G2 P          code_bias= 0.00m
+ST4 R02 G1 C/A        code_bias= 0.00m
+ST4 R02 G1 P          code_bias= 0.00m
+ST4 R02 G2 C/A        code_bias= 0.00m
+ST4 R02 G2 P          code_bias= 0.00m
+ST4 R03 G1 C/A        code_bias= 0.00m
+ST4 R03 G1 P          code_bias= 0.00m
+ST4 R03 G2 C/A        code_bias= 0.00m
+ST4 R03 G2 P          code_bias= 0.00m
+ST4 R04 G1 C/A        code_bias= 0.00m
+ST4 R04 G1 P          code_bias= 0.00m
+ST4 R04 G2 C/A        code_bias= 0.00m
+ST4 R04 G2 P          code_bias= 0.00m
+ST4 R05 G1 C/A        code_bias= 0.00m
+ST4 R05 G1 P          code_bias= 0.00m
+ST4 R05 G2 C/A        code_bias= 0.00m
+ST4 R05 G2 P          code_bias= 0.00m
+ST4 R07 G1 C/A        code_bias= 0.00m
+ST4 R07 G1 P          code_bias= 0.00m
+ST4 R07 G2 C/A        code_bias= 0.00m
+ST4 R07 G2 P          code_bias= 0.00m
+ST4 R08 G1 C/A        code_bias= 0.00m
+ST4 R08 G1 P          code_bias= 0.00m
+ST4 R08 G2 C/A        code_bias= 0.00m
+ST4 R08 G2 P          code_bias= 0.00m
+ST4 R09 G1 C/A        code_bias= 0.00m
+ST4 R09 G1 P          code_bias= 0.00m
+ST4 R09 G2 C/A        code_bias= 0.00m
+ST4 R09 G2 P          code_bias= 0.00m
+ST4 R11 G1 C/A        code_bias= 0.00m
+ST4 R11 G1 P          code_bias= 0.00m
+ST4 R11 G2 C/A        code_bias= 0.00m
+ST4 R11 G2 P          code_bias= 0.00m
+ST4 R12 G1 C/A        code_bias= 0.00m
+ST4 R12 G1 P          code_bias= 0.00m
+ST4 R12 G2 C/A        code_bias= 0.00m
+ST4 R12 G2 P          code_bias= 0.00m
+ST4 R13 G1 C/A        code_bias= 0.00m
+ST4 R13 G1 P          code_bias= 0.00m
+ST4 R13 G2 C/A        code_bias= 0.00m
+ST4 R13 G2 P          code_bias= 0.00m
+ST4 R14 G1 C/A        code_bias= 0.00m
+ST4 R14 G1 P          code_bias= 0.00m
+ST4 R14 G2 C/A        code_bias= 0.00m
+ST4 R14 G2 P          code_bias= 0.00m
+ST4 R15 G1 C/A        code_bias= 0.00m
+ST4 R15 G1 P          code_bias= 0.00m
+ST4 R15 G2 C/A        code_bias= 0.00m
+ST4 R15 G2 P          code_bias= 0.00m
+ST4 R17 G1 C/A        code_bias= 0.00m
+ST4 R17 G1 P          code_bias= 0.00m
+ST4 R17 G2 C/A        code_bias= 0.00m
+ST4 R17 G2 P          code_bias= 0.00m
+ST4 R18 G1 C/A        code_bias= 0.00m
+ST4 R18 G1 P          code_bias= 0.00m
+ST4 R18 G2 C/A        code_bias= 0.00m
+ST4 R18 G2 P          code_bias= 0.00m
+ST4 R19 G1 C/A        code_bias= 0.00m
+ST4 R19 G1 P          code_bias= 0.00m
+ST4 R19 G2 C/A        code_bias= 0.00m
+ST4 R19 G2 P          code_bias= 0.00m
+ST4 R21 G1 C/A        code_bias= 0.00m
+ST4 R21 G1 P          code_bias= 0.00m
+ST4 R21 G2 C/A        code_bias= 0.00m
+ST4 R21 G2 P          code_bias= 0.00m
+ST4 R24 G1 C/A        code_bias= 0.00m
+ST4 R24 G1 P          code_bias= 0.00m
+ST4 R24 G2 C/A        code_bias= 0.00m
+ST4 R24 G2 P          code_bias= 0.00m
+ST4 E02 E1 B+C        code_bias= 0.42m
+ST4 E02 E5a I+Q       code_bias= 0.76m
+ST4 E03 E1 B+C        code_bias=-0.92m
+ST4 E03 E5a I+Q       code_bias=-1.62m
+ST4 E04 E1 B+C        code_bias= 0.92m
+ST4 E04 E5a I+Q       code_bias= 1.62m
+ST4 E05 E1 B+C        code_bias=-1.04m
+ST4 E05 E5a I+Q       code_bias=-1.88m
+ST4 E07 E1 B+C        code_bias=-1.68m
+ST4 E07 E5a I+Q       code_bias=-3.00m
+ST4 E09 E1 B+C        code_bias=-0.56m
+ST4 E09 E5a I+Q       code_bias=-1.00m
+ST4 E13 E1 B+C        code_bias=-0.14m
+ST4 E13 E5a I+Q       code_bias=-0.26m
+ST4 E15 E1 B+C        code_bias=-1.76m
+ST4 E15 E5a I+Q       code_bias=-3.14m
+ST4 E19 E1 B+C        code_bias= 1.12m
+ST4 E19 E5a I+Q       code_bias= 2.00m
+ST4 E21 E1 B+C        code_bias=-0.98m
+ST4 E21 E5a I+Q       code_bias=-1.76m
+ST4 E24 E1 B+C        code_bias= 0.92m
+ST4 E24 E5a I+Q       code_bias= 1.62m
+ST4 E25 E1 B+C        code_bias=-1.04m
+ST4 E25 E5a I+Q       code_bias=-1.88m
+ST4 E27 E1 B+C        code_bias=-0.76m
+ST4 E27 E5a I+Q       code_bias=-1.38m
+ST4 E30 E1 B+C        code_bias=-0.56m
+ST4 E30 E5a I+Q       code_bias=-1.00m
+ST4 E33 E1 B+C        code_bias= 0.92m
+ST4 E33 E5a I+Q       code_bias= 1.62m
+ST4 E36 E1 B+C        code_bias=-1.68m
+ST4 E36 E5a I+Q       code_bias=-3.00m
+ST4 J02 L1 C/A        code_bias=-0.14m
+ST4 J02 L1 L1C(D+P)   code_bias=-0.14m
+ST4 J02 L2 L2C(M+L)   code_bias=-0.24m
+ST4 J02 L5 I+Q        code_bias=-0.14m
+ST4 J03 L1 C/A        code_bias= 0.14m
+ST4 J03 L1 L1C(D+P)   code_bias= 0.14m
+ST4 J03 L2 L2C(M+L)   code_bias= 0.24m
+ST4 J03 L5 I+Q        code_bias= 0.14m
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 (Clk/Eph LNAV) ST4 ST3...
 ST3 G01 d_clock= 0.1m
 ST3 G03 d_clock= 1.5m
@@ -1828,125 +1828,125 @@ CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 (Clk/Eph LNAV) ST5...
 ST5 G01 L1 C/A        phase_bias=-0.3m discont_indicator=0
 ST5 G01 L1 Z-tracking phase_bias=-0.3m discont_indicator=0
-ST5 G01 L2 L2C(M+L)   phase_bias=-0.3m discont_indicator=0
+ST5 G01 L2 CM+CL      phase_bias=-0.3m discont_indicator=0
 ST5 G01 L2 Z-tracking phase_bias=-0.3m discont_indicator=0
 ST5 G01 L5 I+Q        phase_bias=-0.1m discont_indicator=0
 ST5 G03 L1 C/A        phase_bias=-0.0m discont_indicator=0
 ST5 G03 L1 Z-tracking phase_bias=-0.0m discont_indicator=0
-ST5 G03 L2 L2C(M+L)   phase_bias=-0.1m discont_indicator=0
+ST5 G03 L2 CM+CL      phase_bias=-0.1m discont_indicator=0
 ST5 G03 L2 Z-tracking phase_bias=-0.1m discont_indicator=0
 ST5 G03 L5 I+Q        phase_bias=-0.3m discont_indicator=0
 ST5 G04 L1 C/A        phase_bias=-0.4m discont_indicator=0
 ST5 G04 L1 Z-tracking phase_bias=-0.4m discont_indicator=0
-ST5 G04 L1 L1C(D+P)   phase_bias=-0.4m discont_indicator=0
-ST5 G04 L2 L2C(M+L)   phase_bias=-0.4m discont_indicator=0
+ST5 G04 L1C(D+P)      phase_bias=-0.4m discont_indicator=0
+ST5 G04 L2 CM+CL      phase_bias=-0.4m discont_indicator=0
 ST5 G04 L2 Z-tracking phase_bias=-0.4m discont_indicator=0
 ST5 G04 L5 I+Q        phase_bias=-0.7m discont_indicator=0
 ST5 G06 L1 C/A        phase_bias=-0.6m discont_indicator=0
 ST5 G06 L1 Z-tracking phase_bias=-0.6m discont_indicator=0
-ST5 G06 L2 L2C(M+L)   phase_bias=-0.7m discont_indicator=0
+ST5 G06 L2 CM+CL      phase_bias=-0.7m discont_indicator=0
 ST5 G06 L2 Z-tracking phase_bias=-0.7m discont_indicator=0
 ST5 G06 L5 I+Q        phase_bias=-1.0m discont_indicator=0
 ST5 G08 L1 C/A        phase_bias= 0.7m discont_indicator=0
 ST5 G08 L1 Z-tracking phase_bias= 0.7m discont_indicator=0
-ST5 G08 L2 L2C(M+L)   phase_bias= 1.1m discont_indicator=0
+ST5 G08 L2 CM+CL      phase_bias= 1.1m discont_indicator=0
 ST5 G08 L2 Z-tracking phase_bias= 1.1m discont_indicator=0
 ST5 G08 L5 I+Q        phase_bias= 1.0m discont_indicator=0
 ST5 G09 L1 C/A        phase_bias= 0.5m discont_indicator=0
 ST5 G09 L1 Z-tracking phase_bias= 0.5m discont_indicator=0
-ST5 G09 L2 L2C(M+L)   phase_bias= 0.6m discont_indicator=0
+ST5 G09 L2 CM+CL      phase_bias= 0.6m discont_indicator=0
 ST5 G09 L2 Z-tracking phase_bias= 0.6m discont_indicator=0
 ST5 G09 L5 I+Q        phase_bias= 0.5m discont_indicator=0
 ST5 G10 L1 C/A        phase_bias= 0.2m discont_indicator=0
 ST5 G10 L1 Z-tracking phase_bias= 0.2m discont_indicator=0
-ST5 G10 L2 L2C(M+L)   phase_bias= 0.3m discont_indicator=0
+ST5 G10 L2 CM+CL      phase_bias= 0.3m discont_indicator=0
 ST5 G10 L2 Z-tracking phase_bias= 0.3m discont_indicator=0
 ST5 G10 L5 I+Q        phase_bias= 0.2m discont_indicator=0
 ST5 G11 L1 C/A        phase_bias=-0.7m discont_indicator=0
 ST5 G11 L1 Z-tracking phase_bias=-0.7m discont_indicator=0
-ST5 G11 L2 L2C(M+L)   phase_bias=-1.2m discont_indicator=0
+ST5 G11 L2 CM+CL      phase_bias=-1.2m discont_indicator=0
 ST5 G11 L2 Z-tracking phase_bias=-1.2m discont_indicator=0
 ST5 G11 L5 I+Q        phase_bias=-1.0m discont_indicator=0
 ST5 G12 L1 C/A        phase_bias=-0.2m discont_indicator=0
 ST5 G12 L1 Z-tracking phase_bias=-0.2m discont_indicator=0
-ST5 G12 L2 L2C(M+L)   phase_bias=-0.4m discont_indicator=0
+ST5 G12 L2 CM+CL      phase_bias=-0.4m discont_indicator=0
 ST5 G12 L2 Z-tracking phase_bias=-0.4m discont_indicator=0
 ST5 G13 L1 C/A        phase_bias=-0.4m discont_indicator=0
 ST5 G13 L1 Z-tracking phase_bias=-0.4m discont_indicator=0
-ST5 G13 L2 L2C(M+L)   phase_bias=-0.6m discont_indicator=0
+ST5 G13 L2 CM+CL      phase_bias=-0.6m discont_indicator=0
 ST5 G13 L2 Z-tracking phase_bias=-0.6m discont_indicator=0
 ST5 G14 L1 C/A        phase_bias= 0.6m discont_indicator=0
 ST5 G14 L1 Z-tracking phase_bias= 0.6m discont_indicator=0
-ST5 G14 L1 L1C(D+P)   phase_bias= 0.6m discont_indicator=0
-ST5 G14 L2 L2C(M+L)   phase_bias= 0.8m discont_indicator=0
+ST5 G14 L1C(D+P)      phase_bias= 0.6m discont_indicator=0
+ST5 G14 L2 CM+CL      phase_bias= 0.8m discont_indicator=0
 ST5 G14 L2 Z-tracking phase_bias= 0.8m discont_indicator=0
 ST5 G14 L5 I+Q        phase_bias= 0.8m discont_indicator=0
 ST5 G15 L1 C/A        phase_bias=-1.5m discont_indicator=0
 ST5 G15 L1 Z-tracking phase_bias=-1.5m discont_indicator=0
-ST5 G15 L2 L2C(M+L)   phase_bias=-2.2m discont_indicator=0
+ST5 G15 L2 CM+CL      phase_bias=-2.2m discont_indicator=0
 ST5 G15 L2 Z-tracking phase_bias=-2.2m discont_indicator=0
 ST5 G16 L1 C/A        phase_bias=-0.2m discont_indicator=0
 ST5 G16 L1 Z-tracking phase_bias=-0.2m discont_indicator=0
-ST5 G16 L2 L2C(M+L)   phase_bias=-0.2m discont_indicator=0
+ST5 G16 L2 CM+CL      phase_bias=-0.2m discont_indicator=0
 ST5 G16 L2 Z-tracking phase_bias=-0.2m discont_indicator=0
 ST5 G17 L1 C/A        phase_bias= 0.4m discont_indicator=0
 ST5 G17 L1 Z-tracking phase_bias= 0.4m discont_indicator=0
-ST5 G17 L2 L2C(M+L)   phase_bias= 0.5m discont_indicator=0
+ST5 G17 L2 CM+CL      phase_bias= 0.5m discont_indicator=0
 ST5 G17 L2 Z-tracking phase_bias= 0.5m discont_indicator=0
 ST5 G18 L1 C/A        phase_bias= 0.1m discont_indicator=0
 ST5 G18 L1 Z-tracking phase_bias= 0.1m discont_indicator=0
-ST5 G18 L2 L2C(M+L)   phase_bias=-0.1m discont_indicator=0
+ST5 G18 L2 CM+CL      phase_bias=-0.1m discont_indicator=0
 ST5 G18 L2 Z-tracking phase_bias=-0.1m discont_indicator=0
 ST5 G18 L5 I+Q        phase_bias=-0.2m discont_indicator=0
 ST5 G19 L1 C/A        phase_bias=-0.7m discont_indicator=0
 ST5 G19 L1 Z-tracking phase_bias=-0.7m discont_indicator=0
-ST5 G19 L2 L2C(M+L)   phase_bias=-1.1m discont_indicator=0
+ST5 G19 L2 CM+CL      phase_bias=-1.1m discont_indicator=0
 ST5 G19 L2 Z-tracking phase_bias=-1.1m discont_indicator=0
 ST5 G21 L1 C/A        phase_bias= 0.4m discont_indicator=0
 ST5 G21 L1 Z-tracking phase_bias= 0.4m discont_indicator=0
-ST5 G21 L2 L2C(M+L)   phase_bias= 0.5m discont_indicator=0
+ST5 G21 L2 CM+CL      phase_bias= 0.5m discont_indicator=0
 ST5 G21 L2 Z-tracking phase_bias= 0.5m discont_indicator=0
 ST5 G22 L1 C/A        phase_bias= 0.3m discont_indicator=0
 ST5 G22 L1 Z-tracking phase_bias= 0.3m discont_indicator=0
-ST5 G22 L2 L2C(M+L)   phase_bias= 0.3m discont_indicator=0
+ST5 G22 L2 CM+CL      phase_bias= 0.3m discont_indicator=0
 ST5 G22 L2 Z-tracking phase_bias= 0.3m discont_indicator=0
 ST5 G23 L1 C/A        phase_bias= 0.1m discont_indicator=0
 ST5 G23 L1 Z-tracking phase_bias= 0.1m discont_indicator=0
-ST5 G23 L1 L1C(D+P)   phase_bias= 0.1m discont_indicator=0
-ST5 G23 L2 L2C(M+L)   phase_bias= 0.3m discont_indicator=0
+ST5 G23 L1C(D+P)      phase_bias= 0.1m discont_indicator=0
+ST5 G23 L2 CM+CL      phase_bias= 0.3m discont_indicator=0
 ST5 G23 L2 Z-tracking phase_bias= 0.3m discont_indicator=0
 ST5 G23 L5 I+Q        phase_bias= 0.1m discont_indicator=0
 ST5 G25 L1 C/A        phase_bias=-0.1m discont_indicator=0
 ST5 G25 L1 Z-tracking phase_bias=-0.1m discont_indicator=0
-ST5 G25 L2 L2C(M+L)   phase_bias=-0.1m discont_indicator=0
+ST5 G25 L2 CM+CL      phase_bias=-0.1m discont_indicator=0
 ST5 G25 L2 Z-tracking phase_bias=-0.1m discont_indicator=0
 ST5 G25 L5 I+Q        phase_bias=-0.3m discont_indicator=0
 ST5 G26 L1 C/A        phase_bias=-0.9m discont_indicator=0
 ST5 G26 L1 Z-tracking phase_bias=-0.9m discont_indicator=0
-ST5 G26 L2 L2C(M+L)   phase_bias=-1.3m discont_indicator=0
+ST5 G26 L2 CM+CL      phase_bias=-1.3m discont_indicator=0
 ST5 G26 L2 Z-tracking phase_bias=-1.3m discont_indicator=0
 ST5 G26 L5 I+Q        phase_bias=-1.5m discont_indicator=0
 ST5 G27 L1 C/A        phase_bias= 2.1m discont_indicator=0
 ST5 G27 L1 Z-tracking phase_bias= 2.1m discont_indicator=0
-ST5 G27 L2 L2C(M+L)   phase_bias= 2.7m discont_indicator=0
+ST5 G27 L2 CM+CL      phase_bias= 2.7m discont_indicator=0
 ST5 G27 L2 Z-tracking phase_bias= 2.7m discont_indicator=0
 ST5 G27 L5 I+Q        phase_bias= 2.6m discont_indicator=0
 ST5 G29 L1 C/A        phase_bias=-0.2m discont_indicator=0
 ST5 G29 L1 Z-tracking phase_bias=-0.2m discont_indicator=0
-ST5 G29 L2 L2C(M+L)   phase_bias=-0.5m discont_indicator=0
+ST5 G29 L2 CM+CL      phase_bias=-0.5m discont_indicator=0
 ST5 G29 L2 Z-tracking phase_bias=-0.5m discont_indicator=0
 ST5 G30 L1 C/A        phase_bias=-0.6m discont_indicator=0
 ST5 G30 L1 Z-tracking phase_bias=-0.6m discont_indicator=0
-ST5 G30 L2 L2C(M+L)   phase_bias=-0.7m discont_indicator=0
+ST5 G30 L2 CM+CL      phase_bias=-0.7m discont_indicator=0
 ST5 G30 L2 Z-tracking phase_bias=-0.7m discont_indicator=0
 ST5 G30 L5 I+Q        phase_bias=-0.9m discont_indicator=0
 ST5 G31 L1 C/A        phase_bias= 0.3m discont_indicator=0
 ST5 G31 L1 Z-tracking phase_bias= 0.3m discont_indicator=0
-ST5 G31 L2 L2C(M+L)   phase_bias= 0.1m discont_indicator=0
+ST5 G31 L2 CM+CL      phase_bias= 0.1m discont_indicator=0
 ST5 G31 L2 Z-tracking phase_bias= 0.1m discont_indicator=0
 ST5 G32 L1 C/A        phase_bias=-0.8m discont_indicator=0
 ST5 G32 L1 Z-tracking phase_bias=-0.8m discont_indicator=0
-ST5 G32 L2 L2C(M+L)   phase_bias=-1.2m discont_indicator=0
+ST5 G32 L2 CM+CL      phase_bias=-1.2m discont_indicator=0
 ST5 G32 L2 Z-tracking phase_bias=-1.2m discont_indicator=0
 ST5 G32 L5 I+Q        phase_bias=-1.3m discont_indicator=0
 ST5 R01 G1 C/A        phase_bias= 0.0m discont_indicator=0
@@ -2207,32 +2207,32 @@ CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000
 CSSR null data 1695 bits
 CSSR dump: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 (Clk/Eph LNAV) (null)
-ST1 G01 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G03 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G04 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G06 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G08 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G09 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G10 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G11 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G13 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G14 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G15 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G16 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G17 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G18 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G19 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G21 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G22 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G23 L1 C/A L1 Z-tracking L1 L1C(D+P) L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G25 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G27 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G30 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
-ST1 G31 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking
-ST1 G32 L1 C/A L1 Z-tracking L2 L2C(M+L) L2 Z-tracking L5 I+Q
+ST1 G01 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G03 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G04 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G06 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G08 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G09 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G10 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G11 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G12 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G13 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G14 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G15 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G16 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G17 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G18 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G19 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G21 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G22 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G23 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G25 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G26 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G27 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G29 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G30 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
+ST1 G31 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
+ST1 G32 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 R01 G1 C/A G1 P G2 C/A G2 P
 ST1 R02 G1 C/A G1 P G2 C/A G2 P
 ST1 R03 G1 C/A G1 P G2 C/A G2 P
@@ -2271,68 +2271,68 @@ ST1 J02 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
 ST1 J03 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
-ST2 G01 IODE=  52 d_radial= 0.3m d_along= 1.1m d_cross= 1.1m
-ST2 G03 IODE=  66 d_radial= 0.1m d_along= 0.4m d_cross= 0.4m
-ST2 G04 IODE= 235 d_radial= 1.0m d_along= 4.0m d_cross= 4.0m
-ST2 G06 IODE=  13 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 G08 IODE=  92 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G09 IODE=   2 d_radial=-0.1m d_along=-0.2m d_cross=-0.2m
-ST2 G10 IODE=  81 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 G11 IODE= 111 d_radial= 0.8m d_along= 3.1m d_cross= 3.1m
-ST2 G12 IODE=  14 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G13 IODE=  79 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 G14 IODE=  25 d_radial= 1.0m d_along= 3.9m d_cross= 3.9m
-ST2 G15 IODE=  89 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G16 IODE=  32 d_radial= 0.3m d_along= 1.1m d_cross= 1.1m
-ST2 G17 IODE=  81 d_radial=-0.1m d_along=-0.5m d_cross=-0.5m
-ST2 G18 IODE=  94 d_radial= 0.9m d_along= 3.7m d_cross= 3.7m
-ST2 G19 IODE=  61 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 G21 IODE=  55 d_radial= 0.3m d_along= 1.3m d_cross= 1.3m
-ST2 G22 IODE=   7 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 G23 IODE= 146 d_radial= 1.0m d_along= 4.0m d_cross= 4.0m
-ST2 G25 IODE=  59 d_radial=-0.3m d_along=-1.4m d_cross=-1.4m
-ST2 G26 IODE=  33 d_radial= 0.1m d_along= 0.2m d_cross= 0.2m
-ST2 G27 IODE=  53 d_radial= 0.2m d_along= 0.6m d_cross= 0.6m
-ST2 G29 IODE=  28 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 G30 IODE=  12 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 G31 IODE=  14 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 G32 IODE=  52 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 R01 IODE=  63 d_radial= 0.3m d_along= 1.4m d_cross= 1.4m
-ST2 R02 IODE=  63 d_radial= 0.5m d_along= 2.1m d_cross= 2.1m
-ST2 R03 IODE=  63 d_radial= 0.9m d_along= 3.7m d_cross= 3.7m
-ST2 R04 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R05 IODE=  63 d_radial= 0.3m d_along= 1.4m d_cross= 1.4m
-ST2 R07 IODE=  63 d_radial= 0.2m d_along= 0.8m d_cross= 0.8m
-ST2 R08 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R09 IODE=  63 d_radial= 0.4m d_along= 1.7m d_cross= 1.7m
-ST2 R11 IODE=  63 d_radial= 1.3m d_along= 5.0m d_cross= 5.0m
-ST2 R12 IODE=  63 d_radial=-0.2m d_along=-0.8m d_cross=-0.8m
-ST2 R13 IODE=  63 d_radial= 0.5m d_along= 1.9m d_cross= 1.9m
-ST2 R14 IODE=  63 d_radial= 0.0m d_along= 0.0m d_cross= 0.0m
-ST2 R15 IODE=  63 d_radial= 0.3m d_along= 1.4m d_cross= 1.4m
-ST2 R17 IODE=  63 d_radial= 0.9m d_along= 3.6m d_cross= 3.6m
-ST2 R18 IODE=  63 d_radial= 0.5m d_along= 2.1m d_cross= 2.1m
-ST2 R19 IODE=  63 d_radial= 1.0m d_along= 3.9m d_cross= 3.9m
-ST2 R21 IODE=  63 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 R24 IODE=  63 d_radial= 0.5m d_along= 2.2m d_cross= 2.2m
-ST2 E02 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E03 IODE= 124 d_radial= 0.0m d_along= 0.0m d_cross= 0.0m
-ST2 E04 IODE= 124 d_radial=-0.1m d_along=-0.2m d_cross=-0.2m
-ST2 E05 IODE= 124 d_radial= 0.0m d_along= 0.2m d_cross= 0.2m
-ST2 E07 IODE= 124 d_radial=-0.1m d_along=-0.3m d_cross=-0.3m
-ST2 E09 IODE= 122 d_radial= 0.1m d_along= 0.5m d_cross= 0.5m
-ST2 E13 IODE= 122 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E15 IODE= 124 d_radial= 0.4m d_along= 1.4m d_cross= 1.4m
-ST2 E19 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E21 IODE= 124 d_radial= 0.0m d_along= 0.1m d_cross= 0.1m
-ST2 E24 IODE= 120 d_radial=-0.1m d_along=-0.4m d_cross=-0.4m
-ST2 E25 IODE= 118 d_radial=-0.0m d_along=-0.0m d_cross=-0.0m
-ST2 E27 IODE= 119 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 E30 IODE= 124 d_radial=-0.0m d_along=-0.1m d_cross=-0.1m
-ST2 E33 IODE= 122 d_radial= 0.1m d_along= 0.3m d_cross= 0.3m
-ST2 E36 IODE= 124 d_radial= 0.1m d_along= 0.6m d_cross= 0.6m
-ST2 J02 IODE= 113 d_radial=-1.8m d_along=-7.1m d_cross=-7.1m
-ST2 J03 IODE= 113 d_radial=-0.6m d_along=-2.3m d_cross=-2.3m
+ST2 G01 IODE=  52 d_radial=  0.3m d_along= -1.1m d_cross=  1.0m
+ST2 G03 IODE=  66 d_radial=  0.1m d_along= -0.6m d_cross= -0.4m
+ST2 G04 IODE= 235 d_radial=  1.0m d_along= -0.4m d_cross=  0.3m
+ST2 G06 IODE=  13 d_radial= -0.0m d_along= -0.5m d_cross= -0.1m
+ST2 G08 IODE=  92 d_radial=  0.1m d_along= -0.4m d_cross=  0.1m
+ST2 G09 IODE=   2 d_radial= -0.1m d_along=  0.9m d_cross=  0.6m
+ST2 G10 IODE=  81 d_radial=  0.1m d_along=  1.1m d_cross=  0.4m
+ST2 G11 IODE= 111 d_radial=  0.8m d_along=  1.1m d_cross=  0.5m
+ST2 G12 IODE=  14 d_radial=  0.0m d_along=  0.2m d_cross= -0.4m
+ST2 G13 IODE=  79 d_radial=  0.1m d_along=  1.2m d_cross= -0.1m
+ST2 G14 IODE=  25 d_radial=  1.0m d_along= -0.1m d_cross=  0.4m
+ST2 G15 IODE=  89 d_radial= -0.1m d_along=  2.3m d_cross=  0.5m
+ST2 G16 IODE=  32 d_radial=  0.3m d_along= -0.7m d_cross= -0.4m
+ST2 G17 IODE=  81 d_radial= -0.1m d_along=  0.0m d_cross= -0.2m
+ST2 G18 IODE=  94 d_radial=  0.9m d_along= -0.9m d_cross= -0.2m
+ST2 G19 IODE=  61 d_radial= -0.1m d_along= -0.9m d_cross=  0.7m
+ST2 G21 IODE=  55 d_radial=  0.3m d_along= -2.3m d_cross=  1.0m
+ST2 G22 IODE=   7 d_radial= -0.0m d_along=  0.7m d_cross= -0.5m
+ST2 G23 IODE= 146 d_radial=  1.0m d_along=  0.1m d_cross=  1.0m
+ST2 G25 IODE=  59 d_radial= -0.3m d_along= -0.5m d_cross= -0.3m
+ST2 G26 IODE=  33 d_radial=  0.1m d_along=  0.1m d_cross= -0.5m
+ST2 G27 IODE=  53 d_radial=  0.2m d_along=  0.2m d_cross= -0.3m
+ST2 G29 IODE=  28 d_radial=  0.1m d_along= -0.4m d_cross= -0.5m
+ST2 G30 IODE=  12 d_radial=  0.0m d_along= -0.3m d_cross= -0.2m
+ST2 G31 IODE=  14 d_radial= -0.0m d_along=  0.4m d_cross=  0.1m
+ST2 G32 IODE=  52 d_radial=  0.1m d_along=  0.2m d_cross=  0.5m
+ST2 R01 IODE=  63 d_radial=  0.3m d_along= -0.9m d_cross= -1.1m
+ST2 R02 IODE=  63 d_radial=  0.5m d_along=  1.0m d_cross= -1.1m
+ST2 R03 IODE=  63 d_radial=  0.9m d_along= -2.1m d_cross= -0.7m
+ST2 R04 IODE=  63 d_radial=  0.5m d_along= -1.6m d_cross= -0.4m
+ST2 R05 IODE=  63 d_radial=  0.3m d_along= -1.7m d_cross= -0.1m
+ST2 R07 IODE=  63 d_radial=  0.2m d_along=  1.0m d_cross=  1.0m
+ST2 R08 IODE=  63 d_radial=  0.5m d_along= -0.5m d_cross= -0.9m
+ST2 R09 IODE=  63 d_radial=  0.4m d_along= -8.6m d_cross=  2.8m
+ST2 R11 IODE=  63 d_radial=  1.3m d_along= -3.7m d_cross= -2.3m
+ST2 R12 IODE=  63 d_radial= -0.2m d_along=  4.1m d_cross=  2.0m
+ST2 R13 IODE=  63 d_radial=  0.5m d_along=  0.1m d_cross=  0.3m
+ST2 R14 IODE=  63 d_radial=  0.0m d_along= -3.3m d_cross=  1.2m
+ST2 R15 IODE=  63 d_radial=  0.3m d_along= -5.4m d_cross=  3.0m
+ST2 R17 IODE=  63 d_radial=  0.9m d_along= -1.0m d_cross=  0.7m
+ST2 R18 IODE=  63 d_radial=  0.5m d_along= -1.3m d_cross= -0.3m
+ST2 R19 IODE=  63 d_radial=  1.0m d_along= -2.6m d_cross= -2.2m
+ST2 R21 IODE=  63 d_radial=  0.0m d_along=  0.6m d_cross=  0.9m
+ST2 R24 IODE=  63 d_radial=  0.5m d_along=  1.5m d_cross= -2.5m
+ST2 E02 IODE= 124 d_radial=  0.0m d_along=  0.4m d_cross=  0.1m
+ST2 E03 IODE= 124 d_radial=  0.0m d_along=  0.1m d_cross=  0.1m
+ST2 E04 IODE= 124 d_radial= -0.1m d_along=  0.2m d_cross=  0.2m
+ST2 E05 IODE= 124 d_radial=  0.0m d_along= -0.1m d_cross= -0.0m
+ST2 E07 IODE= 124 d_radial= -0.1m d_along= -0.1m d_cross=  0.2m
+ST2 E09 IODE= 122 d_radial=  0.1m d_along= -0.0m d_cross= -0.0m
+ST2 E13 IODE= 122 d_radial= -0.0m d_along=  0.1m d_cross= -0.2m
+ST2 E15 IODE= 124 d_radial=  0.4m d_along= -0.4m d_cross=  0.0m
+ST2 E19 IODE= 124 d_radial=  0.0m d_along= -0.2m d_cross=  0.0m
+ST2 E21 IODE= 124 d_radial=  0.0m d_along=  0.2m d_cross=  0.1m
+ST2 E24 IODE= 120 d_radial= -0.1m d_along=  0.1m d_cross=  0.0m
+ST2 E25 IODE= 118 d_radial= -0.0m d_along=  0.4m d_cross= -0.0m
+ST2 E27 IODE= 119 d_radial=  0.1m d_along=  0.2m d_cross=  0.1m
+ST2 E30 IODE= 124 d_radial= -0.0m d_along=  0.3m d_cross=  0.0m
+ST2 E33 IODE= 122 d_radial=  0.1m d_along= -0.3m d_cross= -0.0m
+ST2 E36 IODE= 124 d_radial=  0.1m d_along= -0.0m d_cross= -0.3m
+ST2 J02 IODE= 113 d_radial= -1.8m d_along=  0.6m d_cross=  0.9m
+ST2 J03 IODE= 113 d_radial= -0.6m d_along=  0.8m d_cross=  0.2m
 ST3 G01 d_clock= 0.1m
 ST3 G03 d_clock= 1.5m
 ST3 G04 d_clock=-0.3m

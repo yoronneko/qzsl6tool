@@ -1,0 +1,2377 @@
+E12 HASS=Operational(1) MT=1 MID=18 MS= 2 PID= 92 -> A new page for MID=18
+E10 HASS=Operational(1) MT=1 MID=18 MS= 2 PID= 72
+------ HAS decode with the pages of MID=18 MS=2 ------
+0x93520062500a7f68c2f5ef002d842a001ec7043fc8c0b3f3cf930253d4e0e9fd9705fad5d5cf670010052353f8b02202a2047fd0816ffebf4f016011bf9e102007ff000b9ff701d7ed3fd401300bff88021f82fe9aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+------
+Time of hour TOH: 2357 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+CKFUL validity_interval=60s (5)
+------ padding bits ------
+00000000101001111111011010001100001011110101111011110000000000101101100001000010101000000000000111101100011100000100001111111100100011000000101100111111001111001111100100110000001001010011110101001110000011101001111111011001011100000101111110101101010111010101110011110110011100000000000100000000010100100011010100111111100010110000001000100000001010100010000001000111111111010000100000010110111111111110101111110100111100000001011000000001000110111111100111100001000000100000000001111111111100000000000010111001111111110111000000011101011111101101001111111101010000000001001100000000101111111111100010000000001000011111100000101111111010011010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E24 HASS=Operational(1) MT=1 MID=18 MS= 2 PID=152 -> Enough pages for MID=18
+E31 HASS=Operational(1) MT=1 MID=18 MS= 2 PID=182 -> Enough pages for MID=18
+E11 HASS=Operational(1) MT=1 MID=18 MS= 2 PID= 82 -> Enough pages for MID=18
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=159 -> A new page for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=107
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=211
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  8
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=133
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=160
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=108
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=212
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  9
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=134
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=161
+------ HAS decode with the pages of MID=17 MS=11 ------
+0x92ec806220ffbffb2f008140fbffffffeff7fb6fffffc13df914f36824820014a41b2e6a06232012fef014abfefc1bc0145fd11ec7f9e05fe7feefe90d00080e7f4a0ffa3ff41f14c089fc0002a608ce9bf7391f567e77fd297f54173ec067f8600bfb867e68fa6fb44c000010fee97809fe7bf704fff1f8000efbe41f...
+------
+Time of hour TOH: 2350 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
+Clock subset    : off
+Code bias       : on
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G07 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+MASK G09 L1 C/A L2 CL L2 P
+MASK G11 L1 C/A L2 CL L2 P
+MASK G12 L1 C/A L2 CL L2 P
+MASK G13 L1 C/A L2 P
+MASK G14 L1 C/A L2 CL L2 P
+MASK G15 L1 C/A L2 CL L2 P
+MASK G16 L1 C/A L2 P
+MASK G17 L1 C/A L2 CL L2 P
+MASK G18 L1 C/A L2 CL L2 P
+MASK G19 L1 C/A L2 P
+MASK G20 L1 C/A L2 P
+MASK G21 L1 C/A L2 P
+MASK G23 L1 C/A L2 CL L2 P
+MASK G24 L1 C/A L2 CL L2 P
+MASK G27 L1 C/A L2 CL L2 P
+MASK G29 L1 C/A L2 CL L2 P
+MASK G30 L1 C/A L2 CL L2 P
+MASK G31 L1 C/A L2 CL L2 P
+MASK G32 L1 C/A L2 CL L2 P
+MASK E02 E1 C E5a Q E5b Q E6 C
+MASK E03 E1 C E5a Q E5b Q E6 C
+MASK E04 E1 C E5a Q E5b Q E6 C
+MASK E05 E1 C E5a Q E5b Q E6 C
+MASK E07 E1 C E5a Q E5b Q E6 C
+MASK E08 E1 C E5a Q E5b Q E6 C
+MASK E09 E1 C E5a Q E5b Q E6 C
+MASK E10 E1 C E5a Q E5b Q E6 C
+MASK E11 E1 C E5a Q E5b Q E6 C
+MASK E12 E1 C E5a Q E5b Q E6 C
+MASK E15 E1 C E5a Q E5b Q E6 C
+MASK E19 E1 C E5a Q E5b Q E6 C
+MASK E21 E1 C E5a Q E5b Q E6 C
+MASK E24 E1 C E5a Q E5b Q E6 C
+MASK E25 E1 C E5a Q E5b Q E6 C
+MASK E26 E1 C E5a Q E5b Q E6 C
+MASK E27 E1 C E5a Q E5b Q E6 C
+MASK E30 E1 C E5a Q E5b Q E6 C
+MASK E31 E1 C E5a Q E5b Q E6 C
+MASK E33 E1 C E5a Q E5b Q E6 C
+MASK E34 E1 C E5a Q E5b Q E6 C
+MASK E36 E1 C E5a Q E5b Q E6 C
+ORBIT validity_interval=300s (10)
+ORBIT G01 IODE=  82 d_radial= 1.0850m d_track=-3.2480m d_cross= 0.7840m
+ORBIT G02 IODE=  50 d_radial= 0.0925m d_track=-0.2720m d_cross= 0.3280m
+ORBIT G03 IODE=  87 d_radial=-0.1625m d_track= 0.8880m d_cross= 0.0400m
+ORBIT G04 IODE=  23 d_radial=-0.9400m d_track=-1.2560m d_cross=-0.3920m
+ORBIT G05 IODE=   2 d_radial=-0.0625m d_track=-0.1440m d_cross=-0.1840m
+ORBIT G06 IODE=  13 d_radial= 0.0025m d_track= 0.2240m d_cross=-0.1840m
+ORBIT G07 IODE=  65 d_radial=-0.0600m d_track=-0.0240m d_cross= 0.9920m
+ORBIT G08 IODE=  83 d_radial= 0.1700m d_track=-0.2560m d_cross= 0.0080m
+ORBIT G09 IODE=  83 d_radial= 0.3500m d_track=-2.8560m d_cross=-1.1280m
+ORBIT G11 IODE= 145 d_radial=-0.8500m d_track=-0.4000m d_cross=-0.0480m
+ORBIT G12 IODE=  82 d_radial=-0.1075m d_track= 0.7360m d_cross=-0.6400m
+ORBIT G13 IODE=  25 d_radial=-0.1525m d_track= 0.0400m d_cross=-0.2880m
+ORBIT G14 IODE=  51 d_radial=-1.0200m d_track=-0.7200m d_cross=-0.6080m
+ORBIT G15 IODE=  76 d_radial= 0.0000m d_track= 0.2640m d_cross=-0.2800m
+ORBIT G16 IODE=  47 d_radial= 0.0975m d_track=-0.7840m d_cross=-0.2880m
+ORBIT G17 IODE=  19 d_radial=-0.0200m d_track=-0.5120m d_cross= 0.0560m
+ORBIT G18 IODE= 125 d_radial=-1.1175m d_track=-0.0880m d_cross=-0.6400m
+ORBIT G19 IODE= 101 d_radial= 0.1250m d_track=-2.3280m d_cross= 1.1200m
+ORBIT G20 IODE=  21 d_radial= 0.0750m d_track=-0.7280m d_cross=-0.2000m
+ORBIT G21 IODE=  16 d_radial= 0.1100m d_track= 0.4160m d_cross= 0.0240m
+ORBIT G23 IODE= 178 d_radial=-1.3050m d_track= 0.7520m d_cross=-0.2880m
+ORBIT G24 IODE=  74 d_radial=-0.1250m d_track=-0.9520m d_cross= 0.0880m
+ORBIT G27 IODE=   9 d_radial=-0.1600m d_track=-0.5440m d_cross= 0.2960m
+ORBIT G29 IODE=  61 d_radial=-0.0300m d_track=-1.7440m d_cross=-1.4800m
+ORBIT G30 IODE= 103 d_radial= 0.3275m d_track=-2.5120m d_cross=-1.6800m
+ORBIT G31 IODE=  11 d_radial= 0.0325m d_track=-1.3680m d_cross= 0.2000m
+ORBIT G32 IODE=  25 d_radial=-0.2100m d_track=-0.5200m d_cross=-0.6560m
+ORBIT E02 IODE=  38 d_radial=-0.1000m d_track= 0.0480m d_cross=-0.2000m
+ORBIT E03 IODE=  35 d_radial=-0.1250m d_track= 0.0880m d_cross= 0.3680m
+ORBIT E04 IODE=  38 d_radial= 0.1000m d_track=-0.0800m d_cross=-0.0080m
+ORBIT E05 IODE=  33 d_radial= 0.1750m d_track=-0.0720m d_cross= 0.0960m
+ORBIT E07 IODE=  38 d_radial=-0.2550m d_track= 0.3920m d_cross= 0.0160m
+ORBIT E08 IODE=  38 d_radial=-0.1525m d_track=-0.0800m d_cross= 0.1280m
+ORBIT E09 IODE=  34 d_radial= 0.1925m d_track=-0.0400m d_cross= 0.0240m
+ORBIT E10 IODE=  38 d_radial= 0.0975m d_track=-0.1760m d_cross= 0.1840m
+ORBIT E11 IODE=  38 d_radial= 0.0950m d_track= 0.1440m d_cross=-0.1440m
+ORBIT E12 IODE=  38 d_radial= 0.0150m d_track= 0.5520m d_cross=-0.3920m
+ORBIT E15 IODE=  38 d_radial=-0.0675m d_track= 0.0160m d_cross= 0.3120m
+ORBIT E19 IODE=  38 d_radial=-0.0750m d_track= 0.0320m d_cross= 0.0560m
+ORBIT E21 IODE=  38 d_radial=-0.1175m d_track= 0.4080m d_cross= 0.0800m
+ORBIT E24 IODE=  38 d_radial=-0.0975m d_track= 0.2640m d_cross= 0.1040m
+ORBIT E25 IODE=  38 d_radial=-0.0525m d_track=-0.0320m d_cross=-0.0080m
+ORBIT E26 IODE=  38 d_radial=-0.2575m d_track= 0.0880m d_cross= 0.1520m
+ORBIT E27 IODE=  34 d_radial=-0.0425m d_track= 0.2240m d_cross=-0.2720m
+ORBIT E30 IODE=  38 d_radial= 0.0325m d_track=-0.0080m d_cross=-0.1680m
+ORBIT E31 IODE=  38 d_radial=-0.0425m d_track= 0.1280m d_cross= 0.1520m
+ORBIT E33 IODE=  38 d_radial=-0.1275m d_track= 0.3040m d_cross=-0.0880m
+ORBIT E34 IODE=  38 d_radial=-0.0175m d_track= 0.1520m d_cross= 0.3200m
+ORBIT E36 IODE=  38 d_radial= 0.0850m d_track= 0.1840m d_cross= 0.0800m
+CBIAS validity_interval=300s (10)
+CBIAS G01 L1 C/A        code_bias=-3.32m
+CBIAS G01 L2 CL         code_bias=-4.66m
+CBIAS G01 L2 P          code_bias=-5.46m
+CBIAS G02 L1 C/A        code_bias= 4.54m
+CBIAS G02 L2 P          code_bias= 7.48m
+CBIAS G03 L1 C/A        code_bias=-2.78m
+CBIAS G03 L2 CL         code_bias=-4.22m
+CBIAS G03 L2 P          code_bias=-4.60m
+CBIAS G04 L1 C/A        code_bias=-0.28m
+CBIAS G04 L2 CL         code_bias= 0.18m
+CBIAS G04 L2 P          code_bias=-0.44m
+CBIAS G05 L1 C/A        code_bias= 1.04m
+CBIAS G05 L2 CL         code_bias= 2.22m
+CBIAS G05 L2 P          code_bias= 1.70m
+CBIAS G06 L1 C/A        code_bias=-3.82m
+CBIAS G06 L2 CL         code_bias=-5.82m
+CBIAS G06 L2 P          code_bias=-6.30m
+CBIAS G07 L1 C/A        code_bias= 1.74m
+CBIAS G07 L2 CL         code_bias= 3.46m
+CBIAS G07 L2 P          code_bias= 2.86m
+CBIAS G08 L1 C/A        code_bias=-3.04m
+CBIAS G08 L2 CL         code_bias=-4.80m
+CBIAS G08 L2 P          code_bias=-4.98m
+CBIAS G09 L1 C/A        code_bias=-1.86m
+CBIAS G09 L2 CL         code_bias=-2.48m
+CBIAS G09 L2 P          code_bias=-3.06m
+CBIAS G11 L1 C/A        code_bias= 0.42m
+CBIAS G11 L2 CL         code_bias= 1.44m
+CBIAS G11 L2 P          code_bias= 0.68m
+CBIAS G12 L1 C/A        code_bias= 2.16m
+CBIAS G12 L2 CL         code_bias= 3.86m
+CBIAS G12 L2 P          code_bias= 3.54m
+CBIAS G13 L1 C/A        code_bias= 1.80m
+CBIAS G13 L2 P          code_bias= 2.96m
+CBIAS G14 L1 C/A        code_bias= 0.64m
+CBIAS G14 L2 CL         code_bias= 1.58m
+CBIAS G14 L2 P          code_bias= 1.06m
+CBIAS G15 L1 C/A        code_bias= 1.32m
+CBIAS G15 L2 CL         code_bias= 2.56m
+CBIAS G15 L2 P          code_bias= 2.18m
+CBIAS G16 L1 C/A        code_bias= 2.04m
+CBIAS G16 L2 P          code_bias= 3.36m
+CBIAS G17 L1 C/A        code_bias= 1.48m
+CBIAS G17 L2 CL         code_bias= 3.16m
+CBIAS G17 L2 P          code_bias= 2.42m
+CBIAS G18 L1 C/A        code_bias= 0.74m
+CBIAS G18 L2 CL         code_bias= 1.68m
+CBIAS G18 L2 P          code_bias= 1.22m
+CBIAS G19 L1 C/A        code_bias= 4.06m
+CBIAS G19 L2 P          code_bias= 6.66m
+CBIAS G20 L1 C/A        code_bias= 1.66m
+CBIAS G20 L2 P          code_bias= 2.72m
+CBIAS G21 L1 C/A        code_bias= 2.56m
+CBIAS G21 L2 P          code_bias= 4.22m
+CBIAS G23 L1 C/A        code_bias= 1.04m
+CBIAS G23 L2 CL         code_bias= 2.06m
+CBIAS G23 L2 P          code_bias= 1.70m
+CBIAS G24 L1 C/A        code_bias=-2.44m
+CBIAS G24 L2 CL         code_bias=-3.58m
+CBIAS G24 L2 P          code_bias=-4.02m
+CBIAS G27 L1 C/A        code_bias=-1.82m
+CBIAS G27 L2 CL         code_bias=-2.58m
+CBIAS G27 L2 P          code_bias=-3.00m
+CBIAS G29 L1 C/A        code_bias= 1.30m
+CBIAS G29 L2 CL         code_bias= 2.62m
+CBIAS G29 L2 P          code_bias= 2.14m
+CBIAS G30 L1 C/A        code_bias=-2.40m
+CBIAS G30 L2 CL         code_bias=-3.52m
+CBIAS G30 L2 P          code_bias=-3.96m
+CBIAS G31 L1 C/A        code_bias= 2.52m
+CBIAS G31 L2 CL         code_bias= 4.32m
+CBIAS G31 L2 P          code_bias= 4.16m
+CBIAS G32 L1 C/A        code_bias=-1.92m
+CBIAS G32 L2 CL         code_bias=-3.02m
+CBIAS G32 L2 P          code_bias=-3.16m
+CBIAS E02 E1 C          code_bias= 0.34m
+CBIAS E02 E5a Q         code_bias= 0.60m
+CBIAS E02 E5b Q         code_bias= 0.74m
+CBIAS E02 E6 C          code_bias=-0.42m
+CBIAS E03 E1 C          code_bias=-1.00m
+CBIAS E03 E5a Q         code_bias=-1.80m
+CBIAS E03 E5b Q         code_bias=-1.80m
+CBIAS E03 E6 C          code_bias=-1.00m
+CBIAS E04 E1 C          code_bias= 1.00m
+CBIAS E04 E5a Q         code_bias= 1.80m
+CBIAS E04 E5b Q         code_bias= 1.78m
+CBIAS E04 E6 C          code_bias= 0.90m
+CBIAS E05 E1 C          code_bias=-1.14m
+CBIAS E05 E5a Q         code_bias=-2.04m
+CBIAS E05 E5b Q         code_bias=-2.04m
+CBIAS E05 E6 C          code_bias=-0.34m
+CBIAS E07 E1 C          code_bias=-1.52m
+CBIAS E07 E5a Q         code_bias=-2.70m
+CBIAS E07 E5b Q         code_bias=-2.70m
+CBIAS E07 E6 C          code_bias=-1.34m
+CBIAS E08 E1 C          code_bias= 1.12m
+CBIAS E08 E5a Q         code_bias= 2.00m
+CBIAS E08 E5b Q         code_bias= 2.04m
+CBIAS E08 E6 C          code_bias= 1.64m
+CBIAS E09 E1 C          code_bias=-0.36m
+CBIAS E09 E5a Q         code_bias=-0.64m
+CBIAS E09 E5b Q         code_bias=-0.64m
+CBIAS E09 E6 C          code_bias=-0.64m
+CBIAS E10 E1 C          code_bias=-0.22m
+CBIAS E10 E5a Q         code_bias=-0.40m
+CBIAS E10 E5b Q         code_bias=-0.54m
+CBIAS E10 E6 C          code_bias=-1.62m
+CBIAS E11 E1 C          code_bias= 3.86m
+CBIAS E11 E5a Q         code_bias= 6.92m
+CBIAS E11 E5b Q         code_bias= 6.82m
+CBIAS E11 E6 C          code_bias= 6.48m
+CBIAS E12 E1 C          code_bias= 2.88m
+CBIAS E12 E5a Q         code_bias= 5.16m
+CBIAS E12 E5b Q         code_bias= 4.90m
+CBIAS E12 E6 C          code_bias= 5.32m
+CBIAS E15 E1 C          code_bias=-2.00m
+CBIAS E15 E5a Q         code_bias=-3.58m
+CBIAS E15 E5b Q         code_bias=-3.52m
+CBIAS E15 E6 C          code_bias=-2.42m
+CBIAS E19 E1 C          code_bias= 1.02m
+CBIAS E19 E5a Q         code_bias= 1.84m
+CBIAS E19 E5b Q         code_bias= 1.76m
+CBIAS E19 E6 C          code_bias= 1.16m
+CBIAS E21 E1 C          code_bias=-0.70m
+CBIAS E21 E5a Q         code_bias=-1.26m
+CBIAS E21 E5b Q         code_bias=-1.22m
+CBIAS E21 E6 C          code_bias=-2.02m
+CBIAS E24 E1 C          code_bias= 0.88m
+CBIAS E24 E5a Q         code_bias= 1.58m
+CBIAS E24 E5b Q         code_bias= 1.68m
+CBIAS E24 E6 C          code_bias= 0.50m
+CBIAS E25 E1 C          code_bias=-1.24m
+CBIAS E25 E5a Q         code_bias=-2.22m
+CBIAS E25 E5b Q         code_bias=-2.20m
+CBIAS E25 E6 C          code_bias=-0.82m
+CBIAS E26 E1 C          code_bias= 1.04m
+CBIAS E26 E5a Q         code_bias= 1.88m
+CBIAS E26 E5b Q         code_bias= 1.90m
+CBIAS E26 E6 C          code_bias= 0.18m
+CBIAS E27 E1 C          code_bias=-0.64m
+CBIAS E27 E5a Q         code_bias=-1.16m
+CBIAS E27 E5b Q         code_bias=-1.14m
+CBIAS E27 E6 C          code_bias=-2.00m
+CBIAS E30 E1 C          code_bias=-0.54m
+CBIAS E30 E5a Q         code_bias=-0.94m
+CBIAS E30 E5b Q         code_bias=-0.90m
+CBIAS E30 E6 C          code_bias=-0.22m
+CBIAS E31 E1 C          code_bias=-1.52m
+CBIAS E31 E5a Q         code_bias=-2.72m
+CBIAS E31 E5b Q         code_bias=-2.70m
+CBIAS E31 E6 C          code_bias=-0.58m
+CBIAS E33 E1 C          code_bias= 0.78m
+CBIAS E33 E5a Q         code_bias= 1.40m
+CBIAS E33 E5b Q         code_bias= 1.40m
+CBIAS E33 E6 C          code_bias= 0.08m
+CBIAS E34 E1 C          code_bias=-1.32m
+CBIAS E34 E5a Q         code_bias=-2.38m
+CBIAS E34 E5b Q         code_bias=-2.48m
+CBIAS E34 E6 C          code_bias=-2.04m
+CBIAS E36 E1 C          code_bias=-1.80m
+CBIAS E36 E5a Q         code_bias=-3.22m
+CBIAS E36 E5b Q         code_bias=-3.24m
+CBIAS E36 E6 C          code_bias=-2.16m
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=109 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=213 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 10 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=135 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=162 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=110 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=214 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 11 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=136 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=163 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=111 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=215 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 33 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=137 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=164 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=112 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=216 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 34 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=138 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=165 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=113 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=217 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 35 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=139 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=19 MS= 2 PID= 93 -> A new page for MID=19
+E10 HASS=Operational(1) MT=1 MID=19 MS= 2 PID= 73
+------ HAS decode with the pages of MID=19 MS=2 ------
+0x93f20062500a6f68c2f3eee029842a001ec9043fc8c0b5f39f93825fd4a0e5fd9f047ad9d5ff670014058359f8b022c2a0047fd10177fedf4f016011bfa41030087f0c0bdff901d7ed3fd401500c7f8c023f83fe9aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+------
+Time of hour TOH: 2367 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+CKFUL validity_interval=60s (5)
+CKFUL G01 d_clock=  0.833m (multiplier=1)
+CKFUL G02 d_clock= -1.512m (multiplier=1)
+CKFUL G03 d_clock=  0.943m (multiplier=1)
+CKFUL G04 d_clock= -0.685m (multiplier=1)
+CKFUL G05 d_clock=  0.208m (multiplier=1)
+CKFUL G06 d_clock=  0.665m (multiplier=1)
+CKFUL G07 d_clock=  0.000m (multiplier=1)
+CKFUL G08 d_clock= -0.777m (multiplier=1)
+CKFUL G09 d_clock=  0.338m (multiplier=1)
+CKFUL G11 d_clock= -0.552m (multiplier=1)
+CKFUL G12 d_clock=  0.225m (multiplier=1)
+CKFUL G13 d_clock= -0.497m (multiplier=1)
+CKFUL G14 d_clock= -0.542m (multiplier=1)
+CKFUL G15 d_clock=  0.378m (multiplier=1)
+CKFUL G16 d_clock= -0.868m (multiplier=1)
+CKFUL G17 d_clock=  0.573m (multiplier=1)
+CKFUL G18 d_clock= -0.193m (multiplier=1)
+CKFUL G19 d_clock= -2.518m (multiplier=1)
+CKFUL G20 d_clock= -1.650m (multiplier=1)
+CKFUL G21 d_clock= -1.683m (multiplier=1)
+CKFUL G23 d_clock= -0.765m (multiplier=1)
+CKFUL G24 d_clock=  0.013m (multiplier=1)
+CKFUL G27 d_clock=  0.110m (multiplier=1)
+CKFUL G29 d_clock=  2.143m (multiplier=1)
+CKFUL G30 d_clock= -0.585m (multiplier=1)
+CKFUL G31 d_clock=  0.348m (multiplier=1)
+CKFUL G32 d_clock=  0.840m (multiplier=1)
+CKFUL E02 d_clock=  0.177m (multiplier=1)
+CKFUL E03 d_clock= -0.235m (multiplier=1)
+CKFUL E04 d_clock=  0.233m (multiplier=1)
+CKFUL E05 d_clock= -0.025m (multiplier=1)
+CKFUL E07 d_clock= -0.443m (multiplier=1)
+CKFUL E08 d_clock=  0.110m (multiplier=1)
+CKFUL E09 d_clock=  0.175m (multiplier=1)
+CKFUL E10 d_clock= -0.115m (multiplier=1)
+CKFUL E11 d_clock=  0.647m (multiplier=1)
+CKFUL E12 d_clock=  0.040m (multiplier=1)
+CKFUL E15 d_clock= -0.152m (multiplier=1)
+CKFUL E19 d_clock=  0.235m (multiplier=1)
+CKFUL E21 d_clock= -0.018m (multiplier=1)
+CKFUL E24 d_clock=  0.145m (multiplier=1)
+CKFUL E25 d_clock= -0.190m (multiplier=1)
+CKFUL E26 d_clock= -0.055m (multiplier=1)
+CKFUL E27 d_clock=  0.052m (multiplier=1)
+CKFUL E30 d_clock=  0.060m (multiplier=1)
+CKFUL E31 d_clock= -0.072m (multiplier=1)
+CKFUL E33 d_clock=  0.043m (multiplier=1)
+CKFUL E34 d_clock= -0.312m (multiplier=1)
+CKFUL E36 d_clock= -0.113m (multiplier=1)
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E24 HASS=Operational(1) MT=1 MID=19 MS= 2 PID=153 -> Enough pages for MID=19
+E31 HASS=Operational(1) MT=1 MID=19 MS= 2 PID=183 -> Enough pages for MID=19
+E11 HASS=Operational(1) MT=1 MID=19 MS= 2 PID= 83 -> Enough pages for MID=19
+E12 HASS=Operational(1) MT=1 MID=19 MS= 2 PID= 94 -> Enough pages for MID=19
+E10 HASS=Operational(1) MT=1 MID=19 MS= 2 PID= 74 -> Enough pages for MID=19
+E24 HASS=Operational(1) MT=1 MID=19 MS= 2 PID=154 -> Enough pages for MID=19
+E31 HASS=Operational(1) MT=1 MID=19 MS= 2 PID=184 -> Enough pages for MID=19
+E11 HASS=Operational(1) MT=1 MID=19 MS= 2 PID= 84 -> Enough pages for MID=19
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=166 -> A new page for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=114
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=218
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 36
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=140
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=167
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=115
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=219
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 37
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=141
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=168
+------ HAS decode with the pages of MID=17 MS=11 ------
+0x92ec806220ffbffb2f008140fbffffffeff7fb6fffffc13df914f36824820014a41b2e6a06232012fef014abfefc1bc0145fd11ec7f9e05fe7feefe90d00080e7f4a0ffa3ff41f14c089fc0002a608ce9bf7391f567e77fd297f54173ec067f8600bfb867e68fa6fb44c000010fee97809fe7bf704fff1f8000efbe41f...
+------
+Time of hour TOH: 2350 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
+Clock subset    : off
+Code bias       : on
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G07 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+MASK G09 L1 C/A L2 CL L2 P
+MASK G11 L1 C/A L2 CL L2 P
+MASK G12 L1 C/A L2 CL L2 P
+MASK G13 L1 C/A L2 P
+MASK G14 L1 C/A L2 CL L2 P
+MASK G15 L1 C/A L2 CL L2 P
+MASK G16 L1 C/A L2 P
+MASK G17 L1 C/A L2 CL L2 P
+MASK G18 L1 C/A L2 CL L2 P
+MASK G19 L1 C/A L2 P
+MASK G20 L1 C/A L2 P
+MASK G21 L1 C/A L2 P
+MASK G23 L1 C/A L2 CL L2 P
+MASK G24 L1 C/A L2 CL L2 P
+MASK G27 L1 C/A L2 CL L2 P
+MASK G29 L1 C/A L2 CL L2 P
+MASK G30 L1 C/A L2 CL L2 P
+MASK G31 L1 C/A L2 CL L2 P
+MASK G32 L1 C/A L2 CL L2 P
+MASK E02 E1 C E5a Q E5b Q E6 C
+MASK E03 E1 C E5a Q E5b Q E6 C
+MASK E04 E1 C E5a Q E5b Q E6 C
+MASK E05 E1 C E5a Q E5b Q E6 C
+MASK E07 E1 C E5a Q E5b Q E6 C
+MASK E08 E1 C E5a Q E5b Q E6 C
+MASK E09 E1 C E5a Q E5b Q E6 C
+MASK E10 E1 C E5a Q E5b Q E6 C
+MASK E11 E1 C E5a Q E5b Q E6 C
+MASK E12 E1 C E5a Q E5b Q E6 C
+MASK E15 E1 C E5a Q E5b Q E6 C
+MASK E19 E1 C E5a Q E5b Q E6 C
+MASK E21 E1 C E5a Q E5b Q E6 C
+MASK E24 E1 C E5a Q E5b Q E6 C
+MASK E25 E1 C E5a Q E5b Q E6 C
+MASK E26 E1 C E5a Q E5b Q E6 C
+MASK E27 E1 C E5a Q E5b Q E6 C
+MASK E30 E1 C E5a Q E5b Q E6 C
+MASK E31 E1 C E5a Q E5b Q E6 C
+MASK E33 E1 C E5a Q E5b Q E6 C
+MASK E34 E1 C E5a Q E5b Q E6 C
+MASK E36 E1 C E5a Q E5b Q E6 C
+ORBIT validity_interval=300s (10)
+ORBIT G01 IODE=  82 d_radial= 1.0850m d_track=-3.2480m d_cross= 0.7840m
+ORBIT G02 IODE=  50 d_radial= 0.0925m d_track=-0.2720m d_cross= 0.3280m
+ORBIT G03 IODE=  87 d_radial=-0.1625m d_track= 0.8880m d_cross= 0.0400m
+ORBIT G04 IODE=  23 d_radial=-0.9400m d_track=-1.2560m d_cross=-0.3920m
+ORBIT G05 IODE=   2 d_radial=-0.0625m d_track=-0.1440m d_cross=-0.1840m
+ORBIT G06 IODE=  13 d_radial= 0.0025m d_track= 0.2240m d_cross=-0.1840m
+ORBIT G07 IODE=  65 d_radial=-0.0600m d_track=-0.0240m d_cross= 0.9920m
+ORBIT G08 IODE=  83 d_radial= 0.1700m d_track=-0.2560m d_cross= 0.0080m
+ORBIT G09 IODE=  83 d_radial= 0.3500m d_track=-2.8560m d_cross=-1.1280m
+ORBIT G11 IODE= 145 d_radial=-0.8500m d_track=-0.4000m d_cross=-0.0480m
+ORBIT G12 IODE=  82 d_radial=-0.1075m d_track= 0.7360m d_cross=-0.6400m
+ORBIT G13 IODE=  25 d_radial=-0.1525m d_track= 0.0400m d_cross=-0.2880m
+ORBIT G14 IODE=  51 d_radial=-1.0200m d_track=-0.7200m d_cross=-0.6080m
+ORBIT G15 IODE=  76 d_radial= 0.0000m d_track= 0.2640m d_cross=-0.2800m
+ORBIT G16 IODE=  47 d_radial= 0.0975m d_track=-0.7840m d_cross=-0.2880m
+ORBIT G17 IODE=  19 d_radial=-0.0200m d_track=-0.5120m d_cross= 0.0560m
+ORBIT G18 IODE= 125 d_radial=-1.1175m d_track=-0.0880m d_cross=-0.6400m
+ORBIT G19 IODE= 101 d_radial= 0.1250m d_track=-2.3280m d_cross= 1.1200m
+ORBIT G20 IODE=  21 d_radial= 0.0750m d_track=-0.7280m d_cross=-0.2000m
+ORBIT G21 IODE=  16 d_radial= 0.1100m d_track= 0.4160m d_cross= 0.0240m
+ORBIT G23 IODE= 178 d_radial=-1.3050m d_track= 0.7520m d_cross=-0.2880m
+ORBIT G24 IODE=  74 d_radial=-0.1250m d_track=-0.9520m d_cross= 0.0880m
+ORBIT G27 IODE=   9 d_radial=-0.1600m d_track=-0.5440m d_cross= 0.2960m
+ORBIT G29 IODE=  61 d_radial=-0.0300m d_track=-1.7440m d_cross=-1.4800m
+ORBIT G30 IODE= 103 d_radial= 0.3275m d_track=-2.5120m d_cross=-1.6800m
+ORBIT G31 IODE=  11 d_radial= 0.0325m d_track=-1.3680m d_cross= 0.2000m
+ORBIT G32 IODE=  25 d_radial=-0.2100m d_track=-0.5200m d_cross=-0.6560m
+ORBIT E02 IODE=  38 d_radial=-0.1000m d_track= 0.0480m d_cross=-0.2000m
+ORBIT E03 IODE=  35 d_radial=-0.1250m d_track= 0.0880m d_cross= 0.3680m
+ORBIT E04 IODE=  38 d_radial= 0.1000m d_track=-0.0800m d_cross=-0.0080m
+ORBIT E05 IODE=  33 d_radial= 0.1750m d_track=-0.0720m d_cross= 0.0960m
+ORBIT E07 IODE=  38 d_radial=-0.2550m d_track= 0.3920m d_cross= 0.0160m
+ORBIT E08 IODE=  38 d_radial=-0.1525m d_track=-0.0800m d_cross= 0.1280m
+ORBIT E09 IODE=  34 d_radial= 0.1925m d_track=-0.0400m d_cross= 0.0240m
+ORBIT E10 IODE=  38 d_radial= 0.0975m d_track=-0.1760m d_cross= 0.1840m
+ORBIT E11 IODE=  38 d_radial= 0.0950m d_track= 0.1440m d_cross=-0.1440m
+ORBIT E12 IODE=  38 d_radial= 0.0150m d_track= 0.5520m d_cross=-0.3920m
+ORBIT E15 IODE=  38 d_radial=-0.0675m d_track= 0.0160m d_cross= 0.3120m
+ORBIT E19 IODE=  38 d_radial=-0.0750m d_track= 0.0320m d_cross= 0.0560m
+ORBIT E21 IODE=  38 d_radial=-0.1175m d_track= 0.4080m d_cross= 0.0800m
+ORBIT E24 IODE=  38 d_radial=-0.0975m d_track= 0.2640m d_cross= 0.1040m
+ORBIT E25 IODE=  38 d_radial=-0.0525m d_track=-0.0320m d_cross=-0.0080m
+ORBIT E26 IODE=  38 d_radial=-0.2575m d_track= 0.0880m d_cross= 0.1520m
+ORBIT E27 IODE=  34 d_radial=-0.0425m d_track= 0.2240m d_cross=-0.2720m
+ORBIT E30 IODE=  38 d_radial= 0.0325m d_track=-0.0080m d_cross=-0.1680m
+ORBIT E31 IODE=  38 d_radial=-0.0425m d_track= 0.1280m d_cross= 0.1520m
+ORBIT E33 IODE=  38 d_radial=-0.1275m d_track= 0.3040m d_cross=-0.0880m
+ORBIT E34 IODE=  38 d_radial=-0.0175m d_track= 0.1520m d_cross= 0.3200m
+ORBIT E36 IODE=  38 d_radial= 0.0850m d_track= 0.1840m d_cross= 0.0800m
+CBIAS validity_interval=300s (10)
+CBIAS G01 L1 C/A        code_bias=-3.32m
+CBIAS G01 L2 CL         code_bias=-4.66m
+CBIAS G01 L2 P          code_bias=-5.46m
+CBIAS G02 L1 C/A        code_bias= 4.54m
+CBIAS G02 L2 P          code_bias= 7.48m
+CBIAS G03 L1 C/A        code_bias=-2.78m
+CBIAS G03 L2 CL         code_bias=-4.22m
+CBIAS G03 L2 P          code_bias=-4.60m
+CBIAS G04 L1 C/A        code_bias=-0.28m
+CBIAS G04 L2 CL         code_bias= 0.18m
+CBIAS G04 L2 P          code_bias=-0.44m
+CBIAS G05 L1 C/A        code_bias= 1.04m
+CBIAS G05 L2 CL         code_bias= 2.22m
+CBIAS G05 L2 P          code_bias= 1.70m
+CBIAS G06 L1 C/A        code_bias=-3.82m
+CBIAS G06 L2 CL         code_bias=-5.82m
+CBIAS G06 L2 P          code_bias=-6.30m
+CBIAS G07 L1 C/A        code_bias= 1.74m
+CBIAS G07 L2 CL         code_bias= 3.46m
+CBIAS G07 L2 P          code_bias= 2.86m
+CBIAS G08 L1 C/A        code_bias=-3.04m
+CBIAS G08 L2 CL         code_bias=-4.80m
+CBIAS G08 L2 P          code_bias=-4.98m
+CBIAS G09 L1 C/A        code_bias=-1.86m
+CBIAS G09 L2 CL         code_bias=-2.48m
+CBIAS G09 L2 P          code_bias=-3.06m
+CBIAS G11 L1 C/A        code_bias= 0.42m
+CBIAS G11 L2 CL         code_bias= 1.44m
+CBIAS G11 L2 P          code_bias= 0.68m
+CBIAS G12 L1 C/A        code_bias= 2.16m
+CBIAS G12 L2 CL         code_bias= 3.86m
+CBIAS G12 L2 P          code_bias= 3.54m
+CBIAS G13 L1 C/A        code_bias= 1.80m
+CBIAS G13 L2 P          code_bias= 2.96m
+CBIAS G14 L1 C/A        code_bias= 0.64m
+CBIAS G14 L2 CL         code_bias= 1.58m
+CBIAS G14 L2 P          code_bias= 1.06m
+CBIAS G15 L1 C/A        code_bias= 1.32m
+CBIAS G15 L2 CL         code_bias= 2.56m
+CBIAS G15 L2 P          code_bias= 2.18m
+CBIAS G16 L1 C/A        code_bias= 2.04m
+CBIAS G16 L2 P          code_bias= 3.36m
+CBIAS G17 L1 C/A        code_bias= 1.48m
+CBIAS G17 L2 CL         code_bias= 3.16m
+CBIAS G17 L2 P          code_bias= 2.42m
+CBIAS G18 L1 C/A        code_bias= 0.74m
+CBIAS G18 L2 CL         code_bias= 1.68m
+CBIAS G18 L2 P          code_bias= 1.22m
+CBIAS G19 L1 C/A        code_bias= 4.06m
+CBIAS G19 L2 P          code_bias= 6.66m
+CBIAS G20 L1 C/A        code_bias= 1.66m
+CBIAS G20 L2 P          code_bias= 2.72m
+CBIAS G21 L1 C/A        code_bias= 2.56m
+CBIAS G21 L2 P          code_bias= 4.22m
+CBIAS G23 L1 C/A        code_bias= 1.04m
+CBIAS G23 L2 CL         code_bias= 2.06m
+CBIAS G23 L2 P          code_bias= 1.70m
+CBIAS G24 L1 C/A        code_bias=-2.44m
+CBIAS G24 L2 CL         code_bias=-3.58m
+CBIAS G24 L2 P          code_bias=-4.02m
+CBIAS G27 L1 C/A        code_bias=-1.82m
+CBIAS G27 L2 CL         code_bias=-2.58m
+CBIAS G27 L2 P          code_bias=-3.00m
+CBIAS G29 L1 C/A        code_bias= 1.30m
+CBIAS G29 L2 CL         code_bias= 2.62m
+CBIAS G29 L2 P          code_bias= 2.14m
+CBIAS G30 L1 C/A        code_bias=-2.40m
+CBIAS G30 L2 CL         code_bias=-3.52m
+CBIAS G30 L2 P          code_bias=-3.96m
+CBIAS G31 L1 C/A        code_bias= 2.52m
+CBIAS G31 L2 CL         code_bias= 4.32m
+CBIAS G31 L2 P          code_bias= 4.16m
+CBIAS G32 L1 C/A        code_bias=-1.92m
+CBIAS G32 L2 CL         code_bias=-3.02m
+CBIAS G32 L2 P          code_bias=-3.16m
+CBIAS E02 E1 C          code_bias= 0.34m
+CBIAS E02 E5a Q         code_bias= 0.60m
+CBIAS E02 E5b Q         code_bias= 0.74m
+CBIAS E02 E6 C          code_bias=-0.42m
+CBIAS E03 E1 C          code_bias=-1.00m
+CBIAS E03 E5a Q         code_bias=-1.80m
+CBIAS E03 E5b Q         code_bias=-1.80m
+CBIAS E03 E6 C          code_bias=-1.00m
+CBIAS E04 E1 C          code_bias= 1.00m
+CBIAS E04 E5a Q         code_bias= 1.80m
+CBIAS E04 E5b Q         code_bias= 1.78m
+CBIAS E04 E6 C          code_bias= 0.90m
+CBIAS E05 E1 C          code_bias=-1.14m
+CBIAS E05 E5a Q         code_bias=-2.04m
+CBIAS E05 E5b Q         code_bias=-2.04m
+CBIAS E05 E6 C          code_bias=-0.34m
+CBIAS E07 E1 C          code_bias=-1.52m
+CBIAS E07 E5a Q         code_bias=-2.70m
+CBIAS E07 E5b Q         code_bias=-2.70m
+CBIAS E07 E6 C          code_bias=-1.34m
+CBIAS E08 E1 C          code_bias= 1.12m
+CBIAS E08 E5a Q         code_bias= 2.00m
+CBIAS E08 E5b Q         code_bias= 2.04m
+CBIAS E08 E6 C          code_bias= 1.64m
+CBIAS E09 E1 C          code_bias=-0.36m
+CBIAS E09 E5a Q         code_bias=-0.64m
+CBIAS E09 E5b Q         code_bias=-0.64m
+CBIAS E09 E6 C          code_bias=-0.64m
+CBIAS E10 E1 C          code_bias=-0.22m
+CBIAS E10 E5a Q         code_bias=-0.40m
+CBIAS E10 E5b Q         code_bias=-0.54m
+CBIAS E10 E6 C          code_bias=-1.62m
+CBIAS E11 E1 C          code_bias= 3.86m
+CBIAS E11 E5a Q         code_bias= 6.92m
+CBIAS E11 E5b Q         code_bias= 6.82m
+CBIAS E11 E6 C          code_bias= 6.48m
+CBIAS E12 E1 C          code_bias= 2.88m
+CBIAS E12 E5a Q         code_bias= 5.16m
+CBIAS E12 E5b Q         code_bias= 4.90m
+CBIAS E12 E6 C          code_bias= 5.32m
+CBIAS E15 E1 C          code_bias=-2.00m
+CBIAS E15 E5a Q         code_bias=-3.58m
+CBIAS E15 E5b Q         code_bias=-3.52m
+CBIAS E15 E6 C          code_bias=-2.42m
+CBIAS E19 E1 C          code_bias= 1.02m
+CBIAS E19 E5a Q         code_bias= 1.84m
+CBIAS E19 E5b Q         code_bias= 1.76m
+CBIAS E19 E6 C          code_bias= 1.16m
+CBIAS E21 E1 C          code_bias=-0.70m
+CBIAS E21 E5a Q         code_bias=-1.26m
+CBIAS E21 E5b Q         code_bias=-1.22m
+CBIAS E21 E6 C          code_bias=-2.02m
+CBIAS E24 E1 C          code_bias= 0.88m
+CBIAS E24 E5a Q         code_bias= 1.58m
+CBIAS E24 E5b Q         code_bias= 1.68m
+CBIAS E24 E6 C          code_bias= 0.50m
+CBIAS E25 E1 C          code_bias=-1.24m
+CBIAS E25 E5a Q         code_bias=-2.22m
+CBIAS E25 E5b Q         code_bias=-2.20m
+CBIAS E25 E6 C          code_bias=-0.82m
+CBIAS E26 E1 C          code_bias= 1.04m
+CBIAS E26 E5a Q         code_bias= 1.88m
+CBIAS E26 E5b Q         code_bias= 1.90m
+CBIAS E26 E6 C          code_bias= 0.18m
+CBIAS E27 E1 C          code_bias=-0.64m
+CBIAS E27 E5a Q         code_bias=-1.16m
+CBIAS E27 E5b Q         code_bias=-1.14m
+CBIAS E27 E6 C          code_bias=-2.00m
+CBIAS E30 E1 C          code_bias=-0.54m
+CBIAS E30 E5a Q         code_bias=-0.94m
+CBIAS E30 E5b Q         code_bias=-0.90m
+CBIAS E30 E6 C          code_bias=-0.22m
+CBIAS E31 E1 C          code_bias=-1.52m
+CBIAS E31 E5a Q         code_bias=-2.72m
+CBIAS E31 E5b Q         code_bias=-2.70m
+CBIAS E31 E6 C          code_bias=-0.58m
+CBIAS E33 E1 C          code_bias= 0.78m
+CBIAS E33 E5a Q         code_bias= 1.40m
+CBIAS E33 E5b Q         code_bias= 1.40m
+CBIAS E33 E6 C          code_bias= 0.08m
+CBIAS E34 E1 C          code_bias=-1.32m
+CBIAS E34 E5a Q         code_bias=-2.38m
+CBIAS E34 E5b Q         code_bias=-2.48m
+CBIAS E34 E6 C          code_bias=-2.04m
+CBIAS E36 E1 C          code_bias=-1.80m
+CBIAS E36 E5a Q         code_bias=-3.22m
+CBIAS E36 E5b Q         code_bias=-3.24m
+CBIAS E36 E6 C          code_bias=-2.16m
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=116 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=220 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 38 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=142 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=169 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=117 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=221 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 39 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=143 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=170 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=118 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=222 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 40 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=144 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=171 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=119 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=223 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 41 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=145 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=172 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=120 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=224 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 42 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=146 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=20 MS= 2 PID= 95 -> A new page for MID=20
+E10 HASS=Operational(1) MT=1 MID=20 MS= 2 PID= 75
+------ HAS decode with the pages of MID=20 MS=2 ------
+0x94920062500a5f6802f1ef0028042e001ec80447c8c0b7f36f940267d400e4fda7037ad7d5df67801804835af8b822829a047fd1016ffebf500160113f9c1010087f040b3ff601d7ed3fd401300b7f84025f81fe9aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+------
+Time of hour TOH: 2377 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+CKFUL validity_interval=60s (5)
+CKFUL G01 d_clock=  0.828m (multiplier=1)
+CKFUL G02 d_clock= -1.520m (multiplier=1)
+CKFUL G03 d_clock=  0.940m (multiplier=1)
+CKFUL G04 d_clock= -0.680m (multiplier=1)
+CKFUL G05 d_clock=  0.200m (multiplier=1)
+CKFUL G06 d_clock=  0.667m (multiplier=1)
+CKFUL G07 d_clock=  0.000m (multiplier=1)
+CKFUL G08 d_clock= -0.780m (multiplier=1)
+CKFUL G09 d_clock=  0.340m (multiplier=1)
+CKFUL G11 d_clock= -0.552m (multiplier=1)
+CKFUL G12 d_clock=  0.228m (multiplier=1)
+CKFUL G13 d_clock= -0.505m (multiplier=1)
+CKFUL G14 d_clock= -0.540m (multiplier=1)
+CKFUL G15 d_clock=  0.383m (multiplier=1)
+CKFUL G16 d_clock= -0.880m (multiplier=1)
+CKFUL G17 d_clock=  0.570m (multiplier=1)
+CKFUL G18 d_clock= -0.190m (multiplier=1)
+CKFUL G19 d_clock= -2.527m (multiplier=1)
+CKFUL G20 d_clock= -1.653m (multiplier=1)
+CKFUL G21 d_clock= -1.688m (multiplier=1)
+CKFUL G23 d_clock= -0.763m (multiplier=1)
+CKFUL G24 d_clock=  0.015m (multiplier=1)
+CKFUL G27 d_clock=  0.090m (multiplier=1)
+CKFUL G29 d_clock=  2.145m (multiplier=1)
+CKFUL G30 d_clock= -0.583m (multiplier=1)
+CKFUL G31 d_clock=  0.345m (multiplier=1)
+CKFUL G32 d_clock=  0.833m (multiplier=1)
+CKFUL E02 d_clock=  0.177m (multiplier=1)
+CKFUL E03 d_clock= -0.235m (multiplier=1)
+CKFUL E04 d_clock=  0.228m (multiplier=1)
+CKFUL E05 d_clock= -0.028m (multiplier=1)
+CKFUL E07 d_clock= -0.440m (multiplier=1)
+CKFUL E08 d_clock=  0.110m (multiplier=1)
+CKFUL E09 d_clock=  0.170m (multiplier=1)
+CKFUL E10 d_clock= -0.125m (multiplier=1)
+CKFUL E11 d_clock=  0.642m (multiplier=1)
+CKFUL E12 d_clock=  0.040m (multiplier=1)
+CKFUL E15 d_clock= -0.158m (multiplier=1)
+CKFUL E19 d_clock=  0.223m (multiplier=1)
+CKFUL E21 d_clock= -0.025m (multiplier=1)
+CKFUL E24 d_clock=  0.145m (multiplier=1)
+CKFUL E25 d_clock= -0.190m (multiplier=1)
+CKFUL E26 d_clock= -0.055m (multiplier=1)
+CKFUL E27 d_clock=  0.048m (multiplier=1)
+CKFUL E30 d_clock=  0.055m (multiplier=1)
+CKFUL E31 d_clock= -0.077m (multiplier=1)
+CKFUL E33 d_clock=  0.045m (multiplier=1)
+CKFUL E34 d_clock= -0.318m (multiplier=1)
+CKFUL E36 d_clock= -0.113m (multiplier=1)
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E24 HASS=Operational(1) MT=1 MID=20 MS= 2 PID=155 -> Enough pages for MID=20
+E31 HASS=Operational(1) MT=1 MID=20 MS= 2 PID=185 -> Enough pages for MID=20
+E11 HASS=Operational(1) MT=1 MID=20 MS= 2 PID= 85 -> Enough pages for MID=20
+E12 HASS=Operational(1) MT=1 MID=20 MS= 2 PID= 96 -> Enough pages for MID=20
+E10 HASS=Operational(1) MT=1 MID=20 MS= 2 PID= 76 -> Enough pages for MID=20
+E24 HASS=Operational(1) MT=1 MID=20 MS= 2 PID=156 -> Enough pages for MID=20
+E31 HASS=Operational(1) MT=1 MID=20 MS= 2 PID=186 -> Enough pages for MID=20
+E11 HASS=Operational(1) MT=1 MID=20 MS= 2 PID= 86 -> Enough pages for MID=20
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=173 -> A new page for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=121
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=225
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 43
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=147
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=174
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=122
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=226
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 44
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=148
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=175
+------ HAS decode with the pages of MID=17 MS=11 ------
+0x92ec806220ffbffb2f008140fbffffffeff7fb6fffffc13df914f36824820014a41b2e6a06232012fef014abfefc1bc0145fd11ec7f9e05fe7feefe90d00080e7f4a0ffa3ff41f14c089fc0002a608ce9bf7391f567e77fd297f54173ec067f8600bfb867e68fa6fb44c000010fee97809fe7bf704fff1f8000efbe41f...
+------
+Time of hour TOH: 2350 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
+Clock subset    : off
+Code bias       : on
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G07 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+MASK G09 L1 C/A L2 CL L2 P
+MASK G11 L1 C/A L2 CL L2 P
+MASK G12 L1 C/A L2 CL L2 P
+MASK G13 L1 C/A L2 P
+MASK G14 L1 C/A L2 CL L2 P
+MASK G15 L1 C/A L2 CL L2 P
+MASK G16 L1 C/A L2 P
+MASK G17 L1 C/A L2 CL L2 P
+MASK G18 L1 C/A L2 CL L2 P
+MASK G19 L1 C/A L2 P
+MASK G20 L1 C/A L2 P
+MASK G21 L1 C/A L2 P
+MASK G23 L1 C/A L2 CL L2 P
+MASK G24 L1 C/A L2 CL L2 P
+MASK G27 L1 C/A L2 CL L2 P
+MASK G29 L1 C/A L2 CL L2 P
+MASK G30 L1 C/A L2 CL L2 P
+MASK G31 L1 C/A L2 CL L2 P
+MASK G32 L1 C/A L2 CL L2 P
+MASK E02 E1 C E5a Q E5b Q E6 C
+MASK E03 E1 C E5a Q E5b Q E6 C
+MASK E04 E1 C E5a Q E5b Q E6 C
+MASK E05 E1 C E5a Q E5b Q E6 C
+MASK E07 E1 C E5a Q E5b Q E6 C
+MASK E08 E1 C E5a Q E5b Q E6 C
+MASK E09 E1 C E5a Q E5b Q E6 C
+MASK E10 E1 C E5a Q E5b Q E6 C
+MASK E11 E1 C E5a Q E5b Q E6 C
+MASK E12 E1 C E5a Q E5b Q E6 C
+MASK E15 E1 C E5a Q E5b Q E6 C
+MASK E19 E1 C E5a Q E5b Q E6 C
+MASK E21 E1 C E5a Q E5b Q E6 C
+MASK E24 E1 C E5a Q E5b Q E6 C
+MASK E25 E1 C E5a Q E5b Q E6 C
+MASK E26 E1 C E5a Q E5b Q E6 C
+MASK E27 E1 C E5a Q E5b Q E6 C
+MASK E30 E1 C E5a Q E5b Q E6 C
+MASK E31 E1 C E5a Q E5b Q E6 C
+MASK E33 E1 C E5a Q E5b Q E6 C
+MASK E34 E1 C E5a Q E5b Q E6 C
+MASK E36 E1 C E5a Q E5b Q E6 C
+ORBIT validity_interval=300s (10)
+ORBIT G01 IODE=  82 d_radial= 1.0850m d_track=-3.2480m d_cross= 0.7840m
+ORBIT G02 IODE=  50 d_radial= 0.0925m d_track=-0.2720m d_cross= 0.3280m
+ORBIT G03 IODE=  87 d_radial=-0.1625m d_track= 0.8880m d_cross= 0.0400m
+ORBIT G04 IODE=  23 d_radial=-0.9400m d_track=-1.2560m d_cross=-0.3920m
+ORBIT G05 IODE=   2 d_radial=-0.0625m d_track=-0.1440m d_cross=-0.1840m
+ORBIT G06 IODE=  13 d_radial= 0.0025m d_track= 0.2240m d_cross=-0.1840m
+ORBIT G07 IODE=  65 d_radial=-0.0600m d_track=-0.0240m d_cross= 0.9920m
+ORBIT G08 IODE=  83 d_radial= 0.1700m d_track=-0.2560m d_cross= 0.0080m
+ORBIT G09 IODE=  83 d_radial= 0.3500m d_track=-2.8560m d_cross=-1.1280m
+ORBIT G11 IODE= 145 d_radial=-0.8500m d_track=-0.4000m d_cross=-0.0480m
+ORBIT G12 IODE=  82 d_radial=-0.1075m d_track= 0.7360m d_cross=-0.6400m
+ORBIT G13 IODE=  25 d_radial=-0.1525m d_track= 0.0400m d_cross=-0.2880m
+ORBIT G14 IODE=  51 d_radial=-1.0200m d_track=-0.7200m d_cross=-0.6080m
+ORBIT G15 IODE=  76 d_radial= 0.0000m d_track= 0.2640m d_cross=-0.2800m
+ORBIT G16 IODE=  47 d_radial= 0.0975m d_track=-0.7840m d_cross=-0.2880m
+ORBIT G17 IODE=  19 d_radial=-0.0200m d_track=-0.5120m d_cross= 0.0560m
+ORBIT G18 IODE= 125 d_radial=-1.1175m d_track=-0.0880m d_cross=-0.6400m
+ORBIT G19 IODE= 101 d_radial= 0.1250m d_track=-2.3280m d_cross= 1.1200m
+ORBIT G20 IODE=  21 d_radial= 0.0750m d_track=-0.7280m d_cross=-0.2000m
+ORBIT G21 IODE=  16 d_radial= 0.1100m d_track= 0.4160m d_cross= 0.0240m
+ORBIT G23 IODE= 178 d_radial=-1.3050m d_track= 0.7520m d_cross=-0.2880m
+ORBIT G24 IODE=  74 d_radial=-0.1250m d_track=-0.9520m d_cross= 0.0880m
+ORBIT G27 IODE=   9 d_radial=-0.1600m d_track=-0.5440m d_cross= 0.2960m
+ORBIT G29 IODE=  61 d_radial=-0.0300m d_track=-1.7440m d_cross=-1.4800m
+ORBIT G30 IODE= 103 d_radial= 0.3275m d_track=-2.5120m d_cross=-1.6800m
+ORBIT G31 IODE=  11 d_radial= 0.0325m d_track=-1.3680m d_cross= 0.2000m
+ORBIT G32 IODE=  25 d_radial=-0.2100m d_track=-0.5200m d_cross=-0.6560m
+ORBIT E02 IODE=  38 d_radial=-0.1000m d_track= 0.0480m d_cross=-0.2000m
+ORBIT E03 IODE=  35 d_radial=-0.1250m d_track= 0.0880m d_cross= 0.3680m
+ORBIT E04 IODE=  38 d_radial= 0.1000m d_track=-0.0800m d_cross=-0.0080m
+ORBIT E05 IODE=  33 d_radial= 0.1750m d_track=-0.0720m d_cross= 0.0960m
+ORBIT E07 IODE=  38 d_radial=-0.2550m d_track= 0.3920m d_cross= 0.0160m
+ORBIT E08 IODE=  38 d_radial=-0.1525m d_track=-0.0800m d_cross= 0.1280m
+ORBIT E09 IODE=  34 d_radial= 0.1925m d_track=-0.0400m d_cross= 0.0240m
+ORBIT E10 IODE=  38 d_radial= 0.0975m d_track=-0.1760m d_cross= 0.1840m
+ORBIT E11 IODE=  38 d_radial= 0.0950m d_track= 0.1440m d_cross=-0.1440m
+ORBIT E12 IODE=  38 d_radial= 0.0150m d_track= 0.5520m d_cross=-0.3920m
+ORBIT E15 IODE=  38 d_radial=-0.0675m d_track= 0.0160m d_cross= 0.3120m
+ORBIT E19 IODE=  38 d_radial=-0.0750m d_track= 0.0320m d_cross= 0.0560m
+ORBIT E21 IODE=  38 d_radial=-0.1175m d_track= 0.4080m d_cross= 0.0800m
+ORBIT E24 IODE=  38 d_radial=-0.0975m d_track= 0.2640m d_cross= 0.1040m
+ORBIT E25 IODE=  38 d_radial=-0.0525m d_track=-0.0320m d_cross=-0.0080m
+ORBIT E26 IODE=  38 d_radial=-0.2575m d_track= 0.0880m d_cross= 0.1520m
+ORBIT E27 IODE=  34 d_radial=-0.0425m d_track= 0.2240m d_cross=-0.2720m
+ORBIT E30 IODE=  38 d_radial= 0.0325m d_track=-0.0080m d_cross=-0.1680m
+ORBIT E31 IODE=  38 d_radial=-0.0425m d_track= 0.1280m d_cross= 0.1520m
+ORBIT E33 IODE=  38 d_radial=-0.1275m d_track= 0.3040m d_cross=-0.0880m
+ORBIT E34 IODE=  38 d_radial=-0.0175m d_track= 0.1520m d_cross= 0.3200m
+ORBIT E36 IODE=  38 d_radial= 0.0850m d_track= 0.1840m d_cross= 0.0800m
+CBIAS validity_interval=300s (10)
+CBIAS G01 L1 C/A        code_bias=-3.32m
+CBIAS G01 L2 CL         code_bias=-4.66m
+CBIAS G01 L2 P          code_bias=-5.46m
+CBIAS G02 L1 C/A        code_bias= 4.54m
+CBIAS G02 L2 P          code_bias= 7.48m
+CBIAS G03 L1 C/A        code_bias=-2.78m
+CBIAS G03 L2 CL         code_bias=-4.22m
+CBIAS G03 L2 P          code_bias=-4.60m
+CBIAS G04 L1 C/A        code_bias=-0.28m
+CBIAS G04 L2 CL         code_bias= 0.18m
+CBIAS G04 L2 P          code_bias=-0.44m
+CBIAS G05 L1 C/A        code_bias= 1.04m
+CBIAS G05 L2 CL         code_bias= 2.22m
+CBIAS G05 L2 P          code_bias= 1.70m
+CBIAS G06 L1 C/A        code_bias=-3.82m
+CBIAS G06 L2 CL         code_bias=-5.82m
+CBIAS G06 L2 P          code_bias=-6.30m
+CBIAS G07 L1 C/A        code_bias= 1.74m
+CBIAS G07 L2 CL         code_bias= 3.46m
+CBIAS G07 L2 P          code_bias= 2.86m
+CBIAS G08 L1 C/A        code_bias=-3.04m
+CBIAS G08 L2 CL         code_bias=-4.80m
+CBIAS G08 L2 P          code_bias=-4.98m
+CBIAS G09 L1 C/A        code_bias=-1.86m
+CBIAS G09 L2 CL         code_bias=-2.48m
+CBIAS G09 L2 P          code_bias=-3.06m
+CBIAS G11 L1 C/A        code_bias= 0.42m
+CBIAS G11 L2 CL         code_bias= 1.44m
+CBIAS G11 L2 P          code_bias= 0.68m
+CBIAS G12 L1 C/A        code_bias= 2.16m
+CBIAS G12 L2 CL         code_bias= 3.86m
+CBIAS G12 L2 P          code_bias= 3.54m
+CBIAS G13 L1 C/A        code_bias= 1.80m
+CBIAS G13 L2 P          code_bias= 2.96m
+CBIAS G14 L1 C/A        code_bias= 0.64m
+CBIAS G14 L2 CL         code_bias= 1.58m
+CBIAS G14 L2 P          code_bias= 1.06m
+CBIAS G15 L1 C/A        code_bias= 1.32m
+CBIAS G15 L2 CL         code_bias= 2.56m
+CBIAS G15 L2 P          code_bias= 2.18m
+CBIAS G16 L1 C/A        code_bias= 2.04m
+CBIAS G16 L2 P          code_bias= 3.36m
+CBIAS G17 L1 C/A        code_bias= 1.48m
+CBIAS G17 L2 CL         code_bias= 3.16m
+CBIAS G17 L2 P          code_bias= 2.42m
+CBIAS G18 L1 C/A        code_bias= 0.74m
+CBIAS G18 L2 CL         code_bias= 1.68m
+CBIAS G18 L2 P          code_bias= 1.22m
+CBIAS G19 L1 C/A        code_bias= 4.06m
+CBIAS G19 L2 P          code_bias= 6.66m
+CBIAS G20 L1 C/A        code_bias= 1.66m
+CBIAS G20 L2 P          code_bias= 2.72m
+CBIAS G21 L1 C/A        code_bias= 2.56m
+CBIAS G21 L2 P          code_bias= 4.22m
+CBIAS G23 L1 C/A        code_bias= 1.04m
+CBIAS G23 L2 CL         code_bias= 2.06m
+CBIAS G23 L2 P          code_bias= 1.70m
+CBIAS G24 L1 C/A        code_bias=-2.44m
+CBIAS G24 L2 CL         code_bias=-3.58m
+CBIAS G24 L2 P          code_bias=-4.02m
+CBIAS G27 L1 C/A        code_bias=-1.82m
+CBIAS G27 L2 CL         code_bias=-2.58m
+CBIAS G27 L2 P          code_bias=-3.00m
+CBIAS G29 L1 C/A        code_bias= 1.30m
+CBIAS G29 L2 CL         code_bias= 2.62m
+CBIAS G29 L2 P          code_bias= 2.14m
+CBIAS G30 L1 C/A        code_bias=-2.40m
+CBIAS G30 L2 CL         code_bias=-3.52m
+CBIAS G30 L2 P          code_bias=-3.96m
+CBIAS G31 L1 C/A        code_bias= 2.52m
+CBIAS G31 L2 CL         code_bias= 4.32m
+CBIAS G31 L2 P          code_bias= 4.16m
+CBIAS G32 L1 C/A        code_bias=-1.92m
+CBIAS G32 L2 CL         code_bias=-3.02m
+CBIAS G32 L2 P          code_bias=-3.16m
+CBIAS E02 E1 C          code_bias= 0.34m
+CBIAS E02 E5a Q         code_bias= 0.60m
+CBIAS E02 E5b Q         code_bias= 0.74m
+CBIAS E02 E6 C          code_bias=-0.42m
+CBIAS E03 E1 C          code_bias=-1.00m
+CBIAS E03 E5a Q         code_bias=-1.80m
+CBIAS E03 E5b Q         code_bias=-1.80m
+CBIAS E03 E6 C          code_bias=-1.00m
+CBIAS E04 E1 C          code_bias= 1.00m
+CBIAS E04 E5a Q         code_bias= 1.80m
+CBIAS E04 E5b Q         code_bias= 1.78m
+CBIAS E04 E6 C          code_bias= 0.90m
+CBIAS E05 E1 C          code_bias=-1.14m
+CBIAS E05 E5a Q         code_bias=-2.04m
+CBIAS E05 E5b Q         code_bias=-2.04m
+CBIAS E05 E6 C          code_bias=-0.34m
+CBIAS E07 E1 C          code_bias=-1.52m
+CBIAS E07 E5a Q         code_bias=-2.70m
+CBIAS E07 E5b Q         code_bias=-2.70m
+CBIAS E07 E6 C          code_bias=-1.34m
+CBIAS E08 E1 C          code_bias= 1.12m
+CBIAS E08 E5a Q         code_bias= 2.00m
+CBIAS E08 E5b Q         code_bias= 2.04m
+CBIAS E08 E6 C          code_bias= 1.64m
+CBIAS E09 E1 C          code_bias=-0.36m
+CBIAS E09 E5a Q         code_bias=-0.64m
+CBIAS E09 E5b Q         code_bias=-0.64m
+CBIAS E09 E6 C          code_bias=-0.64m
+CBIAS E10 E1 C          code_bias=-0.22m
+CBIAS E10 E5a Q         code_bias=-0.40m
+CBIAS E10 E5b Q         code_bias=-0.54m
+CBIAS E10 E6 C          code_bias=-1.62m
+CBIAS E11 E1 C          code_bias= 3.86m
+CBIAS E11 E5a Q         code_bias= 6.92m
+CBIAS E11 E5b Q         code_bias= 6.82m
+CBIAS E11 E6 C          code_bias= 6.48m
+CBIAS E12 E1 C          code_bias= 2.88m
+CBIAS E12 E5a Q         code_bias= 5.16m
+CBIAS E12 E5b Q         code_bias= 4.90m
+CBIAS E12 E6 C          code_bias= 5.32m
+CBIAS E15 E1 C          code_bias=-2.00m
+CBIAS E15 E5a Q         code_bias=-3.58m
+CBIAS E15 E5b Q         code_bias=-3.52m
+CBIAS E15 E6 C          code_bias=-2.42m
+CBIAS E19 E1 C          code_bias= 1.02m
+CBIAS E19 E5a Q         code_bias= 1.84m
+CBIAS E19 E5b Q         code_bias= 1.76m
+CBIAS E19 E6 C          code_bias= 1.16m
+CBIAS E21 E1 C          code_bias=-0.70m
+CBIAS E21 E5a Q         code_bias=-1.26m
+CBIAS E21 E5b Q         code_bias=-1.22m
+CBIAS E21 E6 C          code_bias=-2.02m
+CBIAS E24 E1 C          code_bias= 0.88m
+CBIAS E24 E5a Q         code_bias= 1.58m
+CBIAS E24 E5b Q         code_bias= 1.68m
+CBIAS E24 E6 C          code_bias= 0.50m
+CBIAS E25 E1 C          code_bias=-1.24m
+CBIAS E25 E5a Q         code_bias=-2.22m
+CBIAS E25 E5b Q         code_bias=-2.20m
+CBIAS E25 E6 C          code_bias=-0.82m
+CBIAS E26 E1 C          code_bias= 1.04m
+CBIAS E26 E5a Q         code_bias= 1.88m
+CBIAS E26 E5b Q         code_bias= 1.90m
+CBIAS E26 E6 C          code_bias= 0.18m
+CBIAS E27 E1 C          code_bias=-0.64m
+CBIAS E27 E5a Q         code_bias=-1.16m
+CBIAS E27 E5b Q         code_bias=-1.14m
+CBIAS E27 E6 C          code_bias=-2.00m
+CBIAS E30 E1 C          code_bias=-0.54m
+CBIAS E30 E5a Q         code_bias=-0.94m
+CBIAS E30 E5b Q         code_bias=-0.90m
+CBIAS E30 E6 C          code_bias=-0.22m
+CBIAS E31 E1 C          code_bias=-1.52m
+CBIAS E31 E5a Q         code_bias=-2.72m
+CBIAS E31 E5b Q         code_bias=-2.70m
+CBIAS E31 E6 C          code_bias=-0.58m
+CBIAS E33 E1 C          code_bias= 0.78m
+CBIAS E33 E5a Q         code_bias= 1.40m
+CBIAS E33 E5b Q         code_bias= 1.40m
+CBIAS E33 E6 C          code_bias= 0.08m
+CBIAS E34 E1 C          code_bias=-1.32m
+CBIAS E34 E5a Q         code_bias=-2.38m
+CBIAS E34 E5b Q         code_bias=-2.48m
+CBIAS E34 E6 C          code_bias=-2.04m
+CBIAS E36 E1 C          code_bias=-1.80m
+CBIAS E36 E5a Q         code_bias=-3.22m
+CBIAS E36 E5b Q         code_bias=-3.24m
+CBIAS E36 E6 C          code_bias=-2.16m
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=123 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=227 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 45 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=149 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=176 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=124 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=228 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 46 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=150 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=177 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=125 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=229 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID= 47 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=151 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=152 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=100 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=204 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  1 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=126 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=153 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=101 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=205 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  2 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=127 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=21 MS= 2 PID= 97 -> A new page for MID=21
+E10 HASS=Operational(1) MT=1 MID=21 MS= 2 PID= 77
+------ HAS decode with the pages of MID=21 MS=2 ------
+0x95320062500a9f6602fdef10258432001ecb045fc980b7f37f93026bd560eafd97033ad1d67f66801005435ef8a82342a6048fd1816ffedf4f015811bf9e101009ff080afff601cfed3fd001300b7f88023f83fea2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+------
+Time of hour TOH: 2387 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+CKFUL validity_interval=60s (5)
+CKFUL G01 d_clock=  0.848m (multiplier=1)
+CKFUL G02 d_clock= -1.540m (multiplier=1)
+CKFUL G03 d_clock=  0.955m (multiplier=1)
+CKFUL G04 d_clock= -0.677m (multiplier=1)
+CKFUL G05 d_clock=  0.188m (multiplier=1)
+CKFUL G06 d_clock=  0.670m (multiplier=1)
+CKFUL G07 d_clock=  0.000m (multiplier=1)
+CKFUL G08 d_clock= -0.772m (multiplier=1)
+CKFUL G09 d_clock=  0.348m (multiplier=1)
+CKFUL G11 d_clock= -0.545m (multiplier=1)
+CKFUL G12 d_clock=  0.228m (multiplier=1)
+CKFUL G13 d_clock= -0.503m (multiplier=1)
+CKFUL G14 d_clock= -0.545m (multiplier=1)
+CKFUL G15 d_clock=  0.385m (multiplier=1)
+CKFUL G16 d_clock= -0.853m (multiplier=1)
+CKFUL G17 d_clock=  0.585m (multiplier=1)
+CKFUL G18 d_clock= -0.195m (multiplier=1)
+CKFUL G19 d_clock= -2.530m (multiplier=1)
+CKFUL G20 d_clock= -1.660m (multiplier=1)
+CKFUL G21 d_clock= -1.663m (multiplier=1)
+CKFUL G23 d_clock= -0.768m (multiplier=1)
+CKFUL G24 d_clock=  0.010m (multiplier=1)
+CKFUL G27 d_clock=  0.105m (multiplier=1)
+CKFUL G29 d_clock=  2.155m (multiplier=1)
+CKFUL G30 d_clock= -0.588m (multiplier=1)
+CKFUL G31 d_clock=  0.352m (multiplier=1)
+CKFUL G32 d_clock=  0.848m (multiplier=1)
+CKFUL E02 d_clock=  0.180m (multiplier=1)
+CKFUL E03 d_clock= -0.233m (multiplier=1)
+CKFUL E04 d_clock=  0.228m (multiplier=1)
+CKFUL E05 d_clock= -0.025m (multiplier=1)
+CKFUL E07 d_clock= -0.443m (multiplier=1)
+CKFUL E08 d_clock=  0.107m (multiplier=1)
+CKFUL E09 d_clock=  0.175m (multiplier=1)
+CKFUL E10 d_clock= -0.122m (multiplier=1)
+CKFUL E11 d_clock=  0.642m (multiplier=1)
+CKFUL E12 d_clock=  0.048m (multiplier=1)
+CKFUL E15 d_clock= -0.155m (multiplier=1)
+CKFUL E19 d_clock=  0.217m (multiplier=1)
+CKFUL E21 d_clock= -0.025m (multiplier=1)
+CKFUL E24 d_clock=  0.143m (multiplier=1)
+CKFUL E25 d_clock= -0.190m (multiplier=1)
+CKFUL E26 d_clock= -0.060m (multiplier=1)
+CKFUL E27 d_clock=  0.048m (multiplier=1)
+CKFUL E30 d_clock=  0.055m (multiplier=1)
+CKFUL E31 d_clock= -0.075m (multiplier=1)
+CKFUL E33 d_clock=  0.043m (multiplier=1)
+CKFUL E34 d_clock= -0.312m (multiplier=1)
+CKFUL E36 d_clock= -0.110m (multiplier=1)
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E24 HASS=Operational(1) MT=1 MID=21 MS= 2 PID=157 -> Enough pages for MID=21
+E31 HASS=Operational(1) MT=1 MID=21 MS= 2 PID=187 -> Enough pages for MID=21
+E11 HASS=Operational(1) MT=1 MID=21 MS= 2 PID= 87 -> Enough pages for MID=21
+E12 HASS=Operational(1) MT=1 MID=21 MS= 2 PID= 98 -> Enough pages for MID=21
+E10 HASS=Operational(1) MT=1 MID=21 MS= 2 PID= 78 -> Enough pages for MID=21
+E24 HASS=Operational(1) MT=1 MID=21 MS= 2 PID=158 -> Enough pages for MID=21
+E31 HASS=Operational(1) MT=1 MID=21 MS= 2 PID=188 -> Enough pages for MID=21
+E11 HASS=Operational(1) MT=1 MID=21 MS= 2 PID= 88 -> Enough pages for MID=21
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=154 -> A new page for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=102
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=206
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  3
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=128
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=155
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=103
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=207
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  4
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=129
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=156
+------ HAS decode with the pages of MID=17 MS=11 ------
+0x92ec806220ffbffb2f008140fbffffffeff7fb6fffffc13df914f36824820014a41b2e6a06232012fef014abfefc1bc0145fd11ec7f9e05fe7feefe90d00080e7f4a0ffa3ff41f14c089fc0002a608ce9bf7391f567e77fd297f54173ec067f8600bfb867e68fa6fb44c000010fee97809fe7bf704fff1f8000efbe41f...
+------
+Time of hour TOH: 2350 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
+Clock subset    : off
+Code bias       : on
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G07 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+MASK G09 L1 C/A L2 CL L2 P
+MASK G11 L1 C/A L2 CL L2 P
+MASK G12 L1 C/A L2 CL L2 P
+MASK G13 L1 C/A L2 P
+MASK G14 L1 C/A L2 CL L2 P
+MASK G15 L1 C/A L2 CL L2 P
+MASK G16 L1 C/A L2 P
+MASK G17 L1 C/A L2 CL L2 P
+MASK G18 L1 C/A L2 CL L2 P
+MASK G19 L1 C/A L2 P
+MASK G20 L1 C/A L2 P
+MASK G21 L1 C/A L2 P
+MASK G23 L1 C/A L2 CL L2 P
+MASK G24 L1 C/A L2 CL L2 P
+MASK G27 L1 C/A L2 CL L2 P
+MASK G29 L1 C/A L2 CL L2 P
+MASK G30 L1 C/A L2 CL L2 P
+MASK G31 L1 C/A L2 CL L2 P
+MASK G32 L1 C/A L2 CL L2 P
+MASK E02 E1 C E5a Q E5b Q E6 C
+MASK E03 E1 C E5a Q E5b Q E6 C
+MASK E04 E1 C E5a Q E5b Q E6 C
+MASK E05 E1 C E5a Q E5b Q E6 C
+MASK E07 E1 C E5a Q E5b Q E6 C
+MASK E08 E1 C E5a Q E5b Q E6 C
+MASK E09 E1 C E5a Q E5b Q E6 C
+MASK E10 E1 C E5a Q E5b Q E6 C
+MASK E11 E1 C E5a Q E5b Q E6 C
+MASK E12 E1 C E5a Q E5b Q E6 C
+MASK E15 E1 C E5a Q E5b Q E6 C
+MASK E19 E1 C E5a Q E5b Q E6 C
+MASK E21 E1 C E5a Q E5b Q E6 C
+MASK E24 E1 C E5a Q E5b Q E6 C
+MASK E25 E1 C E5a Q E5b Q E6 C
+MASK E26 E1 C E5a Q E5b Q E6 C
+MASK E27 E1 C E5a Q E5b Q E6 C
+MASK E30 E1 C E5a Q E5b Q E6 C
+MASK E31 E1 C E5a Q E5b Q E6 C
+MASK E33 E1 C E5a Q E5b Q E6 C
+MASK E34 E1 C E5a Q E5b Q E6 C
+MASK E36 E1 C E5a Q E5b Q E6 C
+ORBIT validity_interval=300s (10)
+ORBIT G01 IODE=  82 d_radial= 1.0850m d_track=-3.2480m d_cross= 0.7840m
+ORBIT G02 IODE=  50 d_radial= 0.0925m d_track=-0.2720m d_cross= 0.3280m
+ORBIT G03 IODE=  87 d_radial=-0.1625m d_track= 0.8880m d_cross= 0.0400m
+ORBIT G04 IODE=  23 d_radial=-0.9400m d_track=-1.2560m d_cross=-0.3920m
+ORBIT G05 IODE=   2 d_radial=-0.0625m d_track=-0.1440m d_cross=-0.1840m
+ORBIT G06 IODE=  13 d_radial= 0.0025m d_track= 0.2240m d_cross=-0.1840m
+ORBIT G07 IODE=  65 d_radial=-0.0600m d_track=-0.0240m d_cross= 0.9920m
+ORBIT G08 IODE=  83 d_radial= 0.1700m d_track=-0.2560m d_cross= 0.0080m
+ORBIT G09 IODE=  83 d_radial= 0.3500m d_track=-2.8560m d_cross=-1.1280m
+ORBIT G11 IODE= 145 d_radial=-0.8500m d_track=-0.4000m d_cross=-0.0480m
+ORBIT G12 IODE=  82 d_radial=-0.1075m d_track= 0.7360m d_cross=-0.6400m
+ORBIT G13 IODE=  25 d_radial=-0.1525m d_track= 0.0400m d_cross=-0.2880m
+ORBIT G14 IODE=  51 d_radial=-1.0200m d_track=-0.7200m d_cross=-0.6080m
+ORBIT G15 IODE=  76 d_radial= 0.0000m d_track= 0.2640m d_cross=-0.2800m
+ORBIT G16 IODE=  47 d_radial= 0.0975m d_track=-0.7840m d_cross=-0.2880m
+ORBIT G17 IODE=  19 d_radial=-0.0200m d_track=-0.5120m d_cross= 0.0560m
+ORBIT G18 IODE= 125 d_radial=-1.1175m d_track=-0.0880m d_cross=-0.6400m
+ORBIT G19 IODE= 101 d_radial= 0.1250m d_track=-2.3280m d_cross= 1.1200m
+ORBIT G20 IODE=  21 d_radial= 0.0750m d_track=-0.7280m d_cross=-0.2000m
+ORBIT G21 IODE=  16 d_radial= 0.1100m d_track= 0.4160m d_cross= 0.0240m
+ORBIT G23 IODE= 178 d_radial=-1.3050m d_track= 0.7520m d_cross=-0.2880m
+ORBIT G24 IODE=  74 d_radial=-0.1250m d_track=-0.9520m d_cross= 0.0880m
+ORBIT G27 IODE=   9 d_radial=-0.1600m d_track=-0.5440m d_cross= 0.2960m
+ORBIT G29 IODE=  61 d_radial=-0.0300m d_track=-1.7440m d_cross=-1.4800m
+ORBIT G30 IODE= 103 d_radial= 0.3275m d_track=-2.5120m d_cross=-1.6800m
+ORBIT G31 IODE=  11 d_radial= 0.0325m d_track=-1.3680m d_cross= 0.2000m
+ORBIT G32 IODE=  25 d_radial=-0.2100m d_track=-0.5200m d_cross=-0.6560m
+ORBIT E02 IODE=  38 d_radial=-0.1000m d_track= 0.0480m d_cross=-0.2000m
+ORBIT E03 IODE=  35 d_radial=-0.1250m d_track= 0.0880m d_cross= 0.3680m
+ORBIT E04 IODE=  38 d_radial= 0.1000m d_track=-0.0800m d_cross=-0.0080m
+ORBIT E05 IODE=  33 d_radial= 0.1750m d_track=-0.0720m d_cross= 0.0960m
+ORBIT E07 IODE=  38 d_radial=-0.2550m d_track= 0.3920m d_cross= 0.0160m
+ORBIT E08 IODE=  38 d_radial=-0.1525m d_track=-0.0800m d_cross= 0.1280m
+ORBIT E09 IODE=  34 d_radial= 0.1925m d_track=-0.0400m d_cross= 0.0240m
+ORBIT E10 IODE=  38 d_radial= 0.0975m d_track=-0.1760m d_cross= 0.1840m
+ORBIT E11 IODE=  38 d_radial= 0.0950m d_track= 0.1440m d_cross=-0.1440m
+ORBIT E12 IODE=  38 d_radial= 0.0150m d_track= 0.5520m d_cross=-0.3920m
+ORBIT E15 IODE=  38 d_radial=-0.0675m d_track= 0.0160m d_cross= 0.3120m
+ORBIT E19 IODE=  38 d_radial=-0.0750m d_track= 0.0320m d_cross= 0.0560m
+ORBIT E21 IODE=  38 d_radial=-0.1175m d_track= 0.4080m d_cross= 0.0800m
+ORBIT E24 IODE=  38 d_radial=-0.0975m d_track= 0.2640m d_cross= 0.1040m
+ORBIT E25 IODE=  38 d_radial=-0.0525m d_track=-0.0320m d_cross=-0.0080m
+ORBIT E26 IODE=  38 d_radial=-0.2575m d_track= 0.0880m d_cross= 0.1520m
+ORBIT E27 IODE=  34 d_radial=-0.0425m d_track= 0.2240m d_cross=-0.2720m
+ORBIT E30 IODE=  38 d_radial= 0.0325m d_track=-0.0080m d_cross=-0.1680m
+ORBIT E31 IODE=  38 d_radial=-0.0425m d_track= 0.1280m d_cross= 0.1520m
+ORBIT E33 IODE=  38 d_radial=-0.1275m d_track= 0.3040m d_cross=-0.0880m
+ORBIT E34 IODE=  38 d_radial=-0.0175m d_track= 0.1520m d_cross= 0.3200m
+ORBIT E36 IODE=  38 d_radial= 0.0850m d_track= 0.1840m d_cross= 0.0800m
+CBIAS validity_interval=300s (10)
+CBIAS G01 L1 C/A        code_bias=-3.32m
+CBIAS G01 L2 CL         code_bias=-4.66m
+CBIAS G01 L2 P          code_bias=-5.46m
+CBIAS G02 L1 C/A        code_bias= 4.54m
+CBIAS G02 L2 P          code_bias= 7.48m
+CBIAS G03 L1 C/A        code_bias=-2.78m
+CBIAS G03 L2 CL         code_bias=-4.22m
+CBIAS G03 L2 P          code_bias=-4.60m
+CBIAS G04 L1 C/A        code_bias=-0.28m
+CBIAS G04 L2 CL         code_bias= 0.18m
+CBIAS G04 L2 P          code_bias=-0.44m
+CBIAS G05 L1 C/A        code_bias= 1.04m
+CBIAS G05 L2 CL         code_bias= 2.22m
+CBIAS G05 L2 P          code_bias= 1.70m
+CBIAS G06 L1 C/A        code_bias=-3.82m
+CBIAS G06 L2 CL         code_bias=-5.82m
+CBIAS G06 L2 P          code_bias=-6.30m
+CBIAS G07 L1 C/A        code_bias= 1.74m
+CBIAS G07 L2 CL         code_bias= 3.46m
+CBIAS G07 L2 P          code_bias= 2.86m
+CBIAS G08 L1 C/A        code_bias=-3.04m
+CBIAS G08 L2 CL         code_bias=-4.80m
+CBIAS G08 L2 P          code_bias=-4.98m
+CBIAS G09 L1 C/A        code_bias=-1.86m
+CBIAS G09 L2 CL         code_bias=-2.48m
+CBIAS G09 L2 P          code_bias=-3.06m
+CBIAS G11 L1 C/A        code_bias= 0.42m
+CBIAS G11 L2 CL         code_bias= 1.44m
+CBIAS G11 L2 P          code_bias= 0.68m
+CBIAS G12 L1 C/A        code_bias= 2.16m
+CBIAS G12 L2 CL         code_bias= 3.86m
+CBIAS G12 L2 P          code_bias= 3.54m
+CBIAS G13 L1 C/A        code_bias= 1.80m
+CBIAS G13 L2 P          code_bias= 2.96m
+CBIAS G14 L1 C/A        code_bias= 0.64m
+CBIAS G14 L2 CL         code_bias= 1.58m
+CBIAS G14 L2 P          code_bias= 1.06m
+CBIAS G15 L1 C/A        code_bias= 1.32m
+CBIAS G15 L2 CL         code_bias= 2.56m
+CBIAS G15 L2 P          code_bias= 2.18m
+CBIAS G16 L1 C/A        code_bias= 2.04m
+CBIAS G16 L2 P          code_bias= 3.36m
+CBIAS G17 L1 C/A        code_bias= 1.48m
+CBIAS G17 L2 CL         code_bias= 3.16m
+CBIAS G17 L2 P          code_bias= 2.42m
+CBIAS G18 L1 C/A        code_bias= 0.74m
+CBIAS G18 L2 CL         code_bias= 1.68m
+CBIAS G18 L2 P          code_bias= 1.22m
+CBIAS G19 L1 C/A        code_bias= 4.06m
+CBIAS G19 L2 P          code_bias= 6.66m
+CBIAS G20 L1 C/A        code_bias= 1.66m
+CBIAS G20 L2 P          code_bias= 2.72m
+CBIAS G21 L1 C/A        code_bias= 2.56m
+CBIAS G21 L2 P          code_bias= 4.22m
+CBIAS G23 L1 C/A        code_bias= 1.04m
+CBIAS G23 L2 CL         code_bias= 2.06m
+CBIAS G23 L2 P          code_bias= 1.70m
+CBIAS G24 L1 C/A        code_bias=-2.44m
+CBIAS G24 L2 CL         code_bias=-3.58m
+CBIAS G24 L2 P          code_bias=-4.02m
+CBIAS G27 L1 C/A        code_bias=-1.82m
+CBIAS G27 L2 CL         code_bias=-2.58m
+CBIAS G27 L2 P          code_bias=-3.00m
+CBIAS G29 L1 C/A        code_bias= 1.30m
+CBIAS G29 L2 CL         code_bias= 2.62m
+CBIAS G29 L2 P          code_bias= 2.14m
+CBIAS G30 L1 C/A        code_bias=-2.40m
+CBIAS G30 L2 CL         code_bias=-3.52m
+CBIAS G30 L2 P          code_bias=-3.96m
+CBIAS G31 L1 C/A        code_bias= 2.52m
+CBIAS G31 L2 CL         code_bias= 4.32m
+CBIAS G31 L2 P          code_bias= 4.16m
+CBIAS G32 L1 C/A        code_bias=-1.92m
+CBIAS G32 L2 CL         code_bias=-3.02m
+CBIAS G32 L2 P          code_bias=-3.16m
+CBIAS E02 E1 C          code_bias= 0.34m
+CBIAS E02 E5a Q         code_bias= 0.60m
+CBIAS E02 E5b Q         code_bias= 0.74m
+CBIAS E02 E6 C          code_bias=-0.42m
+CBIAS E03 E1 C          code_bias=-1.00m
+CBIAS E03 E5a Q         code_bias=-1.80m
+CBIAS E03 E5b Q         code_bias=-1.80m
+CBIAS E03 E6 C          code_bias=-1.00m
+CBIAS E04 E1 C          code_bias= 1.00m
+CBIAS E04 E5a Q         code_bias= 1.80m
+CBIAS E04 E5b Q         code_bias= 1.78m
+CBIAS E04 E6 C          code_bias= 0.90m
+CBIAS E05 E1 C          code_bias=-1.14m
+CBIAS E05 E5a Q         code_bias=-2.04m
+CBIAS E05 E5b Q         code_bias=-2.04m
+CBIAS E05 E6 C          code_bias=-0.34m
+CBIAS E07 E1 C          code_bias=-1.52m
+CBIAS E07 E5a Q         code_bias=-2.70m
+CBIAS E07 E5b Q         code_bias=-2.70m
+CBIAS E07 E6 C          code_bias=-1.34m
+CBIAS E08 E1 C          code_bias= 1.12m
+CBIAS E08 E5a Q         code_bias= 2.00m
+CBIAS E08 E5b Q         code_bias= 2.04m
+CBIAS E08 E6 C          code_bias= 1.64m
+CBIAS E09 E1 C          code_bias=-0.36m
+CBIAS E09 E5a Q         code_bias=-0.64m
+CBIAS E09 E5b Q         code_bias=-0.64m
+CBIAS E09 E6 C          code_bias=-0.64m
+CBIAS E10 E1 C          code_bias=-0.22m
+CBIAS E10 E5a Q         code_bias=-0.40m
+CBIAS E10 E5b Q         code_bias=-0.54m
+CBIAS E10 E6 C          code_bias=-1.62m
+CBIAS E11 E1 C          code_bias= 3.86m
+CBIAS E11 E5a Q         code_bias= 6.92m
+CBIAS E11 E5b Q         code_bias= 6.82m
+CBIAS E11 E6 C          code_bias= 6.48m
+CBIAS E12 E1 C          code_bias= 2.88m
+CBIAS E12 E5a Q         code_bias= 5.16m
+CBIAS E12 E5b Q         code_bias= 4.90m
+CBIAS E12 E6 C          code_bias= 5.32m
+CBIAS E15 E1 C          code_bias=-2.00m
+CBIAS E15 E5a Q         code_bias=-3.58m
+CBIAS E15 E5b Q         code_bias=-3.52m
+CBIAS E15 E6 C          code_bias=-2.42m
+CBIAS E19 E1 C          code_bias= 1.02m
+CBIAS E19 E5a Q         code_bias= 1.84m
+CBIAS E19 E5b Q         code_bias= 1.76m
+CBIAS E19 E6 C          code_bias= 1.16m
+CBIAS E21 E1 C          code_bias=-0.70m
+CBIAS E21 E5a Q         code_bias=-1.26m
+CBIAS E21 E5b Q         code_bias=-1.22m
+CBIAS E21 E6 C          code_bias=-2.02m
+CBIAS E24 E1 C          code_bias= 0.88m
+CBIAS E24 E5a Q         code_bias= 1.58m
+CBIAS E24 E5b Q         code_bias= 1.68m
+CBIAS E24 E6 C          code_bias= 0.50m
+CBIAS E25 E1 C          code_bias=-1.24m
+CBIAS E25 E5a Q         code_bias=-2.22m
+CBIAS E25 E5b Q         code_bias=-2.20m
+CBIAS E25 E6 C          code_bias=-0.82m
+CBIAS E26 E1 C          code_bias= 1.04m
+CBIAS E26 E5a Q         code_bias= 1.88m
+CBIAS E26 E5b Q         code_bias= 1.90m
+CBIAS E26 E6 C          code_bias= 0.18m
+CBIAS E27 E1 C          code_bias=-0.64m
+CBIAS E27 E5a Q         code_bias=-1.16m
+CBIAS E27 E5b Q         code_bias=-1.14m
+CBIAS E27 E6 C          code_bias=-2.00m
+CBIAS E30 E1 C          code_bias=-0.54m
+CBIAS E30 E5a Q         code_bias=-0.94m
+CBIAS E30 E5b Q         code_bias=-0.90m
+CBIAS E30 E6 C          code_bias=-0.22m
+CBIAS E31 E1 C          code_bias=-1.52m
+CBIAS E31 E5a Q         code_bias=-2.72m
+CBIAS E31 E5b Q         code_bias=-2.70m
+CBIAS E31 E6 C          code_bias=-0.58m
+CBIAS E33 E1 C          code_bias= 0.78m
+CBIAS E33 E5a Q         code_bias= 1.40m
+CBIAS E33 E5b Q         code_bias= 1.40m
+CBIAS E33 E6 C          code_bias= 0.08m
+CBIAS E34 E1 C          code_bias=-1.32m
+CBIAS E34 E5a Q         code_bias=-2.38m
+CBIAS E34 E5b Q         code_bias=-2.48m
+CBIAS E34 E6 C          code_bias=-2.04m
+CBIAS E36 E1 C          code_bias=-1.80m
+CBIAS E36 E5a Q         code_bias=-3.22m
+CBIAS E36 E5b Q         code_bias=-3.24m
+CBIAS E36 E6 C          code_bias=-2.16m
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=104 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=208 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  5 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=130 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=157 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=105 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=209 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  6 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=131 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=158 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=106 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=210 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  7 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=132 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=159 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=107 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=211 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  8 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=133 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=160 -> Enough pages for MID=17
+E10 HASS=Operational(1) MT=1 MID=17 MS=11 PID=108 -> Enough pages for MID=17
+E24 HASS=Operational(1) MT=1 MID=17 MS=11 PID=212 -> Enough pages for MID=17
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  9 -> Enough pages for MID=17
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=134 -> Enough pages for MID=17
+E12 HASS=Operational(1) MT=1 MID=22 MS= 2 PID= 99 -> A new page for MID=22
+E10 HASS=Operational(1) MT=1 MID=22 MS= 2 PID= 79
+------ HAS decode with the pages of MID=22 MS=2 ------
+0x95d20062500a676602f9ef30290432001ed60467c9c0b5f3ef93827fd4e0f1fdaf02facfd67f67801805035ef8b0234298047fd10173fedf50015811bf9e1020097f040afff701c7ed3fd001300aff88023f83fea2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+------
+Time of hour TOH: 2397 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 3
+IOD Set ID      : 2
+CKFUL validity_interval=60s (5)
+CKFUL G01 d_clock=  0.830m (multiplier=1)
+CKFUL G02 d_clock= -1.540m (multiplier=1)
+CKFUL G03 d_clock=  0.950m (multiplier=1)
+CKFUL G04 d_clock= -0.672m (multiplier=1)
+CKFUL G05 d_clock=  0.205m (multiplier=1)
+CKFUL G06 d_clock=  0.670m (multiplier=1)
+CKFUL G07 d_clock=  0.000m (multiplier=1)
+CKFUL G08 d_clock= -0.745m (multiplier=1)
+CKFUL G09 d_clock=  0.350m (multiplier=1)
+CKFUL G11 d_clock= -0.542m (multiplier=1)
+CKFUL G12 d_clock=  0.225m (multiplier=1)
+CKFUL G13 d_clock= -0.485m (multiplier=1)
+CKFUL G14 d_clock= -0.542m (multiplier=1)
+CKFUL G15 d_clock=  0.398m (multiplier=1)
+CKFUL G16 d_clock= -0.863m (multiplier=1)
+CKFUL G17 d_clock=  0.603m (multiplier=1)
+CKFUL G18 d_clock= -0.188m (multiplier=1)
+CKFUL G19 d_clock= -2.533m (multiplier=1)
+CKFUL G20 d_clock= -1.663m (multiplier=1)
+CKFUL G21 d_clock= -1.663m (multiplier=1)
+CKFUL G23 d_clock= -0.763m (multiplier=1)
+CKFUL G24 d_clock=  0.015m (multiplier=1)
+CKFUL G27 d_clock=  0.100m (multiplier=1)
+CKFUL G29 d_clock=  2.155m (multiplier=1)
+CKFUL G30 d_clock= -0.585m (multiplier=1)
+CKFUL G31 d_clock=  0.352m (multiplier=1)
+CKFUL G32 d_clock=  0.830m (multiplier=1)
+CKFUL E02 d_clock=  0.177m (multiplier=1)
+CKFUL E03 d_clock= -0.235m (multiplier=1)
+CKFUL E04 d_clock=  0.230m (multiplier=1)
+CKFUL E05 d_clock= -0.025m (multiplier=1)
+CKFUL E07 d_clock= -0.440m (multiplier=1)
+CKFUL E08 d_clock=  0.107m (multiplier=1)
+CKFUL E09 d_clock=  0.175m (multiplier=1)
+CKFUL E10 d_clock= -0.122m (multiplier=1)
+CKFUL E11 d_clock=  0.645m (multiplier=1)
+CKFUL E12 d_clock=  0.045m (multiplier=1)
+CKFUL E15 d_clock= -0.158m (multiplier=1)
+CKFUL E19 d_clock=  0.217m (multiplier=1)
+CKFUL E21 d_clock= -0.022m (multiplier=1)
+CKFUL E24 d_clock=  0.140m (multiplier=1)
+CKFUL E25 d_clock= -0.190m (multiplier=1)
+CKFUL E26 d_clock= -0.060m (multiplier=1)
+CKFUL E27 d_clock=  0.048m (multiplier=1)
+CKFUL E30 d_clock=  0.052m (multiplier=1)
+CKFUL E31 d_clock= -0.075m (multiplier=1)
+CKFUL E33 d_clock=  0.043m (multiplier=1)
+CKFUL E34 d_clock= -0.312m (multiplier=1)
+CKFUL E36 d_clock= -0.110m (multiplier=1)
+------ padding bits ------
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+------
+E24 HASS=Operational(1) MT=1 MID=22 MS= 2 PID=159 -> Enough pages for MID=22
+E31 HASS=Operational(1) MT=1 MID=22 MS= 2 PID=189 -> Enough pages for MID=22
+E11 HASS=Operational(1) MT=1 MID=22 MS= 2 PID= 89 -> Enough pages for MID=22
+E12 HASS=Operational(1) MT=1 MID=22 MS= 2 PID=100 -> Enough pages for MID=22
+E10 HASS=Operational(1) MT=1 MID=22 MS= 2 PID= 80 -> Enough pages for MID=22
+E24 HASS=Operational(1) MT=1 MID=22 MS= 2 PID=160 -> Enough pages for MID=22
+E31 HASS=Operational(1) MT=1 MID=22 MS= 2 PID=190 -> Enough pages for MID=22
+E11 HASS=Operational(1) MT=1 MID=22 MS= 2 PID= 90 -> Enough pages for MID=22
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=153 -> A new page for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=101
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=205
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  1
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=127
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=154
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=102
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=206
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  2
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=128
+------ HAS decode with the pages of MID=23 MS=10 ------
+0x960c808020fdbffb2f008140fbffffff7fbfdb7ffffe09efc8a79b41241000a520def2d033990093f800a95ff7c0de0082fe88f62fcf02ff3ff77f4868008073fa54c087fbc004a608ce9af7391f56fe7ffd297f54177ebc67f8400dfb667e68fa6fb44cfff810fee17809fe77f684fff3f80010fbe41ff6fb065019f6...
+------
+Time of hour TOH: 2400 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
+Clock subset    : off
+Code bias       : on
+Phase bias      : off
+Mask ID         : 4
+IOD Set ID      : 0
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+MASK G09 L1 C/A L2 CL L2 P
+MASK G11 L1 C/A L2 CL L2 P
+MASK G12 L1 C/A L2 CL L2 P
+MASK G13 L1 C/A L2 P
+MASK G14 L1 C/A L2 CL L2 P
+MASK G15 L1 C/A L2 CL L2 P
+MASK G16 L1 C/A L2 P
+MASK G17 L1 C/A L2 CL L2 P
+MASK G18 L1 C/A L2 CL L2 P
+MASK G19 L1 C/A L2 P
+MASK G20 L1 C/A L2 P
+MASK G21 L1 C/A L2 P
+MASK G23 L1 C/A L2 CL L2 P
+MASK G24 L1 C/A L2 CL L2 P
+MASK G27 L1 C/A L2 CL L2 P
+MASK G29 L1 C/A L2 CL L2 P
+MASK G30 L1 C/A L2 CL L2 P
+MASK G31 L1 C/A L2 CL L2 P
+MASK G32 L1 C/A L2 CL L2 P
+MASK E02 E1 C E5a Q E5b Q E6 C
+MASK E03 E1 C E5a Q E5b Q E6 C
+MASK E04 E1 C E5a Q E5b Q E6 C
+MASK E05 E1 C E5a Q E5b Q E6 C
+MASK E07 E1 C E5a Q E5b Q E6 C
+MASK E08 E1 C E5a Q E5b Q E6 C
+MASK E09 E1 C E5a Q E5b Q E6 C
+MASK E10 E1 C E5a Q E5b Q E6 C
+MASK E11 E1 C E5a Q E5b Q E6 C
+MASK E12 E1 C E5a Q E5b Q E6 C
+MASK E15 E1 C E5a Q E5b Q E6 C
+MASK E19 E1 C E5a Q E5b Q E6 C
+MASK E21 E1 C E5a Q E5b Q E6 C
+MASK E24 E1 C E5a Q E5b Q E6 C
+MASK E25 E1 C E5a Q E5b Q E6 C
+MASK E26 E1 C E5a Q E5b Q E6 C
+MASK E27 E1 C E5a Q E5b Q E6 C
+MASK E30 E1 C E5a Q E5b Q E6 C
+MASK E31 E1 C E5a Q E5b Q E6 C
+MASK E33 E1 C E5a Q E5b Q E6 C
+MASK E34 E1 C E5a Q E5b Q E6 C
+MASK E36 E1 C E5a Q E5b Q E6 C
+ORBIT validity_interval=300s (10)
+ORBIT G01 IODE=  82 d_radial= 1.1125m d_track=-3.3760m d_cross= 0.8240m
+ORBIT G02 IODE=  50 d_radial= 0.0900m d_track=-0.2560m d_cross= 0.3360m
+ORBIT G03 IODE=  87 d_radial=-0.1650m d_track= 0.8880m d_cross= 0.0320m
+ORBIT G04 IODE=  23 d_radial=-0.9400m d_track=-1.2640m d_cross=-0.3920m
+ORBIT G05 IODE=   2 d_radial=-0.0625m d_track=-0.1440m d_cross=-0.1840m
+ORBIT G06 IODE=  13 d_radial= 0.0050m d_track= 0.2240m d_cross=-0.1840m
+ORBIT G08 IODE=  83 d_radial= 0.1675m d_track=-0.2720m d_cross= 0.0160m
+ORBIT G09 IODE=  83 d_radial= 0.3500m d_track=-2.8640m d_cross=-1.1280m
+ORBIT G11 IODE= 145 d_radial=-0.8475m d_track=-0.3920m d_cross=-0.0480m
+ORBIT G12 IODE=  82 d_radial=-0.1075m d_track= 0.7440m d_cross=-0.6480m
+ORBIT G13 IODE=  25 d_radial=-0.1550m d_track= 0.0480m d_cross=-0.2960m
+ORBIT G14 IODE=  51 d_radial=-1.0200m d_track=-0.7200m d_cross=-0.6080m
+ORBIT G15 IODE=  76 d_radial=-0.0025m d_track= 0.2640m d_cross=-0.2880m
+ORBIT G16 IODE=  47 d_radial= 0.0975m d_track=-0.7920m d_cross=-0.3040m
+ORBIT G17 IODE=  19 d_radial=-0.0175m d_track=-0.5120m d_cross= 0.0640m
+ORBIT G18 IODE= 125 d_radial=-1.1175m d_track=-0.0800m d_cross=-0.6400m
+ORBIT G19 IODE= 101 d_radial= 0.1275m d_track=-2.3280m d_cross= 1.1280m
+ORBIT G20 IODE=  21 d_radial= 0.0725m d_track=-0.7280m d_cross=-0.2000m
+ORBIT G21 IODE=  16 d_radial= 0.0975m d_track= 0.4240m d_cross= 0.0240m
+ORBIT G23 IODE= 178 d_radial=-1.3050m d_track= 0.7600m d_cross=-0.2800m
+ORBIT G24 IODE=  74 d_radial=-0.1250m d_track=-0.9520m d_cross= 0.0800m
+ORBIT G27 IODE=   9 d_radial=-0.1575m d_track=-0.5440m d_cross= 0.2960m
+ORBIT G29 IODE=  61 d_radial=-0.0325m d_track=-1.7440m d_cross=-1.4800m
+ORBIT G30 IODE= 103 d_radial= 0.3250m d_track=-2.5120m d_cross=-1.6880m
+ORBIT G31 IODE=  11 d_radial= 0.0300m d_track=-1.3600m d_cross= 0.2000m
+ORBIT G32 IODE=  25 d_radial=-0.2100m d_track=-0.5200m d_cross=-0.6560m
+ORBIT E02 IODE=  38 d_radial=-0.1000m d_track= 0.0480m d_cross=-0.2000m
+ORBIT E03 IODE=  35 d_radial=-0.1250m d_track= 0.0880m d_cross= 0.3680m
+ORBIT E04 IODE=  38 d_radial= 0.0975m d_track=-0.0800m d_cross=-0.0080m
+ORBIT E05 IODE=  33 d_radial= 0.1775m d_track=-0.0720m d_cross= 0.0960m
+ORBIT E07 IODE=  38 d_radial=-0.2525m d_track= 0.4000m d_cross= 0.0160m
+ORBIT E08 IODE=  38 d_radial=-0.1500m d_track=-0.0800m d_cross= 0.1280m
+ORBIT E09 IODE=  34 d_radial= 0.1900m d_track=-0.0400m d_cross= 0.0240m
+ORBIT E10 IODE=  38 d_radial= 0.0950m d_track=-0.1760m d_cross= 0.1840m
+ORBIT E11 IODE=  38 d_radial= 0.0950m d_track= 0.1440m d_cross=-0.1440m
+ORBIT E12 IODE=  38 d_radial= 0.0125m d_track= 0.5520m d_cross=-0.3920m
+ORBIT E15 IODE=  38 d_radial=-0.0675m d_track= 0.0160m d_cross= 0.3120m
+ORBIT E19 IODE=  38 d_radial=-0.0750m d_track= 0.0320m d_cross= 0.0560m
+ORBIT E21 IODE=  38 d_radial=-0.1175m d_track= 0.4160m d_cross= 0.0720m
+ORBIT E24 IODE=  38 d_radial=-0.0975m d_track= 0.2640m d_cross= 0.1040m
+ORBIT E25 IODE=  38 d_radial=-0.0525m d_track=-0.0320m d_cross=-0.0080m
+ORBIT E26 IODE=  38 d_radial=-0.2600m d_track= 0.0880m d_cross= 0.1600m
+ORBIT E27 IODE=  34 d_radial=-0.0425m d_track= 0.2240m d_cross=-0.2720m
+ORBIT E30 IODE=  38 d_radial= 0.0325m d_track=-0.0080m d_cross=-0.1680m
+ORBIT E31 IODE=  38 d_radial=-0.0425m d_track= 0.1280m d_cross= 0.1520m
+ORBIT E33 IODE=  38 d_radial=-0.1275m d_track= 0.3040m d_cross=-0.0880m
+ORBIT E34 IODE=  38 d_radial=-0.0175m d_track= 0.1520m d_cross= 0.3200m
+ORBIT E36 IODE=  38 d_radial= 0.0875m d_track= 0.1840m d_cross= 0.0800m
+CBIAS validity_interval=300s (10)
+CBIAS G01 L1 C/A        code_bias=-3.32m
+CBIAS G01 L2 CL         code_bias=-4.66m
+CBIAS G01 L2 P          code_bias=-5.46m
+CBIAS G02 L1 C/A        code_bias= 4.54m
+CBIAS G02 L2 P          code_bias= 7.48m
+CBIAS G03 L1 C/A        code_bias=-2.78m
+CBIAS G03 L2 CL         code_bias=-4.22m
+CBIAS G03 L2 P          code_bias=-4.60m
+CBIAS G04 L1 C/A        code_bias=-0.28m
+CBIAS G04 L2 CL         code_bias= 0.18m
+CBIAS G04 L2 P          code_bias=-0.44m
+CBIAS G05 L1 C/A        code_bias= 1.04m
+CBIAS G05 L2 CL         code_bias= 2.22m
+CBIAS G05 L2 P          code_bias= 1.70m
+CBIAS G06 L1 C/A        code_bias=-3.82m
+CBIAS G06 L2 CL         code_bias=-5.82m
+CBIAS G06 L2 P          code_bias=-6.30m
+CBIAS G08 L1 C/A        code_bias=-3.04m
+CBIAS G08 L2 CL         code_bias=-4.80m
+CBIAS G08 L2 P          code_bias=-4.98m
+CBIAS G09 L1 C/A        code_bias=-1.86m
+CBIAS G09 L2 CL         code_bias=-2.48m
+CBIAS G09 L2 P          code_bias=-3.06m
+CBIAS G11 L1 C/A        code_bias= 0.42m
+CBIAS G11 L2 CL         code_bias= 1.44m
+CBIAS G11 L2 P          code_bias= 0.68m
+CBIAS G12 L1 C/A        code_bias= 2.16m
+CBIAS G12 L2 CL         code_bias= 3.86m
+CBIAS G12 L2 P          code_bias= 3.54m
+CBIAS G13 L1 C/A        code_bias= 1.80m
+CBIAS G13 L2 P          code_bias= 2.96m
+CBIAS G14 L1 C/A        code_bias= 0.64m
+CBIAS G14 L2 CL         code_bias= 1.58m
+CBIAS G14 L2 P          code_bias= 1.06m
+CBIAS G15 L1 C/A        code_bias= 1.32m
+CBIAS G15 L2 CL         code_bias= 2.56m
+CBIAS G15 L2 P          code_bias= 2.18m
+CBIAS G16 L1 C/A        code_bias= 2.04m
+CBIAS G16 L2 P          code_bias= 3.36m
+CBIAS G17 L1 C/A        code_bias= 1.48m
+CBIAS G17 L2 CL         code_bias= 3.16m
+CBIAS G17 L2 P          code_bias= 2.42m
+CBIAS G18 L1 C/A        code_bias= 0.74m
+CBIAS G18 L2 CL         code_bias= 1.68m
+CBIAS G18 L2 P          code_bias= 1.22m
+CBIAS G19 L1 C/A        code_bias= 4.06m
+CBIAS G19 L2 P          code_bias= 6.66m
+CBIAS G20 L1 C/A        code_bias= 1.66m
+CBIAS G20 L2 P          code_bias= 2.72m
+CBIAS G21 L1 C/A        code_bias= 2.56m
+CBIAS G21 L2 P          code_bias= 4.22m
+CBIAS G23 L1 C/A        code_bias= 1.04m
+CBIAS G23 L2 CL         code_bias= 2.06m
+CBIAS G23 L2 P          code_bias= 1.70m
+CBIAS G24 L1 C/A        code_bias=-2.44m
+CBIAS G24 L2 CL         code_bias=-3.58m
+CBIAS G24 L2 P          code_bias=-4.02m
+CBIAS G27 L1 C/A        code_bias=-1.82m
+CBIAS G27 L2 CL         code_bias=-2.58m
+CBIAS G27 L2 P          code_bias=-3.00m
+CBIAS G29 L1 C/A        code_bias= 1.30m
+CBIAS G29 L2 CL         code_bias= 2.62m
+CBIAS G29 L2 P          code_bias= 2.14m
+CBIAS G30 L1 C/A        code_bias=-2.40m
+CBIAS G30 L2 CL         code_bias=-3.52m
+CBIAS G30 L2 P          code_bias=-3.96m
+CBIAS G31 L1 C/A        code_bias= 2.52m
+CBIAS G31 L2 CL         code_bias= 4.32m
+CBIAS G31 L2 P          code_bias= 4.16m
+CBIAS G32 L1 C/A        code_bias=-1.92m
+CBIAS G32 L2 CL         code_bias=-3.02m
+CBIAS G32 L2 P          code_bias=-3.16m
+CBIAS E02 E1 C          code_bias= 0.34m
+CBIAS E02 E5a Q         code_bias= 0.60m
+CBIAS E02 E5b Q         code_bias= 0.74m
+CBIAS E02 E6 C          code_bias=-0.42m
+CBIAS E03 E1 C          code_bias=-1.00m
+CBIAS E03 E5a Q         code_bias=-1.80m
+CBIAS E03 E5b Q         code_bias=-1.80m
+CBIAS E03 E6 C          code_bias=-1.00m
+CBIAS E04 E1 C          code_bias= 1.00m
+CBIAS E04 E5a Q         code_bias= 1.80m
+CBIAS E04 E5b Q         code_bias= 1.78m
+CBIAS E04 E6 C          code_bias= 0.90m
+CBIAS E05 E1 C          code_bias=-1.14m
+CBIAS E05 E5a Q         code_bias=-2.04m
+CBIAS E05 E5b Q         code_bias=-2.04m
+CBIAS E05 E6 C          code_bias=-0.34m
+CBIAS E07 E1 C          code_bias=-1.52m
+CBIAS E07 E5a Q         code_bias=-2.70m
+CBIAS E07 E5b Q         code_bias=-2.70m
+CBIAS E07 E6 C          code_bias=-1.34m
+CBIAS E08 E1 C          code_bias= 1.12m
+CBIAS E08 E5a Q         code_bias= 2.00m
+CBIAS E08 E5b Q         code_bias= 2.04m
+CBIAS E08 E6 C          code_bias= 1.64m
+CBIAS E09 E1 C          code_bias=-0.36m
+CBIAS E09 E5a Q         code_bias=-0.64m
+CBIAS E09 E5b Q         code_bias=-0.64m
+CBIAS E09 E6 C          code_bias=-0.64m
+CBIAS E10 E1 C          code_bias=-0.22m
+CBIAS E10 E5a Q         code_bias=-0.40m
+CBIAS E10 E5b Q         code_bias=-0.54m
+CBIAS E10 E6 C          code_bias=-1.62m
+CBIAS E11 E1 C          code_bias= 3.86m
+CBIAS E11 E5a Q         code_bias= 6.92m
+CBIAS E11 E5b Q         code_bias= 6.82m
+CBIAS E11 E6 C          code_bias= 6.48m
+CBIAS E12 E1 C          code_bias= 2.88m
+CBIAS E12 E5a Q         code_bias= 5.16m
+CBIAS E12 E5b Q         code_bias= 4.90m
+CBIAS E12 E6 C          code_bias= 5.32m
+CBIAS E15 E1 C          code_bias=-2.00m
+CBIAS E15 E5a Q         code_bias=-3.58m
+CBIAS E15 E5b Q         code_bias=-3.52m
+CBIAS E15 E6 C          code_bias=-2.42m
+CBIAS E19 E1 C          code_bias= 1.02m
+CBIAS E19 E5a Q         code_bias= 1.84m
+CBIAS E19 E5b Q         code_bias= 1.76m
+CBIAS E19 E6 C          code_bias= 1.16m
+CBIAS E21 E1 C          code_bias=-0.70m
+CBIAS E21 E5a Q         code_bias=-1.26m
+CBIAS E21 E5b Q         code_bias=-1.22m
+CBIAS E21 E6 C          code_bias=-2.02m
+CBIAS E24 E1 C          code_bias= 0.88m
+CBIAS E24 E5a Q         code_bias= 1.58m
+CBIAS E24 E5b Q         code_bias= 1.68m
+CBIAS E24 E6 C          code_bias= 0.50m
+CBIAS E25 E1 C          code_bias=-1.24m
+CBIAS E25 E5a Q         code_bias=-2.22m
+CBIAS E25 E5b Q         code_bias=-2.20m
+CBIAS E25 E6 C          code_bias=-0.82m
+CBIAS E26 E1 C          code_bias= 1.04m
+CBIAS E26 E5a Q         code_bias= 1.88m
+CBIAS E26 E5b Q         code_bias= 1.90m
+CBIAS E26 E6 C          code_bias= 0.18m
+CBIAS E27 E1 C          code_bias=-0.64m
+CBIAS E27 E5a Q         code_bias=-1.16m
+CBIAS E27 E5b Q         code_bias=-1.14m
+CBIAS E27 E6 C          code_bias=-2.00m
+CBIAS E30 E1 C          code_bias=-0.54m
+CBIAS E30 E5a Q         code_bias=-0.94m
+CBIAS E30 E5b Q         code_bias=-0.90m
+CBIAS E30 E6 C          code_bias=-0.22m
+CBIAS E31 E1 C          code_bias=-1.52m
+CBIAS E31 E5a Q         code_bias=-2.72m
+CBIAS E31 E5b Q         code_bias=-2.70m
+CBIAS E31 E6 C          code_bias=-0.58m
+CBIAS E33 E1 C          code_bias= 0.78m
+CBIAS E33 E5a Q         code_bias= 1.40m
+CBIAS E33 E5b Q         code_bias= 1.40m
+CBIAS E33 E6 C          code_bias= 0.08m
+CBIAS E34 E1 C          code_bias=-1.32m
+CBIAS E34 E5a Q         code_bias=-2.38m
+CBIAS E34 E5b Q         code_bias=-2.48m
+CBIAS E34 E6 C          code_bias=-2.04m
+CBIAS E36 E1 C          code_bias=-1.80m
+CBIAS E36 E5a Q         code_bias=-3.22m
+CBIAS E36 E5b Q         code_bias=-3.24m
+CBIAS E36 E6 C          code_bias=-2.16m
+------ padding bits ------
+01010101010101010101
+------
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=155 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=103 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=207 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  3 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=129 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=156 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=104 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=208 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  4 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=130 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=157 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=105 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=209 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  5 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=131 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=158 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=106 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=210 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  6 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=132 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=159 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=107 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=211 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  7 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=133 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=24 MS= 2 PID= 91 -> A new page for MID=24
+E10 HASS=Operational(1) MT=1 MID=24 MS= 2 PID= 71
+------ HAS decode with the pages of MID=24 MS=2 ------
+0x96720080500a6f64c2f9ef20250433db608af928167e7df2404efaac1effb2e047587ad1eca00180946bbf14045853008ffa302e7fe3ea202c023ff40206012fe18157ff2039fda7fa8028016ff0804bf09fd45555555555555555555555555555555555555555555555
+------
+Time of hour TOH: 2407 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 4
+IOD Set ID      : 0
+CKFUL validity_interval=60s (5)
+CKFUL G01 d_clock=  0.833m (multiplier=1)
+CKFUL G02 d_clock= -1.552m (multiplier=1)
+CKFUL G03 d_clock=  0.950m (multiplier=1)
+CKFUL G04 d_clock= -0.675m (multiplier=1)
+CKFUL G05 d_clock=  0.185m (multiplier=1)
+CKFUL G06 d_clock=  0.670m (multiplier=1)
+CKFUL G08 d_clock= -0.733m (multiplier=1)
+CKFUL G09 d_clock=  0.345m (multiplier=1)
+CKFUL G11 d_clock= -0.547m (multiplier=1)
+CKFUL G12 d_clock=  0.223m (multiplier=1)
+CKFUL G13 d_clock= -0.485m (multiplier=1)
+CKFUL G14 d_clock= -0.550m (multiplier=1)
+CKFUL G15 d_clock=  0.393m (multiplier=1)
+CKFUL G16 d_clock= -0.853m (multiplier=1)
+CKFUL G17 d_clock=  0.618m (multiplier=1)
+CKFUL G18 d_clock= -0.195m (multiplier=1)
+CKFUL G19 d_clock= -2.540m (multiplier=1)
+CKFUL G20 d_clock= -1.677m (multiplier=1)
+CKFUL G21 d_clock= -1.660m (multiplier=1)
+CKFUL G23 d_clock= -0.775m (multiplier=1)
+CKFUL G24 d_clock=  0.007m (multiplier=1)
+CKFUL G27 d_clock=  0.092m (multiplier=1)
+CKFUL G29 d_clock=  2.152m (multiplier=1)
+CKFUL G30 d_clock= -0.590m (multiplier=1)
+CKFUL G31 d_clock=  0.348m (multiplier=1)
+CKFUL G32 d_clock=  0.830m (multiplier=1)
+CKFUL E02 d_clock=  0.177m (multiplier=1)
+CKFUL E03 d_clock= -0.233m (multiplier=1)
+CKFUL E04 d_clock=  0.230m (multiplier=1)
+CKFUL E05 d_clock= -0.020m (multiplier=1)
+CKFUL E07 d_clock= -0.438m (multiplier=1)
+CKFUL E08 d_clock=  0.110m (multiplier=1)
+CKFUL E09 d_clock=  0.177m (multiplier=1)
+CKFUL E10 d_clock= -0.120m (multiplier=1)
+CKFUL E11 d_clock=  0.647m (multiplier=1)
+CKFUL E12 d_clock=  0.045m (multiplier=1)
+CKFUL E15 d_clock= -0.152m (multiplier=1)
+CKFUL E19 d_clock=  0.212m (multiplier=1)
+CKFUL E21 d_clock= -0.018m (multiplier=1)
+CKFUL E24 d_clock=  0.143m (multiplier=1)
+CKFUL E25 d_clock= -0.190m (multiplier=1)
+CKFUL E26 d_clock= -0.055m (multiplier=1)
+CKFUL E27 d_clock=  0.050m (multiplier=1)
+CKFUL E30 d_clock=  0.055m (multiplier=1)
+CKFUL E31 d_clock= -0.077m (multiplier=1)
+CKFUL E33 d_clock=  0.045m (multiplier=1)
+CKFUL E34 d_clock= -0.310m (multiplier=1)
+CKFUL E36 d_clock= -0.110m (multiplier=1)
+------ padding bits ------
+0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+------
+E24 HASS=Operational(1) MT=1 MID=24 MS= 2 PID=151 -> Enough pages for MID=24
+E31 HASS=Operational(1) MT=1 MID=24 MS= 2 PID=181 -> Enough pages for MID=24
+E11 HASS=Operational(1) MT=1 MID=24 MS= 2 PID= 81 -> Enough pages for MID=24
+E12 HASS=Operational(1) MT=1 MID=24 MS= 2 PID= 92 -> Enough pages for MID=24
+E10 HASS=Operational(1) MT=1 MID=24 MS= 2 PID= 72 -> Enough pages for MID=24
+E24 HASS=Operational(1) MT=1 MID=24 MS= 2 PID=152 -> Enough pages for MID=24
+E31 HASS=Operational(1) MT=1 MID=24 MS= 2 PID=182 -> Enough pages for MID=24
+E11 HASS=Operational(1) MT=1 MID=24 MS= 2 PID= 82 -> Enough pages for MID=24
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=160 -> A new page for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=108
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=212
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  8
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=134
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=161
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=109
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=213
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID=  9
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=135
+------ HAS decode with the pages of MID=23 MS=10 ------
+0x960c808020fdbffb2f008140fbffffff7fbfdb7ffffe09efc8a79b41241000a520def2d033990093f800a95ff7c0de0082fe88f62fcf02ff3ff77f4868008073fa54c087fbc004a608ce9af7391f56fe7ffd297f54177ebc67f8400dfb667e68fa6fb44cfff810fee17809fe77f684fff3f80010fbe41ff6fb065019f6...
+------
+Time of hour TOH: 2400 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
+Clock subset    : off
+Code bias       : on
+Phase bias      : off
+Mask ID         : 4
+IOD Set ID      : 0
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+MASK G09 L1 C/A L2 CL L2 P
+MASK G11 L1 C/A L2 CL L2 P
+MASK G12 L1 C/A L2 CL L2 P
+MASK G13 L1 C/A L2 P
+MASK G14 L1 C/A L2 CL L2 P
+MASK G15 L1 C/A L2 CL L2 P
+MASK G16 L1 C/A L2 P
+MASK G17 L1 C/A L2 CL L2 P
+MASK G18 L1 C/A L2 CL L2 P
+MASK G19 L1 C/A L2 P
+MASK G20 L1 C/A L2 P
+MASK G21 L1 C/A L2 P
+MASK G23 L1 C/A L2 CL L2 P
+MASK G24 L1 C/A L2 CL L2 P
+MASK G27 L1 C/A L2 CL L2 P
+MASK G29 L1 C/A L2 CL L2 P
+MASK G30 L1 C/A L2 CL L2 P
+MASK G31 L1 C/A L2 CL L2 P
+MASK G32 L1 C/A L2 CL L2 P
+MASK E02 E1 C E5a Q E5b Q E6 C
+MASK E03 E1 C E5a Q E5b Q E6 C
+MASK E04 E1 C E5a Q E5b Q E6 C
+MASK E05 E1 C E5a Q E5b Q E6 C
+MASK E07 E1 C E5a Q E5b Q E6 C
+MASK E08 E1 C E5a Q E5b Q E6 C
+MASK E09 E1 C E5a Q E5b Q E6 C
+MASK E10 E1 C E5a Q E5b Q E6 C
+MASK E11 E1 C E5a Q E5b Q E6 C
+MASK E12 E1 C E5a Q E5b Q E6 C
+MASK E15 E1 C E5a Q E5b Q E6 C
+MASK E19 E1 C E5a Q E5b Q E6 C
+MASK E21 E1 C E5a Q E5b Q E6 C
+MASK E24 E1 C E5a Q E5b Q E6 C
+MASK E25 E1 C E5a Q E5b Q E6 C
+MASK E26 E1 C E5a Q E5b Q E6 C
+MASK E27 E1 C E5a Q E5b Q E6 C
+MASK E30 E1 C E5a Q E5b Q E6 C
+MASK E31 E1 C E5a Q E5b Q E6 C
+MASK E33 E1 C E5a Q E5b Q E6 C
+MASK E34 E1 C E5a Q E5b Q E6 C
+MASK E36 E1 C E5a Q E5b Q E6 C
+ORBIT validity_interval=300s (10)
+ORBIT G01 IODE=  82 d_radial= 1.1125m d_track=-3.3760m d_cross= 0.8240m
+ORBIT G02 IODE=  50 d_radial= 0.0900m d_track=-0.2560m d_cross= 0.3360m
+ORBIT G03 IODE=  87 d_radial=-0.1650m d_track= 0.8880m d_cross= 0.0320m
+ORBIT G04 IODE=  23 d_radial=-0.9400m d_track=-1.2640m d_cross=-0.3920m
+ORBIT G05 IODE=   2 d_radial=-0.0625m d_track=-0.1440m d_cross=-0.1840m
+ORBIT G06 IODE=  13 d_radial= 0.0050m d_track= 0.2240m d_cross=-0.1840m
+ORBIT G08 IODE=  83 d_radial= 0.1675m d_track=-0.2720m d_cross= 0.0160m
+ORBIT G09 IODE=  83 d_radial= 0.3500m d_track=-2.8640m d_cross=-1.1280m
+ORBIT G11 IODE= 145 d_radial=-0.8475m d_track=-0.3920m d_cross=-0.0480m
+ORBIT G12 IODE=  82 d_radial=-0.1075m d_track= 0.7440m d_cross=-0.6480m
+ORBIT G13 IODE=  25 d_radial=-0.1550m d_track= 0.0480m d_cross=-0.2960m
+ORBIT G14 IODE=  51 d_radial=-1.0200m d_track=-0.7200m d_cross=-0.6080m
+ORBIT G15 IODE=  76 d_radial=-0.0025m d_track= 0.2640m d_cross=-0.2880m
+ORBIT G16 IODE=  47 d_radial= 0.0975m d_track=-0.7920m d_cross=-0.3040m
+ORBIT G17 IODE=  19 d_radial=-0.0175m d_track=-0.5120m d_cross= 0.0640m
+ORBIT G18 IODE= 125 d_radial=-1.1175m d_track=-0.0800m d_cross=-0.6400m
+ORBIT G19 IODE= 101 d_radial= 0.1275m d_track=-2.3280m d_cross= 1.1280m
+ORBIT G20 IODE=  21 d_radial= 0.0725m d_track=-0.7280m d_cross=-0.2000m
+ORBIT G21 IODE=  16 d_radial= 0.0975m d_track= 0.4240m d_cross= 0.0240m
+ORBIT G23 IODE= 178 d_radial=-1.3050m d_track= 0.7600m d_cross=-0.2800m
+ORBIT G24 IODE=  74 d_radial=-0.1250m d_track=-0.9520m d_cross= 0.0800m
+ORBIT G27 IODE=   9 d_radial=-0.1575m d_track=-0.5440m d_cross= 0.2960m
+ORBIT G29 IODE=  61 d_radial=-0.0325m d_track=-1.7440m d_cross=-1.4800m
+ORBIT G30 IODE= 103 d_radial= 0.3250m d_track=-2.5120m d_cross=-1.6880m
+ORBIT G31 IODE=  11 d_radial= 0.0300m d_track=-1.3600m d_cross= 0.2000m
+ORBIT G32 IODE=  25 d_radial=-0.2100m d_track=-0.5200m d_cross=-0.6560m
+ORBIT E02 IODE=  38 d_radial=-0.1000m d_track= 0.0480m d_cross=-0.2000m
+ORBIT E03 IODE=  35 d_radial=-0.1250m d_track= 0.0880m d_cross= 0.3680m
+ORBIT E04 IODE=  38 d_radial= 0.0975m d_track=-0.0800m d_cross=-0.0080m
+ORBIT E05 IODE=  33 d_radial= 0.1775m d_track=-0.0720m d_cross= 0.0960m
+ORBIT E07 IODE=  38 d_radial=-0.2525m d_track= 0.4000m d_cross= 0.0160m
+ORBIT E08 IODE=  38 d_radial=-0.1500m d_track=-0.0800m d_cross= 0.1280m
+ORBIT E09 IODE=  34 d_radial= 0.1900m d_track=-0.0400m d_cross= 0.0240m
+ORBIT E10 IODE=  38 d_radial= 0.0950m d_track=-0.1760m d_cross= 0.1840m
+ORBIT E11 IODE=  38 d_radial= 0.0950m d_track= 0.1440m d_cross=-0.1440m
+ORBIT E12 IODE=  38 d_radial= 0.0125m d_track= 0.5520m d_cross=-0.3920m
+ORBIT E15 IODE=  38 d_radial=-0.0675m d_track= 0.0160m d_cross= 0.3120m
+ORBIT E19 IODE=  38 d_radial=-0.0750m d_track= 0.0320m d_cross= 0.0560m
+ORBIT E21 IODE=  38 d_radial=-0.1175m d_track= 0.4160m d_cross= 0.0720m
+ORBIT E24 IODE=  38 d_radial=-0.0975m d_track= 0.2640m d_cross= 0.1040m
+ORBIT E25 IODE=  38 d_radial=-0.0525m d_track=-0.0320m d_cross=-0.0080m
+ORBIT E26 IODE=  38 d_radial=-0.2600m d_track= 0.0880m d_cross= 0.1600m
+ORBIT E27 IODE=  34 d_radial=-0.0425m d_track= 0.2240m d_cross=-0.2720m
+ORBIT E30 IODE=  38 d_radial= 0.0325m d_track=-0.0080m d_cross=-0.1680m
+ORBIT E31 IODE=  38 d_radial=-0.0425m d_track= 0.1280m d_cross= 0.1520m
+ORBIT E33 IODE=  38 d_radial=-0.1275m d_track= 0.3040m d_cross=-0.0880m
+ORBIT E34 IODE=  38 d_radial=-0.0175m d_track= 0.1520m d_cross= 0.3200m
+ORBIT E36 IODE=  38 d_radial= 0.0875m d_track= 0.1840m d_cross= 0.0800m
+CBIAS validity_interval=300s (10)
+CBIAS G01 L1 C/A        code_bias=-3.32m
+CBIAS G01 L2 CL         code_bias=-4.66m
+CBIAS G01 L2 P          code_bias=-5.46m
+CBIAS G02 L1 C/A        code_bias= 4.54m
+CBIAS G02 L2 P          code_bias= 7.48m
+CBIAS G03 L1 C/A        code_bias=-2.78m
+CBIAS G03 L2 CL         code_bias=-4.22m
+CBIAS G03 L2 P          code_bias=-4.60m
+CBIAS G04 L1 C/A        code_bias=-0.28m
+CBIAS G04 L2 CL         code_bias= 0.18m
+CBIAS G04 L2 P          code_bias=-0.44m
+CBIAS G05 L1 C/A        code_bias= 1.04m
+CBIAS G05 L2 CL         code_bias= 2.22m
+CBIAS G05 L2 P          code_bias= 1.70m
+CBIAS G06 L1 C/A        code_bias=-3.82m
+CBIAS G06 L2 CL         code_bias=-5.82m
+CBIAS G06 L2 P          code_bias=-6.30m
+CBIAS G08 L1 C/A        code_bias=-3.04m
+CBIAS G08 L2 CL         code_bias=-4.80m
+CBIAS G08 L2 P          code_bias=-4.98m
+CBIAS G09 L1 C/A        code_bias=-1.86m
+CBIAS G09 L2 CL         code_bias=-2.48m
+CBIAS G09 L2 P          code_bias=-3.06m
+CBIAS G11 L1 C/A        code_bias= 0.42m
+CBIAS G11 L2 CL         code_bias= 1.44m
+CBIAS G11 L2 P          code_bias= 0.68m
+CBIAS G12 L1 C/A        code_bias= 2.16m
+CBIAS G12 L2 CL         code_bias= 3.86m
+CBIAS G12 L2 P          code_bias= 3.54m
+CBIAS G13 L1 C/A        code_bias= 1.80m
+CBIAS G13 L2 P          code_bias= 2.96m
+CBIAS G14 L1 C/A        code_bias= 0.64m
+CBIAS G14 L2 CL         code_bias= 1.58m
+CBIAS G14 L2 P          code_bias= 1.06m
+CBIAS G15 L1 C/A        code_bias= 1.32m
+CBIAS G15 L2 CL         code_bias= 2.56m
+CBIAS G15 L2 P          code_bias= 2.18m
+CBIAS G16 L1 C/A        code_bias= 2.04m
+CBIAS G16 L2 P          code_bias= 3.36m
+CBIAS G17 L1 C/A        code_bias= 1.48m
+CBIAS G17 L2 CL         code_bias= 3.16m
+CBIAS G17 L2 P          code_bias= 2.42m
+CBIAS G18 L1 C/A        code_bias= 0.74m
+CBIAS G18 L2 CL         code_bias= 1.68m
+CBIAS G18 L2 P          code_bias= 1.22m
+CBIAS G19 L1 C/A        code_bias= 4.06m
+CBIAS G19 L2 P          code_bias= 6.66m
+CBIAS G20 L1 C/A        code_bias= 1.66m
+CBIAS G20 L2 P          code_bias= 2.72m
+CBIAS G21 L1 C/A        code_bias= 2.56m
+CBIAS G21 L2 P          code_bias= 4.22m
+CBIAS G23 L1 C/A        code_bias= 1.04m
+CBIAS G23 L2 CL         code_bias= 2.06m
+CBIAS G23 L2 P          code_bias= 1.70m
+CBIAS G24 L1 C/A        code_bias=-2.44m
+CBIAS G24 L2 CL         code_bias=-3.58m
+CBIAS G24 L2 P          code_bias=-4.02m
+CBIAS G27 L1 C/A        code_bias=-1.82m
+CBIAS G27 L2 CL         code_bias=-2.58m
+CBIAS G27 L2 P          code_bias=-3.00m
+CBIAS G29 L1 C/A        code_bias= 1.30m
+CBIAS G29 L2 CL         code_bias= 2.62m
+CBIAS G29 L2 P          code_bias= 2.14m
+CBIAS G30 L1 C/A        code_bias=-2.40m
+CBIAS G30 L2 CL         code_bias=-3.52m
+CBIAS G30 L2 P          code_bias=-3.96m
+CBIAS G31 L1 C/A        code_bias= 2.52m
+CBIAS G31 L2 CL         code_bias= 4.32m
+CBIAS G31 L2 P          code_bias= 4.16m
+CBIAS G32 L1 C/A        code_bias=-1.92m
+CBIAS G32 L2 CL         code_bias=-3.02m
+CBIAS G32 L2 P          code_bias=-3.16m
+CBIAS E02 E1 C          code_bias= 0.34m
+CBIAS E02 E5a Q         code_bias= 0.60m
+CBIAS E02 E5b Q         code_bias= 0.74m
+CBIAS E02 E6 C          code_bias=-0.42m
+CBIAS E03 E1 C          code_bias=-1.00m
+CBIAS E03 E5a Q         code_bias=-1.80m
+CBIAS E03 E5b Q         code_bias=-1.80m
+CBIAS E03 E6 C          code_bias=-1.00m
+CBIAS E04 E1 C          code_bias= 1.00m
+CBIAS E04 E5a Q         code_bias= 1.80m
+CBIAS E04 E5b Q         code_bias= 1.78m
+CBIAS E04 E6 C          code_bias= 0.90m
+CBIAS E05 E1 C          code_bias=-1.14m
+CBIAS E05 E5a Q         code_bias=-2.04m
+CBIAS E05 E5b Q         code_bias=-2.04m
+CBIAS E05 E6 C          code_bias=-0.34m
+CBIAS E07 E1 C          code_bias=-1.52m
+CBIAS E07 E5a Q         code_bias=-2.70m
+CBIAS E07 E5b Q         code_bias=-2.70m
+CBIAS E07 E6 C          code_bias=-1.34m
+CBIAS E08 E1 C          code_bias= 1.12m
+CBIAS E08 E5a Q         code_bias= 2.00m
+CBIAS E08 E5b Q         code_bias= 2.04m
+CBIAS E08 E6 C          code_bias= 1.64m
+CBIAS E09 E1 C          code_bias=-0.36m
+CBIAS E09 E5a Q         code_bias=-0.64m
+CBIAS E09 E5b Q         code_bias=-0.64m
+CBIAS E09 E6 C          code_bias=-0.64m
+CBIAS E10 E1 C          code_bias=-0.22m
+CBIAS E10 E5a Q         code_bias=-0.40m
+CBIAS E10 E5b Q         code_bias=-0.54m
+CBIAS E10 E6 C          code_bias=-1.62m
+CBIAS E11 E1 C          code_bias= 3.86m
+CBIAS E11 E5a Q         code_bias= 6.92m
+CBIAS E11 E5b Q         code_bias= 6.82m
+CBIAS E11 E6 C          code_bias= 6.48m
+CBIAS E12 E1 C          code_bias= 2.88m
+CBIAS E12 E5a Q         code_bias= 5.16m
+CBIAS E12 E5b Q         code_bias= 4.90m
+CBIAS E12 E6 C          code_bias= 5.32m
+CBIAS E15 E1 C          code_bias=-2.00m
+CBIAS E15 E5a Q         code_bias=-3.58m
+CBIAS E15 E5b Q         code_bias=-3.52m
+CBIAS E15 E6 C          code_bias=-2.42m
+CBIAS E19 E1 C          code_bias= 1.02m
+CBIAS E19 E5a Q         code_bias= 1.84m
+CBIAS E19 E5b Q         code_bias= 1.76m
+CBIAS E19 E6 C          code_bias= 1.16m
+CBIAS E21 E1 C          code_bias=-0.70m
+CBIAS E21 E5a Q         code_bias=-1.26m
+CBIAS E21 E5b Q         code_bias=-1.22m
+CBIAS E21 E6 C          code_bias=-2.02m
+CBIAS E24 E1 C          code_bias= 0.88m
+CBIAS E24 E5a Q         code_bias= 1.58m
+CBIAS E24 E5b Q         code_bias= 1.68m
+CBIAS E24 E6 C          code_bias= 0.50m
+CBIAS E25 E1 C          code_bias=-1.24m
+CBIAS E25 E5a Q         code_bias=-2.22m
+CBIAS E25 E5b Q         code_bias=-2.20m
+CBIAS E25 E6 C          code_bias=-0.82m
+CBIAS E26 E1 C          code_bias= 1.04m
+CBIAS E26 E5a Q         code_bias= 1.88m
+CBIAS E26 E5b Q         code_bias= 1.90m
+CBIAS E26 E6 C          code_bias= 0.18m
+CBIAS E27 E1 C          code_bias=-0.64m
+CBIAS E27 E5a Q         code_bias=-1.16m
+CBIAS E27 E5b Q         code_bias=-1.14m
+CBIAS E27 E6 C          code_bias=-2.00m
+CBIAS E30 E1 C          code_bias=-0.54m
+CBIAS E30 E5a Q         code_bias=-0.94m
+CBIAS E30 E5b Q         code_bias=-0.90m
+CBIAS E30 E6 C          code_bias=-0.22m
+CBIAS E31 E1 C          code_bias=-1.52m
+CBIAS E31 E5a Q         code_bias=-2.72m
+CBIAS E31 E5b Q         code_bias=-2.70m
+CBIAS E31 E6 C          code_bias=-0.58m
+CBIAS E33 E1 C          code_bias= 0.78m
+CBIAS E33 E5a Q         code_bias= 1.40m
+CBIAS E33 E5b Q         code_bias= 1.40m
+CBIAS E33 E6 C          code_bias= 0.08m
+CBIAS E34 E1 C          code_bias=-1.32m
+CBIAS E34 E5a Q         code_bias=-2.38m
+CBIAS E34 E5b Q         code_bias=-2.48m
+CBIAS E34 E6 C          code_bias=-2.04m
+CBIAS E36 E1 C          code_bias=-1.80m
+CBIAS E36 E5a Q         code_bias=-3.22m
+CBIAS E36 E5b Q         code_bias=-3.24m
+CBIAS E36 E6 C          code_bias=-2.16m
+------ padding bits ------
+01010101010101010101
+------
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=162 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=110 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=214 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID= 10 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=136 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=163 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=111 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=215 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID= 33 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=137 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=164 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=112 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=216 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID= 34 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=138 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=165 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=113 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=217 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID= 35 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=139 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=166 -> Enough pages for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=114 -> Enough pages for MID=23
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=218 -> Enough pages for MID=23
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID= 36 -> Enough pages for MID=23
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=140 -> Enough pages for MID=23
+E12 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 93 -> A new page for MID=25
+E10 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 73
+------ HAS decode with the pages of MID=25 MS=2 ------
+0x97120080500a876582fbef40260433dd008df930163e87f2604dfac4207fb4e04f583acbecc00280986b5f16045053808ffa302e7fe7ea202c0247f4420600ffe1815fff203afda7fa4028015ff1004bf09fd65555555555555555555555555555555555555555555555
+------
+Time of hour TOH: 2417 s
+Mask            : off
+Orbit correction: off
+Clock full-set  : on
+Clock subset    : off
+Code bias       : off
+Phase bias      : off
+Mask ID         : 4
+IOD Set ID      : 0
+CKFUL validity_interval=60s (5)
+CKFUL G01 d_clock=  0.840m (multiplier=1)
+CKFUL G02 d_clock= -1.545m (multiplier=1)
+CKFUL G03 d_clock=  0.953m (multiplier=1)
+CKFUL G04 d_clock= -0.670m (multiplier=1)
+CKFUL G05 d_clock=  0.190m (multiplier=1)
+CKFUL G06 d_clock=  0.670m (multiplier=1)
+CKFUL G08 d_clock= -0.700m (multiplier=1)
+CKFUL G09 d_clock=  0.352m (multiplier=1)
+CKFUL G11 d_clock= -0.545m (multiplier=1)
+CKFUL G12 d_clock=  0.220m (multiplier=1)
+CKFUL G13 d_clock= -0.473m (multiplier=1)
+CKFUL G14 d_clock= -0.545m (multiplier=1)
+CKFUL G15 d_clock=  0.388m (multiplier=1)
+CKFUL G16 d_clock= -0.838m (multiplier=1)
+CKFUL G17 d_clock=  0.647m (multiplier=1)
+CKFUL G18 d_clock= -0.190m (multiplier=1)
+CKFUL G19 d_clock= -2.538m (multiplier=1)
+CKFUL G20 d_clock= -1.680m (multiplier=1)
+CKFUL G21 d_clock= -1.667m (multiplier=1)
+CKFUL G23 d_clock= -0.770m (multiplier=1)
+CKFUL G24 d_clock=  0.013m (multiplier=1)
+CKFUL G27 d_clock=  0.095m (multiplier=1)
+CKFUL G29 d_clock=  2.145m (multiplier=1)
+CKFUL G30 d_clock= -0.585m (multiplier=1)
+CKFUL G31 d_clock=  0.345m (multiplier=1)
+CKFUL G32 d_clock=  0.835m (multiplier=1)
+CKFUL E02 d_clock=  0.177m (multiplier=1)
+CKFUL E03 d_clock= -0.233m (multiplier=1)
+CKFUL E04 d_clock=  0.230m (multiplier=1)
+CKFUL E05 d_clock= -0.018m (multiplier=1)
+CKFUL E07 d_clock= -0.438m (multiplier=1)
+CKFUL E08 d_clock=  0.110m (multiplier=1)
+CKFUL E09 d_clock=  0.180m (multiplier=1)
+CKFUL E10 d_clock= -0.118m (multiplier=1)
+CKFUL E11 d_clock=  0.647m (multiplier=1)
+CKFUL E12 d_clock=  0.037m (multiplier=1)
+CKFUL E15 d_clock= -0.152m (multiplier=1)
+CKFUL E19 d_clock=  0.217m (multiplier=1)
+CKFUL E21 d_clock= -0.018m (multiplier=1)
+CKFUL E24 d_clock=  0.145m (multiplier=1)
+CKFUL E25 d_clock= -0.190m (multiplier=1)
+CKFUL E26 d_clock= -0.058m (multiplier=1)
+CKFUL E27 d_clock=  0.050m (multiplier=1)
+CKFUL E30 d_clock=  0.052m (multiplier=1)
+CKFUL E31 d_clock= -0.075m (multiplier=1)
+CKFUL E33 d_clock=  0.045m (multiplier=1)
+CKFUL E34 d_clock= -0.310m (multiplier=1)
+CKFUL E36 d_clock= -0.105m (multiplier=1)
+------ padding bits ------
+0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+------
+E24 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=153 -> Enough pages for MID=25
+E31 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=183 -> Enough pages for MID=25
+E11 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 83 -> Enough pages for MID=25
+E12 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 94 -> Enough pages for MID=25
+E10 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 74 -> Enough pages for MID=25
+E24 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=154 -> Enough pages for MID=25
+E31 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=184 -> Enough pages for MID=25
+E11 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 84 -> Enough pages for MID=25
+E12 Dummy page (0xaf3bc3)
+E10 Dummy page (0xaf3bc3)
+E24 Dummy page (0xaf3bc3)
+E31 Dummy page (0xaf3bc3)
+E11 Dummy page (0xaf3bc3)
+E12 HASS=Operational(1) MT=1 MID=23 MS=10 PID=167 -> A new page for MID=23
+E10 HASS=Operational(1) MT=1 MID=23 MS=10 PID=115
+E24 HASS=Operational(1) MT=1 MID=23 MS=10 PID=219
+E31 HASS=Operational(1) MT=1 MID=23 MS=10 PID= 37
+E11 HASS=Operational(1) MT=1 MID=23 MS=10 PID=141

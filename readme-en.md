@@ -57,7 +57,7 @@ Here is the directory structure:
 │   ├── 20220930-115617pocketsdr-e6b.txt
 │   ├── 20221130-125237mdc-ppp.alst
 │   ├── 20221213-010900.rtcm
-│   ├── 20230219-133831pocketsdr-e6b.txt
+│   ├── 20230305-063900pocketsdr-e6b.txt
 │   └── readme.txt
 └── test
     ├── do_test.sh
@@ -78,7 +78,7 @@ Here is the directory structure:
     │   ├── 20221130-125237mdc-ppp.rtcm.txt
     │   ├── 20221130-125237mdc-ppp.txt
     │   ├── 20221213-010900.rtcm.txt
-    │   └── 20230219-133831pocketsdr-e6b.txt
+    │   └── 20230305-063900pocketsdr-e6b.txt
     └── readme.md
 ```
 
@@ -328,30 +328,48 @@ python utc2gps.py 2022-11-30 12:52:37
 
 ## pksdr2has.py
 
-Read the Pocket SDR E6B signal log file and display the Galileo HAS (high accuracy service) header. An execution example is as follows:
+Extract the Pocket SDR E6B signal log file and display the Galileo HAS (high accuracy service) contents. An execution example is as follows:
 
 ```
-$ python pksdr2has.py < ../sample/20230219-133831pocketsdr-e6b.txt
+$ python pksdr2has.py -t 2 < ../sample0230305-063900pocketsdr-e6b.txt
 OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
-E14 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=117 -> A new page for MID=25
-E15 Dummy page (0xaf3bc3)
-E03 HASS=Operational(1) MT=1 MID=25 MS= 2 PID= 47
------- HAS decode with the pages of MID=25 MS=2 ------
-0x8ef2012050099f95c32b0000ab06cbf260ba0d4ff3ff56096f9a8437cfe103fa97807b0ff5f0abfd7801dfd080079d40141b50148153f4204efd87eb00bdffbfd9013403a046fec83b7fd406ffe182dbf99fedfd801cbf3caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-Time of hour TOH: 2287 s
-Mask            : off
-Orbit correction: off
-Clock full-set  : on
+E12 HASS=Operational(1) MT=1 MID=18 MS= 2 PID= 92 -> A new page for MID=18
+E10 HASS=Operational(1) MT=1 MID=18 MS= 2 PID= 72
+------ HAS decode with the pages of MID=18 MS=2 ------
+0x93520062500a7f68c2f5ef002d842a001ec7043fc8c0b3f3cf930253d4e0e9fd9705fad5d5cf670010052353f8b
+02202a2047fd0816ffebf4f016011bf9e102007ff000b9ff701d7ed3fd401300bff88021f82fe9aaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+------
+...
+E31 HASS=Operational(1) MT=1 MID=17 MS=11 PID=  9
+E11 HASS=Operational(1) MT=1 MID=17 MS=11 PID=134
+E12 HASS=Operational(1) MT=1 MID=17 MS=11 PID=161
+------ HAS decode with the pages of MID=17 MS=11 ------
+0x92ec806220ffbffb2f008140fbffffffeff7fb6fffffc13df914f36824820014a41b2e6a06232012fef014abfef
+c1bc0145fd11ec7f9e05fe7feefe90d00080e7f4a0ffa3ff41f14c089fc0002a608ce9bf7391f567e77fd297f5417
+3ec067f8600bfb867e68fa6fb44c000010fee97809fe7bf704fff1f8000efbe41f...
+------
+Time of hour TOH: 2350 s
+Mask            : on
+Orbit correction: on
+Clock full-set  : off
 Clock subset    : off
-Code bias       : off
+Code bias       : on
 Phase bias      : off
-Mask ID         : 9
-IOD Set ID      : 0
-E34 HASS=Operational(1) MT=1 MID=25 MS= 2 PID=207 -> Enough pages for MID=25
-E05 Dummy page (0xaf3bc3)
+Mask ID         : 3
+IOD Set ID      : 2
+MASK G01 L1 C/A L2 CL L2 P
+MASK G02 L1 C/A L2 P
+MASK G03 L1 C/A L2 CL L2 P
+MASK G04 L1 C/A L2 CL L2 P
+MASK G05 L1 C/A L2 CL L2 P
+MASK G06 L1 C/A L2 CL L2 P
+MASK G07 L1 C/A L2 CL L2 P
+MASK G08 L1 C/A L2 CL L2 P
+...
 ```
 
-Reference: [Galileo HAS (high accuracy service) Part 2](https://s-taka.org/en/galileo-has-part2/)
+Reference: [Galileo HAS (high accuracy service) Part 2](https://s-taka.org/en/galileo-has-part2/), [HAS message display capability on QZS L6 Tool](https://s-taka.org/en/qzsl6tool-20230305upd/)
 
 # License
 

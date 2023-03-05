@@ -42,6 +42,11 @@ Duration  : 1 minute
 Note      : Allystar raw data observed at Hiroshima, JP
 Note      : with HD9310 (TAU1302) option C MADOCA firmware
 
+File Path : 20220930-115617pocketsdr-e6b.txt
+Date Time : 2022-09-30 11:56:17 UTC
+Duration  : 1 minute
+Note      : E6B signal reception sample with Pocket SDR at Hiroshima, JP
+
 File Path : 20221130-125237mdc-ppp.alst
 Date Time : 2022-11-30 12:52:37 UTC
 Duration  : 1 minute
@@ -53,5 +58,10 @@ Date Time : 2022-12-13 01:09:00 UTC
 Duration  : 1 minute
 Note      : RTCM message obtained at Hiroshima, JP
 Note      : with OEM729 and RTKLIB 2.4.3b34 str2str
+
+File Path : 20230305-063900pocketsdr-e6b.txt
+Date Time : 2023-03-05 06:39:00 UTC
+Duration  : 1 minute
+Note      : E6B signal reception sample with Pocket SDR at Hiroshima, JP
 
 # EOF
