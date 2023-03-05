@@ -328,7 +328,26 @@ python utc2gps.py 2022-11-30 12:52:37
 
 ## pksdr2has.py
 
-Extract the Pocket SDR E6B signal log file and display the Galileo HAS (high accuracy service) contents. An execution example is as follows:
+Extract the Pocket SDR E6B signal log file and display the Galileo HAS (high accuracy service) contents. We can display the options it accepts by giving the ``--help`` option.
+
+```
+$ pksdr2has.py -h
+OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+usage: pksdr2has.py [-h] [-c] [-m] [-s] [-t TRACE]
+
+Pocket SDR E6B log to HAS message converter
+
+options:
+  -h, --help            show this help message and exit
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
+  -m, --message         show display messages to stderr
+  -s, --statistics      show HAS statistics in display messages.
+  -t TRACE, --trace TRACE
+                        show display verbosely: 1=detail, 2=bit image.
+$
+```
+
+An execution example is as follows:
 
 ```
 $ python pksdr2has.py -t 2 < ../sample0230305-063900pocketsdr-e6b.txt
