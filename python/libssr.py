@@ -223,7 +223,7 @@ class Ssr:
         return pos, string
 
     def decode_cssr(self, payload):
-        "returns pos and string"
+        '''returns pos and string'''
         pos = self.decode_cssr_head(payload)
         if pos == 0:
             return 0, ''
@@ -435,8 +435,8 @@ class Ssr:
                 d_along  = i_along  * 0.0064 if i_along  != -16384 else INVALID
                 d_cross  = i_cross  * 0.0064 if i_cross  != -16384 else INVALID
                 msg_trace1 += \
-                    f'ST2 {gsys} IODE={iode:4d} d_radial={d_radial:5.1f}m' + \
-                    f' d_along={d_along:5.1f}m d_cross={d_cross:5.1f}m\n'
+                    f'ST2 {gsys} IODE={iode:4d} d_radial={d_radial:7.4f}m' + \
+                    f' d_along={d_along:7.4f}m d_cross={d_cross:7.4f}m\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
@@ -485,7 +485,7 @@ class Ssr:
                 ic0 = payload[pos:pos + 15].int
                 pos += 15
                 c0 = ic0 * 0.0016 if ic0 != -16384 else INVALID
-                msg_trace1 += f"ST3 {gsys} d_clock={c0:4.1f}m\n"
+                msg_trace1 += f"ST3 {gsys} d_clock={c0:7.3f}m\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos
@@ -540,7 +540,7 @@ class Ssr:
             if ic0.bin == '1000000000000':  # not available
                 c0 = INVALID
             elif ic0.bin == '0111111111111':  # the sat shall not be used
-                    c0 = INVALID
+                c0 = INVALID
             else:
                 c0 = multiplier * ic0.int * 0.0025
             msg_trace1 += f"CKSUB {gsys} d_clock={c0:7.3f}m"
