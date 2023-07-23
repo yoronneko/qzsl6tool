@@ -27,6 +27,7 @@ import sys
 import gps2utc
 import libcolor
 import libssr
+import libqznma
 from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
 try:
     import bitstring
@@ -59,12 +60,13 @@ class QzsL6:
     iod = 0                         # SSR issue of data
 
     def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
-        self.fp_rtcm = fp_rtcm
-        self.fp_disp = fp_disp
-        self.t_level = t_level
+        self.fp_rtcm   = fp_rtcm
+        self.fp_disp   = fp_disp
+        self.t_level   = t_level
         self.msg_color = libcolor.Color(fp_disp, color)
-        self.stat = stat
-        self.ssr = libssr.Ssr(fp_disp, t_level, self.msg_color)
+        self.stat      = stat
+        self.ssr       = libssr.Ssr(fp_disp, t_level, self.msg_color)
+        self.qznma     = libqznma.Qznma(fp_disp, t_level, self.msg_color)
 
     def __del__(self):
         if self.stat:
@@ -296,8 +298,7 @@ class QzsL6:
     def show_qznma_msg(self):
         '''returns decoded message'''
         payload = bitstring.BitArray(self.dpart)
-        self.trace(2, f"QZNMA dump: {payload.bin}\n")
-        return ''
+        return self.qznma.decode(payload)
 
     def show_unknown_msg():
         '''returns decoded message'''
