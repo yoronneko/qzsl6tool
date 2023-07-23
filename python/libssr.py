@@ -374,7 +374,7 @@ class Ssr:
             gsig[t_satsys]  = t_gsig
             navmsg[ignss]   = nm
         if ssr_type == 'has':
-            pos += 6  # researved
+            pos += 6  # reserved
         self.satsys   = satsys    # satellite system
         self.nsatmask = nsatmask  # number of satellite mask
         self.nsigmask = nsigmask  # number of signal mask
@@ -414,7 +414,7 @@ class Ssr:
     def decode_cssr_st1(self, payload, pos):
         return self._decode_mask(payload, pos, 'cssr')
 
-    def decode_has_mt1_mask(self, has_msg, pos):
+    def decode_has_mask(self, has_msg, pos):
         return self._decode_mask(has_msg, pos, 'has')
 
     def decode_cssr_st2(self, payload, pos):
@@ -442,7 +442,7 @@ class Ssr:
         self.stat_bsat += pos - stat_pos
         return pos
 
-    def decode_has_mt1_orbit(self, payload, pos):
+    def decode_has_orbit(self, payload, pos):
         len_payload = len(payload)
         stat_pos = pos
         if len_payload < pos + 4:
@@ -491,7 +491,7 @@ class Ssr:
         self.stat_bsat += pos - stat_pos
         return pos
 
-    def decode_has_mt1_ckful(self, payload, pos):
+    def decode_has_ckful(self, payload, pos):
         len_payload = len(payload)
         stat_pos = pos
         if len_payload < pos + 4:
@@ -524,15 +524,18 @@ class Ssr:
         self.stat_bsat += pos - stat_pos
         return pos
 
-    def decode_has_mt1_cksub(self, payload, pos):
+    def decode_has_cksub(self, payload, pos):
         len_payload = len(payload)
         stat_pos = pos
         if len_payload < pos + 4 + 2:
             return 0
-        ugnssid    = payload[pos:pos + 4].uint    ; pos +=  4
-        multiplier = payload[pos:pos + 2].uint + 1; pos += 1
-        msg_trace1 = ''
-        for gsys in self.gsys[ugnss]:
+        vi = payload[pos:pos + 4].uint; pos +=  4
+        ns = payload[pos:pos + 2].uint + 1; pos += 2  # GNSS subset number
+        msg_trace1 = f'CKFUL validity_interval={HAS_VALIDITY_INTERVAL[vi]}s'
+        msg_trace1 += f' ({vi}), n_sub={ns}\n'
+        for i in range(ns):
+            satsys = payload[pos:pos + 4].uint; pos += 4
+            multiplier[i] = payload[pos:pos + 2].uint + 1; pos += 2
             if len_payload < pos + 13:
                 return 0
             ic0 = payload[pos:pos + 13];
@@ -599,7 +602,7 @@ class Ssr:
     def decode_cssr_st4(self, payload, pos):
         return self._decode_code_bias(payload, pos, 'cssr')
 
-    def decode_has_mt1_cbias(self, payload, pos):
+    def decode_has_cbias(self, payload, pos):
         return self._decode_code_bias(payload, pos, 'has')
 
     def decode_cssr_st5(self, payload, pos):
@@ -628,7 +631,7 @@ class Ssr:
         self.stat_bsig += pos - stat_pos
         return pos
 
-    def decode_has_mt1_pbias(self, payload, pos):
+    def decode_has_pbias(self, payload, pos):
         len_payload = len(payload)
         if len_payload < pos + 4:
             return 0
