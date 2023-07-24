@@ -18,6 +18,22 @@ import sys
 import libgale6
 
 
+class PocketSdrCnav:
+    def read(self):
+        ''' returns True  when C/NAV page is read,
+            returns False when EOF is encounterd '''
+        line = True
+        while line:
+            line = sys.stdin.readline().strip()
+            if not line:  # end of file
+                return False
+            if line[0:5] == '$CNAV':
+                break
+        self.satid = line.split(',')[3]
+        self.e6b   = bytes.fromhex(line.split(',')[4])
+        return True
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Pocket SDR E6B log to HAS message converter')
@@ -26,7 +42,7 @@ if __name__ == '__main__':
         help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
         '-e', '--e6b', action='store_true',
-        help='send E6B messages to stdout (it also turns off display message.')
+        help='send E6B messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
@@ -55,8 +71,9 @@ if __name__ == '__main__':
     if args.color:
         force_ansi_color = True
     gale6 = libgale6.GalE6(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
-    while gale6.read_from_pocketsdr():
-        if not gale6.ready_decoding_has():  # we continue reading HAS pages
+    psdr = PocketSdrCnav()
+    while psdr.read():
+        if not gale6.ready_decoding_has(psdr.satid, psdr.e6b):
             continue
         has_msg = gale6.obtain_has_message()
         gale6.decode_has_message(has_msg)

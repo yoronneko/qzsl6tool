@@ -274,9 +274,7 @@ class Ssr:
         len_payload = len(payload)
         pos = 0
         if '0b1' not in payload:  # Zero padding detection
-            self.trace(2,
-                f"CSSR null data {len(payload.bin)} bits\n",
-                f"CSSR dump: {payload.bin}\n")
+            self.trace(2, f"CSSR null data {len(payload.bin)} bits\n")
             self.stat_bnull += len(payload.bin)
             self.subtype = 0  # no subtype number
             return 0
@@ -593,7 +591,7 @@ class Ssr:
                         msg_trace1 += "ST4"
                     else:
                         msg_trace1 += "CBIAS"
-                    msg_trace1 += f" {gsys} {gsig:13s} code_bias={code_bias:5.2f}m\n"
+                    msg_trace1 += f" {gsys} {gsig:13s} code_bias={code_bias:7.3f}m\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += pos - stat_pos
@@ -624,7 +622,7 @@ class Ssr:
                     phase_bias = pb * 0.001 if pb != -16384 else INVALID
                     msg_trace1 += \
                         f'ST5 {gsys} {gsig:13s}' + \
-                        f' phase_bias={phase_bias:4.1f}m' + \
+                        f' phase_bias={phase_bias:7.3f}m' + \
                         f' discont_indicator={di}\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
@@ -654,7 +652,7 @@ class Ssr:
                     phase_bias = pb * 0.01 if pb != -1024 else INVALID
                     msg_trace1 += \
                         f'PBIAS {gsys} {gsig:13s}' + \
-                        f' phase_bias={phase_bias:6.2f}cycle' + \
+                        f' phase_bias={phase_bias:7.3f}cycle' + \
                         f' discont_indicator={di}\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
@@ -705,7 +703,7 @@ class Ssr:
                         cb = payload[pos:pos + 11].int
                         code_bias = cb * 0.02 if cb != -1024 else INVALID
                         pos += 11  # code bias
-                        msg_trace1 += f" code_bias={code_bias:4.1f}m"
+                        msg_trace1 += f" code_bias={code_bias:7.3f}m"
                     if f_pb:
                         if len_payload < pos + 15 + 2:
                             return 0
@@ -857,7 +855,7 @@ class Ssr:
                     pos += bw
                     msg_trace1 += \
                         f'ST9 STEC {gsys} grid {i+1:2d}/{ngrid:2d}' + \
-                        f' residual={residual:5.2f}TECU ({bw}bit)\n'
+                        f' residual={residual:7.3f}TECU ({bw}bit)\n'
         self.trace(1, msg_trace1)
         self.stat_both += pos
         return pos
@@ -930,15 +928,15 @@ class Ssr:
                                     else INVALID
                         pos += 13
                         msg_trace1 += \
-                            f" IODE={iode:4d} d_radial={d_radial:5.1f}m" + \
-                            f" d_along={d_along:5.1f}m d_cross={d_cross:5.1f}m"
+                            f" IODE={iode:4d} d_radial={d_radial:7.3f}m" + \
+                            f" d_along={d_along:7.3f}m d_cross={d_cross:7.3f}m"
                     if f_c:
                         if len_payload < pos + 15:
                             return 0
                         ic0 = payload[pos:pos + 15].int
                         c0 = ic0 * 0.0016 if ic0 != -16384 else INVALID
                         pos += 15
-                        msg_trace1 += f" c0={c0:5.1f}m"
+                        msg_trace1 += f" c0={c0:7.3f}m"
                     msg_trace1 += "\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
@@ -975,7 +973,7 @@ class Ssr:
             t00 = it00 * 0.004 if it00 != -256 else INVALID
             pos += 9
             msg_trace1 += f" quality={tqi} correct_type(0-2)={ttype}" + \
-                          f" t00={t00:6.2f}m"
+                          f" t00={t00:.3f}m"
             if 1 <= ttype:
                 if len_payload < pos + 7 + 7:
                     return 0
@@ -985,14 +983,14 @@ class Ssr:
                 it10 = payload[pos:pos + 7].int
                 t10 = it10 * 0.002 if it10 != -64 else INVALID
                 pos += 7
-                msg_trace1 += f" t01={t01:5.2f}m/deg t10={t10:5.2f}m/deg"
+                msg_trace1 += f" t01={t01:.3f}m/deg t10={t10:.3f}m/deg"
             if 2 <= ttype:
                 if len_payload < pos + 7:
                     return 0
                 it11 = payload[pos:pos + 7].int
                 t11 = it11 * 0.001 if it11 != -64 else INVALID
                 pos += 7
-                msg_trace1 += f" t11={t11:5.2f}m/deg^2"
+                msg_trace1 += f" t11={t11:.3f}m/deg^2"
             msg_trace1 += '\n'
         if tropo[1]:
             if len_payload < pos + 1 + 4:
@@ -1003,7 +1001,7 @@ class Ssr:
             itro = payload[pos:pos + 4].uint  # tropo residual offset
             pos += 4
             tro = itro * 0.02
-            msg_trace1 += f"ST12 Trop offset={tro:5.2f}m\n"
+            msg_trace1 += f"ST12 Trop offset={tro:.3f}m\n"
             if len_payload < pos + bw * ngrid:
                 return 0
             for i in range(ngrid):
@@ -1014,7 +1012,7 @@ class Ssr:
                     tr = INVALID
                 msg_trace1 += \
                     f"ST12 Trop grid {i+1:2d}/{ngrid:2d}" + \
-                    f" residual={tr:5.2f}m ({bw}bit)\n"
+                    f" residual={tr:7.3f}m ({bw}bit)\n"
         stat_pos = pos
         if stec[0]:
             svmask = {}
@@ -1039,7 +1037,7 @@ class Ssr:
                     pos += 14
                     msg_trace1 += \
                         f"ST12 STEC {gsys} quality={sqi:02x} type={sct}" + \
-                        f" c00={c00:.1f}TECU"
+                        f" c00={c00:.3f}TECU"
                     if 1 <= sct:
                         if len_payload < pos + 12 + 12:
                             return 0
@@ -1050,14 +1048,14 @@ class Ssr:
                         c10 = ic10 * 0.02 if ic10 != -2048 else INVALID
                         pos += 12
                         msg_trace1 += \
-                            f" c01={c01:.1f}TECU/deg c10={c10:.1f}TECU/deg"
+                            f" c01={c01:.3f}TECU/deg c10={c10:.3f}TECU/deg"
                     if 2 <= sct:
                         if len_payload < pos + 10:
                             return 0
                         ic11 = payload[pos:pos + 10].int
                         c11 = ic11 * 0.02 if ic11 != -512 else INVALID
                         pos += 10
-                        msg_trace1 += f" c11={c11:.1f}TECU/deg^2"
+                        msg_trace1 += f" c11={c11:.3f}TECU/deg^2"
                     if 3 <= sct:
                         if len_payload < pos + 8 + 8:
                             return 0
@@ -1068,7 +1066,7 @@ class Ssr:
                         c20 = ic20 * 0.005 if ic20 != -128 else INVALID
                         pos += 8
                         msg_trace1 += \
-                            f" c02={c02:.1f}TECU/deg^2 c20={c20:.1f}TECU/deg^2"
+                            f" c02={c02:.3f}TECU/deg^2 c20={c20:.3f}TECU/deg^2"
                     msg_trace1 += '\n'
                     if len_payload < pos + 2:
                         return 0
@@ -1098,7 +1096,7 @@ class Ssr:
                         pos += bw
                         msg_trace1 += \
                             f"ST12 STEC {gsys} grid {i+1:2d}/{ngrid:2d} " + \
-                            f"residual={sr:5.2f}TECU ({bw}bit)\n"
+                            f"residual={sr:.3f}TECU ({bw}bit)\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += pos - stat_pos

@@ -311,28 +311,13 @@ class GalE6():
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def read_from_pocketsdr(self):
-        ''' returns True if E6B raw message is read '''
-        line = True
-        while line:
-            line = sys.stdin.readline().strip()
-            if not line:  # end of file
-                return False
-            if line[0:5] == '$CNAV':
-                break
-        satid = line.split(',')[3]
-        e6b   = line.split(',')[4]
-        rawb = bitstring.BitArray(bytes.fromhex(e6b))[14:-2-24]
-        # discards top 14 bit (reserved)
+    def ready_decoding_has(self, satid, e6b):
+        ''' returns True when HAS decode is ready '''
+        rawb = bitstring.BitArray(e6b)[14:-2-24]
+        # extracts HAS Page from C/NAV page,
+        # discards top 14 bit (reserved), and
         # discards tail 2 bit (byte-align) and 24 bit (CRC)
-        # HAS raw binary (rawb) size is 448 bit
-        self.satid = satid
-        self.rawb  = rawb
-        return True
-
-    def ready_decoding_has(self):
-        ''' returns True if valid HAS message is ready '''
-        rawb = self.rawb
+        # HAS Page (rawb: raw binary) size is 448 bit
         pos = 0
         hass = rawb[pos:pos+2].uint  ; pos += 2  # HAS status
         pos += 2                                 # reserved
@@ -340,9 +325,9 @@ class GalE6():
         mid  = rawb[pos:pos+5].uint  ; pos += 5  # message id
         ms   = rawb[pos:pos+5].uint+1; pos += 5  # message size
         pid  = rawb[pos:pos+8].uint  ; pos += 8  # page id
-        disp_msg = self.msg_color.fg('green') + f'E{int(self.satid):02d}' + \
+        disp_msg = self.msg_color.fg('green') + f'E{int(satid):02d}' + \
                    self.msg_color.fg()
-        if self.rawb[0:24].hex == 'af3bc3':
+        if rawb[0:24].hex == 'af3bc3':
             if self.fp_disp:
                 disp_msg += self.msg_color.dec('dark')
                 disp_msg += ' Dummy page (0xaf3bc3)'
