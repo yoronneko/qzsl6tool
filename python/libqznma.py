@@ -29,10 +29,10 @@ except ModuleNotFoundError:
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"
 # --- private
-    def __init__(self, fp_disp, t_level, color):
+    def __init__(self, fp_disp, t_level, msg_color):
         self.fp_disp = fp_disp
         self.t_level = t_level
-        self.msg_color = libcolor.Color(fp_disp, color)
+        self.msg_color = msg_color
         self.rds1 = bitstring.BitArray()
         self.rds2 = bitstring.BitArray()
 
@@ -50,7 +50,7 @@ class Qznma:
         reserved = bitstring.BitArray(payload[pos:pos+543])
         if '0b1' in reserved:
             self.trace(2, f"QZNMA dump: {reserved.bin}")
-        message = ''
+        message = '      '
         message += self.decode_rds(rds1)
         message += self.decode_rds(rds2)
         return message
@@ -70,38 +70,45 @@ class Qznma:
         [1] p.43 Table 6-2 GPS LNAV RDS Message
         '''
         pos = 0
-        nma_id = rds[pos:pos+4]; pos += 4
-        rtow   = rds[pos:pos+20].uint; pos += 20
-        svid   = rds[pos:pos+8].uint; pos += 8
-        mt     = rds[pos:pos+4].uint; pos += 4
-        refeph = rds[pos:pos+4].uint; pos += 4
-        keyid  = rds[pos:pos+8].uint; pos += 8
-        signat = rds[pos:pos+512]; pos += 512
-        salt   = rds[pos:pos+16].uint; pos += 16
+        nma_id = rds[pos:pos+  4].bin ; pos +=   4
+        rtow   = rds[pos:pos+ 20].uint; pos +=  20
+        svid   = rds[pos:pos+  8].uint; pos +=   8
+        mt     = rds[pos:pos+  4].uint; pos +=   4
+        reph   = rds[pos:pos+  4].uint; pos +=   4
+        keyid  = rds[pos:pos+  8].uint; pos +=   8
+        signat = rds[pos:pos+512]     ; pos += 512
+        salt   = rds[pos:pos+ 16].uint; pos +=  16
         message = ''
-        if nma_id != 0b0:
+        if nma_id != '0000':
+            message += self.msg_color.dec('dark')
+            message += '(inactive) '
+            message += self.msg_color.dec()
             if '0b1' in rds[4:]:
-                message += f'QZNMA non null {rds[4:]}\n'
+                self.trace(2,f'NMA_ID={nma_id}: {rds[4:]}\n')
             return message
-        message += f'\nQZNMA RefTOW={rtow} '
-        if     1 <= svid and svid <= 63:
-            message += f'G{svid:2d} '
-        elif  65 <= svid and svid <= 127:
-            message += f'E{svid-64:2d} '
-        elif 129 <= svid and svid <= 191:
-            message += f'S{svid:3d} '
-        elif 193 <= svid and svid <= 202:
-            message += f'J{svid-192:2d} '
+        satsig = ''
+        if svid == 0:
+            message += self.msg_color.dec('dark')
+            message += '(null) '
+            message += self.msg_color.dec()
+            return message
+        elif   1 <= svid and svid <=  63: satsig += f'G{svid:02d}'
+        elif  65 <= svid and svid <= 127: satsig += f'E{svid-64:02d}'
+        elif 129 <= svid and svid <= 191: satsig += f'S{svid:03d}'
+        elif 193 <= svid and svid <= 202: satsig += f'J{svid-192:02d}'
         else:
-            message += f'SVID={svid} '
-        if   mt == 0b0001: message += 'LNAV '
-        elif mt == 0b0010: message += 'CNAV '
-        elif mt == 0b0011: message += 'CNAV2 '
-        elif mt == 0b0100: message += 'F/NAV '
-        elif mt == 0b0101: message += 'I/NAV '
-        else:              message += 'unknown-NAV '
-        message += f'RefEph={refeph} KeyID={keyid} salt={salt}\n'
-        message += f'QZNMA signature={signat.bin}'
+            raise(f'SVID{svid}')
+        if   mt == 0b0001: satsig += '(LNAV) '
+        elif mt == 0b0010: satsig += '(CNAV) '
+        elif mt == 0b0011: satsig += '(CNAV2) '
+        elif mt == 0b0100: satsig += '(F/NAV) '
+        elif mt == 0b0101: satsig += '(I/NAV) '
+        else:
+            raise(f'message_type={mt}')
+        message += satsig
+        self.trace(1, f'QZNMA {satsig}',
+                      f'TOW={rtow} Eph={reph} KeyID={keyid} salt={salt}\n')
+        self.trace(2, f'{signat.bin}\n')
         return message
 
 # EOF

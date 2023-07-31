@@ -1,7 +1,7 @@
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
@@ -199,8 +199,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST7 G01 URA 21
 ST7 G03 URA 22
 ST7 G04 URA 22
@@ -636,8 +636,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST3 G01 d_clock=  0.131m
 ST3 G03 d_clock=  1.494m
 ST3 G04 d_clock= -0.334m
@@ -1011,8 +1011,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST3 G01 d_clock=  0.131m
 ST3 G03 d_clock=  1.494m
 ST3 G04 d_clock= -0.333m
@@ -1275,8 +1275,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST7 G01 URA 21
 ST7 G03 URA 22
 ST7 G04 URA 22
@@ -1712,8 +1712,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST3 G01 d_clock=  0.128m
 ST3 G03 d_clock=  1.491m
 ST3 G04 d_clock= -0.336m
@@ -2087,8 +2087,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST3 G01 d_clock=  0.130m
 ST3 G03 d_clock=  1.493m
 ST3 G04 d_clock= -0.336m
@@ -2351,8 +2351,8 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA 
-205 Hitachi-Ota:1  QZNMA 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
 ST7 G01 URA 21
 ST7 G03 URA 22
 ST7 G04 URA 22
