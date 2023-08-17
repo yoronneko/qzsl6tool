@@ -17,25 +17,43 @@
 import argparse
 import sys
 import libgale6
+import libcolor
 
+def crc32(data):
+    polynomial = 0xedb88320
+    crc = 0
+    for byte in data:
+        tmp2 = (crc ^ byte) & 0xff
+        for _ in range(8):
+            if tmp2 & 1:
+                tmp2 = (tmp2 >> 1) ^ polynomial
+            else:
+                tmp2 = tmp2 >> 1
+        tmp1 = (crc >> 8) & 0x00ffffff
+        crc = tmp1 ^ tmp2
+    return crc.to_bytes(4,'little')
 
 class NovCnav:
+    def __init__(self, fp_disp, ansi_color):
+        self.fp_disp   = fp_disp
+        self.msg_color = libcolor.Color(fp_disp, ansi_color)
+
     def read(self):
-        sync = [b'0x00' for i in range(3)]
+        sync = bytes(3)
         ok = False
         try:
             while not ok:
                 b = sys.stdin.buffer.read(1)
                 if not b:
                     return False
-                sync = sync[1:3] + [b]
-                if sync == [b'\xaa', b'\x44', b'\x12']:
+                sync = sync[1:3] + b
+                if sync == b'\xaa\x44\x12':
                     ok = True
-            b = sys.stdin.buffer.read(1)
-            if not b:
+            head_len = sys.stdin.buffer.read(1)
+            if not head_len:
                 return False
-            head_len = int.from_bytes(b, 'little')
-            head = sys.stdin.buffer.read(head_len-4)
+            u_head_len = int.from_bytes(head_len, 'little')
+            head = sys.stdin.buffer.read(u_head_len-4)
             if not head:
                 return False
             self.parse_head(head)
@@ -46,6 +64,12 @@ class NovCnav:
             crc = sys.stdin.buffer.read(4)
             if not crc:
                 return False
+            crc_cal = crc32(sync + head_len + head + payload)
+            if crc != crc_cal:
+                print(self.msg_color.fg('red'), end='', file=self.fp_disp)
+                print(f'CRC error: {crc.hex()} != {crc_cal.hex()}', file=self.fp_disp)
+                print(self.msg_color.fg(), end='', file=self.fp_disp)
+                return False
         except KeyboardInterrupt:
             sys.exit()
         return True
@@ -53,7 +77,9 @@ class NovCnav:
     def parse_head(self, head):
         pos = 0
         if len(head) != 24:
-            print(f'head len: {len(head)} != 24')
+            print(self.msg_color.fg('red'), end='', file=self.fp_disp)
+            print(f'head len: {len(head)} != 24', file=self.fp_disp)
+            print(self.msg_color.fg(), end='', file=self.fp_disp)
         self.msg_id   = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
         self.msg_type = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
         self.port     = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
@@ -62,7 +88,7 @@ class NovCnav:
         self.t_idle   = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
         self.t_stat   = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
         self.gpsw     = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
-        self.gpst     = int.from_bytes(head[pos:pos+4], 'little')/1e3; pos += 4
+        self.gpst     = int.from_bytes(head[pos:pos+4], 'little'); pos += 4
         self.stat     = int.from_bytes(head[pos:pos+4], 'little'); pos += 4
         self.reserved = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
         self.ver      = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
@@ -71,7 +97,9 @@ class NovCnav:
         '''[1] p.589 3.40 GALCNAVRAWPAGE'''
         payload = self.payload
         if len(payload) != 4+4+2+2+58:
-            print(f"length mismatch: {len(payload)} != {4+4+2+2+58}")
+            print(self.msg_color.fg('red'), end='', file=self.fp_disp)
+            print(f"length mismatch: {len(payload)} != {4+4+2+2+58}", file=self.fp_disp)
+            print(self.msg_color.fg(), end='', file=self.fp_disp)
             return False
         pos = 0
         sig_ch  = int.from_bytes(payload[pos:pos+4], 'little'); pos += 4
@@ -80,29 +108,10 @@ class NovCnav:
         page_id = int.from_bytes(payload[pos:pos+2], 'little'); pos += 2
         e6b     = payload[pos:pos+ 58]; pos += 58
         self.satid = prn
-        self.e6b = e6b + b'\x00\x00\x00\x00'
         self.e6b = e6b + b'\x00\x00\x00'
 # NovAtel C/NAV data excludes 24-bit CRC and 6-bit tail bits (as mentioned),
 # Three bytes (24 bit) are added for CRC, tail, and padding
 
-NOV_MSG_NAME = {
-8: 'IONUTC',
-41: 'RAWEPHEM',
-43: 'RANGE',
-140: 'RANGECMP',
-287: 'RAWWAASFRAME',
-723: 'GLOEPHEMERIS',
-973: 'RAWSBASFRAME',
-1121: 'GALCLOCK',
-1122: 'GALEPHEMERIS',
-1127: 'GALIONO',
-1330: 'QZSSRAWSUBFRAME',
-1331: 'QZSSRAWEPHEM',
-1347: 'QZSSIONUTC',
-1696: 'BDSEPHEMERIS',
-2123: 'NAVICEPHEMERIS',
-2239: 'GALCNAVRAWPAGE',
-}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -141,9 +150,8 @@ if __name__ == '__main__':
     if args.color:
         force_ansi_color = True
     gale6 = libgale6.GalE6(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
-    nov = NovCnav()
+    nov = NovCnav(fp_disp, force_ansi_color)
     while nov.read():
-        #print(f'{nov.gpsw:4d} {nov.gpst:8.2f} MT{nov.msg_id:<4d} {NOV_MSG_NAME.get(nov.msg_id,"unknown")} ({nov.msg_len} bytes)')
         if nov.msg_id != 2239:  # message ID of 2239 represents GALCNAVRAWPAGE
             continue
         nov.galcnavrawpage()

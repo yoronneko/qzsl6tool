@@ -32,15 +32,15 @@ class AllystarReceiver:
         self.msg_color = libcolor.Color(fp_disp, ansi_color)
 
     def read_alst_msg(self):  # ref. [1]
-        sync = [b'0x00' for i in range(4)]
+        sync = bytes(4)
         ok = False
         try:
             while not ok:
                 b = sys.stdin.buffer.read(1)
                 if not b:
                     return False
-                sync = sync[1:4] + [b]
-                if sync == [b'\xf1', b'\xd9', b'\x02', b'\x10']:
+                sync = sync[1:4] + b
+                if sync == b'\xf1\xd9\x02\x10':
                     ok = True
             payld = b'\x02\x10' + sys.stdin.buffer.read(266)
             csum = sys.stdin.buffer.read(2)
