@@ -102,13 +102,49 @@ do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 echo ""
 # ------ test 6: pksdr2has.py Galileo HAS with -t 2 option ------
 CODE=${CODEDIR}pksdr2has.py ARG='-t 2' EXT_FROM=txt EXT_TO=txt
-echo "6. Galileo HAS message dump with -t 2 option (${CODE})"
+echo "6. Pocket SDR HAS message dump with -t 2 option (${CODE})"
 
 SRCDIR=../sample/
 BASENAME=20220930-115617pocketsdr-e6b
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 BASENAME=20230305-063900pocketsdr-e6b
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+echo ""
+# ------ test 7: NovAtel raw data dump ------
+CODE=${CODEDIR}novdump.py ARG='' EXT_FROM=nov EXT_TO=txt
+echo "7. NovAtel raw message dump (${CODE})"
+
+SRCDIR=../sample/
+BASENAME=20230819-053733has
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+BASENAME=20230819-061342misc
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+echo ""
+# ------ test 8: NovAtel HAS message dump with -t 2 option ------
+CODE=${CODEDIR}nov2has.py ARG='-t 2' EXT_FROM=nov EXT_TO=decoded.txt
+echo "8. NovAtel HAS message dump with -t 2 option (${CODE})"
+
+SRCDIR=../sample/
+BASENAME=20230819-053733has
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+echo ""
+# ------ test 9: Septentrio raw data dump ------
+CODE=${CODEDIR}septdump.py ARG='' EXT_FROM=sept EXT_TO=txt
+echo "9. Septentrio raw data dump (${CODE})"
+
+SRCDIR=../sample/
+BASENAME=20230819-081730hasbds
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+BASENAME=20230819-082130clas
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+BASENAME=20230819-085030mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 echo ""

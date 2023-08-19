@@ -1,17 +1,17 @@
 199 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-196 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
-194 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (syncing)
 ST1 G10 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 G12 L1 C/A L2 CM+CL L2 Z-tracking
 ST1 G22 L1 C/A L2 Z-tracking
@@ -63,7 +63,7 @@ ST2 E31 IODE= 104 d_radial=-0.1280m d_along=-0.0256m d_cross= 0.0000m
 ST2 J02 IODE= 221 d_radial= 1.6000m d_along=-0.2176m d_cross= 0.9472m
 ST2 J03 IODE= 221 d_radial= 1.6064m d_along=-0.2048m d_cross= 0.7168m
 ST2 J04 IODE= 221 d_radial=-0.1600m d_along=-0.3648m d_cross=-0.4864m
-194 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
+199 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
 ST4 G10 L1 C/A        code_bias=  0.000m
 ST4 G10 L2 CM+CL      code_bias=  0.060m
 ST4 G10 L2 Z-tracking code_bias=  0.720m
@@ -191,7 +191,7 @@ ST6 J03 L5 I+Q        phase_bias= 1.182m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-0.724m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.132m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-1.073m discont_indi=2
-196 Hitachi-Ota:1  CLAS  SF1 DP2 ST4 ST7 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP2 ST4 ST7 ST11 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=12 ngrid=2
 ST12 Trop quality=7 correct_type(0-2)=0 t00=0.512m
 ST12 Trop offset=0.200m
@@ -287,7 +287,7 @@ ST6 J03 L5 I+Q        phase_bias=-0.579m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-1.797m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-2.258m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-2.489m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF1 DP3 ST12 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP3 ST12 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=2 ngrid=11
 ST12 Trop quality=15 correct_type(0-2)=0 t00=0.176m
 ST12 Trop offset=0.180m
@@ -483,9 +483,9 @@ ST12 STEC J04 grid  9/11 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 10/11 residual=0.080TECU (4bit)
 ST12 STEC J04 grid 11/11 residual=-0.040TECU (4bit)
 CSSR null data 713 bits
-196 Hitachi-Ota:1  CLAS  SF1 DP4 ST12
+199 Hitachi-Ota:1  CLAS  SF1 DP4 ST12
 CSSR null data 1695 bits
-196 Hitachi-Ota:1  CLAS  SF1 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF1 DP5 (null)
 ST3 G10 d_clock= -0.885m
 ST3 G12 d_clock=  0.774m
 ST3 G22 d_clock=  0.080m
@@ -567,8 +567,8 @@ ST6 J03 L5 I+Q        phase_bias= 2.406m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-0.745m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.018m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-0.961m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
-194 Hitachi-Ota:1  CLAS  SF2 DP2 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP2 ST12...
 ST12 tropo=0b11 stec=0b11 NID=3 ngrid=32
 ST12 Trop quality=6 correct_type(0-2)=1 t00=-0.068m t01=-0.028m/deg t10=-0.008m/deg
 ST12 Trop offset=0.160m
@@ -1132,7 +1132,7 @@ ST12 STEC J04 grid 29/32 residual=-0.040TECU (4bit)
 ST12 STEC J04 grid 30/32 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 31/32 residual=0.040TECU (4bit)
 ST12 STEC J04 grid 32/32 residual=0.000TECU (4bit)
-194 Hitachi-Ota:1  CLAS  SF2 DP3 ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF2 DP3 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=4
 ST6 G10 L1 C/A        phase_bias= 0.160m discont_indi=1
@@ -1180,7 +1180,7 @@ ST6 J03 L5 I+Q        phase_bias= 0.234m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-1.408m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.929m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-2.147m discont_indi=2
-196 Hitachi-Ota:1  CLAS  SF2 DP4 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP4 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=4 ngrid=15
 ST12 Trop quality=10 correct_type(0-2)=0 t00=-0.052m
 ST12 Trop offset=0.160m
@@ -1456,7 +1456,7 @@ ST12 STEC J04 grid 13/15 residual=0.080TECU (4bit)
 ST12 STEC J04 grid 14/15 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 15/15 residual=0.040TECU (4bit)
 CSSR null data 1136 bits
-194 Hitachi-Ota:1  CLAS  SF2 DP5 ST12
+199 Hitachi-Ota:1  CLAS  SF2 DP5 ST12
 ST3 G10 d_clock= -0.888m
 ST3 G12 d_clock=  0.776m
 ST3 G22 d_clock=  0.085m
@@ -1538,7 +1538,7 @@ ST6 J03 L5 I+Q        phase_bias= 0.616m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-0.978m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.389m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-1.608m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=5 ngrid=15
 ST12 Trop quality=8 correct_type(0-2)=0 t00=-0.040m
 ST12 Trop offset=0.140m
@@ -1813,7 +1813,7 @@ ST12 STEC J04 grid 12/15 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 13/15 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 14/15 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 15/15 residual=-0.040TECU (4bit)
-194 Hitachi-Ota:1  CLAS  SF3 DP2 ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF3 DP2 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=6
 ST6 G22 L1 C/A        phase_bias=-0.507m discont_indi=2
@@ -1857,7 +1857,7 @@ ST6 J03 L5 I+Q        phase_bias= 2.636m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-1.934m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-2.664m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-2.685m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF3 DP3 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF3 DP3 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=6 ngrid=27
 ST12 Trop quality=9 correct_type(0-2)=0 t00=-0.052m
 ST12 Trop offset=0.140m
@@ -2309,9 +2309,9 @@ ST12 STEC J04 grid 25/27 residual=0.040TECU (4bit)
 ST12 STEC J04 grid 26/27 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 27/27 residual=0.000TECU (4bit)
 CSSR null data 77 bits
-194 Hitachi-Ota:1  CLAS  SF3 DP4 ST12
+199 Hitachi-Ota:1  CLAS  SF3 DP4 ST12
 CSSR null data 1695 bits
-194 Hitachi-Ota:1  CLAS  SF3 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF3 DP5 (null)
 ST3 G10 d_clock= -0.888m
 ST3 G12 d_clock=  0.779m
 ST3 G22 d_clock=  0.086m
@@ -2389,8 +2389,8 @@ ST6 J03 L5 I+Q        phase_bias= 0.837m discont_indi=3
 ST6 J04 L1 C/A        phase_bias= 0.219m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias= 0.293m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias= 0.401m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF4 DP1 ST3 ST11 ST6 ST12...
-194 Hitachi-Ota:1  CLAS  SF4 DP2 ST12...
+199 Hitachi-Ota:1  CLAS  SF4 DP1 ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF4 DP2 ST12...
 ST12 tropo=0b11 stec=0b11 NID=7 ngrid=22
 ST12 Trop quality=7 correct_type(0-2)=0 t00=-0.012m
 ST12 Trop offset=0.140m
@@ -2807,7 +2807,7 @@ ST6 J03 L5 I+Q        phase_bias= 1.720m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-1.573m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-2.116m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-2.341m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF4 DP3 ST12 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF4 DP3 ST12 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=8 ngrid=20
 ST12 Trop quality=11 correct_type(0-2)=0 t00=0.000m
 ST12 Trop offset=0.120m
@@ -3168,9 +3168,9 @@ ST12 STEC J04 grid 18/20 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 19/20 residual=0.040TECU (4bit)
 ST12 STEC J04 grid 20/20 residual=0.040TECU (4bit)
 CSSR null data 74 bits
-194 Hitachi-Ota:1  CLAS  SF4 DP4 ST12
+199 Hitachi-Ota:1  CLAS  SF4 DP4 ST12
 CSSR null data 1695 bits
-194 Hitachi-Ota:1  CLAS  SF4 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF4 DP5 (null)
 ST3 G10 d_clock= -0.891m
 ST3 G12 d_clock=  0.782m
 ST3 G22 d_clock=  0.090m
@@ -3555,7 +3555,7 @@ ST12 STEC J04 grid 15/18 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 16/18 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 17/18 residual=0.080TECU (4bit)
 ST12 STEC J04 grid 18/18 residual=0.080TECU (4bit)
-194 Hitachi-Ota:1  CLAS  SF5 DP2 ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF5 DP2 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=10
 ST6 G12 L1 C/A        phase_bias=-1.052m discont_indi=3
@@ -3599,7 +3599,7 @@ ST6 J02 L5 I+Q        phase_bias= 0.431m discont_indi=1
 ST6 J04 L1 C/A        phase_bias=-1.300m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.740m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-1.958m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF5 DP3 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF5 DP3 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=10 ngrid=23
 ST12 Trop quality=7 correct_type(0-2)=0 t00=-0.068m
 ST12 Trop offset=0.100m
@@ -3987,9 +3987,9 @@ ST12 STEC J04 grid 21/23 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 22/23 residual=0.040TECU (4bit)
 ST12 STEC J04 grid 23/23 residual=0.160TECU (4bit)
 CSSR null data 309 bits
-194 Hitachi-Ota:1  CLAS  SF5 DP4 ST12
+199 Hitachi-Ota:1  CLAS  SF5 DP4 ST12
 CSSR null data 1695 bits
-194 Hitachi-Ota:1  CLAS  SF5 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF5 DP5 (null)
 ST3 G10 d_clock= -0.891m
 ST3 G12 d_clock=  0.786m
 ST3 G22 d_clock=  0.093m
@@ -4024,7 +4024,7 @@ ST11 E31 IODE= 104 d_radial= -0.128m d_along= -0.026m d_cross=  0.006m c0= -0.18
 ST11 J02 IODE= 221 d_radial=  1.602m d_along= -0.224m d_cross=  0.947m c0= -0.138m
 ST11 J03 IODE= 221 d_radial=  1.541m d_along= -0.224m d_cross=  0.602m c0=  0.168m
 ST11 J04 IODE= 221 d_radial= -0.162m d_along= -0.365m d_cross= -0.486m c0=  1.006m
-194 Hitachi-Ota:1  CLAS  SF6 DP1 ST3 ST11 ST6...
+199 Hitachi-Ota:1  CLAS  SF6 DP1 ST3 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=11
 ST6 G12 L1 C/A        phase_bias=-0.535m discont_indi=3
@@ -4068,7 +4068,7 @@ ST6 J02 L5 I+Q        phase_bias= 0.985m discont_indi=1
 ST6 J04 L1 C/A        phase_bias=-1.251m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.708m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-1.760m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF6 DP2 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF6 DP2 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=11 ngrid=19
 ST12 Trop quality=7 correct_type(0-2)=0 t00=-0.056m
 ST12 Trop offset=0.080m
@@ -4391,7 +4391,7 @@ ST12 STEC J04 grid 16/19 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 17/19 residual=0.120TECU (4bit)
 ST12 STEC J04 grid 18/19 residual=0.080TECU (4bit)
 ST12 STEC J04 grid 19/19 residual=-0.040TECU (4bit)
-194 Hitachi-Ota:1  CLAS  SF6 DP3 ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF6 DP3 ST12 ST6...
 ST6 code_bias=on phase_bias=on network_bias=on
 ST6 NID=1
 ST6 G10 L1 C/A        code_bias=  0.000m phase_bias= 1.939m discont_indi=3
@@ -4584,9 +4584,9 @@ ST12 STEC J04 grid  6/ 8 residual=0.000TECU (4bit)
 ST12 STEC J04 grid  7/ 8 residual=0.000TECU (4bit)
 ST12 STEC J04 grid  8/ 8 residual=0.040TECU (4bit)
 CSSR null data 39 bits
-194 Hitachi-Ota:1  CLAS  SF6 DP4 ST6 ST12
+199 Hitachi-Ota:1  CLAS  SF6 DP4 ST6 ST12
 CSSR null data 1695 bits
-194 Hitachi-Ota:1  CLAS  SF6 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF6 DP5 (null)
 ST1 G10 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
 ST1 G12 L1 C/A L2 CM+CL L2 Z-tracking
 ST1 G22 L1 C/A L2 Z-tracking
@@ -4638,7 +4638,7 @@ ST2 E31 IODE= 104 d_radial=-0.1280m d_along=-0.0256m d_cross= 0.0000m
 ST2 J02 IODE= 221 d_radial= 1.6000m d_along=-0.2240m d_cross= 0.9472m
 ST2 J03 IODE= 221 d_radial= 1.6064m d_along=-0.2048m d_cross= 0.7168m
 ST2 J04 IODE= 221 d_radial=-0.1600m d_along=-0.3648m d_cross=-0.4864m
-196 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
+199 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
 ST4 G10 L1 C/A        code_bias=  0.000m
 ST4 G10 L2 CM+CL      code_bias=  0.060m
 ST4 G10 L2 Z-tracking code_bias=  0.740m
@@ -4766,7 +4766,7 @@ ST6 J03 L5 I+Q        phase_bias= 1.189m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-0.724m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.112m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-1.047m discont_indi=2
-196 Hitachi-Ota:1  CLAS  SF1 DP2 ST4 ST7 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP2 ST4 ST7 ST11 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=12 ngrid=2
 ST12 Trop quality=7 correct_type(0-2)=0 t00=0.516m
 ST12 Trop offset=0.200m
@@ -5060,7 +5060,7 @@ ST12 STEC J04 grid 11/11 residual=0.080TECU (4bit)
 CSSR null data 711 bits
 196 Hitachi-Ota:1  CLAS  SF1 DP4 ST12
 CSSR null data 1695 bits
-196 Hitachi-Ota:1  CLAS  SF1 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF1 DP5 (null)
 ST3 G10 d_clock= -0.886m
 ST3 G12 d_clock=  0.762m
 ST3 G22 d_clock=  0.096m
@@ -5142,8 +5142,8 @@ ST6 J03 L5 I+Q        phase_bias= 2.412m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-0.746m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.018m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-0.961m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
-194 Hitachi-Ota:1  CLAS  SF2 DP2 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP2 ST12...
 ST12 tropo=0b11 stec=0b11 NID=3 ngrid=32
 ST12 Trop quality=6 correct_type(0-2)=1 t00=-0.064m t01=-0.028m/deg t10=-0.008m/deg
 ST12 Trop offset=0.160m
@@ -5707,7 +5707,7 @@ ST12 STEC J04 grid 29/32 residual=-0.080TECU (4bit)
 ST12 STEC J04 grid 30/32 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 31/32 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 32/32 residual=-0.040TECU (4bit)
-194 Hitachi-Ota:1  CLAS  SF2 DP3 ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF2 DP3 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=4
 ST6 G10 L1 C/A        phase_bias= 0.197m discont_indi=1
@@ -5755,7 +5755,7 @@ ST6 J03 L5 I+Q        phase_bias= 0.342m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-1.423m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.949m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-2.169m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF2 DP4 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP4 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=4 ngrid=15
 ST12 Trop quality=10 correct_type(0-2)=0 t00=-0.056m
 ST12 Trop offset=0.160m
@@ -6031,7 +6031,7 @@ ST12 STEC J04 grid 13/15 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 14/15 residual=-0.160TECU (4bit)
 ST12 STEC J04 grid 15/15 residual=-0.040TECU (4bit)
 CSSR null data 1152 bits
-194 Hitachi-Ota:1  CLAS  SF2 DP5 ST12
+199 Hitachi-Ota:1  CLAS  SF2 DP5 ST12
 ST3 G10 d_clock= -0.886m
 ST3 G12 d_clock=  0.766m
 ST3 G22 d_clock=  0.101m
@@ -6113,7 +6113,7 @@ ST6 J03 L5 I+Q        phase_bias= 0.599m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-0.987m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-1.396m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-1.616m discont_indi=2
-196 Hitachi-Ota:1  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=5 ngrid=15
 ST12 Trop quality=9 correct_type(0-2)=0 t00=-0.040m
 ST12 Trop offset=0.140m
@@ -6388,7 +6388,7 @@ ST12 STEC J04 grid 12/15 residual=0.040TECU (4bit)
 ST12 STEC J04 grid 13/15 residual=-0.040TECU (4bit)
 ST12 STEC J04 grid 14/15 residual=-0.040TECU (4bit)
 ST12 STEC J04 grid 15/15 residual=0.000TECU (4bit)
-194 Hitachi-Ota:1  CLAS  SF3 DP2 ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF3 DP2 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 NID=6
 ST6 G22 L1 C/A        phase_bias=-0.507m discont_indi=2
@@ -6432,7 +6432,7 @@ ST6 J03 L5 I+Q        phase_bias= 2.680m discont_indi=3
 ST6 J04 L1 C/A        phase_bias=-1.934m discont_indi=2
 ST6 J04 L2 L2C(M+L)   phase_bias=-2.663m discont_indi=2
 ST6 J04 L5 I+Q        phase_bias=-2.683m discont_indi=2
-194 Hitachi-Ota:1  CLAS  SF3 DP3 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF3 DP3 ST6 ST12...
 ST12 tropo=0b11 stec=0b11 NID=6 ngrid=27
 ST12 Trop quality=8 correct_type(0-2)=0 t00=-0.052m
 ST12 Trop offset=0.140m
@@ -6884,6 +6884,6 @@ ST12 STEC J04 grid 25/27 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 26/27 residual=0.000TECU (4bit)
 ST12 STEC J04 grid 27/27 residual=-0.040TECU (4bit)
 CSSR null data 77 bits
-194 Hitachi-Ota:1  CLAS  SF3 DP4 ST12
+199 Hitachi-Ota:1  CLAS  SF3 DP4 ST12
 CSSR null data 1695 bits
-194 Hitachi-Ota:1  CLAS  SF3 DP5 (null)
+199 Hitachi-Ota:1  CLAS  SF3 DP5 (null)
