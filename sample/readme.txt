@@ -64,4 +64,29 @@ Date Time : 2023-03-05 06:39:00 UTC
 Duration  : 1 minute
 Note      : E6B signal reception sample with Pocket SDR at Hiroshima, JP
 
+File Path : 20230819-053733has.nov
+Date Time : 2023-08-19 05:37:33 UTC
+Duration  : 43 seconds
+Note      : E6B signal reception sample with NovAtel OEM729 at Hiroshima, JP
+
+File Path : 20230819-061342misc.nov
+Date Time : 2023-08-19 06:13:42 UTC
+Duration  : 43 seconds
+Note      : Navigation messages obtained with NovAtel OEM729 at Hiroshima, JP
+
+File Path : 20230819-081730hasbds.sept
+Date Time : 2023-08-19 08:17:30 UTC
+Duration  : 31 seconds
+Note      : HAS and PPP-B2b raw data obtained with Septentrio mosaic-X5 at Hiroshima, JP
+
+File Path : 20230819-082130clas.sept
+Date Time : 2023-08-19 08:21:30 UTC
+Duration  : 61 seconds
+Note      : CLAS raw data obtained with Septentrio mosaic-CLAS at Hiroshima, JP
+
+File Path : 20230819-085030mdc-ppp.sept
+Date Time : 2023-08-19 08:50:30 UTC
+Duration  : 60 seconds
+Note      : MADOCA-PPP raw data obtained with Septentrio mosaic-CLAS at Hiroshima, JP
+
 # EOF
