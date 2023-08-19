@@ -1,17 +1,12 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# pksdr2has.py: Pocket SDR log to Galileo HAS message
+# sept2has.py: Septentrio binary to Galileo HAS message
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
-#
-# References:
-# [1] Europe Union Agency for the Space Programme,
-#     Galileo High Accuracy Service Signal-in-Space Interface Control
-#     Document (HAS SIS ICD), Issue 1.0 May 2022.
 
 import argparse
 import os
@@ -19,27 +14,13 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgale6
-
-
-class PocketSdrCnav:
-    def read(self):
-        ''' returns True  when C/NAV page is read,
-            returns False when EOF is encounterd '''
-        line = True
-        while line:
-            line = sys.stdin.readline().strip()
-            if not line:  # end of file
-                return False
-            if line[0:5] == '$CNAV':
-                break
-        self.satid = line.split(',')[3]
-        self.e6b   = bytes.fromhex(line.split(',')[4])
-        return True
+import libcolor
+import septdump
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Pocket SDR E6B log to HAS message converter')
+        description='Septentrio receiver binary to HAS message converter')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -74,9 +55,15 @@ if __name__ == '__main__':
     if args.color:
         force_ansi_color = True
     gale6 = libgale6.GalE6(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
-    psdr = PocketSdrCnav()
-    while psdr.read():
-        if not gale6.ready_decoding_has(psdr.satid, psdr.e6b):
+    sept = septdump.SeptReceiver(fp_disp, force_ansi_color)
+    while sept.read():
+        msg_name = ''
+        if sept.msg_name != 'GALRawCNAV':
+            continue
+        sept.galrawcnav()
+        import bitstring
+        print(bitstring.BitArray(sept.cnav).bin)
+        if not gale6.ready_decoding_has(sept.satid, sept.cnav):
             continue
         has_msg = gale6.obtain_has_message()
         gale6.decode_has_message(has_msg)

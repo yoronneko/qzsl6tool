@@ -27,7 +27,15 @@
 #     Document (HAS SIS ICD), Issue 1.0 May 2022.
 
 import sys
-import bitstring
+
+try:
+    import bitstring
+except ModuleNotFoundError:
+    print('''\
+    QZS L6 Tool needs bitstring module.
+    Please install this module such as \"pip install bitstring\".
+    ''', file=sys.stderr)
+    sys.exit(1)
 
 INVALID = 0  # invalid value indication for CSSR message show
 HAS_VALIDITY_INTERVAL = [

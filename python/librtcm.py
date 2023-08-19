@@ -25,12 +25,9 @@
 #     Interface specification for GPAS-MADOCA Product
 #     https://www.gpas.co.jp/data/GPAS-MADOCA_Interface_Specification_en.pdf
 
+import os
 import sys
-import ecef2llh
-import libcolor
-import libeph
-import libobs
-import libssr
+
 try:
     import bitstring
 except ModuleNotFoundError:
@@ -39,6 +36,13 @@ except ModuleNotFoundError:
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
+
+sys.path.append(os.path.dirname(__file__))
+import ecef2llh
+import libcolor
+import libeph
+import libobs
+import libssr
 
 class Rtcm:
     '''RTCM message process class'''

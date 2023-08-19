@@ -23,12 +23,9 @@
 #     Differential GNSS (Global Navigation Satellite Systems) Services
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
 
+import os
 import sys
-import gps2utc
-import libcolor
-import libssr
-import libqznma
-from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
+
 try:
     import bitstring
 except ModuleNotFoundError:
@@ -37,6 +34,13 @@ except ModuleNotFoundError:
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
+
+sys.path.append(os.path.dirname(__file__))
+import gps2utc
+import libcolor
+import libssr
+import libqznma
+from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
 
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"

@@ -14,10 +14,21 @@
 #     Document (HAS SIS ICD), Issue 1.0 May 2022.
 
 import argparse
+import os
 import sys
-import bitstring
-import galois
-import numpy as np
+
+try:
+    import bitstring
+    import galois
+    import numpy as np
+except ModuleNotFoundError:
+    print('''\
+    QZS L6 Tool needs bitstring, galois, and numpy  modules.
+    Please install this module such as \"pip install bitstring galois numpy\".
+    ''', file=sys.stderr)
+    sys.exit(1)
+
+sys.path.append(os.path.dirname(__file__))
 import libcolor
 import libssr
 

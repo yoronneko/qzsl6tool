@@ -8,8 +8,8 @@
 #
 # Released under BSD 2-clause license.
 
-import sys
 import datetime
+import sys
 
 
 def gps2utc(gpsweek, gpssec):

@@ -14,9 +14,7 @@
 #     IS-QZSS-SAS-001 Draft-002, Jan. 24, 2023.
 
 import sys
-import gps2utc
-import libcolor
-import libssr
+
 try:
     import bitstring
 except ModuleNotFoundError:
@@ -25,6 +23,11 @@ except ModuleNotFoundError:
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
+
+sys.path.append(__file__)
+import gps2utc
+import libcolor
+import libssr
 
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"

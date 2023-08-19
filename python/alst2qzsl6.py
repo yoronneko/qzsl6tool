@@ -16,9 +16,13 @@
 #     F9 HPG 1.30, UBX-21046737, Dec. 2021.
 
 import argparse
+import os
 import sys
+
+sys.path.append(os.path.dirname(__file__))
 import gps2utc
 import libcolor
+
 
 class AllystarReceiver:
     dict_snr  = {}  # SNR dictionary
@@ -31,7 +35,7 @@ class AllystarReceiver:
         self.fp_ubx    = fp_ubx
         self.msg_color = libcolor.Color(fp_disp, ansi_color)
 
-    def read_alst_msg(self):  # ref. [1]
+    def read(self):  # ref. [1]
         sync = bytes(4)
         ok = False
         try:
@@ -50,14 +54,14 @@ class AllystarReceiver:
             color = libcolor.Color(sys.stderr)
             print(color.fg('yellow') + \
                   "User break - terminated" + \
-                  color.fg('default'), file=sys.stderr)
+                  color.fg(), file=sys.stderr)
             return False
         len_payld = int.from_bytes(payld[2: 4], 'little')
         self.prn  = int.from_bytes(payld[4: 6], 'little') - 700
         freqid    = int.from_bytes(payld[6: 7], 'little')
         len_data  = int.from_bytes(payld[7: 8], 'little') - 2
         self.gpsw = int.from_bytes(payld[8: 10], 'big')
-        self.gpst = int.from_bytes(payld[10: 14], 'big') // 1000
+        self.gpst = int.from_bytes(payld[10: 14], 'big')
         self.snr  = int.from_bytes(payld[14: 15], 'big')
         flag      = int.from_bytes(payld[15: 16], 'big')
         self.data = payld[16:268]
@@ -79,7 +83,7 @@ class AllystarReceiver:
             self.last_gpst = self.gpst
         return True
 
-    def pick_up(self):
+    def pick_up(self, s_prn):
         p_prn = 0
         p_snr = 0
         p_data = b''
@@ -87,13 +91,14 @@ class AllystarReceiver:
             self.last_gpst = self.gpst
             p_prn = sorted(self.dict_snr.items(),
                            key=lambda x: x[1], reverse=True)[0][0]
-            p_snr = self.dict_snr[p_prn]
-            p_data = self.dict_data[p_prn]
+            if s_prn: p_prn = s_prn
+            p_snr  = self.dict_snr.get(p_prn, 0)
+            p_data = self.dict_data.get(p_prn, b'')
             if fp_disp:
                 print(f"---> prn {p_prn} (C/No {p_snr} dB)", file=self.fp_disp)
             self.dict_snr.clear()
             self.dict_data.clear()
-        elif not self.err:
+        if not self.err:
             self.dict_snr[self.prn] = self.snr
             self.dict_data[self.prn] = self.data
         self.p_prn  = p_prn   # picked up PRN
@@ -105,7 +110,7 @@ class AllystarReceiver:
             return
         msg = self.msg_color.fg('green') + f'{self.prn} ' + \
               self.msg_color.fg('yellow') + \
-              gps2utc.gps2utc(self.gpsw, self.gpst) + \
+              gps2utc.gps2utc(self.gpsw, self.gpst//1000) + \
               self.msg_color.fg('default') + f' {self.snr}'
         if self.err:
             msg += self.msg_color.fg('red') + \
@@ -165,6 +170,9 @@ if __name__ == '__main__':
     parser.add_argument(
         '-m', '--message', action='store_true',
         help='show Allystar messages to stderr.')
+    parser.add_argument(
+        '-p', '--prn', type=int, default=0,
+        help='satellite PRN to be specified.')
     parser_group.add_argument(
         '-u', '--ubx', action='store_true',
         help='send u-blox L6 message to stdout (experimental, it also turns off QZS L6 and Allystar messages).')
@@ -185,9 +193,12 @@ if __name__ == '__main__':
         fp_disp = sys.stderr
     if args.color:  # force ANSI color escape sequences
         force_ansi_color = True
+    if args.prn not in {0, 193, 194, 195, 196, 199}:
+        args.prn = 0
+
     alst = AllystarReceiver(fp_disp, force_ansi_color, fp_l6, fp_ubx)
-    while alst.read_alst_msg():
-        alst.pick_up()
+    while alst.read():
+        alst.pick_up(args.prn)
         try:
             alst.send_l6_msg()
             alst.send_ubxl6_msg()

@@ -8,8 +8,8 @@
 #
 # Released under BSD 2-clause license.
 
-import sys
 import datetime
+import sys
 
 
 def utc2gps(date, time):
