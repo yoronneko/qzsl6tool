@@ -44,7 +44,7 @@ class Qznma:
         '''decode reformat digital signature (RDS) in L6E
         [1] p.67 Fig.6-52, 6-53, and 6-54'''
         if len(payload) != 1695:
-            raise(f"QZNMA size error: {len(payload)} != 1695.")
+            raise Exception(f"QZNMA size error: {len(payload)} != 1695.")
         pos = 0
         rds1 = bitstring.BitArray(payload[pos:pos+576])
         pos += 576
@@ -60,7 +60,7 @@ class Qznma:
 
 # --- private
     def trace(self, level, *args):
-        if self.t_level < level:
+        if self.t_level < level or not self.fp_disp:
             return
         for arg in args:
             try:
@@ -100,14 +100,14 @@ class Qznma:
         elif 129 <= svid and svid <= 191: satsig += f'S{svid:03d}'
         elif 193 <= svid and svid <= 202: satsig += f'J{svid-192:02d}'
         else:
-            raise(f'SVID{svid}')
+            raise Exception(f'unknown SVID{svid}')
         if   mt == 0b0001: satsig += '(LNAV) '
         elif mt == 0b0010: satsig += '(CNAV) '
         elif mt == 0b0011: satsig += '(CNAV2) '
         elif mt == 0b0100: satsig += '(F/NAV) '
         elif mt == 0b0101: satsig += '(I/NAV) '
         else:
-            raise(f'message_type={mt}')
+            raise Exception(f'unknown message_type={mt}')
         message += satsig
         self.trace(1, f'QZNMA {satsig}',
                       f'TOW={rtow} Eph={reph} KeyID={keyid} salt={salt}\n')

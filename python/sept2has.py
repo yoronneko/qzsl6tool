@@ -61,8 +61,8 @@ if __name__ == '__main__':
         if sept.msg_name != 'GALRawCNAV':
             continue
         sept.galrawcnav()
-        import bitstring
-        print(bitstring.BitArray(sept.cnav).bin)
+        # import bitstring
+        # print(bitstring.BitArray(sept.cnav).bin)
         if not gale6.ready_decoding_has(sept.satid, sept.cnav):
             continue
         has_msg = gale6.obtain_has_message()

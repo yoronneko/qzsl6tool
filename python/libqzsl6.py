@@ -151,7 +151,7 @@ class QzsL6:
 
 # --- private
     def trace(self, level, *args):
-        if self.t_level < level:
+        if self.t_level < level or not self.fp_disp:
             return
         for arg in args:
             try:

@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# gale62rtcm.py: Pocket SDR log to RTCM message
+# gale62rtcm.py: C/NAV page to RTCM message
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
@@ -26,7 +26,7 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 
-LEN_HASPAGE = 56  # HAS page size is 448 bit, or 56 byte
+LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit, or 62 byte (61.5 byte)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -64,11 +64,15 @@ if __name__ == '__main__':
     if args.color:
         force_ansi_color = True
     gale6 = libgale6.GalE6(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
-    e6msg = sys.stdin.buffer.read(LEN_HASPAGE)
-    while e6msg:
-        has_msg=bitstring.BitArray(e6msg)
+    raw = sys.stdin.buffer.read(LEN_CNAV_PAGE+1)
+    while raw:
+        satid = int.from_bytes(raw[0:1], 'little')
+        cnav = raw[1:]
+        if not gale6.ready_decoding_has(satid, cnav):
+            raw = sys.stdin.buffer.read(LEN_CNAV_PAGE+1)
+            continue
+        has_msg=gale6.obtain_has_message()
         gale6.decode_has_message(has_msg)
-        e6msg = sys.stdin.buffer.read(LEN_HASPAGE)
 
 # EOF
 

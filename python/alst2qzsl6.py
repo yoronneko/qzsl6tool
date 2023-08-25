@@ -94,7 +94,7 @@ class AllystarReceiver:
             if s_prn: p_prn = s_prn
             p_snr  = self.dict_snr.get(p_prn, 0)
             p_data = self.dict_data.get(p_prn, b'')
-            if fp_disp:
+            if self.fp_disp:
                 print(f"---> prn {p_prn} (C/No {p_snr} dB)", file=self.fp_disp)
             self.dict_snr.clear()
             self.dict_data.clear()

@@ -165,6 +165,8 @@ class Rtcm:
         #        ' RTCM packet size error:' + \
         #        f'expected {len(payload.bin)}, actual {pos}' + \
         #        self.msg_color.fg()
+        if not self.fp_disp:
+            return
         try:
             print(message, file=self.fp_disp)
             self.fp_disp.flush()
@@ -173,7 +175,7 @@ class Rtcm:
 
 # --- private
     def trace(self, level, *args):
-        if self.t_level < level:
+        if self.t_level < level or not self.fp_disp:
             return
         for arg in args:
             try:

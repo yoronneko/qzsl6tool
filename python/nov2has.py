@@ -25,8 +25,8 @@ if __name__ == '__main__':
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
-        '-e', '--e6b', action='store_true',
-        help='send E6B messages to stdout, and also turns off display message.')
+        '-e', '--cnav', action='store_true',
+        help='send E6B C/NAV messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
@@ -39,15 +39,15 @@ if __name__ == '__main__':
     args = parser.parse_args()
     fp_rtcm = None
     fp_disp = sys.stdout
-    fp_e6b = None
+    fp_cnav = None
     t_level = 0
     force_ansi_color = False
     stat = False
     if 0 < args.trace:
         t_level = args.trace
-    if args.e6b:
+    if args.cnav:
         fp_disp = None
-        fp_e6b = sys.stdout
+        fp_cnav = sys.stdout
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     if args.statistics:  # show HAS statistics
@@ -61,13 +61,15 @@ if __name__ == '__main__':
         if msg_name != 'GALCNAVRAWPAGE':
             continue
         nov.galcnavrawpage()
+        if fp_cnav:
+            fp_cnav.buffer.write(nov.satid.to_bytes(1, byteorder='little'))
+            fp_cnav.buffer.write(nov.cnav)
+            fp_cnav.buffer.write((0).to_bytes(1, byteorder='little')) # dummy for tail
+            fp_cnav.flush()
         if not gale6.ready_decoding_has(nov.satid, nov.cnav):
             continue
         has_msg = gale6.obtain_has_message()
         gale6.decode_has_message(has_msg)
-        if fp_e6b:
-            fp_e6b.buffer.write(has_msg.tobytes())
-            fp_e6b.flush()
 
 # EOF
 

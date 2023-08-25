@@ -33,6 +33,15 @@ def crc16_ccitt(data):
             crc &= 0xffff
     return crc.to_bytes(2,'little')
 
+def u4perm(inblk, outblk):
+    if len(inblk) % 4 != 0:
+        raise Exception(f"Septentrio raw u32 should be multiple of 4 (actual {len(inblk)}).")
+    outblk[0::4] = inblk[3::4]
+    outblk[1::4] = inblk[2::4]
+    outblk[2::4] = inblk[1::4]
+    outblk[3::4] = inblk[0::4]
+
+
 class SeptReceiver:
     def __init__(self, fp_disp, ansi_color):
         self.fp_disp = fp_disp
@@ -60,7 +69,8 @@ class SeptReceiver:
                     msg = self.msg_color.fg('red') + \
                         f'message length {msg_len} should be multiple of 4' + \
                         self.msg_color.fg()
-                    print(msg, file=self.fp_disp)
+                    if self.fp_disp:
+                        print(msg, file=self.fp_disp)
                     return False
                 payload = sys.stdin.buffer.read(msg_len - 8)
                 if not payload:
@@ -72,7 +82,8 @@ class SeptReceiver:
                     msg = self.msg_color.fg('red') + \
                         f'CRC Error: {crc.hex()} != {crc_cal.hex()}' + \
                         self.msg_color.fg()
-                    print(msg, file=self.fp_disp)
+                    if self.fp_disp:
+                        print(msg, file=self.fp_disp)
                     continue
             self.msg_id   = msg_id
             self.msg_name = self.SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
@@ -80,7 +91,8 @@ class SeptReceiver:
         except KeyboardInterrupt:
             msg = self.msg_color.fg('yellow') + "User break - terminated" + \
                   self.msg_color.fg()
-            print(msg, file=sys.stderr)
+            if self.fp_disp:
+                print(msg, file=self.fp_disp)
             sys.exit()
         return True
 
@@ -98,7 +110,10 @@ class SeptReceiver:
         source      = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
         pos +=  1
         rx_channel  = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        self.cnav   = payload[pos:pos+64]; pos +=  64
+        # self.cnav   = payload[pos:pos+64]; pos +=  64
+        nav_bits= payload[pos:pos+64]; pos +=  64
+        self.cnav = bytearray(64)
+        u4perm(nav_bits, self.cnav)
         self.satid = svid - 70
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
@@ -122,7 +137,9 @@ class SeptReceiver:
         source     = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
         pos +=  1
         rx_channel = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        self.l6    = payload[pos:pos+252]; pos += 252
+        nav_bits   = payload[pos:pos+252]; pos += 252
+        self.l6 = bytearray(252)
+        u4perm(nav_bits, self.l6)
         self.satid = svid - 180
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
@@ -147,7 +164,9 @@ class SeptReceiver:
         source      = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
         pos +=  1
         rx_channel  = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        self.b2b    = payload[pos:pos+ 124]; pos += 124
+        nav_bits    = payload[pos:pos+ 124]; pos += 124
+        self.b2b = bytearray(124)
+        u4perm(nav_bits, self.b2b)
         self.satid = (svid - 140) if svid <= 180 else (svid - 182)
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
@@ -168,11 +187,18 @@ if __name__ == '__main__':
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
+    parser.add_argument(
+        '-l', '--l6msg', action='store_true',
+        help='send QZS L6 messages to stdout (it also turns off Septentrio messages)..')
     args = parser.parse_args()
     fp_disp = sys.stdout
+    fp_l6 = None
     force_ansi_color = False
     if args.color:  # force ANSI color escape sequences
         force_ansi_color = True
+    if args.l6msg:
+        fp_disp = None
+        fp_l6 = sys.stdout
     sept = SeptReceiver(fp_disp, force_ansi_color)
     while sept.read():
         # print(sept.msg_name, file=fp_disp)
@@ -184,8 +210,11 @@ if __name__ == '__main__':
             else:
                 msg += sept.msg_color.dec('dark') + msg_name + \
                        sept.msg_color.dec()
-            print(msg, file=fp_disp)
-
+            if fp_disp:
+                print(msg, file=fp_disp)
+            if fp_l6:
+                fp_l6.buffer.write(sept.l6)
+                fp_l6.flush()
         except (BrokenPipeError, IOError):
             sys.exit()
 # EOF

@@ -322,13 +322,13 @@ class GalE6():
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def ready_decoding_has(self, satid, e6b):
-        ''' returns True when HAS decode is ready '''
-        rawb = bitstring.BitArray(e6b)[14:-2-24]
-        # extracts HAS Page from C/NAV page,
-        # discards top 14 bit (reserved), and
-        # discards tail 2 bit (byte-align) and 24 bit (CRC)
+    def ready_decoding_has(self, satid, cnav):
+        ''' returns True when HAS decode is ready, and
+            stores HAS page, index, message id (MID), message size (MS)
+        '''
+        rawb = bitstring.BitArray(cnav)[14:14+448]
         # HAS Page (rawb: raw binary) size is 448 bit
+        # discards top reserved 14 bit
         pos = 0
         hass = rawb[pos:pos+2].uint  ; pos += 2  # HAS status
         pos += 2                                 # reserved
@@ -340,18 +340,18 @@ class GalE6():
                    self.msg_color.fg()
         if rawb[0:24].hex == 'af3bc3':
             if self.fp_disp:
-                disp_msg += self.msg_color.dec('dark')
-                disp_msg += ' Dummy page (0xaf3bc3)'
-                disp_msg += self.msg_color.dec()
+                disp_msg += self.msg_color.dec('dark') + \
+                    ' Dummy page (0xaf3bc3)' + self.msg_color.dec()
                 print(disp_msg, file=self.fp_disp)
             return False
-        disp_msg += self.msg_color.fg('yellow')
-        disp_msg += f' HASS={T_HASS[hass]}({hass})'
-        disp_msg += self.msg_color.fg()
-        disp_msg += f' MT={mt}'
-        disp_msg += f' MID={mid:2d}'
-        disp_msg += f' MS={ms:2d}'
-        disp_msg += f' PID={pid:3d}'
+        if mt != 1:
+            disp_msg += self.msg_color.fg('red') + \
+                f'MT={mt}, but only MT1 message is defined for C/NAV' + \
+                self.msg_color.fg()
+            return False  # only MT1 message is defined for C/NAV
+        disp_msg += self.msg_color.fg('yellow') + \
+            f' HASS={T_HASS[hass]}({hass})' + self.msg_color.fg() + \
+            f' MT={mt} MID={mid:2d} MS={ms:2d} PID={pid:3d}'
         if mid != self.mid_prev:
             # new message id --- reset buffer and message pointer
             disp_msg += f' -> A new page for MID={mid}'
@@ -361,11 +361,8 @@ class GalE6():
         # store the HAS page and its index (pid: page id)
         self.haspage[self.num_has_pages] = [x for x in rawb[pos:].tobytes()]
         self.hasindx[self.num_has_pages] = pid
-        self.mt  = mt
         self.mid = mid
         self.ms  = ms
-        if self.mt != 1:
-            return False  # only MT1 message is defined for E6B
         if self.num_has_pages < MAX_PAGES - 1:
             self.num_has_pages += 1
         if self.num_has_pages < ms:

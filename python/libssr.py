@@ -75,7 +75,7 @@ class Ssr:
         self.msg_color = msg_color
 
     def trace(self, level, *args):
-        if self.t_level < level:
+        if self.t_level < level or not self.fp_disp:
             return
         for arg in args:
             try:
@@ -260,7 +260,7 @@ class Ssr:
         elif self.subtype == 12:
             pos = self.decode_cssr_st12(payload, pos)
         else:
-            raise Exception(f"Unknown CSSR subtype: {self.subtype}")
+            raise Exception(f"unknown CSSR subtype: {self.subtype}")
         string = f'ST{self.subtype:<2d}'
         if self.subtype == 1:
             string += f' epoch={self.epoch} iod={self.iod}'
@@ -330,7 +330,7 @@ class Ssr:
     def _decode_mask(self, payload, pos, ssr_type):
         '''ssr_type: cssr or has'''
         if ssr_type not in {'cssr', 'has'}:
-            raise
+            raise Exception(f'unknown ssr_type: {ssr_type}')
         len_payload = len(payload)
         if len_payload < pos + 4:
             return 0
@@ -562,7 +562,7 @@ class Ssr:
     def _decode_code_bias(self, payload, pos, ssr_type):
         '''ssr_type: cssr or has'''
         if ssr_type not in {'cssr', 'has'}:
-            raise
+            raise Exception(f'unknow ssr_type: {ssr_type}')
         len_payload = len(payload)
         nsigsat = 0  # Nsig * Nsat
         for i, satsys in enumerate(self.satsys):
