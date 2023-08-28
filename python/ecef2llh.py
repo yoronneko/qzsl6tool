@@ -12,7 +12,6 @@
 import math
 import sys
 
-
 def ecef2llh(px, py, pz):
     wgs84er = 6378137.
     wgs84ef = 1. / 298.257223563
@@ -35,7 +34,6 @@ def ecef2llh(px, py, pz):
         lon = 0.
     height = math.sqrt(r2 + z * z) - v
     return lat, lon, height
-
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

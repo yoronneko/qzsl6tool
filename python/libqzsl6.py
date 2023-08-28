@@ -78,51 +78,37 @@ class QzsL6:
 
 # --- public
     def read_l6_msg(self):  # ref. [1]
-        sync = [b'0x00' for i in range(4)]
-        ok = False
+        sync = bytes(4)
         try:
-            while not ok:
+            while sync != b'\x1a\xcf\xfc\x1d':
                 b = sys.stdin.buffer.read(1)
                 if not b:
                     return False
-                sync = sync[1:4] + [b]
-                if sync == [b'\x1a', b'\xcf', b'\xfc', b'\x1d']:
-                    ok = True
+                sync = sync[1:4] + b
             b = sys.stdin.buffer.read(1+1+212+32)
             if not b:
                 return False
         except KeyboardInterrupt:
-            color = libcolor.Color(sys.stderr)
-            print(color.fg('yellow') + \
-                  "User break - terminated" + \
-                  color.fg(), file=sys.stderr)
+            print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
             return False
         pos = 0
-        self.prn = int.from_bytes(b[pos:pos+1], 'big')
-        pos += 1
-        mtid = int.from_bytes(b[pos:pos+1], 'big')
-        pos += 1
-        dpart = bitstring.BitArray(b[pos:pos+212])
-        pos += 212
-        rs = b[pos:pos+32]
+        self.prn = int.from_bytes(    b[pos:pos+  1], 'big'); pos += 1
+        mtid     = int.from_bytes(    b[pos:pos+  1], 'big'); pos += 1
+        dpart    = bitstring.BitArray(b[pos:pos+212])       ; pos += 212
+        rs       =                    b[pos:pos+ 32]
         vid = mtid >> 5  # vender ID
-        if vid == 0b001:
-            self.vendor = "MADOCA"
-        elif vid == 0b010:
-            self.vendor = "MADOCA-PPP"
-        elif vid == 0b011:
-            self.vendor = "QZNMA"
-        elif vid == 0b101:
-            self.vendor = "CLAS"
-        else:
-            self.vendor = f"vendor 0b{vid:03b}"
+        if   vid == 0b001: self.vendor = "MADOCA"
+        elif vid == 0b010: self.vendor = "MADOCA-PPP"
+        elif vid == 0b011: self.vendor = "QZNMA"
+        elif vid == 0b101: self.vendor = "CLAS"
+        else:              self.vendor = f"vendor 0b{vid:03b}"
         self.facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
         self.facility += ":" + str((mtid >> 3) & 1)
-        self.servid = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
-        self.msg_ext = "CNAV" if (mtid >> 1) & 1 else "LNAV"
-        self.sf_ind = mtid & 1  # subframe indicator
-        self.alert = dpart[0:1]
-        self.dpart = dpart[1:]
+        self.servid   = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
+        self.msg_ext  = "CNAV"    if (mtid >> 1) & 1 else "LNAV"
+        self.sf_ind   = mtid & 1  # subframe indicator
+        self.alert    = dpart[0:1]
+        self.dpart    = dpart[1:]
         return True
 
     def show_l6_msg(self):
@@ -136,16 +122,16 @@ class QzsL6:
             msg = self.show_unknown_msg()
         if not self.fp_disp:
             return
+        disp_msg = self.msg_color.fg('green') + \
+            f'{self.prn} {self.facility:13s}'
+        if self.alert:
+            disp_msg += self.msg_color.fg('red') + '* '
+        else:
+            disp_msg += '  '
+        disp_msg += self.msg_color.fg('yellow') + self.vendor + \
+            self.msg_color.fg() + ' ' + msg
         try:
-            message = self.msg_color.fg('green')
-            message += f'{self.prn} {self.facility:13s}'
-            if self.alert:
-                message += self.msg_color.fg('red') + '* '
-            else:
-                message += '  '
-            message += self.msg_color.fg('yellow') + self.vendor
-            message += self.msg_color.fg() + ' ' + msg
-            print(message, file=self.fp_disp)
+            print(disp_msg, file=self.fp_disp)
         except (BrokenPipeError, IOError):
             sys.exit()
 
@@ -164,8 +150,7 @@ class QzsL6:
         if len(self.dpart) < 12:
             return False
         pos = 0
-        msgnum = self.dpart[pos:pos + 12].uint
-        pos += 12
+        msgnum = self.dpart[pos:pos + 12].uint; pos += 12
         if msgnum == 0:
             return False
         satsys = msgnum2satsys(msgnum)
@@ -197,7 +182,7 @@ class QzsL6:
         pos = self.ssr.decode_cssr_head(self.payload)
         if pos == 0:
             return 0
-        if self.ssr.subtype == 1:
+        if   self.ssr.subtype == 1:
             pos = self.ssr.decode_cssr_st1(self.payload, pos)
         elif self.ssr.subtype == 2:
             pos = self.ssr.decode_cssr_st2(self.payload, pos)
@@ -232,15 +217,13 @@ class QzsL6:
         '''returns decoded message'''
         dpart = self.dpart
         pos = 0
-        self.tow = dpart[pos:pos+20].uint
-        pos += 20
-        self.wn = dpart[pos:pos+13].uint
-        pos += 13
+        self.tow   = dpart[pos:pos+20].uint; pos += 20
+        self.wn    = dpart[pos:pos+13].uint; pos += 13
         self.dpart = dpart[pos:]
-        message = gps2utc.gps2utc(self.wn, self.tow) + ' '
+        disp_msg   = gps2utc.gps2utc(self.wn, self.tow) + ' '
         while self.mdc2rtcm():
-            message += f'RTCM {self.msgnum}({self.ssr.ssr_nsat}) '
-        return message
+            disp_msg += f'RTCM {self.msgnum}({self.ssr.ssr_nsat}) '
+        return disp_msg
 
     def show_cssr_msg(self):
         '''returns decoded message'''
@@ -268,36 +251,34 @@ class QzsL6:
                     self.payload = bitstring.BitArray()
                 else:
                     self.payload.append(self.dpart)
-        message = ''
+        disp_msg = ''
         if self.sfn != 0:
-            message += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
+            disp_msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
             if self.vendor == "MADOCA-PPP":
-                message += f' ({self.servid} {self.msg_ext})'
+                disp_msg += f' ({self.servid} {self.msg_ext})'
         if not self.cssr2rtcm():  # could not decode CSSR any messages
             if self.run and self.ssr.subtype == 0:  # whole message is null
-                message += self.msg_color.dec('dark')
-                message += ' (null)'
-                message += self.msg_color.dec()
+                disp_msg += self.msg_color.dec('dark') + ' (null)' + \
+                    self.msg_color.dec()
                 self.payload = bitstring.BitArray()
             elif self.run:  # or, continual message
-                message += f' ST{self.ssr.subtype}' + \
+                disp_msg += f' ST{self.ssr.subtype}' + \
                     self.msg_color.fg('yellow') + '...' + \
                     self.msg_color.fg()
             else:  # ST1 mask message has not been found yet
-                message += self.msg_color.dec('dark')
-                message += ' (syncing)'
-                message += self.msg_color.dec()
+                disp_msg += self.msg_color.dec('dark') + ' (syncing)' + \
+                    self.msg_color.dec()
         else:  # found a CSSR message
-            message += f' ST{self.ssr.subtype}'
+            disp_msg += f' ST{self.ssr.subtype}'
             while self.cssr2rtcm():  # try to decode next message
-                message += f' ST{self.ssr.subtype}'
+                disp_msg += f' ST{self.ssr.subtype}'
             if self.ssr.subtype != 0:  # continues to next datapart
-                message += f' ST{self.ssr.subtype}' + \
+                disp_msg += f' ST{self.ssr.subtype}' + \
                     self.msg_color.fg('yellow') + '...' + \
                     self.msg_color.fg()
             else:  # end of message in the subframe
                 self.payload = bitstring.BitArray()
-        return message
+        return disp_msg
 
     def show_qznma_msg(self):
         '''returns decoded message'''

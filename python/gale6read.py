@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# gale62rtcm.py: C/NAV page to RTCM message
+# gale6read.py: Galileo E6B message reader
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
@@ -25,12 +25,11 @@ except ModuleNotFoundError:
     ''', file=sys.stderr)
     sys.exit(1)
 
-
-LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit, or 62 byte (61.5 byte)
+LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Galileo E6B message to RTCM message')
+        description='Galileo E6B message dump')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -49,30 +48,23 @@ if __name__ == '__main__':
     args = parser.parse_args()
     fp_rtcm = None
     fp_disp = sys.stdout
-    t_level = 0
-    force_ansi_color = False
-    stat = False
-    if 0 < args.trace:
-        t_level = args.trace
+    if args.trace < 0:
+        print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
+        sys.exit(1)
     if args.rtcm:  # RTCM message output to stdout
         fp_rtcm = sys.stdout
         fp_disp = None
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
-    if args.statistics:  # show HAS statistics
-        stat = True
-    if args.color:
-        force_ansi_color = True
-    gale6 = libgale6.GalE6(fp_rtcm, fp_disp, t_level, force_ansi_color, stat)
-    raw = sys.stdin.buffer.read(LEN_CNAV_PAGE+1)
+    gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
+    raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
     while raw:
         satid = int.from_bytes(raw[0:1], 'little')
         cnav = raw[1:]
         if not gale6.ready_decoding_has(satid, cnav):
-            raw = sys.stdin.buffer.read(LEN_CNAV_PAGE+1)
+            raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
             continue
-        has_msg=gale6.obtain_has_message()
-        gale6.decode_has_message(has_msg)
+        gale6.decode_has_message()
 
 # EOF
 

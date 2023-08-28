@@ -11,7 +11,6 @@
 import datetime
 import sys
 
-
 def gps2utc(gpsweek, gpssec):
     leapsec = 18
     rollover = 0
@@ -21,7 +20,6 @@ def gps2utc(gpsweek, gpssec):
         weeks=gpsweek + rollover * 1024,
         seconds=gpssec - leapsec)
     return datetime.datetime.strftime(epoch + elapsed, datetimefmt)
-
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:

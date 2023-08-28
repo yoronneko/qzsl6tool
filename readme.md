@@ -8,81 +8,48 @@ English description is available [here](readme-en.md).
 
 これは、準天頂衛星みちびき（QZS: quasi-zenith satellite）がL6周波数帯にて放送するメッセージを表示するツール集です。これは自らの研究のために作成したものですが、多くの方にも役立つと思い公開します。
 
-![QZS L6 Tool](img/test-transmission-of-qzss-madoca-ppp.jpg)
+![QZS L6 Tool](img/ansi-color-escape-sequence.jpg)
 
 # アプリケーション・プログラム
+
+**プログラム名を次のように変更しました**
+| previous program | new program                       | note                |
+|----|----|----|
+|``alst2qzsl6.py`` |``alstread.py``                    |                     |
+|``qzsl62rtcm.py`` |``qzsl6read.py``                   |                     |
+|``showrtcm.py``   |``rtcmread.py``                    |                     |
+|``pksdr2qzsl6.py``|``pksdrread.py -l``                | option -l is needed |
+|``pksdr2has.py``  |``pksdrread.py -e \| gale6read.py``| option -e is needed |
 
 このツール集は、メッセージを標準入力で受け取り、変換結果を逐次的に標準出力に出力するpythonプログラムからなります。netcatの``nc``や、[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の``str2str``などを用いれば、ネットワーク上にある情報を活用することも可能です。必要に応じて、標準エラー出力も利用できます。
 
 このコードは、Pythonの``bitstring``モジュールを利用します。``pip3 install bitstring``により、このモジュールをインストールしてください。
 
-このツール集は、
-- みちびきL6形式の生データからRTCM形式に変換するプログラム（``qzsl62rtcm.py``）
-- みちびきL6帯信号受信機の生データ出力からペイロードを抽出するプログラム（Allystar HD9310C: ``alst2qzsl6.py``、[Pocket SDR](https://github.com/tomojitakasu/PocketSDR): ``pksdr2qzsl6.py``）
-- RTCMメッセージを表示するプログラム（``showrtcm.py``）
+このツール集は、``python``ディレクトリにあり、
+
+- みちびきL6形式の内容を表示するプログラム``qzsl6read.py``（旧``qzsl62rtcm.py``）
+- Galileo HAS (high accuracy service) の内容を表示するプログラム``gale6read.py``
+- 受信機の生データ出力からペイロードを抽出するプログラム:  
+Allystar HD9310C ``alstread.py``（旧``alst2qzsl6.py``  
+[Pocket SDR](https://github.com/tomojitakasu/PocketSDR) ``psdrread.py``（旧``pksdr2qzsl6.py``）  
+NovAtel OEM729 ``novread.py``  
+Septentrio mosaic-X5, mosaic-CLAS ``septread.py``
+- RTCMメッセージ内容を表示するプログラム``rtcmread.py``（旧``showrtcm.py``）
 - GPS時刻とUTC（universal coordinate time）とを相互変換するプログラム（``gps2utc.py``、``utc2gps.py``）
 - 緯度・経度・楕円体高座標とECEF（earth-centered earth-fixed）座標とを相互変換するプログラム（``llh2ecef.py``、``ecef2llh.py``）
-- Galileo HAS (high accuracy service) ヘッダを表示するプログラム（試験中, ``pksdr2has.py``）
 
 からなります。ディレクトリ構造は次のとおりです。
 ```
-├── img
-│   └── test-transmission-of-qzss-madoca-ppp.jpg
-├── license.txt
-├── python
-│   ├── alst2qzsl6.py
-│   ├── ecef2llh.py
-│   ├── gps2utc.py
-│   ├── libcolor.py
-│   ├── libeph.py
-│   ├── libobs.py
-│   ├── libqzsl6.py
-│   ├── librtcm.py
-│   ├── libssr.py
-│   ├── llh2ecef.py
-│   ├── pksdr2has.py
-│   ├── pksdr2qzsl6.py
-│   ├── qzsl62rtcm.py
-│   ├── showrtcm.py
-│   └── utc2gps.py
-├── readme-en.md
-├── readme.md
-├── sample
-│   ├── 2018001A.l6
-│   ├── 20211226-082212pocketsdr-clas.txt
-│   ├── 20211226-082212pocketsdr-mdc.txt
-│   ├── 2022001A.l6
-│   ├── 20220326-231200clas.alst
-│   ├── 20220326-231200mdc.alst
-│   ├── 20220930-115617pocketsdr-e6b.txt
-│   ├── 20221130-125237mdc-ppp.alst
-│   ├── 20221213-010900.rtcm
-│   ├── 20230305-063900pocketsdr-e6b.txt
-│   └── readme.txt
-└── test
-    ├── do_test.sh
-    ├── expect
-    │   ├── 20211226-082212pocketsdr-clas.l6
-    │   ├── 20211226-082212pocketsdr-mdc.l6
-    │   ├── 20220326-231200clas.l6
-    │   ├── 20220326-231200clas.rtcm
-    │   ├── 20220326-231200clas.rtcm.txt
-    │   ├── 20220326-231200clas.txt
-    │   ├── 20220326-231200mdc.l6
-    │   ├── 20220326-231200mdc.rtcm
-    │   ├── 20220326-231200mdc.rtcm.txt
-    │   ├── 20220326-231200mdc.txt
-    │   ├── 20220930-115617pocketsdr-e6b.txt
-    │   ├── 20221130-125237mdc-ppp.l6
-    │   ├── 20221130-125237mdc-ppp.rtcm
-    │   ├── 20221130-125237mdc-ppp.rtcm.txt
-    │   ├── 20221130-125237mdc-ppp.txt
-    │   ├── 20221213-010900.rtcm.txt
-    │   └── 20230305-063900pocketsdr-e6b.txt
-    └── readme.md
+├── img/         (image for documentation)
+├── license.txt  (license description)
+├── python/      (code directory)
+├── readme-en.md (English document)
+├── readme.md    (this file, Japanese document)
+├── sample/      (sample data for processing)
+└── test/        (a bash script to test the tools)
 ```
 
-## qzsl62rtcm.py
+## qzsl6read.py
 
 これは、みちびきL6形式の生データからRTCM形式に変換するプログラムです。オプションを指定しなければ、標準出力に、みちびき管制局やL6メッセージを表示します。
 
@@ -112,7 +79,7 @@ options:
 ```
 
 端末出力に対しては、ANSI（アンジー）カラー・エスケープ・シーケンスによりカラー表示します。
-![ANSI color escape sequence](img/ansi-color-escape-sequence.jpg)
+
 端末出力のリダイレクトを行うと、エスケープ・シーケンスは含まれません。リダイレクトを利用すれば、カラー表示をオフにできます（``cat qzss_file.l6 | qzsl62rtcm.py | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します。
 ```
 cat qzss_file.l6 | qzsl62rtcm.py -c | lv

@@ -12,7 +12,6 @@
 import math
 import sys
 
-
 def llh2ecef(lat, lon, height):
     wgs84er = 6378137.
     wgs84ef = 1. / 298.257223563
@@ -27,7 +26,6 @@ def llh2ecef(lat, lon, height):
     y = (v + height) * cosp * sinl
     z = (v * (1. - e2) + height) * sinp
     return x, y, z
-
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

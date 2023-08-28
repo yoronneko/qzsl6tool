@@ -59,24 +59,19 @@ class Rtcm:
         self.ssr = libssr.Ssr(fp_disp, t_level, self.msg_color)  # SSR
 
 # --- public
-    def read_rtcm_msg(self):
+    def read(self):
         '''returns true if successfully reading an RTCM message'''
         BUFMAX = 1000  # maximum length of buffering RTCM message
         BUFADD =   20  # length of buffering additional RTCM message
-        ok = False
-        color = libcolor.Color(sys.stderr)
-        while not ok:
+        while True:
             if BUFMAX < len(self.readbuf):
-                print(color.fg('red') + \
-                    "RTCM buffer exhausted" + \
-                    color.fg(), file=sys.stderr)
+                print(libcolor.Color().fg('red') + "RTCM buffer exhausted" + \
+                    libcolor.Color().fg(), file=sys.stderr)
                 return False
             try:
                 b = sys.stdin.buffer.read(BUFADD)
             except KeyboardInterrupt:
-                print(color.fg('yellow') + \
-                     "User break - terminated" + \
-                     color.fg(), file=sys.stderr)
+                print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
                 return False
             if not b:
                 return False
@@ -103,15 +98,14 @@ class Rtcm:
             bp = self.readbuf[pos+3:pos+3+mlen]  # possible payload
             bc = self.readbuf[pos+3+mlen:pos+3+mlen+3]  # possible CRC
             frame = b'\xd3' + bl + bp
-            if bc == rtk_crc24q(frame, len(frame)):
-                ok = True
-                self.readbuf = self.readbuf[pos+3+mlen+3:]
-            else:  # CRC error
-                print(color.fg('red') + \
-                     "CRC error" + \
-                     color.fg(), file=sys.stderr)
+            if bc != rtk_crc24q(frame, len(frame)):  # CRC error
+                print(libcolor.Color().fg('red') + "CRC error" + \
+                     libcolor.Color().fg(), file=sys.stderr)
                 self.readbuf = self.readbuf[pos + 1:]
                 continue
+            else:  # read properly
+                self.readbuf = self.readbuf[pos+3+mlen+3:]
+                break
         self.payload = bitstring.BitArray(bp)
         self.string = ''
         return True
@@ -119,8 +113,8 @@ class Rtcm:
     def decode_rtcm_msg(self):
         payload = self.payload
         pos = 0
-        msgnum = payload[pos:pos+12].uint  # message number
-        pos += 12
+        # message number
+        msgnum = payload[pos:pos+12].uint; pos += 12
         satsys = msgnum2satsys(msgnum)
         mtype = msgnum2mtype(msgnum)
         msg = ''
@@ -151,24 +145,23 @@ class Rtcm:
             elif mtype == 'SSR hr clock':
                 pos, msg = self.ssr.ssr_decode_hr_clock(payload, pos, satsys)
             else:
-                pass  # unsupported message type
+                pass  # unsupported RTCM SSR message type
         else:
-            pass  # unsupported message type
-        message = self.msg_color.fg('green') + f'RTCM {msgnum} '
-        message += self.msg_color.fg('yellow')
-        message += f'{satsys:1} {mtype:14}'
-        message += self.msg_color.fg() + msg
+            pass  # unsupported RTCM message type
+        disp_msg = self.msg_color.fg('green') + f'RTCM {msgnum} ' + \
+            self.msg_color.fg('yellow') + f'{satsys:1} {mtype:14}' + \
+            self.msg_color.fg() + msg
         if pos % 8 != 0:  # byte align
             pos += 8 - (pos % 8)
         #if pos != len(payload.bin):
-        #    message += self.msg_color.fg('red') + \
+        #    disp_msg += self.msg_color.fg('red') + \
         #        ' RTCM packet size error:' + \
         #        f'expected {len(payload.bin)}, actual {pos}' + \
         #        self.msg_color.fg()
         if not self.fp_disp:
             return
         try:
-            print(message, file=self.fp_disp)
+            print(disp_msg, file=self.fp_disp)
             self.fp_disp.flush()
         except (BrokenPipeError, IOError):
             sys.exit()
@@ -185,23 +178,18 @@ class Rtcm:
 
     def decode_antenna_position(self, payload, pos, msgnum):
         '''returns pos and string'''
-        stid = payload[pos:pos+12].uint
-        pos += 12
-        itrf = payload[pos:pos+6].uint
-        pos += 6 + 4
-        px = payload[pos:pos+38].int * 1e-4
-        pos += 38 + 2
-        py = payload[pos:pos+38].int * 1e-4
-        pos += 38 + 2
-        pz = payload[pos:pos+38].int * 1e-4
-        pos += 38
+        stid = payload[pos:pos+12].uint; pos += 12
+        itrf = payload[pos:pos+ 6].uint; pos += 6 + 4
+        px   = payload[pos:pos+38].int * 1e-4; pos += 38 + 2
+        py   = payload[pos:pos+38].int * 1e-4; pos += 38 + 2
+        pz   = payload[pos:pos+38].int * 1e-4; pos += 38
         if msgnum == 1006:  # antenna height for RTCM 1006
             ahgt = payload[pos:pos+16].uint * 1e-4
             if ahgt != 0:
                 string += f' (ant {ahgt:.3f})'
         lat, lon, height = ecef2llh.ecef2llh(px, py, pz)
-        string = f'{lat:.7f} {lon:.7f} {height:.3f}'
-        return pos, string
+        disp_msg = f'{lat:.7f} {lon:.7f} {height:.3f}'
+        return pos, disp_msg
 
     def decode_ant_info(self, payload, pos, msgnum):
         '''returns pos and string'''
@@ -210,45 +198,33 @@ class Rtcm:
         str_rcv = ''
         str_ver = ''
         str_rsn = ''
-        stid = payload[pos:pos+12].uint
-        pos += 12
-        l = payload[pos:pos+8].uint
-        pos += 8
+        stid = payload[pos:pos+12].uint; pos += 12
+        l    = payload[pos:pos+ 8].uint; pos += 8
         for i in range(l):
-            str_ant += chr(payload[pos:pos+8].uint)
-            pos += 8
-        ant_setup = payload[pos:pos+8].uint
-        pos += 8
+            str_ant += chr(payload[pos:pos+8].uint); pos += 8
+        ant_setup = payload[pos:pos+8].uint; pos += 8
         if msgnum == 1008 or msgnum == 1033:
-            l = payload[pos:pos+8].uint
-            pos += 8
+            l = payload[pos:pos+8].uint; pos += 8
             if 31 < l:
                 l = 31
             for i in range(l):
-                str_ser += chr(payload[pos:pos+8].uint)
-                pos += 8
+                str_ser += chr(payload[pos:pos+8].uint); pos += 8
         if msgnum == 1033:
-            l = payload[pos:pos+8].uint
-            pos += 8
+            l = payload[pos:pos+8].uint; pos += 8
             if 31 < l:
                 l = 31
             for i in range(l):
-                str_rcv += chr(payload[pos:pos+8].uint)
-                pos += 8
-            l = payload[pos:pos+8].uint
-            pos += 8
+                str_rcv += chr(payload[pos:pos+8].uint); pos += 8
+            l = payload[pos:pos+8].uint; pos += 8
             if 31 < l:
                 l = 31
             for i in range(l):
-                str_ver += chr(payload[pos:pos+8].uint)
-                pos += 8
-            l = payload[pos:pos+8].uint
-            pos += 8
+                str_ver += chr(payload[pos:pos+8].uint); pos += 8
+            l = payload[pos:pos+8].uint; pos += 8
             if 31 < l:
                 l = 31
             for i in range(l):
-                str_rsn += chr(payload[pos:pos+8].uint)
-                pos += 8
+                str_rsn += chr(payload[pos:pos+8].uint); pos += 8
         string = ''
         if stid != 0:
             string += f'{stid} '
@@ -267,23 +243,16 @@ class Rtcm:
 
     def decode_code_phase_bias(self, payload, pos):
         '''decodes code-and-phase bias for GLONASS'''
-        sid = payload[pos:pos+12].uint  # reference station id
-        pos += 12
-        cpbi = payload[pos:pos+1]  # code-phase bias indicator
-        pos += 1
-        pos += 3  # reserved
-        mask = payload[pos:pos+4]  # FDMA signal mask
-        pos += 4
-        l1ca_cpb = payload[pos:pos+16].int  # L1 C/A code-phase bias
-        pos += 16
-        l1p_cpb = payload[pos:pos+16].int  # L1 P code-phase bias
-        pos += 16
-        l2ca_cpb = payload[pos:pos+16].int # L2 C/A code-phase bias
-        pos += 16
-        l2p_cpb = payload[pos:pos+16].int  # L2 P  code-phase bias
-        pos += 16
-        string = ''
-        return pos, string
+        sid  = payload[pos:pos+12].uint; pos += 12  # reference station id
+        cpbi = payload[pos:pos+1];       pos +=  1  # code-phase bias indicator
+        pos += 3                                    # reserved
+        mask     = payload[pos:pos+4]     ; pos +=  4  # FDMA signal mask
+        l1ca_cpb = payload[pos:pos+16].int; pos += 16  # L1 C/A code-phase bias
+        l1p_cpb  = payload[pos:pos+16].int; pos += 16  # L1 P code-phase bias
+        l2ca_cpb = payload[pos:pos+16].int; pos += 16  # L2 C/A code-phase bias
+        l2p_cpb  = payload[pos:pos+16].int; pos += 16  # L2 P  code-phase bias
+        disp_msg = ''
+        return pos, disp_msg
 
 def send_rtcm(fp, rtcm_payload):
     if not fp:
@@ -297,22 +266,21 @@ def send_rtcm(fp, rtcm_payload):
 
 def msgnum2satsys(msgnum):  # message number to satellite system
     satsys = ''
-    if msgnum in {1001, 1002, 1003, 1004, 1019, 1071, 1072, 1073, 1074,
-                1075, 1076, 1077, 1057, 1058, 1059, 1060, 1061, 1062,
-                11}:
+    if   msgnum in {1001, 1002, 1003, 1004, 1019, 1071, 1072, 1073, 1074,
+             1075, 1076, 1077, 1057, 1058, 1059, 1060, 1061, 1062, 11}:
         satsys = 'G'
     elif msgnum in {1009, 1010, 1011, 1012, 1020, 1081, 1081, 1082, 1083,
-                1084, 1085, 1086, 1087, 1063, 1064, 1065, 1066, 1067,
-                1068, 1230}:
+            1084, 1085, 1086, 1087, 1063, 1064, 1065, 1066, 1067,
+            1068, 1230}:
         satsys = 'R'
     elif msgnum in {1045, 1046, 1091, 1092, 1093, 1094, 1095, 1096, 1097,
-                1240, 1241, 1242, 1243, 1244, 1245, 12}:
+            1240, 1241, 1242, 1243, 1244, 1245, 12}:
         satsys = 'E'
     elif msgnum in {1044, 1111, 1112, 1113, 1114, 1115, 1116, 1117, 1246,
-                1247, 1248, 1249, 1250, 1251, 13}:
+            1247, 1248, 1249, 1250, 1251, 13}:
         satsys = 'J'
     elif msgnum in {1042, 63, 1121, 1122, 1123, 1124, 1125, 1126, 1127, 1258,
-                1259, 1260, 1261, 1262, 1263, 14}:
+            1259, 1260, 1261, 1262, 1263, 14}:
         satsys = 'C'
     elif msgnum in {1101, 1102, 1103, 1104, 1105, 1106, 1107}:
         satsys = 'S'
@@ -322,47 +290,28 @@ def msgnum2satsys(msgnum):  # message number to satellite system
 
 def msgnum2mtype(msgnum):  # message number to message type
     mtype = f'MT{msgnum:<4d}'
-    if msgnum in {1001, 1009}:
-        mtype = 'Obs L1'
-    elif msgnum in {1002, 1010}:
-        mtype = 'Obs Full L1'
-    elif msgnum in {1003, 1011}:
-        mtype = 'Obs L1L2'
-    elif msgnum in {1004, 1012}:
-        mtype = 'Obs Full L1L2'
-    elif msgnum in {1019, 1020, 1044, 1042, 1041, 63}:
-        mtype = 'NAV'
-    elif msgnum == 1230:
-        mtype = 'CodePhase bias'
-    elif msgnum == 1045:
-        mtype = 'F/NAV'
-    elif msgnum == 1046:
-        mtype = 'I/NAV'
+    if   msgnum in {1001, 1009}                  : mtype = 'Obs L1'
+    elif msgnum in {1002, 1010}                  : mtype = 'Obs Full L1'
+    elif msgnum in {1003, 1011}                  : mtype = 'Obs L1L2'
+    elif msgnum in {1004, 1012}                  : mtype = 'Obs Full L1L2'
+    elif msgnum in {1019, 1020, 1044, 1042, 1041, 63}: mtype = 'NAV'
+    elif msgnum == 1230                          : mtype = 'CodePhase bias'
+    elif msgnum == 1045                          : mtype = 'F/NAV'
+    elif msgnum == 1046                          : mtype = 'I/NAV'
     elif (1071 <= msgnum and msgnum <= 1077) or \
        (1081 <= msgnum and msgnum <= 1087) or \
        (1091 <= msgnum and msgnum <= 1097) or \
-       (1101 <= msgnum and msgnum <= 1137):
-        mtype = f'MSM{msgnum % 10}'
-    elif msgnum in {1057, 1063, 1240, 1246, 1258}:
-        mtype = 'SSR orbit'
-    elif msgnum in {1058, 1064, 1241, 1247, 1259}:
-        mtype = 'SSR clock'
-    elif msgnum in {1059, 1065, 1242, 1248, 1260}:
-        mtype = 'SSR code bias'
-    elif msgnum in {1060, 1066, 1243, 1249, 1261}:
-        mtype = 'SSR obt/clk'
-    elif msgnum in {1061, 1067, 1244, 1250, 1262}:
-        mtype = 'SSR URA'
-    elif msgnum in {1062, 1068, 1245, 1251, 1263}:
-        mtype = 'SSR hr clock'
-    elif msgnum in {11, 12, 13, 14}:
-        mtype = 'SSR phase bias'
-    elif msgnum in {1007, 1008, 1033}:
-        mtype = 'Ant/Rcv info'
-    elif msgnum in {1005, 1006}:
-        mtype = 'Position'
-    elif msgnum == 4073:
-        mtype = 'CSSR'
+       (1101 <= msgnum and msgnum <= 1137)       : mtype = f'MSM{msgnum % 10}'
+    elif msgnum in {1057, 1063, 1240, 1246, 1258}: mtype = 'SSR orbit'
+    elif msgnum in {1058, 1064, 1241, 1247, 1259}: mtype = 'SSR clock'
+    elif msgnum in {1059, 1065, 1242, 1248, 1260}: mtype = 'SSR code bias'
+    elif msgnum in {1060, 1066, 1243, 1249, 1261}: mtype = 'SSR obt/clk'
+    elif msgnum in {1061, 1067, 1244, 1250, 1262}: mtype = 'SSR URA'
+    elif msgnum in {1062, 1068, 1245, 1251, 1263}: mtype = 'SSR hr clock'
+    elif msgnum in {11, 12, 13, 14}              : mtype = 'SSR phase bias'
+    elif msgnum in {1007, 1008, 1033}            : mtype = 'Ant/Rcv info'
+    elif msgnum in {1005, 1006}                  : mtype = 'Position'
+    elif msgnum == 4073                          : mtype = 'CSSR'
     return mtype
 
 tbl_CRC24Q = [

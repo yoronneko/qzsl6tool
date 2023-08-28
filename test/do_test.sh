@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CODEDIR=../python/
-#CODEDIR=
+CODEDIR=
 
 ESC=$(printf '\033')
 
@@ -25,18 +25,18 @@ do_test() {
 }
 
 # ------
-CODE=${CODEDIR}pksdr2qzsl6.py ARG= EXT_FROM=txt EXT_TO=l6
-echo "Pocket SDR to QZS L6 message conversion (${CODE})"
+CODE=${CODEDIR}psdrread.py ARG=-l EXT_FROM=psdr EXT_TO=l6
+echo "Pocket SDR to QZS L6 message conversion (${CODE} ${ARG})"
 
 SRCDIR=../sample/
-BASENAME=20211226-082212pocketsdr-clas
+BASENAME=20211226-082212clas
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20211226-082212pocketsdr-mdc
+BASENAME=20211226-082212mdc
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}alst2qzsl6.py ARG=-l EXT_FROM=alst EXT_TO=l6
+CODE=${CODEDIR}alstread.py ARG=-l EXT_FROM=alst EXT_TO=l6
 echo ""
 echo "Allystar to QZS L6 message conversion (${CODE} ${ARG})"
 
@@ -51,9 +51,9 @@ BASENAME=20221130-125237mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}novdump.py ARG='' EXT_FROM=nov EXT_TO=txt
+CODE=${CODEDIR}novread.py ARG='' EXT_FROM=nov EXT_TO=txt
 echo ""
-echo "NovAtel raw message dump (${CODE})"
+echo "NovAtel raw message read (${CODE})"
 
 SRCDIR=../sample/
 BASENAME=20230819-053733has
@@ -63,9 +63,9 @@ BASENAME=20230819-061342misc
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}septdump.py ARG='' EXT_FROM=sept EXT_TO=txt
+CODE=${CODEDIR}septread.py ARG='' EXT_FROM=sept EXT_TO=txt
 echo ""
-echo "Septentrio raw data dump (${CODE})"
+echo "Septentrio raw data read (${CODE})"
 
 SRCDIR=../sample/
 BASENAME=20230819-081730hasbds
@@ -78,9 +78,9 @@ BASENAME=20230819-085030mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}qzsl62rtcm.py ARG='-t 2' EXT_FROM=l6 EXT_TO=txt
+CODE=${CODEDIR}qzsl6read.py ARG='-t 2' EXT_FROM=l6 EXT_TO=txt
 echo ""
-echo "QZS L6 message dump (${CODE} ${ARG})"
+echo "QZS L6 message read (${CODE} ${ARG})"
 
 SRCDIR=expect/
 BASENAME=20220326-231200clas
@@ -93,7 +93,7 @@ BASENAME=20221130-125237mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}qzsl62rtcm.py ARG='-r' EXT_FROM=l6 EXT_TO=rtcm
+CODE=${CODEDIR}qzsl6read.py ARG='-r' EXT_FROM=l6 EXT_TO=rtcm
 echo ""
 echo "QZS L6 to RTCM message conversion (${CODE} ${ARG})"
 
@@ -108,9 +108,9 @@ BASENAME=20221130-125237mdc-ppp
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}showrtcm.py ARG= EXT_FROM=rtcm EXT_TO=rtcm.txt
+CODE=${CODEDIR}rtcmread.py ARG= EXT_FROM=rtcm EXT_TO=rtcm.txt
 echo ""
-echo "RTCM message dump (${CODE})"
+echo "RTCM message read (${CODE})"
 
 SRCDIR=expect/
 BASENAME=20220326-231200clas
@@ -127,21 +127,37 @@ BASENAME=20221213-010900
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
-CODE=${CODEDIR}pksdr2has.py ARG='-t 2' EXT_FROM=txt EXT_TO=txt
-echo ""
-echo "Pocket SDR HAS message dump (${CODE} ${ARG})"
+echo
+echo '--- Compatibility test: you may see update note ---'
+echo
+
+# ------
+CODE=${CODEDIR}pksdr2qzsl6.py ARG= EXT_FROM=psdr EXT_TO=l6
+echo "Pocket SDR to QZS L6 message conversion (${CODE})"
 
 SRCDIR=../sample/
-BASENAME=20220930-115617pocketsdr-e6b
+BASENAME=20211226-082212clas
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20230305-063900pocketsdr-e6b
+BASENAME=20211226-082212mdc
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+# ------
+CODE=${CODEDIR}pksdr2has.py ARG='-t 2' EXT_FROM=psdr EXT_TO=txt
+echo ""
+echo "Pocket SDR HAS message read (${CODE} ${ARG})"
+
+SRCDIR=../sample/
+BASENAME=20220930-115617has
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+BASENAME=20230305-063900has
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
 CODE=${CODEDIR}nov2has.py ARG='-t 2' EXT_FROM=nov EXT_TO=decoded.txt
 echo ""
-echo "NovAtel HAS message dump (${CODE} ${ARG})"
+echo "NovAtel HAS message read (${CODE} ${ARG})"
 
 SRCDIR=../sample/
 BASENAME=20230819-053733has

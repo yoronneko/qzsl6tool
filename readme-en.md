@@ -8,81 +8,48 @@ https://github.com/yoronneko/qzsl6tool
 
 This is a collection of tools that display messages broadcast by the Quasi-Zenith Satellite, petnamed Michibiki, in the L6 frequency band. This was created for my own research, but I think it would be useful for many people.
 
-![QZS L6 Tool](img/test-transmission-of-qzss-madoca-ppp.jpg)
+![QZS L6 Tool](img/ansi-color-escape-sequence.jpg)
+
 
 # Application program
+
+**Program names were changed accordingly**
+| previous program | new program                       | note                |
+|----|----|----|
+|``alst2qzsl6.py`` |``alstread.py``                    |                     |
+|``qzsl62rtcm.py`` |``qzsl6read.py``                   |                     |
+|``showrtcm.py``   |``rtcmread.py``                    |                     |
+|``pksdr2qzsl6.py``|``pksdrread.py -l``                | option -l is needed |
+|``pksdr2has.py``  |``pksdrread.py -e \| gale6read.py``| option -e is needed |
 
 This toolkit consists of a python program that receives messages on standard input and sequentially outputs the conversion results to standard output. By using ``nc`` of netcat or ``str2str`` of [RTKLIB](https://github.com/tomojitakasu/RTKLIB), it is possible to utilize information on the network. Standard error output is also available if desired.
 
 This Python code makes use of the ``bitstring`` module. Please install this module with a command ``pip3 install bitstring``.
 
 This toolkit consists of the following programs:
-- A program to convert raw data in Michibiki L6 format to RTCM format (``qzsl62rtcm.py``)
-- Programs to extract payload from raw data output of Michibiki L6 band signal receiver (Allystar HD9310C: ``alst2qzsl6.py``, [Pocket SDR](https://github.com/tomojitakasu/PocketSDR): ``pksdr2qzsl6.py``)
-- A program to display RTCM messages (``showrtcm.py``)
+- A program to decode Quasi-Zenith Satellite L6 format data ``qzsl6read.py`` (previous ``qzsl62rtcm.py``)
+- A program to decode Galileo HAS (high accuracy service) data ``gale6read.py``
+- Programs to extract payload from receivers' raw data output:
+Allystar HD9310C ``alstread.py`` (previous ``alst2qzsl6.py``)  
+[Pocket SDR](https://github.com/tomojitakasu/PocketSDR) ``psdrread.py`` (previous ``pksdr2qzsl6.py``)  
+NovAtel OEM729 ``novread.py``  
+Septentrio mosaic-X5, mosaic-CLAS ``septread.py``
+- A program to display RTCM messages ``rtcmread.py (previous ``showrtcm.py``)
 - Programs to mutually convert between GPS time and UTC (universal coordinate time) (``gps2utc.py``, ``utc2gps.py``)
 - Programs to mutually convert between latitude/longitude/elliptical height coordinates and ECEF (earth-centered earth-fixed) coordinates (``llh2ecef.py``, ``ecef2llh.py``)
-- Program to display Galileo HAS (high accuracy service) header (experimental, ``pksdr2has.py``)
 
 Here is the directory structure:
 ```
-├── img
-│   └── test-transmission-of-qzss-madoca-ppp.jpg
-├── license.txt
-├── python
-│   ├── alst2qzsl6.py
-│   ├── ecef2llh.py
-│   ├── gps2utc.py
-│   ├── libcolor.py
-│   ├── libeph.py
-│   ├── libobs.py
-│   ├── libqzsl6.py
-│   ├── librtcm.py
-│   ├── libssr.py
-│   ├── llh2ecef.py
-│   ├── pksdr2has.py
-│   ├── pksdr2qzsl6.py
-│   ├── qzsl62rtcm.py
-│   ├── showrtcm.py
-│   └── utc2gps.py
-├── readme-en.md
-├── readme.md
-├── sample
-│   ├── 2018001A.l6
-│   ├── 20211226-082212pocketsdr-clas.txt
-│   ├── 20211226-082212pocketsdr-mdc.txt
-│   ├── 2022001A.l6
-│   ├── 20220326-231200clas.alst
-│   ├── 20220326-231200mdc.alst
-│   ├── 20220930-115617pocketsdr-e6b.txt
-│   ├── 20221130-125237mdc-ppp.alst
-│   ├── 20221213-010900.rtcm
-│   ├── 20230305-063900pocketsdr-e6b.txt
-│   └── readme.txt
-└── test
-    ├── do_test.sh
-    ├── expect
-    │   ├── 20211226-082212pocketsdr-clas.l6
-    │   ├── 20211226-082212pocketsdr-mdc.l6
-    │   ├── 20220326-231200clas.l6
-    │   ├── 20220326-231200clas.rtcm
-    │   ├── 20220326-231200clas.rtcm.txt
-    │   ├── 20220326-231200clas.txt
-    │   ├── 20220326-231200mdc.l6
-    │   ├── 20220326-231200mdc.rtcm
-    │   ├── 20220326-231200mdc.rtcm.txt
-    │   ├── 20220326-231200mdc.txt
-    │   ├── 20220930-115617pocketsdr-e6b.txt
-    │   ├── 20221130-125237mdc-ppp.l6
-    │   ├── 20221130-125237mdc-ppp.rtcm
-    │   ├── 20221130-125237mdc-ppp.rtcm.txt
-    │   ├── 20221130-125237mdc-ppp.txt
-    │   ├── 20221213-010900.rtcm.txt
-    │   └── 20230305-063900pocketsdr-e6b.txt
-    └── readme.md
+├── img/         (image for documentation)
+├── license.txt  (license description)
+├── python/      (code directory)
+├── readme-en.md (English document)
+├── readme.md    (this file, Japanese document)
+├── sample/      (sample data for processing)
+└── test/        (a bash script to test the tools)
 ```
 
-## qzsl62rtcm.py
+## qzsl6read.py (previous qzsl62rtcm.py)
 
 This is a program that converts raw data in Michibiki L6 format into RTCM format. If no options are specified, the results of decoding Michibiki control station and L6 messages are displayed on the standard output.
 
@@ -111,7 +78,7 @@ options:
 ```
 
 Terminal output is colored using ANSI color escape sequences.
-![ANSI color escape sequence](img/ansi-color-escape-sequence.jpg)
+
 Escape sequences are not included when redirecting terminal output. Coloring can be turned off using a redirect (``cat qzss_file.l6 | qzsl62rtcm.py | cat``). On the other hand, to display in color on a pager such as ``less`` or ``lv``, use the ``-c`` option.
 ```
 cat qzss_file.l6 | qzsl62rtcm.py -c | lv

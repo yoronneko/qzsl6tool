@@ -291,23 +291,23 @@ g = np.array([  # Reed-Solomon generator matrix
 [116,64,52,174,54,126,16,194,162,33,33,157,176,197,225,12,59,55,253,228,148,47,179,185,24,138,253,20,142,55,172,88]
 ])
 
-MAX_PAGES = 32
-T_HASS = ['Test', 'Operational', 'Reserved', 'Don''t use']  # HAS status table
+T_HASS    = ["Test", "Operational", "Reserved", "Don't use"]  # HAS status table
+MAX_PAGES = 32  # maximum page size
 
 class GalE6():
-    mid_prev = 0              # previous message id (MID)
-    num_has_pages  = 0        # number of has pages of the message id
+    mid_prev          = 0     # previous message id (MID)
+    num_has_pages     = 0     # number of has pages of the message id
     storing_has_pages = True  # allow storing has pages
     haspage = [0b0 for i in range(MAX_PAGES)]
     hasindx = [0b0 for i in range(MAX_PAGES)]
 
     def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
-        self.fp_rtcm = fp_rtcm
-        self.fp_disp = fp_disp
-        self.t_level = t_level
+        self.fp_rtcm   = fp_rtcm
+        self.fp_disp   = fp_disp
+        self.t_level   = t_level
         self.msg_color = libcolor.Color(fp_disp, color)
-        self.stat = stat
-        self.ssr = libssr.Ssr(fp_disp, t_level, self.msg_color)
+        self.stat      = stat
+        self.ssr       = libssr.Ssr(fp_disp, t_level, self.msg_color)
 
     def __del__(self):
         if self.stat:
@@ -381,30 +381,20 @@ class GalE6():
         self.storing_has_pages = False  # we don't need additional HAS pages
         return True
 
-    def obtain_has_message(self):
-        ''' returns HAS message '''
+    def decode_has_message(self):
         d = GF(g[np.array(self.hasindx[:self.ms])-1, :self.ms])
         w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
         has_msg = bitstring.BitArray(m.tobytes())
         self.trace(2, f'------ HAS decode with the pages of MID={self.mid} MS={self.ms} ------\n')
         self.trace(2, has_msg, '\n------\n')
-        return has_msg
-
-    def decode_has_message(self, has_msg):
         pos = self.decode_has_header(has_msg)
-        if self.f_mask:
-            pos = self.ssr.decode_has_mask(has_msg, pos)
-        if self.f_orbit:
-            pos = self.ssr.decode_has_orbit(has_msg, pos)
-        if self.f_ckful:
-            pos = self.ssr.decode_has_ckful(has_msg, pos)
-        if self.f_cksub:
-            pos = self.ssr.decode_has_cksub(has_msg, pos)
-        if self.f_cbias:
-            pos = self.ssr.decode_has_cbias(has_msg, pos)
-        if self.f_pbias:
-            pos = self.ssr.decode_has_pbias(has_msg, pos)
+        if self.f_mask : pos = self.ssr.decode_has_mask (has_msg, pos)
+        if self.f_orbit: pos = self.ssr.decode_has_orbit(has_msg, pos)
+        if self.f_ckful: pos = self.ssr.decode_has_ckful(has_msg, pos)
+        if self.f_cksub: pos = self.ssr.decode_has_cksub(has_msg, pos)
+        if self.f_cbias: pos = self.ssr.decode_has_cbias(has_msg, pos)
+        if self.f_pbias: pos = self.ssr.decode_has_pbias(has_msg, pos)
         self.trace(2, '------ padding bits ------\n')
         self.trace(2, has_msg[pos:].bin)
         self.trace(2, '\n------\n')

@@ -46,11 +46,9 @@ class Qznma:
         if len(payload) != 1695:
             raise Exception(f"QZNMA size error: {len(payload)} != 1695.")
         pos = 0
-        rds1 = bitstring.BitArray(payload[pos:pos+576])
-        pos += 576
-        rds2 = bitstring.BitArray(payload[pos:pos+576])
-        pos += 576
-        reserved = bitstring.BitArray(payload[pos:pos+543])
+        rds1     = bitstring.BitArray(payload[pos:pos+576]); pos += 576
+        rds2     = bitstring.BitArray(payload[pos:pos+576]); pos += 576
+        reserved = bitstring.BitArray(payload[pos:pos+543]); pos += 543
         if '0b1' in reserved:
             self.trace(2, f"QZNMA dump: {reserved.bin}")
         message = '      '
@@ -91,9 +89,8 @@ class Qznma:
             return message
         satsig = ''
         if svid == 0:
-            message += self.msg_color.dec('dark')
-            message += '(null) '
-            message += self.msg_color.dec()
+            message += self.msg_color.dec('dark') + '(null) ' + \
+                self.msg_color.dec()
             return message
         elif   1 <= svid and svid <=  63: satsig += f'G{svid:02d}'
         elif  65 <= svid and svid <= 127: satsig += f'E{svid-64:02d}'
