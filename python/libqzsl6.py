@@ -45,23 +45,23 @@ from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"
 # --- private
-    dpart = bitstring.BitArray()    # data part
-    dpn = 0                         # data part number
-    sfn = 0                         # subframe number
-    prn = 0                         # psedudo random noise number
-    vendor = ''                     # vendor name
-    facility = ''                   # facility name
-    servid = ''                     # service name
-    msg_ext = ''                    # extension (LNAV or CNAV)
-    sf_ind = 0                      # subframe indicator (0 or 1)
-    alert = 0                       # alert flag (0 or 1)
-    run = False                     # CSSR decode in progress
-    payload = bitstring.BitArray()  # QZS L6 payload
-    msgnum = 0                      # message type number
-    hepoch = 0                      # hourly epoch
-    interval = 0                    # update interval
-    mmi = 0                         # multiple message indication
-    iod = 0                         # SSR issue of data
+    dpart    = bitstring.BitArray()  # data part
+    dpn      = 0                     # data part number
+    sfn      = 0                     # subframe number
+    prn      = 0                     # psedudo random noise number
+    vendor   = ''                    # vendor name
+    facility = ''                    # facility name
+    servid   = ''                    # service name
+    msg_ext  = ''                    # extension (LNAV or CNAV)
+    sf_ind   = 0                     # subframe indicator (0 or 1)
+    alert    = 0                     # alert flag (0 or 1)
+    run      = False                 # CSSR decode in progress
+    payload  = bitstring.BitArray()  # QZS L6 payload
+    msgnum   = 0                     # message type number
+    hepoch   = 0                     # hourly epoch
+    interval = 0                     # update interval
+    mmi      = 0                     # multiple message indication
+    iod      = 0                     # SSR issue of data
 
     def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
         self.fp_rtcm   = fp_rtcm
@@ -92,8 +92,8 @@ class QzsL6:
             print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
             return False
         pos = 0
-        self.prn = int.from_bytes(    b[pos:pos+  1], 'big'); pos += 1
-        mtid     = int.from_bytes(    b[pos:pos+  1], 'big'); pos += 1
+        self.prn = int.from_bytes(    b[pos:pos+  1], 'big'); pos +=   1
+        mtid     = int.from_bytes(    b[pos:pos+  1], 'big'); pos +=   1
         dpart    = bitstring.BitArray(b[pos:pos+212])       ; pos += 212
         rs       =                    b[pos:pos+ 32]
         vid = mtid >> 5  # vender ID
@@ -150,12 +150,12 @@ class QzsL6:
         if len(self.dpart) < 12:
             return False
         pos = 0
-        msgnum = self.dpart[pos:pos + 12].uint; pos += 12
+        msgnum = self.dpart[pos:pos+12].uint; pos += 12
         if msgnum == 0:
             return False
         satsys = msgnum2satsys(msgnum)
-        mtype = msgnum2mtype(msgnum)
-        pos = self.ssr.ssr_decode_head(self.dpart, pos, satsys, mtype)
+        mtype  = msgnum2mtype(msgnum)
+        pos    = self.ssr.ssr_decode_head(self.dpart, pos, satsys, mtype)
         if mtype == 'SSR orbit':
             pos, msg= self.ssr.ssr_decode_orbit(self.dpart, pos, satsys)
         elif mtype == 'SSR clock':
@@ -292,3 +292,4 @@ class QzsL6:
         return ''
 
 # EOF
+

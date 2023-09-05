@@ -48,7 +48,15 @@ if __name__ == '__main__':
     if 'qzsl62rtcm.py' in sys.argv[0]:
         print(libcolor.Color().fg('yellow') + 'Notice: please use "qzsl6read.py", instead of "qzsl62rtcm.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
     qzsl6 = libqzsl6.QzsL6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
-    while qzsl6.read_l6_msg():
-        qzsl6.show_l6_msg()
+    try:
+        while qzsl6.read_l6_msg():
+            qzsl6.show_l6_msg()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
+            libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
 
 # EOF
+

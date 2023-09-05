@@ -33,7 +33,15 @@ if __name__ == '__main__':
     if 'showrtcm.py' in sys.argv[0]:
         print(libcolor.Color().fg('yellow') + 'Notice: please use "rtcmread.py", instead of "showrtcm.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
     rtcm = librtcm.Rtcm(fp_disp, args.trace, args.color)
-    while rtcm.read():
-        rtcm.decode_rtcm_msg()
+    try:
+        while rtcm.read():
+            rtcm.decode_rtcm_msg()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
+            libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
 
 # EOF
+

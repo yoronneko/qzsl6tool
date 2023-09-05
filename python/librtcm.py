@@ -87,21 +87,21 @@ class Rtcm:
             if not found_sync:
                 self.readbuf = b''
                 continue
-            if len_readbuf < pos + 3:  # cannot read message length
+            if len_readbuf < pos + 3:
                 self.readbuf = self.readbuf[pos:]
                 continue
-            bl = self.readbuf[pos+1:pos+3]  # possible message length
+            bl = self.readbuf[pos+1:pos+3]              # possible message len
             mlen = int.from_bytes(bl, 'big') & 0x3ff
-            if len_readbuf < pos + 3 + mlen + 3:  # cannot read message
+            if len_readbuf < pos + 3 + mlen + 3:
                 self.readbuf = self.readbuf[pos:]
                 continue
-            bp = self.readbuf[pos+3:pos+3+mlen]  # possible payload
+            bp = self.readbuf[pos+3:pos+3+mlen]         # possible payload
             bc = self.readbuf[pos+3+mlen:pos+3+mlen+3]  # possible CRC
             frame = b'\xd3' + bl + bp
-            if bc != rtk_crc24q(frame, len(frame)):  # CRC error
+            if bc != rtk_crc24q(frame, len(frame)):     # CRC error
                 print(libcolor.Color().fg('red') + "CRC error" + \
                      libcolor.Color().fg(), file=sys.stderr)
-                self.readbuf = self.readbuf[pos + 1:]
+                self.readbuf = self.readbuf[pos+1:]
                 continue
             else:  # read properly
                 self.readbuf = self.readbuf[pos+3+mlen+3:]
@@ -113,10 +113,9 @@ class Rtcm:
     def decode_rtcm_msg(self):
         payload = self.payload
         pos = 0
-        # message number
-        msgnum = payload[pos:pos+12].uint; pos += 12
+        msgnum = payload[pos:pos+12].uint; pos += 12  # message number
         satsys = msgnum2satsys(msgnum)
-        mtype = msgnum2mtype(msgnum)
+        mtype  = msgnum2mtype(msgnum)
         msg = ''
         if mtype == 'Ant/Rcv info':
             pos, msg = self.decode_ant_info(payload, pos, msgnum)
@@ -130,7 +129,8 @@ class Rtcm:
             pos, msg = self.obs.decode_msm(payload, pos, satsys, mtype)
         elif 'NAV' in mtype:
             pos, msg = self.eph.decode_ephemerides(payload, pos, satsys, mtype)
-        elif mtype == 'CSSR':  # put before SSR, otherwise never selected
+        elif mtype == 'CSSR':
+            # determine CSSR before SSR, otherwise CSSR is never selected
             pos, msg = self.ssr.decode_cssr(payload)  # needs message type info
         elif 'SSR' in mtype:
             pos = self.ssr.ssr_decode_head(payload, pos, satsys, mtype)
@@ -147,17 +147,17 @@ class Rtcm:
             else:
                 pass  # unsupported RTCM SSR message type
         else:
-            pass  # unsupported RTCM message type
+            pass      # unsupported RTCM message type
         disp_msg = self.msg_color.fg('green') + f'RTCM {msgnum} ' + \
             self.msg_color.fg('yellow') + f'{satsys:1} {mtype:14}' + \
             self.msg_color.fg() + msg
         if pos % 8 != 0:  # byte align
             pos += 8 - (pos % 8)
-        #if pos != len(payload.bin):
-        #    disp_msg += self.msg_color.fg('red') + \
-        #        ' RTCM packet size error:' + \
-        #        f'expected {len(payload.bin)}, actual {pos}' + \
-        #        self.msg_color.fg()
+        if pos != len(payload.bin):
+            disp_msg += '\n' + self.msg_color.fg('red') + \
+                'packet size mismatch: ' + \
+                f'expected {len(payload.bin)}, actual {pos}' + \
+                self.msg_color.fg()
         if not self.fp_disp:
             return
         try:
@@ -178,17 +178,29 @@ class Rtcm:
 
     def decode_antenna_position(self, payload, pos, msgnum):
         '''returns pos and string'''
-        stid = payload[pos:pos+12].uint; pos += 12
-        itrf = payload[pos:pos+ 6].uint; pos += 6 + 4
-        px   = payload[pos:pos+38].int * 1e-4; pos += 38 + 2
-        py   = payload[pos:pos+38].int * 1e-4; pos += 38 + 2
-        pz   = payload[pos:pos+38].int * 1e-4; pos += 38
+        stid = payload[pos:pos+12].uint; pos += 12  # station id
+        pos +=  6                                   # reserved ITRF year
+        pos +=  1                                   # GPS indicator
+        pos +=  1                                   # GLO indicator
+        pos +=  1                                   # reserved GAL indicator
+        pos +=  1                                   # reference station ind
+        ipx  = payload[pos:pos+38].int ; pos += 38  # ARP ECEF-X
+        pos +=  1                                   # single receiver osc ind
+        pos +=  1                                   # reserved
+        ipy  = payload[pos:pos+38].int ; pos += 38  # ARP ECEF-Y
+        pos +=  2                                   # quater cycle indicator
+        ipz  = payload[pos:pos+38].int ; pos += 38  # ARP ECEF-Z
+        ahgt =  0                                   # antenna height
         if msgnum == 1006:  # antenna height for RTCM 1006
-            ahgt = payload[pos:pos+16].uint * 1e-4
-            if ahgt != 0:
-                string += f' (ant {ahgt:.3f})'
+            iahgt = payload[pos:pos+16].uint; pos += 16
+            ahgt = iahgt * 1e-4
+        px = ipx * 1e-4
+        py = ipy * 1e-4
+        pz = ipz * 1e-4
         lat, lon, height = ecef2llh.ecef2llh(px, py, pz)
         disp_msg = f'{lat:.7f} {lon:.7f} {height:.3f}'
+        if ahgt != 0:
+            disp_msg += f'(+{ahgt:.3f})'
         return pos, disp_msg
 
     def decode_ant_info(self, payload, pos, msgnum):
@@ -199,7 +211,7 @@ class Rtcm:
         str_ver = ''
         str_rsn = ''
         stid = payload[pos:pos+12].uint; pos += 12
-        l    = payload[pos:pos+ 8].uint; pos += 8
+        l    = payload[pos:pos+ 8].uint; pos +=  8
         for i in range(l):
             str_ant += chr(payload[pos:pos+8].uint); pos += 8
         ant_setup = payload[pos:pos+8].uint; pos += 8
@@ -243,14 +255,14 @@ class Rtcm:
 
     def decode_code_phase_bias(self, payload, pos):
         '''decodes code-and-phase bias for GLONASS'''
-        sid  = payload[pos:pos+12].uint; pos += 12  # reference station id
-        cpbi = payload[pos:pos+1];       pos +=  1  # code-phase bias indicator
-        pos += 3                                    # reserved
-        mask     = payload[pos:pos+4]     ; pos +=  4  # FDMA signal mask
-        l1ca_cpb = payload[pos:pos+16].int; pos += 16  # L1 C/A code-phase bias
-        l1p_cpb  = payload[pos:pos+16].int; pos += 16  # L1 P code-phase bias
-        l2ca_cpb = payload[pos:pos+16].int; pos += 16  # L2 C/A code-phase bias
-        l2p_cpb  = payload[pos:pos+16].int; pos += 16  # L2 P  code-phase bias
+        sid      = payload[pos:pos+12].uint; pos += 12  # reference station id
+        cpbi     = payload[pos:pos+1];       pos +=  1  # code-phase bias ind
+        pos += 3                                        # reserved
+        mask     = payload[pos:pos+4]      ; pos +=  4  # FDMA signal mask
+        l1ca_cpb = payload[pos:pos+16].int ; pos += 16  # L1 C/A code-phase bias
+        l1p_cpb  = payload[pos:pos+16].int ; pos += 16  # L1 P code-phase bias
+        l2ca_cpb = payload[pos:pos+16].int ; pos += 16  # L2 C/A code-phase bias
+        l2p_cpb  = payload[pos:pos+16].int ; pos += 16  # L2 P  code-phase bias
         disp_msg = ''
         return pos, disp_msg
 

@@ -52,43 +52,38 @@ class SeptReceiver:
         ''' reads standard input as SBF raw, [1]
             and returns true if successful '''
         sync = bytes(2)
-        try:
-            while True:
-                while sync != b'\x24\x40':
-                    b = sys.stdin.buffer.read(1)
-                    if not b:
-                        return False
-                    sync = sync[1:2] + b
-                head = sys.stdin.buffer.read(6)
-                if not head:
+        while True:
+            while sync != b'\x24\x40':
+                b = sys.stdin.buffer.read(1)
+                if not b:
                     return False
-                crc     = head[0:2]
-                msg_id  = int.from_bytes(head[2:4], 'little')
-                msg_len = int.from_bytes(head[4:6], 'little')
-                if msg_len % 4 != 0:
-                    # the message length should be multiple of 4 as in [1].
-                    print(libcolor.Color().fg('red') + \
-                        f'message length {msg_len} should be multiple of 4' + \
-                        libcolor.Color.fg(), file=sys.stderr)
-                    return False
-                payload = sys.stdin.buffer.read(msg_len - 8)
-                if not payload:
-                    return False
-                crc_cal = crc16_ccitt(head[2:6] + payload)
-                if crc_cal == crc:
-                    break
-                else:
-                    print(libcolor.Color().fg('red') + \
-                        f'CRC Error: {crc.hex()} != {crc_cal.hex()}' + \
-                        libcolor.Color().fg(), file=sys.stderr)
-                    continue
-            self.msg_id   = msg_id
-            self.msg_name = self.SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
-            self.payload  = payload
-        except KeyboardInterrupt:
-            print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-                  libcolor.Color().fg(), file=sys.stderr)
-            sys.exit()
+                sync = sync[1:2] + b
+            head = sys.stdin.buffer.read(6)
+            if not head:
+                return False
+            crc     = head[0:2]
+            msg_id  = int.from_bytes(head[2:4], 'little')
+            msg_len = int.from_bytes(head[4:6], 'little')
+            if msg_len % 4 != 0:
+                # the message length should be multiple of 4 as in [1].
+                print(libcolor.Color().fg('red') + \
+                    f'message length {msg_len} should be multiple of 4' + \
+                    libcolor.Color.fg(), file=sys.stderr)
+                return False
+            payload = sys.stdin.buffer.read(msg_len - 8)
+            if not payload:
+                return False
+            crc_cal = crc16_ccitt(head[2:6] + payload)
+            if crc_cal == crc:
+                break
+            else:
+                print(libcolor.Color().fg('red') + \
+                    f'CRC Error: {crc.hex()} != {crc_cal.hex()}' + \
+                    libcolor.Color().fg(), file=sys.stderr)
+                continue
+        self.msg_id   = msg_id
+        self.msg_name = self.SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
+        self.payload  = payload
         return True
 
     def galrawcnav(self):
@@ -206,24 +201,28 @@ if __name__ == '__main__':
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     rcv = SeptReceiver(fp_disp, args.color)
-    while rcv.read():
-        # print(rcv.msg_name, file=fp_disp)
-        msg = ''
-        if   rcv.msg_name == 'GALRawCNAV': msg += rcv.galrawcnav()
-        elif rcv.msg_name == 'QZSRawL6'  : msg += rcv.qzsrawl6()
-        elif rcv.msg_name == 'BDSRawB2b' : msg += rcv.bdsrawb2b()
-        else:
-            msg += rcv.msg_color.dec('dark') + msg_name + rcv.msg_color.dec()
-        try:
+    try:
+        while rcv.read():
+            # print(rcv.msg_name, file=fp_disp)
+            msg = ''
+            if   rcv.msg_name == 'GALRawCNAV': msg += rcv.galrawcnav()
+            elif rcv.msg_name == 'QZSRawL6'  : msg += rcv.qzsrawl6()
+            elif rcv.msg_name == 'BDSRawB2b' : msg += rcv.bdsrawb2b()
+            else:
+                msg += rcv.msg_color.dec('dark') + msg_name + rcv.msg_color.dec()
             if fp_disp:
                 print(msg, file=fp_disp)
-            if fp_l6:
+            if fp_l6 and rcv.l6:
                 fp_l6.buffer.write(rcv.l6)
                 fp_l6.flush()
             if fp_e6b and rcv.e6b:
                 fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
                 fp_e6b.buffer.write(rcv.e6b)
                 fp_e6b.flush()
-        except (BrokenPipeError, IOError):
-            sys.exit()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
+
 # EOF

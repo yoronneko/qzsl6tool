@@ -44,40 +44,35 @@ class NovReceiver:
         ''' reads standard input as NovAtel raw, [1]
             and returns true if successful '''
         sync = bytes(3)
-        try:
-            while True:
-                while sync != b'\xaa\x44\x12':
-                    b = sys.stdin.buffer.read(1)
-                    if not b:
-                        return False
-                    sync = sync[1:3] + b
-                head_len = sys.stdin.buffer.read(1)
-                if not head_len:
+        while True:
+            while sync != b'\xaa\x44\x12':
+                b = sys.stdin.buffer.read(1)
+                if not b:
                     return False
-                u_head_len = int.from_bytes(head_len, 'little')
-                head = sys.stdin.buffer.read(u_head_len-4)
-                if not head:
-                    return False
-                self.parse_head(head)
-                payload = sys.stdin.buffer.read(self.msg_len)
-                if not payload:
-                    return False
-                crc = sys.stdin.buffer.read(4)
-                if not crc:
-                    return False
-                crc_cal = crc32(sync + head_len + head + payload)
-                if crc == crc_cal:
-                    break
-                else:
-                    print(libcolor.Color().fg('red') + \
-                        f'CRC error: {crc.hex()} != {crc_cal.hex()}' + \
-                        libcolor.Color().fg(), file=sys.stderr)
-                    continue
-            self.payload = payload
-        except KeyboardInterrupt:
-            print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-                  libcolor.Color().fg(), file=sys.stderr)
-            sys.exit()
+                sync = sync[1:3] + b
+            head_len = sys.stdin.buffer.read(1)
+            if not head_len:
+                return False
+            u_head_len = int.from_bytes(head_len, 'little')
+            head = sys.stdin.buffer.read(u_head_len-4)
+            if not head:
+                return False
+            self.parse_head(head)
+            payload = sys.stdin.buffer.read(self.msg_len)
+            if not payload:
+                return False
+            crc = sys.stdin.buffer.read(4)
+            if not crc:
+                return False
+            crc_cal = crc32(sync + head_len + head + payload)
+            if crc == crc_cal:
+                break
+            else:
+                print(libcolor.Color().fg('red') + \
+                    f'CRC error: {crc.hex()} != {crc_cal.hex()}' + \
+                    libcolor.Color().fg(), file=sys.stderr)
+                continue
+        self.payload = payload
         return True
 
     def parse_head(self, head):
@@ -219,32 +214,36 @@ if __name__ == '__main__':
         import libgale6
         gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
     rcv = NovReceiver(fp_disp, args.color)
-    while rcv.read():
-        #print(rcv.msg_name, file=fp_disp)
-        if   rcv.msg_name == 'QZSSRAWSUBFRAME':
-            msg = rcv.qzssrawsubframe()
-            if fp_l6:
-                fp_l6.buffer.write(rcv.l6)
-                fp_l6.flush()
-        elif rcv.msg_name == 'GALCNAVRAWPAGE':
-            msg = rcv.galcnavrawpage()
-            if fp_e6b:
-                fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-                fp_e6b.buffer.write(rcv.e6b)
-                fp_e6b.flush()
-            if has_decode:  # for compatibility of nov2has.py
-                if gale6.ready_decoding_has(rcv.satid, rcv.e6b):
-                    gale6.decode_has_message()
-        else:
-            msg = rcv.msg_color.fg('green') + \
-                gps2utc.gps2utc(rcv.gpsw, rcv.gpst // 1000) + \
-                rcv.msg_color.fg() + ' ' + \
-                rcv.msg_color.dec('dark') + rcv.msg_name + \
-                rcv.msg_color.dec()
-        if fp_disp and not has_decode:
-            try:
+    try:
+        while rcv.read():
+            #print(rcv.msg_name, file=fp_disp)
+            if   rcv.msg_name == 'QZSSRAWSUBFRAME':
+                msg = rcv.qzssrawsubframe()
+                if fp_l6 and rcv.l6:
+                    fp_l6.buffer.write(rcv.l6)
+                    fp_l6.flush()
+            elif rcv.msg_name == 'GALCNAVRAWPAGE':
+                msg = rcv.galcnavrawpage()
+                if fp_e6b and rcv.e6b:
+                    fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
+                    fp_e6b.buffer.write(rcv.e6b)
+                    fp_e6b.flush()
+                if has_decode and rcv.e6b:  # for compatibility of nov2has.py
+                    if gale6.ready_decoding_has(rcv.satid, rcv.e6b):
+                        gale6.decode_has_message()
+            else:
+                msg = rcv.msg_color.fg('green') + \
+                    gps2utc.gps2utc(rcv.gpsw, rcv.gpst // 1000) + \
+                    rcv.msg_color.fg() + ' ' + \
+                    rcv.msg_color.dec('dark') + rcv.msg_name + \
+                    rcv.msg_color.dec()
+            if fp_disp and not has_decode:
                 print(msg, file=fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
+            libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
 
 # EOF

@@ -31,60 +31,50 @@ class Obs:
 
     def decode_obs(self, payload, pos, satsys, mtype):
         '''decodes observation message and returns pos and string'''
-        sid = payload[pos:pos+12].uint; pos += 12  # station id
-        # bit width of GPS integer phase modurus ambiguity
-        be = 30 if satsys != 'R' else 27  # bit width of GPS epoch time
-        bp = 24 if satsys != 'R' else 25  # bit width of GPS pseudorange
-        bi = 8  if satsys != 'R' else  7
-        tow = payload[pos:pos+be].uint; pos += be  # epoch time
-        sync_flag = payload[pos:pos+1]; pos += 1   # synchronous GNSS flag
-        nsat = payload[pos:pos+5].uint; pos += 5   # num of satellite signals
-        # divergence-free smooting indicator
-        sind = payload[pos:pos+1]     ; pos += 1
-        sint = payload[pos:pos+3]     ; pos += 3   # smoothing interval
-        # GPS 64 bit GLO 61 bit
+        be = 30 if satsys != 'R' else 27  # bit width of epoch time
+        bp = 24 if satsys != 'R' else 25  # bit width of pseudorange (pr)
+        bi = 8  if satsys != 'R' else  7  # bit width of pr ambiguity
+        sid  = payload[pos:pos+12].uint; pos += 12  # station id, DF003
+        tow  = payload[pos:pos+be].uint; pos += be  # epoch time
+        sync = payload[pos:pos+ 1]     ; pos +=  1  # synchronous flag
+        nsat = payload[pos:pos+ 5].uint; pos +=  5  # number of signals
+        sind = payload[pos:pos+ 1]     ; pos +=  1  # smoothing indicator
+        sint = payload[pos:pos+ 3]     ; pos +=  3  # smoothing interval
         for i in range(nsat):
-            satid = payload[pos:pos+6].uint; pos += 6  # satellite id
-            cind1 = payload[pos:pos+1]     ; pos += 1  # L1 code indicator
+            satid     = payload[pos:pos+ 6].uint; pos +=  6  # satellite id
+            cind1     = payload[pos:pos+ 1]     ; pos +=  1  # L1 code indicator
             if satsys == 'R':
-                # frequency channel number
-                fnc = payload[pos:pos+5].uint; pos += 5
-            pr1 = payload[pos:pos+bp].uint; pos += bp   # L1 pseudorange
-            # L1 phaserange-pseudorange
-            phpr1 = payload[pos:pos+20].int ; pos += 20
-            lti1  = payload[pos:pos+ 7].uint; pos +=  7 # L1 lock time indicator
+                fc    = payload[pos:pos+ 5].uint; pos +=  5  # freq ch
+            pr1       = payload[pos:pos+bp].uint; pos += bp  # L1 pseudorange
+            phpr1     = payload[pos:pos+20].int ; pos += 20  # L1 phase-pr
+            lti1      = payload[pos:pos+ 7].uint; pos +=  7  # L1 locktime ind
             if mtype in 'Full':
-                # interger pseudorange modulus ambiguity
-                pma1 = payload[pos:pos+bi].uint; pos += bi
-                cnr1 = payload[pos:pos+ 8].uint; pos += 8 # L1 CNR
+                pma1  = payload[pos:pos+bi].uint; pos += bi  # pr ambiguity
+                cnr1  = payload[pos:pos+ 8].uint; pos +=  8  # L1 CNR
             if mtype in 'L2':
-                cind2 = payload[pos:pos+ 2].int; pos += 2  # L2 code indicator
-                # L2-L1 pseudorange difference
-                prd   = payload[pos:pos+14].int; pos += 14
-                # L2 phase-L1 pseudo range
-                phpr2 = payload[pos:pos+20].int; pos += 20
-                # L2 locktime indicator
-                lti2  = payload[pos:pos+ 7].uint; pos += 7
-                cnr2  = payload[pos:pos+ 8].uint; pos += 8  # L2 CNR
+                cind2 = payload[pos:pos+ 2]     ; pos +=  2  # L2 code indicator
+                prd   = payload[pos:pos+14].int ; pos += 14  # L2-L1 pr diff
+                phpr2 = payload[pos:pos+20].int ; pos += 20  # L2 phase-L1 pr
+                lti2  = payload[pos:pos+ 7].uint; pos +=  7  # L2 locktime ind
+                cnr2  = payload[pos:pos+ 8].uint; pos +=  8  # L2 CNR
         string = ''
         return pos, string
 
     def decode_msm(self, payload, pos, satsys, mtype):
         '''decodes MSM message and returns pos and string'''
-        rsid  = payload[pos:pos+12].uint; pos += 12  # reference station id
-        epoch = payload[pos:pos+30].uint; pos += 30  # GNSS epoch time
-        mm    = payload[pos:pos+ 1]     ; pos +=  1  # multiple message bit
-        iods  = payload[pos:pos+ 3].uint; pos +=  3  # issue of data station
-        pos += 7                                     # reserved
-        clk_s = payload[pos:pos+ 2].uint; pos += 2   # clock steering indicator
-        cls_e = payload[pos:pos+ 2].uint; pos += 2   # external clock indicator
-        # divergence-free smoothing indicator
-        smth  = payload[pos:pos+ 1]     ; pos += 1
-        tint_s = payload[pos:pos+3].uint; pos += 3   # smoothing interval
+        rsid   = payload[pos:pos+12].uint; pos += 12  # reference station id
+        epoch  = payload[pos:pos+30].uint; pos += 30  # GNSS epoch time
+        mm     = payload[pos:pos+ 1]     ; pos +=  1  # multiple message bit
+        iods   = payload[pos:pos+ 3].uint; pos +=  3  # issue of data station
+        pos += 7                                      # reserved
+        clk_s  = payload[pos:pos+ 2].uint; pos +=  2  # clock steering ind
+        cls_e  = payload[pos:pos+ 2].uint; pos +=  2  # external clock ind
+        smth   = payload[pos:pos+ 1]     ; pos +=  1  # smoothing indicator
+        tint_s = payload[pos:pos+ 3].uint; pos +=  3  # smoothing interval
         sat_mask = [0 for i in range(64)]
         n_sat = 0
         for i in range(64):
-            mask = payload[pos:pos+1]; pos += 1  # satellite mask
+            mask = payload[pos:pos+1]; pos +=  1  # satellite mask
             if mask:
                 sat_mask[n_sat] = i
                 n_sat += 1
@@ -104,18 +94,15 @@ class Obs:
                 n_cell_mask += 1
         if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
             for i in range(n_sat):
-                rng = payload[pos:pos+8].uint; pos += 8  # rough ranges
+                rng   = payload[pos:pos+ 8].uint; pos +=  8  # rough ranges
         if '5' in mtype or '7' in mtype:
             for i in range(n_sat):
-                # extended satellite info
-                esatinfo = payload[pos:pos+4].uint; pos += 4
+                einfo = payload[pos:pos+ 4].uint; pos +=  4 # extended info
         for i in range(n_sat):
-            # rough ranges modulo 1 ms
-            rng_m = payload[pos:pos+10].uint; pos += 10
+            rng_m     = payload[pos:pos+10].uint; pos += 10 # range mod 1 ms
         if '5' in mtype or '7' in mtype:
             for i in range(n_sat):
-                # rough phase range rates
-                prr = payload[pos:pos+14].int; pos += 14
+                prr   = payload[pos:pos+14].int ; pos += 14 # phase range rates
         for i in range(n_sat * n_sig):  # pseudorange
             if not cell_mask[i]:
                 continue
@@ -126,25 +113,20 @@ class Obs:
             if '6' in mtype or '7' in mtype:
                 bfpsr = 20  # extended bit size for fine pseudorange
                 bfphr = 24  # extended bit size for fine phaserange
-                blti = 10   # extended bit size for lock time indicator
-                bcnr = 10   # extended bit size for CNR
+                blti  = 10  # extended bit size for lock time indicator
+                bcnr  = 10  # extended bit size for CNR
             if '1' in mtype or '3' in mtype or '4' in mtype or \
                '5' in mtype or '6' in mtype or '7' in mtype:
-                # fine pseudorange
-                fpsr = payload[pos:pos+bfpsr].int; pos += bfpsr
+                fpsr = payload[pos:pos+bfpsr].int ; pos += bfpsr  # fine pr
             if '2' in mtype or '3' in mtype or '4' in mtype or \
                '5' in mtype or '6' in mtype or '7' in mtype:
-                # fine phaserange
-                fphr = payload[pos:pos+bfphr].int; pos += bfphr
-                # lock time indicator
-                lti = payload[pos:pos+blti].uint; pos += blti
-                hai = payload[pos:pos+1]; pos += 1
-                # half ambiguity indicator
+                fphr = payload[pos:pos+bfphr].int ; pos += bfphr  # fine phase
+                lti  = payload[pos:pos+ blti].uint; pos +=  blti  # lock time
+                hai  = payload[pos:pos+    1]     ; pos +=     1  # half amb
             if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
-                cnr = payload[pos:pos+bcnr].uint; pos += bcnr # CNR
+                cnr  = payload[pos:pos+ bcnr].uint; pos +=  bcnr  # CNR
             if '5' in mtype or '7' in mtype:
-                # fine phaserange rates
-                fphrr = payload[pos:pos+15].int; pos += 15
+                fphr = payload[pos:pos+   15].int ; pos +=    15  # fine phase
         string = ''
         if satsys != 'S':
             for i in range(n_sat):
@@ -155,3 +137,4 @@ class Obs:
         return pos, string
 
 # EOF
+

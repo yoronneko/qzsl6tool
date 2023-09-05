@@ -21,14 +21,12 @@ import gps2utc
 import libcolor
 
 def checksum(payload):  # ref. [1]
-    checksum1 = 0
-    checksum2 = 0
+    csum1 = 0
+    csum2 = 0
     for b in payload:
-        checksum1 += b
-        checksum2 += checksum1
-        checksum1 &= 0xff
-        checksum2 &= 0xff
-    return checksum1, checksum2
+        csum1 = (csum1 + b    ) & 0xff
+        csum2 = (csum1 + csum2) & 0xff
+    return csum1, csum2
 
 class AllystarReceiver:
     dict_snr  = {}   # SNR dictionary
@@ -42,21 +40,16 @@ class AllystarReceiver:
 
     def read(self):  # ref. [1]
         sync = bytes(4)
-        try:
-            while True:
-                b = sys.stdin.buffer.read(1)
-                if not b:
-                    return False
-                sync = sync[1:4] + b
-                if sync == b'\xf1\xd9\x02\x10':
-                    break
-            payld = b'\x02\x10' + sys.stdin.buffer.read(266)
-            csum = sys.stdin.buffer.read(2)
-            if not payld or not csum:
+        while True:
+            b = sys.stdin.buffer.read(1)
+            if not b:
                 return False
-        except KeyboardInterrupt:
-            color = libcolor.Color(sys.stderr)
-            print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+            sync = sync[1:4] + b
+            if sync == b'\xf1\xd9\x02\x10':
+                break
+        payld = b'\x02\x10' + sys.stdin.buffer.read(266)
+        csum = sys.stdin.buffer.read(2)
+        if not payld or not csum:
             return False
         len_payld = int.from_bytes(payld[ 2: 4], 'little')
         self.prn  = int.from_bytes(payld[ 4: 6], 'little') - 700
@@ -104,7 +97,7 @@ class AllystarReceiver:
             self.dict_data[self.prn] = self.data
         disp_msg += self.msg_color.fg('green') + f'{self.prn} ' + \
             self.msg_color.fg('yellow') + \
-            gps2utc.gps2utc(self.gpsw, self.gpst//1000) + \
+            gps2utc.gps2utc(self.gpsw, self.gpst // 1000) + \
             self.msg_color.fg('default') + f' {self.snr}'
         if self.err:
             disp_msg += self.msg_color.fg('red') + ' ' + self.err + \
@@ -127,7 +120,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-p', '--prn', type=int, default=0,
         help='satellite PRN to be specified.')
-    args = parser.parse_args()
+    args    = parser.parse_args()
     fp_disp = sys.stdout
     fp_l6   = None
     if args.l6:  # QZS L6 raw message output to stdout
@@ -141,15 +134,19 @@ if __name__ == '__main__':
     if 'alst2qzsl6.py' in sys.argv[0]:
         print(libcolor.Color().fg('yellow') + 'Notice: please use "alstdump.py", instead of "alst2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
     rcv = AllystarReceiver(fp_disp, args.color)
-    while rcv.read():
-        try:
+    try:
+        while rcv.read():
             disp_msg = rcv.select_sat(args.prn)
             if fp_disp:
                 print(disp_msg, file=fp_disp)
             if rcv.l6 and fp_l6:
                 fp_l6.buffer.write(rcv.l6)
                 fp_l6.flush()
-        except (BrokenPipeError, IOError):
-            sys.exit()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
 
 # EOF
+

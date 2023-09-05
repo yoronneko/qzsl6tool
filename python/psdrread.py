@@ -93,16 +93,23 @@ if __name__ == '__main__':
         import libgale6
         gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
     rcv = PocketSdr(fp_disp, args.color)
-    while rcv.read():
-        if fp_l6 and rcv.l6:
-            fp_l6.buffer.write(rcv.l6)
-            fp_l6.flush()
-        if fp_e6b and rcv.e6b:
-            fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-            fp_e6b.buffer.write(rcv.e6b)
-            fp_e6b.flush()
-        if has_decode and rcv.e6b:  # for compatibility of pksdr2has.py
-            if gale6.ready_decoding_has(rcv.satid, rcv.e6b):
-                gale6.decode_has_message()
+    try:
+        while rcv.read():
+            if fp_l6 and rcv.l6:
+                fp_l6.buffer.write(rcv.l6)
+                fp_l6.flush()
+            if fp_e6b and rcv.e6b:
+                fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
+                fp_e6b.buffer.write(rcv.e6b)
+                fp_e6b.flush()
+            if has_decode and rcv.e6b:  # for compatibility of pksdr2has.py
+                if gale6.ready_decoding_has(rcv.satid, rcv.e6b):
+                    gale6.decode_has_message()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
+            libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
 
 # EOF

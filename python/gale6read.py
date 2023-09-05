@@ -16,15 +16,6 @@ import sys
 sys.path.append(os.path.dirname(__file__))
 import libgale6
 
-try:
-    import bitstring
-except ModuleNotFoundError:
-    print('''\
-    QZS L6 Tool needs bitstring module.
-    Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
-    sys.exit(1)
-
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
 
 if __name__ == '__main__':
@@ -57,14 +48,20 @@ if __name__ == '__main__':
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
-    raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
-    while raw:
-        satid = int.from_bytes(raw[0:1], 'little')
-        cnav = raw[1:]
-        if not gale6.ready_decoding_has(satid, cnav):
-            raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
-            continue
-        gale6.decode_has_message()
+    try:
+        raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
+        while raw:
+            satid = int.from_bytes(raw[0:1], 'little')
+            cnav = raw[1:]
+            if not gale6.ready_decoding_has(satid, cnav):
+                raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
+                continue
+            gale6.decode_has_message()
+    except (BrokenPipeError, IOError):
+        sys.exit()
+    except KeyboardInterrupt:
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
 
 # EOF
 
