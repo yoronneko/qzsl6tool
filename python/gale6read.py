@@ -14,6 +14,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
+import libcolor
 import libgale6
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
