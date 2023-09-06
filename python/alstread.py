@@ -139,6 +139,7 @@ if __name__ == '__main__':
             disp_msg = rcv.select_sat(args.prn)
             if fp_disp:
                 print(disp_msg, file=fp_disp)
+                fp_disp.flush()
             if rcv.l6 and fp_l6:
                 fp_l6.buffer.write(rcv.l6)
                 fp_l6.flush()

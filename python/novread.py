@@ -140,14 +140,13 @@ class NovReceiver:
         self.satid = prn
         # NovAtel C/NAV data excludes 24-bit CRC and 6-bit tail bits.
         # Threrfore, 3 bytes (24 bit) are padded for CRC, tail, and padding
-        # self.e6b = e6b + b'\x00\x00\x00'
         self.e6b = e6b + bytes(LEN_CNAV_PAGE - 58)
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + ' ' + \
             self.msg_color.fg('yellow') + \
             f'E{prn:02d}:{msg_id}:{page_id} ' + \
-            self.msg_color.fg() + e6b.hex()
+            self.msg_color.fg() + self.e6b.hex()
         return msg
 
     NOV_MSG_NAME = {  # dictionary for obtaining message name from ID
@@ -239,6 +238,7 @@ if __name__ == '__main__':
                     rcv.msg_color.dec()
             if fp_disp and not has_decode:
                 print(msg, file=fp_disp)
+                fp_disp.flush()
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:

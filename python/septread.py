@@ -45,8 +45,11 @@ def u4perm(inblk, outblk):
 
 class SeptReceiver:
     def __init__(self, fp_disp, ansi_color):
-        self.fp_disp = fp_disp
+        self.fp_disp   = fp_disp
         self.msg_color = libcolor.Color(fp_disp, ansi_color)
+        self.l6        = b''
+        self.e6b       = b''
+        self.b2b       = b''
 
     def read(self):
         ''' reads standard input as SBF raw, [1]
@@ -104,7 +107,7 @@ class SeptReceiver:
         e6b = bytearray(64)
         u4perm(nav_bits, e6b)
         self.satid = svid - 70
-        self.e6b   = e6b[:LEN_CNAV_PAGE]
+        self.e6b = e6b[:LEN_CNAV_PAGE]
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
@@ -205,24 +208,31 @@ if __name__ == '__main__':
         while rcv.read():
             # print(rcv.msg_name, file=fp_disp)
             msg = ''
-            if   rcv.msg_name == 'GALRawCNAV': msg += rcv.galrawcnav()
-            elif rcv.msg_name == 'QZSRawL6'  : msg += rcv.qzsrawl6()
-            elif rcv.msg_name == 'BDSRawB2b' : msg += rcv.bdsrawb2b()
+            if   rcv.msg_name == 'GALRawCNAV':
+                msg += rcv.galrawcnav()
+                if fp_e6b and rcv.e6b:
+                    fp_e6b.buffer.write(
+                        rcv.satid.to_bytes(1, byteorder='little'))
+                    fp_e6b.buffer.write(rcv.e6b)
+                    fp_e6b.flush()
+            elif rcv.msg_name == 'QZSRawL6':
+                msg += rcv.qzsrawl6()
+                if fp_l6 and rcv.l6:
+                    fp_l6.buffer.write(rcv.l6)
+                    fp_l6.flush()
+            elif rcv.msg_name == 'BDSRawB2b':
+                msg += rcv.bdsrawb2b()
             else:
-                msg += rcv.msg_color.dec('dark') + msg_name + rcv.msg_color.dec()
+                msg += rcv.msg_color.dec('dark') + rcv.msg_name + \
+                    rcv.msg_color.dec()
             if fp_disp:
                 print(msg, file=fp_disp)
-            if fp_l6 and rcv.l6:
-                fp_l6.buffer.write(rcv.l6)
-                fp_l6.flush()
-            if fp_e6b and rcv.e6b:
-                fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-                fp_e6b.buffer.write(rcv.e6b)
-                fp_e6b.flush()
+                fp_disp.flush()
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
+            libcolor.Color().fg(), file=sys.stderr)
         sys.exit()
 
 # EOF
