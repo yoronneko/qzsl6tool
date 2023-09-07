@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CODEDIR=../python/
-CODEDIR=
+#CODEDIR=
 
 ESC=$(printf '\033')
 
