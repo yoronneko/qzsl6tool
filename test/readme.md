@@ -1,46 +1,61 @@
-# Test for QZS L6 Tool functions
+# Test shell script for QZS L6 Tool functions
 
 Please execute ``do_test.sh`` by
 ```bash
-./do_test
+./do_test.sh
 ```
 
 This test compares the code result with the previously obtained result stored in ``expect`` directory, and the result should be as follows:
 
 ```
-Pocket SDR to QZS L6 message conversion (psdrread.py -l)
+Pocket SDR log data conversion:
+- QZS L6 (psdrread.py -l)
   20211226-082212clas.psdr: Passed.
   20211226-082212mdc.psdr: Passed.
+- GAL E6B (psdrread.py -e)
+  20230305-063900has.psdr: Passed.
 
-Allystar to QZS L6 message conversion (alstread.py -l)
+Allystar raw data conversion:
+- QZS L6 (alstread.py -l)
   20220326-231200clas.alst: Passed.
   20220326-231200mdc.alst: Passed.
   20221130-125237mdc-ppp.alst: Passed.
 
-NovAtel raw message read (novread.py)
+NovAtel raw data conversion:
+- GAL E6B (novread.py -e)
   20230819-053733has.nov: Passed.
-  20230819-061342misc.nov: Passed.
+  20230819-053733has.nov: Passed.
 
-Septentrio raw data read (septread.py)
-  20230819-081730hasbds.sept: Passed.
+Septentrio raw data conversion:
+- QZS L6 (septread.py -l)
   20230819-082130clas.sept: Passed.
   20230819-085030mdc-ppp.sept: Passed.
+- GAL E6B (septread.py -e)
+  20230819-081730hasbds.sept: Passed.
 
-QZS L6 message read (qzsl6read.py -t 2)
+QZS L6 message read (qzsl6read.py -t 2):
   20220326-231200clas.l6: Passed.
   20220326-231200mdc.l6: Passed.
   20221130-125237mdc-ppp.l6: Passed.
+  20230819-082130clas.l6: Passed.
+  20230819-085030mdc-ppp.l6: Passed.
 
 QZS L6 to RTCM message conversion (qzsl6read.py -r)
   20220326-231200clas.l6: Passed.
   20220326-231200mdc.l6: Passed.
   20221130-125237mdc-ppp.l6: Passed.
 
-RTCM message read (rtcmread.py)
+RTCM message read (rtcmread.py )
   20220326-231200clas.rtcm: Passed.
   20220326-231200mdc.rtcm: Passed.
   20221130-125237mdc-ppp.rtcm: Passed.
   20221213-010900.rtcm: Passed.
+
+GAL E6 message read (gale6read.py -t 2)
+  20230305-063900has.e6b: OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+Passed.
+  20230819-081730hasbds.e6b: OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+Passed.
 
 --- Compatibility test: you may see update note ---
 
@@ -52,9 +67,6 @@ Passed.
 
 Pocket SDR HAS message read (pksdr2has.py -t 2)
   20220930-115617has.psdr: Notice: please use "pksdrread.py -e | gale6read.py (-e option is needed)", instead of "pksdr2has.py" that will be removed.
-OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
-Passed.
-  20230305-063900has.psdr: Notice: please use "pksdrread.py -e | gale6read.py (-e option is needed)", instead of "pksdr2has.py" that will be removed.
 OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
 Passed.
 

@@ -50,14 +50,14 @@ G16 d_radial= 0.0664m d_along= 0.9816m d_cross= 0.0381m dot_d_radial=-0.0003m/s 
 G17 d_radial=-0.4193m d_along= 3.6020m d_cross= 0.1660m dot_d_radial=-0.0006m/s dot_d_along= 0.0005m/s dot_d_cross= 0.0001m/s
 G19 d_radial=-0.0203m d_along=-0.4240m d_cross=-0.0567m dot_d_radial=-0.0002m/s dot_d_along=-0.0001m/s dot_d_cross=-0.0001m/s
 G20 d_radial=-0.0857m d_along= 0.6144m d_cross= 0.0257m dot_d_radial=-0.0004m/s dot_d_along= 0.0001m/s dot_d_cross=-0.0001m/s
-G10 ura=09
-G12 ura=09
-G13 ura=09
-G15 ura=09
-G16 ura=09
-G17 ura=08
-G19 ura=08
-G20 ura=12
+G10 ura=   3.50 mm
+G12 ura=   3.50 mm
+G13 ura=   3.50 mm
+G15 ura=   3.50 mm
+G16 ura=   3.50 mm
+G17 ura=   0.50 mm
+G19 ura=   0.50 mm
+G20 ura=   0.75 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:44 RTCM 1057(8) RTCM 1061(8) 
 G01 high_rate_clock=  0.429m
 G02 high_rate_clock=  0.107m
@@ -111,14 +111,14 @@ G26 d_radial= 0.0666m d_along=-0.1872m d_cross= 0.0691m dot_d_radial=-0.0002m/s 
 G27 d_radial=-0.0844m d_along= 0.6984m d_cross= 0.0014m dot_d_radial=-0.0002m/s dot_d_along=-0.0001m/s dot_d_cross= 0.0002m/s
 G29 d_radial=-0.2622m d_along=-0.0300m d_cross= 0.0484m dot_d_radial=-0.0003m/s dot_d_along= 0.0004m/s dot_d_cross=-0.0004m/s
 G30 d_radial= 0.0607m d_along= 1.4320m d_cross=-0.0760m dot_d_radial=-0.0001m/s dot_d_along=-0.0002m/s dot_d_cross= 0.0002m/s
-G21 ura=09
-G22 ura=09
-G24 ura=09
-G25 ura=09
-G26 ura=09
-G27 ura=09
-G29 ura=09
-G30 ura=09
+G21 ura=   3.50 mm
+G22 ura=   3.50 mm
+G24 ura=   3.50 mm
+G25 ura=   3.50 mm
+G26 ura=   3.50 mm
+G27 ura=   3.50 mm
+G29 ura=   3.50 mm
+G30 ura=   3.50 mm
 206 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:46 RTCM 1057(8) RTCM 1061(8) 
 G01 high_rate_clock=  0.428m
 G02 high_rate_clock=  0.107m
@@ -166,8 +166,8 @@ R22 high_rate_clock=-13.618m
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:48 RTCM 1062(26) RTCM 1068(17) 
 G31 d_radial= 0.0620m d_along= 0.5620m d_cross= 0.0151m dot_d_radial=-0.0002m/s dot_d_along=-0.0004m/s dot_d_cross=-0.0003m/s
 G32 d_radial=-0.0900m d_along=-2.3308m d_cross=-0.1420m dot_d_radial=-0.0000m/s dot_d_along=-0.0001m/s dot_d_cross= 0.0001m/s
-G31 ura=09
-G32 ura=09
+G31 ura=   3.50 mm
+G32 ura=   3.50 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:48 RTCM 1057(2) RTCM 1061(2) 
 G01 high_rate_clock=  0.427m
 G02 high_rate_clock=  0.109m
@@ -221,14 +221,14 @@ R05 d_radial= 0.9530m d_along=-1.6444m d_cross=-0.0480m dot_d_radial= 0.0002m/s 
 R07 d_radial= 0.5664m d_along=-2.1492m d_cross=-0.0621m dot_d_radial= 0.0003m/s dot_d_along= 0.0004m/s dot_d_cross= 0.0003m/s
 R08 d_radial=-0.0287m d_along= 1.8308m d_cross= 0.0010m dot_d_radial=-0.0003m/s dot_d_along=-0.0000m/s dot_d_cross=-0.0001m/s
 R12 d_radial= 0.2357m d_along= 2.9776m d_cross=-0.0186m dot_d_radial=-0.0004m/s dot_d_along= 0.0003m/s dot_d_cross= 0.0003m/s
-R01 ura=13
-R02 ura=15
-R03 ura=15
-R04 ura=14
-R05 ura=13
-R07 ura=14
-R08 ura=14
-R12 ura=16
+R01 ura=   4.25 mm
+R02 ura=  46.25 mm
+R03 ura=  46.25 mm
+R04 ura=  14.75 mm
+R05 ura=   4.25 mm
+R07 ura=  14.75 mm
+R08 ura=  14.75 mm
+R12 ura=   1.00 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:50 RTCM 1063(8) RTCM 1067(8) 
 G01 high_rate_clock=  0.429m
 G02 high_rate_clock=  0.111m
@@ -282,14 +282,14 @@ R18 d_radial= 0.4698m d_along=-1.9872m d_cross= 0.1368m dot_d_radial=-0.0006m/s 
 R19 d_radial= 0.3099m d_along= 2.7240m d_cross=-0.2320m dot_d_radial=-0.0008m/s dot_d_along= 0.0001m/s dot_d_cross= 0.0005m/s
 R20 d_radial=-0.1538m d_along=-1.9364m d_cross= 0.1546m dot_d_radial= 0.0002m/s dot_d_along=-0.0002m/s dot_d_cross= 0.0005m/s
 R21 d_radial= 0.4614m d_along= 1.8424m d_cross= 0.0016m dot_d_radial=-0.0011m/s dot_d_along=-0.0000m/s dot_d_cross= 0.0000m/s
-R13 ura=16
-R14 ura=14
-R15 ura=13
-R17 ura=14
-R18 ura=14
-R19 ura=13
-R20 ura=14
-R21 ura=14
+R13 ura=   1.00 mm
+R14 ura=  14.75 mm
+R15 ura=   4.25 mm
+R17 ura=  14.75 mm
+R18 ura=  14.75 mm
+R19 ura=   4.25 mm
+R20 ura=  14.75 mm
+R21 ura=  14.75 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:52 RTCM 1063(8) RTCM 1067(8) 
 G01 high_rate_clock=  0.429m
 G02 high_rate_clock=  0.111m
@@ -336,7 +336,7 @@ R21 high_rate_clock=-11.925m
 R22 high_rate_clock=-13.635m
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:54 RTCM 1062(26) RTCM 1068(17) 
 R22 d_radial= 0.1806m d_along= 2.1756m d_cross= 0.1939m dot_d_radial=-0.0003m/s dot_d_along=-0.0002m/s dot_d_cross= 0.0003m/s
-R22 ura=15
+R22 ura=  46.25 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:54 RTCM 1063(1) RTCM 1067(1) 
 G01 high_rate_clock=  0.431m
 G02 high_rate_clock=  0.109m
@@ -838,14 +838,14 @@ G06 d_radial= 0.0401m d_along=-2.3028m d_cross= 0.1122m dot_d_radial= 0.0002m/s 
 G07 d_radial= 0.1828m d_along= 0.3916m d_cross= 0.0456m dot_d_radial=-0.0001m/s dot_d_along=-0.0001m/s dot_d_cross= 0.0000m/s
 G08 d_radial= 0.2666m d_along=-2.5936m d_cross=-0.1158m dot_d_radial= 0.0000m/s dot_d_along= 0.0002m/s dot_d_cross= 0.0000m/s
 G09 d_radial= 0.1885m d_along= 0.6544m d_cross= 0.0028m dot_d_radial=-0.0003m/s dot_d_along=-0.0001m/s dot_d_cross=-0.0003m/s
-G01 ura=09
-G02 ura=09
-G03 ura=09
-G05 ura=09
-G06 ura=09
-G07 ura=09
-G08 ura=09
-G09 ura=09
+G01 ura=   3.50 mm
+G02 ura=   3.50 mm
+G03 ura=   3.50 mm
+G05 ura=   3.50 mm
+G06 ura=   3.50 mm
+G07 ura=   3.50 mm
+G08 ura=   3.50 mm
+G09 ura=   3.50 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:12 RTCM 1057(8) RTCM 1061(8) 
 G01 high_rate_clock=  0.426m
 G02 high_rate_clock=  0.101m
@@ -899,14 +899,14 @@ G16 d_radial= 0.0678m d_along= 0.9888m d_cross= 0.0377m dot_d_radial=-0.0003m/s 
 G17 d_radial=-0.4200m d_along= 3.6156m d_cross= 0.1667m dot_d_radial=-0.0006m/s dot_d_along= 0.0005m/s dot_d_cross= 0.0001m/s
 G19 d_radial=-0.0223m d_along=-0.4264m d_cross=-0.0572m dot_d_radial=-0.0002m/s dot_d_along=-0.0001m/s dot_d_cross=-0.0001m/s
 G20 d_radial=-0.0893m d_along= 0.6180m d_cross= 0.0256m dot_d_radial=-0.0004m/s dot_d_along= 0.0001m/s dot_d_cross=-0.0001m/s
-G10 ura=09
-G12 ura=09
-G13 ura=09
-G15 ura=09
-G16 ura=09
-G17 ura=08
-G19 ura=08
-G20 ura=12
+G10 ura=   3.50 mm
+G12 ura=   3.50 mm
+G13 ura=   3.50 mm
+G15 ura=   3.50 mm
+G16 ura=   3.50 mm
+G17 ura=   0.50 mm
+G19 ura=   0.50 mm
+G20 ura=   0.75 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:14 RTCM 1057(8) RTCM 1061(8) 
 G01 high_rate_clock=  0.427m
 G02 high_rate_clock=  0.102m
@@ -960,14 +960,14 @@ G26 d_radial= 0.0665m d_along=-0.1880m d_cross= 0.0693m dot_d_radial=-0.0002m/s 
 G27 d_radial=-0.0818m d_along= 0.6968m d_cross= 0.0014m dot_d_radial=-0.0002m/s dot_d_along=-0.0002m/s dot_d_cross= 0.0002m/s
 G29 d_radial=-0.2661m d_along=-0.0180m d_cross= 0.0476m dot_d_radial=-0.0003m/s dot_d_along= 0.0004m/s dot_d_cross=-0.0004m/s
 G30 d_radial= 0.0637m d_along= 1.4296m d_cross=-0.0764m dot_d_radial=-0.0001m/s dot_d_along=-0.0001m/s dot_d_cross= 0.0002m/s
-G21 ura=09
-G22 ura=09
-G24 ura=09
-G25 ura=09
-G26 ura=09
-G27 ura=09
-G29 ura=09
-G30 ura=09
+G21 ura=   3.50 mm
+G22 ura=   3.50 mm
+G24 ura=   3.50 mm
+G25 ura=   3.50 mm
+G26 ura=   3.50 mm
+G27 ura=   3.50 mm
+G29 ura=   3.50 mm
+G30 ura=   3.50 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:16 RTCM 1057(8) RTCM 1061(8) 
 G01 high_rate_clock=  0.425m
 G02 high_rate_clock=  0.103m
@@ -1015,8 +1015,8 @@ R22 high_rate_clock=-13.654m
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:18 RTCM 1062(26) RTCM 1068(17) 
 G31 d_radial= 0.0615m d_along= 0.5548m d_cross= 0.0152m dot_d_radial=-0.0002m/s dot_d_along=-0.0004m/s dot_d_cross=-0.0003m/s
 G32 d_radial=-0.0913m d_along=-2.3256m d_cross=-0.1422m dot_d_radial= 0.0000m/s dot_d_along=-0.0001m/s dot_d_cross= 0.0000m/s
-G31 ura=09
-G32 ura=09
+G31 ura=   3.50 mm
+G32 ura=   3.50 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:18 RTCM 1057(2) RTCM 1061(2) 
 G01 high_rate_clock=  0.425m
 G02 high_rate_clock=  0.102m
@@ -1070,14 +1070,14 @@ R05 d_radial= 0.9588m d_along=-1.6436m d_cross=-0.0466m dot_d_radial= 0.0002m/s 
 R07 d_radial= 0.5720m d_along=-2.1292m d_cross=-0.0610m dot_d_radial= 0.0003m/s dot_d_along= 0.0004m/s dot_d_cross= 0.0003m/s
 R08 d_radial=-0.0272m d_along= 1.8408m d_cross= 0.0026m dot_d_radial=-0.0003m/s dot_d_along=-0.0000m/s dot_d_cross=-0.0000m/s
 R12 d_radial= 0.2408m d_along= 2.9972m d_cross=-0.0196m dot_d_radial=-0.0004m/s dot_d_along= 0.0003m/s dot_d_cross= 0.0003m/s
-R01 ura=13
-R02 ura=15
-R03 ura=15
-R04 ura=14
-R05 ura=13
-R07 ura=14
-R08 ura=14
-R12 ura=16
+R01 ura=   4.25 mm
+R02 ura=  46.25 mm
+R03 ura=  46.25 mm
+R04 ura=  14.75 mm
+R05 ura=   4.25 mm
+R07 ura=  14.75 mm
+R08 ura=  14.75 mm
+R12 ura=   1.00 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:20 RTCM 1063(8) RTCM 1067(8) 
 G01 high_rate_clock=  0.425m
 G02 high_rate_clock=  0.102m
@@ -1131,14 +1131,14 @@ R18 d_radial= 0.4548m d_along=-1.9804m d_cross= 0.1374m dot_d_radial=-0.0005m/s 
 R19 d_radial= 0.3021m d_along= 2.7296m d_cross=-0.2311m dot_d_radial=-0.0008m/s dot_d_along= 0.0001m/s dot_d_cross= 0.0004m/s
 R20 d_radial=-0.1514m d_along=-1.9300m d_cross= 0.1564m dot_d_radial= 0.0002m/s dot_d_along=-0.0002m/s dot_d_cross= 0.0005m/s
 R21 d_radial= 0.4410m d_along= 1.8460m d_cross= 0.0004m dot_d_radial=-0.0010m/s dot_d_along=-0.0000m/s dot_d_cross= 0.0000m/s
-R13 ura=16
-R14 ura=14
-R15 ura=13
-R17 ura=14
-R18 ura=14
-R19 ura=13
-R20 ura=14
-R21 ura=14
+R13 ura=   1.00 mm
+R14 ura=  14.75 mm
+R15 ura=   4.25 mm
+R17 ura=  14.75 mm
+R18 ura=  14.75 mm
+R19 ura=   4.25 mm
+R20 ura=  14.75 mm
+R21 ura=  14.75 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:22 RTCM 1063(8) RTCM 1067(8) 
 G01 high_rate_clock=  0.426m
 G02 high_rate_clock=  0.101m
@@ -1185,7 +1185,7 @@ R21 high_rate_clock=-11.927m
 R22 high_rate_clock=-13.644m
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:24 RTCM 1062(26) RTCM 1068(17) 
 R22 d_radial= 0.1865m d_along= 2.1792m d_cross= 0.1942m dot_d_radial=-0.0003m/s dot_d_along=-0.0002m/s dot_d_cross= 0.0003m/s
-R22 ura=15
+R22 ura=  46.25 mm
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:24 RTCM 1063(1) RTCM 1067(1) 
 G01 high_rate_clock=  0.425m
 G02 high_rate_clock=  0.102m
