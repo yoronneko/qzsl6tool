@@ -43,8 +43,8 @@ class NovReceiver:
     def read(self):
         ''' reads standard input as NovAtel raw, [1]
             and returns true if successful '''
-        sync = bytes(3)
         while True:
+            sync = bytes(3)
             while sync != b'\xaa\x44\x12':
                 b = sys.stdin.buffer.read(1)
                 if not b:
@@ -54,7 +54,7 @@ class NovReceiver:
             if not head_len:
                 return False
             u_head_len = int.from_bytes(head_len, 'little')
-            head = sys.stdin.buffer.read(u_head_len-4)
+            head = sys.stdin.buffer.read(u_head_len - 4)
             if not head:
                 return False
             self.parse_head(head)
@@ -109,10 +109,12 @@ class NovReceiver:
                 libcolor.Color().fg(), file=sys.stderr)
             return False
         pos = 0
-        prn   = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
-        sfid  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
-        sfraw = payload[pos:pos+32]                         ; pos += 32
-        chno  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
+        prn   = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
+        sfid  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
+        sfraw =                payload[pos:pos+32]           ; pos += 32
+        chno  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
+        self.satid = prn
+        self.sfraw = sfraw
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + ' ' + \
@@ -189,22 +191,15 @@ if __name__ == '__main__':
         '-t', '--trace', type=int, default=0,
         help='show display verbosely: 1=detail, 2=bit image.')
     args = parser.parse_args()
-    fp_e6b  = None
-    fp_l6   = None
-    fp_disp = sys.stdout
-    fp_rtcm = None
+    fp_e6b, fp_l6, fp_disp, fp_rtcm = None, None, sys.stdout, None
     has_decode = False
     if args.trace < 0:
         print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
         sys.exit(1)
     if args.e6b:
-        fp_disp = None
-        fp_e6b  = sys.stdout
-        fp_l6   = None
+        fp_disp, fp_e6b, fp_l6 = None, sys.stdout, None
     if args.l6:
-        fp_disp = None
-        fp_e6b  = None
-        fp_l6   = sys.stdout
+        fp_disp, fp_e6b, fp_l6 = None, None, sys.stdout
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     if 'nov2has.py' in sys.argv[0]:  # for compatibility of nov2has.py

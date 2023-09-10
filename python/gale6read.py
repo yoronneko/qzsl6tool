@@ -50,12 +50,13 @@ if __name__ == '__main__':
         fp_disp = sys.stderr
     gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
     try:
-        raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
-        while raw:
+        while True:
+            raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
+            if not raw:
+                break
             satid = int.from_bytes(raw[0:1], 'little')
-            cnav = raw[1:]
+            cnav  = raw[1:]
             if not gale6.ready_decoding_has(satid, cnav):
-                raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
                 continue
             gale6.decode_has_message()
     except (BrokenPipeError, IOError):

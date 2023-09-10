@@ -31,110 +31,118 @@ class Obs:
 
     def decode_obs(self, payload, pos, satsys, mtype):
         '''decodes observation message and returns pos and string'''
-        be = 30 if satsys != 'R' else 27  # bit width of epoch time
-        bp = 24 if satsys != 'R' else 25  # bit width of pseudorange (pr)
-        bi = 8  if satsys != 'R' else  7  # bit width of pr ambiguity
-        sid  = payload[pos:pos+12].uint; pos += 12  # station id, DF003
-        tow  = payload[pos:pos+be].uint; pos += be  # epoch time
-        sync = payload[pos:pos+ 1]     ; pos +=  1  # synchronous flag
-        nsat = payload[pos:pos+ 5].uint; pos +=  5  # number of signals
-        sind = payload[pos:pos+ 1]     ; pos +=  1  # smoothing indicator
-        sint = payload[pos:pos+ 3]     ; pos +=  3  # smoothing interval
-        for i in range(nsat):
-            satid     = payload[pos:pos+ 6].uint; pos +=  6  # satellite id
-            cind1     = payload[pos:pos+ 1]     ; pos +=  1  # L1 code indicator
+        be = 'u30' if satsys != 'R' else 'u27'  # bit format of epoch time
+        bp = 'u24' if satsys != 'R' else 'u25'  # bit format of pseudorange (pr)
+        bi =  'u8' if satsys != 'R' else  'u7'  # bit format of pr ambiguity
+        payload.pos = pos
+        sid  = payload.read('u12')  # station id, DF003
+        tow  = payload.read(  be )  # epoch time
+        sync = payload.read(   1 )  # synchronous flag
+        nsat = payload.read( 'u5')  # number of signals
+        sind = payload.read(   1 )  # smoothing indicator
+        sint = payload.read( 'u3')  # smoothing interval
+        for _ in range(nsat):
+            satid     = payload.read( 'u6')  # satellite id
+            cind1     = payload.read(   1 )  # L1 code indicator
             if satsys == 'R':
-                fc    = payload[pos:pos+ 5].uint; pos +=  5  # freq ch
-            pr1       = payload[pos:pos+bp].uint; pos += bp  # L1 pseudorange
-            phpr1     = payload[pos:pos+20].int ; pos += 20  # L1 phase-pr
-            lti1      = payload[pos:pos+ 7].uint; pos +=  7  # L1 locktime ind
+                fc    = payload.read( 'u5')  # freq ch
+            pr1       = payload.read(  bp )  # L1 pseudorange
+            phpr1     = payload.read('i20')  # L1 phase-pr
+            lti1      = payload.read( 'u7')  # L1 locktime ind
             if mtype in 'Full':
-                pma1  = payload[pos:pos+bi].uint; pos += bi  # pr ambiguity
-                cnr1  = payload[pos:pos+ 8].uint; pos +=  8  # L1 CNR
+                pma1  = payload.read(  bi )  # pr ambiguity
+                cnr1  = payload.read( 'u8')  # L1 CNR
             if mtype in 'L2':
-                cind2 = payload[pos:pos+ 2]     ; pos +=  2  # L2 code indicator
-                prd   = payload[pos:pos+14].int ; pos += 14  # L2-L1 pr diff
-                phpr2 = payload[pos:pos+20].int ; pos += 20  # L2 phase-L1 pr
-                lti2  = payload[pos:pos+ 7].uint; pos +=  7  # L2 locktime ind
-                cnr2  = payload[pos:pos+ 8].uint; pos +=  8  # L2 CNR
+                cind2 = payload.read(   2 )  # L2 code indicator
+                prd   = payload.read('i14')  # L2-L1 pr diff
+                phpr2 = payload.read('i20')  # L2 phase-L1 pr
+                lti2  = payload.read( 'u7')  # L2 locktime ind
+                cnr2  = payload.read( 'u8')  # L2 CNR
         string = ''
-        return pos, string
+        if satsys != 'S':
+            for satid in range(n_sat):
+                string += f'{satsys}{sat_mask[satid]+1:02} '
+        else:
+            for satid in range(n_sat):
+                string += f'{satsys}{sat_mask[satid]+119:3} '
+        return payload.pos, string
 
     def decode_msm(self, payload, pos, satsys, mtype):
         '''decodes MSM message and returns pos and string'''
-        rsid   = payload[pos:pos+12].uint; pos += 12  # reference station id
-        epoch  = payload[pos:pos+30].uint; pos += 30  # GNSS epoch time
-        mm     = payload[pos:pos+ 1]     ; pos +=  1  # multiple message bit
-        iods   = payload[pos:pos+ 3].uint; pos +=  3  # issue of data station
-        pos += 7                                      # reserved
-        clk_s  = payload[pos:pos+ 2].uint; pos +=  2  # clock steering ind
-        cls_e  = payload[pos:pos+ 2].uint; pos +=  2  # external clock ind
-        smth   = payload[pos:pos+ 1]     ; pos +=  1  # smoothing indicator
-        tint_s = payload[pos:pos+ 3].uint; pos +=  3  # smoothing interval
+        payload.pos = pos
+        rid    = payload.read('u12')  # reference station id, DF003
+        epoch  = payload.read('u30')  # GNSS epoch time
+        mm     = payload.read(   1 )  # multiple message bit, DF393
+        iods   = payload.read( 'u3')  # issue of data station, DF409
+        payload.pos += 7              # reserved, DF001
+        csi    = payload.read( 'u2')  # clock steering ind, DF411
+        eci    = payload.read( 'u2')  # external clock ind, DF412
+        sid    = payload.read(   1 )  # divergence-free smooting, DF417
+        smint  = payload.read( 'u3')  # smoothing interval, DF418
         sat_mask = [0 for i in range(64)]
         n_sat = 0
-        for i in range(64):
-            mask = payload[pos:pos+1]; pos +=  1  # satellite mask
+        for satid in range(64):
+            mask = payload.read(1)    # satellite mask, DF394
             if mask:
-                sat_mask[n_sat] = i
+                sat_mask[n_sat] = satid
                 n_sat += 1
         sig_mask = [0 for i in range(32)]
         n_sig = 0
-        for i in range(32):
-            mask = payload[pos:pos+1]; pos += 1  # signal mask
+        for sigid in range(32):
+            mask = payload.read(1)    # signal maskm DF395
             if mask:
-                sig_mask[n_sig] = i
+                sig_mask[n_sig] = sigid
                 n_sig += 1
         cell_mask = [0 for i in range(n_sat * n_sig)]
         n_cell_mask = 0
-        for i in range(n_sat * n_sig):
-            mask = payload[pos:pos+1]; pos += 1  # cell mask
-            cell_mask[i] = mask
+        for maskpos in range(n_sat * n_sig):
+            mask = payload.read(1)    # cell mask, DF396
+            cell_mask[maskpos] = mask
             if mask:
                 n_cell_mask += 1
         if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
-            for i in range(n_sat):
-                rng   = payload[pos:pos+ 8].uint; pos +=  8  # rough ranges
+            for _ in range(n_sat):
+                rng  = payload.read( 'u8')  # rough ranges, DF398
         if '5' in mtype or '7' in mtype:
-            for i in range(n_sat):
-                einfo = payload[pos:pos+ 4].uint; pos +=  4 # extended info
-        for i in range(n_sat):
-            rng_m     = payload[pos:pos+10].uint; pos += 10 # range mod 1 ms
+            for _ in range(n_sat):
+                einf = payload.read( 'u4')  # sat specific extended info
+        for _ in range(n_sat):
+            rng_m    = payload.read('u10')  # range mod 1 ms, DF398
         if '5' in mtype or '7' in mtype:
-            for i in range(n_sat):
-                prr   = payload[pos:pos+14].int ; pos += 14 # phase range rates
-        for i in range(n_sat * n_sig):  # pseudorange
-            if not cell_mask[i]:
+            for _ in range(n_sat):
+                prr  = payload.read('i14')  # phase range rates, DF399
+        for maskpos in range(n_sat * n_sig):
+            if not cell_mask[maskpos]:
                 continue
-            bfpsr = 15  # bit size of fine pseudorange
-            bfphr = 22  # bit size of fine phaserange
-            blti  =  4  # bit size of lock time indicator
-            bcnr  =  6  # bit size of CNR
+            bfpsr = 'i15'  # bit format of fine pseudorange
+            bfphr = 'i22'  # bit format of fine phaserange
+            blti  =  'u4'  # bit format of lock time indicator
+            bcnr  =  'u6'  # bit format of CNR
             if '6' in mtype or '7' in mtype:
-                bfpsr = 20  # extended bit size for fine pseudorange
-                bfphr = 24  # extended bit size for fine phaserange
-                blti  = 10  # extended bit size for lock time indicator
-                bcnr  = 10  # extended bit size for CNR
+                bfpsr = 'i20'  # extended bit format for fine pseudorange
+                bfphr = 'i24'  # extended bit format for fine phaserange
+                blti  = 'u10'  # extended bit format for lock time indicator
+                bcnr  = 'u10'  # extended bit format for CNR
             if '1' in mtype or '3' in mtype or '4' in mtype or \
                '5' in mtype or '6' in mtype or '7' in mtype:
-                fpsr = payload[pos:pos+bfpsr].int ; pos += bfpsr  # fine pr
+                fpsr = payload.read(bfpsr)  # fine pseudorange, DF400, 405
             if '2' in mtype or '3' in mtype or '4' in mtype or \
                '5' in mtype or '6' in mtype or '7' in mtype:
-                fphr = payload[pos:pos+bfphr].int ; pos += bfphr  # fine phase
-                lti  = payload[pos:pos+ blti].uint; pos +=  blti  # lock time
-                hai  = payload[pos:pos+    1]     ; pos +=     1  # half amb
+                fphr = payload.read(bfphr)  # fine phaserange, DF401, 406
+                lti  = payload.read(blti )  # lock time ind, DF402, 407
+                hai  = payload.read(1    )  # half-cycle ambiguity, DF420
             if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
-                cnr  = payload[pos:pos+ bcnr].uint; pos +=  bcnr  # CNR
+                cnr  = payload.read(bcnr )  # CNR, DF403, 408
             if '5' in mtype or '7' in mtype:
-                fphr = payload[pos:pos+   15].int ; pos +=    15  # fine phase
+                fphr = payload.read('i15')  # fine phaserange rate, DF404
         string = ''
         if satsys != 'S':
-            for i in range(n_sat):
-                string += f'{satsys}{sat_mask[i]+1:02} '
+            for satid in range(n_sat):
+                string += f'{satsys}{sat_mask[satid]+1:02} '
         else:
-            for i in range(n_sat):
-                string += f'{satsys}{sat_mask[i]+119:3} '
-        return pos, string
+            for satid in range(n_sat):
+                string += f'{satsys}{sat_mask[satid]+119:3} '
+        return payload.pos, string
 
 # EOF
 

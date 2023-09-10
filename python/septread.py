@@ -35,6 +35,7 @@ def crc16_ccitt(data):
     return crc.to_bytes(2,'little')
 
 def u4perm(inblk, outblk):
+    ''' permutation of endian for decode raw message '''
     if len(inblk) % 4 != 0:
         raise Exception(f"Septentrio raw u32 should be multiple of 4 (actual {len(inblk)}).")
     outblk[0::4] = inblk[3::4]
@@ -54,8 +55,8 @@ class SeptReceiver:
     def read(self):
         ''' reads standard input as SBF raw, [1]
             and returns true if successful '''
-        sync = bytes(2)
         while True:
+            sync = bytes(2)
             while sync != b'\x24\x40':
                 b = sys.stdin.buffer.read(1)
                 if not b:
@@ -64,7 +65,7 @@ class SeptReceiver:
             head = sys.stdin.buffer.read(6)
             if not head:
                 return False
-            crc     = head[0:2]
+            crc     =                head[0:2]
             msg_id  = int.from_bytes(head[2:4], 'little')
             msg_len = int.from_bytes(head[4:6], 'little')
             if msg_len % 4 != 0:
@@ -95,25 +96,25 @@ class SeptReceiver:
         '''
         payload = self.payload
         pos = 0
-        tow         = int.from_bytes(payload[pos:pos+4], 'little'); pos += 4
-        wnc         = int.from_bytes(payload[pos:pos+2], 'little'); pos += 2
-        svid        = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        crc_passed  = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        viterbi_cnt = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        source      = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
+        tow         = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
+        wnc         = int.from_bytes(payload[pos:pos+ 2], 'little'); pos +=  2
+        svid        = int.from_bytes(payload[pos:pos+ 1], 'little'); pos +=  1
+        crc_passed  = int.from_bytes(payload[pos:pos+ 1], 'little'); pos +=  1
+        viterbi_cnt = int.from_bytes(payload[pos:pos+ 1], 'little'); pos +=  1
+        source      = int.from_bytes(payload[pos:pos+ 1], 'little'); pos +=  1
         pos +=  1
-        rx_channel  = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        nav_bits    = payload[pos:pos+64]; pos += 64
+        rx_channel  = int.from_bytes(payload[pos:pos+ 1], 'little'); pos +=  1
+        nav_bits    =                payload[pos:pos+64]           ; pos += 64
         e6b = bytearray(64)
         u4perm(nav_bits, e6b)
+        # see ref.[1] p.259 for converting from svid to sat code.
         self.satid = svid - 70
-        self.e6b = e6b[:LEN_CNAV_PAGE]
+        self.e6b   = e6b[:LEN_CNAV_PAGE]
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
             self.msg_color.fg('yellow') + f' E{self.satid:02d} ' + \
             self.msg_color.fg() + self.e6b.hex()
-            # see ref.[1] p.259 for converting from svid to sat code.
         return msg
 
     def qzsrawl6(self):
@@ -122,18 +123,18 @@ class SeptReceiver:
         '''
         payload = self.payload
         pos = 0
-        tow        = int.from_bytes(payload[pos:pos+4], 'little'); pos += 4
-        wnc        = int.from_bytes(payload[pos:pos+2], 'little'); pos += 2
-        svid       = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        parity     = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        rs_cnt     = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        source     = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        pos +=  1
-        rx_channel = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        nav_bits   = payload[pos:pos+252]; pos += 252
-        self.l6 = bytearray(252)
-        u4perm(nav_bits, self.l6)
+        tow        = int.from_bytes(payload[pos:pos+  4], 'little'); pos +=   4
+        wnc        = int.from_bytes(payload[pos:pos+  2], 'little'); pos +=   2
+        svid       = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        parity     = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        rs_cnt     = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        source     = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        pos +=  1  # reserved
+        rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        nav_bits   =                payload[pos:pos+252]           ; pos += 252
         self.satid = svid - 180
+        self.l6    = bytearray(252)
+        u4perm(nav_bits, self.l6)
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
@@ -149,18 +150,18 @@ class SeptReceiver:
         '''
         payload = self.payload
         pos = 0
-        tow         = int.from_bytes(payload[pos:pos+4], 'little'); pos += 4
-        wnc         = int.from_bytes(payload[pos:pos+2], 'little'); pos += 2
-        svid        = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        crc_passed  = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        pos +=  1
-        source      = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        pos +=  1
-        rx_channel  = int.from_bytes(payload[pos:pos+1], 'little'); pos += 1
-        nav_bits    = payload[pos:pos+ 124]; pos += 124
-        self.b2b = bytearray(124)
-        u4perm(nav_bits, self.b2b)
+        tow        = int.from_bytes(payload[pos:pos+  4], 'little'); pos +=   4
+        wnc        = int.from_bytes(payload[pos:pos+  2], 'little'); pos +=   2
+        svid       = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        crc_passed = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        pos += 1  # reserved
+        source     = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        pos += 1  # reserved
+        rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
+        nav_bits   =                payload[pos:pos+124]           ; pos += 124
         self.satid = (svid - 140) if svid <= 180 else (svid - 182)
+        self.b2b   = bytearray(124)
+        u4perm(nav_bits, self.b2b)
         msg = self.msg_color.fg('green') + \
             gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
@@ -190,17 +191,11 @@ if __name__ == '__main__':
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     args = parser.parse_args()
-    fp_e6b  = None
-    fp_l6   = None
-    fp_disp = sys.stdout
+    fp_e6b, fp_l6, fp_disp = None, None, sys.stdout
     if args.e6b:
-        fp_disp = None
-        fp_e6b  = sys.stdout
-        fp_l6   = None
+        fp_disp, fp_e6b, fp_l6 = None, sys.stdout, None
     if args.l6:
-        fp_disp = None
-        fp_e6b  = None
-        fp_l6   = sys.stdout
+        fp_disp, fp_e6b, fp_l6 = None, None, sys.stdout
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     rcv = SeptReceiver(fp_disp, args.color)
@@ -236,3 +231,4 @@ if __name__ == '__main__':
         sys.exit()
 
 # EOF
+
