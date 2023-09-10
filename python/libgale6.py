@@ -326,16 +326,15 @@ class GalE6():
         ''' returns True when HAS decode is ready, and
             stores HAS page, index, message id (MID), message size (MS)
         '''
-        rawb = bitstring.BitArray(cnav)[14:14+448]
+        rawb = bitstring.ConstBitStream(cnav)[14:14+448]
         # HAS Page (rawb: raw binary) size is 448 bit
         # discards top reserved 14 bit
-        pos = 0
-        hass = rawb[pos:pos+2].uint  ; pos += 2  # HAS status
-        pos += 2                                 # reserved
-        mt   = rawb[pos:pos+2].uint  ; pos += 2  # message type, should be 1
-        mid  = rawb[pos:pos+5].uint  ; pos += 5  # message id
-        ms   = rawb[pos:pos+5].uint+1; pos += 5  # message size
-        pid  = rawb[pos:pos+8].uint  ; pos += 8  # page id
+        hass = rawb.read('u2')      # HAS status
+        rawb.pos += 2               # reserved
+        mt   = rawb.read('u2')      # message type, should be 1
+        mid  = rawb.read('u5')      # message id
+        ms   = rawb.read('u5') + 1  # message size
+        pid  = rawb.read('u8')      # page id
         disp_msg = self.msg_color.fg('green') + f'E{int(satid):02d}' + \
                    self.msg_color.fg()
         if rawb[0:24].hex == 'af3bc3':
@@ -359,7 +358,7 @@ class GalE6():
             self.num_has_pages = 0
             self.storing_has_pages = True
         # store the HAS page and its index (pid: page id)
-        self.haspage[self.num_has_pages] = [x for x in rawb[pos:].tobytes()]
+        self.haspage[self.num_has_pages] = [x for x in rawb[rawb.pos:].tobytes()]
         self.hasindx[self.num_has_pages] = pid
         self.mid = mid
         self.ms  = ms
@@ -385,7 +384,7 @@ class GalE6():
         d = GF(g[np.array(self.hasindx[:self.ms])-1, :self.ms])
         w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
-        has_msg = bitstring.BitArray(m.tobytes())
+        has_msg = bitstring.ConstBitStream(m.tobytes())
         self.trace(2, f'------ HAS decode with the pages of MID={self.mid} MS={self.ms} ------\n')
         self.trace(2, has_msg, '\n------\n')
         pos = self.decode_has_header(has_msg)
@@ -401,30 +400,28 @@ class GalE6():
 
     def decode_has_header(self, has_msg):
         ''' returns new HAS message position '''
-        pos = 0
-        self.toh     = has_msg[pos:pos+12].uint; pos += 12
-        self.f_mask  = has_msg[pos:pos+1]; pos += 1
-        self.f_orbit = has_msg[pos:pos+1]; pos += 1
-        self.f_ckful = has_msg[pos:pos+1]; pos += 1
-        self.f_cksub = has_msg[pos:pos+1]; pos += 1
-        self.f_cbias = has_msg[pos:pos+1]; pos += 1
-        self.f_pbias = has_msg[pos:pos+1]; pos += 1
-        pos += 4 # reserved
-        self.maskid  = has_msg[pos:pos+5].uint; pos += 5
-        self.iodset  = has_msg[pos:pos+5].uint; pos += 5
-        disp_msg = ''
-        disp_msg += f'Time of hour TOH: {self.toh} s\n'
-        disp_msg += f'Mask            : {"on" if self.f_mask  else "off"}\n'
-        disp_msg += f'Orbit correction: {"on" if self.f_orbit else "off"}\n'
-        disp_msg += f'Clock full-set  : {"on" if self.f_ckful else "off"}\n'
-        disp_msg += f'Clock subset    : {"on" if self.f_cksub else "off"}\n'
-        disp_msg += f'Code bias       : {"on" if self.f_cbias else "off"}\n'
-        disp_msg += f'Phase bias      : {"on" if self.f_pbias else "off"}\n'
-        disp_msg += f'Mask ID         : {self.maskid}\n'
-        disp_msg += f'IOD Set ID      : {self.iodset}'
+        self.toh     = has_msg.read('u12')
+        self.f_mask  = has_msg.read(   1 )
+        self.f_orbit = has_msg.read(   1 )
+        self.f_ckful = has_msg.read(   1 )
+        self.f_cksub = has_msg.read(   1 )
+        self.f_cbias = has_msg.read(   1 )
+        self.f_pbias = has_msg.read(   1 )
+        has_msg.pos += 4  # reserved
+        self.maskid  = has_msg.read( 'u5')
+        self.iodset  = has_msg.read( 'u5')
+        disp_msg = f'Time of hour TOH: {self.toh} s\n' + \
+                   f'Mask            : {"on" if self.f_mask  else "off"}\n' + \
+                   f'Orbit correction: {"on" if self.f_orbit else "off"}\n' + \
+                   f'Clock full-set  : {"on" if self.f_ckful else "off"}\n' + \
+                   f'Clock subset    : {"on" if self.f_cksub else "off"}\n' + \
+                   f'Code bias       : {"on" if self.f_cbias else "off"}\n' + \
+                   f'Phase bias      : {"on" if self.f_pbias else "off"}\n' + \
+                   f'Mask ID         : {self.maskid}\n' + \
+                   f'IOD Set ID      : {self.iodset}'
         if self.fp_disp:
             print(disp_msg, file=self.fp_disp)
-        return pos
+        return has_msg.pos
 
 def icd_test():
     '''self test described in [1] attached file,
@@ -436,11 +433,11 @@ def icd_test():
     '''
     gale6 = GalE6(None, sys.stdout, 2, True, False)
     gale6.mt = 1
-    has_msg = bitstring.BitArray('0x000cc00b20ffdfffff008100f7ffff7df55ffdfe0beee8a79a41241000a6000a01a01280400200200113fbc041febbf00080080042ff6822fea21807c193f7598035fd7f6a2f00080080016ff90287e7967f702580587fee217a10c9dfcc0e7f651df577d981603ffe4147f903ff9df7805c15ff9fdcff8008004004000a002407ff9d7c07df7ffe2b5fdcee305519011fd7fd24479f00500e8e7edc31401c43fdb02304007fe5030ff1ac40020020000200100100077fec06e00141feb02afcb2c400200200043ff5f6c022097f7c0e3f4412ff4fe1ff8825fe8ffcff0048081fe3fda097f4c04bf3812fe5ff27f0025fc6ff5ff40480edfa601c08ffe8023fcc0f00b00b80a825fdf00fff704bf71ffffdc097fb400c00812fe781a7f8025fe602203204801001a01607ffd006404012fec00e000825fc7fe500c04bff405605c08804004403012fe27feffbf0bb23dc94458ef0420afe1fa61544abda77c130444320a1104303d3f76f65fbbee7ccf5fe6bddf8bfcff479b7a5f1dc3bf3fce1243b44e90d1784ac350b2f29f2bd607b1a1e7bb207519201003807069f8feb7cf00c0d42d85b061f33d2fa7fa00fc3506a02015c4b09409bf07cbf950400641582a04fc8f40e88d2dd9f73efbdc40080400407c198588ad0e9f43d67aef9009c220420cdefbc9f90f920f0338660401a45a0b411a0841c8380c206c1882d0121243e87d02bf27d1fa2fc6184518a50dcb000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    has_msg = bitstring.ConstBitStream('0x000cc00b20ffdfffff008100f7ffff7df55ffdfe0beee8a79a41241000a6000a01a01280400200200113fbc041febbf00080080042ff6822fea21807c193f7598035fd7f6a2f00080080016ff90287e7967f702580587fee217a10c9dfcc0e7f651df577d981603ffe4147f903ff9df7805c15ff9fdcff8008004004000a002407ff9d7c07df7ffe2b5fdcee305519011fd7fd24479f00500e8e7edc31401c43fdb02304007fe5030ff1ac40020020000200100100077fec06e00141feb02afcb2c400200200043ff5f6c022097f7c0e3f4412ff4fe1ff8825fe8ffcff0048081fe3fda097f4c04bf3812fe5ff27f0025fc6ff5ff40480edfa601c08ffe8023fcc0f00b00b80a825fdf00fff704bf71ffffdc097fb400c00812fe781a7f8025fe602203204801001a01607ffd006404012fec00e000825fc7fe500c04bff405605c08804004403012fe27feffbf0bb23dc94458ef0420afe1fa61544abda77c130444320a1104303d3f76f65fbbee7ccf5fe6bddf8bfcff479b7a5f1dc3bf3fce1243b44e90d1784ac350b2f29f2bd607b1a1e7bb207519201003807069f8feb7cf00c0d42d85b061f33d2fa7fa00fc3506a02015c4b09409bf07cbf950400641582a04fc8f40e88d2dd9f73efbdc40080400407c198588ad0e9f43d67aef9009c220420cdefbc9f90f920f0338660401a45a0b411a0841c8380c206c1882d0121243e87d02bf27d1fa2fc6184518a50dcb000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     gale6.decode_has_message(has_msg)
     if self.fp_disp:
         print(file=self.fp_disp)
-    has_msg = bitstring.BitArray('0x0072000b58afe4002d03000acd5826ae3000aaa5532b15581aaa572aa175b8800516e941454a28550ebd5556aa8c002001546a92c002c08020fd6ff200bbfe4fe2fec41020210207ff7f85ff8007002bfe202d000ffbc052044febaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    has_msg = bitstring.ConstBitStream('0x0072000b58afe4002d03000acd5826ae3000aaa5532b15581aaa572aa175b8800516e941454a28550ebd5556aa8c002001546a92c002c08020fd6ff200bbfe4fe2fec41020210207ff7f85ff8007002bfe202d000ffbc052044febaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     gale6.decode_has_message(has_msg)
 
 # EOF

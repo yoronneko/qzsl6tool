@@ -4,7 +4,7 @@
 # libqzsl6.py: library for QZS L6 message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022 Satoshi Takahashi
+# Copyright (c) 2022-2023 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -45,7 +45,7 @@ from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"
 # --- private
-    dpart    = bitstring.BitArray()  # data part
+    dpart    = bitstring.ConstBitStream()  # data part
     dpn      = 0                     # data part number
     sfn      = 0                     # subframe number
     prn      = 0                     # psedudo random noise number
@@ -56,7 +56,7 @@ class QzsL6:
     sf_ind   = 0                     # subframe indicator (0 or 1)
     alert    = 0                     # alert flag (0 or 1)
     run      = False                 # CSSR decode in progress
-    payload  = bitstring.BitArray()  # QZS L6 payload
+    payload  = bitstring.ConstBitStream()  # QZS L6 payload
     msgnum   = 0                     # message type number
     hepoch   = 0                     # hourly epoch
     interval = 0                     # update interval
@@ -92,10 +92,10 @@ class QzsL6:
             print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
             return False
         pos = 0
-        self.prn = int.from_bytes(    b[pos:pos+  1], 'big'); pos +=   1
-        mtid     = int.from_bytes(    b[pos:pos+  1], 'big'); pos +=   1
-        dpart    = bitstring.BitArray(b[pos:pos+212])       ; pos += 212
-        rs       =                    b[pos:pos+ 32]
+        self.prn = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
+        mtid     = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
+        dpart    = bitstring.ConstBitStream(b[pos:pos+212]); pos += 212
+        rs       = b[pos:pos+ 32]
         vid = mtid >> 5  # vender ID
         if   vid == 0b001: self.vendor = "MADOCA"
         elif vid == 0b010: self.vendor = "MADOCA-PPP"
@@ -171,7 +171,7 @@ class QzsL6:
         if pos % 8 != 0:  # byte align
             pos += 8 - (pos % 8)
         send_rtcm(self.fp_rtcm, self.dpart[0:pos])
-        del self.dpart[0:pos]
+        self.dpart  = self.dpart[pos:]
         self.msgnum = msgnum
         return True
 
@@ -229,9 +229,9 @@ class QzsL6:
         '''returns decoded message'''
         if self.sf_ind:  # first data part
             self.dpn = 1
-            self.payload = bitstring.BitArray(self.dpart)
+            self.payload = bitstring.ConstBitStream(self.dpart)
             if not self.ssr.decode_cssr_head(self.payload):
-                self.payload = bitstring.BitArray()
+                self.payload = bitstring.ConstBitStream()
             elif self.ssr.subtype == 1:
                 self.sfn = 1
                 self.run = True
@@ -239,7 +239,7 @@ class QzsL6:
                 if self.run:  # first data part but subtype is not ST1
                     self.sfn += 1
                 else:  # first data part but ST1 has not beed received
-                    self.payload = bitstring.BitArray()
+                    self.payload = bitstring.ConstBitStream()
         else:  # continual data part
             if self.run:
                 self.dpn += 1
@@ -248,9 +248,9 @@ class QzsL6:
                     self.run = False
                     self.dpn = 0
                     self.sfn = 0
-                    self.payload = bitstring.BitArray()
+                    self.payload = bitstring.ConstBitStream()
                 else:
-                    self.payload.append(self.dpart)
+                    self.payload += self.dpart
         disp_msg = ''
         if self.sfn != 0:
             disp_msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
@@ -260,7 +260,7 @@ class QzsL6:
             if self.run and self.ssr.subtype == 0:  # whole message is null
                 disp_msg += self.msg_color.dec('dark') + ' (null)' + \
                     self.msg_color.dec()
-                self.payload = bitstring.BitArray()
+                self.payload = bitstring.ConstBitStream()
             elif self.run:  # or, continual message
                 disp_msg += f' ST{self.ssr.subtype}' + \
                     self.msg_color.fg('yellow') + '...' + \
@@ -277,17 +277,17 @@ class QzsL6:
                     self.msg_color.fg('yellow') + '...' + \
                     self.msg_color.fg()
             else:  # end of message in the subframe
-                self.payload = bitstring.BitArray()
+                self.payload = bitstring.ConstBitStream()
         return disp_msg
 
     def show_qznma_msg(self):
         '''returns decoded message'''
-        payload = bitstring.BitArray(self.dpart)
+        payload = bitstring.ConstBitStream(self.dpart)
         return self.qznma.decode(payload)
 
     def show_unknown_msg():
         '''returns decoded message'''
-        payload = bitstring.BitArray(self.dpart)
+        payload = bitstring.ConstBitStream(self.dpart)
         self.trace(2, f"Unknown dump: {payload.bin}\n")
         return ''
 

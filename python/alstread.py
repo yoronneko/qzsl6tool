@@ -47,25 +47,25 @@ class AllystarReceiver:
             sync = sync[1:4] + b
             if sync == b'\xf1\xd9\x02\x10':
                 break
-        payld = b'\x02\x10' + sys.stdin.buffer.read(266)
+        l6 = b'\x02\x10' + sys.stdin.buffer.read(266)
         csum = sys.stdin.buffer.read(2)
-        if not payld or not csum:
+        if not l6 or not csum:
             return False
-        len_payld = int.from_bytes(payld[ 2: 4], 'little')
-        self.prn  = int.from_bytes(payld[ 4: 6], 'little') - 700
-        freqid    = int.from_bytes(payld[ 6: 7], 'little')
-        len_data  = int.from_bytes(payld[ 7: 8], 'little') - 2
-        self.gpsw = int.from_bytes(payld[ 8:10], 'big')
-        self.gpst = int.from_bytes(payld[10:14], 'big')
-        self.snr  = int.from_bytes(payld[14:15], 'big')
-        flag      = int.from_bytes(payld[15:16], 'big')
-        self.data = payld[16:268]
+        len_l6    = int.from_bytes(l6[ 2: 4], 'little')
+        self.prn  = int.from_bytes(l6[ 4: 6], 'little') - 700
+        freqid    = int.from_bytes(l6[ 6: 7], 'little')
+        len_data  = int.from_bytes(l6[ 7: 8], 'little') - 2
+        self.gpsw = int.from_bytes(l6[ 8:10], 'big')
+        self.gpst = int.from_bytes(l6[10:14], 'big')
+        self.snr  = int.from_bytes(l6[14:15], 'big')
+        flag      = int.from_bytes(l6[15:16], 'big')
+        self.data = l6[16:268]
         if self.last_gpst == 0:
             self.last_gpst = self.gpst
         self.err = ""
-        csum1, csum2 = checksum(payld)
+        csum1, csum2 = checksum(l6)
         if csum[0] != csum1 or csum[1] != csum2: self.err += "CS "
-        if len_payld != 264                    : self.err += "Payload "
+        if len_l6 != 264                       : self.err += "Payload "
         if len_data  !=  63                    : self.err += "Data "
         if flag & 0x01                         : self.err += "RS "
         if flag & 0x02                         : self.err += "Week "
