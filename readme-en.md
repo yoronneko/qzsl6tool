@@ -24,7 +24,7 @@ This is a collection of tools that display messages broadcast by the Quasi-Zenit
 
 This toolkit consists of a python program that receives messages on standard input and sequentially outputs the conversion results to standard output. By using ``nc`` of netcat or ``str2str`` of [RTKLIB](https://github.com/tomojitakasu/RTKLIB), it is possible to utilize information on the network. Standard error output is also available if desired.
 
-This Python code makes use of the ``bitstring`` module. Please install this module with a command ``pip3 install bitstring``.
+This Python code makes use of the ``bitstring`` module. Please install this module with a command ``pip3 install bitstring==4.0.2``. This tool does not work on version 4.1.0 of bitstring. The HAS decode function requres Python modules of ``galois`` and ``numpy``, and Python 3.10 (``pip3 install galois numpy``).
 
 This toolkit consists of the following programs:
 - A program to decode Quasi-Zenith Satellite L6 format data ``qzsl6read.py`` (previous ``qzsl62rtcm.py``)
