@@ -23,7 +23,7 @@ English description is available [here](readme-en.md).
 
 このツール集は、メッセージを標準入力で受け取り、変換結果を逐次的に標準出力に出力するpythonプログラムからなります。netcatの``nc``や、[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の``str2str``などを用いれば、ネットワーク上にある情報を活用することも可能です。必要に応じて、標準エラー出力も利用できます。
 
-このコードは、Pythonの``bitstring``モジュールを利用します。``pip3 install bitstring``により、このモジュールをインストールしてください。
+このコードは、Pythonの``bitstring``モジュールを利用します。``pip3 install bitstring==4.0.2``により、このモジュールをインストールしてください。現在のところ、bitstring 4.1.0以降では動作しません。また、HASの復号には、さらに``galois``モジュールと、``numpy``モジュールが必要になり、そのため、現在のところPython 3.10が必要です（``pip3 install galois numpy``）。
 
 このツール集は、``python``ディレクトリにあり、
 
