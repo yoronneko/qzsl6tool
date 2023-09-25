@@ -19,8 +19,8 @@ FMT_IODE = '<4d'    # format string for issue of data ephemeris
 class Eph:
     '''Ephemeris class'''
     def __init__(self, fp_disp, t_level, msg_color):
-        self.fp_disp = fp_disp
-        self.t_level = t_level
+        self.fp_disp   = fp_disp
+        self.t_level   = t_level
         self.msg_color = msg_color
 
     def trace(self, level, *args):

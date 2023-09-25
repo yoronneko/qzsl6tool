@@ -44,7 +44,6 @@ from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
 
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"
-# --- private
     dpart    = bitstring.ConstBitStream()  # data part
     dpn      = 0                     # data part number
     sfn      = 0                     # subframe number
@@ -76,7 +75,6 @@ class QzsL6:
         if self.stat:
             ssr.show_cssr_stat()
 
-# --- public
     def read_l6_msg(self):  # ref. [1]
         sync = bytes(4)
         try:
@@ -135,7 +133,6 @@ class QzsL6:
         except (BrokenPipeError, IOError):
             sys.exit()
 
-# --- private
     def trace(self, level, *args):
         if self.t_level < level or not self.fp_disp:
             return

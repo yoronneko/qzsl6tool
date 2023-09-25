@@ -46,7 +46,7 @@ import libssr
 
 class Rtcm:
     '''RTCM message process class'''
-# --- private
+
     readbuf = b''  # read buffer, used as static variable
     payload = bitstring.ConstBitStream()
 
@@ -58,7 +58,6 @@ class Rtcm:
         self.obs       = libobs.Obs(fp_disp, t_level, self.msg_color)
         self.ssr       = libssr.Ssr(fp_disp, t_level, self.msg_color)
 
-# --- public
     def read(self):
         '''returns true if successfully reading an RTCM message'''
         BUFMAX = 1000  # maximum length of buffering RTCM message
@@ -156,13 +155,9 @@ class Rtcm:
                 self.msg_color.fg()
         if not self.fp_disp:
             return
-        try:
-            print(disp_msg, file=self.fp_disp)
-            self.fp_disp.flush()
-        except (BrokenPipeError, IOError):
-            sys.exit()
+        print(disp_msg, file=self.fp_disp)
+        self.fp_disp.flush()
 
-# --- private
     def trace(self, level, *args):
         if self.t_level < level or not self.fp_disp:
             return

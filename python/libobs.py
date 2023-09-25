@@ -89,7 +89,7 @@ class Obs:
         sig_mask = [0 for i in range(32)]
         n_sig = 0
         for sigid in range(32):
-            mask = payload.read(1)    # signal maskm DF395
+            mask = payload.read(1)    # signal mask, DF395
             if mask:
                 sig_mask[n_sig] = sigid
                 n_sig += 1
@@ -129,8 +129,8 @@ class Obs:
             if '2' in mtype or '3' in mtype or '4' in mtype or \
                '5' in mtype or '6' in mtype or '7' in mtype:
                 fphr = payload.read(bfphr)  # fine phaserange, DF401, 406
-                lti  = payload.read(blti )  # lock time ind, DF402, 407
-                hai  = payload.read(1    )  # half-cycle ambiguity, DF420
+                lti  = payload.read( blti)  # lock time ind, DF402, 407
+                hai  = payload.read(    1)  # half-cycle ambiguity, DF420
             if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
                 cnr  = payload.read(bcnr )  # CNR, DF403, 408
             if '5' in mtype or '7' in mtype:
