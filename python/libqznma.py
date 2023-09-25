@@ -31,7 +31,6 @@ import libssr
 
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"
-# --- private
     def __init__(self, fp_disp, t_level, msg_color):
         self.fp_disp = fp_disp
         self.t_level = t_level
@@ -39,7 +38,6 @@ class Qznma:
         self.rds1 = bitstring.ConstBitStream()
         self.rds2 = bitstring.ConstBitStream()
 
-# --- public
     def decode(self, payload):
         '''decode reformat digital signature (RDS) in L6E
         [1] p.67 Fig.6-52, 6-53, and 6-54'''
@@ -55,7 +53,6 @@ class Qznma:
         message += self.decode_rds(rds2)
         return message
 
-# --- private
     def trace(self, level, *args):
         if self.t_level < level or not self.fp_disp:
             return
@@ -80,9 +77,8 @@ class Qznma:
         salt   = rds.read('u16')
         message = ''
         if nma_id != '0000':
-            message += self.msg_color.dec('dark')
-            message += '(inactive) '
-            message += self.msg_color.dec()
+            message = self.msg_color.dec('dark') + '(inactive) ' + \
+                self.msg_color.dec()
             if rds[4:].any(1):
                 self.trace(2,f'NMA_ID={nma_id}: {rds[4:]}\n')
             return message

@@ -56,9 +56,7 @@ FMT_GSIG = '13s'   # format string for GNSS signal name
 
 class Ssr:
     """class of state space representation (SSR) and compact SSR process"""
-# --- public
     subtype    = 0      # subtype number
-# --- private
     ssr_nsat   = 0      # number of satellites
     ssr_mmi    = 0      # multiple message indicator
     ssr_iod    = 0      # iod ssr
@@ -124,20 +122,20 @@ class Ssr:
         for i in range(self.ssr_nsat):
             satid  = payload.read(  bw )  # satellite ID, DF068
             iode   = payload.read( 'u8')  # IODE, DF071
-            idrad  = payload.read('i22')  # delta radial, DF365
-            idaln  = payload.read('i20')  # delta along track, DF366
-            idcrs  = payload.read('i20')  # delta cross track, DF367
-            iddrad = payload.read('i21')  # d_delta radial, DF368
-            iddaln = payload.read('i19')  # d_delta along track, DF369
-            iddcrs = payload.read('i19')  # d_delta cross track, DF370
-            drad   = idrad  * 1e-4        # 0.1   mm   (1e-4 m)
-            daln   = idaln  * 4e-4        # 0.4   mm   (4e-4 m)
-            dcrs   = idcrs  * 4e-5        # 0.4   mm   (4e-4 m)
-            ddrad  = iddrad * 1e-6        # 0.001 mm/s (1e-6 m/s)
-            ddaln  = iddaln * 4e-6        # 0.004 mm/s (4e-6 m/s)
-            ddcrs  = iddcrs * 4e-6        # 0.004 mm/s (4e-6 m/s)
+            drad   = payload.read('i22')  # delta radial, DF365
+            daln   = payload.read('i20')  # delta along track, DF366
+            dcrs   = payload.read('i20')  # delta cross track, DF367
+            ddrad  = payload.read('i21')  # d_delta radial, DF368
+            ddaln  = payload.read('i19')  # d_delta along track, DF369
+            ddcrs  = payload.read('i19')  # d_delta cross track, DF370
+            vdrad  = drad  * 1e-4         # 0.1   mm   (1e-4 m)
+            vdaln  = daln  * 4e-4         # 0.4   mm   (4e-4 m)
+            vdcrs  = dcrs  * 4e-5         # 0.4   mm   (4e-4 m)
+            vddrad = ddrad * 1e-6         # 0.001 mm/s (1e-6 m/s)
+            vddaln = ddaln * 4e-6         # 0.004 mm/s (4e-6 m/s)
+            vddcrs = ddcrs * 4e-6         # 0.004 mm/s (4e-6 m/s)
             strsat += f"{satsys}{satid:02} "
-            self.trace(1, f'{satsys}{satid:02d} d_radial={drad:{FMT_ORB}}m d_along={daln:{FMT_ORB}}m d_cross={dcrs:{FMT_ORB}}m dot_d_radial={ddrad:{FMT_ORB}}m/s dot_d_along={ddaln:{FMT_ORB}}m/s dot_d_cross={ddcrs:{FMT_ORB}}m/s\n')
+            self.trace(1, f'{satsys}{satid:02d} d_radial={vdrad:{FMT_ORB}}m d_along={vdaln:{FMT_ORB}}m d_cross={vdcrs:{FMT_ORB}}m dot_d_radial={vddrad:{FMT_ORB}}m/s dot_d_along={vddaln:{FMT_ORB}}m/s dot_d_cross={vddcrs:{FMT_ORB}}m/s\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return payload.pos, string
@@ -150,16 +148,16 @@ class Ssr:
         elif satsys == 'R': bw = 'u5'  # ref. [1]
         else              : bw = 'u6'  # ref. [1]
         payload.pos = pos
-        for i in range(self.ssr_nsat):
-            satid = payload.read(  bw ) # satellite ID
-            ic0   = payload.read('i22')  # delta clock c0, DF376
-            ic1   = payload.read('i21')  # delta clock c1, DF377
-            ic2   = payload.read('i27')  # delta clock c2, DF378
-            c0    = ic0 * 1e-4           # 0.1     mm     (1e-4 m)
-            c1    = ic1 * 1e-6           # 0.001   mm/s   (1e-7 m/s)
-            c2    = ic2 * 2e-9           # 0.00002 mm/s^2 (2e-9 m/s^2)
+        for _ in range(self.ssr_nsat):
+            satid = payload.read(  bw )  # satellite ID
+            c0    = payload.read('i22')  # delta clock c0, DF376
+            c1    = payload.read('i21')  # delta clock c1, DF377
+            c2    = payload.read('i27')  # delta clock c2, DF378
+            vc0   = c0 * 1e-4            # 0.1     mm     (1e-4 m)
+            vc1   = c1 * 1e-6            # 0.001   mm/s   (1e-7 m/s)
+            vc2   = c2 * 2e-9            # 0.00002 mm/s^2 (2e-9 m/s^2)
             strsat += f"{satsys}{satid:02d} "
-            self.trace(1, f'{satsys}{satid:02d} c0={c0:{FMT_CLK}}m, c1={c1:{FMT_CLK}}m, c2={c2:{FMT_CLK}}m\n')
+            self.trace(1, f'{satsys}{satid:02d} c0={vc0:{FMT_CLK}}m, c1={vc1:{FMT_CLK}}m, c2={vc2:{FMT_CLK}}m\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return payload.pos, string
@@ -176,11 +174,11 @@ class Ssr:
             ncb   = payload.read('u5')  # code bias number, DF383
             strsat += f"{satsys}{satid:02d} "
             for j in range(ncb):
-                ustmi = payload.read( 'u5')  # sig&trk mode ind, DF380
-                icb   = payload.read('i14')  # code bias, DF383
-                cb    = icb * 1e-2
-                stmi  = sigmask2signame(satsys, ustmi)
-                self.trace(1, f'{satsys}{satid:02d} {stmi:{FMT_GSIG}} code_bias={cb:{FMT_CB}}m\n')
+                stmi  = payload.read( 'u5')  # sig&trk mode ind, DF380
+                cb    = payload.read('i14')  # code bias, DF383
+                vcb   = cb * 1e-2
+                sstmi = sigmask2signame(satsys, stmi)
+                self.trace(1, f'{satsys}{satid:02d} {sstmi:{FMT_GSIG}} code_bias={vcb:{FMT_CB}}m\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return payload.pos, string
@@ -196,10 +194,10 @@ class Ssr:
         for i in range(self.ssr_nsat):
             satid = payload.read( bw )  # satellite ID, DF068
             ura   = payload.read(  6 )  # user range accuracy, DF389
-            if   ura.bin == 0b000000:
-                vura = INVALID  # undefined or unknown
-            elif ura.bin == 0b111111:
-                vura = INVALID  # URA more than 5466.5 mm
+            if   ura.bin == 0b000000:   # undefined or unknown
+                vura = INVALID
+            elif ura.bin == 0b111111:   # URA more than 5466.5 mm
+                vura = INVALID
             else:
                 cls  = ura[4:7].uint
                 val  = ura[0:4].uint
@@ -219,10 +217,10 @@ class Ssr:
         else              : bw = 'u6'
         for i in range(self.ssr_nsat):
             satid = payload.read(  bw )  # satellite ID
-            ihrc  = payload.read('i22')  # high rate clock
-            hrc   = ihrc * 1e-4          # 0.1mm (DF390) or 1e-4 m
+            hrc   = payload.read('i22')  # high rate clock
+            vhrc  = hrc * 1e-4          # 0.1mm (DF390) or 1e-4 m
             strsat += f"{satsys}{satid:02} "
-            self.trace(1, f'{satsys}{satid:02} high_rate_clock={hrc:{FMT_CLK}}m\n')
+            self.trace(1, f'{satsys}{satid:02} high_rate_clock={vhrc:{FMT_CLK}}m\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return payload.pos, string
@@ -417,19 +415,19 @@ class Ssr:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + bw + 15 + 13 + 13:
                     return 0
-                fbw      = f'u{bw}'
-                iode     = payload.read( fbw )
-                i_radial = payload.read('i15')
-                i_along  = payload.read('i13')
-                i_cross  = payload.read('i13')
-                d_radial = i_radial * 0.0016 if i_radial != -16384 else INVALID
-                d_along  = i_along  * 0.0064 if i_along  != -16384 else INVALID
-                d_cross  = i_cross  * 0.0064 if i_cross  != -16384 else INVALID
+                fbw  = f'u{bw}'
+                iode = payload.read( fbw )
+                rad  = payload.read('i15')  # radial
+                alg  = payload.read('i13')  # along
+                crs  = payload.read('i13')  # cros
+                vrad = rad * 0.0016 if rad != -16384 else INVALID
+                valg = alg * 0.0064 if alg != -16384 else INVALID
+                vcrs = crs * 0.0064 if crs != -16384 else INVALID
                 msg_trace1 += \
                     f'ST2 {gsys} IODE={iode:{FMT_IODE}} ' + \
-                    f'd_radial={d_radial:{FMT_ORB}}m ' + \
-                    f'd_along={ d_along :{FMT_ORB}}m ' + \
-                    f'd_cross={ d_cross :{FMT_ORB}}m\n'
+                    f'd_radial={vrad:{FMT_ORB}}m ' + \
+                    f'd_along={ valg:{FMT_ORB}}m ' + \
+                    f'd_cross={ vcrs:{FMT_ORB}}m\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
@@ -449,22 +447,22 @@ class Ssr:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + bw + 13 + 12 + 12:
                     return 0
-                fbw      = f'u{bw}'
-                iode     = payload.read(fbw)
-                i_radial = payload.read( 13)
-                i_along  = payload.read( 12)
-                i_cross  = payload.read( 12)
-                d_radial = i_radial.int * 0.0025 \
-                    if i_radial.bin != '1000000000000' else INVALID
-                d_along  = i_along.int * 0.0080 \
-                    if i_along.bin  != '100000000000'  else INVALID
-                d_cross  = i_cross.int * 0.0080 \
-                    if i_cross.bin  != '100000000000'  else INVALID
+                fbw  = f'u{bw}'
+                iode = payload.read(fbw)
+                rad  = payload.read( 13)  # radial
+                alg  = payload.read( 12)  # along
+                crs  = payload.read( 12)  # cross
+                vrad = rad.int * 0.0025 \
+                    if rad.bin != '1000000000000' else INVALID
+                valg = alg.int * 0.0080 \
+                    if alg.bin  != '100000000000'  else INVALID
+                vcrs = crs.int * 0.0080 \
+                    if crs.bin  != '100000000000'  else INVALID
                 msg_trace1 += \
                     f'ORBIT {gsys} IODE={iode:{FMT_IODE}} ' + \
-                    f'd_radial={d_radial:{FMT_ORB}}m ' + \
-                    f'd_track={ d_along :{FMT_ORB}}m ' + \
-                    f'd_cross={ d_cross :{FMT_ORB}}m\n'
+                    f'd_radial={vrad:{FMT_ORB}}m ' + \
+                    f'd_track={ valg :{FMT_ORB}}m ' + \
+                    f'd_cross={ vcrs :{FMT_ORB}}m\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
@@ -479,9 +477,9 @@ class Ssr:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + 15:
                     return 0
-                ic0 = payload.read('i15')
-                c0  = ic0 * 0.0016 if ic0 != -16384 else INVALID
-                msg_trace1 += f"ST3 {gsys} d_clock={c0:{FMT_CLK}}m\n"
+                c0  = payload.read('i15')
+                vc0 = c0 * 0.0016 if c0 != -16384 else INVALID
+                msg_trace1 += f"ST3 {gsys} d_clock={vc0:{FMT_CLK}}m\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
@@ -504,14 +502,14 @@ class Ssr:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + 13:
                     return 0
-                ic0 = payload.read(13)
-                if   ic0.bin == '1000000000000':  # not available
-                    c0 = INVALID
-                elif ic0.bin == '0111111111111':  # the sat shall not be used
-                    c0 = INVALID
+                c0 = payload.read(13)
+                if   c0.bin == '1000000000000':  # not available
+                    vc0 = INVALID
+                elif c0.bin == '0111111111111':  # the sat shall not be used
+                    vc0 = INVALID
                 else:
-                    c0 = ic0.int * 0.0025 * multiplier[i]
-                msg_trace1 += f"CKFUL {gsys} d_clock={c0:{FMT_CLK}}m (multiplier={multiplier[i]})\n"
+                    vc0 = c0.int * 0.0025 * multiplier[i]
+                msg_trace1 += f"CKFUL {gsys} d_clock={vc0:{FMT_CLK}}m (multiplier={multiplier[i]})\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
@@ -533,14 +531,14 @@ class Ssr:
             multiplier[i] = payload.read('u2') + 1
             if len_payload < payload.pos + 13:
                 return 0
-            ic0 = payload.read(13)
-            if   ic0.bin == '1000000000000':  # not available
-                c0 = INVALID
-            elif ic0.bin == '0111111111111':  # the sat shall not be used
-                c0 = INVALID
+            c0 = payload.read(13)
+            if   c0.bin == '1000000000000':  # not available
+                vc0 = INVALID
+            elif c0.bin == '0111111111111':  # the sat shall not be used
+                vc0 = INVALID
             else:
-                c0 = ic0.int * 0.0025 * multiplier[i] 
-            msg_trace1 += f"CKSUB {gsys} d_clock={c0:{FMT_CLK}}m (x{multiplier[i]})\n"
+                vc0 = c0.int * 0.0025 * multiplier[i]
+            msg_trace1 += f"CKSUB {gsys} d_clock={vc0:{FMT_CLK}}m (x{multiplier[i]})\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
@@ -577,11 +575,11 @@ class Ssr:
                     mask = self.cellmask[i][pos_mask]; pos_mask += 1
                     if not mask:
                         continue
-                    icb = payload.read('i11')
-                    cb  = icb * 0.02 if icb != -1024 else INVALID
+                    cb  = payload.read('i11')
+                    vcb = cb * 0.02 if cb != -1024 else INVALID
                     if ssr_type == "cssr": msg_trace1 += "ST4"
                     else                 : msg_trace1 += "CBIAS"
-                    msg_trace1 += f" {gsys} {gsig:{FMT_GSIG}} code_bias={cb:{FMT_CB}}m\n"
+                    msg_trace1 += f" {gsys} {gsig:{FMT_GSIG}} code_bias={vcb:{FMT_CB}}m\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
@@ -607,12 +605,12 @@ class Ssr:
                         continue
                     if len_payload < payload.pos + 15 + 2:
                         return 0
-                    ipb = payload.read('i15')
+                    pb  = payload.read('i15')
                     di  = payload.read( 'u2')
-                    pb = ipb * 0.001 if ipb != -16384 else INVALID
+                    vpb = pb * 0.001 if pb != -16384 else INVALID
                     msg_trace1 += \
                         f'ST5 {gsys} {gsig:{FMT_GSIG}}' + \
-                        f' phase_bias={pb:{FMT_PB}}m' + \
+                        f' phase_bias={vpb:{FMT_PB}}m' + \
                         f' discont_indicator={di}\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
@@ -636,12 +634,12 @@ class Ssr:
                         continue
                     if len_payload < payload.pos + 11 + 2:
                         return 0
-                    ipb = payload.read('i11')
+                    pb  = payload.read('i11')
                     di  = payload.read( 'u2')
-                    pb  = ipb * 0.01 if ipb != -1024 else INVALID
+                    vpb = pb * 0.01 if pb != -1024 else INVALID
                     msg_trace1 += \
                         f'PBIAS {gsys} {gsig:{FMT_GSIG}}' + \
-                        f' phase_bias={pb:{FMT_PB}}cycle' + \
+                        f' phase_bias={vpb:{FMT_PB}}cycle' + \
                         f' discont_indicator={di}\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
@@ -684,17 +682,17 @@ class Ssr:
                     if f_cb:
                         if len_payload < payload.pos + 11:
                             return 0
-                        icb = payload.read('i11')  # code bias
-                        cb  = icb * 0.02 if icb != -1024 else INVALID
-                        msg_trace1 += f" code_bias={cb:{FMT_CB}}m"
+                        cb  = payload.read('i11')  # code bias
+                        vcb = cb * 0.02 if cb != -1024 else INVALID
+                        msg_trace1 += f" code_bias={vcb:{FMT_CB}}m"
                     if f_pb:
                         if len_payload < payload.pos + 15 + 2:
                             return 0
-                        ipb = payload.read('i15')  # phase bias
+                        pb  = payload.read('i15')  # phase bias
                         di  = payload.read( 'u2')  # disc ind
-                        pb  = ipb * 0.001 if ipb != -16384 else INVALID
+                        vpb = pb * 0.001 if pb != -16384 else INVALID
                         msg_trace1 += \
-                            f" phase_bias={pb:{FMT_PB}}m discont_indi={di}"
+                            f" phase_bias={vpb:{FMT_PB}}m discont_indi={di}"
                     msg_trace1 += '\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
@@ -712,11 +710,11 @@ class Ssr:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + 6:
                     return 0
-                ura  = payload.read(6)  # [3], Sect.4.2.2.7
-                if   ura.bin == 0b000000:
-                    vura = INVALID  # undefined or unknown
-                elif ura.bin == 0b111111:
-                    vura = INVALID  # URA more than 5466.5 mm
+                ura  = payload.read(6)     # [3], Sect.4.2.2.7
+                if   ura.bin == 0b000000:  # undefined or unknown
+                    vura = INVALID
+                elif ura.bin == 0b111111:  # URA more than 5466.5 mm
+                    vura = INVALID
                 else:
                     cls  = ura[4:7].uint
                     val  = ura[0:4].uint
@@ -749,33 +747,33 @@ class Ssr:
                 if len_payload < payload.pos + 6 + 14:
                     return 0
                 qi   = payload.read( 'u6')  # quality indicator
-                ic00 = payload.read('i14')
-                c00  = ic00 * 0.05 if ic00 != -8192 else INVALID
-                msg_trace1 += f"ST8 {gsys} c00={c00:{FMT_TECU}}TECU"
+                c00  = payload.read('i14')
+                vc00 = c00 * 0.05 if c00 != -8192 else INVALID
+                msg_trace1 += f"ST8 {gsys} c00={vc00:{FMT_TECU}}TECU"
                 if 1 <= stec_type:
                     if len_payload < payload.pos + 12 + 12:
                         return 0
-                    ic01 = payload.read('i12')
-                    ic10 = payload.read('i12')
-                    c01  = ic01 * 0.02 if ic01 != -2048 else INVALID
-                    c10  = ic10 * 0.02 if ic10 != -2048 else INVALID
+                    c01  = payload.read('i12')
+                    c10  = payload.read('i12')
+                    vc01 = c01 * 0.02 if c01 != -2048 else INVALID
+                    vc10 = c10 * 0.02 if c10 != -2048 else INVALID
                     msg_trace1 += \
-                        f" c01={c01:{FMT_TECU}}TECU/deg c10={c10:{FMT_TECU}}TECU/deg"
+                        f" c01={vc01:{FMT_TECU}}TECU/deg c10={vc10:{FMT_TECU}}TECU/deg"
                 if 2 <= stec_type:
                     if len_payload < payload.pos + 10:
                         return 0
-                    ic11 = payload.read('i10')
-                    c11  = ic11 * 0.02 if ic11 != -512 else INVALID
-                    msg_trace1 += f" c11={c11:{FMT_TECU}}TECU/deg^2"
+                    c11  = payload.read('i10')
+                    vc11 = c11 * 0.02 if c11 != -512 else INVALID
+                    msg_trace1 += f" c11={vc11:{FMT_TECU}}TECU/deg^2"
                 if 3 <= stec_type:
                     if len_payload < payload.pos + 8 + 8:
                         return 0
-                    ic02 = payload.read('i8')
-                    ic20 = payload.read('i8')
-                    c02  = ic02 * 0.005 if ic02 != -128 else INVALID
-                    c20  = ic20 * 0.005 if ic20 != -128 else INVALID
+                    c02  = payload.read('i8')
+                    c20  = payload.read('i8')
+                    vc02 = c02 * 0.005 if c02 != -128 else INVALID
+                    vc20 = c20 * 0.005 if c20 != -128 else INVALID
                     msg_trace1 += \
-                        f" c02={c02:{FMT_TECU}}TECU/deg^2 c20={c20:{FMT_TECU}}TECU/deg^2"
+                        f" c02={vc02:{FMT_TECU}}TECU/deg^2 c20={vc20:{FMT_TECU}}TECU/deg^2"
                 msg_trace1 += '\n'
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 7
@@ -807,28 +805,28 @@ class Ssr:
         for i in range(ngrid):
             if len_payload < payload.pos + 9 + 8:
                 return 0
-            ivd_h = payload.read('i9')  # hydrostatic vert delay
-            ivd_w = payload.read('i8')  # wet vert delay
-            vd_h  = ivd_h * 0.004 if ivd_h != -256 else INVALID
-            vd_w  = ivd_w * 0.004 if ivd_w != -128 else INVALID
+            vd_h = payload.read('i9')  # hydrostatic vert delay
+            vd_w = payload.read('i8')  # wet vert delay
+            vvd_h  = vd_h * 0.004 if vd_h != -256 else INVALID
+            vvd_w  = vd_w * 0.004 if vd_w != -128 else INVALID
             msg_trace1 += \
                 f'ST9 Trop     grid {i+1:2d}/{ngrid:2d}' + \
-                f' dry-delay={vd_h:6.3f}m wet-delay={vd_w:6.3f}m\n'
+                f' dry-delay={vvd_h:6.3f}m wet-delay={vvd_w:6.3f}m\n'
             for satsys in self.satsys:
                 for j, gsys in enumerate(self.gsys[satsys]):
                     if not svmask[satsys][j]:
                         continue
                     if len_payload < payload.pos + bw:
                         return 0
-                    bfw = f'i{bw}'
-                    res      = payload.read(fbw)
-                    residual = res * 0.04
+                    fbw  = f'i{bw}'
+                    res  = payload.read(fbw)  # residual
+                    vres = res * 0.04
                     if (crange == 1 and res == -32767) or \
                        (crange == 0 and res == -64):
                         residual = INVALID
                     msg_trace1 += \
                         f'ST9 STEC {gsys} grid {i+1:2d}/{ngrid:2d}' + \
-                        f' residual={residual:{FMT_TECU}}TECU ({bw}bit)\n'
+                        f' residual={vres:{FMT_TECU}}TECU ({bw}bit)\n'
         self.trace(1, msg_trace1)
         self.stat_both += payload.pos
         return payload.pos
@@ -839,11 +837,11 @@ class Ssr:
         if len_payload < 5:
             return 0
         counter = payload.read('u3')  # info message counter
-        idsize  = payload.read('u2')  # data size
-        dsize = (idsize + 1) * 40
-        if len_payload < payload.pos + dsize:
+        dsize   = payload.read('u2')  # data size
+        vdsize  = (dsize + 1) * 40
+        if len_payload < payload.pos + vdsize:
             return 0
-        aux_frame_data = payload.read(dsize)
+        aux_frame_data = payload.read(vdsize)
         self.trace(1, f'ST10 {counter}:{aux_frame_data.hex}')
         self.stat_both += payload.pos
         return payload.pos
@@ -883,26 +881,23 @@ class Ssr:
                             return 0
                         fbw       = f'u{bw}'
                         iode      = payload.read(fbw)
-                        id_radial = payload.read('i15')
-                        id_along  = payload.read('i13')
-                        id_cross  = payload.read('i13')
-                        d_radial  = id_radial * 0.0016 if id_radial != -16384 \
-                                   else INVALID
-                        d_along = id_along * 0.0064 if id_along != -4096 \
-                                    else INVALID
-                        d_cross = id_cross * 0.0064 if id_cross != -4096 \
-                                    else INVALID
+                        rad = payload.read('i15')  # radial
+                        alg = payload.read('i13')  # along
+                        crs = payload.read('i13')  # cross
+                        vrad = rad * 0.0016 if rad != -16384 else INVALID
+                        valg = alg * 0.0064 if alg !=  -4096 else INVALID
+                        vcrs = crs * 0.0064 if crs !=  -4096 else INVALID
                         msg_trace1 += \
                             f' IODE={iode:{FMT_IODE}} ' + \
-                            f'd_radial={d_radial:{FMT_ORB}}m ' + \
-                            f'd_along={ d_along :{FMT_ORB}}m ' + \
-                            f'd_cross={ d_cross :{FMT_ORB}}m'
+                            f'd_radial={vrad:{FMT_ORB}}m ' + \
+                            f'd_along={ valg:{FMT_ORB}}m ' + \
+                            f'd_cross={ vcrs:{FMT_ORB}}m'
                     if f_c:
                         if len_payload < payload.pos + 15:
                             return 0
-                        ic0 = payload.read('i15')
-                        c0  = ic0 * 0.0016 if ic0 != -16384 else INVALID
-                        msg_trace1 += f" c0={c0:{FMT_CLK}}m"
+                        c0  = payload.read('i15')
+                        vc0 = c0 * 0.0016 if c0 != -16384 else INVALID
+                        msg_trace1 += f" c0={vc0:{FMT_CLK}}m"
                     msg_trace1 += "\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
@@ -930,44 +925,44 @@ class Ssr:
                 return 0
             tqi   = payload.read( 'u6')  # tropo quality ind
             ttype = payload.read( 'u2')  # tropo correction type
-            it00  = payload.read( 'i9')  # tropo poly coeff
-            t00 = it00 * 0.004 if it00 != -256 else INVALID
+            t00   = payload.read( 'i9')  # tropo poly coeff
+            vt00  = t00 * 0.004 if t00 != -256 else INVALID
             msg_trace1 += f" quality={tqi} correct_type(0-2)={ttype}" + \
-                          f" t00={t00:.3f}m"
+                          f" t00={vt00:.3f}m"
             if 1 <= ttype:
                 if len_payload < payload.pos + 7 + 7:
                     return 0
-                it01 = payload.read('i7')
-                it10 = payload.read('i7')
-                t01  = it01 * 0.002 if it01 != -64 else INVALID
-                t10  = it10 * 0.002 if it10 != -64 else INVALID
-                msg_trace1 += f" t01={t01:.3f}m/deg t10={t10:.3f}m/deg"
+                t01  = payload.read('i7')
+                t10  = payload.read('i7')
+                vt01 = t01 * 0.002 if t01 != -64 else INVALID
+                vt10 = t10 * 0.002 if t10 != -64 else INVALID
+                msg_trace1 += f" t01={vt01:.3f}m/deg t10={vt10:.3f}m/deg"
             if 2 <= ttype:
                 if len_payload < payload.pos + 7:
                     return 0
-                it11 = payload.read('i7')
-                t11  = it11 * 0.001 if it11 != -64 else INVALID
-                msg_trace1 += f" t11={t11:.3f}m/deg^2"
+                t11  = payload.read('i7')
+                vt11 = t11 * 0.001 if t11 != -64 else INVALID
+                msg_trace1 += f" t11={vt11:.3f}m/deg^2"
             msg_trace1 += '\n'
         if tropo[1]:
             if len_payload < payload.pos + 1 + 4:
                 return 0
             trs  = payload.read(  1 )  # tropo residual size
-            itro = payload.read('u4')  # tropo residual offset
+            tro  = payload.read('u4')  # tropo residual offset
             bw   = 8 if trs else 6
-            tro  = itro * 0.02
-            msg_trace1 += f"ST12 Trop offset={tro:.3f}m\n"
+            vtro = tro * 0.02
+            msg_trace1 += f"ST12 Trop offset={vtro:.3f}m\n"
             if len_payload < payload.pos + bw * ngrid:
                 return 0
             for i in range(ngrid):
                 fbw = f'i{bw}'
-                itr = payload.read(fbw)  # tropo residual
-                tr  = itr * 0.004
-                if (trs == 0 and itr != -32) or (trs == 1 and itr != -128):
-                    tr = INVALID
+                tr  = payload.read(fbw)  # tropo residual
+                vtr = tr * 0.004
+                if (trs == 0 and tr != -32) or (trs == 1 and tr != -128):
+                    vtr = INVALID
                 msg_trace1 += \
                     f"ST12 Trop grid {i+1:2d}/{ngrid:2d}" + \
-                    f" residual={tr:{FMT_TROP}}m ({bw}bit)\n"
+                    f" residual={vtr:{FMT_TROP}}m ({bw}bit)\n"
         stat_pos = payload.pos
         if stec[0]:
             svmask = {}
@@ -984,35 +979,35 @@ class Ssr:
                         return 0
                     sqi  = payload.read( 'u6')  # quality ind
                     sct  = payload.read( 'u2')  # correct type
-                    ic00 = payload.read('i14')
-                    c00  = ic00 * 0.05 if ic00 != -8192 else INVALID
+                    c00 = payload.read('i14')
+                    vc00  = c00 * 0.05 if c00 != -8192 else INVALID
                     msg_trace1 += \
                         f"ST12 STEC {gsys} quality={sqi:02x} type={sct}" + \
-                        f" c00={c00:{FMT_TECU}}TECU"
+                        f" c00={vc00:{FMT_TECU}}TECU"
                     if 1 <= sct:
                         if len_payload < payload.pos + 12 + 12:
                             return 0
-                        ic01 = payload.read('i12')
-                        ic10 = payload.read('i12')
-                        c01  = ic01 * 0.02 if ic01 != -2048 else INVALID
-                        c10  = ic10 * 0.02 if ic10 != -2048 else INVALID
+                        c01  = payload.read('i12')
+                        c10  = payload.read('i12')
+                        vc01 = c01 * 0.02 if c01 != -2048 else INVALID
+                        vc10 = c10 * 0.02 if c10 != -2048 else INVALID
                         msg_trace1 += \
-                            f" c01={c01:{FMT_TECU}}TECU/deg c10={c10:{FMT_TECU}}TECU/deg"
+                            f" c01={vc01:{FMT_TECU}}TECU/deg c10={vc10:{FMT_TECU}}TECU/deg"
                     if 2 <= sct:
                         if len_payload < payload.pos + 10:
                             return 0
-                        ic11 = payload.read('i10')
-                        c11  = ic11 * 0.02 if ic11 != -512 else INVALID
-                        msg_trace1 += f" c11={c11:{FMT_TECU}}TECU/deg^2"
+                        c11  = payload.read('i10')
+                        vc11 = c11 * 0.02 if c11 != -512 else INVALID
+                        msg_trace1 += f" c11={vc11:{FMT_TECU}}TECU/deg^2"
                     if 3 <= sct:
                         if len_payload < payload.pos + 8 + 8:
                             return 0
-                        ic02 = payload.read('i8')
-                        ic20 = payload.read('i8')
-                        c02  = ic02 * 0.005 if ic02 != -128 else INVALID
-                        c20  = ic20 * 0.005 if ic20 != -128 else INVALID
+                        c02  = payload.read('i8')
+                        c20  = payload.read('i8')
+                        vc02 = c02 * 0.005 if c02 != -128 else INVALID
+                        vc20 = c20 * 0.005 if c20 != -128 else INVALID
                         msg_trace1 += \
-                            f" c02={c02:{FMT_TECU}}TECU/deg^2 c20={c20:{FMT_TECU}}TECU/deg^2"
+                            f" c02={vc02:{FMT_TECU}}TECU/deg^2 c20={vc20:{FMT_TECU}}TECU/deg^2"
                     msg_trace1 += '\n'
                     if len_payload < payload.pos + 2:
                         return 0
@@ -1024,15 +1019,15 @@ class Ssr:
                         if len_payload < payload.pos + bw:
                             return 0
                         fbw = f'i{bw}'
-                        isr = payload.read(fbw)
-                        sr  = isr * lsb
-                        if srs == 0 and isr ==  -8: sr = INVALID
-                        if srs == 1 and isr ==  -8: sr = INVALID
-                        if srs == 2 and isr == -16: sr = INVALID
-                        if srs == 3 and isr == -64: sr = INVALID
+                        sr  = payload.read(fbw)
+                        vsr = sr * lsb
+                        if srs == 0 and sr ==  -8: vsr = INVALID
+                        if srs == 1 and sr ==  -8: vsr = INVALID
+                        if srs == 2 and sr == -16: vsr = INVALID
+                        if srs == 3 and sr == -64: vsr = INVALID
                         msg_trace1 += \
                             f"ST12 STEC {gsys} grid {i+1:2d}/{ngrid:2d} " + \
-                            f"residual={sr:{FMT_TECU}}TECU ({bw}bit)\n"
+                            f"residual={vsr:{FMT_TECU}}TECU ({bw}bit)\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
