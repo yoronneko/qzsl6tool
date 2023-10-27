@@ -90,10 +90,10 @@ if __name__ == '__main__':
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     if 'pksdr2qzsl6.py' in sys.argv[0]:
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "pksdrread.py -l" (-l option is needed), instead of "pksdr2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
+        print(libcolor.Color().fg('yellow') + 'Notice: please use "psdrread.py -l" (psdrread.py needs -l option then), instead of "pksdr2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
         fp_disp, fp_b2b, fp_e6b, fp_l6 = None, None, None, sys.stdout
     if 'pksdr2has.py' in sys.argv[0]:  # for compatibility of pksdr2has.py
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "pksdrread.py -e | gale6read.py (-e option is needed)", instead of "pksdr2has.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
+        print(libcolor.Color().fg('yellow') + 'Notice: please use "psdrread.py -e | gale6read.py (pksdrread.py needs -e option then)", instead of "pksdr2has.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
         has_decode = True
         import libgale6
         gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)

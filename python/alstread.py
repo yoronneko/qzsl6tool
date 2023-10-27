@@ -132,7 +132,7 @@ if __name__ == '__main__':
         print(libcolor.Color().fg('yellow') + "PRN to be specified is either 193-196, or 199, all PRNs are selected." + libcolor.Color().fg(), file=sys.stderr)
         args.prn = 0
     if 'alst2qzsl6.py' in sys.argv[0]:
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "alstdump.py", instead of "alst2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
+        print(libcolor.Color().fg('yellow') + 'Notice: please use "alstread.py", instead of "alst2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
     rcv = AllystarReceiver(fp_disp, args.color)
     try:
         while rcv.read():
