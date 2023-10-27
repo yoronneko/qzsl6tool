@@ -382,6 +382,13 @@ class GalE6():
 
     def decode_has_message(self):
         d = GF(g[np.array(self.hasindx[:self.ms])-1, :self.ms])
+        if np.linalg.matrix_rank(d) != self.ms:
+            disp_msg = 'decode failure --- ' + \
+                f'rank deficient when solving inverse matrix:\n{d}\n' + \
+                f'the reduced matrix is:\n{d.row_reduce()}'
+            if self.fp_disp:
+                print(disp_msg, file=self.fp_disp)
+            return
         w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
         has_msg = bitstring.ConstBitStream(m.tobytes())
