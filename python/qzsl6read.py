@@ -18,7 +18,7 @@ import libqzsl6
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Quasi-zenith satellite (QZS) L6 message to RTCM message converter')
+        description='Quasi-zenith satellite (QZS) L6 message reader')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')

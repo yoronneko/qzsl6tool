@@ -30,7 +30,7 @@ if __name__ == '__main__':
         help='show display messages to stderr')
     parser.add_argument(
             '-r', '--rtcm', action='store_true',
-        help='send RTCM messages to stdout (it also turns off display messages unless -m is specified).')
+        help='send RTCM messages to stdout (not implemented yet, it also turns off display messages unless -m is specified).')
     parser.add_argument(
         '-s', '--statistics', action='store_true',
         help='show HAS statistics in display messages.')
