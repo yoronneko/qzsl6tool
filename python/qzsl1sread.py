@@ -244,13 +244,13 @@ class QzsL1s:
         it   = df.read('u2')  # information type
         data = df.read( 171)  # data that depends on the disaster
         vn   = df.read('u6')  # version
+        if vn != 1:
+            raise Exception(f"\nversion number should be 1 ({vn})")
         msg = f": {self.DC2NAME_EN.get(dc, 'undefined classification')}" + \
               f" ({self.RC2NAME_EN.get(rc, 'undefined priority')})"
         if it != 0:
-            msg += f" {self.IT2NAME.get(it, 'undefined information type')}"
+            msg += f" {self.IT2NAME_EN.get(it, 'undefined information type')}"
         msg += f" {atmo:02d}-{atda:02d} {atho:02d}:{atmi:02d} UTC"
-        if vn != 1:
-            raise Exception(f"\nversion number should be 1 ({vn})")
         return msg
 
     MT2NAME = {
@@ -330,7 +330,7 @@ if __name__ == '__main__':
             gpsweek = payload.read('u12')
             gpstime = payload.read('u20')
             l1s     = payload.read(LEN_L1S)
-            payload += 6  # spare
+            payload.pos += 6  # spare
             msg = qzsl1s.msg_color.fg('green') + \
                 gps2utc.gps2utc(gpsweek, gpstime) + \
                 qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s (l1s)
