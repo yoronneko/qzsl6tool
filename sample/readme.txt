@@ -89,4 +89,9 @@ Date Time : 2023-08-19 08:50:30 UTC
 Duration  : 60 seconds
 Note      : MADOCA-PPP raw data obtained with Septentrio mosaic-CLAS at Hiroshima, JP
 
+File Path : 20230919-114418.ubx
+Date Time : 2023-09-19 11:44:18 UTC
+Duration  : 40 seconds
+Note      : u-blox ZED-F9P raw data obtained at Hiroshima, JP
+
 # EOF

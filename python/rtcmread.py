@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# rtcmread.py: RTCM message reader
+# rtcmread.py: RTCM message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022 Satoshi Takahashi, all rights reserved.
@@ -18,7 +18,7 @@ import librtcm
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='RTCM message dump')
+        description='RTCM message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -39,8 +39,8 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        print(rtcm.msg_color.fg('yellow') + "User break - terminated" + \
+            rtcm.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF

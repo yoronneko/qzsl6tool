@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# qzsl6read.py: quasi-zenith satellite (QZS) L6 message reader
+# qzsl6read.py: quasi-zenith satellite (QZS) L6 message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022 Satoshi Takahashi, all rights reserved.
@@ -18,7 +18,7 @@ import libqzsl6
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Quasi-zenith satellite (QZS) L6 message reader')
+        description='Quasi-zenith satellite (QZS) L6 message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -54,8 +54,8 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        print(qzsl6.msg_color.fg('yellow') + "User break - terminated" + \
+            qzsl6.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF

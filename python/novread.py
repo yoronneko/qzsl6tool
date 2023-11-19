@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# novread.py: NovAtel receiver raw message reader
+# novread.py: NovAtel receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022-2023 Satoshi Takahashi, all rights reserved.
@@ -68,9 +68,9 @@ class NovReceiver:
             if crc == crc_cal:
                 break
             else:
-                print(libcolor.Color().fg('red') + \
+                print(self.msg_color.fg('red') + \
                     f'CRC error: {crc.hex()} != {crc_cal.hex()}' + \
-                    libcolor.Color().fg(), file=sys.stderr)
+                    self.msg_color.fg(), file=self.fp_disp)
                 continue
         self.payload = payload
         return True
@@ -79,9 +79,9 @@ class NovReceiver:
         ''' stores header info '''
         pos = 0
         if len(head) != 24:
-            print(libcolor.Color().fg('yellow') + \
+            print(self.msg_color.fg('yellow') + \
                 f'warning: header length mismatch: {len(head)} != 24' + \
-                libcolor.Color().fg(), file=sys.stderr)
+                self.msg_color.fg(), file=self.fp_disp)
         self.msg_id   = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
         self.msg_type = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
         self.port     = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
@@ -104,9 +104,9 @@ class NovReceiver:
             193: 'J01', 194: 'J02', 199: 'J03', 195: 'J04', 196: 'J05', }
         payload = self.payload
         if len(payload) != 4+4+32+4:
-            print(libcolor.Color().fg('red') + \
+            print(self.msg_color.fg('red') + \
                 f"messge length mismatch: {len(payload)} != {4+4+32+4}" + \
-                libcolor.Color().fg(), file=sys.stderr)
+                self.msg_color.fg(), file=self.fp_disp)
             return False
         pos = 0
         prn   = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
@@ -129,9 +129,9 @@ class NovReceiver:
         '''
         payload = self.payload
         if len(payload) != 4+4+2+2+58:
-            print(libcolor.Color().fg('red') + \
+            print(self.msg_color.fg('red') + \
                 f"messge length mismatch: {len(payload)} != {4+4+2+2+58}" + \
-                libcolor.Color().fg(), file=sys.stderr)
+                self.msg_color.fg(), file=self.fp_disp)
             return False
         pos = 0
         sig_ch  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
@@ -171,7 +171,7 @@ class NovReceiver:
     }
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='NovAtel message reader')
+    parser = argparse.ArgumentParser(description='NovAtel message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -237,8 +237,8 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        print(rcv.msg_color.fg('yellow') + "User break - terminated" + \
+            rcv.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF

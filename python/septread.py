@@ -1,13 +1,14 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# septread.py: Septentrio receiver raw message reader
+# septread.py: Septentrio receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022-2023 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
+# References:
 # [1] Septentrio, mosaic-X5 Firmware v4.14.0 Release Note, 2023.
 # [2] Septentrio, mosaic-CLAS Firmware v4.14.0 Release Note, 2023.
 
@@ -70,9 +71,9 @@ class SeptReceiver:
             msg_len = int.from_bytes(head[4:6], 'little')
             if msg_len % 4 != 0:
                 # the message length should be multiple of 4 as in [1].
-                print(libcolor.Color().fg('red') + \
+                print(self.msg_color.fg('red') + \
                     f'message length {msg_len} should be multiple of 4' + \
-                    libcolor.Color.fg(), file=sys.stderr)
+                    self.msg_color.fg(), file=self.fp_disp)
                 return False
             payload = sys.stdin.buffer.read(msg_len - 8)
             if not payload:
@@ -81,9 +82,9 @@ class SeptReceiver:
             if crc_cal == crc:
                 break
             else:
-                print(libcolor.Color().fg('red') + \
+                print(self.msg_color.fg('red') + \
                     f'CRC Error: {crc.hex()} != {crc_cal.hex()}' + \
-                    libcolor.Color().fg(), file=sys.stderr)
+                    self.msg_color.fg(), file=self.fp_disp)
                 continue
         self.msg_id   = msg_id
         self.msg_name = self.SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
@@ -177,7 +178,7 @@ class SeptReceiver:
     }
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Septentrio message dump')
+    parser = argparse.ArgumentParser(description='Septentrio message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -226,8 +227,8 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        print(rcv.msg_color.fg('yellow') + "User break - terminated" + \
+            rcv.msg_color.fg(), file=sys.stderr)
         sys.exit()
 
 # EOF
