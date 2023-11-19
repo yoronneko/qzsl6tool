@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# alstread.py: Allystar HD9310 option C raw data reader
+# alstread.py: Allystar HD9310 option C raw data read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2022 Satoshi Takahashi, all rights reserved.
@@ -106,7 +106,7 @@ class AllystarReceiver:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Allystar HD9310 to Quasi-zenith satellite (QZS) L6 message converter')
+        description='Allystar HD9310 message read')
     parser_group = parser.add_mutually_exclusive_group()
     parser.add_argument(
         '-c', '--color', action='store_true',
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        print(rcv.msg_color.fg('yellow') + "User break - terminated" + rcv.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF

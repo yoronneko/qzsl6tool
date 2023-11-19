@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# psdrread.py: Pocket SDR log reader
+# psdrread.py: Pocket SDR log read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
@@ -49,7 +49,7 @@ class PocketSdr:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Pocket SDR E6B log to HAS message converter')
+        description='Pocket SDR message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -117,8 +117,8 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        print(rcv.msg_color.fg('yellow') + "User break - terminated" + \
+            rcv.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF

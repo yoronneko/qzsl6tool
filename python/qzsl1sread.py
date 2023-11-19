@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# qzsl1sread.py: quasi-zenith satellite (QZS) L1S message reader
+# qzsl1sread.py: quasi-zenith satellite (QZS) L1S message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
@@ -291,8 +291,8 @@ class QzsL1s:
         # frame = (pab + mt + df).tobytes()
         # crc_test = rtk_crc24q(frame, len(frame))
         # if crc.tobytes() != crc_test:
-        #     print(libcolor.Color().fg('red') + "CRC error" + \
-        #     libcolor.Color().fg(), file=sys.stderr)
+        #     print(self.msg_color.fg('red') + "CRC error" + \
+        #     self.msg_color.fg(), file=sys.stderr)
         #     return ""
         mt_name = self.MT2NAME.get(mt, f"MT {mt}")
         msg = self.msg_color.fg('cyan') + mt_name + self.msg_color.fg()
@@ -312,7 +312,7 @@ class QzsL1s:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Quasi-zenith satellite (QZS) L6 message to RTCM message converter')
+        description='Quasi-zenith satellite (QZS) L1S message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -322,7 +322,8 @@ if __name__ == '__main__':
         prn = int.from_bytes (sys.stdin.buffer.read(1), 'big')
         if not prn:
             sys.exit(0)
-        print (f"PRN {prn}")
+        if fp_disp:
+            print (f"PRN {prn}", file=fp_disp)
         qzsl1s = QzsL1s(fp_disp, args.color)
         raw = sys.stdin.buffer.read(36)
         while raw:
@@ -341,8 +342,8 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        print(rcv.msg_color.fg('yellow') + "User break - terminated" + \
+            rcv.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF

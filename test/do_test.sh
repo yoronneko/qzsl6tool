@@ -86,6 +86,15 @@ do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
 echo ""
+CODE=${CODEDIR}ubxread.py ARG=--l1s EXT_FROM=ubx EXT_TO=l1s
+echo "u-blox raw data conversion:"
+echo "- QZS L1S (${CODE} ${ARG})"
+SRCDIR=../sample/
+BASENAME=20230919-114418
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+# ------
+echo ""
 CODE=${CODEDIR}qzsl6read.py ARG='-t 2' EXT_FROM=l6 EXT_TO=txt
 echo "QZS L6 message read (${CODE} ${ARG}):"
 
@@ -112,6 +121,15 @@ do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 # 
 # BASENAME=2022001A
 # do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+# ------
+echo ""
+CODE=${CODEDIR}qzsl1sread.py ARG='' EXT_FROM=l1s EXT_TO=txt
+echo "QZS L1S message read (${CODE} ${ARG}):"
+
+SRCDIR=expect/
+BASENAME=20230919-114418
+do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
 echo ""

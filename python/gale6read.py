@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# gale6read.py: Galileo E6B message reader
+# gale6read.py: Galileo E6B message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
@@ -21,7 +21,7 @@ LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Galileo E6B message dump')
+        description='Galileo E6B message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        print(gale6.msg_color.fg('yellow') + "User break - terminated" + gale6.msg_color.fg(), file=fp_disp)
         sys.exit()
 
 # EOF
