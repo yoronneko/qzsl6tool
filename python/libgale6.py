@@ -298,8 +298,8 @@ class GalE6():
     mid_prev          = 0     # previous message id (MID)
     num_has_pages     = 0     # number of has pages of the message id
     storing_has_pages = True  # allow storing has pages
-    haspage = [0b0 for i in range(MAX_PAGES)]
-    hasindx = [0b0 for i in range(MAX_PAGES)]
+    haspage  = [0b0 for i in range(MAX_PAGES)]
+    hasindex = [0b0 for i in range(MAX_PAGES)]
 
     def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
         self.fp_rtcm   = fp_rtcm
@@ -357,20 +357,27 @@ class GalE6():
             self.mid_prev = mid
             self.num_has_pages = 0
             self.storing_has_pages = True
+        # discard the duplicate HAS page
+        for i in range(self.num_has_pages):
+            if pid == self.hasindex[i]:
+                disp_msg += f' -> duplicate message'
+                if self.fp_disp:
+                    print(disp_msg, file=self.fp_disp)
+                return False
         # store the HAS page and its index (pid: page id)
-        self.haspage[self.num_has_pages] = [x for x in rawb[rawb.pos:].tobytes()]
-        self.hasindx[self.num_has_pages] = pid
+        self.hasindex[self.num_has_pages] = pid
+        self.haspage [self.num_has_pages] = [x for x in rawb[rawb.pos:].tobytes()]
         self.mid = mid
         self.ms  = ms
         if self.num_has_pages < MAX_PAGES - 1:
             self.num_has_pages += 1
+        # continue to store HAS pages
         if self.num_has_pages < ms:
-            # continue to store HAS pages
             if self.fp_disp:
                 print(disp_msg, file=self.fp_disp)
             return False
+        # we already have enough HAS pages related to the message id
         if not self.storing_has_pages:
-            # we already have enough HAS pages related to the message id
             disp_msg += f' -> Enough pages for MID={mid}'
             if self.fp_disp:
                 print(disp_msg, file=self.fp_disp)
@@ -381,14 +388,14 @@ class GalE6():
         return True
 
     def decode_has_message(self):
-        d = GF(g[np.array(self.hasindx[:self.ms])-1, :self.ms])
-        if np.linalg.matrix_rank(d) != self.ms:
-            disp_msg = 'decode failure --- ' + \
-                f'rank deficient when solving inverse matrix:\n{d}\n' + \
-                f'the reduced matrix is:\n{d.row_reduce()}'
-            if self.fp_disp:
-                print(disp_msg, file=self.fp_disp)
-            return
+        d = GF(g[np.array(self.hasindex[:self.ms])-1, :self.ms])
+        # if np.linalg.matrix_rank(d) != self.ms:
+        #     disp_msg = 'decode failure --- ' + \
+        #         f'rank deficient when solving inverse matrix:\n{d}\n' + \
+        #         f'the reduced matrix is:\n{d.row_reduce()}'
+        #     if self.fp_disp:
+        #         print(disp_msg, file=self.fp_disp)
+        #     return
         w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
         has_msg = bitstring.ConstBitStream(m.tobytes())
