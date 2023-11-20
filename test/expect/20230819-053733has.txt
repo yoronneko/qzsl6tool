@@ -1132,12 +1132,12 @@ E36 HASS=Operational(1) MT=1 MID=13 MS=11 PID=191 -> Enough pages for MID=13
 E34 HASS=Operational(1) MT=1 MID=13 MS=11 PID=  4 -> Enough pages for MID=13
 E05 HASS=Operational(1) MT=1 MID=13 MS=11 PID=124 -> Enough pages for MID=13
 E15 HASS=Operational(1) MT=1 MID=13 MS=11 PID=157 -> Enough pages for MID=13
-E03 HASS=Operational(1) MT=1 MID=13 MS=11 PID=  1 -> Enough pages for MID=13
+E03 HASS=Operational(1) MT=1 MID=13 MS=11 PID=  1 -> duplicate message
 E09 Dummy page (0xaf3bc3)
 E36 HASS=Operational(1) MT=1 MID=13 MS=11 PID=158 -> Enough pages for MID=13
 E34 HASS=Operational(1) MT=1 MID=13 MS=11 PID=226 -> Enough pages for MID=13
-E05 HASS=Operational(1) MT=1 MID=13 MS=11 PID=157 -> Enough pages for MID=13
-E15 HASS=Operational(1) MT=1 MID=13 MS=11 PID=124 -> Enough pages for MID=13
+E05 HASS=Operational(1) MT=1 MID=13 MS=11 PID=157 -> duplicate message
+E15 HASS=Operational(1) MT=1 MID=13 MS=11 PID=124 -> duplicate message
 E03 HASS=Operational(1) MT=1 MID=18 MS= 2 PID= 39 -> A new page for MID=18
 E09 Dummy page (0xaf3bc3)
 E36 HASS=Operational(1) MT=1 MID=18 MS= 2 PID=169
