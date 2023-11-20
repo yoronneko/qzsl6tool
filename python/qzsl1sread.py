@@ -292,7 +292,7 @@ class QzsL1s:
         # crc_test = rtk_crc24q(frame, len(frame))
         # if crc.tobytes() != crc_test:
         #     print(self.msg_color.fg('red') + "CRC error" + \
-        #     self.msg_color.fg(), file=sys.stderr)
+        #     self.msg_color.fg(), file=self.fp_disp)
         #     return ""
         mt_name = self.MT2NAME.get(mt, f"MT {mt}")
         msg = self.msg_color.fg('cyan') + mt_name + self.msg_color.fg()
