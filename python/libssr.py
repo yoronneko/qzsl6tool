@@ -38,9 +38,9 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 INVALID = 0  # invalid value indication for CSSR message show
-UI = [  # CSSR update interval [s] [3], Table 4.2.2-6
-    1, 2, 5, 10, 15, 30, 60, 120, 240, 300, 600, 900, 1800, \
-    3600, 7200, 10800]
+#UI = [  # CSSR update interval [s] [3], Table 4.2.2-6
+#    1, 2, 5, 10, 15, 30, 60, 120, 240, 300, 600, 900, 1800, \
+#    3600, 7200, 10800]
 
 HAS_VI = [  # HAS validity interval
     5, 10, 15, 20, 30, 60, 90, 120, 180, 240, 300, 600, 900, 1800, 3600, 0
@@ -99,7 +99,7 @@ class Ssr:
         bw = 'u20' if satsys != 'R' else 'u17'
         payload.pos = pos
         ssr_epoch     = payload.read(  bw )  # epoch time
-        ssr_interval  = payload.read( 'u4')  # ssr update int
+        ssr_interval  = payload.read( 'u4')  # ssr update interval
         self.ssr_mmi  = payload.read(   1 )  # multiple msg ind
         if mtype == 'SSR orbit' or mtype == 'SSR obt/clk':
             ssr_sdat  = payload.read(   1 )  # sat ref datum

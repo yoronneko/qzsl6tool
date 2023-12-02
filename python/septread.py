@@ -17,7 +17,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import gps2utc
+import libgnsstime
 import libcolor
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
@@ -112,7 +112,7 @@ class SeptReceiver:
         self.satid = svid - 70
         self.e6b   = e6b[:LEN_CNAV_PAGE]
         msg = self.msg_color.fg('green') + \
-            gps2utc.gps2utc(wnc, tow // 1000) + ' ' + \
+            libgnsstime.gps2utc(wnc, tow // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
             self.msg_color.fg('yellow') + f' E{self.satid:02d} ' + \
             self.msg_color.fg() + self.e6b.hex()
@@ -137,7 +137,7 @@ class SeptReceiver:
         self.l6    = bytearray(252)
         u4perm(nav_bits, self.l6)
         msg = self.msg_color.fg('green') + \
-            gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
+            libgnsstime.gps2utc(wnc, tow//1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
             self.msg_color.fg('yellow') + \
             f' J{self.satid:02d}({"L6D" if source == 1 else "L6E"}) ' + \
@@ -164,7 +164,7 @@ class SeptReceiver:
         self.b2b   = bytearray(124)
         u4perm(nav_bits, self.b2b)
         msg = self.msg_color.fg('green') + \
-            gps2utc.gps2utc(wnc, tow//1000) + ' ' + \
+            libgnsstime.gps2utc(wnc, tow//1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
             self.msg_color.fg('yellow') + f' C{self.satid:02d} ' + \
             self.msg_color.fg() + self.b2b.hex()
