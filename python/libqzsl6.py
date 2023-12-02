@@ -36,11 +36,11 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 sys.path.append(os.path.dirname(__file__))
-import gps2utc
+from   librtcm     import send_rtcm, msgnum2satsys, msgnum2mtype
 import libcolor
-import libssr
+import libgnsstime
 import libqznma
-from librtcm import send_rtcm, msgnum2satsys, msgnum2mtype
+import libssr
 
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"
@@ -217,7 +217,7 @@ class QzsL6:
         self.tow   = dpart[pos:pos+20].uint; pos += 20
         self.wn    = dpart[pos:pos+13].uint; pos += 13
         self.dpart = dpart[pos:]
-        disp_msg   = gps2utc.gps2utc(self.wn, self.tow) + ' '
+        disp_msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
         while self.mdc2rtcm():
             disp_msg += f'RTCM {self.msgnum}({self.ssr.ssr_nsat}) '
         return disp_msg

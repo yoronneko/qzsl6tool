@@ -23,8 +23,8 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 from   librtcm import rtk_crc24q
-import gps2utc
 import libcolor
+import libgnsstime
 
 try:
     import bitstring
@@ -333,7 +333,7 @@ if __name__ == '__main__':
             l1s     = payload.read(LEN_L1S)
             payload.pos += 6  # spare
             msg = qzsl1s.msg_color.fg('green') + \
-                gps2utc.gps2utc(gpsweek, gpstime) + \
+                libgnsstime.gps2utc(gpsweek, gpstime) + \
                 qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s (l1s)
             if fp_disp:
                 print(msg, file=fp_disp)
