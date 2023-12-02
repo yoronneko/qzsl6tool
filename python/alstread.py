@@ -17,8 +17,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import gps2utc
 import libcolor
+import libgnsstime
 
 def checksum(payload):  # ref. [1]
     csum1 = 0
@@ -97,7 +97,7 @@ class AllystarReceiver:
             self.dict_data[self.prn] = self.data
         disp_msg += self.msg_color.fg('green') + f'{self.prn} ' + \
             self.msg_color.fg('yellow') + \
-            gps2utc.gps2utc(self.gpsw, self.gpst // 1000) + \
+            libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + \
             self.msg_color.fg('default') + f' {self.snr}'
         if self.err:
             disp_msg += self.msg_color.fg('red') + ' ' + self.err + \

@@ -25,7 +25,6 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 sys.path.append(__file__)
-import gps2utc
 import libcolor
 import libssr
 
