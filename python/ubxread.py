@@ -203,11 +203,6 @@ class UbxReceiver:
         b1i = bitstring.BitStream(uint=self.svid, length=8) + self.payload
         return b1i.tobytes()
 
-    def decode_galinav(self):
-        inav = bitstring.BitStream(uint=self.svid, length=8)
-        inav += self.payload[:LEN_INAV]
-        self.inav = inav.tobytes()
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='u-blox message read')
@@ -256,11 +251,6 @@ if __name__ == '__main__':
                 elif args.inav : raw = rcv.decode_galinav()
                 if raw:
                     fp_raw.buffer.write(raw)
-                    fp_raw.flush()
-            elif args.inav and rcv.signame=='E1B':
-                rcv.decode_galinav()
-                if fp_raw and rcv.inav:
-                    fp_raw.buffer.write(rcv.inav)
                     fp_raw.flush()
     except (BrokenPipeError, IOError):
         sys.exit()
