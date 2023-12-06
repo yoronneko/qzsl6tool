@@ -15,8 +15,6 @@ import sys
 sys.path.append(os.path.dirname(__file__))
 import libcolor
 
-LEN_CNAV_PAGE = 62  # C/NAV   page  size is 492 bit (61.5  byte)
-LEN_BCNAV3    = 61  # B-CNAV3 frame size is 486 bit (60.75 byte)
 
 class PocketSdr:
     def __init__(self, fp_disp, ansi_color):
@@ -26,6 +24,7 @@ class PocketSdr:
     def read(self):
         ''' returns True when L6D, L6E, E6B, or B2b signal log is read,
             returns False when EOF is encounterd '''
+        LEN_CNAV_PAGE = 62  # GAL C/NAV page  size is 492 bit (61.5  byte)
         self.satid = 0
         self.e6b   = b''
         self.l6    = b''
@@ -41,6 +40,10 @@ class PocketSdr:
                 self.e6b   = bytes.fromhex(line.split(',')[4]) + \
                     bytes(LEN_CNAV_PAGE - 61)
                 break
+            elif line[0:5] == '$INAV':
+                self.satid = int(line.split(',')[3])
+                self.inav  = bytes.fromhex(line.split(',')[4])
+                break
             elif line[0:7] == '$BCNAV3':
                 self.satid = int(line.split(',')[3])
                 self.b2b   = bytes.fromhex(line.split(',')[4])
@@ -55,13 +58,16 @@ if __name__ == '__main__':
         help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
         '-b', '--b2b', action='store_true',
-        help='send B2b messages to stdout, and also turns off display message.')
+        help='send BDS B2b messages to stdout, and also turns off display message.')
+    parser.add_argument(
+        '-i', '--inav', action='store_true',
+        help='send GAL I/NAV messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-e', '--e6b', action='store_true',
-        help='send E6B messages to stdout, and also turns off display message.')
+        help='send GAL E6B messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-l', '--l6', action='store_true',
-        help='send L6 messages to stdout, and also turns off display message.')
+        help='send QZS L6 messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
@@ -76,17 +82,20 @@ if __name__ == '__main__':
     fp_disp = sys.stdout
     fp_b2b  = None
     fp_e6b  = None
+    fp_inav = None
     fp_l6   = None
     has_decode = False
     if args.trace < 0:
         print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
         sys.exit(1)
     if args.b2b:
-        fp_disp, fp_b2b, fp_e6b, fp_l6 = None, sys.stdout, None, None
+        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, sys.stdout, None, None, None
     if args.e6b:
-        fp_disp, fp_b2b, fp_e6b, fp_l6 = None, None, sys.stdout, None
+        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, None, sys.stdout, None, None
+    if args.inav:
+        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, None, None, sys.stdout, None
     if args.l6:
-        fp_disp, fp_b2b, fp_e6b, fp_l6 = None, None, None, sys.stdout
+        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, None, None, None, sys.stdout
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     if 'pksdr2qzsl6.py' in sys.argv[0]:
@@ -107,6 +116,10 @@ if __name__ == '__main__':
                 fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
                 fp_e6b.buffer.write(rcv.e6b)
                 fp_e6b.flush()
+            if fp_inav and rcv.inav:
+                fp_inav.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
+                fp_inav.buffer.write(rcv.inav)
+                fp_inav.flush()
             if fp_b2b and rcv.b2b:
                 fp_b2b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
                 fp_b2b.buffer.write(rcv.b2b)
