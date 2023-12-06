@@ -11,6 +11,8 @@
 # References:
 # [1] u-blox, F9 high precision GNSS receiver interface description,
 #     F9 HPG 1.30, UBX-21046737, Dec. 2021.
+# [2] Tomoji Takasu, RTKLIB, http://github.com/tomojitakasu/RTKLIB,
+#     rev.2.4.3 b34, Dec 2020.
 
 import argparse
 import datetime
@@ -23,6 +25,7 @@ sys.path.append(os.path.dirname(__file__))
 import libcolor
 from   alstread import checksum
 from   septread import u4perm
+from   librtcm  import rtk_crc24q
 
 try:
     import bitstring
@@ -36,11 +39,10 @@ except ModuleNotFoundError:
 LEN_L1CA = 300  # message length of GPS & QZS L1C/A, L2C, L5
 LEN_L1OF =  85  # message length of GLO L1OF, L2OF
 LEN_L1S  = 250  # message length of QZS L1S & SBAS L1C/A
-LEN_INAV = 240  # message length of GAL I/NAV
 LEN_B1I  = 300  # message length of BDS B1I, B2I
 
 class UbxReceiver:
-    prn_prev =  0  # previous PRN
+    payload_prev = bitstring.BitStream()  # previous payload
 
     def __init__(self, fp_disp, ansi_color):
         self.fp_disp   = fp_disp
@@ -105,112 +107,150 @@ class UbxReceiver:
         payload_perm = bytearray(n_word * 4)
         u4perm(payload, payload_perm)
         self.svid     = svid
+        self.prn      = svid + 182 if signame == 'L1S' else svid
         self.gnssname = gnssname
         self.signame  = signame
         self.satname  = f'{gnssname}{svid:02d}'
-        if signame == 'L1S' or gnssname == 'S':
-            self.payload = bitstring.ConstBitStream(payload_perm)[:LEN_L1S+2]
-            paylast = bitstring.ConstBitStream(payload_perm)[LEN_L1S:]
-        elif   signame == 'L1CA' or signame == 'L2CM':
-            self.payload = bitstring.ConstBitStream(payload_perm)[:LEN_L1CA+4]
-            paylast = bitstring.ConstBitStream(payload_perm)[LEN_L1CA:]
-        elif signame == 'E1B' or signame == 'E5bI':
-            self.payload = bitstring.ConstBitStream(payload_perm)[:LEN_INAV+4]
-            paylast = bitstring.ConstBitStream(payload_perm)[LEN_INAV:]
-        elif signame == 'L1OF' or signame == 'L2OF':
-            self.payload = bitstring.ConstBitStream(payload_perm)[:LEN_L1OF+3]
-            paylast = bitstring.ConstBitStream(payload_perm)[LEN_L1OF:]
-        elif signame == 'B1I' or signame == 'B2I':
-            self.payload = bitstring.ConstBitStream(payload_perm)[:LEN_B1I+4]
-            paylast = bitstring.ConstBitStream(payload_perm)[LEN_B1I:]
+        if   signame == 'L1S' or gnssname == 'S':     # QZS L1S or SBAS L1C/A
+            self.payload = bitstring.BitStream(payload_perm)[:LEN_L1S+6]
+        elif signame == 'E1B' or signame == 'E5bI':   # GAL I/NAV
+            inav = bitstring.BitStream(payload_perm)
+            # undocumented u-blox I/NAV raw data structure solved in
+            # ref.[2], src/rcv/ublox.c:785 (int decode_enav(.))
+            inav = inav[:120-6] + inav[128:128+120-6]  # tail 6-bit are removed
+            # CRC is calculated with 4-bit padding and 196-bit I/NAV
+            inav_crc = (bitstring.Bits('uint4=0') + inav[:196]).tobytes()
+            crc = inav[196:196+24].tobytes()
+            crc_calc = rtk_crc24q(inav_crc, len(inav_crc))
+            if crc != crc_calc:
+                print(libcolor.Color().fg('red') + \
+                    f"CRC error {crc_calc.hex()} != {crc.hex()}" + \
+                    libcolor.Color().fg(), file=sys.stderr)
+            self.payload = inav + bitstring.Bits('uint4=0')
+        elif signame == 'L1CA' or signame == 'L2CM':  # GPS or QZS L1C/A
+            self.payload = bitstring.BitStream(payload_perm)[:LEN_L1CA+4]
+        elif signame == 'L1OF' or signame == 'L2OF':  # GLO L1OF and L2OF
+            self.payload = bitstring.BitStream(payload_perm)[:LEN_L1OF+3]
+        elif signame == 'B1I' or signame == 'B2I':    # BDS B1I and B2I
+            self.payload = bitstring.BitStream(payload_perm)[:LEN_B1I+4]
         else:
             raise Exception(f'unknown signal: {signame}')
-        #print(signame, paylast.bin)
         self.msg = \
             self.msg_color.fg('green')  + f'{self.satname:4s} ' + \
             self.msg_color.fg('yellow') + f'{self.signame:4s} ' + \
             self.msg_color.fg() + f'{self.payload.hex}'
         return True
 
-    def decode_qzsl1s(self):
-        prn = self.svid
-        if self.signame == 'L1S':
-            prn = self.svid + 182
-        l1s = bitstring.BitStream()
-        if not self.prn_prev:
-            l1s += bitstring.Bits(uint=prn, length=8)
-            self.prn_prev = prn
-        l1s += bitstring.Bits(uint= 0, length=12)  # GPS week
-        l1s += bitstring.Bits(uint=18, length=20)  # GPS time
-        l1s += self.payload[:LEN_L1S]
-        self.l1s = l1s.tobytes()
+    def decode_qzsl1s(self, args):
+        ''' retruns decoded raww
+            format: [PRN(8)][RAW(250)][padding(6)]...
+        '''
+        if (self.signame != 'L1S' and self.gnssname != 'S') or \
+           (not args.duplicate and self.payload == self.payload_prev):
+            return
+        l1s = bitstring.BitStream(uint=self.prn, length=8) + self.payload
+        self.payload_prev = self.payload
+        return l1s.tobytes()
 
-    def decode_qzsl1s_qzqsm(self):
-        l1s = self.payload
-        l1s.bytealign()
-        prn = self.svid + 182
-        sentence = f'QZQSM,{prn-128},{l1s.hex}'
+    def decode_qzsl1s_qzqsm(self, args):
+        ''' returns decoded nmea text
+            format: $QZQSM, [hex][hex]...[hex]*[checksum]
+        '''
+        if self.signame != 'L1S' or \
+           (not args.duplicate and rcv.payload == payload_prev):
+            return
+        mt = self.payload[8:8+6].uint
+        if mt != 43 and mt != 44:
+            return
+        self.payload_prev = self.payload
+        sentence = f'QZQSM,{self.prn-128},{self.payload.hex}'
         cksum = functools.reduce(operator.xor, (ord(s) for s in sentence), 0)
-        self.qzqsm = f'${sentence}*{cksum:02x}' 
+        return bytes(f'${sentence}*{cksum:02x}\n', 'utf-8')
 
     def decode_galinav(self):
-        inav = bitstring.BitStream(uint=self.svid, length=8)
-        inav += self.payload[:LEN_INAV]
-        self.inav = inav.tobytes()
+        ''' returns decoded raw (E1B only)
+            format: [SVID(8)][I/NAV RAW(114x2)][padding(4)]...
+        '''
+        if self.signame != 'E1B':
+            return
+        inav = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+        return inav.tobytes()
+
+    def decode_gpsl1ca(self):
+        ''' returns decoded raw
+            format: [SVID(8)][L1C/A RAW(300)][padding(4)]...
+        '''
+        if self.signame != 'L1CA' or self.gnssname == 'S':
+            return
+        l1ca = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+        return l1ca.tobytes()
+
+    def decode_glol1of(self):
+        ''' returns decoded raw
+            format: [SVID(8)][L1OF/L2OF RAW(300)][padding(3)]...
+        '''
+        if self.signame != 'L1OF' or self.signame != 'L2OF':
+            return
+        l1of = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+        return l1of.tobytes()
+
+    def decode_bdsb1i(self):
+        ''' returns decoded raw
+            format: [SVID(8)][B1I/B2I RAW(300)][padding(4)]...
+        '''
+        if self.signame != 'B1I' or self.signame != 'B2I':
+            return
+        b1i = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+        return b1i.tobytes()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='u-blox message read')
-    parser.add_argument('--l1s',
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--l1s',
         help='send QZS L1S messages to stdout', action='store_true')
-    parser.add_argument('--qzqsm',
+    group.add_argument('--qzqsm',
         help='send QZS L1S DCR NMEA messages to stdout', action='store_true')
-    parser.add_argument('--sbas',
+    group.add_argument('--sbas',
         help='send SBAS messages to stdout', action='store_true')
-    parser.add_argument('--duplicate',
-        help='allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)', action='store_true')
-    parser.add_argument('--inav',
+    group.add_argument('--inav',
         help='send GAL I/NAV messages to stdout', action='store_true')
+    parser.add_argument('-d', '--duplicate',
+        help='allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)', action='store_true')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
+    parser.add_argument(
+        '-p', '--prn', type=int, default=0,
+        help='specify satellite PRN (PRN=0 means all sats)')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
     if args.qzqsm or args.l1s or args.sbas or args.inav:
         fp_disp, fp_raw = None, sys.stdout
-        payload_prev = bitstring.ConstBitStream()
+        payload_prev = bitstring.BitStream()
     if args.message:
         fp_disp = sys.stderr
+    if args.prn < 0:
+        print(libcolor.Color().fg('red') + \
+            f"PRN must be positive ({args.prn})" + \
+            libcolor.Color().fg(), file=sys.stderr)
+        sys.exit()
     rcv = UbxReceiver(fp_disp, args.color)
     try:
         while rcv.read():
+            if args.prn != 0 and rcv.prn != args.prn: continue
             if fp_disp:
                 print(rcv.msg, file=fp_disp)
                 fp_disp.flush()
-            if (args.l1s  and rcv.signame=='L1S') or \
-               (args.sbas and rcv.signame=='L1CA' and rcv.gnssname=='S'):
-                if rcv.payload == payload_prev and not args.duplicate: continue
-                payload_prev = rcv.payload
-                rcv.decode_qzsl1s()
-                if fp_raw and rcv.l1s:
-                    fp_raw.buffer.write(rcv.l1s)
-                    fp_raw.flush()
-            elif args.qzqsm and rcv.signame=='L1S':
-                mt = rcv.payload[8:8+6].uint
-                if mt != 43 and mt != 44: continue
-                if rcv.payload == payload_prev and not args.duplicate: continue
-                payload_prev = rcv.payload
-                rcv.decode_qzsl1s_qzqsm()
-                if fp_raw:
-                    print(rcv.qzqsm, file=fp_raw)
-                    fp_raw.flush()
-            elif args.inav and rcv.signame=='E1B':
-                rcv.decode_galinav()
-                if fp_raw and rcv.inav:
-                    fp_raw.buffer.write(rcv.inav)
+            if fp_raw:
+                if   args.l1s  : raw = rcv.decode_qzsl1s(args)
+                elif args.qzqsm: raw = rcv.decode_qzsl1s_qzqsm(args)
+                elif args.inav : raw = rcv.decode_galinav()
+                if raw:
+                    fp_raw.buffer.write(raw)
                     fp_raw.flush()
     except (BrokenPipeError, IOError):
         sys.exit()
