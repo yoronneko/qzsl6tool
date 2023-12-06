@@ -86,7 +86,7 @@ do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
 # ------
 echo ""
-CODE=${CODEDIR}ubxread.py ARG=--l1s EXT_FROM=ubx EXT_TO=l1s
+CODE=${CODEDIR}ubxread.py ARG='--l1s -p 186' EXT_FROM=ubx EXT_TO=l1s
 echo "u-blox raw data conversion:"
 echo "- QZS L1S (${CODE} ${ARG})"
 SRCDIR=../sample/

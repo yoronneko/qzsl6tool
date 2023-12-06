@@ -1,29 +1,28 @@
-PRN 186
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: JMA DCR: Weather (Normal) 09-19 10:25 UTC
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-1980-01-06 00:00:00: JMA DCR: Weather (Normal) 09-19 10:25 UTC
-1980-01-06 00:00:00: PRN mask: G03 G04 G16 G18 G25 G26 G27 G28 G29 G31 G32 J02 J03 J04 J07 (15 sats, IODP=2)
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: Data issue number: IODI=3 IODP=2
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: Null message
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: JMA DCR: Weather (Normal) 09-19 10:25 UTC
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: Null message
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: Null message
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: Null message
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: Null message
+PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: JMA DCR: Weather (Normal) 09-19 10:25 UTC
+PRN186: PRN mask: G03 G04 G16 G18 G25 G26 G27 G28 G29 G31 G32 J02 J03 J04 J07 (15 sats, IODP=2)
+PRN186: Null message
+PRN186: Data issue number: IODI=3 IODP=2
   G03 IOD=100
   G04 IOD=184
   G16 IOD=  4
@@ -39,8 +38,8 @@ PRN 186
   J03 IOD= 13
   J04 IOD= 13
   J07 IOD= 13
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: Sapporo    
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: Sapporo    
   G16 PRC= -3.08 m
   G26 PRC=  1.28 m
   G28 PRC=  2.40 m
@@ -50,13 +49,13 @@ PRN 186
   J02 PRC=  3.56 m
   J04 PRC= -4.00 m
   J07 PRC= -1.28 m
-1980-01-06 00:00:00: Monitoring station information
+PRN186: Monitoring station information
   location 1: Sapporo     43.150 141.220   50
   location 2: Sendai      38.270 140.740  200
   location 3: Hitachiota  36.580 140.550  150
   location 4: Komatsu     36.400 136.410   50
   location 5: Kobe        34.710 135.040  200
-1980-01-06 00:00:00: DGPS correction: Sendai     
+PRN186: DGPS correction: Sendai     
   G16 PRC= -3.00 m
   G26 PRC=  0.84 m
   G28 PRC=  1.80 m
@@ -66,8 +65,8 @@ PRN 186
   J02 PRC=  3.08 m
   J04 PRC= -2.84 m
   J07 PRC= -0.56 m
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: Hitachiota 
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: Hitachiota 
   G16 PRC= -3.28 m
   G26 PRC=  0.24 m
   G28 PRC=  1.40 m
@@ -76,8 +75,8 @@ PRN 186
   G32 PRC= -2.72 m
   J02 PRC=  2.68 m
   J07 PRC= -0.40 m
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: Komatsu    
+PRN186: Null message
+PRN186: DGPS correction: Komatsu    
   G16 PRC= -2.56 m
   G26 PRC=  0.32 m
   G28 PRC=  1.28 m
@@ -86,8 +85,8 @@ PRN 186
   G32 PRC= -2.72 m
   J02 PRC=  2.64 m
   J07 PRC= -0.32 m
-1980-01-06 00:00:00: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-1980-01-06 00:00:00: DGPS correction: Kobe       
+PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: Kobe       
   G16 PRC= -1.92 m
   G26 PRC=  0.88 m
   G28 PRC=  1.32 m
@@ -97,8 +96,8 @@ PRN 186
   J02 PRC=  2.84 m
   J04 PRC= -1.96 m
   J07 PRC=  0.04 m
-1980-01-06 00:00:00: Null message
-1980-01-06 00:00:00: DGPS correction: Hiroshima  
+PRN186: Null message
+PRN186: DGPS correction: Hiroshima  
   G16 PRC= -1.96 m
   G26 PRC=  0.92 m
   G28 PRC=  1.32 m

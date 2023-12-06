@@ -16,8 +16,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import gps2utc
 import libcolor
+import libgnsstime
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
 
@@ -116,7 +116,7 @@ class NovReceiver:
         self.satid = prn
         self.sfraw = sfraw
         msg = self.msg_color.fg('green') + \
-            gps2utc.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
+            libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + ' ' + \
             self.msg_color.fg('yellow') + \
             f'{QZSS_ID.get(prn, "J??")}:{sfid} ' + \
@@ -144,7 +144,7 @@ class NovReceiver:
         # Threrfore, 3 bytes (24 bit) are padded for CRC, tail, and padding
         self.e6b = e6b + bytes(LEN_CNAV_PAGE - 58)
         msg = self.msg_color.fg('green') + \
-            gps2utc.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
+            libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + ' ' + \
             self.msg_color.fg('yellow') + \
             f'E{prn:02d}:{msg_id}:{page_id} ' + \
@@ -227,7 +227,7 @@ if __name__ == '__main__':
                         gale6.decode_has_message()
             else:
                 msg = rcv.msg_color.fg('green') + \
-                    gps2utc.gps2utc(rcv.gpsw, rcv.gpst // 1000) + \
+                    libgnsstime.gps2utc(rcv.gpsw, rcv.gpst // 1000) + \
                     rcv.msg_color.fg() + ' ' + \
                     rcv.msg_color.dec('dark') + rcv.msg_name + \
                     rcv.msg_color.dec()

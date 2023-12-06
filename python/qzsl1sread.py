@@ -23,8 +23,8 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 from   librtcm import rtk_crc24q
-import gps2utc
 import libcolor
+import libgnsstime
 
 try:
     import bitstring
@@ -310,35 +310,68 @@ class QzsL1s:
             msg += self.decode_satellite_health(df)
         return msg
 
+def read_from_l1s_file(qzsl1s, l1s_file, fp_disp):
+    ''' reads and interprets L1S file, and displays the contents
+        format: [PRN(8)]
+                [GPS week(12)][GPS tow(20)][L1S RAW(250)][padding(6)]...
+    '''
+    with open(l1s_file, 'r') as f:
+        prn = int.from_bytes (f.buffer.read(1), 'big')
+        if not prn:
+            sys.exit(0)
+        if fp_disp:
+            print (f"PRN {prn}", file=fp_disp)
+        raw = f.buffer.read(36)
+        while raw:
+            payload = bitstring.ConstBitStream(raw)
+            gpsweek = payload.read('u12')
+            gpstow  = payload.read('u20')
+            l1s     = payload.read(LEN_L1S)
+            payload.pos += 6  # spare
+            msg = qzsl1s.msg_color.fg('green') + \
+                libgnsstime.gps2utc(gpsweek, gpstow) + \
+                qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s(l1s)
+            if fp_disp:
+                print(msg, file=fp_disp)
+                fp_disp.flush()
+            raw = f.buffer.read(36)
+
+def read_from_stdin(qzsl1s,  fp_disp):
+    ''' reads and interprets stdin data, and displays the contents
+        format: [PRN(8)][L1S RAW(250)][padding(6)]...
+    '''
+    raw = sys.stdin.buffer.read(33)
+    while raw:
+        payload = bitstring.ConstBitStream(raw)
+        prn = payload.read('u8')
+        l1s = payload.read(LEN_L1S)
+        payload.pos += 6  # spare
+        msg = qzsl1s.msg_color.fg('green') + \
+            f'PRN{prn:3d}' + \
+            qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s(l1s)
+        if fp_disp:
+            print(msg, file=fp_disp)
+            fp_disp.flush()
+        raw = sys.stdin.buffer.read(33)
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Quasi-zenith satellite (QZS) L1S message read')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
+    parser.add_argument(
+        'l1s_files', metavar='file', nargs='*', default=None,
+        help='L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html')
     args = parser.parse_args()
     fp_disp = sys.stdout
+    qzsl1s = QzsL1s(fp_disp, args.color)
     try:
-        prn = int.from_bytes (sys.stdin.buffer.read(1), 'big')
-        if not prn:
-            sys.exit(0)
-        if fp_disp:
-            print (f"PRN {prn}", file=fp_disp)
-        qzsl1s = QzsL1s(fp_disp, args.color)
-        raw = sys.stdin.buffer.read(36)
-        while raw:
-            payload = bitstring.ConstBitStream(raw)
-            gpsweek = payload.read('u12')
-            gpstime = payload.read('u20')
-            l1s     = payload.read(LEN_L1S)
-            payload.pos += 6  # spare
-            msg = qzsl1s.msg_color.fg('green') + \
-                gps2utc.gps2utc(gpsweek, gpstime) + \
-                qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s (l1s)
-            if fp_disp:
-                print(msg, file=fp_disp)
-                fp_disp.flush()
-            raw = sys.stdin.buffer.read(36)
+        if args.l1s_files:  # read from file(s)
+            for l1s_file in args.l1s_files:
+                read_from_l1s_file(qzsl1s, l1s_file, fp_disp)
+        else:               # read from stdin
+            read_from_stdin(qzsl1s, fp_disp)
     except (BrokenPipeError, IOError):
         sys.exit()
     except KeyboardInterrupt:
