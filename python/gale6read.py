@@ -60,9 +60,11 @@ if __name__ == '__main__':
                 continue
             gale6.decode_has_message()
     except (BrokenPipeError, IOError):
-        sys.exit()
+        devnull = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull, sys.stdout.fileno())
+        sys.exit(1)
     except KeyboardInterrupt:
-        print(gale6.msg_color.fg('yellow') + "User break - terminated" + gale6.msg_color.fg(), file=fp_disp)
+        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
         sys.exit()
 
 # EOF
