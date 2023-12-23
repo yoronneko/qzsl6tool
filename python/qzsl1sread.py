@@ -284,17 +284,19 @@ class QzsL1s:
 
     def decode_l1s (self, l1s):
         ''' returns decoded message '''
-        pab = l1s.read('u8')         # preamble, ref.[3], Fig.4.1.1-1
-        mt  = l1s.read('u6')         # message type
-        df  = l1s.read(LEN_L1S_DF)   # data field
+        pab = l1s.read(8)            # preamble (8 bit), ref.[3], Fig.4.1.1-1
+        mt  = l1s.read(6)            # message type (6 bit)
+        df  = l1s.read(LEN_L1S_DF)   # data field (212 bit)
         crc = l1s.read(LEN_L1S_CRC)  # crc24, ref.[3] pp., sect.4.1.1.3
-        # frame = (pab + mt + df).tobytes()
-        # crc_test = rtk_crc24q(frame, len(frame))
-        # if crc.tobytes() != crc_test:
-        #     print(self.msg_color.fg('red') + "CRC error" + \
-        #     self.msg_color.fg(), file=self.fp_disp)
-        #     return ""
-        mt_name = self.MT2NAME.get(mt, f"MT {mt}")
+        pad = bitstring.Bits('uint6=0')  # padding for byte alignment
+        frame = (pad + pab + mt + df).tobytes()
+        crc_test = rtk_crc24q(frame, len(frame))
+        if crc.tobytes() != crc_test:
+            msg = self.msg_color.fg('red') + \
+                f"CRC error {crc_test.hex()} != {crc.hex}" + \
+                self.msg_color.fg()
+            return msg
+        mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")
         msg = self.msg_color.fg('cyan') + mt_name + self.msg_color.fg()
         if mt_name == 'JMA DCR':
             msg += self.decode_jma_dcr(df)
