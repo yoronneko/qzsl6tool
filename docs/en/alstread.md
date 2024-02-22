@@ -1,10 +1,11 @@
-## alst2qzsl6.py
+## alstread.py
 
 This program reads the raw data of the Allystar HD9310 Option C receiver from standard input and displays its status on standard output.
 
 In each row of the status display, the 1st column is the PRN number, the 2nd and 3rd columns are the GPS week number and second, the 4th column is the C/No [dB Hz], and the 5th column is the error if any. Each represents its contents. The ``--help`` option displays the options it accepts.
 
 ```
+$ alstread.py --help
 usage: alstread.py [-h] [-c] [-l] [-m] [-p PRN]
 
 Allystar HD9310 message read

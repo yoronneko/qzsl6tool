@@ -1,36 +1,33 @@
 ## rtcmread.py
 
-This program RTCM（Radio Technical Commission for Maritime Services）message from standard input and prints its contents to standard output.
+このプログラムは、RTCM（Radio Technical Commission for Maritime Services）メッセージを標準入力から読み取り、その内容を標準出力に出力します。
 
-The ``--help`` option displays the options it accepts.
+``--help``オプションを与えると、受け付けるオプションを表示できます。
 
 ```
+$ rtcmread.py --help
 usage: rtcmread.py [-h] [-c] [-t TRACE]
 
 RTCM message read
 
 options:
   -h, --help            show this help message and exit
-  -c, --color           apply ANSI color escape sequences even for non-
-                        terminal.
-  -t TRACE, --trace TRACE
-                        show display verbosely: 1=subtype detail, 2=subtype
-                        and bit image.
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
+  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
 ```
 
-Terminal output is displayed in color using ANSI escape sequences. Redirecting terminal output does not print escape sequences. You can turn off color display using a redirect (``rtcmread.py < rtcm_file.rtcm | cat``). On the other hand, to display colors on pagers such as ``less`` and ``lv``, use the ``-c`` option (``rtcmread.py -c < rtcm_file.rtcm | lv ``).
+端末出力に対しては、ANSIエスケープ・シーケンスによりカラー表示します。端末出力のリダイレクトを行うと、エスケープ・シーケンスを出力しません。リダイレクトを利用すれば、カラー表示をオフにできます（``rtcmread.py < rtcm_file.rtcm | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します（``rtcmread.py -c < rtcm_file.rtcm | lv``）。
 
-When the ``-c`` option is given, it forces the status display to appear in color. By default, if the output destination is a terminal, the status display appears in color. If the output destination is something else, color display is not used.
+``-c``オプションを与えると、強制的にカラーにて状態表示します。デフォルトでは、出力先がターミナルであれば、状態表示はカラーにて表示されます。出力先がそれ以外であれば、カラー表示されません。
 
-When the ``-t`` option is given, it output detail on the messages. This option needs integer argument. The value 1 produces the detailed information, and the value 2 provides bit image display in addition of the detailed information.
+``-t``オプションを与えると、メッセージ内容の詳細が表示されます。このオプションは整数値とともに用います。数値1では詳細を、数値2ではそれに加えて、ビットイメージを表示します。
 
-By using RTKLIB's ``str2str``, you can also use real-time streams.
-
+RTKLIBの``str2str``を利用すると、リアルタイムストリームなども利用できます。
 ```
 str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/OEM7 2> /dev/null | rtcmread.py
 ```
 
-For example, we display RTCM data ``20220326-231200clas.alst`` in the sample directory with ``rtcmread.py``:
+例えば、サンプルディレクトリにあるRTCMデータ``20220326-231200clas.alst``を``rtcmread.py``にて内容表示します。
 
 ```
 rtcmread.py < sample/20221213-010900.rtcm
@@ -47,7 +44,7 @@ RTCM 1033   Ant Rcv info  JAVGRANT_G5T NONE s/n 0 rcv "NOV OEM729" ver OM7MR0810
 RN0000
 ```
 
-Additionally, it can display SSR (State Space Representation). The RTCM format MADOCA that was once distributed over the internet by JAXA can be displayed as follows:
+また、SSR（状態空間表現, state space representation）も表示可能です。かつて、JAXAがインターネット配信していたRTCM形式のMADOCAは次のように表示できます。
 
 ```
 RTCM 1057 G SSR orbit     G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G28 G29 G30 G31 G32 (nsat=27 iod=3)
@@ -56,7 +53,7 @@ RTCM 1058 G SSR clock     G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G1
 RTCM 1064 R SSR clock     R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R16 R17 R18 R19 R21 R22 R24 (nsat=18 iod=3)
 ```
 
-When the ``-t 2`` option is given to ``rtcmread.py``, details of the SSR are displayed.
+``rtcmread.py``に``-t 2``オプションを与えると、SSRの詳細が表示されます。
 
 ```
 G01 d_radial= 0.5433m d_along=-0.9076m d_cross=-0.0215m dot_d_radial=-0.0000m/s

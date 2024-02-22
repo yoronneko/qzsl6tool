@@ -1,4 +1,6 @@
-# 旧コードとの互換性
+# Compatibility note
+
+**Program names were changed accordingly**
 
 | previous program | new program                       | note                |
 |----|----|----|
@@ -7,3 +9,4 @@
 |``showrtcm.py``   |``rtcmread.py``                    |                     |
 |``pksdr2qzsl6.py``|``pksdrread.py -l``                | option -l is needed |
 |``pksdr2has.py``  |``pksdrread.py -e \| gale6read.py``| option -e is needed |
+

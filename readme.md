@@ -21,30 +21,30 @@
 
 | display | code |
 |:----:|:-------:|
-| RTCM |[rtcmread.py](docs/rtcmread.md) |
-| QZSS L6 |[qzsl6read.py](docs/qzsl6read.md) |
-| QZSS L1S | [qzsl1sread.py](docs/qzsl1sread.md) |
-| Galileo HAS |[gale6read.py](docs/gale6read.md) |
+| RTCM |[rtcmread.py](docs/ja/rtcmread.md) |
+| QZSS L6 |[qzsl6read.py](docs/ja/qzsl6read.md) |
+| QZSS L1S | [qzsl1sread.py](docs/ja/qzsl1sread.md) |
+| Galileo HAS |[gale6read.py](docs/ja/gale6read.md) |
 
 ## GNSS受信機データ変換
 
 | GNSS receiver | code | QZS L6 | QZS L1S | Galileo HAS | Galileo I/NAV | BeiDou B2b |
 |:----:|:---:| :-------:|:-----------:|:--------:|:---:|:---:|
-| Allystar HD9310 option C | [alstread.py](docs/alstread.md) |``-l`` option | | | | |
-| [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) | [psdrread.py](docs/psdrread.py) | ``-l`` option | ``-l1s`` option | ``-e`` option | ``-i`` option| ``-b`` option|
-| NovAtel OEM729 | [novread.py](docs/novread.md) | | | ``-e`` option | | |
-| Septentrio mosaic-X5 | [septread.py](docs/septread.md) | | | ``-e`` option | | ``-b`` option|
-| Septentrio mosaic-CLAS | [septread.py](docs/septread.md) |``-l`` option | | | | |
-| u-blox ZED-F9P | [ubxread.py](docs/ubxread.md) | | ``-l1s`` option | | ``-i`` option| |
+| Allystar HD9310 option C | [alstread.py](docs/ja/alstread.md) |``-l`` option | | | | |
+| [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) | [psdrread.py](docs/ja/psdrread.py) | ``-l`` option | ``-l1s`` option | ``-e`` option | ``-i`` option| ``-b`` option|
+| NovAtel OEM729 | [novread.py](docs/ja/novread.md) | | | ``-e`` option | | |
+| Septentrio mosaic-X5 | [septread.py](docs/ja/septread.md) | | | ``-e`` option | | ``-b`` option|
+| Septentrio mosaic-CLAS | [septread.py](docs/ja/septread.md) |``-l`` option | | | | |
+| u-blox ZED-F9P | [ubxread.py](docs/ja/ubxread.md) | | ``-l1s`` option | | ``-i`` option| |
 
 ## 時刻・座標変換
 
 | conversion | code |
 |:--:|:--:|
-|GPS time, GST, BST &rarr; UTC time | [gps2utc.py](docs/gps2utc.md) |
-|UTC time &rarr; GPS time, GST, BST | [utc2gps.py](docs/utc2gps.md)|
-|LLH &rarr; ECEF | [llh2ecef.py](docs/llh2ecef.md)|
-|ECEF &rarr; LLH | [ecef2llh.py](docs/ecef2llh.md)|
+|GPS time, GST, BST &rarr; UTC time | [gps2utc.py](docs/ja/gps2utc.md) |
+|UTC time &rarr; GPS time, GST, BST | [utc2gps.py](docs/ja/utc2gps.md)|
+|LLH &rarr; ECEF | [llh2ecef.py](docs/ja/llh2ecef.md)|
+|ECEF &rarr; LLH | [ecef2llh.py](docs/ja/ecef2llh.md)|
 
 ## ディレクトリ構造
 

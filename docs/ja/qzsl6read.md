@@ -22,18 +22,14 @@ Quasi-zenith satellite (QZS) L6 message read
 
 options:
   -h, --help            show this help message and exit
-  -c, --color           apply ANSI color escape sequences even for non-
-                        terminal.
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
   -m, --message         show display messages to stderr
-  -r, --rtcm            send RTCM messages to stdout (it also turns off
-                        display messages unless -m is specified).
+  -r, --rtcm            send RTCM messages to stdout (it also turns off display messages unless -m is specified).
   -s, --statistics      show CSSR statistics in display messages.
-  -t TRACE, --trace TRACE
-                        show display verbosely: 1=subtype detail, 2=subtype
-                        and bit image.
+  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
 ```
 
-端末出力に対しては、ANSIエスケープ・シーケンスによりカラー表示します。端末出力のリダイレクトを行うと、エスケープ・シーケンスを出力しません。リダイレクトを利用すれば、カラー表示をオフにできます（``qzsl62rtcm.py < qzss_file.l6 | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します（``qzsl62rtcm.py -c < qzss_file.l6 | lv``）。
+端末出力に対しては、ANSIエスケープ・シーケンスによりカラー表示します。端末出力のリダイレクトを行うと、エスケープ・シーケンスを出力しません。リダイレクトを利用すれば、カラー表示をオフにできます（``qzsl6read.py < qzss_file.l6 | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します（``qzsl6read.py -c < qzss_file.l6 | lv``）。
 
 ``-c``オプションを与えると、強制的にカラーにて状態表示します。デフォルトでは、出力先がターミナルであれば、状態表示はカラーにて表示されます。出力先がそれ以外であれば、カラー表示されません。
 

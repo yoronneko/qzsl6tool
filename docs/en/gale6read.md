@@ -14,15 +14,11 @@ Galileo E6B message read
 
 options:
   -h, --help            show this help message and exit
-  -c, --color           apply ANSI color escape sequences even for non-
-                        terminal.
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
   -m, --message         show display messages to stderr
-  -r, --rtcm            send RTCM messages to stdout (not implemented yet, it
-                        also turns off display messages unless -m is
-                        specified).
+  -r, --rtcm            send RTCM messages to stdout (not implemented yet, it also turns off display messages unless -m is specified).
   -s, --statistics      show HAS statistics in display messages.
-  -t TRACE, --trace TRACE
-                        show display verbosely: 1=detail, 2=bit image.
+  -t TRACE, --trace TRACE show display verbosely: 1=detail, 2=bit image.
 ```
 
 When the ``-c`` option is given, it forces the status display to appear in color. By default, if the output destination is a terminal, the status display appears in color. If the output destination is something else, color display is not used.

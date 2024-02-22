@@ -2,6 +2,12 @@
 
 This program converts GPS time, Galileo Standard Time (GST), and BeiDou Standard Time (BST) to UTC time. This program reads the week number (WN) and the second from the week (TOW: time of week), and displays their times.
 
+```
+$ gps2utc.py
+GNSS time to UTC conversion
+Usage: /Users/sat/bin/gps2utc.py week_no time_of_week
+```
+
 An execution example to provide the WN of 2238 and the TOW of 305575 is as follows:
 
 ```

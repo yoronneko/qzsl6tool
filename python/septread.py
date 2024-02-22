@@ -187,16 +187,21 @@ if __name__ == '__main__':
         help='send E6B messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-l', '--l6', action='store_true',
-        help='send QZS L6 messages to stdout (it also turns off Septentrio messages)..')
+        help='send QZS L6 messages to stdout (it also turns off Septentrio messages).')
+    parser.add_argument(
+        '-b', '--b2b', action='store_true',
+        help='send BDS B2b messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     args = parser.parse_args()
-    fp_e6b, fp_l6, fp_disp = None, None, sys.stdout
+    fp_e6b, fp_l6, fp_b2b, fp_disp = None, None, None, sys.stdout
     if args.e6b:
-        fp_disp, fp_e6b, fp_l6 = None, sys.stdout, None
+        fp_disp, fp_e6b, fp_b2b, fp_l6 = None, sys.stdout, None, None
     if args.l6:
-        fp_disp, fp_e6b, fp_l6 = None, None, sys.stdout
+        fp_disp, fp_e6b, fp_l6, fp_b2b = None, None, sys.stdout, None
+    if args.b2b:
+        fp_disp, fp_e6b, fp_l6, fp_b2b = None, None, None, sys.stdout
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
     rcv = SeptReceiver(fp_disp, args.color)
@@ -218,6 +223,9 @@ if __name__ == '__main__':
                     fp_l6.flush()
             elif rcv.msg_name == 'BDSRawB2b':
                 msg += rcv.bdsrawb2b()
+                if fp_b2b and rcv.b2b:
+                    fp_b2b.buffer.write(rcv.b2b)
+                    fp_b2b.flush()
             else:
                 msg += rcv.msg_color.dec('dark') + rcv.msg_name + \
                     rcv.msg_color.dec()
