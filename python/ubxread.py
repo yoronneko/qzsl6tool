@@ -176,7 +176,7 @@ class UbxReceiver:
         inav = bitstring.BitStream(uint=self.svid, length=8) + self.payload
         return inav.tobytes()
 
-    def decode_gpsl1ca(self):
+    def decode_gnsslnav(self):
         ''' returns decoded raw
             format: [SVID(8)][L1C/A RAW(300)][padding(4)]...
         '''
@@ -207,24 +207,23 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='u-blox message read')
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('--l1s',
-        help='send QZS L1S messages to stdout', action='store_true')
-    group.add_argument('--qzqsm',
-        help='send QZS L1S DCR NMEA messages to stdout', action='store_true')
-    group.add_argument('--sbas',
-        help='send SBAS messages to stdout', action='store_true')
-    group.add_argument('--inav',
-        help='send GAL I/NAV messages to stdout', action='store_true')
-    parser.add_argument('-d', '--duplicate',
-        help='allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)', action='store_true')
-    parser.add_argument(
-        '-c', '--color', action='store_true',
+    group.add_argument('--l1s', action='store_true',
+        help='send QZS L1S messages to stdout')
+    group.add_argument('--qzqsm', action='store_true',
+        help='send QZS L1S DCR NMEA messages to stdout')
+    group.add_argument('--sbas', action='store_true',
+        help='send SBAS messages to stdout')
+    group.add_argument('-l', '--lnav', action='store_true',
+        help='send GNSS LNAV messages to stdout')
+    group.add_argument('-i', '--inav', action='store_true',
+        help='send GAL I/NAV messages to stdout')
+    parser.add_argument('-d', '--duplicate', action='store_true',
+        help='allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)')
+    parser.add_argument('-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
-    parser.add_argument(
-        '-m', '--message', action='store_true',
+    parser.add_argument('-m', '--message', action='store_true',
         help='show display messages to stderr')
-    parser.add_argument(
-        '-p', '--prn', type=int, default=0,
+    parser.add_argument('-p', '--prn', type=int, default=0,
         help='specify satellite PRN (PRN=0 means all sats)')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
@@ -248,6 +247,7 @@ if __name__ == '__main__':
             if fp_raw:
                 if   args.l1s  : raw = rcv.decode_qzsl1s(args)
                 elif args.qzqsm: raw = rcv.decode_qzsl1s_qzqsm(args)
+                elif args.lnav : raw = rcv.decode_gnsslnav()
                 elif args.inav : raw = rcv.decode_galinav()
                 if raw:
                     fp_raw.buffer.write(raw)

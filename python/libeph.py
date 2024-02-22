@@ -15,9 +15,64 @@
 
 FMT_IODC = '<4d'    # format string for issue of data clock
 FMT_IODE = '<4d'    # format string for issue of data ephemeris
+PI = 3.1415926535898            # Ratio of a circle's circumference
+MU = 3.986004418  * (10**14)    # Geocentric gravitational constant [m^3/s^2]
+OE = 7.2921151467 * (10**(-5))  # Mean angular velocity of the Earth [rad/s]
+C  = 299792458                  # Speed of light [m/s]
+
+class EphData:
+    ''' ephemeris for a single satellite '''
+    def __init__(self):
+        self.clear()
+
+    def clear(self):
+        ''' clears ephemeris data except for IODE '''
+        pass
+
+    def decode(self):
+        '''
+        not implemented yet
+
+        vm0  = m0.i * 2**(-31) * PI  # mean anomaly at reference time
+        ve   = e.u * 2**(-33)        # eccentricity
+        va12 = a12.u * 2**(-19)      # square root of the semi-major axis
+        vt0e = t0e.u * 60            # ephemeris reference time
+        vomg0 = omg0.i * 2**(-31) * PI  # longitude of ascending node of orbital plane
+        vi0   = i0.i   * 2**(-31) * PI  # inclination angle at reference time
+        vomg  = omg.i  * 2**(-31) * PI  # argument of perigee
+        vidot = idot.i * 2**(-43) * PI  # rate of change of inclination angle
+        vdn   = dn.i   * 2**(-43) * PI  # mean motion difference from computed value
+        vomgd = omgd.i * 2**(-43) * PI  # rate of change of right ascension
+        vcuc  = cuc.i * 2**(-29)        # cos harmonic correction term to the argument of latitude
+        vcus  = cus.i * 2**(-29)        # sin harmonic correction term to the argument of latitude
+        vcrc  = crc.i * 2**(-5)         # cos harmonic correction term to the orbit radius
+        vcrs  = crs.i * 2**(-5)         # sin harmonic correction term to the orbit radius
+        vcic = cic.i * 2**(-29)  # cos harmonic correction term to the angle of inclination
+        vcis = cis.i * 2**(-29)  # sin harmonic correction term to the angle of inclination
+        vt0c = t0c.u * 60        # clock correction data reference TOW
+        vaf0 = af0.i * 2**(-34)  # SV clock bias correction coefficient
+        vaf1 = af1.i * 2**(-46)  # SV clock drift correction coefficient
+        vaf2 = af2.i * 2**(-59)  # SV clock drift rate correction coefficient
+        vbe5a = be5a.i * 2**(-32)  # E1-E5a broadcast group delay
+        vbe5b = be5b.i * 2**(-32)  # E1-E5b broadcast group delay
+        vai0  = ai0.u  * 2**(-2)   # effective ionisation level 1st order parameter
+        vai1  = ai1.i  * 2**(-8)   # effective ionisation level 2nd order parameter
+        va0    = a0.i * 2**(-30)  # constant term of polynomial
+        va1    = a1.i * 2**(-50)  # 1st order term of polynomial
+        vdtls  = dtls.i           # leap Second count before leap second adjustment
+        vt0t   = t0t.u            # UTC data reference TOW
+        vwn0t  = wn0t.u           # UTC data reference week number
+        vwnlsf = wnlsf.u          # week number of leap second adjustment
+        vdn    = dn.u             # day number at the end of which a leap second adjustment becomes effective
+        vdtlsf = dtlsf.i          # leap second count after leap second adjustment
+        va0g  = a0g.i * 2**(-35)  # constant term of the polynomial describing the offset
+        va1g  = a1g.i * 2**(-51)  # rate of change of the offset
+        vt0g  = t0g.u * 3600      # reference time for GGTO data
+        vwn0g = wn0g.u           # week number of GGTO reference
+        '''
 
 class Eph:
-    '''Ephemeris class'''
+    ''' Ephemeris class '''
     def __init__(self, fp_disp, t_level, msg_color):
         self.fp_disp   = fp_disp
         self.t_level   = t_level
@@ -33,7 +88,7 @@ class Eph:
                 sys.exit()
 
     def decode_ephemerides(self, payload, pos, satsys, mtype):
-        '''returns pos and string'''
+        ''' returns pos and decoded string '''
         payload.pos = pos
         string = ''
         if satsys == 'G':  # GPS ephemerides
