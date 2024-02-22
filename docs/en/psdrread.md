@@ -30,10 +30,7 @@ When the ``-c`` option is given, it forces the status display to appear in color
 
 When the ``-m`` option is given, it outputs the status display to standard error output.
 
-When the ``-s`` option is given, it also outputs the statistics information.
-
-When the ``-t`` option is given, it output detail on the messages. This option needs integer argument. The value 1 produces the detailed information, and the value 2 provides bit image display in addition of the detailed information.
-
+The `-s` and `-t` options are for [compatibility purposes](compatibility.md) and are not used anymore.
 
 Reference：[Awesome PocketSDR (L6 band signal decode)](https://s-taka.org/en/awesome-pocketsdr-l6/#l6e)
 

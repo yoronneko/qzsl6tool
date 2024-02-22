@@ -13,9 +13,10 @@ MADOCA is in RTCM (Radio Technical Commission for Maritime Services) SSR (State 
 The ``--help`` option displays the options it accepts.
 
 ```
-usage: qzsl62rtcm.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
+$ qzsl6read.py --help
+usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
-Quasi-zenith satellite (QZS) L6 message to RTCM message converter
+Quasi-zenith satellite (QZS) L6 message read
 
 options:
   -h, --help            show this help message and exit
@@ -30,7 +31,7 @@ options:
                         and bit image.
 ```
 
-Terminal output is displayed in color using ANSI escape sequences. Redirecting terminal output does not print escape sequences. You can turn off color display using a redirect (``qzsl62rtcm.py < qzss_file.l6 | cat``). On the other hand, to display colors on pagers such as ``less`` and ``lv``, use the ``-c`` option (``qzsl62rtcm.py -c < qzss_file.l6 | lv ``).
+Terminal output is displayed in color using ANSI escape sequences. Redirecting terminal output does not print escape sequences. You can turn off color display using a redirect (``qzsl6read.py < qzss_file.l6 | cat``). On the other hand, to display colors on pagers such as ``less`` and ``lv``, use the ``-c`` option (``qzsl6read.py -c < qzss_file.l6 | lv``).
 
 When the ``-c`` option is given, it forces the status display to appear in color. By default, if the output destination is a terminal, the status display appears in color. If the output destination is something else, color display is not used.
 
@@ -51,8 +52,6 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | al
 For example, we extract QZS L6 raw data from Allystar receiver raw data sample ``20220326-231200clas.alst`` with [alstread.py](alstread.md), and display it with ``qzsl6read.py``:
 
 ```
-cat ../sample/20220326-231200clas.alst | python alst2qzsl6.py -l | python qzsl62rtcm.py
-
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py
 
 199 Hitachi-Ota:1  CLAS  (syncing)
