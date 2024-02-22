@@ -3,6 +3,8 @@
 This program converts ECEF (earth-centered, earth-fix) coordinates to latitude, longitude, and ellipsoidal height (LLH).
 
 ```
+$ ecef2llh.py
+
 ECEF to Latitude Longitude and Height
 Usage: /Users/sat/bin/ecef2llh.py x y z
 ```

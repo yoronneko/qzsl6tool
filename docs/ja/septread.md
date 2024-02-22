@@ -17,12 +17,9 @@ Septentrio message read
 options:
   -h, --help     show this help message and exit
   -c, --color    apply ANSI color escape sequences even for non-terminal.
-  -e, --e6b      send E6B messages to stdout, and also turns off display
-                 message.
-  -l, --l6       send QZS L6 messages to stdout (it also turns off Septentrio
-                 messages).
-  -b, --b2b      send BDS B2b messages to stdout, and also turns off display
-                 message.
+  -e, --e6b      send E6B messages to stdout, and also turns off display message.
+  -l, --l6       send QZS L6 messages to stdout (it also turns off Septentrio messages).
+  -b, --b2b      send BDS B2b messages to stdout, and also turns off display message.
   -m, --message  show display messages to stderr
 ```
 

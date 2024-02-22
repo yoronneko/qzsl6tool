@@ -3,18 +3,18 @@
 This program reads QZSS L1S format data from standard input or a file and outputs its contents to standard output. The ``--help`` option displays the options it accepts.
 
 ```
+$ qzsl1sread.py --help
 usage: qzsl1sread.py [-h] [-c] [file ...]
 
 Quasi-zenith satellite (QZS) L1S message read
 
 positional arguments:
-  file         L1S file(s) obtained from the QZS archive,
-               https://sys.qzss.go.jp/dod/archives/slas.html
+  file         L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html
 
 options:
   -h, --help   show this help message and exit
   -c, --color  apply ANSI color escape sequences even for non-terminal.
-  ```
+```
 
 If no filename is provided, it reads from standard input. The input format is the same as the [SLAS Archive](https://sys.qzss.go.jp/dod/en/archives/slas.html) on the QZSS official page. Initially, 1 byte (8 bits) of PRN (pseudo random noise) number is followed by 32 bytes (250 bits, the rest is zero-padding) of data.
 

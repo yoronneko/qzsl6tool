@@ -5,18 +5,18 @@
 ``--help``オプションで、受け付けるオプションを表示します。
 
 ```
+$ qzsl1sread.py --help
 usage: qzsl1sread.py [-h] [-c] [file ...]
 
 Quasi-zenith satellite (QZS) L1S message read
 
 positional arguments:
-  file         L1S file(s) obtained from the QZS archive,
-               https://sys.qzss.go.jp/dod/archives/slas.html
+  file         L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html
 
 options:
   -h, --help   show this help message and exit
   -c, --color  apply ANSI color escape sequences even for non-terminal.
-  ```
+```
 
 ファイル名が与えられなければ、標準入力から読み取ります。入力形式は、みちびき公式ページの[SLASアーカイブ](https://sys.qzss.go.jp/dod/en/archives/slas.html)と同様です。最初に、1バイト（8ビット）のPRN（pseudo random noise）番号の後、32バイト（250ビット、残りはゼロパディング）のデータが続きます。
 

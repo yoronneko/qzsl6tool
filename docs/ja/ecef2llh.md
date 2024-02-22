@@ -3,6 +3,8 @@
 ECEF（earth-centered earth-fix）座標から緯度・経度・楕円体高（LLH: latitude, longitude, and ellipsoidal height）に変換します。
 
 ```
+$ ecef2llh.py
+
 ECEF to Latitude Longitude and Height
 Usage: /Users/sat/bin/ecef2llh.py x y z
 ```

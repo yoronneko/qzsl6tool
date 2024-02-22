@@ -5,17 +5,15 @@ This program RTCM（Radio Technical Commission for Maritime Services）message f
 The ``--help`` option displays the options it accepts.
 
 ```
+$ rtcmread.py --help
 usage: rtcmread.py [-h] [-c] [-t TRACE]
 
 RTCM message read
 
 options:
   -h, --help            show this help message and exit
-  -c, --color           apply ANSI color escape sequences even for non-
-                        terminal.
-  -t TRACE, --trace TRACE
-                        show display verbosely: 1=subtype detail, 2=subtype
-                        and bit image.
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
+  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
 ```
 
 Terminal output is displayed in color using ANSI escape sequences. Redirecting terminal output does not print escape sequences. You can turn off color display using a redirect (``rtcmread.py < rtcm_file.rtcm | cat``). On the other hand, to display colors on pagers such as ``less`` and ``lv``, use the ``-c`` option (``rtcmread.py -c < rtcm_file.rtcm | lv ``).

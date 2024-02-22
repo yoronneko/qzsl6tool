@@ -1,5 +1,7 @@
 # 旧コードとの互換性
 
+**次のようにプログラム名を変更しました**
+
 | previous program | new program                       | note                |
 |----|----|----|
 |``alst2qzsl6.py`` |``alstread.py``                    |                     |

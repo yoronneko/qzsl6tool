@@ -2,6 +2,12 @@
 
 GPS時刻、GST（Galileo Standard Time）、BDT（BeiDou Standard Time）をUTC時刻に変換します。週と秒を与えると、それぞれの時刻を出力します。
 
+```
+$ gps2utc.py
+GNSS time to UTC conversion
+Usage: /Users/sat/bin/gps2utc.py week_no time_of_week
+```
+
 週番号（WN: week number）が2238、週初めからの秒数（TOW: time of week）が305575のときの実行例は次のとおりです。
 
 ```

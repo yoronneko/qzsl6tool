@@ -5,17 +5,15 @@
 ``--help``オプションを与えると、受け付けるオプションを表示できます。
 
 ```
+$ rtcmread.py --help
 usage: rtcmread.py [-h] [-c] [-t TRACE]
 
 RTCM message read
 
 options:
   -h, --help            show this help message and exit
-  -c, --color           apply ANSI color escape sequences even for non-
-                        terminal.
-  -t TRACE, --trace TRACE
-                        show display verbosely: 1=subtype detail, 2=subtype
-                        and bit image.
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
+  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
 ```
 
 端末出力に対しては、ANSIエスケープ・シーケンスによりカラー表示します。端末出力のリダイレクトを行うと、エスケープ・シーケンスを出力しません。リダイレクトを利用すれば、カラー表示をオフにできます（``rtcmread.py < rtcm_file.rtcm | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します（``rtcmread.py -c < rtcm_file.rtcm | lv``）。

@@ -1,6 +1,6 @@
 ## ubxread.py
 
-his program reads the raw data of u-blox ZED-F9P receiver, and extracts
+This program reads the raw data of u-blox ZED-F9P receiver, and extracts
 
 - QZS L1S messages (``--l1s`` option),
 - QZS L1S NMEA messages (``--qzqsm`` option),
@@ -34,6 +34,6 @@ When the ``-c`` option is given, it forces the status display to appear in color
 
 When the ``-m`` option is given, it outputs the status display to standard error output.
 
-When the `-d` option is given, it also outputs duplicated NMEA messages from the QZSS L1S disaster and crisis warning system. Currently, all QZS satellites transmit the same message. By default, duplicated messages are not outputted.
+When the ``-d`` option is given, it also outputs duplicated NMEA messages from the QZSS L1S disaster and crisis warning system. Currently, all QZS satellites transmit the same message. By default, duplicated messages are not outputted.
 
-When the `-p` option is given, it uses the satellite with the specified PRN. Without this option, it uses all satellites.
+When the ``-p`` option is given, it uses the satellite with the specified PRN. Without this option, it uses all satellites.

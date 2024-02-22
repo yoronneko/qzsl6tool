@@ -26,6 +26,7 @@ options:
   -s, --statistics      show HAS statistics in display messages.
   -t TRACE, --trace TRACE show display verbosely: 1=detail, 2=bit image.
 ```
+
 When the ``-c`` option is given, it forces the status display to appear in color. By default, if the output destination is a terminal, the status display appears in color. If the output destination is something else, color display is not used.
 
 When the ``-m`` option is given, it outputs the status display to standard error output.

@@ -1,4 +1,7 @@
+# Compatibility note
+
 **Program names were changed accordingly**
+
 | previous program | new program                       | note                |
 |----|----|----|
 |``alst2qzsl6.py`` |``alstread.py``                    |                     |

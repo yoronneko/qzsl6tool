@@ -24,8 +24,7 @@ options:
   --sbas             send SBAS messages to stdout
   -l, --lnav         send GNSS LNAV messages to stdout
   -i, --inav         send GAL I/NAV messages to stdout
-  -d, --duplicate    allow duplicate QZS L1S DCR NMEA sentences (currently,
-                     all QZS sats send the same DCR messages)
+  -d, --duplicate    allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)
   -c, --color        apply ANSI color escape sequences even for non-terminal.
   -m, --message      show display messages to stderr
   -p PRN, --prn PRN  specify satellite PRN (PRN=0 means all sats)

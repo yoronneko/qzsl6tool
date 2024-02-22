@@ -2,6 +2,16 @@
 
 UTC時刻をGPS時刻、GST（Galileo Standard Time）、BDT（BeiDou Standard Time）に変換します。
 
+```
+$ utc2gps.py
+UTC to GNSS time conversion
+Usage: /Users/sat/bin/utc2gps.py YYYY-MM-DD hh:mm:ss
+Current GNSS time (week number, time of week):
+GPS 2302 396952
+GST 1278 396947
+BDT 946 396938
+```
+
 UTC時刻2022-11-30 12:52:37を与えた実行例は、次のとおりです。
 
 ```

@@ -5,6 +5,7 @@
 状態表示の各行において、1列目はPRN番号を、2列目と3列目はGPS週番号と秒を、4列目はC/No [dB Hz]を、5列目はエラーがあればその内容を、それぞれ表します。``--help``オプションで、受け付けるオプションを表示します。
 
 ```
+$ alstread.py --help
 usage: alstread.py [-h] [-c] [-l] [-m] [-p PRN]
 
 Allystar HD9310 message read
