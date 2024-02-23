@@ -7,15 +7,12 @@
 - It is designed to be used in conjunction with tools such as ``nc`` of netcat, and ``str2str`` of [RTKLIB](https://github.com/tomojitakasu/RTKLIB).
 - Initially, it aimed to display the content of augmentation messages broadcasted by the quasi-zenith satellite Michibiki (QZS) in the L6 frequency band, including CLAS and MADO. However, it is now also capable of displaying Galileo HAS messages.
 
-![QZS L6 Tool](docs/img/qzsl6tool.jpg)
-
 ## Installation of Non-Standard Python Modules
 
-- Python 3.7 or later and the `bitstring` module ver.4.0.2 are required.  
-``pip3 install bitstring==4.0.2``
-- For decoding Galileo HAS, the `galois` module and the `numpy` module are additionally required. Therefore, Python 3.10 is needed.  
-``pip3 install galois numpy``
-- In the future, we hope to remove these version restrictions.
+- Python 3.7 or later is required.
+- The ``bitstring`` module ver.4.0.2 and the ``galois`` module are required.  
+``pip3 install bitstring==4.0.2 galois``
+- In the future, I hope to remove these version restrictions.
 
 ## Satellite Signal Display
 
