@@ -1,6 +1,10 @@
 # QZS L6 Tool: quasi-zenith satellite L6-band tool
 
+![QZS L6 Tool](docs/img/qzsl6tool.png)
+
 [English](readme-en.md)
+
+## 概要
 
 - このツール集は、GNSS（測位衛星: Global Navigation Satellite System）のメッセージを表示し、また、GNSS受信機の生データから特定的形式データ（例えばRTCM形式、みちびきL6形式）を抽出します。
 - このツール集は、メッセージを標準入力で受け取り、変換結果を逐次的に標準出力に出力するPythonコードからなります。必要に応じて、標準エラー出力も利用できます。

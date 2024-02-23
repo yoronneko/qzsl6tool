@@ -1,6 +1,10 @@
 # QZS L6 Tool: quasi-zenith satellite L6-band tool
 
+![QZS L6 Tool](docs/img/qzsl6tool.png)
+
 [日本語](readme.md)
+
+## Summary
 
 - This set of tools displays GNSS (Global Navigation Satellite System) messages and extracts specific formatted data from the raw data of GNSS receivers, for example, RTCM format and Michibiki L6 format.
 - The suite consists of Python code that receives the messages via standard input, and the conversion results are sequentially outputted to the standard output. The use of standard error output is also possible as needed.
