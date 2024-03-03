@@ -49,7 +49,7 @@
 
 ## Directory Structure
 
-```
+```text
 ├── docs/        (documentation directory)
 ├── license.txt  (license description)
 ├── python/      (code directory)

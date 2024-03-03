@@ -49,7 +49,7 @@
 
 ## ディレクトリ構造
 
-```
+```text
 ├── docs/        (documentation directory)
 ├── license.txt  (license description)
 ├── python/      (code directory)
@@ -67,5 +67,3 @@
 
 Copyright (c) 2022-2024 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU
-
-
