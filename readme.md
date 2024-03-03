@@ -32,7 +32,7 @@
 | GNSS receiver | code | QZS L6 | QZS L1S | Galileo HAS | Galileo I/NAV | BeiDou B2b |
 |:----:|:---:| :-------:|:-----------:|:--------:|:---:|:---:|
 | Allystar HD9310 option C | [alstread.py](docs/ja/alstread.md) |``-l`` option | | | | |
-| [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) | [psdrread.py](docs/ja/psdrread.py) | ``-l`` option | ``-l1s`` option | ``-e`` option | ``-i`` option| ``-b`` option|
+| [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) | [psdrread.py](docs/ja/psdrread.md) | ``-l`` option |  | ``-e`` option | ``-i`` option| ``-b`` option|
 | NovAtel OEM729 | [novread.py](docs/ja/novread.md) | | | ``-e`` option | | |
 | Septentrio mosaic-X5 | [septread.py](docs/ja/septread.md) | | | ``-e`` option | | ``-b`` option|
 | Septentrio mosaic-CLAS | [septread.py](docs/ja/septread.md) |``-l`` option | | | | |
