@@ -4,7 +4,7 @@
 # librtcm.py: library for RTCM message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022 Satoshi Takahashi
+# Copyright (c) 2022-2024 Satoshi Takahashi
 # Copyright (c) 2007-2020 by T.TAKASU
 #
 # The function of rtk_crc24q () is from rtkcmn.c of RTKLIB 2.4.3b34,
@@ -32,7 +32,7 @@ try:
     import bitstring
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring module.
+    This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
@@ -230,9 +230,9 @@ class Rtcm:
         '''decodes code-and-phase bias for GLONASS'''
         payload.pos = pos
         sid  = payload.read('u12')  # reference station id, DF003
-        cpbi = payload.read(   1 )  # code-phase bias ind, DF421
+        cpbi = payload.read( 'u1')  # code-phase bias ind, DF421
         payload.pos += 3            # reserved, DF001
-        mask = payload.read(4)      # FDMA signal mask, DF422
+        mask = payload.read(   4 )  # FDMA signal mask, DF422
         l1ca = payload.read('i16')  # L1 C/A code-phase bias, DF423
         l1p  = payload.read('i16')  # L1 P code-phase bias, DF424
         l2ca = payload.read('i16')  # L2 C/A code-phase bias, DF425
@@ -343,4 +343,3 @@ def rtk_crc24q(buff, length):
     return crc.to_bytes(3, 'big')
 
 # EOF
-

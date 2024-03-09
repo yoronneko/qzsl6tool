@@ -4,7 +4,7 @@
 # libqzsl6.py: library for QZS L6 message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2023 Satoshi Takahashi
+# Copyright (c) 2022-2024 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -30,7 +30,7 @@ try:
     import bitstring
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring module.
+    This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
@@ -92,8 +92,8 @@ class QzsL6:
         pos = 0
         self.prn = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
         mtid     = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
-        dpart    = bitstring.ConstBitStream(b[pos:pos+212]); pos += 212
-        rs       = b[pos:pos+ 32]
+        data     = b[pos:pos+212]; pos += 212
+        rs       = b[pos:pos+ 32]; pos += 32
         vid = mtid >> 5  # vender ID
         if   vid == 0b001: self.vendor = "MADOCA"
         elif vid == 0b010: self.vendor = "MADOCA-PPP"
@@ -105,8 +105,9 @@ class QzsL6:
         self.servid   = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
         self.msg_ext  = "CNAV"    if (mtid >> 1) & 1 else "LNAV"
         self.sf_ind   = mtid & 1  # subframe indicator
-        self.alert    = dpart[0:1]
-        self.dpart    = dpart[1:]
+        bdata         = bitstring.ConstBitStream(data)
+        self.alert    = bdata[0:1].uint
+        self.dpart    = bdata[1:]
         return True
 
     def show_l6_msg(self):
@@ -289,4 +290,3 @@ class QzsL6:
         return ''
 
 # EOF
-

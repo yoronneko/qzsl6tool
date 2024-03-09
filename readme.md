@@ -14,9 +14,8 @@
 ## Python非標準モジュールのインストール
 
 - Python 3.7以降が必要です。
-- ``bitstring``モジュール ver.4.0.2と、``galois``モジュールが必要です。  
-``pip3 install bitstring==4.0.2 galois``
-- 将来、バージョン制限を撤廃できるようにしたいと考えています。
+- ``bitstring``モジュールと``galois``モジュールが必要です。  
+``pip3 install bitstring galois``
 
 ## 衛星信号表示
 

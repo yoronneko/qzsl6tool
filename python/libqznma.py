@@ -4,7 +4,7 @@
 # libqznma.py: library for decoding QZNMA
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023 Satoshi Takahashi
+# Copyright (c) 2023-2024 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -19,7 +19,7 @@ try:
     import bitstring
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring module.
+    This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
@@ -28,6 +28,9 @@ sys.path.append(__file__)
 import libcolor
 import libssr
 
+L_RDS      = 576  # length of RDS in bits
+L_RESERVED = 543  # length of reserved bits in bits
+L_SIGNAT   = 512  # length of signature in bits
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"
     def __init__(self, fp_disp, t_level, msg_color):
@@ -42,9 +45,9 @@ class Qznma:
         [1] p.67 Fig.6-52, 6-53, and 6-54'''
         if len(payload) != 1695:
             raise Exception(f"QZNMA size error: {len(payload)} != 1695.")
-        rds1     = payload.read(576)
-        rds2     = payload.read(576)
-        reserved = payload.read(543)
+        rds1     = payload.read(L_RDS)
+        rds2     = payload.read(L_RDS)
+        reserved = payload.read(L_RESERVED)
         if reserved.any(1):
             self.trace(2, f"QZNMA reserved dump: {reserved.bin}")
         message = '      '
@@ -72,7 +75,7 @@ class Qznma:
         mt     = rds.read( 'u4')
         reph   = rds.read( 'u4')
         keyid  = rds.read( 'u8')
-        signat = rds.read( 512 )
+        signat = rds.read(L_SIGNAT)
         salt   = rds.read('u16')
         message = ''
         if nma_id != '0000':
