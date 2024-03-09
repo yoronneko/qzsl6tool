@@ -13,10 +13,9 @@
 
 ## Installation of Non-Standard Python Modules
 
-- Python 3.7 or later is required.
-- The ``bitstring`` module ver.4.0.2 and the ``galois`` module are required.  
-``pip3 install bitstring==4.0.2 galois``
-- In the future, I hope to remove these version restrictions.
+- Python 3.8 or later is required.
+- The ``bitstring`` module and the ``galois`` module are required.  
+``pip3 install bitstring galois``
 
 ## Satellite Signal Display
 

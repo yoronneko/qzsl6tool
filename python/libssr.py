@@ -4,7 +4,7 @@
 # libssr.py: library for SSR and compact SSR message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2023 Satoshi Takahashi
+# Copyright (c) 2022-2024 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -32,7 +32,7 @@ try:
     import bitstring
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring module.
+    This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
@@ -100,9 +100,9 @@ class Ssr:
         payload.pos = pos
         ssr_epoch     = payload.read(  bw )  # epoch time
         ssr_interval  = payload.read( 'u4')  # ssr update interval
-        self.ssr_mmi  = payload.read(   1 )  # multiple msg ind
+        self.ssr_mmi  = payload.read( 'u1')  # multiple msg ind
         if mtype == 'SSR orbit' or mtype == 'SSR obt/clk':
-            ssr_sdat  = payload.read(   1 )  # sat ref datum
+            ssr_sdat  = payload.read( 'u1')  # sat ref datum
         self.ssr_iod  = payload.read( 'u4')  # iod ssr
         ssr_pid       = payload.read('u16')  # ssr provider id
         ssr_sid       = payload.read( 'u4')  # ssr solution id
@@ -307,7 +307,7 @@ class Ssr:
         if len_payload < payload.pos + 4 + 1 + 4:
             return 0
         self.interval = payload.read('u4')  # update interval
-        self.mmi      = payload.read(  1 )  # multi msg ind
+        self.mmi      = payload.read('u1')  # multi msg ind
         self.iod      = payload.read('u4')  # SSR issue of data
         return payload.pos
 
@@ -333,7 +333,7 @@ class Ssr:
             ugnssid   = payload.read('u4')
             bsatmask  = payload.read( 40 )
             bsigmask  = payload.read( 16 )
-            cmavail   = payload.read(  1 )
+            cmavail   = payload.read('u1')
             t_satsys  = gnssid2satsys(ugnssid)
             t_satmask = 0
             t_sigmask = 0
@@ -652,9 +652,9 @@ class Ssr:
         payload.pos = pos
         if len_payload < 45:
             return 0
-        f_cb = payload.read(1)  # code    bias existing flag
-        f_pb = payload.read(1)  # phase   bias existing flag
-        f_nb = payload.read(1)  # network bias existing flag
+        f_cb = payload.read('u1')  # code    bias existing flag
+        f_pb = payload.read('u1')  # phase   bias existing flag
+        f_nb = payload.read('u1')  # network bias existing flag
         svmask = {}
         cnid = 0
         for satsys in self.satsys:
@@ -786,7 +786,7 @@ class Ssr:
         if len_payload < 45:
             return 0
         tctype = payload.read('u2')  # trop correction type
-        crange = payload.read(  1 )  # trop correction range
+        crange = payload.read('u1')  # trop correction range
         bw = 16 if crange else 7
         cnid   = payload.read('u5')  # compact network ID
         svmask = {}
@@ -852,9 +852,9 @@ class Ssr:
         payload.pos = pos
         if len_payload < 40:
             return 0
-        f_o = payload.read(1)  # orbit existing flag
-        f_c = payload.read(1)  # clock existing flag
-        f_n = payload.read(1)  # network correction
+        f_o = payload.read('u1')  # orbit existing flag
+        f_c = payload.read('u1')  # clock existing flag
+        f_n = payload.read('u1')  # network correction
         msg_trace1 = \
             f"ST11 Orb={'on' if f_o else 'off'} " + \
             f"Clk={     'on' if f_c else 'off'} " + \
@@ -879,11 +879,11 @@ class Ssr:
                         bw = 10 if satsys == 'E' else 8  # IODE width
                         if len_payload < payload.pos + bw + 15 + 13 + 13:
                             return 0
-                        fbw       = f'u{bw}'
-                        iode      = payload.read(fbw)
-                        rad = payload.read('i15')  # radial
-                        alg = payload.read('i13')  # along
-                        crs = payload.read('i13')  # cross
+                        fbw  = f'u{bw}'
+                        iode = payload.read(fbw)
+                        rad  = payload.read('i15')  # radial
+                        alg  = payload.read('i13')  # along
+                        crs  = payload.read('i13')  # cross
                         vrad = rad * 0.0016 if rad != -16384 else INVALID
                         valg = alg * 0.0064 if alg !=  -4096 else INVALID
                         vcrs = crs * 0.0064 if crs !=  -4096 else INVALID
@@ -947,7 +947,7 @@ class Ssr:
         if tropo[1]:
             if len_payload < payload.pos + 1 + 4:
                 return 0
-            trs  = payload.read(  1 )  # tropo residual size
+            trs  = payload.read('u1')  # tropo residual size
             tro  = payload.read('u4')  # tropo residual offset
             bw   = 8 if trs else 6
             vtro = tro * 0.02
@@ -979,8 +979,8 @@ class Ssr:
                         return 0
                     sqi  = payload.read( 'u6')  # quality ind
                     sct  = payload.read( 'u2')  # correct type
-                    c00 = payload.read('i14')
-                    vc00  = c00 * 0.05 if c00 != -8192 else INVALID
+                    c00  = payload.read('i14')
+                    vc00 = c00 * 0.05 if c00 != -8192 else INVALID
                     msg_trace1 += \
                         f"ST12 STEC {gsys} quality={sqi:02x} type={sct}" + \
                         f" c00={vc00:{FMT_TECU}}TECU"
@@ -1074,4 +1074,3 @@ def sigmask2signame(satsys, sigmask):
     return signame
 
 # EOF
-

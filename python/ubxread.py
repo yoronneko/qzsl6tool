@@ -31,7 +31,7 @@ try:
     import bitstring
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring module.
+    This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)

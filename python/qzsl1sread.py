@@ -4,7 +4,7 @@
 # qzsl1sread.py: quasi-zenith satellite (QZS) L1S message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023-2024 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -30,14 +30,16 @@ try:
     import bitstring
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring module.
+    This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
     ''', file=sys.stderr)
     sys.exit(1)
 
-LEN_L1S     = 250  # message length of L1S and SBAS
-LEN_L1S_DF  = 212  # data field length of L1S, ref.[3], pp.13, Fig.4.1.1.-1
-LEN_L1S_CRC =  24  # CRC length
+L_L1S = 250  # length of L1S and SBAS in bits
+L_PAB =   8  # length of preamble in bits
+L_MT  =   6  # length of message type in bits
+L_DF  = 212  # length data field in bits, ref.[3], pp.13, Fig.4.1.1.-1
+L_CRC =  24  # length of CRC in bits
 
 class QzsL1s:
     iodp    = 0   # PRN mask update number
@@ -91,15 +93,15 @@ class QzsL1s:
         self.iodp = df.read('u2')  # PRN mask update number
         self.mask = []             # satellite mask
         for i in range(64):        # for GPS
-            if df.read(1): self.mask.append(f'G{i+1:02d}')
+            if df.read('u1'): self.mask.append(f'G{i+1:02d}')
         for i in range(9):         # for QZSS
-            if df.read(1): self.mask.append(f'J{i+1:02d}')
+            if df.read('u1'): self.mask.append(f'J{i+1:02d}')
         for i in range(36):        # for GLONASS
-            if df.read(1): self.mask.append(f'R{i+1:02d}')
+            if df.read('u1'): self.mask.append(f'R{i+1:02d}')
         for i in range(36):        # for Galileo
-            if df.read(1): self.mask.append(f'E{i+1:02d}')
+            if df.read('u1'): self.mask.append(f'E{i+1:02d}')
         for i in range(36):        # for BeiDou
-            if df.read(1): self.mask.append(f'C{i+1:02d}')
+            if df.read('u1'): self.mask.append(f'C{i+1:02d}')
         df.pos += 29               # spare
         msg = f":"
         for sat in self.mask:
@@ -113,7 +115,7 @@ class QzsL1s:
         iod       = [0     for _ in range(23)]  # data issue number
         self.iodi = df.read('u2')  # IOD updating number
         for i in range(23):
-            mask_sv[i] = df.read(1)
+            mask_sv[i] = df.read('u1')
         for i in range(23):
             iod[i] = df.read('u8')
         iodp = df.read('u2')
@@ -131,14 +133,14 @@ class QzsL1s:
 
     def decode_dgps_correction(self, df):  # ref.[3], sect.4.1.2.9, MT50
         ''' returns decoded message '''
-        iodp = df.read('u2')  # PRN mask updating number
-        iodi = df.read('u2')  # IOD updating number
-        gms_code = df.read('u6')  # monitoring station code
-        gms_health = df.read(1)  # monitoring station health
+        iodp = df.read('u2')         # PRN mask updating number
+        iodi = df.read('u2')         # IOD updating number
+        gms_code = df.read('u6')     # monitoring station code
+        gms_health = df.read('u1')   # monitoring station health
         mask_sv   = [False for _ in range(23)]  # mask selected satellite
         for i in range(23):
-            mask_sv[i] = df.read(1)  # mask selected satellite
-        prc = [0 for _ in range(14)]  # pseudorange correcion
+            mask_sv[i] = df.read('u1')  # mask selected satellite
+        prc = [0 for _ in range(14)]    # pseudorange correcion
         for i in range(14):
             prc[i] = df.read('i12') * 0.04  # pseudorange correction
         df.pos += 10  # spare
@@ -159,19 +161,19 @@ class QzsL1s:
         self.unhealthy_sv = []  # unhealthy satellite
         df.pos += 2  # spare
         for i in range(64):  # for GPS
-            if not df.read(1):
+            if not df.read('u1'):
                 self.unhealthy_sv.append(f'G{i:02d}')
         for i in range(9):  # for QZSS
-            if not df.read(1):
+            if not df.read('u1'):
                 self.unhealthy_sv.append(f'J{i:02d}')
         for i in range(36):  # for GLONASS
-            if not df.read(1):
+            if not df.read('u1'):
                 self.unhealthy_sv.append(f'R{i:02d}')
         for i in range(36):  # for Galileo
-            if not df.read(1):
+            if not df.read('u1'):
                 self.unhealthy_sv.append(f'E{i:02d}')
         for i in range(36):  # for BeiDou
-            if not df.read(1):
+            if not df.read('u1'):
                 self.unhealthy_sv.append(f'C{i:02d}')
         msg = ": unhealthy sats"
         for sat in self.unhealthy_sv:
@@ -284,10 +286,10 @@ class QzsL1s:
 
     def decode_l1s (self, l1s):
         ''' returns decoded message '''
-        pab = l1s.read(8)            # preamble (8 bit), ref.[3], Fig.4.1.1-1
-        mt  = l1s.read(6)            # message type (6 bit)
-        df  = l1s.read(LEN_L1S_DF)   # data field (212 bit)
-        crc = l1s.read(LEN_L1S_CRC)  # crc24, ref.[3] pp., sect.4.1.1.3
+        pab = l1s.read(L_PAB)      # preamble (8 bit), ref.[3], Fig.4.1.1-1
+        mt  = l1s.read(L_MT)       # message type (6 bit)
+        df  = l1s.read(L_DF)   # data field (212 bit)
+        crc = l1s.read(L_CRC)  # crc24, ref.[3] pp., sect.4.1.1.3
         pad = bitstring.Bits('uint6=0')  # padding for byte alignment
         frame = (pad + pab + mt + df).tobytes()
         crc_test = rtk_crc24q(frame, len(frame))
@@ -328,7 +330,7 @@ def read_from_l1s_file(qzsl1s, l1s_file, fp_disp):
             payload = bitstring.ConstBitStream(raw)
             gpsweek = payload.read('u12')
             gpstow  = payload.read('u20')
-            l1s     = payload.read(LEN_L1S)
+            l1s     = payload.read(L_L1S)
             payload.pos += 6  # spare
             msg = qzsl1s.msg_color.fg('green') + \
                 libgnsstime.gps2utc(gpsweek, gpstow) + \
@@ -346,7 +348,7 @@ def read_from_stdin(qzsl1s,  fp_disp):
     while raw:
         payload = bitstring.ConstBitStream(raw)
         prn = payload.read('u8')
-        l1s = payload.read(LEN_L1S)
+        l1s = payload.read(L_L1S)
         payload.pos += 6  # spare
         msg = qzsl1s.msg_color.fg('green') + \
             f'PRN{prn:3d}' + \
@@ -384,4 +386,3 @@ if __name__ == '__main__':
         sys.exit()
 
 # EOF
-

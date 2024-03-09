@@ -21,6 +21,7 @@ do_test() {
         rm ${BASENAME}.${EXT_TO}
     else
         printf  "${ESC}[31mFailed.${ESC}[m\n"
+        exit 1
     fi
 }
 

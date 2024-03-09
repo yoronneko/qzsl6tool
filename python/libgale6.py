@@ -4,7 +4,7 @@
 # libgale6.py: library for Galileo E6B message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023-2024 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -23,8 +23,8 @@ try:
     import numpy as np
 except ModuleNotFoundError:
     print('''\
-    QZS L6 Tool needs bitstring, galois, and numpy  modules.
-    Please install this module such as \"pip install bitstring galois numpy\".
+    This code needs bitstring and galois modules.
+    Please install this module such as \"pip install bitstring galois\".
     ''', file=sys.stderr)
     sys.exit(1)
 
@@ -415,15 +415,15 @@ class GalE6():
     def decode_has_header(self, has_msg):
         ''' returns new HAS message position '''
         self.toh     = has_msg.read('u12')
-        self.f_mask  = has_msg.read(   1 )
-        self.f_orbit = has_msg.read(   1 )
-        self.f_ckful = has_msg.read(   1 )
-        self.f_cksub = has_msg.read(   1 )
-        self.f_cbias = has_msg.read(   1 )
-        self.f_pbias = has_msg.read(   1 )
+        self.f_mask  = has_msg.read( 'u1')
+        self.f_orbit = has_msg.read( 'u1')
+        self.f_ckful = has_msg.read( 'u1')
+        self.f_cksub = has_msg.read( 'u1')
+        self.f_cbias = has_msg.read( 'u1')
+        self.f_pbias = has_msg.read( 'u1')
         has_msg.pos += 4  # reserved
-        self.maskid  = has_msg.read( 'u5')
-        self.iodset  = has_msg.read( 'u5')
+        self.maskid  = has_msg.read('u5')
+        self.iodset  = has_msg.read('u5')
         disp_msg = f'Time of hour TOH: {self.toh} s\n' + \
                    f'Mask            : {"on" if self.f_mask  else "off"}\n' + \
                    f'Orbit correction: {"on" if self.f_orbit else "off"}\n' + \
@@ -455,4 +455,3 @@ def icd_test():
     gale6.decode_has_message(has_msg)
 
 # EOF
-

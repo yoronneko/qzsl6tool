@@ -4,7 +4,7 @@
 # libobs.py: library for RTCM observation message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022 Satoshi Takahashi
+# Copyright (c) 2022-2024 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -37,13 +37,13 @@ class Obs:
         payload.pos = pos
         sid  = payload.read('u12')  # station id, DF003
         tow  = payload.read(  be )  # epoch time
-        sync = payload.read(   1 )  # synchronous flag
+        sync = payload.read( 'u1')  # synchronous flag
         nsat = payload.read( 'u5')  # number of signals
-        sind = payload.read(   1 )  # smoothing indicator
+        sind = payload.read( 'u1')  # smoothing indicator
         sint = payload.read( 'u3')  # smoothing interval
         for _ in range(nsat):
             satid     = payload.read( 'u6')  # satellite id
-            cind1     = payload.read(   1 )  # L1 code indicator
+            cind1     = payload.read( 'u1')  # L1 code indicator
             if satsys == 'R':
                 fc    = payload.read( 'u5')  # freq ch
             pr1       = payload.read(  bp )  # L1 pseudorange
@@ -53,7 +53,7 @@ class Obs:
                 pma1  = payload.read(  bi )  # pr ambiguity
                 cnr1  = payload.read( 'u8')  # L1 CNR
             if mtype in 'L2':
-                cind2 = payload.read(   2 )  # L2 code indicator
+                cind2 = payload.read( 'u2')  # L2 code indicator
                 prd   = payload.read('i14')  # L2-L1 pr diff
                 phpr2 = payload.read('i20')  # L2 phase-L1 pr
                 lti2  = payload.read( 'u7')  # L2 locktime ind
@@ -72,40 +72,40 @@ class Obs:
         payload.pos = pos
         rid    = payload.read('u12')  # reference station id, DF003
         epoch  = payload.read('u30')  # GNSS epoch time
-        mm     = payload.read(   1 )  # multiple message bit, DF393
+        mm     = payload.read( 'u1')  # multiple message bit, DF393
         iods   = payload.read( 'u3')  # issue of data station, DF409
         payload.pos += 7              # reserved, DF001
         csi    = payload.read( 'u2')  # clock steering ind, DF411
         eci    = payload.read( 'u2')  # external clock ind, DF412
-        sid    = payload.read(   1 )  # divergence-free smooting, DF417
+        sid    = payload.read( 'u1')  # divergence-free smooting, DF417
         smint  = payload.read( 'u3')  # smoothing interval, DF418
-        sat_mask = [0 for i in range(64)]
+        sat_mask = [0 for _ in range(64)]
         n_sat = 0
         for satid in range(64):
-            mask = payload.read(1)    # satellite mask, DF394
+            mask = payload.read('u1')  # satellite mask, DF394
             if mask:
                 sat_mask[n_sat] = satid
                 n_sat += 1
-        sig_mask = [0 for i in range(32)]
+        sig_mask = [0 for _ in range(32)]
         n_sig = 0
         for sigid in range(32):
-            mask = payload.read(1)    # signal mask, DF395
+            mask = payload.read('u1')  # signal mask, DF395
             if mask:
                 sig_mask[n_sig] = sigid
                 n_sig += 1
-        cell_mask = [0 for i in range(n_sat * n_sig)]
+        cell_mask = [0 for _ in range(n_sat * n_sig)]
         n_cell_mask = 0
         for maskpos in range(n_sat * n_sig):
-            mask = payload.read(1)    # cell mask, DF396
+            mask = payload.read('u1')  # cell mask, DF396
             cell_mask[maskpos] = mask
             if mask:
                 n_cell_mask += 1
         if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
             for _ in range(n_sat):
-                rng  = payload.read( 'u8')  # rough ranges, DF398
+                rng  = payload.read('u8')  # rough ranges, DF398
         if '5' in mtype or '7' in mtype:
             for _ in range(n_sat):
-                einf = payload.read( 'u4')  # sat specific extended info
+                einf = payload.read('u4')  # sat specific extended info
         for _ in range(n_sat):
             rng_m    = payload.read('u10')  # range mod 1 ms, DF398
         if '5' in mtype or '7' in mtype:
@@ -130,7 +130,7 @@ class Obs:
                '5' in mtype or '6' in mtype or '7' in mtype:
                 fphr = payload.read(bfphr)  # fine phaserange, DF401, 406
                 lti  = payload.read( blti)  # lock time ind, DF402, 407
-                hai  = payload.read(    1)  # half-cycle ambiguity, DF420
+                hai  = payload.read( 'u1')  # half-cycle ambiguity, DF420
             if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
                 cnr  = payload.read(bcnr )  # CNR, DF403, 408
             if '5' in mtype or '7' in mtype:
@@ -145,4 +145,3 @@ class Obs:
         return payload.pos, string
 
 # EOF
-
