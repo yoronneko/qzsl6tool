@@ -20,7 +20,15 @@ sys.path.append(os.path.dirname(__file__))
 import libgnsstime
 import libcolor
 
-LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
+LEN_BCNAV3      = 125  # BDS CNAV3 page size is 1000 sym (125 byte)
+LEN_L6_FRM      = 250  # QZS L6 frame size is 2000 bit (250 byte)
+LEN_CNAV_PAGE   = 62   # GAL C/NAV page size is 492 bit (61.5 byte)
+PREAMBLE_BCNAV3 = b'\xeb\x90'  # preamble for BDS B2b message
+SEPT_MSG_NAME = {      # dictionary for obtaining message name from ID
+        4024: 'GALRawCNAV',  # ref.[1] p.282
+        4069: 'QZSRawL6'  ,  # ref.[2] p.267
+        4242: 'BDSRawB2b' ,  # ref.[1] p.288
+}
 
 def crc16_ccitt(data):
     crc = 0
@@ -87,7 +95,7 @@ class SeptReceiver:
                     self.msg_color.fg(), file=self.fp_disp)
                 continue
         self.msg_id   = msg_id
-        self.msg_name = self.SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
+        self.msg_name = SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
         self.payload  = payload
         return True
 
@@ -110,7 +118,7 @@ class SeptReceiver:
         u4perm(nav_bits, e6b)
         # see ref.[1] p.259 for converting from svid to sat code.
         self.satid = svid - 70
-        self.e6b   = e6b[:LEN_CNAV_PAGE]
+        self.raw   = self.satid.to_bytes(1, byteorder='little') + e6b[:LEN_CNAV_PAGE]
         msg = self.msg_color.fg('green') + \
             libgnsstime.gps2utc(wnc, tow // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
@@ -134,8 +142,9 @@ class SeptReceiver:
         rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
         nav_bits   =                payload[pos:pos+252]           ; pos += 252
         self.satid = svid - 180
-        self.l6    = bytearray(252)
-        u4perm(nav_bits, self.l6)
+        l6         = bytearray(252)
+        u4perm(nav_bits, l6)
+        self.raw   = l6[:LEN_L6_FRM]
         msg = self.msg_color.fg('green') + \
             libgnsstime.gps2utc(wnc, tow//1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
@@ -161,21 +170,16 @@ class SeptReceiver:
         rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
         nav_bits   =                payload[pos:pos+124]           ; pos += 124
         self.satid = (svid - 140) if svid <= 180 else (svid - 182)
-        self.b2b   = bytearray(124)
-        u4perm(nav_bits, self.b2b)
         msg = self.msg_color.fg('green') + \
             libgnsstime.gps2utc(wnc, tow//1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + \
             self.msg_color.fg('yellow') + f' C{self.satid:02d} ' + \
             self.msg_color.fg() + self.b2b.hex()
             # see ref.[1] p.259 for converting from svid to sat code.
+        b2b   = bytearray(124)
+        u4perm(nav_bits, b2b)
+        self.raw = (PREAMBLE_BCNAV3 + b2b)[:LEN_BCNAV3]
         return msg
-
-    SEPT_MSG_NAME = {    # dictionary for obtaining message name from ID
-        4024: 'GALRawCNAV',  # ref.[1] p.282
-        4069: 'QZSRawL6'  ,  # ref.[2] p.267
-        4242: 'BDSRawB2b' ,  # ref.[1] p.288
-    }
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Septentrio message read')
@@ -195,43 +199,33 @@ if __name__ == '__main__':
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     args = parser.parse_args()
-    fp_e6b, fp_l6, fp_b2b, fp_disp = None, None, None, sys.stdout
-    if args.e6b:
-        fp_disp, fp_e6b, fp_b2b, fp_l6 = None, sys.stdout, None, None
-    if args.l6:
-        fp_disp, fp_e6b, fp_l6, fp_b2b = None, None, sys.stdout, None
-    if args.b2b:
-        fp_disp, fp_e6b, fp_l6, fp_b2b = None, None, None, sys.stdout
-    if args.message:  # show HAS message to stderr
+    fp_raw, fp_disp = None, sys.stdout
+    if args.e6b or args.l6 or args.b2b:
+        fp_raw, fp_disp = sys.stdout, None
+    if args.message:  # send display messages to stderr
         fp_disp = sys.stderr
     rcv = SeptReceiver(fp_disp, args.color)
     try:
         while rcv.read():
             # print(rcv.msg_name, file=fp_disp)
-            msg = ''
             if   rcv.msg_name == 'GALRawCNAV':
-                msg += rcv.galrawcnav()
-                if fp_e6b and rcv.e6b:
-                    fp_e6b.buffer.write(
-                        rcv.satid.to_bytes(1, byteorder='little'))
-                    fp_e6b.buffer.write(rcv.e6b)
-                    fp_e6b.flush()
+                msg = rcv.galrawcnav()
             elif rcv.msg_name == 'QZSRawL6':
-                msg += rcv.qzsrawl6()
-                if fp_l6 and rcv.l6:
-                    fp_l6.buffer.write(rcv.l6)
-                    fp_l6.flush()
+                msg = rcv.qzsrawl6()
             elif rcv.msg_name == 'BDSRawB2b':
-                msg += rcv.bdsrawb2b()
-                if fp_b2b and rcv.b2b:
-                    fp_b2b.buffer.write(rcv.b2b)
-                    fp_b2b.flush()
+                msg = rcv.bdsrawb2b()
             else:
-                msg += rcv.msg_color.dec('dark') + rcv.msg_name + \
+                msg = rcv.msg_color.dec('dark') + rcv.msg_name + \
                     rcv.msg_color.dec()
+                rcv.raw = bytearray()
             if fp_disp:
                 print(msg, file=fp_disp)
                 fp_disp.flush()
+            if (args.e6b and rcv.msg_name == 'GALRawCNAV') or \
+               (args.l6  and rcv.msg_name == 'QZSRawL6'  ) or \
+               (args.b2b and rcv.msg_name == 'BDSRawB2b' ):
+                fp_raw.buffer.write(rcv.raw)
+                fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())

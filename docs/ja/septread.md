@@ -8,7 +8,7 @@
 
 を抽出するプログラムです。``--help``オプションで、受け付けるオプションを表示します。
 
-```
+```bash
 $ septread.py --help
 usage: septread.py [-h] [-c] [-e] [-l] [-m]
 

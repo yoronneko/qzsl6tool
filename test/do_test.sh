@@ -178,43 +178,6 @@ do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 BASENAME=20230819-081730hasbds
 do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-echo
-echo '--- Compatibility test: you may see update note ---'
-echo
-
-# ------
-CODE=${CODEDIR}pksdr2qzsl6.py ARG= EXT_FROM=psdr EXT_TO=l6
-echo "Pocket SDR to QZS L6 message conversion (${CODE})"
-
-SRCDIR=../sample/
-BASENAME=20211226-082212clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-
-BASENAME=20211226-082212mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-
-# ------
-CODE=${CODEDIR}pksdr2has.py ARG='-t 2' EXT_FROM=psdr EXT_TO=txt
-echo ""
-echo "Pocket SDR HAS message read (${CODE} ${ARG})"
-
-SRCDIR=../sample/
-BASENAME=20220930-115617has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-
-BASENAME=20230305-063900has
-#do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-
-# ------
-CODE=${CODEDIR}nov2has.py ARG='-t 2' EXT_FROM=nov EXT_TO=txt
-echo ""
-echo "NovAtel HAS message read (${CODE} ${ARG})"
-
-SRCDIR=../sample/
-BASENAME=20230819-053733has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-
 echo ""
 
 # EOF

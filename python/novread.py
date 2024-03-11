@@ -20,6 +20,24 @@ import libcolor
 import libgnsstime
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
+NOV_MSG_NAME = {    # dictionary for obtaining message name from ID
+       8: 'IONUTC'         ,
+      41: 'RAWEPHEM'       ,
+      43: 'RANGE'          ,
+     140: 'RANGECMP'       ,
+     287: 'RAWWAASFRAME'   ,
+     723: 'GLOEPHEMERIS'   ,
+     973: 'RAWSBASFRAME'   ,
+    1121: 'GALCLOCK'       ,
+    1122: 'GALEPHEMERIS'   ,
+    1127: 'GALIONO'        ,
+    1330: 'QZSSRAWSUBFRAME',
+    1331: 'QZSSRAWEPHEM'   ,
+    1347: 'QZSSIONUTC'     ,
+    1696: 'BDSEPHEMERIS'   ,
+    2123: 'NAVICEPHEMERIS' ,
+    2239: 'GALCNAVRAWPAGE' ,
+}
 
 def crc32(data):
     polynomial = 0xedb88320
@@ -94,7 +112,7 @@ class NovReceiver:
         self.stat     = int.from_bytes(head[pos:pos+4], 'little'); pos += 4
         self.reserved = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
         self.ver      = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
-        self.msg_name = self.NOV_MSG_NAME.get(self.msg_id, f"MT{self.msg_id}")
+        self.msg_name = NOV_MSG_NAME.get(self.msg_id, f"MT{self.msg_id}")
 
     def qzssrawsubframe(self):
         ''' returns hex-decoded message
@@ -111,16 +129,16 @@ class NovReceiver:
         pos = 0
         prn   = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
         sfid  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
-        sfraw =                payload[pos:pos+32]           ; pos += 32
+        raw   =                payload[pos:pos+32]           ; pos += 32
         chno  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
         self.satid = prn
-        self.sfraw = sfraw
+        self.raw   = raw
         msg = self.msg_color.fg('green') + \
             libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + ' ' + \
             self.msg_color.fg('yellow') + \
             f'{QZSS_ID.get(prn, "J??")}:{sfid} ' + \
-            self.msg_color.fg() + sfraw.hex()
+            self.msg_color.fg() + raw.hex()
         return msg
 
     def galcnavrawpage(self):
@@ -142,33 +160,15 @@ class NovReceiver:
         self.satid = prn
         # NovAtel C/NAV data excludes 24-bit CRC and 6-bit tail bits.
         # Threrfore, 3 bytes (24 bit) are padded for CRC, tail, and padding
-        self.e6b = e6b + bytes(LEN_CNAV_PAGE - 58)
+        self.raw = self.satid.to_bytes(1, byteorder='little') + \
+            e6b + bytes(LEN_CNAV_PAGE - 58)
         msg = self.msg_color.fg('green') + \
             libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
             self.msg_color.fg('cyan') + self.msg_name + ' ' + \
             self.msg_color.fg('yellow') + \
             f'E{prn:02d}:{msg_id}:{page_id} ' + \
-            self.msg_color.fg() + self.e6b.hex()
+            self.msg_color.fg() + e6b.hex()
         return msg
-
-    NOV_MSG_NAME = {  # dictionary for obtaining message name from ID
-           8: 'IONUTC'         ,
-          41: 'RAWEPHEM'       ,
-          43: 'RANGE'          ,
-         140: 'RANGECMP'       ,
-         287: 'RAWWAASFRAME'   ,
-         723: 'GLOEPHEMERIS'   ,
-         973: 'RAWSBASFRAME'   ,
-        1121: 'GALCLOCK'       ,
-        1122: 'GALEPHEMERIS'   ,
-        1127: 'GALIONO'        ,
-        1330: 'QZSSRAWSUBFRAME',
-        1331: 'QZSSRAWEPHEM'   ,
-        1347: 'QZSSIONUTC'     ,
-        1696: 'BDSEPHEMERIS'   ,
-        2123: 'NAVICEPHEMERIS' ,
-        2239: 'GALCNAVRAWPAGE' ,
-    }
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='NovAtel message read')
@@ -179,61 +179,39 @@ if __name__ == '__main__':
         '-e', '--e6b', action='store_true',
         help='send E6B C/NAV messages to stdout, and also turns off display message.')
     parser.add_argument(
-        '-l', '--l6', action='store_true',
-        help='send L6 messages to stdout, and also turns off display message.')
-    parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     parser.add_argument(
-        '-s', '--statistics', action='store_true',
-        help='show HAS statistics in display messages.')
-    parser.add_argument(
-        '-t', '--trace', type=int, default=0,
-        help='show display verbosely: 1=detail, 2=bit image.')
+        '-q', '--qlnav', action='store_true',
+        help='send QZSS LNAV messages to stdout, and also turns off display message.')
     args = parser.parse_args()
-    fp_e6b, fp_l6, fp_disp, fp_rtcm = None, None, sys.stdout, None
-    has_decode = False
-    if args.trace < 0:
-        print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
-        sys.exit(1)
+    fp_disp, fp_raw = sys.stdout, None
     if args.e6b:
-        fp_disp, fp_e6b, fp_l6 = None, sys.stdout, None
-    if args.l6:
-        fp_disp, fp_e6b, fp_l6 = None, None, sys.stdout
-    if args.message:  # show HAS message to stderr
+        fp_disp, fp_raw = None, sys.stdout
+    if args.message:  # send display messages to stderr
         fp_disp = sys.stderr
-    if 'nov2has.py' in sys.argv[0]:  # for compatibility of nov2has.py
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "novread.py -e | gale6read", instead of "nov2has.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
-        has_decode = True
-        import libgale6
-        gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
     rcv = NovReceiver(fp_disp, args.color)
     try:
         while rcv.read():
             #print(rcv.msg_name, file=fp_disp)
-            if   rcv.msg_name == 'QZSSRAWSUBFRAME':
-                msg = rcv.qzssrawsubframe()
-                if fp_l6 and rcv.l6:
-                    fp_l6.buffer.write(rcv.l6)
-                    fp_l6.flush()
-            elif rcv.msg_name == 'GALCNAVRAWPAGE':
+            if rcv.msg_name == 'GALCNAVRAWPAGE':
                 msg = rcv.galcnavrawpage()
-                if fp_e6b and rcv.e6b:
-                    fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-                    fp_e6b.buffer.write(rcv.e6b)
-                    fp_e6b.flush()
-                if has_decode and rcv.e6b:  # for compatibility of nov2has.py
-                    if gale6.ready_decoding_has(rcv.satid, rcv.e6b):
-                        gale6.decode_has_message()
+            elif rcv.msg_name == 'QZSSRAWSUBFRAME':
+                msg = rcv.qzssrawsubframe()
             else:
                 msg = rcv.msg_color.fg('green') + \
                     libgnsstime.gps2utc(rcv.gpsw, rcv.gpst // 1000) + \
                     rcv.msg_color.fg() + ' ' + \
                     rcv.msg_color.dec('dark') + rcv.msg_name + \
                     rcv.msg_color.dec()
-            if fp_disp and not has_decode:
+                rcv.raw = bytearray()
+            if fp_disp:
                 print(msg, file=fp_disp)
                 fp_disp.flush()
+            if (args.e6b   and rcv.msg_name == 'GALCNAVRAWPAGE' ) or \
+               (args.qlnav and rcv.msg_name == 'QZSSRAWSUBFRAME'):
+                fp_raw.buffer.write(rcv.raw)
+                fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())
