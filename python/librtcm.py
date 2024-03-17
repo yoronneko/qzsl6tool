@@ -28,21 +28,21 @@
 import os
 import sys
 
-try:
-    import bitstring
-except ModuleNotFoundError:
-    print('''\
-    This code needs bitstring module.
-    Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
-    sys.exit(1)
-
 sys.path.append(os.path.dirname(__file__))
 import ecef2llh
-import libcolor
 import libeph
 import libobs
 import libssr
+import libtrace
+
+try:
+    import bitstring
+except ModuleNotFoundError:
+    libtrace.err('''\
+    This code needs bitstring module.
+    Please install this module such as \"pip install bitstring\".
+    ''')
+    sys.exit(1)
 
 class Rtcm:
     '''RTCM message process class'''
@@ -50,13 +50,11 @@ class Rtcm:
     readbuf = b''  # read buffer, used as static variable
     payload = bitstring.ConstBitStream()
 
-    def __init__(self, fp_disp, t_level, color):
-        self.fp_disp   = fp_disp
-        self.t_level   = t_level
-        self.msg_color = libcolor.Color(fp_disp, color)
-        self.eph       = libeph.Eph(fp_disp, t_level, self.msg_color)
-        self.obs       = libobs.Obs(fp_disp, t_level, self.msg_color)
-        self.ssr       = libssr.Ssr(fp_disp, t_level, self.msg_color)
+    def __init__(self, trace):
+        self.trace   = trace
+        self.eph       = libeph.Eph(trace)
+        self.obs       = libobs.Obs(trace)
+        self.ssr       = libssr.Ssr(trace)
 
     def read(self):
         '''returns true if successfully reading an RTCM message'''
@@ -64,8 +62,7 @@ class Rtcm:
         BUFADD =   20  # length of buffering additional RTCM message
         while True:
             if BUFMAX < len(self.readbuf):
-                print(libcolor.Color().fg('red') + "RTCM buffer exhausted" + \
-                    libcolor.Color().fg(), file=sys.stderr)
+                libtrace.err("RTCM buffer exhausted")
                 return False
             b = sys.stdin.buffer.read(BUFADD)
             if not b:
@@ -94,8 +91,7 @@ class Rtcm:
             bc = self.readbuf[pos+3+mlen:pos+3+mlen+3]  # possible CRC
             frame = b'\xd3' + bl + bp
             if bc != rtk_crc24q(frame, len(frame)):     # CRC error
-                print(libcolor.Color().fg('red') + "CRC error" + \
-                     libcolor.Color().fg(), file=sys.stderr)
+                libtrace.err("CRC error")
                 self.readbuf = self.readbuf[pos+1:]
                 continue
             else:  # read properly
@@ -142,29 +138,13 @@ class Rtcm:
                 msg = f'unknown SSR message: {msgnum} {mtype}'
         else:
             msg = f'unknown message: {mtype}'
-        disp_msg = self.msg_color.fg('green') + f'RTCM {msgnum} ' + \
-            self.msg_color.fg('yellow') + f'{satsys:1} {mtype:14}' + \
-            self.msg_color.fg() + msg
+        disp_msg = self.trace.msg(0, f'RTCM {msgnum} ', fg='green') + \
+            self.trace.msg(0, f'{satsys:1} {mtype:14}', fg='yellow') + msg
         if self.payload.pos % 8 != 0:  # byte align
             self.payload.pos += 8 - (self.payload.pos % 8)
         if self.payload.pos != len(self.payload.bin):
-            disp_msg += '\n' + self.msg_color.fg('red') + \
-                'packet size mismatch: ' + \
-                f'expected {len(self.payload.bin)}, actual {self.payload.pos}' + \
-                self.msg_color.fg()
-        if not self.fp_disp:
-            return
-        print(disp_msg, file=self.fp_disp)
-        self.fp_disp.flush()
-
-    def trace(self, level, *args):
-        if self.t_level < level or not self.fp_disp:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
+            disp_msg += '\n' + self.trace.msg(0, f'packet size mismatch: expected {len(self.payload.bin)}, actual {self.payload.pos}', fg='red')
+        self.trace.show(0, disp_msg)
 
     def decode_antenna_position(self, payload, msgnum):
         ''' returns decoded position and antenna height if available '''

@@ -28,13 +28,15 @@
 
 import sys
 
+import libtrace
+
 try:
     import bitstring
 except ModuleNotFoundError:
-    print('''\
+    libtrace.err('''\
     This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
+    ''')
     sys.exit(1)
 
 INVALID = 0  # invalid value indication for CSSR message show
@@ -79,19 +81,8 @@ class Ssr:
     stat_both  = 0      # stat: bit number of other information
     stat_bnull = 0      # stat: bit number of null
 
-    def __init__(self, fp_disp, t_level, msg_color):
-        self.fp_disp   = fp_disp
-        self.t_level   = t_level
-        self.msg_color = msg_color
-
-    def trace(self, level, *args):
-        if self.t_level < level or not self.fp_disp:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
+    def __init__(self, trace):
+        self.trace = trace
 
     def ssr_decode_head(self, payload, satsys, mtype):
         ''' stores ssr_epoch, ssr_interval, ssr_mmi, ssr_iod, ssr_nsat'''
@@ -132,7 +123,7 @@ class Ssr:
             vddaln = ddaln * 4e-6         # 0.004 mm/s (4e-6 m/s)
             vddcrs = ddcrs * 4e-6         # 0.004 mm/s (4e-6 m/s)
             strsat += f"{satsys}{satid:02} "
-            self.trace(1, f'{satsys}{satid:02d} d_radial={vdrad:{FMT_ORB}}m d_along={vdaln:{FMT_ORB}}m d_cross={vdcrs:{FMT_ORB}}m dot_d_radial={vddrad:{FMT_ORB}}m/s dot_d_along={vddaln:{FMT_ORB}}m/s dot_d_cross={vddcrs:{FMT_ORB}}m/s\n')
+            self.trace.show(1, f'{satsys}{satid:02d} d_radial={vdrad:{FMT_ORB}}m d_along={vdaln:{FMT_ORB}}m d_cross={vdcrs:{FMT_ORB}}m dot_d_radial={vddrad:{FMT_ORB}}m/s dot_d_along={vddaln:{FMT_ORB}}m/s dot_d_cross={vddcrs:{FMT_ORB}}m/s')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return string
@@ -153,7 +144,7 @@ class Ssr:
             vc1   = c1 * 1e-6            # 0.001   mm/s   (1e-7 m/s)
             vc2   = c2 * 2e-9            # 0.00002 mm/s^2 (2e-9 m/s^2)
             strsat += f"{satsys}{satid:02d} "
-            self.trace(1, f'{satsys}{satid:02d} c0={vc0:{FMT_CLK}}m, c1={vc1:{FMT_CLK}}m, c2={vc2:{FMT_CLK}}m\n')
+            self.trace.show(1, f'{satsys}{satid:02d} c0={vc0:{FMT_CLK}}m, c1={vc1:{FMT_CLK}}m, c2={vc2:{FMT_CLK}}m')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return string
@@ -174,7 +165,7 @@ class Ssr:
                 cb    = payload.read('i14')  # code bias, DF383
                 vcb   = cb * 1e-2
                 sstmi = sigmask2signame(satsys, stmi)
-                self.trace(1, f'{satsys}{satid:02d} {sstmi:{FMT_GSIG}} code_bias={vcb:{FMT_CB}}m\n')
+                self.trace.show(1, f'{satsys}{satid:02d} {sstmi:{FMT_GSIG}} code_bias={vcb:{FMT_CB}}m')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return string
@@ -197,7 +188,7 @@ class Ssr:
                 cls  = ura[4:7].uint
                 val  = ura[0:4].uint
                 vura = 3 ** cls * (1 + val / 4) - 1
-            self.trace(1, f'{satsys}{satid:02d} ura={vura:7.2f} mm\n')
+            self.trace.show(1, f'{satsys}{satid:02d} ura={vura:7.2f} mm')
             strsat += f"{satsys}{satid:02} "
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
@@ -215,7 +206,7 @@ class Ssr:
             hrc   = payload.read('i22')  # high rate clock
             vhrc  = hrc * 1e-4          # 0.1mm (DF390) or 1e-4 m
             strsat += f"{satsys}{satid:02} "
-            self.trace(1, f'{satsys}{satid:02} high_rate_clock={vhrc:{FMT_CLK}}m\n')
+            self.trace.show(1, f'{satsys}{satid:02} high_rate_clock={vhrc:{FMT_CLK}}m')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
         return string
@@ -264,12 +255,12 @@ class Ssr:
               f'bit_sat {self.stat_bsat} bit_sig {self.stat_bsig} ' + \
               f'bit_other {self.stat_both} bit_null {self.stat_bnull} ' + \
               f'bit_total {bit_total}'
-        self.trace(0, msg)
+        self.trace.show(0, msg)
 
     def decode_cssr_head(self, payload):
         ''' decode CSSR header and returns True if success '''
         if payload.all(0):  # payload is zero padded
-            self.trace(2, f"CSSR null data {len(payload.bin)} bits\n")
+            self.trace.show(2, f"CSSR null data {len(payload.bin)} bits")
             self.subtype = 0  # no subtype number
             return False
         len_payload = len(payload)
@@ -279,7 +270,7 @@ class Ssr:
             return False
         self.msgnum = payload.read('u12')
         if self.msgnum != 4073:  # CSSR message number should be 4073
-            self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n" + \
+            self.trace.show(2, f"CSSR msgnum should be 4073 ({self.msgnum})" + \
                 f"{len(payload.bin)} bits\nCSSR dump: {payload.bin}\n")
             self.subtype = 0  # no subtype number
             return False
@@ -383,8 +374,8 @@ class Ssr:
                     self.stat_nsig += 1
                 msg_trace1 += '\n'
             if ssr_type == 'has' and navmsg[i] != 0:
-                msg_trace1 += '\n{satsys}: NavMsg should be zero.'
-        self.trace(1, msg_trace1)
+                msg_trace1 += '\n{satsys}: NavMsg should be zero.\n'
+        self.trace.show(1, msg_trace1, end='')
         if self.stat:
             self.show_cssr_stat()
         self.stat_bsat  = 0
@@ -424,7 +415,7 @@ class Ssr:
                     f'd_radial={vrad:{FMT_ORB}}m ' + \
                     f'd_along={ valg:{FMT_ORB}}m ' + \
                     f'd_cross={ vcrs:{FMT_ORB}}m\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True
@@ -459,7 +450,7 @@ class Ssr:
                     f'd_radial={vrad:{FMT_ORB}}m ' + \
                     f'd_track={ valg :{FMT_ORB}}m ' + \
                     f'd_cross={ vcrs :{FMT_ORB}}m\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True
@@ -476,7 +467,7 @@ class Ssr:
                 c0  = payload.read('i15')
                 vc0 = c0 * 0.0016 if c0 != -16384 else INVALID
                 msg_trace1 += f"ST3 {gsys} d_clock={vc0:{FMT_CLK}}m\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True
@@ -506,7 +497,7 @@ class Ssr:
                 else:
                     vc0 = c0.int * 0.0025 * multiplier[i]
                 msg_trace1 += f"CKFUL {gsys} d_clock={vc0:{FMT_CLK}}m (multiplier={multiplier[i]})\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True
@@ -535,7 +526,7 @@ class Ssr:
             else:
                 vc0 = c0.int * 0.0025 * multiplier[i]
             msg_trace1 += f"CKSUB {gsys} d_clock={vc0:{FMT_CLK}}m (x{multiplier[i]})\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True
@@ -577,7 +568,7 @@ class Ssr:
                     if ssr_type == "cssr": msg_trace1 += "ST4"
                     else                 : msg_trace1 += "CBIAS"
                     msg_trace1 += f" {gsys} {gsig:{FMT_GSIG}} code_bias={vcb:{FMT_CB}}m\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
         return True
@@ -611,7 +602,7 @@ class Ssr:
                         f'ST5 {gsys} {gsig:{FMT_GSIG}}' + \
                         f' phase_bias={vpb:{FMT_PB}}m' + \
                         f' discont_indicator={di}\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
         return True
@@ -640,7 +631,7 @@ class Ssr:
                         f'PBIAS {gsys} {gsig:{FMT_GSIG}}' + \
                         f' phase_bias={vpb:{FMT_PB}}cycle' + \
                         f' discont_indicator={di}\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
         return True
@@ -693,7 +684,7 @@ class Ssr:
                         msg_trace1 += \
                             f" phase_bias={vpb:{FMT_PB}}m discont_indi={di}"
                     msg_trace1 += '\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos + 3
         self.stat_bsig += payload.pos - stat_pos - 3
         return True
@@ -719,7 +710,7 @@ class Ssr:
                     val  = ura[0:4].uint
                     vura = 3 ** cls * (1 + val / 4) - 1
                 msg_trace1 += f"ST7 {gsys} URA {vura:7.2f} mm\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True
@@ -774,7 +765,7 @@ class Ssr:
                     msg_trace1 += \
                         f" c02={vc02:{FMT_TECU}}TECU/deg^2 c20={vc20:{FMT_TECU}}TECU/deg^2"
                 msg_trace1 += '\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos + 7
         self.stat_bsat += payload.pos - stat_pos - 7
         return True
@@ -826,7 +817,7 @@ class Ssr:
                     msg_trace1 += \
                         f'ST9 STEC {gsys} grid {i+1:2d}/{ngrid:2d}' + \
                         f' residual={vres:{FMT_TECU}}TECU ({bw}bit)\n'
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += payload.pos
         return True
 
@@ -841,7 +832,7 @@ class Ssr:
         if len_payload < payload.pos + vdsize:
             return False
         aux_frame_data = payload.read(vdsize)
-        self.trace(1, f'ST10 {counter}:{aux_frame_data.hex}')
+        self.trace.show(1, f'ST10 {counter}:{aux_frame_data.hex}')
         self.stat_both += payload.pos
         return True
 
@@ -898,7 +889,7 @@ class Ssr:
                         vc0 = c0 * 0.0016 if c0 != -16384 else INVALID
                         msg_trace1 += f" c0={vc0:{FMT_CLK}}m"
                     msg_trace1 += "\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos + 3
         self.stat_bsat += payload.pos - stat_pos - 3
         if f_n:  # correct bit number because because we count up bsat as NID
@@ -1027,7 +1018,7 @@ class Ssr:
                         msg_trace1 += \
                             f"ST12 STEC {gsys} grid {i+1:2d}/{ngrid:2d} " + \
                             f"residual={vsr:{FMT_TECU}}TECU ({bw}bit)\n"
-        self.trace(1, msg_trace1)
+        self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
         return True

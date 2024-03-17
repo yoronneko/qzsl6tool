@@ -15,28 +15,26 @@
 
 import sys
 
+sys.path.append(__file__)
+import libssr
+import libtrace
+
 try:
     import bitstring
 except ModuleNotFoundError:
-    print('''\
+    libtrace.err('''\
     This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
+    ''')
     sys.exit(1)
-
-sys.path.append(__file__)
-import libcolor
-import libssr
 
 L_RDS      = 576  # length of RDS in bits
 L_RESERVED = 543  # length of reserved bits in bits
 L_SIGNAT   = 512  # length of signature in bits
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"
-    def __init__(self, fp_disp, t_level, msg_color):
-        self.fp_disp = fp_disp
-        self.t_level = t_level
-        self.msg_color = msg_color
+    def __init__(self, trace):
+        self.trace = trace
         self.rds1 = bitstring.ConstBitStream()
         self.rds2 = bitstring.ConstBitStream()
 
@@ -55,15 +53,6 @@ class Qznma:
         message += self.decode_rds(rds2)
         return message
 
-    def trace(self, level, *args):
-        if self.t_level < level or not self.fp_disp:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
-
     def decode_rds(self, rds):
         '''decodes reformat digital signature
         [1] p.43 Table 6-2 GPS LNAV RDS Message
@@ -79,15 +68,13 @@ class Qznma:
         salt   = rds.read('u16')
         message = ''
         if nma_id != '0000':
-            message = self.msg_color.dec('dark') + '(inactive) ' + \
-                self.msg_color.dec()
+            message = self.trace.msg(0, '(inactive) ', dec='dark')
             if rds[4:].any(1):
-                self.trace(2,f'NMA_ID={nma_id}: {rds[4:]}\n')
+                self.trace.show(2,f'NMA_ID={nma_id}: {rds[4:]}\n')
             return message
         satsig = ''
         if svid == 0:
-            message += self.msg_color.dec('dark') + '(null) ' + \
-                self.msg_color.dec()
+            message += self.trace.msg(0, '(null) ', dec='dark')
             return message
         elif   1 <= svid and svid <=  63: satsig += f'G{svid    :02d}'
         elif  65 <= svid and svid <= 127: satsig += f'E{svid-64 :02d}'
@@ -103,9 +90,8 @@ class Qznma:
         else:
             raise Exception(f'unknown message_type={mt}')
         message += satsig
-        self.trace(1, f'QZNMA {satsig}',
-                      f'TOW={rtow} Eph={reph} KeyID={keyid} salt={salt}\n')
-        self.trace(2, f'{signat.bin}\n')
+        self.trace.show(1, f'QZNMA {satsig}TOW={rtow} Eph={reph} KeyID={keyid} salt={salt}')
+        self.trace.show(2, f'{signat.bin}')
         return message
 
 # EOF

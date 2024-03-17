@@ -18,7 +18,7 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
-import libcolor
+import libtrace
 
 LEN_BCNAV3      = 125  # BDS CNAV3 page size is 1000 sym (125 byte)
 LEN_L6_FRM      = 250  # QZS L6 frame size is 2000 bit (250 byte)
@@ -54,12 +54,10 @@ def u4perm(inblk, outblk):
 
 
 class SeptReceiver:
-    def __init__(self, fp_disp, ansi_color):
-        self.fp_disp   = fp_disp
-        self.msg_color = libcolor.Color(fp_disp, ansi_color)
-        self.l6        = b''
-        self.e6b       = b''
-        self.b2b       = b''
+    raw = b''
+
+    def __init__(self, trace):
+        self.trace = trace
 
     def read(self):
         ''' reads standard input as SBF raw, [1]
@@ -79,9 +77,7 @@ class SeptReceiver:
             msg_len = int.from_bytes(head[4:6], 'little')
             if msg_len % 4 != 0:
                 # the message length should be multiple of 4 as in [1].
-                print(self.msg_color.fg('red') + \
-                    f'message length {msg_len} should be multiple of 4' + \
-                    self.msg_color.fg(), file=self.fp_disp)
+                libtrace.err(f'message length {msg_len} should be multiple of 4')
                 return False
             payload = sys.stdin.buffer.read(msg_len - 8)
             if not payload:
@@ -90,9 +86,7 @@ class SeptReceiver:
             if crc_cal == crc:
                 break
             else:
-                print(self.msg_color.fg('red') + \
-                    f'CRC Error: {crc.hex()} != {crc_cal.hex()}' + \
-                    self.msg_color.fg(), file=self.fp_disp)
+                libtrace.err(f'CRC Error: {crc.hex()} != {crc_cal.hex()}')
                 continue
         self.msg_id   = msg_id
         self.msg_name = SEPT_MSG_NAME.get(msg_id, f"MT{msg_id}")
@@ -119,11 +113,10 @@ class SeptReceiver:
         # see ref.[1] p.259 for converting from svid to sat code.
         self.satid = svid - 70
         self.raw   = self.satid.to_bytes(1, byteorder='little') + e6b[:LEN_CNAV_PAGE]
-        msg = self.msg_color.fg('green') + \
-            libgnsstime.gps2utc(wnc, tow // 1000) + ' ' + \
-            self.msg_color.fg('cyan') + self.msg_name + \
-            self.msg_color.fg('yellow') + f' E{self.satid:02d} ' + \
-            self.msg_color.fg() + self.e6b.hex()
+        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow // 1000), fg='green') + ' ' + \
+            self.trace.msg(0, self.msg_name, fg='cyan') + \
+            self.trace.msg(0, f' E{self.satid:02d} ', fg='yellow') + \
+            self.raw.hex()
         return msg
 
     def qzsrawl6(self):
@@ -145,12 +138,10 @@ class SeptReceiver:
         l6         = bytearray(252)
         u4perm(nav_bits, l6)
         self.raw   = l6[:LEN_L6_FRM]
-        msg = self.msg_color.fg('green') + \
-            libgnsstime.gps2utc(wnc, tow//1000) + ' ' + \
-            self.msg_color.fg('cyan') + self.msg_name + \
-            self.msg_color.fg('yellow') + \
-            f' J{self.satid:02d}({"L6D" if source == 1 else "L6E"}) ' + \
-            self.msg_color.fg() + self.l6.hex()
+        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow//1000), fg='green') + ' ' + \
+            self.trace.msg(0, self.msg_name, fg='cyan') + \
+            self.trace.msg(0, f' J{self.satid:02d}({"L6D" if source == 1 else "L6E"}) ', fg='yellow') + \
+            self.raw.hex()
             # see ref.[2] p.243 for converting from svid to sat code, and see ref.[2] p.267 for determining signal name.
         return msg
 
@@ -170,15 +161,14 @@ class SeptReceiver:
         rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
         nav_bits   =                payload[pos:pos+124]           ; pos += 124
         self.satid = (svid - 140) if svid <= 180 else (svid - 182)
-        msg = self.msg_color.fg('green') + \
-            libgnsstime.gps2utc(wnc, tow//1000) + ' ' + \
-            self.msg_color.fg('cyan') + self.msg_name + \
-            self.msg_color.fg('yellow') + f' C{self.satid:02d} ' + \
-            self.msg_color.fg() + self.b2b.hex()
-            # see ref.[1] p.259 for converting from svid to sat code.
+        # see ref.[1] p.259 for converting from svid to sat code.
         b2b   = bytearray(124)
         u4perm(nav_bits, b2b)
         self.raw = (PREAMBLE_BCNAV3 + b2b)[:LEN_BCNAV3]
+        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow//1000), fg='green') + ' ' + \
+            self.trace.msg(0, self.msg_name, fg='cyan') + \
+            self.trace.msg(0, f' C{self.satid:02d} ', fg='yellow') + \
+            self.raw.hex()
         return msg
 
 if __name__ == '__main__':
@@ -199,12 +189,13 @@ if __name__ == '__main__':
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     args = parser.parse_args()
-    fp_raw, fp_disp = None, sys.stdout
+    fp_disp, fp_raw = sys.stdout, None
     if args.e6b or args.l6 or args.b2b:
-        fp_raw, fp_disp = sys.stdout, None
+        fp_disp, fp_raw = None, sys.stdout
     if args.message:  # send display messages to stderr
         fp_disp = sys.stderr
-    rcv = SeptReceiver(fp_disp, args.color)
+    trace = libtrace.Trace(fp_disp, 0, args.color)
+    rcv = SeptReceiver(trace)
     try:
         while rcv.read():
             # print(rcv.msg_name, file=fp_disp)
@@ -215,12 +206,9 @@ if __name__ == '__main__':
             elif rcv.msg_name == 'BDSRawB2b':
                 msg = rcv.bdsrawb2b()
             else:
-                msg = rcv.msg_color.dec('dark') + rcv.msg_name + \
-                    rcv.msg_color.dec()
+                msg = rcv.trace.msg(0, rcv.msg_name, dec='dark')
                 rcv.raw = bytearray()
-            if fp_disp:
-                print(msg, file=fp_disp)
-                fp_disp.flush()
+            rcv.trace.show(0, msg)
             if (args.e6b and rcv.msg_name == 'GALRawCNAV') or \
                (args.l6  and rcv.msg_name == 'QZSRawL6'  ) or \
                (args.b2b and rcv.msg_name == 'BDSRawB2b' ):
@@ -231,8 +219,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF

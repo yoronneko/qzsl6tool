@@ -17,20 +17,20 @@ import argparse
 import os
 import sys
 
+sys.path.append(os.path.dirname(__file__))
+import libssr
+import libtrace
+
 try:
     import bitstring
     import galois
     import numpy as np
 except ModuleNotFoundError:
-    print('''\
+    libtrace.err('''\
     This code needs bitstring and galois modules.
     Please install this module such as \"pip install bitstring galois\".
-    ''', file=sys.stderr)
+    ''')
     sys.exit(1)
-
-sys.path.append(os.path.dirname(__file__))
-import libcolor
-import libssr
 
 GF = galois.GF(256)
 g = np.array([  # Reed-Solomon generator matrix
@@ -301,26 +301,14 @@ class GalE6():
     haspage  = [0b0 for i in range(MAX_PAGES)]
     hasindex = [0b0 for i in range(MAX_PAGES)]
 
-    def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
-        self.fp_rtcm   = fp_rtcm
-        self.fp_disp   = fp_disp
-        self.t_level   = t_level
-        self.msg_color = libcolor.Color(fp_disp, color)
+    def __init__(self, trace, stat):
+        self.trace   = trace
         self.stat      = stat
-        self.ssr       = libssr.Ssr(fp_disp, t_level, self.msg_color)
+        self.ssr       = libssr.Ssr(trace)
 
     def __del__(self):
         if self.stat:
             self.ssr.show_cssr_stat()
-
-    def trace(self, level, *args):
-        if self.t_level < level or not self.fp_disp:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
 
     def ready_decoding_has(self, satid, cnav):
         ''' returns True when HAS decode is ready, and
@@ -335,21 +323,14 @@ class GalE6():
         mid  = rawb.read('u5')      # message id
         ms   = rawb.read('u5') + 1  # message size
         pid  = rawb.read('u8')      # page id
-        disp_msg = self.msg_color.fg('green') + f'E{int(satid):02d}' + \
-                   self.msg_color.fg()
+        disp_msg = self.trace.msg(0, f'E{int(satid):02d}', fg='green')
         if rawb[0:24].hex == 'af3bc3':
-            if self.fp_disp:
-                disp_msg += self.msg_color.dec('dark') + \
-                    ' Dummy page (0xaf3bc3)' + self.msg_color.dec()
-                print(disp_msg, file=self.fp_disp)
+            self.trace.show(0, disp_msg + ' Dummy page (0xaf3bc3)', dec='dark')
             return False
         if mt != 1:
-            disp_msg += self.msg_color.fg('red') + \
-                f'MT={mt}, but only MT1 message is defined for C/NAV' + \
-                self.msg_color.fg()
+            self.trace.show(0, disp_msg + f'MT={mt}, but only MT1 message is defined for C/NAV', fg='red')
             return False  # only MT1 message is defined for C/NAV
-        disp_msg += self.msg_color.fg('yellow') + \
-            f' HASS={T_HASS[hass]}({hass})' + self.msg_color.fg() + \
+        disp_msg += self.trace.msg(0, f' HASS={T_HASS[hass]}({hass})', fg='yellow') + \
             f' MT={mt} MID={mid:2d} MS={ms:2d} PID={pid:3d}'
         if mid != self.mid_prev:
             # new message id --- reset buffer and message pointer
@@ -360,9 +341,7 @@ class GalE6():
         # discard the duplicate HAS page
         for i in range(self.num_has_pages):
             if pid == self.hasindex[i]:
-                disp_msg += f' -> duplicate message'
-                if self.fp_disp:
-                    print(disp_msg, file=self.fp_disp)
+                self.trace.show(0, disp_msg + ' -> duplicate message')
                 return False
         # store the HAS page and its index (pid: page id)
         self.hasindex[self.num_has_pages] = pid
@@ -373,17 +352,13 @@ class GalE6():
             self.num_has_pages += 1
         # continue to store HAS pages
         if self.num_has_pages < ms:
-            if self.fp_disp:
-                print(disp_msg, file=self.fp_disp)
+            self.trace.show(0, disp_msg)
             return False
         # we already have enough HAS pages related to the message id
         if not self.storing_has_pages:
-            disp_msg += f' -> Enough pages for MID={mid}'
-            if self.fp_disp:
-                print(disp_msg, file=self.fp_disp)
+            self.trace.show(0, disp_msg + f' -> Enough pages for MID={mid}')
             return False
-        if self.fp_disp:
-            print(disp_msg, file=self.fp_disp)
+        self.trace.show(0, disp_msg)
         self.storing_has_pages = False  # we don't need additional HAS pages
         return True
 
@@ -399,33 +374,34 @@ class GalE6():
         w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
         has_msg = bitstring.ConstBitStream(m.tobytes())
-        self.trace(2, f'------ HAS decode with the pages of MID={self.mid} MS={self.ms} ------\n')
-        self.trace(2, has_msg, '\n------\n')
+        self.trace.show(2, f'------ HAS decode with the pages of MID={self.mid} MS={self.ms} ------')
+        self.trace.show(2, has_msg)
+        self.trace.show(2, '------')
         self.decode_has_header(has_msg)
         msg = ''
         if self.f_mask :
             if not self.ssr.decode_has_mask (has_msg):
-                msg += '\n' + self.msg_color.fg('red') + 'MASK error' + self.msg_color.fg()
+                msg += '\n' + self.trace.msg(0, 'MASK error', fg='red')
         if self.f_orbit:
             if not self.ssr.decode_has_orbit(has_msg):
-                msg += '\n' + self.msg_color.fg('red') + 'ORBIT error' + self.msg_color.fg()
+                msg += '\n' + self.trace.msg(0, 'ORBIT error',fg='red')
         if self.f_ckful:
             if not self.ssr.decode_has_ckful(has_msg):
-                msg += '\n' + self.msg_color.fg('red') + 'CLOCK FULL error' + self.msg_color.fg()
+                msg += '\n' + self.trace.msg(0, 'CLOCK FULL error',fg='red')
         if self.f_cksub:
             if not self.ssr.decode_has_cksub(has_msg):
-                msg += '\n' + self.msg_color.fg('red') + 'CLOCK SUBSET error' + self.msg_color.fg()
+                msg += '\n' + self.trace.msg(0, 'CLOCK SUBSET error', fg='red')
         if self.f_cbias:
             if not self.ssr.decode_has_cbias(has_msg):
-                msg += '\n' + self.msg_color.fg('red') + 'CODE BIAS error' + self.msg_color.fg()
+                msg += '\n' + self.trace.msg(0, 'CODE BIAS error', fg='red')
         if self.f_pbias:
             if not self.ssr.decode_has_pbias(has_msg):
-                msg += '\n' + self.msg_color.fg('red') + 'PHASE BIAS error' + self.msg_color.fg()
+                msg += '\n' + self.trace.msg(0, 'PHASE BIAS error', fg='red')
         if msg:
-            self.trace(0, msg)
-        self.trace(2, '------ padding bits ------\n')
-        self.trace(2, has_msg[has_msg.pos:].bin)
-        self.trace(2, '\n------\n')
+            self.trace.show(0, msg)
+        self.trace.show(2, '------ padding bits ------')
+        self.trace.show(2, has_msg[has_msg.pos:].bin)
+        self.trace.show(2, '------')
 
     def decode_has_header(self, has_msg):
         ''' returns new HAS message position '''
@@ -448,8 +424,7 @@ class GalE6():
                    f'Phase bias      : {"on" if self.f_pbias else "off"}\n' + \
                    f'Mask ID         : {self.maskid}\n' + \
                    f'IOD Set ID      : {self.iodset}'
-        if self.fp_disp:
-            print(disp_msg, file=self.fp_disp)
+        self.trace.show(0, disp_msg)
 
 def icd_test():
     '''self test described in [1] attached file,
@@ -459,12 +434,11 @@ def icd_test():
     >>> import libgale6
     >>> libgale6.icd_test()
     '''
-    gale6 = GalE6(None, sys.stdout, 2, True, False)
+    trace = libtrace.Trace()
+    gale6 = GalE6(trace, False)
     gale6.mt = 1
     has_msg = bitstring.ConstBitStream('0x000cc00b20ffdfffff008100f7ffff7df55ffdfe0beee8a79a41241000a6000a01a01280400200200113fbc041febbf00080080042ff6822fea21807c193f7598035fd7f6a2f00080080016ff90287e7967f702580587fee217a10c9dfcc0e7f651df577d981603ffe4147f903ff9df7805c15ff9fdcff8008004004000a002407ff9d7c07df7ffe2b5fdcee305519011fd7fd24479f00500e8e7edc31401c43fdb02304007fe5030ff1ac40020020000200100100077fec06e00141feb02afcb2c400200200043ff5f6c022097f7c0e3f4412ff4fe1ff8825fe8ffcff0048081fe3fda097f4c04bf3812fe5ff27f0025fc6ff5ff40480edfa601c08ffe8023fcc0f00b00b80a825fdf00fff704bf71ffffdc097fb400c00812fe781a7f8025fe602203204801001a01607ffd006404012fec00e000825fc7fe500c04bff405605c08804004403012fe27feffbf0bb23dc94458ef0420afe1fa61544abda77c130444320a1104303d3f76f65fbbee7ccf5fe6bddf8bfcff479b7a5f1dc3bf3fce1243b44e90d1784ac350b2f29f2bd607b1a1e7bb207519201003807069f8feb7cf00c0d42d85b061f33d2fa7fa00fc3506a02015c4b09409bf07cbf950400641582a04fc8f40e88d2dd9f73efbdc40080400407c198588ad0e9f43d67aef9009c220420cdefbc9f90f920f0338660401a45a0b411a0841c8380c206c1882d0121243e87d02bf27d1fa2fc6184518a50dcb000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     gale6.decode_has_message(has_msg)
-    if self.fp_disp:
-        print(file=self.fp_disp)
     has_msg = bitstring.ConstBitStream('0x0072000b58afe4002d03000acd5826ae3000aaa5532b15581aaa572aa175b8800516e941454a28550ebd5556aa8c002001546a92c002c08020fd6ff200bbfe4fe2fec41020210207ff7f85ff8007002bfe202d000ffbc052044febaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     gale6.decode_has_message(has_msg)
 

@@ -17,8 +17,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libcolor
 import libgnsstime
+import libtrace
 
 def checksum(payload):  # ref. [1]
     csum1 = 0
@@ -34,9 +34,8 @@ class AllystarReceiver:
     last_gpst = 0    # last received GPS time
     l6        = b''  # L6 message
 
-    def __init__(self, fp_disp, ansi_color):
-        self.fp_disp   = fp_disp
-        self.msg_color = libcolor.Color(fp_disp, ansi_color)
+    def __init__(self, trace):
+        self.trace = trace
 
     def read(self):  # ref. [1]
         sync = bytes(4)
@@ -73,7 +72,7 @@ class AllystarReceiver:
         return True
 
     def select_sat(self, s_prn):
-        ''' returns display message '''
+        ''' selects satellite and displays message '''
         self.p_prn  = 0    # PRN    of satellite that has the strongest C/No
         self.p_snr  = 0    # C/No   of satellite that has the strongest C/No
         self.l6 = b''  # L6 msg of satellite that has the strongest C/No
@@ -95,14 +94,13 @@ class AllystarReceiver:
         if not self.err:
             self.dict_snr [self.prn] = self.snr
             self.dict_data[self.prn] = self.data
-        disp_msg += self.msg_color.fg('green') + f'{self.prn} ' + \
-            self.msg_color.fg('yellow') + \
-            libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + \
-            self.msg_color.fg('default') + f' {self.snr}'
+        disp_msg += \
+            self.trace.msg(0, f'{self.prn} ', fg='green') + \
+            self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) , fg='yellow') + \
+            self.trace.msg(0, f' {self.snr}')
         if self.err:
-            disp_msg += self.msg_color.fg('red') + ' ' + self.err + \
-                self.msg_color.fg()
-        return disp_msg
+            disp_msg += self.trace.msg(0, ' ' + self.err, fg='red')
+        self.trace.show(0, disp_msg)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -120,35 +118,29 @@ if __name__ == '__main__':
     parser.add_argument(
         '-p', '--prn', type=int, default=0,
         help='satellite PRN to be specified.')
-    args    = parser.parse_args()
-    fp_disp = sys.stdout
-    fp_l6   = None
+    args = parser.parse_args()
+    fp_disp, fp_raw = sys.stdout, None
     if args.l6:  # QZS L6 raw message output to stdout
-        fp_disp = None
-        fp_l6   = sys.stdout
+        fp_disp, fp_raw = None, sys.stdout
     if args.message:  # Allystar message to stderr
         fp_disp = sys.stderr
     if args.prn not in {0, 193, 194, 195, 196, 199}:
-        print(libcolor.Color().fg('yellow') + "PRN to be specified is either 193-196, or 199, all PRNs are selected." + libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("PRN to be specified is either 193-196, or 199, all PRNs are selected.")
         args.prn = 0
-    if 'alst2qzsl6.py' in sys.argv[0]:
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "alstread.py", instead of "alst2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
-    rcv = AllystarReceiver(fp_disp, args.color)
+    trace = libtrace.Trace(fp_disp, 0, args.color)
+    rcv = AllystarReceiver(trace)
     try:
         while rcv.read():
-            disp_msg = rcv.select_sat(args.prn)
-            if fp_disp:
-                print(disp_msg, file=fp_disp)
-                fp_disp.flush()
-            if rcv.l6 and fp_l6:
-                fp_l6.buffer.write(rcv.l6)
-                fp_l6.flush()
+            rcv.select_sat(args.prn)
+            if rcv.l6 and fp_raw:
+                fp_raw.buffer.write(rcv.l6)
+                fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF

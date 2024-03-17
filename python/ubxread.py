@@ -22,18 +22,18 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libcolor
 from   alstread import checksum
 from   septread import u4perm
 from   librtcm  import rtk_crc24q
+import libtrace
 
 try:
     import bitstring
 except ModuleNotFoundError:
-    print('''\
+    libtrace.err('''\
     This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
+    ''')
     sys.exit(1)
 
 LEN_L1CA = 300  # message length of GPS & QZS L1C/A, L2C, L5
@@ -44,9 +44,8 @@ LEN_B1I  = 300  # message length of BDS B1I, B2I
 class UbxReceiver:
     payload_prev = bitstring.BitStream()  # previous payload
 
-    def __init__(self, fp_disp, ansi_color):
-        self.fp_disp   = fp_disp
-        self.msg_color = libcolor.Color(fp_disp, ansi_color)
+    def __init__(self, trace):
+        self.trace = trace
 
     def read(self):
         ''' reads from standard input as u-blox raw message,
@@ -71,14 +70,10 @@ class UbxReceiver:
             ver     = int.from_bytes(head[8: 9], 'little')
             res     = int.from_bytes(head[9:10], 'little')
             if ver != 0x02:  # [1], sect.3.17.9
-                print(self.msg_color.fg('red') + \
-                    f'ubx sfrbx version should be 2 ({ver})' +
-                    self.msg_color.fg(), file=sys.stderr)
+                libtrace.err(f'ubx sfrbx version should be 2 ({ver})')
                 continue
             if (msg_len-8)/4 != n_word:
-                print(self.msg_color.fg('red') + \
-                    f'numWord mismatch: {(msg_len-8)/4} != {n_word}' +
-                    self.msg_color.fg(), file=sys.stderr)
+                libtrace.err(f'numWord mismatch: {(msg_len-8)/4} != {n_word}')
                 continue
             payload = sys.stdin.buffer.read(n_word * 4)
             csum    = sys.stdin.buffer.read(2)
@@ -86,9 +81,7 @@ class UbxReceiver:
                 return False
             csum1, csum2 = checksum(b'\x02\x13' + head + payload)
             if csum[0] != csum1 or csum[1] != csum2:
-                print(self.msg_color.fg('red') + \
-                    f'checksum error: {csum.hex()}!={csum1:02x}{csum2:02x}' + \
-                    self.msg_color.fg(), file=sys.stderr)
+                libtrace.err(f'checksum error: {csum.hex()}!={csum1:02x}{csum2:02x}')
                 continue
             break
         # [1] 1.5.2 GNSS identifiers
@@ -123,9 +116,7 @@ class UbxReceiver:
             crc = inav[196:196+24].tobytes()
             crc_calc = rtk_crc24q(inav_crc, len(inav_crc))
             if crc != crc_calc:
-                print(libcolor.Color().fg('red') + \
-                    f"CRC error {crc_calc.hex()} != {crc.hex()}" + \
-                    libcolor.Color().fg(), file=sys.stderr)
+                libtrace.err(f"CRC error {crc_calc.hex()} != {crc.hex()}")
             self.payload = inav + bitstring.Bits('uint4=0')
         elif signame == 'L1CA' or signame == 'L2CM':  # GPS or QZS L1C/A
             self.payload = bitstring.BitStream(payload_perm)[:LEN_L1CA+4]
@@ -136,9 +127,9 @@ class UbxReceiver:
         else:
             raise Exception(f'unknown signal: {signame}')
         self.msg = \
-            self.msg_color.fg('green')  + f'{self.satname:4s} ' + \
-            self.msg_color.fg('yellow') + f'{self.signame:4s} ' + \
-            self.msg_color.fg() + f'{self.payload.hex}'
+            self.trace.msg(0, f'{self.satname:4s} ', fg='green') + \
+            self.trace.msg(0, f'{self.signame:4s} ', fg='yellow') + \
+            f'{self.payload.hex}'
         return True
 
     def decode_qzsl1s(self, args):
@@ -233,17 +224,14 @@ if __name__ == '__main__':
     if args.message:
         fp_disp = sys.stderr
     if args.prn < 0:
-        print(libcolor.Color().fg('red') + \
-            f"PRN must be positive ({args.prn})" + \
-            libcolor.Color().fg(), file=sys.stderr)
-        sys.exit()
-    rcv = UbxReceiver(fp_disp, args.color)
+        libtrace.err(f"PRN must be positive ({args.prn})")
+        sys.exit(1)
+    trace = libtrace.Trace(fp_disp, 0, args.color)
+    rcv = UbxReceiver(trace)
     try:
         while rcv.read():
             if args.prn != 0 and rcv.prn != args.prn: continue
-            if fp_disp:
-                print(rcv.msg, file=fp_disp)
-                fp_disp.flush()
+            rcv.trace.show(0, rcv.msg)
             if fp_raw:
                 if   args.l1s  : raw = rcv.decode_qzsl1s(args)
                 elif args.qzqsm: raw = rcv.decode_qzsl1s_qzqsm(args)
@@ -257,8 +245,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF

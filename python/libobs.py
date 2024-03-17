@@ -15,19 +15,8 @@
 
 class Obs:
     '''RTCM observation class'''
-    def __init__(self, fp_disp, t_level, msg_color):
-        self.fp_disp   = fp_disp
-        self.t_level   = t_level
-        self.msg_color = msg_color
-
-    def trace(self, level, *args):
-        if self.t_level < level or not self.fp_disp:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
+    def __init__(self, trace):
+        self.trace = trace
 
     def decode_obs(self, payload, satsys, mtype):
         '''decodes observation message and returns pos and string'''
@@ -37,10 +26,11 @@ class Obs:
         sid  = payload.read('u12')  # station id, DF003
         tow  = payload.read(  be )  # epoch time
         sync = payload.read( 'u1')  # synchronous flag
-        nsat = payload.read( 'u5')  # number of signals
+        n_sat = payload.read( 'u5')  # number of signals
         sind = payload.read( 'u1')  # smoothing indicator
         sint = payload.read( 'u3')  # smoothing interval
-        for _ in range(nsat):
+        string = ''
+        for _ in range(n_sat):
             satid     = payload.read( 'u6')  # satellite id
             cind1     = payload.read( 'u1')  # L1 code indicator
             if satsys == 'R':
@@ -57,13 +47,10 @@ class Obs:
                 phpr2 = payload.read('i20')  # L2 phase-L1 pr
                 lti2  = payload.read( 'u7')  # L2 locktime ind
                 cnr2  = payload.read( 'u8')  # L2 CNR
-        string = ''
-        if satsys != 'S':
-            for satid in range(n_sat):
-                string += f'{satsys}{sat_mask[satid]+1:02} '
-        else:
-            for satid in range(n_sat):
-                string += f'{satsys}{sat_mask[satid]+119:3} '
+            if satsys != 'S':
+                string += f'{satsys}{satid:02} '
+            else:
+                string += f'{satsys}{satid+119:3} '
         return string
 
     def decode_msm(self, payload, satsys, mtype):

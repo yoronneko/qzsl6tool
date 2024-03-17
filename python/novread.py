@@ -16,8 +16,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libcolor
 import libgnsstime
+import libtrace
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
 NOV_MSG_NAME = {    # dictionary for obtaining message name from ID
@@ -54,9 +54,8 @@ def crc32(data):
     return crc.to_bytes(4,'little')
 
 class NovReceiver:
-    def __init__(self, fp_disp, ansi_color):
-        self.fp_disp   = fp_disp
-        self.msg_color = libcolor.Color(fp_disp, ansi_color)
+    def __init__(self, trace):
+        self.trace = trace
 
     def read(self):
         ''' reads standard input as NovAtel raw, [1]
@@ -86,9 +85,7 @@ class NovReceiver:
             if crc == crc_cal:
                 break
             else:
-                print(self.msg_color.fg('red') + \
-                    f'CRC error: {crc.hex()} != {crc_cal.hex()}' + \
-                    self.msg_color.fg(), file=self.fp_disp)
+                libtrace.err(f'CRC error: {crc.hex()} != {crc_cal.hex()}')
                 continue
         self.payload = payload
         return True
@@ -97,9 +94,7 @@ class NovReceiver:
         ''' stores header info '''
         pos = 0
         if len(head) != 24:
-            print(self.msg_color.fg('yellow') + \
-                f'warning: header length mismatch: {len(head)} != 24' + \
-                self.msg_color.fg(), file=self.fp_disp)
+            self.trace.show(0, f'warning: header length mismatch: {len(head)} != 24', fg='yellow')
         self.msg_id   = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
         self.msg_type = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
         self.port     = int.from_bytes(head[pos:pos+1], 'little'); pos += 1
@@ -122,9 +117,7 @@ class NovReceiver:
             193: 'J01', 194: 'J02', 199: 'J03', 195: 'J04', 196: 'J05', }
         payload = self.payload
         if len(payload) != 4+4+32+4:
-            print(self.msg_color.fg('red') + \
-                f"messge length mismatch: {len(payload)} != {4+4+32+4}" + \
-                self.msg_color.fg(), file=self.fp_disp)
+            self.trace.show(0, f"messge length mismatch: {len(payload)} != {4+4+32+4}", fg='red')
             return False
         pos = 0
         prn   = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
@@ -133,12 +126,10 @@ class NovReceiver:
         chno  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
         self.satid = prn
         self.raw   = raw
-        msg = self.msg_color.fg('green') + \
-            libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
-            self.msg_color.fg('cyan') + self.msg_name + ' ' + \
-            self.msg_color.fg('yellow') + \
-            f'{QZSS_ID.get(prn, "J??")}:{sfid} ' + \
-            self.msg_color.fg() + raw.hex()
+        msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + \
+            self.trace.msg(0, self.msg_name + ' ', fg='cyan') + \
+            self.trace.msg(0, f'{QZSS_ID.get(prn, "J??")}:{sfid} ', fg='yellow') + \
+            raw.hex()
         return msg
 
     def galcnavrawpage(self):
@@ -147,9 +138,7 @@ class NovReceiver:
         '''
         payload = self.payload
         if len(payload) != 4+4+2+2+58:
-            print(self.msg_color.fg('red') + \
-                f"messge length mismatch: {len(payload)} != {4+4+2+2+58}" + \
-                self.msg_color.fg(), file=self.fp_disp)
+            self.trace.show(0, f"messge length mismatch: {len(payload)} != {4+4+2+2+58}", fg='red')
             return False
         pos = 0
         sig_ch  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
@@ -162,12 +151,9 @@ class NovReceiver:
         # Threrfore, 3 bytes (24 bit) are padded for CRC, tail, and padding
         self.raw = self.satid.to_bytes(1, byteorder='little') + \
             e6b + bytes(LEN_CNAV_PAGE - 58)
-        msg = self.msg_color.fg('green') + \
-            libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) + ' ' + \
-            self.msg_color.fg('cyan') + self.msg_name + ' ' + \
-            self.msg_color.fg('yellow') + \
-            f'E{prn:02d}:{msg_id}:{page_id} ' + \
-            self.msg_color.fg() + e6b.hex()
+        msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + ' ' + \
+            self.trace.msg(0, self.msg_name, fg='cyan') + ' ' + \
+            self.trace.msg(0, f'E{prn:02d}:{msg_id}:{page_id} ', fg='yellow') + e6b.hex()
         return msg
 
 if __name__ == '__main__':
@@ -190,7 +176,8 @@ if __name__ == '__main__':
         fp_disp, fp_raw = None, sys.stdout
     if args.message:  # send display messages to stderr
         fp_disp = sys.stderr
-    rcv = NovReceiver(fp_disp, args.color)
+    trace = libtrace.Trace(fp_disp, 0, args.color)
+    rcv = NovReceiver(trace)
     try:
         while rcv.read():
             #print(rcv.msg_name, file=fp_disp)
@@ -205,9 +192,7 @@ if __name__ == '__main__':
                     rcv.msg_color.dec('dark') + rcv.msg_name + \
                     rcv.msg_color.dec()
                 rcv.raw = bytearray()
-            if fp_disp:
-                print(msg, file=fp_disp)
-                fp_disp.flush()
+            rcv.trace.show(0, msg)
             if (args.e6b   and rcv.msg_name == 'GALCNAVRAWPAGE' ) or \
                (args.qlnav and rcv.msg_name == 'QZSSRAWSUBFRAME'):
                 fp_raw.buffer.write(rcv.raw)
@@ -217,8 +202,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        libtracce.warn("User break - terminated")
         sys.exit()
 
 # EOF

@@ -13,8 +13,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libcolor
 import libqzsl6
+import libtrace
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -35,19 +35,16 @@ if __name__ == '__main__':
         '-t', '--trace', type=int, default=0,
         help='show display verbosely: 1=subtype detail, 2=subtype and bit image.')
     args = parser.parse_args()
-    fp_rtcm = None
-    fp_disp = sys.stdout
+    fp_disp, fp_rtcm = sys.stdout, None
     if args.trace < 0:
-        print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
+        libtrace.err(f'trace level should be positive ({args.trace}).')
         sys.exit(1)
     if args.rtcm:  # RTCM message output to stdout
-        fp_rtcm = sys.stdout
-        fp_disp = None
+        fp_disp, fp_rtcm = None, sys.stdout
     if args.message:  # show QZS message to stderr
         fp_disp = sys.stderr
-    if 'qzsl62rtcm.py' in sys.argv[0]:
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "qzsl6read.py", instead of "qzsl62rtcm.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
-    qzsl6 = libqzsl6.QzsL6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
+    trace = libtrace.Trace(fp_disp, args.trace, args.color)
+    qzsl6 = libqzsl6.QzsL6(fp_rtcm, trace, args.statistics)
     try:
         while qzsl6.read():
             qzsl6.show()
@@ -56,8 +53,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF
