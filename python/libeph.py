@@ -76,7 +76,8 @@ def decode(ephraw, satsys):
     '''
     returns decoded ephemeris data
     '''
-    ephdec = EphDec()  # decoded ephemeris data
+    ephdec = EphData()  # decoded ephemeris data
+    ephdec.svid  = ephraw.svid.u                # satellite id
     ephdec.m0    = ephraw.m0.i   * 2**(-31)*PI  # mean anomaly at reference time
     ephdec.e     = ephraw.e.u    * 2**(-33)     # eccentricity
     ephdec.a12   = ephraw.a12.u  * 2**(-19)     # square root of the semi-major axis
@@ -131,10 +132,9 @@ class Eph:
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def decode_ephemerides(self, payload, pos, satsys, mtype):
-        ''' returns pos and decoded string '''
+    def decode_ephemerides(self, payload, satsys, mtype):
+        ''' returns decoded ephemeris data '''
         r = EphRaw()
-        payload.pos = pos
         string = ''
         if satsys == 'G':  # GPS ephemerides
             r.svid = payload.read( 'u6')  # satellite id, DF009
@@ -171,7 +171,7 @@ class Eph:
             if   r.gpsc == '0b01': string += ' L2P'
             elif r.gpsc == '0b10': string += ' L2C/A'
             elif r.gpsc == '0b11': string += ' L2C'
-            else: raise Exception(f'undefined GPS code on L2: {r.gpsc}')
+            else: string += f'unknown L2 code: {r.gpsc}'
             if r.svh:
                 string += self.msg_color.fg('red') + \
                     f' unhealthy({r.svh:02x})' + self.msg_color.fg()
@@ -183,7 +183,7 @@ class Eph:
             r.p1    = payload.read( 'u2')  # P1, DF106
             r.tk    = payload.read(  12 )  # t_k, DF107
             r.bn    = payload.read( 'u1')  # B_n word MSB, DF108
-            r.p2    = payload.read( 'u1') # P2, DF109
+            r.p2    = payload.read( 'u1')  # P2, DF109
             r.tb    = payload.read( 'u7')  # t_b, DF110
             _sgn    = payload.read( 'u1')  # x_n dot, DF111
             r.xnd   = payload.read('u23')
@@ -217,7 +217,7 @@ class Eph:
             r.gmn   = payload.read('u10')
             if _sgn: r.gmn = -r.gmn
             r.p     = payload.read(   2 )  # P, DF122
-            r.in3   = payload.read( 'u1') # I_n, DF123
+            r.in3   = payload.read( 'u1')  # I_n, DF123
             _sgn    = payload.read( 'u1')  # tau_n, DF124
             r.taun  = payload.read('u21')
             if _sgn: r.taun = -r.taun
@@ -412,6 +412,6 @@ class Eph:
                 string += self.msg_color.fg()
         else:
             raise Exception(f'unknown satsys({satsys})')
-        return payload.pos, string
+        return string
 
 # EOF

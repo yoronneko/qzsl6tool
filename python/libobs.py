@@ -29,12 +29,11 @@ class Obs:
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def decode_obs(self, payload, pos, satsys, mtype):
+    def decode_obs(self, payload, satsys, mtype):
         '''decodes observation message and returns pos and string'''
         be = 'u30' if satsys != 'R' else 'u27'  # bit format of epoch time
         bp = 'u24' if satsys != 'R' else 'u25'  # bit format of pseudorange (pr)
         bi =  'u8' if satsys != 'R' else  'u7'  # bit format of pr ambiguity
-        payload.pos = pos
         sid  = payload.read('u12')  # station id, DF003
         tow  = payload.read(  be )  # epoch time
         sync = payload.read( 'u1')  # synchronous flag
@@ -65,11 +64,10 @@ class Obs:
         else:
             for satid in range(n_sat):
                 string += f'{satsys}{sat_mask[satid]+119:3} '
-        return payload.pos, string
+        return string
 
-    def decode_msm(self, payload, pos, satsys, mtype):
+    def decode_msm(self, payload, satsys, mtype):
         '''decodes MSM message and returns pos and string'''
-        payload.pos = pos
         rid    = payload.read('u12')  # reference station id, DF003
         epoch  = payload.read('u30')  # GNSS epoch time
         mm     = payload.read( 'u1')  # multiple message bit, DF393
@@ -142,6 +140,6 @@ class Obs:
         else:
             for satid in range(n_sat):
                 string += f'{satsys}{sat_mask[satid]+119:3} '
-        return payload.pos, string
+        return string
 
 # EOF

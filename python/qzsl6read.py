@@ -49,8 +49,8 @@ if __name__ == '__main__':
         print(libcolor.Color().fg('yellow') + 'Notice: please use "qzsl6read.py", instead of "qzsl62rtcm.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
     qzsl6 = libqzsl6.QzsL6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
     try:
-        while qzsl6.read_l6_msg():
-            qzsl6.show_l6_msg()
+        while qzsl6.read():
+            qzsl6.show()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())
