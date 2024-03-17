@@ -14,8 +14,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libcolor
 import libgale6
+import libtrace
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
 
@@ -29,26 +29,20 @@ if __name__ == '__main__':
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     parser.add_argument(
-            '-r', '--rtcm', action='store_true',
-        help='send RTCM messages to stdout (not implemented yet, it also turns off display messages unless -m is specified).')
-    parser.add_argument(
         '-s', '--statistics', action='store_true',
         help='show HAS statistics in display messages.')
     parser.add_argument(
         '-t', '--trace', type=int, default=0,
         help='show display verbosely: 1=detail, 2=bit image.')
     args = parser.parse_args()
-    fp_rtcm = None
     fp_disp = sys.stdout
     if args.trace < 0:
-        print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
+        libtrace.err(f'trace level should be positive ({args.trace}).')
         sys.exit(1)
-    if args.rtcm:  # RTCM message output to stdout
-        fp_rtcm = sys.stdout
-        fp_disp = None
     if args.message:  # show HAS message to stderr
         fp_disp = sys.stderr
-    gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
+    trace = libtrace.Trace(fp_disp, args.trace, args.color)
+    gale6 = libgale6.GalE6(trace, args.statistics)
     try:
         while True:
             raw = sys.stdin.buffer.read(LEN_CNAV_PAGE + 1)
@@ -64,7 +58,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF

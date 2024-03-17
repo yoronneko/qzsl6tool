@@ -26,21 +26,21 @@
 import os
 import sys
 
-try:
-    import bitstring
-except ModuleNotFoundError:
-    print('''\
-    This code needs bitstring module.
-    Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
-    sys.exit(1)
-
 sys.path.append(os.path.dirname(__file__))
 from   librtcm     import send_rtcm, msgnum2satsys, msgnum2mtype
-import libcolor
 import libgnsstime
 import libqznma
 import libssr
+import libtrace
+
+try:
+    import bitstring
+except ModuleNotFoundError:
+    libtrace.err('''\
+    This code needs bitstring module.
+    Please install this module such as \"pip install bitstring\".
+    ''')
+    sys.exit(1)
 
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"
@@ -62,18 +62,16 @@ class QzsL6:
     mmi      = 0                     # multiple message indication
     iod      = 0                     # SSR issue of data
 
-    def __init__(self, fp_rtcm, fp_disp, t_level, color, stat):
-        self.fp_rtcm   = fp_rtcm
-        self.fp_disp   = fp_disp
-        self.t_level   = t_level
-        self.msg_color = libcolor.Color(fp_disp, color)
-        self.stat      = stat
-        self.ssr       = libssr.Ssr(fp_disp, t_level, self.msg_color)
-        self.qznma     = libqznma.Qznma(fp_disp, t_level, self.msg_color)
+    def __init__(self, fp_rtcm, trace, stat):
+        self.fp_rtcm = fp_rtcm
+        self.trace   = trace
+        self.stat    = stat
+        self.ssr     = libssr.Ssr(trace)
+        self.qznma   = libqznma.Qznma(trace)
 
     def __del__(self):
         if self.stat:
-            ssr.show_cssr_stat()
+            self.ssr.show_cssr_stat()
 
     def read(self):  # ref. [1]
         ''' reads L6 message and returns True if success '''
@@ -107,15 +105,6 @@ class QzsL6:
         self.dpart    = bdata[1:]
         return True
 
-    def trace(self, level, *args):
-        if self.t_level < level or not self.fp_disp:
-            return
-        for arg in args:
-            try:
-                print(arg, end='', file=self.fp_disp)
-            except (BrokenPipeError, IOError):
-                sys.exit()
-
     def show(self):
         ''' calls message decode functions and shows decoded message '''
         if self.vendor == "MADOCA":
@@ -126,17 +115,13 @@ class QzsL6:
             msg = self.show_qznma_msg()
         else:  # unknown vendor
             msg = self.show_unknown_msg()
-        if not self.fp_disp:
-            return
-        disp_msg = self.msg_color.fg('green') + \
-            f'{self.prn} {self.facility:13s}'
+        disp_msg = self.trace.msg(0, f'{self.prn} {self.facility:13s}', fg='green')
         if self.alert:
-            disp_msg += self.msg_color.fg('red') + '* '
+            disp_msg += self.trace.msg(0, '* ', fg='red')
         else:
             disp_msg += '  '
-        disp_msg += self.msg_color.fg('yellow') + self.vendor + \
-            self.msg_color.fg() + ' ' + msg + '\n'
-        self.trace(0, disp_msg)
+        disp_msg += self.trace.msg(0, self.vendor, fg='yellow') + ' ' + msg
+        self.trace.show(0, disp_msg)
 
     def read_madoca(self):  # ref. [2]
         ''' returns True if success in decoding MADOCA message '''
@@ -149,9 +134,9 @@ class QzsL6:
         mtype  = msgnum2mtype(msgnum)
         self.ssr.ssr_decode_head(self.dpart, satsys, mtype)
         if mtype == 'SSR orbit':
-            msg= self.ssr.ssr_decode_orbit(self.dpart, satsys)
+            msg = self.ssr.ssr_decode_orbit(self.dpart, satsys)
         elif mtype == 'SSR clock':
-            msg= self.ssr.ssr_decode_clock(self.dpart, satsys)
+            msg = self.ssr.ssr_decode_clock(self.dpart, satsys)
         elif mtype == 'SSR code bias':
             msg = self.ssr.ssr_decode_code_bias(self.dpart, satsys)
         elif mtype == 'SSR URA':
@@ -239,7 +224,7 @@ class QzsL6:
             if self.run:
                 self.dpn += 1
                 if self.dpn == 6:  # data part number should be less than 6
-                    self.trace(1, "Warning: too many datapart\n")
+                    self.trace.show(1, "Warning: too many datapart")
                     self.run = False
                     self.dpn = 0
                     self.sfn = 0
@@ -262,24 +247,20 @@ class QzsL6:
             if self.ssr.subtype != 0:   # continues to next datapart
                 self.payload.pos = pos  # restore position
                 disp_msg += f' ST{self.ssr.subtype}' + \
-                    self.msg_color.fg('yellow') + '...' + \
-                    self.msg_color.fg()
+                    self.trace.msg(0, '...', fg='yellow')
             else:  # end of message in the subframe
                 self.payload = bitstring.BitStream()
         else:  # could not decode CSSR any messages
             if self.run and self.ssr.subtype == 0:  # whole message is null
-                disp_msg += self.msg_color.dec('dark') + ' (null)' + \
-                    self.msg_color.dec()
+                disp_msg += self.trace.msg(0, ' (null)', dec='dark')
                 self.payload = bitstring.BitStream()
             elif self.run:  # or, continual message
                 self.payload.pos = pos  # restore position
                 disp_msg += f' ST{self.ssr.subtype}' + \
-                    self.msg_color.fg('yellow') + '...' + \
-                    self.msg_color.fg()
+                    self.trace.msg(0, '...', 'yellow')
             else:  # ST1 mask message has not been found yet
                 self.payload.pos = pos  # restore position
-                disp_msg += self.msg_color.dec('dark') + ' (syncing)' + \
-                    self.msg_color.dec()
+                disp_msg += self.trace.msg(0, ' (syncing)', dec='dark')
         return disp_msg
 
     def show_qznma_msg(self):
@@ -290,7 +271,7 @@ class QzsL6:
     def show_unknown_msg(self):
         '''returns decoded message'''
         payload = bitstring.BitStream(self.dpart)
-        self.trace(2, f"Unknown dump: {payload.bin}\n")
+        self.trace.show(2, f"Unknown dump: {payload.bin}")
         return ''
 
 # EOF

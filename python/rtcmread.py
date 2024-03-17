@@ -13,8 +13,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libcolor
 import librtcm
+import libtrace
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -28,11 +28,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     fp_disp = sys.stdout       # message display file pointer
     if args.trace < 0:
-        print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
+        libtrace.err(f'trace level should be positive ({args.trace}).')
         sys.exit(1)
-    if 'showrtcm.py' in sys.argv[0]:
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "rtcmread.py", instead of "showrtcm.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
-    rtcm = librtcm.Rtcm(fp_disp, args.trace, args.color)
+    trace = libtrace.Trace(fp_disp, args.trace, args.color)
+    rtcm = librtcm.Rtcm(trace)
     try:
         while rtcm.read():
             rtcm.decode()
@@ -41,8 +40,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF

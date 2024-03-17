@@ -22,17 +22,17 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-from   librtcm import rtk_crc24q
-import libcolor
 import libgnsstime
+from   librtcm import rtk_crc24q
+import libtrace
 
 try:
     import bitstring
 except ModuleNotFoundError:
-    print('''\
+    libtrace.err('''\
     This code needs bitstring module.
     Please install this module such as \"pip install bitstring\".
-    ''', file=sys.stderr)
+    ''')
     sys.exit(1)
 
 L_L1S = 250  # length of L1S and SBAS in bits
@@ -40,20 +40,7 @@ L_PAB =   8  # length of preamble in bits
 L_MT  =   6  # length of message type in bits
 L_DF  = 212  # length data field in bits, ref.[3], pp.13, Fig.4.1.1.-1
 L_CRC =  24  # length of CRC in bits
-
-class QzsL1s:
-    iodp    = 0   # PRN mask update number
-    iodi    = 0   # IOD updating number
-    mask    = []  # satellite mask
-    mask_sv = [False for _ in range(23)]  # mask selected satellite
-    iod     = [0     for _ in range(23)]  # data issue number
-    unhealthy_sv = []  # unhealthy satellite
-
-    def __init__(self, fp_disp, ansi_color):
-        self.fp_disp   = fp_disp
-        self.msg_color = libcolor.Color(fp_disp, ansi_color)
-
-    GMS2NAME = {  # GMS code, ref.[3], Table 4.1.2-4
+GMS2NAME = {  # GMS code, ref.[3], Table 4.1.2-4
     #  station       lat   lon    height
      0: "Sapporo    ", # 43.15 141.22  50
      1: "Sendai     ", # 38.27 140.74 200
@@ -69,7 +56,19 @@ class QzsL1s:
     13: "Ishigaki   ", # 24.37 124.13 100
     14: "Chichijima ", # 27.09 142.19 100
     63: "N/A",
-    }
+}
+
+
+class QzsL1s:
+    iodp    = 0   # PRN mask update number
+    iodi    = 0   # IOD updating number
+    mask    = []  # satellite mask
+    mask_sv = [False for _ in range(23)]  # mask selected satellite
+    iod     = [0     for _ in range(23)]  # data issue number
+    unhealthy_sv = []  # unhealthy satellite
+
+    def __init__(self, trace):
+        self.trace = trace
 
     def decode_monitoring_station_info(self, df):  # ref.[3], sect.4.1.2.6, MT47
         ''' returns decoded message '''
@@ -80,7 +79,7 @@ class QzsL1s:
             gms_lon  = df.read('i15')
             gms_hgt  = df.read( 'u6')
             if gms_code == 63: continue
-            v_gms_code = self.GMS2NAME.get(gms_code, "undefined")
+            v_gms_code = GMS2NAME.get(gms_code, "undefined")
             v_gms_lat  = gms_lat * 0.005
             v_gms_lon  = gms_lon * 0.005 + 115.00
             v_gms_hgt  = gms_hgt * 50 - 100
@@ -149,7 +148,7 @@ class QzsL1s:
         if iodi != self.iodi:
             return f": IODI mismatch (mask IODI={self.iodi}, DGPS IODI={iodi})"
         count = 0
-        msg = f": {self.GMS2NAME.get(gms_code, 'unknown')}"
+        msg = f": {GMS2NAME.get(gms_code, 'unknown')}"
         for i in range(len(self.mask)):
             if mask_sv[i]:
                 msg += f"\n  {self.mask[i]} PRC={prc[count]:6.2f} m"
@@ -299,7 +298,7 @@ class QzsL1s:
                 self.msg_color.fg()
             return msg
         mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")
-        msg = self.msg_color.fg('cyan') + mt_name + self.msg_color.fg()
+        msg = self.trace.msg(0, mt_name, fg='cyan')
         if mt_name == 'JMA DCR':
             msg += self.decode_jma_dcr(df)
         elif mt_name == 'Monitoring station information':
@@ -332,12 +331,9 @@ def read_from_l1s_file(qzsl1s, l1s_file, fp_disp):
             gpstow  = payload.read('u20')
             l1s     = payload.read(L_L1S)
             payload.pos += 6  # spare
-            msg = qzsl1s.msg_color.fg('green') + \
-                libgnsstime.gps2utc(gpsweek, gpstow) + \
-                qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s(l1s)
-            if fp_disp:
-                print(msg, file=fp_disp)
-                fp_disp.flush()
+            msg = qzsl1s.trace.msg(0, libgnsstime.gps2utc(gpsweek, gpstow), fg='green') + \
+                ': ' + qzsl1s.decode_l1s(l1s)
+            qzsl1s.trace.show(0, msg)
             raw = f.buffer.read(36)
 
 def read_from_stdin(qzsl1s,  fp_disp):
@@ -350,12 +346,9 @@ def read_from_stdin(qzsl1s,  fp_disp):
         prn = payload.read('u8')
         l1s = payload.read(L_L1S)
         payload.pos += 6  # spare
-        msg = qzsl1s.msg_color.fg('green') + \
-            f'PRN{prn:3d}' + \
-            qzsl1s.msg_color.fg() + ': ' + qzsl1s.decode_l1s(l1s)
-        if fp_disp:
-            print(msg, file=fp_disp)
-            fp_disp.flush()
+        msg = qzsl1s.trace.msg(0, f'PRN{prn:3d}', fg='green') + \
+            ': ' + qzsl1s.decode_l1s(l1s)
+        qzsl1s.trace.show(0, msg)
         raw = sys.stdin.buffer.read(33)
 
 if __name__ == '__main__':
@@ -369,7 +362,8 @@ if __name__ == '__main__':
         help='L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html')
     args = parser.parse_args()
     fp_disp = sys.stdout
-    qzsl1s = QzsL1s(fp_disp, args.color)
+    trace = libtrace.Trace(fp_disp, 0, args.color)
+    qzsl1s = QzsL1s(trace)
     try:
         if args.l1s_files:  # read from file(s)
             for l1s_file in args.l1s_files:
@@ -381,8 +375,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        print(libcolor.Color().fg('yellow') + "User break - terminated" + \
-            libcolor.Color().fg(), file=sys.stderr)
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF
