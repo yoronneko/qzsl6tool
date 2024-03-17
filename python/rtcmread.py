@@ -35,7 +35,7 @@ if __name__ == '__main__':
     rtcm = librtcm.Rtcm(fp_disp, args.trace, args.color)
     try:
         while rtcm.read():
-            rtcm.decode_rtcm_msg()
+            rtcm.decode()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())

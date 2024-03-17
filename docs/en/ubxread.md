@@ -10,7 +10,7 @@ This program reads the raw data of u-blox ZED-F9P receiver, and extracts
 
 The ``--help`` option displays the options it accepts.
 
-```
+```bash
 $ ubxread.py --help
 usage: ubxread.py [-h] [--l1s | --qzqsm | --sbas | -l | -i] [-d] [-c] [-m]
                   [-p PRN]

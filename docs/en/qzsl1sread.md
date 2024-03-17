@@ -2,7 +2,7 @@
 
 This program reads QZSS L1S format data from standard input or a file and outputs its contents to standard output. The ``--help`` option displays the options it accepts.
 
-```
+```bash
 $ qzsl1sread.py --help
 usage: qzsl1sread.py [-h] [-c] [file ...]
 
@@ -24,7 +24,7 @@ When the ``-c`` option is given, it forces the status display to appear in color
 
 For example, we extract QZS L1S raw data from Allystar receiver raw data sample ``20230919-114418.ubx`` with [ubxread.py](ubxread.md), and display it with ``qzsl1sread.py``:
 
-```
+```bash
 $ ubxread.py --l1s < sample/20230919-114418.ubx | qzsl1sread.py
 
 PRN137: Long-term satellite error corrections
@@ -61,6 +61,6 @@ Please refere the following page to know how you read the data: [L1S signal anal
 
 Also, it is possible to use real-time streams with [ubxread.py](ubxread.md) and RTKLIB ``str2str``:
 
-```
+```bash
 str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/F9PR 2> /dev/null | ubxread.py --l1s | qzsl1sread.py
 ```

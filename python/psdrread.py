@@ -15,6 +15,9 @@ import sys
 sys.path.append(os.path.dirname(__file__))
 import libcolor
 
+LEN_BCNAV3    = 125  # BDS CNAV3 page size is 1000 sym (125 byte)
+LEN_L6_FRM    = 250  # QZS L6 frame size is 2000 bit (250 byte)
+LEN_CNAV_PAGE =  62  # GAL C/NAV page size is 492 bit (61.5 byte)
 
 class PocketSdr:
     def __init__(self, fp_disp, ansi_color):
@@ -24,29 +27,46 @@ class PocketSdr:
     def read(self):
         ''' returns True when L6D, L6E, E6B, or B2b signal log is read,
             returns False when EOF is encounterd '''
-        LEN_CNAV_PAGE = 62  # GAL C/NAV page  size is 492 bit (61.5  byte)
-        self.satid = 0
-        self.e6b   = b''
-        self.l6    = b''
+        self.satid   = 0
+        self.signame = None
+        self.msg     = ''
         while True:
             line = sys.stdin.readline().strip()
             if not line:  # end of file
                 return False
             if   line[0:6] == "$L6FRM":
-                self.l6 = bytes.fromhex(line.split(',')[5])
+                self.signame = 'l6'
+                self.raw = bytes.fromhex(line.split(',')[5])
+                self.msg = self.msg_color.fg('green') + "L6: " + \
+                    self.msg_color.fg('yellow') + line.split(',')[5] + \
+                    self.msg_color.fg()
                 break
             elif line[0:5] == '$CNAV':
-                self.satid = int(line.split(',')[3])
-                self.e6b   = bytes.fromhex(line.split(',')[4]) + \
+                self.signame = 'e6b'
+                satid = int(line.split(',')[3])
+                self.raw = satid.to_bytes(1, byteorder='little') + \
+                    bytes.fromhex(line.split(',')[4]) + \
                     bytes(LEN_CNAV_PAGE - 61)
+                self.msg = self.msg_color.fg('green') + "E6B: " + \
+                    self.msg_color.fg('yellow') + line.split(',')[4] + \
+                    self.msg_color.fg()
                 break
             elif line[0:5] == '$INAV':
-                self.satid = int(line.split(',')[3])
-                self.inav  = bytes.fromhex(line.split(',')[4])
+                self.signame = 'inav'
+                satid = int(line.split(',')[3])
+                self.raw = satid.to_bytes(1, byteorder='little') + \
+                    bytes.fromhex(line.split(',')[4])
+                self.msg = self.msg_color.fg('green') + "I/NAV: " + \
+                    self.msg_color.fg('yellow') + line.split(',')[4] + \
+                    self.msg_color.fg()
                 break
             elif line[0:7] == '$BCNAV3':
+                self.signame = 'b2b'
                 self.satid = int(line.split(',')[3])
-                self.b2b   = bytes.fromhex(line.split(',')[4])
+                self.raw = bytes.fromhex(line.split(',')[4])
+                self.msg = self.msg_color.fg('green') + "B2b: " + \
+                    self.msg_color.fg('yellow') + line.split(',')[4] + \
+                    self.msg_color.fg()
                 break
         return True
 
@@ -68,65 +88,22 @@ if __name__ == '__main__':
     parser.add_argument(
         '-l', '--l6', action='store_true',
         help='send QZS L6 messages to stdout, and also turns off display message.')
-    parser.add_argument(
-        '-m', '--message', action='store_true',
-        help='show display messages to stderr')
-    parser.add_argument(
-        '-s', '--statistics', action='store_true',
-        help='show HAS statistics in display messages.')
-    parser.add_argument(
-        '-t', '--trace', type=int, default=0,
-        help='show display verbosely: 1=detail, 2=bit image.')
     args = parser.parse_args()
-    fp_rtcm = None
-    fp_disp = sys.stdout
-    fp_b2b  = None
-    fp_e6b  = None
-    fp_inav = None
-    fp_l6   = None
-    has_decode = False
-    if args.trace < 0:
-        print(libcolor.Color().fg('red') + 'trace level should be positive ({args.trace}).' + libcolor.Color().fg(), file=sys.stderr)
-        sys.exit(1)
-    if args.b2b:
-        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, sys.stdout, None, None, None
-    if args.e6b:
-        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, None, sys.stdout, None, None
-    if args.inav:
-        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, None, None, sys.stdout, None
-    if args.l6:
-        fp_disp, fp_b2b, fp_e6b, fp_inav, fp_l6 = None, None, None, None, sys.stdout
-    if args.message:  # show HAS message to stderr
-        fp_disp = sys.stderr
-    if 'pksdr2qzsl6.py' in sys.argv[0]:
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "psdrread.py -l" (psdrread.py needs -l option then), instead of "pksdr2qzsl6.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
-        fp_disp, fp_b2b, fp_e6b, fp_l6 = None, None, None, sys.stdout
-    if 'pksdr2has.py' in sys.argv[0]:  # for compatibility of pksdr2has.py
-        print(libcolor.Color().fg('yellow') + 'Notice: please use "psdrread.py -e | gale6read.py (pksdrread.py needs -e option then)", instead of "pksdr2has.py" that will be removed.' + libcolor.Color().fg(), file=sys.stderr)
-        has_decode = True
-        import libgale6
-        gale6 = libgale6.GalE6(fp_rtcm, fp_disp, args.trace, args.color, args.statistics)
+    fp_disp, fp_raw = sys.stdout, None
+    if args.b2b or args.e6b or args.inav or args.l6:
+        fp_disp, fp_raw = None, sys.stdout
     rcv = PocketSdr(fp_disp, args.color)
     try:
         while rcv.read():
-            if fp_l6 and rcv.l6:
-                fp_l6.buffer.write(rcv.l6)
-                fp_l6.flush()
-            if fp_e6b and rcv.e6b:
-                fp_e6b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-                fp_e6b.buffer.write(rcv.e6b)
-                fp_e6b.flush()
-            if fp_inav and rcv.inav:
-                fp_inav.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-                fp_inav.buffer.write(rcv.inav)
-                fp_inav.flush()
-            if fp_b2b and rcv.b2b:
-                fp_b2b.buffer.write(rcv.satid.to_bytes(1, byteorder='little'))
-                fp_b2b.buffer.write(rcv.b2b)
-                fp_b2b.flush()
-            if has_decode and rcv.e6b:  # for compatibility of pksdr2has.py
-                if gale6.ready_decoding_has(rcv.satid, rcv.e6b):
-                    gale6.decode_has_message()
+            if fp_disp:
+                print(rcv.msg, file=fp_disp)
+                fp_disp.flush()
+            if (args.b2b  and rcv.signame == 'b2b' ) or \
+               (args.e6b  and rcv.signame == 'e6b' ) or \
+               (args.inav and rcv.signame == 'inav') or \
+               (args.l6   and rcv.signame == 'l6'  ):
+                fp_raw.buffer.write(rcv.raw)
+                fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())

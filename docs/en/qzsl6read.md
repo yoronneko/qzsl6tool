@@ -12,7 +12,7 @@ MADOCA is in RTCM (Radio Technical Commission for Maritime Services) SSR (State 
 
 The ``--help`` option displays the options it accepts.
 
-```
+```bash
 $ qzsl6read.py --help
 usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
@@ -39,7 +39,7 @@ When the ``-t`` option is given, it output detail on the messages. This option n
 
 By using RTKLIB's ``str2str``, you can also use real-time streams.
 
-````
+````bash
 str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | alstread.py -l | qzsl6read.py
 ````
 
@@ -47,7 +47,7 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | al
 
 For example, we extract QZS L6 raw data from Allystar receiver raw data sample ``20220326-231200clas.alst`` with [alstread.py](alstread.md), and display it with ``qzsl6read.py``:
 
-```
+```bash
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py
 
 199 Hitachi-Ota:1  CLAS  (syncing)
@@ -75,7 +75,7 @@ Reference: [Compact SSR display capability on QZS L6 Tool](https://s-taka.org/en
 
 Giving ``-t 2`` option to ``qzsl6read.py``, we can obtain the details of the message as the output:
 
-```
+```bash
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py -t 2
 
 199 Hitachi-Ota:1  CLAS  (syncing)
@@ -96,7 +96,7 @@ ST2 G22 IODE=  35 d_radial=-0.0304m d_along=-1.3440m d_cross=-0.6464m
 
 If we give the ``-s`` option to ``qzsl6read.py``, it will output statistics every time subtype 1 is received:
 
-```
+```text
 stat n_sat 17 n_sig 48 bit_sat 13050 bit_sig 5114 bit_other 1931 bit_null 5330 bit_total 25425
 ```
 
@@ -116,7 +116,7 @@ Reference: [Capacity analysis of CLAS satellite augmentation information using Q
 
 We extract and display QZS L6 raw data from Allystar receiver raw data sample ``20221130-125237mdc-ppp.alst``:
 
-```
+```bash
 alstread.py -l < sample/20221130-125237mdc-ppp.alst | qzsl6read.py
 
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
@@ -141,7 +141,7 @@ MADOCA message distribution has ended.
 
 We extract and display QZS L6 raw data from Allystar receiver raw data sample ``20220326-231200mdc.alst``:
 
-```
+```bash
 alstread.py -l < sample/20220326-231200mdc.alst| qzsl6read.py
 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:44 RTCM 1062(26) RTCM 1068(17)
@@ -157,7 +157,7 @@ Here, the included RTCM message number and the number of satellites to be augmen
 
 Here, the included RTCM message number and the number of satellites to be augmented are displayed in parentheses. You can display the reinforcement content by giving the ``-t 2`` option to ``qzsl6read.py``:
 
-```
+```bash
 alstread.py -l < sample/20220326-231200mdc.alst| qzsl6read.py -t 2
 
 G01 high_rate_clock=  0.430m

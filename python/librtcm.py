@@ -105,53 +105,52 @@ class Rtcm:
         self.string = ''
         return True
 
-    def decode_rtcm_msg(self):
-        payload = self.payload
-        msgnum = payload.read('u12')  # message number
-        pos    = payload.pos
+    def decode(self):
+        msgnum = self.payload.read('u12')  # message number
         satsys = msgnum2satsys(msgnum)
         mtype  = msgnum2mtype(msgnum)
         msg    = ''
         if mtype == 'Ant Rcv info':
-            pos, msg = self.decode_ant_info(payload, pos, msgnum)
+            msg = self.decode_ant_info(self.payload, msgnum)
         elif mtype == 'Position':
-            pos, msg = self.decode_antenna_position(payload, pos, msgnum)
+            msg = self.decode_antenna_position(self.payload, msgnum)
         elif mtype == 'Code bias':
-            pos, msg = self.decode_code_phase_bias(payload, pos)
+            msg = self.decode_code_phase_bias(self.payload)
         elif 'Obs' in mtype:
-            pos, msg = self.obs.decode_obs(payload, pos, satsys, mtype)
+            msg = self.obs.decode_obs(self.payload, satsys, mtype)
         elif 'MSM' in mtype:
-            pos, msg = self.obs.decode_msm(payload, pos, satsys, mtype)
+            msg = self.obs.decode_msm(self.payload, satsys, mtype)
         elif 'NAV' in mtype:
-            pos, msg = self.eph.decode_ephemerides(payload, pos, satsys, mtype)
+            msg = self.eph.decode_ephemerides(self.payload, satsys, mtype)
         elif mtype == 'CSSR':
             # determine CSSR before SSR, otherwise CSSR is never selected
-            pos, msg = self.ssr.decode_cssr(payload)  # needs message type info
+            self.payload.pos = 0  # reset bit position
+            msg = self.ssr.decode_cssr(self.payload)  # needs message type info
         elif 'SSR' in mtype:
-            pos = self.ssr.ssr_decode_head(payload, pos, satsys, mtype)
+            self.ssr.ssr_decode_head(self.payload, satsys, mtype)
             if mtype == 'SSR orbit':
-                pos, msg = self.ssr.ssr_decode_orbit(payload, pos, satsys)
+                msg = self.ssr.ssr_decode_orbit(self.payload, satsys)
             elif mtype == 'SSR clock':
-                pos, msg = self.ssr.ssr_decode_clock(payload, pos, satsys)
+                msg = self.ssr.ssr_decode_clock(self.payload, satsys)
             elif mtype == 'SSR code bias':
-                pos, msg = self.ssr.ssr_decode_code_bias(payload, pos, satsys)
+                msg = self.ssr.ssr_decode_code_bias(self.payload, satsys)
             elif mtype == 'SSR URA':
-                pos, msg = self.ssr.ssr_decode_ura(payload, pos, satsys)
+                msg = self.ssr.ssr_decode_ura(self.payload, satsys)
             elif mtype == 'SSR hr clock':
-                pos, msg = self.ssr.ssr_decode_hr_clock(payload, pos, satsys)
+                msg = self.ssr.ssr_decode_hr_clock(self.payload, satsys)
             else:
-                pass  # unsupported RTCM SSR message type
+                msg = f'unknown SSR message: {msgnum} {mtype}'
         else:
-            pass      # unsupported RTCM message type
+            msg = f'unknown message: {mtype}'
         disp_msg = self.msg_color.fg('green') + f'RTCM {msgnum} ' + \
             self.msg_color.fg('yellow') + f'{satsys:1} {mtype:14}' + \
             self.msg_color.fg() + msg
-        if pos % 8 != 0:  # byte align
-            pos += 8 - (pos % 8)
-        if pos != len(payload.bin):
+        if self.payload.pos % 8 != 0:  # byte align
+            self.payload.pos += 8 - (self.payload.pos % 8)
+        if self.payload.pos != len(self.payload.bin):
             disp_msg += '\n' + self.msg_color.fg('red') + \
                 'packet size mismatch: ' + \
-                f'expected {len(payload.bin)}, actual {pos}' + \
+                f'expected {len(self.payload.bin)}, actual {self.payload.pos}' + \
                 self.msg_color.fg()
         if not self.fp_disp:
             return
@@ -167,9 +166,8 @@ class Rtcm:
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def decode_antenna_position(self, payload, pos, msgnum):
-        '''returns pos and string'''
-        payload.pos = pos
+    def decode_antenna_position(self, payload, msgnum):
+        ''' returns decoded position and antenna height if available '''
         sid  = payload.read('u12')  # station id, DF003
         payload.pos +=  6           # reserved ITRF year, DF921
         payload.pos +=  1           # GPS indicator, DF022
@@ -191,16 +189,15 @@ class Rtcm:
         disp_msg = f'{lat:.7f} {lon:.7f} {height:.3f}'
         if ahgt != 0:
             disp_msg += f'(+{ahgt:.3f})'
-        return payload.pos, disp_msg
+        return disp_msg
 
-    def decode_ant_info(self, payload, pos, msgnum):
-        '''returns pos and string'''
+    def decode_ant_info(self, payload, msgnum):
+        '''returns decoded antenna and receiver information '''
         str_ant = ''
         str_ser = ''
         str_rcv = ''
         str_ver = ''
         str_rsn = ''
-        payload.pos = pos
         stid = payload.read('u12')      # station id, DF0003
         cnt  = payload.read( 'u8')      # antenna descripter, DF029
         for _ in range(cnt):
@@ -224,22 +221,21 @@ class Rtcm:
         if str_rcv   != '': disp_msg += f' rcv "{str_rcv}"'
         if str_ver   != '': disp_msg += f' ver {str_ver}'
         if str_rsn   != '': disp_msg += f' s/n {str_rsn}'
-        return payload.pos, disp_msg
+        return disp_msg
 
-    def decode_code_phase_bias(self, payload, pos):
+    def decode_code_phase_bias(self, payload):
         '''decodes code-and-phase bias for GLONASS'''
-        payload.pos = pos
         sid  = payload.read('u12')  # reference station id, DF003
         cpbi = payload.read( 'u1')  # code-phase bias ind, DF421
         payload.pos += 3            # reserved, DF001
-        mask = payload.read(   4 )  # FDMA signal mask, DF422
+        mask = payload.read( 'u4')  # FDMA signal mask, DF422
         l1ca = payload.read('i16')  # L1 C/A code-phase bias, DF423
         l1p  = payload.read('i16')  # L1 P code-phase bias, DF424
         l2ca = payload.read('i16')  # L2 C/A code-phase bias, DF425
         l2p  = payload.read('i16')  # L2 P  code-phase bias, DF426
         vl1ca, vl1p, vl2ca, vl2p = l1ca*0.02, l1p*0.02, l2ca*0.02, l2p*0.02
         disp_msg = f'L1CA={vl1ca} L1P={vl1p} L2CA={vl2ca} L2P={vl2p}'
-        return payload.pos, disp_msg
+        return disp_msg
 
 def send_rtcm(fp, rtcm_payload):
     if not fp:
@@ -300,6 +296,8 @@ def msgnum2mtype(msgnum):  # message number to message type
     elif msgnum in {1005, 1006}                  : mtype = 'Position'
     elif msgnum == 4073                          : mtype = 'CSSR'
     return mtype
+
+# following code is from RTKLIB 2.4.3b34, rtkcmn.c
 
 tbl_CRC24Q = [
 0x000000,0x864CFB,0x8AD50D,0x0C99F6,0x93E6E1,0x15AA1A,0x1933EC,0x9F7F17,

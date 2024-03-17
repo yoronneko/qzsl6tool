@@ -6,7 +6,7 @@ Galileo HAS (high accuracy service) の生データを標準入力から読み�
 
 ``--help``オプションで、受け付けるオプションを表示します。
 
-```
+```bash
 $ gale6read.py --help
 usage: gale6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
@@ -31,7 +31,7 @@ options:
 
 例えば、サンプルディレクトリにあるPocket SDRログファイル``20230305-063900has.psdr``を[psdrread.py](psdrread.md)にてHAS生データを抽出し、``gale6read.py``にて内容表示します。
 
-```
+```bash
 $ psdrread.py -e < sample/20230305-063900has.psdr| gale6read.py -t 2
 
 ...
@@ -66,4 +66,3 @@ ORBIT G07 IODE=  65 d_radial=-0.0600m d_track=-0.0240m d_cross= 0.9920m
 ```
 
 参考: [Galileo HAS（high accuracy service）その2](https://s-taka.org/galileo-has-part2/), [QZS L6 ToolのHASメッセージ対応](https://s-taka.org/qzsl6tool-20230305upd/)
-

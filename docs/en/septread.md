@@ -8,7 +8,7 @@ This program reads the raw data of Septentrio's mosaic-X5 receiver or mosaic-CLA
 
 The ``--help`` option displays the options it accepts.
 
-```
+```bash
 $ septread.py --help
 usage: septread.py [-h] [-c] [-e] [-l] [-m]
 

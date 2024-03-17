@@ -10,7 +10,7 @@
 
 を抽出するプログラムです。``--help``オプションで、受け付けるオプションを表示します。
 
-```
+```bash
 $ ubxread.py --help
 usage: ubxread.py [-h] [--l1s | --qzqsm | --sbas | -l | -i] [-d] [-c] [-m]
                   [-p PRN]

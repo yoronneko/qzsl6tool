@@ -4,7 +4,7 @@
 
 ``--help``オプションで、受け付けるオプションを表示します。
 
-```
+```bash
 $ qzsl1sread.py --help
 usage: qzsl1sread.py [-h] [-c] [file ...]
 
@@ -26,7 +26,7 @@ options:
 
 例えば、サンプルディレクトリにあるu-blox ZED-F9P受信機生データファイル``20230919-114418.ubx``を[ubxread.py](ubxread.md)にてL1S生データを抽出し、``qzsl1sread.py``にて内容表示します。
 
-```
+```bash
 $ ubxread.py --l1s < sample/20230919-114418.ubx | qzsl1sread.py
 
 PRN137: Long-term satellite error corrections
@@ -62,6 +62,6 @@ PRN186: DGPS correction: Sapporo
 データの読み方は次のページをご参照ください：[QZS L6 ToolのみちびきL1S信号対応](https://s-taka.org/qzsl6tool-20231111upd/)
 
 また、[ubxread.py](ubxread.md)とRTKLIBの``str2str``を利用すると、リアルタイムストリームなども利用できます。
-```
+```bash
 str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/F9PR 2> /dev/null | ubxread.py --l1s | qzsl1sread.py
 ```

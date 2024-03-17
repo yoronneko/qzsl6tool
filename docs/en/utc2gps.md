@@ -2,7 +2,7 @@
 
 This program converts UTC time to GPS time, Galileo Standard Time (GST), and BeiDou Standard Time (BST).
 
-```
+```bash
 $ utc2gps.py
 UTC to GNSS time conversion
 Usage: /Users/sat/bin/utc2gps.py YYYY-MM-DD hh:mm:ss
@@ -14,7 +14,7 @@ BDT 946 396938
 
 An execution example to provide the UTC of 2022-11-30 12:52:37 is as follows:
 
-```
+```bash
 utc2gps.py 2022-11-30 12:52:37
 
 GPS 2238 305575

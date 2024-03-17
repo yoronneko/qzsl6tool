@@ -6,7 +6,7 @@ This input consists of 1 byte of PRN and 62 bytes (492 bits of HAS raw data).
 
 The ``--help`` option displays the options it accepts.
 
-```
+```bash
 $ gale6read.py --help
 usage: gale6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
@@ -31,7 +31,7 @@ When the ``-t`` option is given, it output detail on the messages. This option n
 
 For example, we extract HAS raw data from Pocket SDR logfile ``20230305-063900has.psdr`` with [psdrread.py](psdrread.md), and display it with ``gale6read.py``:
 
-```
+```bash
 $ psdrread.py -e < sample/20230305-063900has.psdr| gale6read.py -t 2
 
 ...

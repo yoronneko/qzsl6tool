@@ -25,196 +25,190 @@ do_test() {
     fi
 }
 
-# ------
-CODE=${CODEDIR}psdrread.py ARG=-l EXT_FROM=psdr EXT_TO=l6
-echo "Pocket SDR log data conversion:"
-echo "- QZS L6 (${CODE} ${ARG})"
-SRCDIR=../sample/
-BASENAME=20211226-082212clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+psdr_conv() {
+    CODE=${CODEDIR}psdrread.py ARG=-l EXT_FROM=psdr EXT_TO=l6
+    echo "Pocket SDR log data conversion:"
+    echo "- QZS L6 (${CODE} ${ARG})"
+    SRCDIR=../sample/
+    BASENAME=20211226-082212clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20211226-082212mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20211226-082212mdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-ARG='-e' EXT_TO=e6b
-echo "- GAL E6B (${CODE} ${ARG})"
-BASENAME=20230305-063900has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    ARG='-e' EXT_TO=e6b
+    echo "- GAL E6B (${CODE} ${ARG})"
+    BASENAME=20230305-063900has
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-echo ""
-CODE=${CODEDIR}alstread.py ARG=-l EXT_FROM=alst EXT_TO=l6
-echo "Allystar raw data conversion:"
-echo "- QZS L6 (${CODE} ${ARG})"
-SRCDIR=../sample/
-BASENAME=20220326-231200clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-BASENAME=20220326-231200mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+alst_conv() {
+    CODE=${CODEDIR}alstread.py ARG=-l EXT_FROM=alst EXT_TO=l6
+    echo "Allystar raw data conversion:"
+    echo "- QZS L6 (${CODE} ${ARG})"
+    SRCDIR=../sample/
+    BASENAME=20220326-231200clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20221130-125237mdc-ppp
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20220326-231200mdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-echo ""
-CODE=${CODEDIR}novread.py ARG=-e EXT_FROM=nov EXT_TO=e6b
-echo "NovAtel raw data conversion:"
-echo "- GAL E6B (${CODE} ${ARG})"
-SRCDIR=../sample/
-BASENAME=20230819-053733has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20221130-125237mdc-ppp
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20230819-053733has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-# ------
-echo ""
-CODE=${CODEDIR}septread.py ARG=-l EXT_FROM=sept EXT_TO=l6
-echo "Septentrio raw data conversion:"
-echo "- QZS L6 (${CODE} ${ARG})"
-SRCDIR=../sample/
-BASENAME=20230819-082130clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+nov_conv() {
+    CODE=${CODEDIR}novread.py ARG=-e EXT_FROM=nov EXT_TO=e6b
+    echo "NovAtel raw data conversion:"
+    echo "- GAL E6B (${CODE} ${ARG})"
+    SRCDIR=../sample/
+    BASENAME=20230819-053733has
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20230819-085030mdc-ppp
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20230819-053733has
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-ARG=-e EXT_TO=e6b
-echo "- GAL E6B (${CODE} ${ARG})"
-BASENAME=20230819-081730hasbds
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-# ------
-echo ""
-CODE=${CODEDIR}ubxread.py ARG='--l1s -p 186' EXT_FROM=ubx EXT_TO=l1s
-echo "u-blox raw data conversion:"
-echo "- QZS L1S (${CODE} ${ARG})"
-SRCDIR=../sample/
-BASENAME=20230919-114418
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+sept_conv() {
+    CODE=${CODEDIR}septread.py ARG=-l EXT_FROM=sept EXT_TO=l6
+    echo "Septentrio raw data conversion:"
+    echo "- QZS L6 (${CODE} ${ARG})"
+    SRCDIR=../sample/
+    BASENAME=20230819-082130clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-echo ""
-CODE=${CODEDIR}qzsl6read.py ARG='-t 2' EXT_FROM=l6 EXT_TO=txt
-echo "QZS L6 message read (${CODE} ${ARG}):"
+    BASENAME=20230819-085030mdc-ppp
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=expect/
-BASENAME=20220326-231200clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    ARG=-e EXT_TO=e6b
+    echo "- GAL E6B (${CODE} ${ARG})"
+    BASENAME=20230819-081730hasbds
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20220326-231200mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-BASENAME=20221130-125237mdc-ppp
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+ubx_conv() {
+    CODE=${CODEDIR}ubxread.py ARG='--l1s -p 186' EXT_FROM=ubx EXT_TO=l1s
+    echo "u-blox raw data conversion:"
+    echo "- QZS L1S (${CODE} ${ARG})"
+    SRCDIR=../sample/
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20230819-082130clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-BASENAME=20230819-085030mdc-ppp
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+qzs_l6() {
+    CODE=${CODEDIR}qzsl6read.py ARG='-t 2' EXT_FROM=l6 EXT_TO=txt
+    echo "QZS L6 message read (${CODE} ${ARG}):"
 
-# commented out because they produce huge results
-# SRCDIR=../sample/
-# BASENAME=2018001A
-# do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-# 
-# BASENAME=2022001A
-# do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    SRCDIR=expect/
+    BASENAME=20220326-231200clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-echo ""
-CODE=${CODEDIR}qzsl1sread.py ARG='' EXT_FROM=l1s EXT_TO=txt
-echo "QZS L1S message read (${CODE} ${ARG}):"
+    BASENAME=20220326-231200mdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=expect/
-BASENAME=20230919-114418
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20221130-125237mdc-ppp
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-echo ""
-CODE=${CODEDIR}qzsl6read.py ARG='-r' EXT_FROM=l6 EXT_TO=rtcm
-echo "QZS L6 to RTCM message conversion (${CODE} ${ARG})"
+    BASENAME=20230819-082130clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=expect/
-BASENAME=20220326-231200clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20230819-085030mdc-ppp
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20220326-231200mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    # commented out because they produce huge results
+    # SRCDIR=../sample/
+    # BASENAME=2018001A
+    # do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    # 
+    # BASENAME=2022001A
+    # do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20221130-125237mdc-ppp
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-# ------
-CODE=${CODEDIR}rtcmread.py ARG= EXT_FROM=rtcm EXT_TO=rtcm.txt
-echo ""
-echo "RTCM message read (${CODE} ${ARG})"
+qzs_l1s() {
+    CODE=${CODEDIR}qzsl1sread.py ARG='' EXT_FROM=l1s EXT_TO=txt
+    echo "QZS L1S message read (${CODE} ${ARG}):"
 
-SRCDIR=expect/
-BASENAME=20220326-231200clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    SRCDIR=expect/
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20220326-231200mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-BASENAME=20221130-125237mdc-ppp
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+qzs_l6_rtcm() {
+    CODE=${CODEDIR}qzsl6read.py ARG='-r' EXT_FROM=l6 EXT_TO=rtcm
+    echo "QZS L6 to RTCM message conversion (${CODE} ${ARG})"
 
-SRCDIR=../sample/
-BASENAME=20221213-010900
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    SRCDIR=expect/
+    BASENAME=20220326-231200clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-CODE=${CODEDIR}gale6read.py ARG='-t 2' EXT_FROM=e6b EXT_TO=txt
-echo ""
-echo "GAL E6 message read (${CODE} ${ARG})"
+    BASENAME=20220326-231200mdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=expect/
-BASENAME=20230305-063900has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20221130-125237mdc-ppp
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20230819-081730hasbds
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-# ------
-echo
-echo '--- Compatibility test: you may see update note ---'
-echo
+rtcm() {
+    CODE=${CODEDIR}rtcmread.py ARG= EXT_FROM=rtcm EXT_TO=rtcm.txt
+    echo "RTCM message read (${CODE} ${ARG})"
 
-# ------
-CODE=${CODEDIR}pksdr2qzsl6.py ARG= EXT_FROM=psdr EXT_TO=l6
-echo "Pocket SDR to QZS L6 message conversion (${CODE})"
+    SRCDIR=expect/
+    BASENAME=20220326-231200clas
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=../sample/
-BASENAME=20211226-082212clas
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20220326-231200mdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-BASENAME=20211226-082212mdc
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20221130-125237mdc-ppp
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-# ------
-CODE=${CODEDIR}pksdr2has.py ARG='-t 2' EXT_FROM=psdr EXT_TO=txt
-echo ""
-echo "Pocket SDR HAS message read (${CODE} ${ARG})"
+    SRCDIR=../sample/
+    BASENAME=20221213-010900
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=../sample/
-BASENAME=20220930-115617has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    echo ""
+}
 
-BASENAME=20230305-063900has
-#do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+gal_e6() {
+    CODE=${CODEDIR}gale6read.py ARG='-t 2' EXT_FROM=e6b EXT_TO=txt
+    echo "GAL E6 message read (${CODE} ${ARG})"
 
-# ------
-CODE=${CODEDIR}nov2has.py ARG='-t 2' EXT_FROM=nov EXT_TO=txt
-echo ""
-echo "NovAtel HAS message read (${CODE} ${ARG})"
+    SRCDIR=expect/
+    BASENAME=20230305-063900has
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-SRCDIR=../sample/
-BASENAME=20230819-053733has
-do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    BASENAME=20230819-081730hasbds
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-echo ""
+    echo ""
+}
+
+psdr_conv
+alst_conv
+nov_conv
+sept_conv
+ubx_conv
+qzs_l6
+qzs_l1s
+qzs_l6_rtcm
+rtcm
+gal_e6
 
 # EOF
+

@@ -93,32 +93,29 @@ class Ssr:
             except (BrokenPipeError, IOError):
                 sys.exit()
 
-    def ssr_decode_head(self, payload, pos, satsys, mtype):
-        '''returns SSR header pos'''
+    def ssr_decode_head(self, payload, satsys, mtype):
+        ''' stores ssr_epoch, ssr_interval, ssr_mmi, ssr_iod, ssr_nsat'''
         # bit format of ssr_epoch changes according to satellite system
         bw = 'u20' if satsys != 'R' else 'u17'
-        payload.pos = pos
-        ssr_epoch     = payload.read(  bw )  # epoch time
-        ssr_interval  = payload.read( 'u4')  # ssr update interval
-        self.ssr_mmi  = payload.read( 'u1')  # multiple msg ind
+        self.ssr_epoch     = payload.read(  bw )  # epoch time
+        self.ssr_interval  = payload.read( 'u4')  # ssr update interval
+        self.ssr_mmi       = payload.read( 'u1')  # multiple msg ind
         if mtype == 'SSR orbit' or mtype == 'SSR obt/clk':
-            ssr_sdat  = payload.read( 'u1')  # sat ref datum
-        self.ssr_iod  = payload.read( 'u4')  # iod ssr
-        ssr_pid       = payload.read('u16')  # ssr provider id
-        ssr_sid       = payload.read( 'u4')  # ssr solution id
+            self.ssr_sdat  = payload.read( 'u1')  # sat ref datum
+        self.ssr_iod       = payload.read( 'u4')  # iod ssr
+        self.ssr_pid       = payload.read('u16')  # ssr provider id
+        self.ssr_sid       = payload.read( 'u4')  # ssr solution id
         # bit format of nsat changes with satsys
         bw = 'u6' if satsys != 'J' else 'u4'
-        self.ssr_nsat = payload.read(  bw )
-        return payload.pos
+        self.ssr_nsat      = payload.read(  bw )
 
-    def ssr_decode_orbit(self, payload, pos, satsys):
-        '''decodes SSR orbit correction and returns pos and string'''
+    def ssr_decode_orbit(self, payload, satsys):
+        ''' decodes SSR orbit correction and returns string '''
         strsat = ''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 'u4'  # ref. [2]
         elif satsys == 'R': bw = 'u5'  # ref. [1]
         else:               bw = 'u6'  # ref. [1]
-        payload.pos = pos
         for i in range(self.ssr_nsat):
             satid  = payload.read(  bw )  # satellite ID, DF068
             iode   = payload.read( 'u8')  # IODE, DF071
@@ -138,16 +135,15 @@ class Ssr:
             self.trace(1, f'{satsys}{satid:02d} d_radial={vdrad:{FMT_ORB}}m d_along={vdaln:{FMT_ORB}}m d_cross={vdcrs:{FMT_ORB}}m dot_d_radial={vddrad:{FMT_ORB}}m/s dot_d_along={vddaln:{FMT_ORB}}m/s dot_d_cross={vddcrs:{FMT_ORB}}m/s\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
-        return payload.pos, string
+        return string
 
-    def ssr_decode_clock(self, payload, pos, satsys):
-        '''decodes SSR clock correction and returns pos and string'''
-        strsat = ''
+    def ssr_decode_clock(self, payload, satsys):
+        ''' decodes SSR clock correction and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 'u4'  # ref. [2]
         elif satsys == 'R': bw = 'u5'  # ref. [1]
         else              : bw = 'u6'  # ref. [1]
-        payload.pos = pos
+        strsat = ''
         for _ in range(self.ssr_nsat):
             satid = payload.read(  bw )  # satellite ID
             c0    = payload.read('i22')  # delta clock c0, DF376
@@ -160,16 +156,16 @@ class Ssr:
             self.trace(1, f'{satsys}{satid:02d} c0={vc0:{FMT_CLK}}m, c1={vc1:{FMT_CLK}}m, c2={vc2:{FMT_CLK}}m\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
-        return payload.pos, string
+        return string
 
-    def ssr_decode_code_bias(self, payload, pos, satsys):
-        '''decodes SSR code bias and returns pos and string'''
-        strsat = ''
+    def ssr_decode_code_bias(self, payload, satsys):
+        ''' decodes SSR code bias and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 'u4'   # ref. [2]
         elif satsys == 'R': bw = 'u5'   # ref. [1]
         else              : bw = 'u6'   # ref. [1]
-        for i in range(self.ssr_nsat):
+        strsat = ''
+        for _ in range(self.ssr_nsat):
             satid = payload.read( bw )  # satellite ID, DF068, ...
             ncb   = payload.read('u5')  # code bias number, DF383
             strsat += f"{satsys}{satid:02d} "
@@ -181,19 +177,18 @@ class Ssr:
                 self.trace(1, f'{satsys}{satid:02d} {sstmi:{FMT_GSIG}} code_bias={vcb:{FMT_CB}}m\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
-        return payload.pos, string
+        return string
 
-    def ssr_decode_ura(self, payload, pos, satsys):
-        '''decodes SSR user range accuracy and returns pos and string'''
-        strsat = ''
+    def ssr_decode_ura(self, payload, satsys):
+        ''' decodes SSR user range accuracy and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 'u4'  # ref. [2]
         elif satsys == 'R': bw = 'u5'  # ref. [1]
         else              : bw = 'u6'  # ref. [1]
-        payload.pos = pos
+        strsat = ''
         for i in range(self.ssr_nsat):
-            satid = payload.read( bw )  # satellite ID, DF068
-            ura   = payload.read(  6 )  # user range accuracy, DF389
+            satid = payload.read(bw)  # satellite ID, DF068
+            ura   = payload.read( 6)  # user range accuracy, DF389
             if   ura.bin == 0b000000:   # undefined or unknown
                 vura = INVALID
             elif ura.bin == 0b111111:   # URA more than 5466.5 mm
@@ -206,16 +201,16 @@ class Ssr:
             strsat += f"{satsys}{satid:02} "
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
-        return payload.pos, string
+        return string
 
-    def ssr_decode_hr_clock(self, payload, pos, satsys):
-        '''decodes SSR high rate clock and returns pos and string'''
-        strsat = ''
+    def ssr_decode_hr_clock(self, payload, satsys):
+        '''decodes SSR high rate clock and returns string'''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 'u4'
         elif satsys == 'R': bw = 'u5'
         else              : bw = 'u6'
-        for i in range(self.ssr_nsat):
+        strsat = ''
+        for _ in range(self.ssr_nsat):
             satid = payload.read(  bw )  # satellite ID
             hrc   = payload.read('i22')  # high rate clock
             vhrc  = hrc * 1e-4          # 0.1mm (DF390) or 1e-4 m
@@ -223,37 +218,36 @@ class Ssr:
             self.trace(1, f'{satsys}{satid:02} high_rate_clock={vhrc:{FMT_CLK}}m\n')
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"
-        return payload.pos, string
+        return string
 
     def decode_cssr(self, payload):
-        '''returns pos and string'''
-        pos = self.decode_cssr_head(payload)
-        if pos == 0:
-            return 0, ''
+        ''' calls cssr decode functions and returns True if success '''
+        if not self.decode_cssr_head(payload):
+            return 'Could not decode CSSR header'
         if self.subtype == 1:
-            pos = self.decode_cssr_st1(payload, pos)
+            self.decode_cssr_st1(payload)
         elif self.subtype == 2:
-            pos = self.decode_cssr_st2(payload, pos)
+            self.decode_cssr_st2(payload)
         elif self.subtype == 3:
-            pos = self.decode_cssr_st3(payload, pos)
+            self.decode_cssr_st3(payload)
         elif self.subtype == 4:
-            pos = self.decode_cssr_st4(payload, pos)
+            self.decode_cssr_st4(payload)
         elif self.subtype == 5:
-            pos = self.decode_cssr_st5(payload, pos)
+            self.decode_cssr_st5(payload)
         elif self.subtype == 6:
-            pos = self.decode_cssr_st6(payload, pos)
+            self.decode_cssr_st6(payload)
         elif self.subtype == 7:
-            pos = self.decode_cssr_st7(payload, pos)
+            self.decode_cssr_st7(payload)
         elif self.subtype == 8:
-            pos = self.decode_cssr_st8(payload, pos)
+            self.decode_cssr_st8(payload)
         elif self.subtype == 9:
-            pos = self.decode_cssr_st9(payload, pos)
+            self.decode_cssr_st9(payload)
         elif self.subtype == 10:
-            pos = self.decode_cssr_st10(payload, pos)
+            self.decode_cssr_st10(payload)
         elif self.subtype == 11:
-            pos = self.decode_cssr_st11(payload, pos)
+            self.decode_cssr_st11(payload)
         elif self.subtype == 12:
-            pos = self.decode_cssr_st12(payload, pos)
+            self.decode_cssr_st12(payload)
         else:
             raise Exception(f"unknown CSSR subtype: {self.subtype}")
         string = f'ST{self.subtype:<2d}'
@@ -261,7 +255,7 @@ class Ssr:
             string += f' epoch={self.epoch} iod={self.iod}'
         else:
             string += f' hepoch={self.hepoch} iod={self.iod}'
-        return pos, string
+        return string
 
     def show_cssr_stat(self):
         bit_total = self.stat_bsat + self.stat_bsig + self.stat_both + \
@@ -273,55 +267,55 @@ class Ssr:
         self.trace(0, msg)
 
     def decode_cssr_head(self, payload):
-        '''returns bit size of cssr header'''
+        ''' decode CSSR header and returns True if success '''
         if payload.all(0):  # payload is zero padded
             self.trace(2, f"CSSR null data {len(payload.bin)} bits\n")
             self.subtype = 0  # no subtype number
-            return 0
+            return False
         len_payload = len(payload)
         if len_payload < 12:
             self.msgnum  = 0  # could not retreve the message number
             self.subtype = 0  # could not retreve the subtype number
-            return 0
-        payload.pos = 0
+            return False
         self.msgnum = payload.read('u12')
         if self.msgnum != 4073:  # CSSR message number should be 4073
             self.trace(2, f"CSSR msgnum should be 4073 ({self.msgnum})\n" + \
                 f"{len(payload.bin)} bits\nCSSR dump: {payload.bin}\n")
             self.subtype = 0  # no subtype number
-            return 0
+            return False
         if len_payload < payload.pos + 4:
             self.subtype = 0  # could not retreve the subtype number
-            return 0
+            return False
         self.subtype = payload.read('u4')  # subtype
         if self.subtype == 1:  # Mask message
             if len_payload < payload.pos + 20:  # could not retreve the epoch
-                return 0
+                return False
             self.epoch = payload.read('u20')  # GPS epoch time 1s
         elif self.subtype == 10:  # Service Information
-            return payload.pos
+            return True
         else:
             if len_payload < payload.pos + 12:  # could not retreve hourly epoch
-                return 0
+                return False
             self.hepoch = payload.read('u12')  # GNSS hourly epoch
         if len_payload < payload.pos + 4 + 1 + 4:
-            return 0
+            return False
         self.interval = payload.read('u4')  # update interval
         self.mmi      = payload.read('u1')  # multi msg ind
         self.iod      = payload.read('u4')  # SSR issue of data
-        return payload.pos
+        return True
 
-    def _decode_mask(self, payload, pos, ssr_type):
-        '''ssr_type: cssr or has'''
+    def _decode_mask(self, payload, ssr_type):
+        ''' decode mask information and returns True if success
+            ssr_type: cssr or has
+        '''
         if ssr_type not in {'cssr', 'has'}:
             raise Exception(f'unknown ssr_type: {ssr_type}')
         len_payload = len(payload)
-        payload.pos = pos
         if len_payload < payload.pos + 4:
-            return 0
+            return False
         ngnss = payload.read('u4')  # numer of GNSS
         if len_payload < payload.pos + 61 * ngnss:
-            return 0
+            return False
         satsys   = [None for i in range(ngnss)]
         nsatmask = [None for i in range(ngnss)]
         nsigmask = [None for i in range(ngnss)]
@@ -397,24 +391,26 @@ class Ssr:
         self.stat_bsig  = 0
         self.stat_both  = payload.pos
         self.stat_bnull = 0
-        return payload.pos
+        return True
 
-    def decode_cssr_st1(self, payload, pos):
-        return self._decode_mask(payload, pos, 'cssr')
+    def decode_cssr_st1(self, payload):
+        ''' decode CSSR ST1 mask message and returns True if success '''
+        return self._decode_mask(payload, 'cssr')
 
-    def decode_has_mask(self, has_msg, pos):
-        return self._decode_mask(has_msg, pos, 'has')
+    def decode_has_mask(self, has_msg):
+        ''' decode HAS mask message and returns True if success '''
+        return self._decode_mask(has_msg, 'has')
 
-    def decode_cssr_st2(self, payload, pos):
+    def decode_cssr_st2(self, payload):
+        ''' decode CSSR ST2 orbit message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         msg_trace1  = ''
         for satsys in self.satsys:
             bw = 10 if satsys == 'E' else 8  # IODE bit width
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + bw + 15 + 13 + 13:
-                    return 0
+                    return False
                 fbw  = f'u{bw}'
                 iode = payload.read( fbw )
                 rad  = payload.read('i15')  # radial
@@ -431,14 +427,14 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_has_orbit(self, payload, pos):
+    def decode_has_orbit(self, payload):
+        ''' decode HAS orbit message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < payload.pos + 4:
-            return 0
+            return False
         vi = payload.read('u4')
         msg_trace1 = f'ORBIT validity_interval={HAS_VI[vi]}s ({vi})\n'
         for satsys in self.satsys:
@@ -446,7 +442,7 @@ class Ssr:
             else            : bw =  8
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + bw + 13 + 12 + 12:
-                    return 0
+                    return False
                 fbw  = f'u{bw}'
                 iode = payload.read(fbw)
                 rad  = payload.read( 13)  # radial
@@ -466,42 +462,42 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_cssr_st3(self, payload, pos):
+    def decode_cssr_st3(self, payload):
+        ''' decode CSSR ST3 clock message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         msg_trace1 = ''
-        for i, satsys in enumerate(self.satsys):
+        for satsys in self.satsys:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + 15:
-                    return 0
+                    return False
                 c0  = payload.read('i15')
                 vc0 = c0 * 0.0016 if c0 != -16384 else INVALID
                 msg_trace1 += f"ST3 {gsys} d_clock={vc0:{FMT_CLK}}m\n"
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_has_ckful(self, payload, pos):
+    def decode_has_ckful(self, payload):
+        ''' decode HAS clock full message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < payload.pos + 4:
-            return 0
+            return False
         vi = payload.read('u4')
         msg_trace1 = f'CKFUL validity_interval={HAS_VI[vi]}s ({vi})\n'
         if len_payload < payload.pos + 2 * len(self.satsys):
-            return 0
+            return False
         multiplier = [1 for i in range(len(self.satsys))]
         for i, satsys in enumerate(self.satsys):
             multiplier[i] = payload.read('u2') + 1
         for i, satsys in enumerate(self.satsys):
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + 13:
-                    return 0
+                    return False
                 c0 = payload.read(13)
                 if   c0.bin == '1000000000000':  # not available
                     vc0 = INVALID
@@ -513,24 +509,24 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_has_cksub(self, payload, pos):
+    def decode_has_cksub(self, payload):
+        ''' decode HAS clock subset message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < payload.pos + 4 + 2:
-            return 0
+            return False
         vi = payload.read('u4')
         ns = payload.read('u2')  # GNSS subset number
         msg_trace1 = f'CKFUL validity_interval={HAS_VI[vi]}s ({vi}), n_sub={ns}\n'
         for i in range(ns):
             if len_payload < payload.pos + 6:
-                return 0
+                return False
             satsys        = payload.read('u4')
             multiplier[i] = payload.read('u2') + 1
             if len_payload < payload.pos + 13:
-                return 0
+                return False
             c0 = payload.read(13)
             if   c0.bin == '1000000000000':  # not available
                 vc0 = INVALID
@@ -542,10 +538,12 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def _decode_code_bias(self, payload, pos, ssr_type):
-        '''ssr_type: cssr or has'''
+    def _decode_code_bias(self, payload, ssr_type):
+        ''' decode code bias information and returns True if success
+            ssr_type: cssr or has
+        '''
         if ssr_type not in {'cssr', 'has'}:
             raise Exception(f'unknow ssr_type: {ssr_type}')
         nsigsat = 0  # Nsig * Nsat
@@ -558,16 +556,15 @@ class Ssr:
                         continue
                     nsigsat += 1
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         msg_trace1 = ''
         if ssr_type == 'has':
             if len_payload < payload.pos + 4:
-                return 0
+                return False
             vi = payload.read('u4')
             msg_trace1 = f'CBIAS validity_interval={HAS_VI[vi]}s ({vi})\n'
         if len(payload) < payload.pos + 11 * nsigsat:
-            return 0
+            return False
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0  # mask position
             for j, gsys in enumerate(self.gsys[satsys]):
@@ -583,18 +580,20 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_cssr_st4(self, payload, pos):
-        return self._decode_code_bias(payload, pos, 'cssr')
+    def decode_cssr_st4(self, payload):
+        ''' decode CSSR ST4 code bias message and returns True if success '''
+        return self._decode_code_bias(payload, 'cssr')
 
-    def decode_has_cbias(self, payload, pos):
-        return self._decode_code_bias(payload, pos, 'has')
+    def decode_has_cbias(self, payload):
+        ''' decode HAS code bias message and returns True if success '''
+        return self._decode_code_bias(payload, 'has')
 
-    def decode_cssr_st5(self, payload, pos):
+    def decode_cssr_st5(self, payload):
+        ''' decode CSSR ST5 phase bias message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         msg_trace1  = ''
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0
@@ -604,7 +603,7 @@ class Ssr:
                     if not mask:
                         continue
                     if len_payload < payload.pos + 15 + 2:
-                        return 0
+                        return False
                     pb  = payload.read('i15')
                     di  = payload.read( 'u2')
                     vpb = pb * 0.001 if pb != -16384 else INVALID
@@ -615,14 +614,14 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_has_pbias(self, payload, pos):
+    def decode_has_pbias(self, payload):
+        ''' decode HAS phase bias message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < payload.pos + 4:
-            return 0
+            return False
         vi = payload.read('u4')
         msg_trace1 = f'PBIAS validity_interval={HAS_VI[vi]}s ({vi})\n'
         for i, satsys in enumerate(self.satsys):
@@ -633,7 +632,7 @@ class Ssr:
                     if not mask:
                         continue
                     if len_payload < payload.pos + 11 + 2:
-                        return 0
+                        return False
                     pb  = payload.read('i11')
                     di  = payload.read( 'u2')
                     vpb = pb * 0.01 if pb != -1024 else INVALID
@@ -644,14 +643,14 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsig += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_cssr_st6(self, payload, pos):
+    def decode_cssr_st6(self, payload):
+        ''' decode CSSR ST6 network bias message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < 45:
-            return 0
+            return False
         f_cb = payload.read('u1')  # code    bias existing flag
         f_pb = payload.read('u1')  # phase   bias existing flag
         f_nb = payload.read('u1')  # network bias existing flag
@@ -669,7 +668,7 @@ class Ssr:
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
                 if len_payload < payload.pos + ngsys:
-                    return 0
+                    return False
                 svmask[satsys] = payload.read(ngsys)
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0  # mask position
@@ -681,13 +680,13 @@ class Ssr:
                     msg_trace1 += f"ST6 {gsys} {gsig:{FMT_GSIG}}"
                     if f_cb:
                         if len_payload < payload.pos + 11:
-                            return 0
+                            return False
                         cb  = payload.read('i11')  # code bias
                         vcb = cb * 0.02 if cb != -1024 else INVALID
                         msg_trace1 += f" code_bias={vcb:{FMT_CB}}m"
                     if f_pb:
                         if len_payload < payload.pos + 15 + 2:
-                            return 0
+                            return False
                         pb  = payload.read('i15')  # phase bias
                         di  = payload.read( 'u2')  # disc ind
                         vpb = pb * 0.001 if pb != -16384 else INVALID
@@ -697,19 +696,19 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 3
         self.stat_bsig += payload.pos - stat_pos - 3
-        return payload.pos
+        return True
 
-    def decode_cssr_st7(self, payload, pos):
+    def decode_cssr_st7(self, payload):
+        ''' decode CSSR ST7 user range accuracy message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < 37:
-            return 0
+            return False
         msg_trace1 = ''
         for satsys in self.satsys:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + 6:
-                    return 0
+                    return False
                 ura  = payload.read(6)     # [3], Sect.4.2.2.7
                 if   ura.bin == 0b000000:  # undefined or unknown
                     vura = INVALID
@@ -723,21 +722,21 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
-    def decode_cssr_st8(self, payload, pos):
+    def decode_cssr_st8(self, payload):
+        ''' decode CSSR ST8 STEC message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < 44:
-            return 0
+            return False
         stec_type = payload.read('u2')  # STEC correction type
         cnid      = payload.read('u5')  # compact network ID
         svmask = {}
         for satsys in self.satsys:
             ngsys = len(self.gsys[satsys])
             if len_payload < payload.pos + ngsys:
-                return 0
+                return False
             svmask[satsys] = payload.read(ngsys)
         msg_trace1 = ''
         for satsys in self.satsys:
@@ -745,14 +744,14 @@ class Ssr:
                 if not svmask[satsys][i]:
                     continue
                 if len_payload < payload.pos + 6 + 14:
-                    return 0
+                    return False
                 qi   = payload.read( 'u6')  # quality indicator
                 c00  = payload.read('i14')
                 vc00 = c00 * 0.05 if c00 != -8192 else INVALID
                 msg_trace1 += f"ST8 {gsys} c00={vc00:{FMT_TECU}}TECU"
                 if 1 <= stec_type:
                     if len_payload < payload.pos + 12 + 12:
-                        return 0
+                        return False
                     c01  = payload.read('i12')
                     c10  = payload.read('i12')
                     vc01 = c01 * 0.02 if c01 != -2048 else INVALID
@@ -761,13 +760,13 @@ class Ssr:
                         f" c01={vc01:{FMT_TECU}}TECU/deg c10={vc10:{FMT_TECU}}TECU/deg"
                 if 2 <= stec_type:
                     if len_payload < payload.pos + 10:
-                        return 0
+                        return False
                     c11  = payload.read('i10')
                     vc11 = c11 * 0.02 if c11 != -512 else INVALID
                     msg_trace1 += f" c11={vc11:{FMT_TECU}}TECU/deg^2"
                 if 3 <= stec_type:
                     if len_payload < payload.pos + 8 + 8:
-                        return 0
+                        return False
                     c02  = payload.read('i8')
                     c20  = payload.read('i8')
                     vc02 = c02 * 0.005 if c02 != -128 else INVALID
@@ -778,13 +777,13 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos + 7
         self.stat_bsat += payload.pos - stat_pos - 7
-        return payload.pos
+        return True
 
-    def decode_cssr_st9(self, payload, pos):
+    def decode_cssr_st9(self, payload):
+        ''' decode CSSR ST9 trop correction message and returns True if success '''
         len_payload = len(payload)
-        payload.pos =pos
         if len_payload < 45:
-            return 0
+            return False
         tctype = payload.read('u2')  # trop correction type
         crange = payload.read('u1')  # trop correction range
         bw = 16 if crange else 7
@@ -793,10 +792,10 @@ class Ssr:
         for satsys in self.satsys:
             ngsys = len(self.gsys[satsys])
             if len_payload < payload.pos + ngsys:
-                return 0
+                return False
             svmask[satsys] = payload.read(ngsys)
         if len_payload < payload.pos + 6 + 6:
-            return 0
+            return False
         tqi   = payload.read('u6')  # tropo quality indicator
         ngrid = payload.read('u6')  # number of grids
         msg_trace1 = \
@@ -804,7 +803,7 @@ class Ssr:
             f" NID={cnid} quality={tqi} ngrid={ngrid}\n"
         for i in range(ngrid):
             if len_payload < payload.pos + 9 + 8:
-                return 0
+                return False
             vd_h = payload.read('i9')  # hydrostatic vert delay
             vd_w = payload.read('i8')  # wet vert delay
             vvd_h  = vd_h * 0.004 if vd_h != -256 else INVALID
@@ -817,7 +816,7 @@ class Ssr:
                     if not svmask[satsys][j]:
                         continue
                     if len_payload < payload.pos + bw:
-                        return 0
+                        return False
                     fbw  = f'i{bw}'
                     res  = payload.read(fbw)  # residual
                     vres = res * 0.04
@@ -829,29 +828,29 @@ class Ssr:
                         f' residual={vres:{FMT_TECU}}TECU ({bw}bit)\n'
         self.trace(1, msg_trace1)
         self.stat_both += payload.pos
-        return payload.pos
+        return True
 
-    def decode_cssr_st10(self, payload, pos):
+    def decode_cssr_st10(self, payload):
+        ''' decode CSSR ST10 auxiliary message and returns True if success '''
         len_payload = len(payload)
-        payload.pos = pos
         if len_payload < 5:
-            return 0
+            return False
         counter = payload.read('u3')  # info message counter
         dsize   = payload.read('u2')  # data size
         vdsize  = (dsize + 1) * 40
         if len_payload < payload.pos + vdsize:
-            return 0
+            return False
         aux_frame_data = payload.read(vdsize)
         self.trace(1, f'ST10 {counter}:{aux_frame_data.hex}')
         self.stat_both += payload.pos
-        return payload.pos
+        return True
 
-    def decode_cssr_st11(self, payload, pos):
+    def decode_cssr_st11(self, payload):
+        ''' decode CSSR ST11 network correction message and returns True if success '''
         len_payload = len(payload)
-        stat_pos    = pos
-        payload.pos = pos
+        stat_pos    = payload.pos
         if len_payload < 40:
-            return 0
+            return False
         f_o = payload.read('u1')  # orbit existing flag
         f_c = payload.read('u1')  # clock existing flag
         f_n = payload.read('u1')  # network correction
@@ -861,14 +860,14 @@ class Ssr:
             f"Net={     'on' if f_n else 'off'}\n"
         if f_n:
             if len_payload < payload.pos + 5:
-                return 0
+                return False
             cnid = payload.read('u5')  # compact network ID
             msg_trace1 += f"ST11 NID={cnid}\n"
             svmask = {}
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
                 if len_payload < payload.pos + ngsys:
-                    return 0
+                    return False
                 svmask[satsys] = payload.read(ngsys)
             for satsys in self.satsys:
                 for i, gsys in enumerate(self.gsys[satsys]):
@@ -878,7 +877,7 @@ class Ssr:
                     if f_o:
                         bw = 10 if satsys == 'E' else 8  # IODE width
                         if len_payload < payload.pos + bw + 15 + 13 + 13:
-                            return 0
+                            return False
                         fbw  = f'u{bw}'
                         iode = payload.read(fbw)
                         rad  = payload.read('i15')  # radial
@@ -905,14 +904,14 @@ class Ssr:
         if f_n:  # correct bit number because because we count up bsat as NID
             self.stat_both += 5
             self.stat_bsat -= 5
-        return payload.pos
+        return True
 
-    def decode_cssr_st12(self, payload, pos):
+    def decode_cssr_st12(self, payload):
+        ''' decode CSSR ST12 network and troposphere corrections message and returns True if success '''
         len_payload = len(payload)
-        payload.pos = pos
         if len_payload < 52:
-            return 0
-        tropo = payload.read(  2 )  # Tropo correction avail
+            return False
+        tropo = payload.read(  2 )  # tropo correction avail
         stec  = payload.read(  2 )  # STEC correction avail
         cnid  = payload.read('u5')  # compact network ID
         ngrid = payload.read('u6')  # number of grids
@@ -922,7 +921,7 @@ class Ssr:
         if tropo[0]:
             # 0 <= ttype (forward reference)
             if len_payload < payload.pos + 6 + 2 + 9:
-                return 0
+                return False
             tqi   = payload.read( 'u6')  # tropo quality ind
             ttype = payload.read( 'u2')  # tropo correction type
             t00   = payload.read( 'i9')  # tropo poly coeff
@@ -931,7 +930,7 @@ class Ssr:
                           f" t00={vt00:.3f}m"
             if 1 <= ttype:
                 if len_payload < payload.pos + 7 + 7:
-                    return 0
+                    return False
                 t01  = payload.read('i7')
                 t10  = payload.read('i7')
                 vt01 = t01 * 0.002 if t01 != -64 else INVALID
@@ -939,21 +938,21 @@ class Ssr:
                 msg_trace1 += f" t01={vt01:.3f}m/deg t10={vt10:.3f}m/deg"
             if 2 <= ttype:
                 if len_payload < payload.pos + 7:
-                    return 0
+                    return False
                 t11  = payload.read('i7')
                 vt11 = t11 * 0.001 if t11 != -64 else INVALID
                 msg_trace1 += f" t11={vt11:.3f}m/deg^2"
             msg_trace1 += '\n'
         if tropo[1]:
             if len_payload < payload.pos + 1 + 4:
-                return 0
+                return False
             trs  = payload.read('u1')  # tropo residual size
             tro  = payload.read('u4')  # tropo residual offset
             bw   = 8 if trs else 6
             vtro = tro * 0.02
             msg_trace1 += f"ST12 Trop offset={vtro:.3f}m\n"
             if len_payload < payload.pos + bw * ngrid:
-                return 0
+                return False
             for i in range(ngrid):
                 fbw = f'i{bw}'
                 tr  = payload.read(fbw)  # tropo residual
@@ -969,14 +968,14 @@ class Ssr:
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
                 if len_payload < payload.pos + ngsys:
-                    return 0
+                    return False
                 svmask[satsys] = payload.read(ngsys)
             for satsys in self.satsys:
                 for i, gsys in enumerate(self.gsys[satsys]):
                     if not svmask[satsys][i]:
                         continue
                     if len_payload < payload.pos + 6 + 2 + 14:
-                        return 0
+                        return False
                     sqi  = payload.read( 'u6')  # quality ind
                     sct  = payload.read( 'u2')  # correct type
                     c00  = payload.read('i14')
@@ -986,7 +985,7 @@ class Ssr:
                         f" c00={vc00:{FMT_TECU}}TECU"
                     if 1 <= sct:
                         if len_payload < payload.pos + 12 + 12:
-                            return 0
+                            return False
                         c01  = payload.read('i12')
                         c10  = payload.read('i12')
                         vc01 = c01 * 0.02 if c01 != -2048 else INVALID
@@ -995,13 +994,13 @@ class Ssr:
                             f" c01={vc01:{FMT_TECU}}TECU/deg c10={vc10:{FMT_TECU}}TECU/deg"
                     if 2 <= sct:
                         if len_payload < payload.pos + 10:
-                            return 0
+                            return False
                         c11  = payload.read('i10')
                         vc11 = c11 * 0.02 if c11 != -512 else INVALID
                         msg_trace1 += f" c11={vc11:{FMT_TECU}}TECU/deg^2"
                     if 3 <= sct:
                         if len_payload < payload.pos + 8 + 8:
-                            return 0
+                            return False
                         c02  = payload.read('i8')
                         c20  = payload.read('i8')
                         vc02 = c02 * 0.005 if c02 != -128 else INVALID
@@ -1010,14 +1009,14 @@ class Ssr:
                             f" c02={vc02:{FMT_TECU}}TECU/deg^2 c20={vc20:{FMT_TECU}}TECU/deg^2"
                     msg_trace1 += '\n'
                     if len_payload < payload.pos + 2:
-                        return 0
+                        return False
                     # STEC residual size
                     srs = payload.read('u2')
                     bw  = [   4,    4,    5,    7][srs]
                     lsb = [0.04, 0.12, 0.16, 0.24][srs]
                     for i in range(ngrid):
                         if len_payload < payload.pos + bw:
-                            return 0
+                            return False
                         fbw = f'i{bw}'
                         sr  = payload.read(fbw)
                         vsr = sr * lsb
@@ -1031,19 +1030,21 @@ class Ssr:
         self.trace(1, msg_trace1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
-        return payload.pos
+        return True
 
 def gnssid2satsys(gnssid):
+    ''' convert gnss id to satellite system '''
     if   gnssid == 0: satsys = 'G'
     elif gnssid == 1: satsys = 'R'
     elif gnssid == 2: satsys = 'E'
     elif gnssid == 3: satsys = 'C'
     elif gnssid == 4: satsys = 'J'
     elif gnssid == 5: satsys = 'S'
-    else            : raise Exception(f'undefined gnssid {gnssid}')
+    else: raise Exception(f'undefined gnssid {gnssid}')
     return satsys
 
 def sigmask2signame(satsys, sigmask):
+    ''' convert satellite system and signal mask to signal name '''
     signame = f'satsys={satsys} sigmask={sigmask}'
     if satsys == 'G':
         signame = [ "L1 C/A", "L1 P", "L1 Z-tracking", "L1C(D)", "L1C(P)",

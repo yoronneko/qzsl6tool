@@ -14,7 +14,7 @@ MADOCAはRTCM（Radio Technical Commission for Maritime Services） SSR（状態
 
 ``--help``オプションで、受け付けるオプションを表示します。
 
-```
+```bash
 $ qzsl6read.py --help
 usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
@@ -42,7 +42,7 @@ options:
 ``-t``オプションを与えると、メッセージ内容の詳細が表示されます。このオプションは整数値とともに用います。数値1では詳細を、数値2ではそれに加えて、ビットイメージを表示します。
 
 RTKLIBの``str2str``を利用すると、リアルタイムストリームなども利用できます。
-```
+```bash
 str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | alstread.py -l | qzsl6read.py
 ```
 
@@ -50,7 +50,7 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | al
 
 例えば、サンプルディレクトリにあるAllystar受信機生データ``20220326-231200clas.alst``を[alstead.py](alstread.md)にてみちびきL6生データを抽出し、``qzsl6read.py``にて内容表示します。
 
-```
+```bash
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py
 
 199 Hitachi-Ota:1  CLAS  (syncing)
@@ -79,7 +79,7 @@ Subtype 1 (ST1) メッセージを受信すると、このプログラムはCLAS
 
 ``qzsl6read.py``に``-t 2``オプションを与えると、その詳細が表示されます。
 
-```
+```bash
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py -t 2
 
 199 Hitachi-Ota:1  CLAS  (syncing)
@@ -99,9 +99,11 @@ ST2 G22 IODE=  35 d_radial=-0.0304m d_along=-1.3440m d_cross=-0.6464m
 ```
 
 また、``-s``オプションを与えると、サブタイプ1を受信するたびに、統計情報を出力します。
-```
+
+```text
 stat n_sat 17 n_sig 48 bit_sat 13050 bit_sig 5114 bit_other 1931 bit_null 5330 bit_total 25425
 ```
+
 ここで、
 
 - ``n_sat``は補強対象衛星数を、
@@ -118,7 +120,7 @@ stat n_sat 17 n_sig 48 bit_sat 13050 bit_sig 5114 bit_other 1931 bit_null 5330 b
 
 サンプルディレクトリにあるAllystar受信機生データ``20221130-125237mdc-ppp.alst``を内容表示します。
 
-```
+```bash
 alstread.py -l < sample/20221130-125237mdc-ppp.alst | qzsl6read.py
 
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
@@ -142,7 +144,7 @@ MADOCAメッセージ配信は終了しました。
 
 サンプルディレクトリにあるAllystar受信機生データ``20220326-231200mdc.alst``を内容表示します。
 
-```
+```bash
 alstread.py -l < sample/20220326-231200mdc.alst| qzsl6read.py
 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:44 RTCM 1062(26) RTCM 1068(17)
@@ -156,7 +158,7 @@ alstread.py -l < sample/20220326-231200mdc.alst| qzsl6read.py
 
 ここでは、含まれるRTCMメッセージ番号と、括弧書きで補強対象衛星数が表示されます。``qzsl6read.py``に``-t 2``オプションを与えると、補強内容を表示できます。
 
-```
+```bash
 alstread.py -l < sample/20220326-231200mdc.alst| qzsl6read.py -t 2
 
 G01 high_rate_clock=  0.430m

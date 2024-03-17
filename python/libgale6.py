@@ -401,15 +401,30 @@ class GalE6():
         has_msg = bitstring.ConstBitStream(m.tobytes())
         self.trace(2, f'------ HAS decode with the pages of MID={self.mid} MS={self.ms} ------\n')
         self.trace(2, has_msg, '\n------\n')
-        pos = self.decode_has_header(has_msg)
-        if self.f_mask : pos = self.ssr.decode_has_mask (has_msg, pos)
-        if self.f_orbit: pos = self.ssr.decode_has_orbit(has_msg, pos)
-        if self.f_ckful: pos = self.ssr.decode_has_ckful(has_msg, pos)
-        if self.f_cksub: pos = self.ssr.decode_has_cksub(has_msg, pos)
-        if self.f_cbias: pos = self.ssr.decode_has_cbias(has_msg, pos)
-        if self.f_pbias: pos = self.ssr.decode_has_pbias(has_msg, pos)
+        self.decode_has_header(has_msg)
+        msg = ''
+        if self.f_mask :
+            if not self.ssr.decode_has_mask (has_msg):
+                msg += '\n' + self.msg_color.fg('red') + 'MASK error' + self.msg_color.fg()
+        if self.f_orbit:
+            if not self.ssr.decode_has_orbit(has_msg):
+                msg += '\n' + self.msg_color.fg('red') + 'ORBIT error' + self.msg_color.fg()
+        if self.f_ckful:
+            if not self.ssr.decode_has_ckful(has_msg):
+                msg += '\n' + self.msg_color.fg('red') + 'CLOCK FULL error' + self.msg_color.fg()
+        if self.f_cksub:
+            if not self.ssr.decode_has_cksub(has_msg):
+                msg += '\n' + self.msg_color.fg('red') + 'CLOCK SUBSET error' + self.msg_color.fg()
+        if self.f_cbias:
+            if not self.ssr.decode_has_cbias(has_msg):
+                msg += '\n' + self.msg_color.fg('red') + 'CODE BIAS error' + self.msg_color.fg()
+        if self.f_pbias:
+            if not self.ssr.decode_has_pbias(has_msg):
+                msg += '\n' + self.msg_color.fg('red') + 'PHASE BIAS error' + self.msg_color.fg()
+        if msg:
+            self.trace(0, msg)
         self.trace(2, '------ padding bits ------\n')
-        self.trace(2, has_msg[pos:].bin)
+        self.trace(2, has_msg[has_msg.pos:].bin)
         self.trace(2, '\n------\n')
 
     def decode_has_header(self, has_msg):
@@ -435,7 +450,6 @@ class GalE6():
                    f'IOD Set ID      : {self.iodset}'
         if self.fp_disp:
             print(disp_msg, file=self.fp_disp)
-        return has_msg.pos
 
 def icd_test():
     '''self test described in [1] attached file,

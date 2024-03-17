@@ -4,7 +4,7 @@
 
 ``--help``オプションを与えると、受け付けるオプションを表示できます。
 
-```
+```bash
 $ rtcmread.py --help
 usage: rtcmread.py [-h] [-c] [-t TRACE]
 
@@ -29,7 +29,7 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/OEM7 2> /dev/null | rt
 
 例えば、サンプルディレクトリにあるRTCMデータ``20220326-231200clas.alst``を``rtcmread.py``にて内容表示します。
 
-```
+```bash
 rtcmread.py < sample/20221213-010900.rtcm
 
 RTCM 1087 R MSM7          R01 R02 R03 R11 R12 R13 R17 R18 R19
@@ -46,7 +46,7 @@ RN0000
 
 また、SSR（状態空間表現, state space representation）も表示可能です。かつて、JAXAがインターネット配信していたRTCM形式のMADOCAは次のように表示できます。
 
-```
+```text
 RTCM 1057 G SSR orbit     G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G28 G29 G30 G31 G32 (nsat=27 iod=3)
 RTCM 1063 R SSR orbit     R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R16 R17 R18 R19 R21 R22 R24 (nsat=18 iod=3)
 RTCM 1058 G SSR clock     G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G28 G29 G30 G31 G32 (nsat=27 iod=3)
@@ -55,7 +55,7 @@ RTCM 1064 R SSR clock     R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R16 R17 R1
 
 ``rtcmread.py``に``-t 2``オプションを与えると、SSRの詳細が表示されます。
 
-```
+```text
 G01 d_radial= 0.5433m d_along=-0.9076m d_cross=-0.0215m dot_d_radial=-0.0000m/s
 dot_d_along= 0.0000m/s dot_d_cross=-0.0001m/s
 G02 d_radial= 0.6324m d_along= 1.6912m d_cross=-0.1118m dot_d_radial=-0.0003m/s
