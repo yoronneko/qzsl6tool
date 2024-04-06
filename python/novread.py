@@ -113,8 +113,6 @@ class NovReceiver:
         ''' returns hex-decoded message
             ref.[1], p.822 3.148 QZSSRAWSUBFRAME (1330)
         '''
-        QZSS_ID = {  # dictionary of sat id from prn
-            193: 'J01', 194: 'J02', 199: 'J03', 195: 'J04', 196: 'J05', }
         payload = self.payload
         if len(payload) != 4+4+32+4:
             self.trace.show(0, f"messge length mismatch: {len(payload)} != {4+4+32+4}", fg='red')
@@ -127,8 +125,8 @@ class NovReceiver:
         self.satid = prn
         self.raw   = raw
         msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + \
-            self.trace.msg(0, self.msg_name + ' ', fg='cyan') + \
-            self.trace.msg(0, f'{QZSS_ID.get(prn, "J??")}:{sfid} ', fg='yellow') + \
+              self.trace.msg(0, self.msg_name + ' ', fg='cyan') + \
+              self.trace.msg(0, f'J{prn-192:02d}:{sfid} ', fg='yellow') + \
             raw.hex()
         return msg
 
@@ -174,6 +172,8 @@ if __name__ == '__main__':
     fp_disp, fp_raw = sys.stdout, None
     if args.e6b:
         fp_disp, fp_raw = None, sys.stdout
+    if args.qlnav:
+        fp_disp, fp_raw = None, sys.stdout
     if args.message:  # send display messages to stderr
         fp_disp = sys.stderr
     trace = libtrace.Trace(fp_disp, 0, args.color)
@@ -186,11 +186,7 @@ if __name__ == '__main__':
             elif rcv.msg_name == 'QZSSRAWSUBFRAME':
                 msg = rcv.qzssrawsubframe()
             else:
-                msg = rcv.msg_color.fg('green') + \
-                    libgnsstime.gps2utc(rcv.gpsw, rcv.gpst // 1000) + \
-                    rcv.msg_color.fg() + ' ' + \
-                    rcv.msg_color.dec('dark') + rcv.msg_name + \
-                    rcv.msg_color.dec()
+                msg = rcv.trace.msg(0, libgnsstime.gps2utc(rcv.gpsw, rcv.gpst // 1000), fg='green') + ' ' + rcv.trace.msg(0, rcv.msg_name, dec='dark')
                 rcv.raw = bytearray()
             rcv.trace.show(0, msg)
             if (args.e6b   and rcv.msg_name == 'GALCNAVRAWPAGE' ) or \

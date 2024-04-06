@@ -55,7 +55,20 @@ FMT_TROP = '7.3f'  # format string for troposphere residual
 FMT_TECU = '6.3f'  # format string for TECU
 FMT_IODE = '4d'    # format string for issue of data ephemeris
 FMT_GSIG = '13s'   # format string for GNSS signal name
+FMT_URA  = '7.2f'  # format string for URA
 
+def ura2dist(ura):
+    ''' converts user range accuracy (URA) code to distance [m] '''
+    dist = 0.0
+    if   ura.bin == 0b000000:   # undefined or unknown
+        dist = INVALID
+    elif ura.bin == 0b111111:   # URA more than 5466.5 mm
+        dist = INVALID
+    else:
+        cls  = ura[4:7].uint
+        val  = ura[0:4].uint
+        dist = 3 ** cls * (1 + val / 4) - 1
+    return dist
 class Ssr:
     """class of state space representation (SSR) and compact SSR process"""
     subtype    = 0      # subtype number
@@ -180,15 +193,8 @@ class Ssr:
         for i in range(self.ssr_nsat):
             satid = payload.read(bw)  # satellite ID, DF068
             ura   = payload.read( 6)  # user range accuracy, DF389
-            if   ura.bin == 0b000000:   # undefined or unknown
-                vura = INVALID
-            elif ura.bin == 0b111111:   # URA more than 5466.5 mm
-                vura = INVALID
-            else:
-                cls  = ura[4:7].uint
-                val  = ura[0:4].uint
-                vura = 3 ** cls * (1 + val / 4) - 1
-            self.trace.show(1, f'{satsys}{satid:02d} ura={vura:7.2f} mm')
+            vura  = ura2dist(ura)
+            self.trace.show(1, f'{satsys}{satid:02d} ura={vura:{FMT_URA}} mm')
             strsat += f"{satsys}{satid:02} "
         string = f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}" + \
                       f"{' cont.' if self.ssr_mmi else ''})"

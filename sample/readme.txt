@@ -69,7 +69,7 @@ Date Time : 2023-08-19 05:37:33 UTC
 Duration  : 43 seconds
 Note      : E6B signal reception sample with NovAtel OEM729 at Hiroshima, JP
 
-File Path : 20230819-061342misc.nov
+File Path : 20230819-061342qlnav.nov
 Date Time : 2023-08-19 06:13:42 UTC
 Duration  : 43 seconds
 Note      : Navigation messages obtained with NovAtel OEM729 at Hiroshima, JP
