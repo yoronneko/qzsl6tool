@@ -1,4 +1,4 @@
-## utc2gps.py
+# utc2gps.py
 
 This program converts UTC time to GPS time, Galileo Standard Time (GST), and BeiDou Standard Time (BST).
 

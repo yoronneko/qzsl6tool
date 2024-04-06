@@ -1,4 +1,4 @@
-## gps2utc.py
+# gps2utc.py
 
 GPS時刻、GST（Galileo Standard Time）、BDT（BeiDou Standard Time）をUTC時刻に変換します。週と秒を与えると、それぞれの時刻を出力します。
 

@@ -93,7 +93,7 @@ sept_conv() {
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     ARG=-b EXT_TO=b2b
-    echo "- BDS B2B (${CODE} ${ARG})"
+    echo "- BDS B2b (${CODE} ${ARG})"
     BASENAME=20230819-081730hasbds
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 

@@ -1,4 +1,4 @@
-## psdrread.py
+# psdrread.py
 
 このプログラムは、ソフトウェア無線[Pocket SDR](https://github.com/tomojitakasu/PocketSDR)のログファイルから、
 

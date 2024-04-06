@@ -1,6 +1,6 @@
-## gale6read.py
+# gale6read.py
 
-Galileo HAS (high accuracy service) の生データを標準入力から読み取り、その内容を標準出力に出力します。
+このプログラムは、Galileo HAS (high accuracy service) の生データを標準入力から読み取り、その内容を標準出力に出力します。
 
 この入力は、1バイトのPRNと、62バイト（HAS生データの492ビット）からなります。
 

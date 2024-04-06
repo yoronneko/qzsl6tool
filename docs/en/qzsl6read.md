@@ -1,4 +1,4 @@
-## qzsl6read.py
+# qzsl6read.py
 
 This program reads QZS L6 raw data from standard input and prints its contents to standard output.
 

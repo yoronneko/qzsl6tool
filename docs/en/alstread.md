@@ -1,4 +1,4 @@
-## alstread.py
+# alstread.py
 
 This program reads the raw data of the Allystar HD9310 Option C receiver from standard input and displays its status on standard output.
 

@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# libbsdb2.py: library for BeiDou B2B message processing
+# libbsdb2.py: library for BeiDou B2b message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
 # Copyright (c) 2024 Satoshi Takahashi, all rights reserved.

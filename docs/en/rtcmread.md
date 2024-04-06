@@ -1,4 +1,4 @@
-## rtcmread.py
+# rtcmread.py
 
 This program RTCM（Radio Technical Commission for Maritime Services）message from standard input and prints its contents to standard output.
 
