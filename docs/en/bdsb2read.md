@@ -1,4 +1,4 @@
-# gale6read.py
+# bdsb2read.py
 
 This program reads BeiDou PPP-B2b raw data from standard input and prints its contents to standard output.
 

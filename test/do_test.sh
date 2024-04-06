@@ -108,6 +108,10 @@ ubx_conv() {
     BASENAME=20230919-114418
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
+    ARG='-i' EXT_TO=inav
+    echo "- GAL I/NAV (${CODE} ${ARG})"
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
     echo ""
 }
 
@@ -143,7 +147,7 @@ qzs_l6() {
 }
 
 qzs_l1s() {
-    CODE=${CODEDIR}qzsl1sread.py ARG='' EXT_FROM=l1s EXT_TO=txt
+    CODE=${CODEDIR}qzsl1sread.py ARG='' EXT_FROM=l1s EXT_TO=l1s.txt
     echo "QZS L1S message read (${CODE} ${ARG}):"
 
     SRCDIR=expect/
@@ -191,6 +195,17 @@ rtcm() {
     echo ""
 }
 
+gal_inav() {
+    CODE=${CODEDIR}galinavread.py ARG= EXT_FROM=inav EXT_TO=inav.txt
+    echo "GAL I/NAV message read (${CODE} ${ARG})"
+
+    SRCDIR=expect/
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo ""
+}
+
 gal_e6() {
     CODE=${CODEDIR}gale6read.py ARG='-t 2' EXT_FROM=e6b EXT_TO=txt
     echo "GAL E6 message read (${CODE} ${ARG})"
@@ -226,6 +241,7 @@ qzs_l6
 qzs_l1s
 qzs_l6_rtcm
 rtcm
+gal_inav
 gal_e6
 bds_b2
 

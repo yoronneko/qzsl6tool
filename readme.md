@@ -24,6 +24,7 @@
 | RTCM |[rtcmread.py](docs/ja/rtcmread.md) |
 | QZSS L6 |[qzsl6read.py](docs/ja/qzsl6read.md) |
 | QZSS L1S | [qzsl1sread.py](docs/ja/qzsl1sread.md) |
+| Galileo I/NAV | [galinavread.py](docs/ja/galinavread.md) |
 | Galileo HAS |[gale6read.py](docs/ja/gale6read.md) |
 |BeiDou PPP-B2b | [bdsb2read.py](docs/ja/bdsb2read.md)|
 
