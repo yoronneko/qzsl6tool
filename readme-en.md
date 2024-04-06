@@ -24,8 +24,9 @@
 | RTCM |[rtcmread.py](docs/en/rtcmread.md) |
 | QZSS L6 |[qzsl6read.py](docs/en/qzsl6read.md) |
 | QZSS L1S | [qzsl1sread.py](docs/en/qzsl1sread.md) |
+| Galileo I/NAV | [galinavread.py](docs/en/galinavread.md) |
 | Galileo HAS |[gale6read.py](docs/en/gale6read.md) |
-|BeiDou PPP-B2b | [bdsb2read.py](docs/ja/bdsb2read.md)|
+|BeiDou PPP-B2b | [bdsb2read.py](docs/en/bdsb2read.md)|
 
 ## GNSS Receiver Data Conversion
 
