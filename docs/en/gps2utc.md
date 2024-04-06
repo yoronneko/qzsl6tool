@@ -1,4 +1,4 @@
-## gps2utc.py
+# gps2utc.py
 
 This program converts GPS time, Galileo Standard Time (GST), and BeiDou Standard Time (BST) to UTC time. This program reads the week number (WN) and the second from the week (TOW: time of week), and displays their times.
 

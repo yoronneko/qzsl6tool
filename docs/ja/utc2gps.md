@@ -1,4 +1,4 @@
-## utc2gps.py
+# utc2gps.py
 
 UTC時刻をGPS時刻、GST（Galileo Standard Time）、BDT（BeiDou Standard Time）に変換します。
 

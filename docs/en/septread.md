@@ -1,4 +1,4 @@
-## septread.py
+# septread.py
 
 This program reads the raw data of Septentrio's mosaic-X5 receiver or mosaic-CLAS receiver, and extracts
 

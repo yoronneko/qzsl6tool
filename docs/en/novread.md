@@ -1,4 +1,4 @@
-## novread.py
+# novread.py
 
 This program reads the raw data of NovAtel OEM729 receiver and extracts
 Galileo E6B message (HAS, ``-e`` option). The ``--help`` option displays the options it accepts.

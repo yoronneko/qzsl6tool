@@ -1,4 +1,4 @@
-## septread.py
+# septread.py
 
 このプログラムは、Septentrioのmosaic-X受信機またはmosaic-CLAS受信機の生データから、
 

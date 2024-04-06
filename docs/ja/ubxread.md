@@ -1,4 +1,4 @@
-## ubxread.py
+# ubxread.py
 
 このプログラムは、u-blox ZED-F9P受信機の生データから、
 

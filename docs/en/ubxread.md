@@ -1,4 +1,4 @@
-## ubxread.py
+# ubxread.py
 
 This program reads the raw data of u-blox ZED-F9P receiver, and extracts
 

@@ -1,4 +1,4 @@
-## qzsl1sread.py
+# qzsl1sread.py
 
 This program reads QZSS L1S format data from standard input or a file and outputs its contents to standard output. The ``--help`` option displays the options it accepts.
 

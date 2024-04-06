@@ -24,6 +24,9 @@
 # [3] Global Positioning Augmentation Service Corporation (GPAS),
 #     Interface specification for GPAS-MADOCA Product
 #     https://www.gpas.co.jp/data/GPAS-MADOCA_Interface_Specification_en.pdf
+# [4] Tomoji Takasu, RTKLIB: An Open Source Program Package for GNSS Positioning,
+#     v.2.4.3b34, Apr. 2020.
+#     https://github.com/tomojitakasu/RTKLIB
 
 import os
 import sys
@@ -277,7 +280,7 @@ def msgnum2mtype(msgnum):  # message number to message type
     elif msgnum == 4073                          : mtype = 'CSSR'
     return mtype
 
-# following code is from RTKLIB 2.4.3b34, rtkcmn.c
+# following code is from RTKLIB 2.4.3b34 [4], rtkcmn.c
 
 tbl_CRC24Q = [
 0x000000,0x864CFB,0x8AD50D,0x0C99F6,0x93E6E1,0x15AA1A,0x1933EC,0x9F7F17,
@@ -313,6 +316,8 @@ tbl_CRC24Q = [
 0xE37B16,0x6537ED,0x69AE1B,0xEFE2E0,0x709DF7,0xF6D10C,0xFA48FA,0x7C0401,
 0x42FA2F,0xC4B6D4,0xC82F22,0x4E63D9,0xD11CCE,0x575035,0x5BC9C3,0xDD8538
 ]
+
+# CRC24Q for RTCM3, (1+x)(x^23+x^17+x^13+x^12+x^11+x^9+x^8+x^7+x^5+x^3+1)
 
 def rtk_crc24q(buff, length):
     crc = 0

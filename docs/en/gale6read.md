@@ -1,4 +1,4 @@
-## gale6read.py
+# gale6read.py
 
 This program reads Galileo HAS (high accuracy service) raw data from standard input and prints its contents to standard output.
 

@@ -69,7 +69,8 @@ nov_conv() {
     BASENAME=20230819-053733has
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    BASENAME=20230819-053733has
+    ARG=-q EXT_TO=lnav
+    BASENAME=20230819-061342qlnav
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""
@@ -88,6 +89,11 @@ sept_conv() {
 
     ARG=-e EXT_TO=e6b
     echo "- GAL E6B (${CODE} ${ARG})"
+    BASENAME=20230819-081730hasbds
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    ARG=-b EXT_TO=b2b
+    echo "- BDS B2b (${CODE} ${ARG})"
     BASENAME=20230819-081730hasbds
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
@@ -194,6 +200,18 @@ gal_e6() {
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     BASENAME=20230819-081730hasbds
+    EXT_TO=e6b.txt
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo ""
+}
+
+bds_b2() {
+    CODE=${CODEDIR}bdsb2read.py ARG='-t 2 -p 60' EXT_FROM=b2b EXT_TO=b2b.txt
+    echo "BDS B2 message read (${CODE} ${ARG})"
+
+    SRCDIR=expect/
+    BASENAME=20230819-081730hasbds
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""
@@ -209,6 +227,7 @@ qzs_l1s
 qzs_l6_rtcm
 rtcm
 gal_e6
+bds_b2
 
 # EOF
 

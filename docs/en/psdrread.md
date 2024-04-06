@@ -1,4 +1,4 @@
-## psdrread.py
+# psdrread.py
 
 This program reads the logfile of [Pocket SDR](https://github.com/tomojitakasu/PocketSDR), a software defined radio, and extracts
 

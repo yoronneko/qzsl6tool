@@ -1,4 +1,4 @@
-## ecef2llh.py
+# ecef2llh.py
 
 This program converts ECEF (earth-centered, earth-fix) coordinates to latitude, longitude, and ellipsoidal height (LLH).
 
