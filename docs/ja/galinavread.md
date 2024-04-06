@@ -17,7 +17,7 @@ options:
 
 ``-c``オプションを与えると、強制的にカラーにて状態表示します。デフォルトでは、出力先がターミナルであれば、状態表示はカラーにて表示されます。出力先がそれ以外であれば、カラー表示されません。
 
-例えば、サンプルディレクトリにあるu-blox ZED-F9P受信機生データ``20230919-114418.ubx``を[ubxread.py](ubxread.md)にてB2b生データを抽出し、``galinavread.py``にて内容表示します。
+例えば、サンプルディレクトリにあるu-blox ZED-F9P受信機生データ``20230919-114418.ubx``を[ubxread.py](ubxread.md)にてI/NAV生データを抽出し、``galinavread.py``にて内容表示します。
 
 ```bash
 $ ubxread.py -i < 20230919-114418.ubx| galinavread.py
