@@ -1,27 +1,27 @@
-RTCM 4073   CSSR          ST1  epoch=305585 iod=15
-RTCM 4073   CSSR          ST2  hepoch=3185 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3185 iod=15
-RTCM 4073   CSSR          ST7  hepoch=3190 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3190 iod=15
-RTCM 4073   CSSR          ST4  hepoch=3195 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3195 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3200 iod=15
-RTCM 4073   CSSR          ST5  hepoch=3205 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3205 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3210 iod=15
-RTCM 4073   CSSR          ST1  epoch=305615 iod=15
-RTCM 4073   CSSR          ST2  hepoch=3215 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3215 iod=15
-RTCM 4073   CSSR          ST7  hepoch=3220 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3220 iod=15
-RTCM 4073   CSSR          ST4  hepoch=3225 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3225 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3230 iod=15
-RTCM 4073   CSSR          ST5  hepoch=3235 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3235 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3240 iod=15
-RTCM 4073   CSSR          ST1  epoch=305645 iod=15
-RTCM 4073   CSSR          ST2  hepoch=3245 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3245 iod=15
-RTCM 4073   CSSR          ST7  hepoch=3250 iod=15
-RTCM 4073   CSSR          ST3  hepoch=3250 iod=15
+RTCM 4073   CSSR          ST1  Epoch=12:53:05+3 (305585) UI=30s (5) IODSSR=0 
+RTCM 4073   CSSR          ST2  Epoch=53:05 (3185) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:05 (3185) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST7  Epoch=53:10 (3190) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:10 (3190) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST4  Epoch=53:15 (3195) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:15 (3195) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:20 (3200) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST5  Epoch=53:25 (3205) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:25 (3205) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:30 (3210) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST1  Epoch=12:53:35+3 (305615) UI=30s (5) IODSSR=0 
+RTCM 4073   CSSR          ST2  Epoch=53:35 (3215) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:35 (3215) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST7  Epoch=53:40 (3220) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:40 (3220) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST4  Epoch=53:45 (3225) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:45 (3225) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:50 (3230) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST5  Epoch=53:55 (3235) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=53:55 (3235) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=54:00 (3240) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST1  Epoch=12:54:05+3 (305645) UI=30s (5) IODSSR=0 
+RTCM 4073   CSSR          ST2  Epoch=54:05 (3245) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=54:05 (3245) UI= 5s (2) IODSSR=15
+RTCM 4073   CSSR          ST7  Epoch=54:10 (3250) UI=30s (5) IODSSR=15
+RTCM 4073   CSSR          ST3  Epoch=54:10 (3250) UI= 5s (2) IODSSR=15

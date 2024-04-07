@@ -198,7 +198,7 @@ if __name__ == '__main__':
         os.dup2(devnull, sys.stdout.fileno())
         sys.exit(1)
     except KeyboardInterrupt:
-        libtracce.warn("User break - terminated")
+        libtrace.warn("User break - terminated")
         sys.exit()
 
 # EOF

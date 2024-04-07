@@ -22,6 +22,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
+import libeph
 import libgnsstime
 import libtrace
 from   librtcm     import rtk_crc24q
@@ -54,49 +55,49 @@ TSM_STAT_UTC = [  # ref.[2], Table 7 and Table 4
     "Monitoring not available",
 ]
 
-def decode_word1(df):
+def decode_word1(df, e=libeph.EphRaw()):
     ''' returns decoded values
     '''
-    iodn = df.read(10)  # issue of data - nav
-    t0e  = df.read(14)  # t0e
-    m0   = df.read(32)  # m0
-    e    = df.read(32)  # e
-    a12  = df.read(32)  # sqrt(A)
+    e.iodn = df.read(10)  # issue of data - nav
+    e.t0e  = df.read(14)  # t0e
+    e.m0   = df.read(32)  # m0
+    e.e    = df.read(32)  # e
+    e.a12  = df.read(32)  # sqrt(A)
     df.pos += 2         # reserved
 
-def decode_word2(df):
+def decode_word2(df, e=libeph.EphRaw()):
     ''' returns decoded values
     '''
-    iodn = df.read(10)  # issue of data - nav
-    omg0 = df.read(32)  # omg0
-    i0   = df.read(32)  # i0
-    omg  = df.read(32)  # omg
-    idot = df.read(14)  # idot
+    e.iodn = df.read(10)  # issue of data - nav
+    e.omg0 = df.read(32)  # omg0
+    e.i0   = df.read(32)  # i0
+    e.omg  = df.read(32)  # omg
+    e.idot = df.read(14)  # idot
     df.pos += 2         # reserved
 
-def decode_word3(df):
+def decode_word3(df, e=libeph.EphRaw()):
     ''' returns decoded values
     '''
-    iodn = df.read(10)  # issue of data - nav
-    omgd = df.read(24)  # omgd
-    dn   = df.read(16)  # delta_n
-    cuc  = df.read(16)  # cuc
-    cus  = df.read(16)  # cus
-    crc  = df.read(16)  # crc
-    crs  = df.read(16)  # crs
-    se5b = df.read( 8)  # SISA(E1, E5b)
+    e.iodn = df.read(10)  # issue of data - nav
+    e.omgd = df.read(24)  # omgd
+    e.dn   = df.read(16)  # delta_n
+    e.cuc  = df.read(16)  # cuc
+    e.cus  = df.read(16)  # cus
+    e.crc  = df.read(16)  # crc
+    e.crs  = df.read(16)  # crs
+    e.se5b = df.read( 8)  # SISA(E1, E5b)
 
-def decode_word4(df):
+def decode_word4(df, e=libeph.EphRaw()):
     ''' returns decoded values
     '''
-    iodn  = df.read(10)  # issue of data - nav
-    svid4 = df.read( 6)  # SVID
-    cic   = df.read(16)  # cic
-    cis   = df.read(16)  # cis
-    t0c   = df.read(14)  # t0c
-    af0   = df.read(31)  # af0
-    af1   = df.read(21)  # af1
-    af2   = df.read( 6)  # af2
+    e.iodn  = df.read(10)  # issue of data - nav
+    e.svid4 = df.read( 6)  # SVID
+    e.cic   = df.read(16)  # cic
+    e.cis   = df.read(16)  # cis
+    e.t0c   = df.read(14)  # t0c
+    e.af0   = df.read(31)  # af0
+    e.af1   = df.read(21)  # af1
+    e.af2   = df.read( 6)  # af2
     df.pos += 2          # spare
 
 def decode_word5(df):
@@ -331,44 +332,43 @@ class GalInav:
         ''' returns when there is a decoded message
             search and rescue (SAR), ref.[1], sect.4.3.8
         '''
-        start = sar.read( 1)
+        start = sar.read( 1)  # start indicator: 1=start, 0=continuation
         sl    = sar.read( 1)  # short/long identifier: 0=short, 1=long
         data  = sar.read(20)  # SAR return link message (RLM)
-        if start:             # the first message part
+        if start.u:                       # the first message part
             self.sar_part  [svid] = 1     # part number: 0=not ready
-            self.sar_sl    [svid] = sl    # store short/long identifier
+            self.sar_sl    [svid] = sl.u  # store short/long identifier
             self.sar_beacon[svid] = data  # SAR first part is for beacon ID
-            return f""
+            return ""                     # we cannot distinguish this is the first part or no message
         elif self.sar_part[svid] == 0:    # if SAR reception is not ready
-            return ""                     # ignore this message
-        if sl != self.sar_sl[svid]:    # disagreement in SAR short/long ident.
-            self.sar_part  [svid] = 0  # clear all states
-            self.sar_sl    [svid] = sl
+            return ""
+        if sl.u != self.sar_sl[svid]:     # disagreement in current and previous short/long ident.
+            self.sar_part  [svid] = 0     # clear all states
+            self.sar_sl    [svid] = sl.u
             self.sar_beacon[svid] = bitstring.BitStream()
             self.sar_param [svid] = bitstring.BitStream()
             return ""
         self.sar_part[svid] += 1
-        if self.sar_part[svid] <= 3:    # message part 2 and 3 is for beacon ID
+        msg = f"\nSAR E{svid:02d} {'long' if self.sar_sl else 'short'} part {self.sar_part[svid]}"
+        if   self.sar_part[svid] <= 3:  # message part 2 and 3 is for beacon ID
             self.sar_beacon[svid] += data
-            return f"\nSAR {'long' if self.sar_sl else 'short'} part {self.sar_part[svid]}"
+            return msg
         elif self.sar_part[svid] == 4:  # message part 4 is for code and param.
             self.sar_code [svid] = data.read('u4')  # message code
             self.sar_param[svid] = data.read(16)    # parameter
-            msg = f"\nSAR {'long' if self.sar_sl else 'short'} part {self.sar_part[svid]}"
             if self.sar_sl[svid] == 0:  # SAR short message 
-                msg += f'\nSAR E{svid:02d} beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
+                msg += f' beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
                 self.sar_part  [svid] = 0  # clear all states
-                self.sar_sl    [svid] = sl
+                self.sar_sl    [svid] = sl.u
                 self.sar_beacon[svid] = bitstring.BitStream()
                 self.sar_param [svid] = bitstring.BitStream()
             return msg
         self.sar_param[svid] += data  # message parts 5-8 are for parameter
-        msg = f"\nSAR {'long' if self.sar_sl else 'short'} part {self.sar_part[svid]}"
-        if self.sar_part[svid] < 8:  # SAR long message
+        if self.sar_part[svid] < 8:   # SAR long message
             return msg
-        msg += f'\nSAR E{svid:02d} beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
+        msg += f' beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
         self.sar_part  [svid] = 0  # clear all states
-        self.sar_sl    [svid] = sl
+        self.sar_sl    [svid] = sl.u
         self.sar_beacon[svid] = bitstring.BitStream()
         self.sar_param [svid] = bitstring.BitStream()
         return msg
@@ -378,15 +378,15 @@ class GalInav:
             svid: 1-36
             inav: 228-bit long
         '''
-        eo1   = inav.read(  1)  # Even/Odd --- should be 0 (even)
-        pt1   = inav.read(  1)  # page type
+        eo1   = inav.read(  1)  # Even/Odd, should be 0 (even)
+        pt1   = inav.read(  1)  # page type, should be 0 (normal)
         df1   = inav.read(112)  # data 1/2
-        eo2   = inav.read(  1)  # Even/Odd --- should be 1 (odd)
-        pt2   = inav.read(  1)  # page type
+        eo2   = inav.read(  1)  # Even/Odd, should be 1 (odd)
+        pt2   = inav.read(  1)  # page type, should be 0 (normal)
         df2   = inav.read( 16)  # data 2/2
         osnma = inav.read( 40)  # OSNMA
         sar   = inav.read( 22)  # SAR (search and rescue)
-        spare = inav.read(  2)  # spare
+        inav.pos += 2           # spare
         crc   = inav.read( 24)  # CRC
         ssp   = inav.read(  8)  # SSP (secondary synchronization pattern)
         df    = df1 + df2       # data field
@@ -406,7 +406,7 @@ class GalInav:
             return msg + self.trace.msg(0, f'Word {wt:2d} CRC error: {crc_frame.hex()} != {crc.hex}', fg='red')
         if eo1.u != 0 or eo2.u != 1:
             return msg + self.trace.msg(0, 'Even/Odd page error', fg='red')
-        if pt1 or pt2:
+        if pt1.u or pt2.u:
             return msg + self.trace.msg(0, 'Alert page', fg='red')
 # --- word type ---
         msg += self.trace.msg(0, f'Word {wt:2d} ', fg='yellow')

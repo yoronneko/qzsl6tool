@@ -195,8 +195,6 @@ ST6 J04 L5 I+Q        phase_bias= -1.073m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=12 ngrid=2
 ST12 Trop quality=7 correct_type(0-2)=0 t00=0.512m
 ST12 Trop offset=0.200m
-ST12 Trop grid  1/ 2 residual=  0.000m (6bit)
-ST12 Trop grid  2/ 2 residual=  0.000m (6bit)
 ST12 STEC G10 quality=20 type=0 c00=64.450TECU
 ST12 STEC G10 grid  1/ 2 residual= 0.240TECU (4bit)
 ST12 STEC G10 grid  2/ 2 residual=-0.240TECU (4bit)
@@ -291,17 +289,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.489m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=2 ngrid=11
 ST12 Trop quality=15 correct_type(0-2)=0 t00=0.176m
 ST12 Trop offset=0.180m
-ST12 Trop grid  1/11 residual=  0.000m (6bit)
-ST12 Trop grid  2/11 residual=  0.000m (6bit)
-ST12 Trop grid  3/11 residual=  0.000m (6bit)
-ST12 Trop grid  4/11 residual=  0.000m (6bit)
-ST12 Trop grid  5/11 residual=  0.000m (6bit)
-ST12 Trop grid  6/11 residual=  0.000m (6bit)
-ST12 Trop grid  7/11 residual=  0.000m (6bit)
-ST12 Trop grid  8/11 residual=  0.000m (6bit)
-ST12 Trop grid  9/11 residual=  0.000m (6bit)
-ST12 Trop grid 10/11 residual=  0.000m (6bit)
-ST12 Trop grid 11/11 residual=  0.000m (6bit)
 ST12 STEC G10 quality=23 type=1 c00=41.550TECU c01= 0.860TECU/deg c10= 0.560TECU/deg
 ST12 STEC G10 grid  1/11 residual=-0.040TECU (4bit)
 ST12 STEC G10 grid  2/11 residual= 0.080TECU (4bit)
@@ -572,38 +559,6 @@ ST6 J04 L5 I+Q        phase_bias= -0.961m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=3 ngrid=32
 ST12 Trop quality=6 correct_type(0-2)=1 t00=-0.068m t01=-0.028m/deg t10=-0.008m/deg
 ST12 Trop offset=0.160m
-ST12 Trop grid  1/32 residual=  0.000m (6bit)
-ST12 Trop grid  2/32 residual=  0.000m (6bit)
-ST12 Trop grid  3/32 residual=  0.000m (6bit)
-ST12 Trop grid  4/32 residual=  0.000m (6bit)
-ST12 Trop grid  5/32 residual=  0.000m (6bit)
-ST12 Trop grid  6/32 residual=  0.000m (6bit)
-ST12 Trop grid  7/32 residual=  0.000m (6bit)
-ST12 Trop grid  8/32 residual=  0.000m (6bit)
-ST12 Trop grid  9/32 residual=  0.000m (6bit)
-ST12 Trop grid 10/32 residual=  0.000m (6bit)
-ST12 Trop grid 11/32 residual=  0.000m (6bit)
-ST12 Trop grid 12/32 residual=  0.000m (6bit)
-ST12 Trop grid 13/32 residual=  0.000m (6bit)
-ST12 Trop grid 14/32 residual=  0.000m (6bit)
-ST12 Trop grid 15/32 residual=  0.000m (6bit)
-ST12 Trop grid 16/32 residual=  0.000m (6bit)
-ST12 Trop grid 17/32 residual=  0.000m (6bit)
-ST12 Trop grid 18/32 residual=  0.000m (6bit)
-ST12 Trop grid 19/32 residual=  0.000m (6bit)
-ST12 Trop grid 20/32 residual=  0.000m (6bit)
-ST12 Trop grid 21/32 residual=  0.000m (6bit)
-ST12 Trop grid 22/32 residual=  0.000m (6bit)
-ST12 Trop grid 23/32 residual=  0.000m (6bit)
-ST12 Trop grid 24/32 residual=  0.000m (6bit)
-ST12 Trop grid 25/32 residual=  0.000m (6bit)
-ST12 Trop grid 26/32 residual=  0.000m (6bit)
-ST12 Trop grid 27/32 residual=  0.000m (6bit)
-ST12 Trop grid 28/32 residual=  0.000m (6bit)
-ST12 Trop grid 29/32 residual=  0.000m (6bit)
-ST12 Trop grid 30/32 residual=  0.000m (6bit)
-ST12 Trop grid 31/32 residual=  0.000m (6bit)
-ST12 Trop grid 32/32 residual=  0.000m (6bit)
 ST12 STEC G10 quality=1c type=1 c00=48.450TECU c01= 1.440TECU/deg c10= 0.260TECU/deg
 ST12 STEC G10 grid  1/32 residual= 0.000TECU (4bit)
 ST12 STEC G10 grid  2/32 residual=-0.120TECU (4bit)
@@ -1184,21 +1139,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.147m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=4 ngrid=15
 ST12 Trop quality=10 correct_type(0-2)=0 t00=-0.052m
 ST12 Trop offset=0.160m
-ST12 Trop grid  1/15 residual=  0.000m (6bit)
-ST12 Trop grid  2/15 residual=  0.000m (6bit)
-ST12 Trop grid  3/15 residual=  0.000m (6bit)
-ST12 Trop grid  4/15 residual=  0.000m (6bit)
-ST12 Trop grid  5/15 residual=  0.000m (6bit)
-ST12 Trop grid  6/15 residual=  0.000m (6bit)
-ST12 Trop grid  7/15 residual=  0.000m (6bit)
-ST12 Trop grid  8/15 residual=  0.000m (6bit)
-ST12 Trop grid  9/15 residual=  0.000m (6bit)
-ST12 Trop grid 10/15 residual=  0.000m (6bit)
-ST12 Trop grid 11/15 residual=  0.000m (6bit)
-ST12 Trop grid 12/15 residual=  0.000m (6bit)
-ST12 Trop grid 13/15 residual=  0.000m (6bit)
-ST12 Trop grid 14/15 residual=  0.000m (6bit)
-ST12 Trop grid 15/15 residual=  0.000m (6bit)
 ST12 STEC G10 quality=1a type=1 c00=49.600TECU c01= 1.460TECU/deg c10= 0.120TECU/deg
 ST12 STEC G10 grid  1/15 residual= 0.040TECU (4bit)
 ST12 STEC G10 grid  2/15 residual= 0.040TECU (4bit)
@@ -1542,21 +1482,6 @@ ST6 J04 L5 I+Q        phase_bias= -1.608m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=5 ngrid=15
 ST12 Trop quality=8 correct_type(0-2)=0 t00=-0.040m
 ST12 Trop offset=0.140m
-ST12 Trop grid  1/15 residual=  0.000m (6bit)
-ST12 Trop grid  2/15 residual=  0.000m (6bit)
-ST12 Trop grid  3/15 residual=  0.000m (6bit)
-ST12 Trop grid  4/15 residual=  0.000m (6bit)
-ST12 Trop grid  5/15 residual=  0.000m (6bit)
-ST12 Trop grid  6/15 residual=  0.000m (6bit)
-ST12 Trop grid  7/15 residual=  0.000m (6bit)
-ST12 Trop grid  8/15 residual=  0.000m (6bit)
-ST12 Trop grid  9/15 residual=  0.000m (6bit)
-ST12 Trop grid 10/15 residual=  0.000m (6bit)
-ST12 Trop grid 11/15 residual=  0.000m (6bit)
-ST12 Trop grid 12/15 residual=  0.000m (6bit)
-ST12 Trop grid 13/15 residual=  0.000m (6bit)
-ST12 Trop grid 14/15 residual=  0.000m (6bit)
-ST12 Trop grid 15/15 residual=  0.000m (6bit)
 ST12 STEC G10 quality=22 type=1 c00=44.650TECU c01= 1.220TECU/deg c10= 0.560TECU/deg
 ST12 STEC G10 grid  1/15 residual=-0.160TECU (4bit)
 ST12 STEC G10 grid  2/15 residual= 0.000TECU (4bit)
@@ -1861,33 +1786,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.685m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=6 ngrid=27
 ST12 Trop quality=9 correct_type(0-2)=0 t00=-0.052m
 ST12 Trop offset=0.140m
-ST12 Trop grid  1/27 residual=  0.000m (6bit)
-ST12 Trop grid  2/27 residual=  0.000m (6bit)
-ST12 Trop grid  3/27 residual=  0.000m (6bit)
-ST12 Trop grid  4/27 residual=  0.000m (6bit)
-ST12 Trop grid  5/27 residual=  0.000m (6bit)
-ST12 Trop grid  6/27 residual=  0.000m (6bit)
-ST12 Trop grid  7/27 residual=  0.000m (6bit)
-ST12 Trop grid  8/27 residual=  0.000m (6bit)
-ST12 Trop grid  9/27 residual=  0.000m (6bit)
-ST12 Trop grid 10/27 residual=  0.000m (6bit)
-ST12 Trop grid 11/27 residual=  0.000m (6bit)
-ST12 Trop grid 12/27 residual=  0.000m (6bit)
-ST12 Trop grid 13/27 residual=  0.000m (6bit)
-ST12 Trop grid 14/27 residual=  0.000m (6bit)
-ST12 Trop grid 15/27 residual=  0.000m (6bit)
-ST12 Trop grid 16/27 residual=  0.000m (6bit)
-ST12 Trop grid 17/27 residual=  0.000m (6bit)
-ST12 Trop grid 18/27 residual=  0.000m (6bit)
-ST12 Trop grid 19/27 residual=  0.000m (6bit)
-ST12 Trop grid 20/27 residual=  0.000m (6bit)
-ST12 Trop grid 21/27 residual=  0.000m (6bit)
-ST12 Trop grid 22/27 residual=  0.000m (6bit)
-ST12 Trop grid 23/27 residual=  0.000m (6bit)
-ST12 Trop grid 24/27 residual=  0.000m (6bit)
-ST12 Trop grid 25/27 residual=  0.000m (6bit)
-ST12 Trop grid 26/27 residual=  0.000m (6bit)
-ST12 Trop grid 27/27 residual=  0.000m (6bit)
 ST12 STEC G22 quality=21 type=1 c00= 8.800TECU c01= 0.500TECU/deg c10= 0.300TECU/deg
 ST12 STEC G22 grid  1/27 residual= 0.000TECU (4bit)
 ST12 STEC G22 grid  2/27 residual= 0.080TECU (4bit)
@@ -2394,28 +2292,6 @@ ST6 J04 L5 I+Q        phase_bias=  0.401m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=7 ngrid=22
 ST12 Trop quality=7 correct_type(0-2)=0 t00=-0.012m
 ST12 Trop offset=0.140m
-ST12 Trop grid  1/22 residual=  0.000m (6bit)
-ST12 Trop grid  2/22 residual=  0.000m (6bit)
-ST12 Trop grid  3/22 residual=  0.000m (6bit)
-ST12 Trop grid  4/22 residual=  0.000m (6bit)
-ST12 Trop grid  5/22 residual=  0.000m (6bit)
-ST12 Trop grid  6/22 residual=  0.000m (6bit)
-ST12 Trop grid  7/22 residual=  0.000m (6bit)
-ST12 Trop grid  8/22 residual=  0.000m (6bit)
-ST12 Trop grid  9/22 residual=  0.000m (6bit)
-ST12 Trop grid 10/22 residual=  0.000m (6bit)
-ST12 Trop grid 11/22 residual=  0.000m (6bit)
-ST12 Trop grid 12/22 residual=  0.000m (6bit)
-ST12 Trop grid 13/22 residual=  0.000m (6bit)
-ST12 Trop grid 14/22 residual=  0.000m (6bit)
-ST12 Trop grid 15/22 residual=  0.000m (6bit)
-ST12 Trop grid 16/22 residual=  0.000m (6bit)
-ST12 Trop grid 17/22 residual=  0.000m (6bit)
-ST12 Trop grid 18/22 residual=  0.000m (6bit)
-ST12 Trop grid 19/22 residual=  0.000m (6bit)
-ST12 Trop grid 20/22 residual=  0.000m (6bit)
-ST12 Trop grid 21/22 residual=  0.000m (6bit)
-ST12 Trop grid 22/22 residual=  0.000m (6bit)
 ST12 STEC G22 quality=1f type=1 c00= 7.600TECU c01= 0.040TECU/deg c10= 0.520TECU/deg
 ST12 STEC G22 grid  1/22 residual=-0.040TECU (4bit)
 ST12 STEC G22 grid  2/22 residual= 0.000TECU (4bit)
@@ -2811,26 +2687,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.341m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=8 ngrid=20
 ST12 Trop quality=11 correct_type(0-2)=0 t00=0.000m
 ST12 Trop offset=0.120m
-ST12 Trop grid  1/20 residual=  0.000m (6bit)
-ST12 Trop grid  2/20 residual=  0.000m (6bit)
-ST12 Trop grid  3/20 residual=  0.000m (6bit)
-ST12 Trop grid  4/20 residual=  0.000m (6bit)
-ST12 Trop grid  5/20 residual=  0.000m (6bit)
-ST12 Trop grid  6/20 residual=  0.000m (6bit)
-ST12 Trop grid  7/20 residual=  0.000m (6bit)
-ST12 Trop grid  8/20 residual=  0.000m (6bit)
-ST12 Trop grid  9/20 residual=  0.000m (6bit)
-ST12 Trop grid 10/20 residual=  0.000m (6bit)
-ST12 Trop grid 11/20 residual=  0.000m (6bit)
-ST12 Trop grid 12/20 residual=  0.000m (6bit)
-ST12 Trop grid 13/20 residual=  0.000m (6bit)
-ST12 Trop grid 14/20 residual=  0.000m (6bit)
-ST12 Trop grid 15/20 residual=  0.000m (6bit)
-ST12 Trop grid 16/20 residual=  0.000m (6bit)
-ST12 Trop grid 17/20 residual=  0.000m (6bit)
-ST12 Trop grid 18/20 residual=  0.000m (6bit)
-ST12 Trop grid 19/20 residual=  0.000m (6bit)
-ST12 Trop grid 20/20 residual=  0.000m (6bit)
 ST12 STEC G12 quality=21 type=1 c00=49.750TECU c01=-1.940TECU/deg c10=-0.120TECU/deg
 ST12 STEC G12 grid  1/20 residual= 0.000TECU (4bit)
 ST12 STEC G12 grid  2/20 residual=-0.120TECU (4bit)
@@ -3252,24 +3108,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.359m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=9 ngrid=18
 ST12 Trop quality=10 correct_type(0-2)=0 t00=-0.036m
 ST12 Trop offset=0.120m
-ST12 Trop grid  1/18 residual=  0.000m (6bit)
-ST12 Trop grid  2/18 residual=  0.000m (6bit)
-ST12 Trop grid  3/18 residual=  0.000m (6bit)
-ST12 Trop grid  4/18 residual=  0.000m (6bit)
-ST12 Trop grid  5/18 residual=  0.000m (6bit)
-ST12 Trop grid  6/18 residual=  0.000m (6bit)
-ST12 Trop grid  7/18 residual=  0.000m (6bit)
-ST12 Trop grid  8/18 residual=  0.000m (6bit)
-ST12 Trop grid  9/18 residual=  0.000m (6bit)
-ST12 Trop grid 10/18 residual=  0.000m (6bit)
-ST12 Trop grid 11/18 residual=  0.000m (6bit)
-ST12 Trop grid 12/18 residual=  0.000m (6bit)
-ST12 Trop grid 13/18 residual=  0.000m (6bit)
-ST12 Trop grid 14/18 residual=  0.000m (6bit)
-ST12 Trop grid 15/18 residual=  0.000m (6bit)
-ST12 Trop grid 16/18 residual=  0.000m (6bit)
-ST12 Trop grid 17/18 residual=  0.000m (6bit)
-ST12 Trop grid 18/18 residual=  0.000m (6bit)
 ST12 STEC G12 quality=1f type=2 c00=42.950TECU c01=-3.180TECU/deg c10=-0.960TECU/deg c11= 0.400TECU/deg^2
 ST12 STEC G12 grid  1/18 residual=-0.080TECU (4bit)
 ST12 STEC G12 grid  2/18 residual= 0.120TECU (4bit)
@@ -3603,29 +3441,6 @@ ST6 J04 L5 I+Q        phase_bias= -1.958m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=10 ngrid=23
 ST12 Trop quality=7 correct_type(0-2)=0 t00=-0.068m
 ST12 Trop offset=0.100m
-ST12 Trop grid  1/23 residual=  0.000m (6bit)
-ST12 Trop grid  2/23 residual=  0.000m (6bit)
-ST12 Trop grid  3/23 residual=  0.000m (6bit)
-ST12 Trop grid  4/23 residual=  0.000m (6bit)
-ST12 Trop grid  5/23 residual=  0.000m (6bit)
-ST12 Trop grid  6/23 residual=  0.000m (6bit)
-ST12 Trop grid  7/23 residual=  0.000m (6bit)
-ST12 Trop grid  8/23 residual=  0.000m (6bit)
-ST12 Trop grid  9/23 residual=  0.000m (6bit)
-ST12 Trop grid 10/23 residual=  0.000m (6bit)
-ST12 Trop grid 11/23 residual=  0.000m (6bit)
-ST12 Trop grid 12/23 residual=  0.000m (6bit)
-ST12 Trop grid 13/23 residual=  0.000m (6bit)
-ST12 Trop grid 14/23 residual=  0.000m (6bit)
-ST12 Trop grid 15/23 residual=  0.000m (6bit)
-ST12 Trop grid 16/23 residual=  0.000m (6bit)
-ST12 Trop grid 17/23 residual=  0.000m (6bit)
-ST12 Trop grid 18/23 residual=  0.000m (6bit)
-ST12 Trop grid 19/23 residual=  0.000m (6bit)
-ST12 Trop grid 20/23 residual=  0.000m (6bit)
-ST12 Trop grid 21/23 residual=  0.000m (6bit)
-ST12 Trop grid 22/23 residual=  0.000m (6bit)
-ST12 Trop grid 23/23 residual=  0.000m (6bit)
 ST12 STEC G12 quality=22 type=1 c00=31.900TECU c01=-3.640TECU/deg c10= 0.240TECU/deg
 ST12 STEC G12 grid  1/23 residual= 0.080TECU (4bit)
 ST12 STEC G12 grid  2/23 residual= 0.040TECU (4bit)
@@ -4072,25 +3887,6 @@ ST6 J04 L5 I+Q        phase_bias= -1.760m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=11 ngrid=19
 ST12 Trop quality=7 correct_type(0-2)=0 t00=-0.056m
 ST12 Trop offset=0.080m
-ST12 Trop grid  1/19 residual=  0.000m (6bit)
-ST12 Trop grid  2/19 residual=  0.000m (6bit)
-ST12 Trop grid  3/19 residual=  0.000m (6bit)
-ST12 Trop grid  4/19 residual=  0.000m (6bit)
-ST12 Trop grid  5/19 residual=  0.000m (6bit)
-ST12 Trop grid  6/19 residual=  0.000m (6bit)
-ST12 Trop grid  7/19 residual=  0.000m (6bit)
-ST12 Trop grid  8/19 residual=  0.000m (6bit)
-ST12 Trop grid  9/19 residual=  0.000m (6bit)
-ST12 Trop grid 10/19 residual=  0.000m (6bit)
-ST12 Trop grid 11/19 residual=  0.000m (6bit)
-ST12 Trop grid 12/19 residual=  0.000m (6bit)
-ST12 Trop grid 13/19 residual=  0.000m (6bit)
-ST12 Trop grid 14/19 residual=  0.000m (6bit)
-ST12 Trop grid 15/19 residual=  0.000m (6bit)
-ST12 Trop grid 16/19 residual=  0.000m (6bit)
-ST12 Trop grid 17/19 residual=  0.000m (6bit)
-ST12 Trop grid 18/19 residual=  0.000m (6bit)
-ST12 Trop grid 19/19 residual=  0.000m (6bit)
 ST12 STEC G12 quality=1e type=1 c00=20.000TECU c01=-3.640TECU/deg c10= 0.340TECU/deg
 ST12 STEC G12 grid  1/19 residual= 0.360TECU (4bit)
 ST12 STEC G12 grid  2/19 residual= 0.360TECU (4bit)
@@ -4440,14 +4236,6 @@ ST6 J04 L5 I+Q        code_bias= -0.200m phase_bias= -1.641m discont_indi=3
 ST12 tropo=0b11 stec=0b11 NID=1 ngrid=8
 ST12 Trop quality=1 correct_type(0-2)=0 t00=0.144m
 ST12 Trop offset=0.200m
-ST12 Trop grid  1/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  2/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  3/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  4/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  5/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  6/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  7/ 8 residual=  0.000m (6bit)
-ST12 Trop grid  8/ 8 residual=  0.000m (6bit)
 ST12 STEC G10 quality=21 type=1 c00=35.400TECU c01= 0.780TECU/deg c10= 0.580TECU/deg
 ST12 STEC G10 grid  1/ 8 residual= 0.080TECU (4bit)
 ST12 STEC G10 grid  2/ 8 residual= 0.000TECU (4bit)
@@ -4770,8 +4558,6 @@ ST6 J04 L5 I+Q        phase_bias= -1.047m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=12 ngrid=2
 ST12 Trop quality=7 correct_type(0-2)=0 t00=0.516m
 ST12 Trop offset=0.200m
-ST12 Trop grid  1/ 2 residual=  0.000m (6bit)
-ST12 Trop grid  2/ 2 residual=  0.000m (6bit)
 ST12 STEC G10 quality=1d type=0 c00=65.250TECU
 ST12 STEC G10 grid  1/ 2 residual= 0.280TECU (4bit)
 ST12 STEC G10 grid  2/ 2 residual=-0.280TECU (4bit)
@@ -4866,17 +4652,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.497m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=2 ngrid=11
 ST12 Trop quality=15 correct_type(0-2)=0 t00=0.176m
 ST12 Trop offset=0.180m
-ST12 Trop grid  1/11 residual=  0.000m (6bit)
-ST12 Trop grid  2/11 residual=  0.000m (6bit)
-ST12 Trop grid  3/11 residual=  0.000m (6bit)
-ST12 Trop grid  4/11 residual=  0.000m (6bit)
-ST12 Trop grid  5/11 residual=  0.000m (6bit)
-ST12 Trop grid  6/11 residual=  0.000m (6bit)
-ST12 Trop grid  7/11 residual=  0.000m (6bit)
-ST12 Trop grid  8/11 residual=  0.000m (6bit)
-ST12 Trop grid  9/11 residual=  0.000m (6bit)
-ST12 Trop grid 10/11 residual=  0.000m (6bit)
-ST12 Trop grid 11/11 residual=  0.000m (6bit)
 ST12 STEC G10 quality=23 type=1 c00=41.700TECU c01= 0.880TECU/deg c10= 0.560TECU/deg
 ST12 STEC G10 grid  1/11 residual=-0.040TECU (4bit)
 ST12 STEC G10 grid  2/11 residual= 0.120TECU (4bit)
@@ -5147,38 +4922,6 @@ ST6 J04 L5 I+Q        phase_bias= -0.961m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=3 ngrid=32
 ST12 Trop quality=6 correct_type(0-2)=1 t00=-0.064m t01=-0.028m/deg t10=-0.008m/deg
 ST12 Trop offset=0.160m
-ST12 Trop grid  1/32 residual=  0.000m (6bit)
-ST12 Trop grid  2/32 residual=  0.000m (6bit)
-ST12 Trop grid  3/32 residual=  0.000m (6bit)
-ST12 Trop grid  4/32 residual=  0.000m (6bit)
-ST12 Trop grid  5/32 residual=  0.000m (6bit)
-ST12 Trop grid  6/32 residual=  0.000m (6bit)
-ST12 Trop grid  7/32 residual=  0.000m (6bit)
-ST12 Trop grid  8/32 residual=  0.000m (6bit)
-ST12 Trop grid  9/32 residual=  0.000m (6bit)
-ST12 Trop grid 10/32 residual=  0.000m (6bit)
-ST12 Trop grid 11/32 residual=  0.000m (6bit)
-ST12 Trop grid 12/32 residual=  0.000m (6bit)
-ST12 Trop grid 13/32 residual=  0.000m (6bit)
-ST12 Trop grid 14/32 residual=  0.000m (6bit)
-ST12 Trop grid 15/32 residual=  0.000m (6bit)
-ST12 Trop grid 16/32 residual=  0.000m (6bit)
-ST12 Trop grid 17/32 residual=  0.000m (6bit)
-ST12 Trop grid 18/32 residual=  0.000m (6bit)
-ST12 Trop grid 19/32 residual=  0.000m (6bit)
-ST12 Trop grid 20/32 residual=  0.000m (6bit)
-ST12 Trop grid 21/32 residual=  0.000m (6bit)
-ST12 Trop grid 22/32 residual=  0.000m (6bit)
-ST12 Trop grid 23/32 residual=  0.000m (6bit)
-ST12 Trop grid 24/32 residual=  0.000m (6bit)
-ST12 Trop grid 25/32 residual=  0.000m (6bit)
-ST12 Trop grid 26/32 residual=  0.000m (6bit)
-ST12 Trop grid 27/32 residual=  0.000m (6bit)
-ST12 Trop grid 28/32 residual=  0.000m (6bit)
-ST12 Trop grid 29/32 residual=  0.000m (6bit)
-ST12 Trop grid 30/32 residual=  0.000m (6bit)
-ST12 Trop grid 31/32 residual=  0.000m (6bit)
-ST12 Trop grid 32/32 residual=  0.000m (6bit)
 ST12 STEC G10 quality=20 type=1 c00=48.800TECU c01= 1.440TECU/deg c10= 0.260TECU/deg
 ST12 STEC G10 grid  1/32 residual= 0.000TECU (4bit)
 ST12 STEC G10 grid  2/32 residual= 0.000TECU (4bit)
@@ -5759,21 +5502,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.169m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=4 ngrid=15
 ST12 Trop quality=10 correct_type(0-2)=0 t00=-0.056m
 ST12 Trop offset=0.160m
-ST12 Trop grid  1/15 residual=  0.000m (6bit)
-ST12 Trop grid  2/15 residual=  0.000m (6bit)
-ST12 Trop grid  3/15 residual=  0.000m (6bit)
-ST12 Trop grid  4/15 residual=  0.000m (6bit)
-ST12 Trop grid  5/15 residual=  0.000m (6bit)
-ST12 Trop grid  6/15 residual=  0.000m (6bit)
-ST12 Trop grid  7/15 residual=  0.000m (6bit)
-ST12 Trop grid  8/15 residual=  0.000m (6bit)
-ST12 Trop grid  9/15 residual=  0.000m (6bit)
-ST12 Trop grid 10/15 residual=  0.000m (6bit)
-ST12 Trop grid 11/15 residual=  0.000m (6bit)
-ST12 Trop grid 12/15 residual=  0.000m (6bit)
-ST12 Trop grid 13/15 residual=  0.000m (6bit)
-ST12 Trop grid 14/15 residual=  0.000m (6bit)
-ST12 Trop grid 15/15 residual=  0.000m (6bit)
 ST12 STEC G10 quality=1b type=1 c00=50.100TECU c01= 1.460TECU/deg c10= 0.120TECU/deg
 ST12 STEC G10 grid  1/15 residual= 0.080TECU (4bit)
 ST12 STEC G10 grid  2/15 residual= 0.040TECU (4bit)
@@ -6117,21 +5845,6 @@ ST6 J04 L5 I+Q        phase_bias= -1.616m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=5 ngrid=15
 ST12 Trop quality=9 correct_type(0-2)=0 t00=-0.040m
 ST12 Trop offset=0.140m
-ST12 Trop grid  1/15 residual=  0.000m (6bit)
-ST12 Trop grid  2/15 residual=  0.000m (6bit)
-ST12 Trop grid  3/15 residual=  0.000m (6bit)
-ST12 Trop grid  4/15 residual=  0.000m (6bit)
-ST12 Trop grid  5/15 residual=  0.000m (6bit)
-ST12 Trop grid  6/15 residual=  0.000m (6bit)
-ST12 Trop grid  7/15 residual=  0.000m (6bit)
-ST12 Trop grid  8/15 residual=  0.000m (6bit)
-ST12 Trop grid  9/15 residual=  0.000m (6bit)
-ST12 Trop grid 10/15 residual=  0.000m (6bit)
-ST12 Trop grid 11/15 residual=  0.000m (6bit)
-ST12 Trop grid 12/15 residual=  0.000m (6bit)
-ST12 Trop grid 13/15 residual=  0.000m (6bit)
-ST12 Trop grid 14/15 residual=  0.000m (6bit)
-ST12 Trop grid 15/15 residual=  0.000m (6bit)
 ST12 STEC G10 quality=21 type=1 c00=44.950TECU c01= 1.220TECU/deg c10= 0.540TECU/deg
 ST12 STEC G10 grid  1/15 residual=-0.160TECU (4bit)
 ST12 STEC G10 grid  2/15 residual=-0.040TECU (4bit)
@@ -6436,33 +6149,6 @@ ST6 J04 L5 I+Q        phase_bias= -2.683m discont_indi=2
 ST12 tropo=0b11 stec=0b11 NID=6 ngrid=27
 ST12 Trop quality=8 correct_type(0-2)=0 t00=-0.052m
 ST12 Trop offset=0.140m
-ST12 Trop grid  1/27 residual=  0.000m (6bit)
-ST12 Trop grid  2/27 residual=  0.000m (6bit)
-ST12 Trop grid  3/27 residual=  0.000m (6bit)
-ST12 Trop grid  4/27 residual=  0.000m (6bit)
-ST12 Trop grid  5/27 residual=  0.000m (6bit)
-ST12 Trop grid  6/27 residual=  0.000m (6bit)
-ST12 Trop grid  7/27 residual=  0.000m (6bit)
-ST12 Trop grid  8/27 residual=  0.000m (6bit)
-ST12 Trop grid  9/27 residual=  0.000m (6bit)
-ST12 Trop grid 10/27 residual=  0.000m (6bit)
-ST12 Trop grid 11/27 residual=  0.000m (6bit)
-ST12 Trop grid 12/27 residual=  0.000m (6bit)
-ST12 Trop grid 13/27 residual=  0.000m (6bit)
-ST12 Trop grid 14/27 residual=  0.000m (6bit)
-ST12 Trop grid 15/27 residual=  0.000m (6bit)
-ST12 Trop grid 16/27 residual=  0.000m (6bit)
-ST12 Trop grid 17/27 residual=  0.000m (6bit)
-ST12 Trop grid 18/27 residual=  0.000m (6bit)
-ST12 Trop grid 19/27 residual=  0.000m (6bit)
-ST12 Trop grid 20/27 residual=  0.000m (6bit)
-ST12 Trop grid 21/27 residual=  0.000m (6bit)
-ST12 Trop grid 22/27 residual=  0.000m (6bit)
-ST12 Trop grid 23/27 residual=  0.000m (6bit)
-ST12 Trop grid 24/27 residual=  0.000m (6bit)
-ST12 Trop grid 25/27 residual=  0.000m (6bit)
-ST12 Trop grid 26/27 residual=  0.000m (6bit)
-ST12 Trop grid 27/27 residual=  0.000m (6bit)
 ST12 STEC G22 quality=21 type=1 c00= 8.850TECU c01= 0.500TECU/deg c10= 0.300TECU/deg
 ST12 STEC G22 grid  1/27 residual=-0.040TECU (4bit)
 ST12 STEC G22 grid  2/27 residual= 0.040TECU (4bit)
