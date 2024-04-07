@@ -101,7 +101,7 @@ class QzsL6:
         self.msg_ext  = "CNAV"    if (mtid >> 1) & 1 else "LNAV"
         self.sf_ind   = mtid & 1  # subframe indicator
         bdata         = bitstring.BitStream(data)
-        self.alert    = bdata[0:1].uint
+        self.alert    = bdata[0]
         self.dpart    = bdata[1:]
         return True
 

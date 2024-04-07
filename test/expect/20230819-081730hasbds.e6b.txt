@@ -180,9 +180,6 @@ CBIAS G08 L2 P          code_bias= -5.160m
 CBIAS G09 L1 C/A        code_bias= -1.940m
 CBIAS G09 L2 CL         code_bias= -2.560m
 CBIAS G09 L2 P          code_bias= -3.200m
-CBIAS G10 L1 C/A        code_bias=  0.000m
-CBIAS G10 L2 CL         code_bias=  0.000m
-CBIAS G10 L2 P          code_bias=  0.000m
 CBIAS G11 L1 C/A        code_bias=  0.740m
 CBIAS G11 L2 CL         code_bias=  1.820m
 CBIAS G11 L2 P          code_bias=  1.220m
@@ -381,12 +378,10 @@ CKFUL G06 d_clock=  1.470m (multiplier=1)
 CKFUL G07 d_clock=  1.123m (multiplier=1)
 CKFUL G08 d_clock= -2.065m (multiplier=1)
 CKFUL G09 d_clock=  0.357m (multiplier=1)
-CKFUL G10 d_clock=  0.000m (multiplier=1)
 CKFUL G11 d_clock=  0.118m (multiplier=1)
 CKFUL G12 d_clock=  0.475m (multiplier=1)
 CKFUL G13 d_clock=  0.685m (multiplier=1)
 CKFUL G14 d_clock= -0.350m (multiplier=1)
-CKFUL G15 d_clock=  0.000m (multiplier=1)
 CKFUL G16 d_clock= -0.285m (multiplier=1)
 CKFUL G17 d_clock=  0.255m (multiplier=1)
 CKFUL G18 d_clock= -0.065m (multiplier=1)
@@ -590,9 +585,6 @@ CBIAS G08 L2 P          code_bias= -5.160m
 CBIAS G09 L1 C/A        code_bias= -1.940m
 CBIAS G09 L2 CL         code_bias= -2.560m
 CBIAS G09 L2 P          code_bias= -3.200m
-CBIAS G10 L1 C/A        code_bias=  0.000m
-CBIAS G10 L2 CL         code_bias=  0.000m
-CBIAS G10 L2 P          code_bias=  0.000m
 CBIAS G11 L1 C/A        code_bias=  0.740m
 CBIAS G11 L2 CL         code_bias=  1.820m
 CBIAS G11 L2 P          code_bias=  1.220m
@@ -791,12 +783,10 @@ CKFUL G06 d_clock=  1.403m (multiplier=1)
 CKFUL G07 d_clock=  1.045m (multiplier=1)
 CKFUL G08 d_clock= -2.130m (multiplier=1)
 CKFUL G09 d_clock=  0.297m (multiplier=1)
-CKFUL G10 d_clock=  0.000m (multiplier=1)
 CKFUL G11 d_clock=  0.048m (multiplier=1)
 CKFUL G12 d_clock=  0.405m (multiplier=1)
 CKFUL G13 d_clock=  0.628m (multiplier=1)
 CKFUL G14 d_clock= -0.415m (multiplier=1)
-CKFUL G15 d_clock=  0.000m (multiplier=1)
 CKFUL G16 d_clock= -0.352m (multiplier=1)
 CKFUL G17 d_clock=  0.215m (multiplier=1)
 CKFUL G18 d_clock= -0.128m (multiplier=1)
@@ -1000,9 +990,6 @@ CBIAS G08 L2 P          code_bias= -5.160m
 CBIAS G09 L1 C/A        code_bias= -1.940m
 CBIAS G09 L2 CL         code_bias= -2.560m
 CBIAS G09 L2 P          code_bias= -3.200m
-CBIAS G10 L1 C/A        code_bias=  0.000m
-CBIAS G10 L2 CL         code_bias=  0.000m
-CBIAS G10 L2 P          code_bias=  0.000m
 CBIAS G11 L1 C/A        code_bias=  0.740m
 CBIAS G11 L2 CL         code_bias=  1.820m
 CBIAS G11 L2 P          code_bias=  1.220m
@@ -1201,12 +1188,10 @@ CKFUL G06 d_clock=  1.407m (multiplier=1)
 CKFUL G07 d_clock=  1.042m (multiplier=1)
 CKFUL G08 d_clock= -2.132m (multiplier=1)
 CKFUL G09 d_clock=  0.295m (multiplier=1)
-CKFUL G10 d_clock=  0.000m (multiplier=1)
 CKFUL G11 d_clock=  0.062m (multiplier=1)
 CKFUL G12 d_clock=  0.415m (multiplier=1)
 CKFUL G13 d_clock=  0.665m (multiplier=1)
 CKFUL G14 d_clock= -0.408m (multiplier=1)
-CKFUL G15 d_clock=  0.000m (multiplier=1)
 CKFUL G16 d_clock= -0.352m (multiplier=1)
 CKFUL G17 d_clock=  0.228m (multiplier=1)
 CKFUL G18 d_clock= -0.122m (multiplier=1)

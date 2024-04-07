@@ -216,8 +216,7 @@ class Rtcm:
         l1p  = payload.read('i16')  # L1 P code-phase bias, DF424
         l2ca = payload.read('i16')  # L2 C/A code-phase bias, DF425
         l2p  = payload.read('i16')  # L2 P  code-phase bias, DF426
-        vl1ca, vl1p, vl2ca, vl2p = l1ca*0.02, l1p*0.02, l2ca*0.02, l2p*0.02
-        disp_msg = f'L1CA={vl1ca} L1P={vl1p} L2CA={vl2ca} L2P={vl2p}'
+        disp_msg = f'L1CA={l1ca*0.02} L1P={l1p*0.02} L2CA={l2ca*0.02} L2P={l2p*0.02}'
         return disp_msg
 
 def send_rtcm(fp, rtcm_payload):

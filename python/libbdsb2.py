@@ -101,15 +101,6 @@ def sigmask2signame(satsys, sigmask):
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
     return signame
 
-def epoch2bdt(epoch):
-    ''' convert epoch to BDT time
-        epoch: epoch in second
-    '''
-    hour = epoch // 3600
-    min  = (epoch % 3600) // 60
-    sec  = epoch % 60
-    return f'{hour:02d}:{min:02d}:{sec:02d}'
-    # return f'{hour:02d}:{min:02d}:{sec:02d} ({epoch})'
 class BdsB2():
     epoch  = 0  # epoch in second within one BDT day
     iodssr = 0  # issue of data indicating configuration change of data generation
@@ -182,7 +173,7 @@ class BdsB2():
         iodp        = mesdata.read(  4).u
         self.mask   = mesdata.read(255)
         mesdata.pos += 174  # reserved
-        msg = self.trace.msg(0, f'MASK  {epoch2bdt(self.epoch)} IODSSR={self.iodssr} IODP={iodp}', fg='cyan')
+        msg = self.trace.msg(0, f'MASK  {libssr.epoch2time(self.epoch)} IODSSR={self.iodssr} IODP={iodp}', fg='cyan')
         if iodp != self.iodp:
             msg += self.trace.msg(0, ' (updated)', fg='yellow')
             self.iodp = iodp
@@ -200,7 +191,7 @@ class BdsB2():
         epoch     = mesdata.read(17).u
         mesdata.pos += 4  # reserved
         iodssr    = mesdata.read( 2).u
-        msg = self.trace.msg(0, f'ORBIT {epoch2bdt(epoch)} IODSSR={iodssr}', fg='cyan')
+        msg = self.trace.msg(0, f'ORBIT {libssr.epoch2time(epoch)} IODSSR={iodssr}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -227,7 +218,7 @@ class BdsB2():
         mesdata.pos += 4  # reserved
         iodssr    = mesdata.read( 2).u
         numsat    = mesdata.read( 5).u
-        msg = self.trace.msg(0, f'CODE  {epoch2bdt(epoch)} IODSSR={iodssr} numsat={numsat}', fg='cyan')
+        msg = self.trace.msg(0, f'CODE  {libssr.epoch2time(epoch)} IODSSR={iodssr} numsat={numsat}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -253,7 +244,7 @@ class BdsB2():
         iodssr   = mesdata.read( 2).u
         iodp     = mesdata.read( 4).u
         st1      = mesdata.read( 5).u
-        msg = self.trace.msg(0, f'CLOCK {epoch2bdt(epoch)} IODSSR={iodssr} IODP={iodp}', fg='cyan')
+        msg = self.trace.msg(0, f'CLOCK {libssr.epoch2time(epoch)} IODSSR={iodssr} IODP={iodp}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -283,7 +274,7 @@ class BdsB2():
         iodssr  = mesdata.read( 2).u
         iodp    = mesdata.read( 4).u
         st2     = mesdata.read( 3).u
-        msg = self.trace.msg(0, f'URA   {epoch2bdt(epoch)} IODSSR={iodssr} IODP={iodp}', fg='cyan')
+        msg = self.trace.msg(0, f'URA   {libssr.epoch2time(epoch)} IODSSR={iodssr} IODP={iodp}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -315,7 +306,7 @@ class BdsB2():
         iodssr = mesdata.read( 2).u
         iodp   = mesdata.read( 4).u
         slot_s = mesdata.read( 9).u
-        msg += self.trace.msg(1, f'\nCLOCK  {epoch2bdt(cepoch)} IODSSR={iodssr}', fg='cyan')
+        msg += self.trace.msg(1, f'\nCLOCK  {libssr.epoch2time(cepoch)} IODSSR={iodssr}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -331,7 +322,7 @@ class BdsB2():
         oepoch = mesdata.read(17).u
         mesdata.pos += 4  # reserved
         iodssr = mesdata.read( 2).u
-        msg += self.trace.msg(0, f'\nORBIT {epoch2bdt(oepoch)} IODSSR={iodssr}', fg='cyan')
+        msg += self.trace.msg(0, f'\nORBIT {libssr.epoch2time(oepoch)} IODSSR={iodssr}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -346,7 +337,10 @@ class BdsB2():
             urai    = mesdata.read( 6)
             if slot == 0:
                 continue
-            msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr:7d} {radial*0.0016:{libssr.FMT_ORB}} {along*0.0064:{libssr.FMT_ORB}} {cross*0.0064:{libssr.FMT_ORB}} {libssr.ura2dist(urai):{libssr.FMT_URA}}')
+            msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr:7d} {radial*0.0016:{libssr.FMT_ORB}} {along*0.0064:{libssr.FMT_ORB}} {cross*0.0064:{libssr.FMT_ORB}}')
+            accuracy = libssr.ura2dist(urai)
+            if accuracy != libssr.URA_INVALID:
+                msg += self.trace.msg(1, f'{accuracy:{libssr.FMT_URA}}')
         return msg
 
     def decode_b2b_7(self, mesdata):
@@ -359,7 +353,7 @@ class BdsB2():
         cepoch = mesdata.read(17).u
         mesdata.pos += 4
         iodssr = mesdata.read( 2).u
-        msg    = self.trace.msg(1, f'\nCLOCK  {epoch2bdt(cepoch)} IODSSR={iodssr}', fg='cyan')
+        msg    = self.trace.msg(1, f'\nCLOCK  {libssr.epoch2time(cepoch)} IODSSR={iodssr}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -374,7 +368,7 @@ class BdsB2():
         oepoch = mesdata.read(17).u
         mesdata.pos += 4
         iodssr = mesdata.read( 2).u
-        msg += self.trace.msg(0, f'\nORBIT {epoch2bdt(oepoch)} IODSSR={iodssr}', fg='cyan')
+        msg += self.trace.msg(0, f'\nORBIT {libssr.epoch2time(oepoch)} IODSSR={iodssr}', fg='cyan')
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
@@ -424,7 +418,7 @@ class BdsB2():
         sif1         = mesdata.read( 1).u
         aif1         = mesdata.read( 1).u
         sisma        = mesdata.read( 1).u
-        msg = self.trace.msg(0, f'EPH  {epoch2bdt(sow % 86400)}+{sow//86400} TOE={toe} sattype={sattype}', fg='cyan')
+        msg = self.trace.msg(0, f'EPH  {libssr.epoch2timedate(sow)} TOE={toe} sattype={sattype}', fg='cyan')
         return msg
 
     def decode_b2b_30(self, mesdata):

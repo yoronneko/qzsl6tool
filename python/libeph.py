@@ -25,96 +25,102 @@ C  = 299792458                  # Speed of light [m/s]
 
 class EphRaw:
     ''' raw ephemeris data '''
-    def __init__(self):
-        self.clear()
-
-    def clear(self):
-        ''' clears ephemeris data except for IODE '''
-        self.svid  = 0  # satellite id
-        self.m0    = 0  # mean anomaly at reference time
-        self.e     = 0  # eccentricity
-        self.a12   = 0  # square root of the semi-major axis
-        self.t0e   = 0  # ephemeris reference time
-        self.omg0  = 0  # longitude of ascending node of orbital plane
-        self.i0    = 0  # inclination angle at reference time
-        self.omg   = 0  # argument of perigee
-        self.idot  = 0  # rate of change of inclination angle
-        self.dn    = 0  # mean motion difference from computed value
-        self.omgd  = 0  # rate of change of right ascension
-        self.cuc   = 0  # cos harmonic correction term to the argument of latitude
-        self.cus   = 0  # sin harmonic correction term to the argument of latitude
-        self.crc   = 0  # cos harmonic correction term to the orbit radius
-        self.crs   = 0  # sin harmonic correction term to the orbit radius
-        self.cic   = 0  # cos harmonic correction term to the angle of inclination
-        self.cis   = 0  # sin harmonic correction term to the angle of inclination
-        self.t0c   = 0  # clock correction data reference TOW
-        self.af0   = 0  # SV clock bias correction coefficient
-        self.af1   = 0  # SV clock drift correction coefficient
-        self.af2   = 0  # SV clock drift rate correction coefficient
-        self.be5a  = 0  # E1-E5a broadcast group delay
-        self.be5b  = 0  # E1-E5b broadcast group delay
-        self.ai0   = 0  # effective ionisation level 1st order parameter
-        self.ai1   = 0  # effective ionisation level 2nd order parameter
-        self.a0    = 0  # constant term of polynomial
-        self.a1    = 0  # 1st order term of polynomial
-        self.dtls  = 0  # leap Second count before leap second adjustment
-        self.t0t   = 0  # UTC data reference TOW
-        self.wn0t  = 0  # UTC data reference week number
-        self.wnlsf = 0  # week number of leap second adjustment
-        self.dn    = 0  # day number at the end of which a leap second adjustment becomes effective
-        self.dtlsf = 0  # leap second count after leap second adjustment
-        self.a0g   = 0  # constant term of the polynomial describing the offset
-        self.a1g   = 0  # rate of change of the offset
-        self.t0g   = 0  # reference time for GGTO data
-        self.wn0g  = 0  # week number of GGTO reference
+    svid  = 0  # satellite id, DF009
+    wn    = 0  # week number, DF076
+    sva   = 0  # space vehicle accuracy, DF077
+    gpsc  = 0  # GPS code L2, DF078
+    idot  = 0  # rate of change of inclination angle, DF079
+    iode  = 0  # IODE, DF079
+    toc   = 0  # t_oc, DF081
+    af2   = 0  # SV clock drift rate correction coefficient, DF082
+    af1   = 0  # SV clock drift correction coefficient, DF083
+    af0   = 0  # SV clock bias correction coefficient, DF084
+    iodc  = 0  # IODC, DF805
+    crs   = 0  # sin harmonic correction term to the orbit radius, DF086
+    dn    = 0  # mean motion difference from computed value, DF087
+    m0    = 0  # mean anomaly at reference time, DF088
+    cuc   = 0  # cos harmonic correction term to the argument of latitude, DF089
+    e     = 0  # eccentricity, DF090
+    cus   = 0  # sin harmonic correction term to the argument of latitude, DF091
+    a12   = 0  # square root of the semi-major axis, DF092
+    toe   = 0  # t_oe, DF093
+    cic   = 0  # cos harmonic correction term to the angle of inclination, DF094
+    omg0  = 0  # longitude of ascending node of orbital plane, DF095
+    cis   = 0  # sin harmonic correction term to the angle of inclination, DF096
+    i0    = 0  # inclination angle at reference time, DF097
+    crc   = 0  # cos harmonic correction term to the orbit radius, DF098
+    omg   = 0  # argument of perigee, DF099
+    omgd  = 0  # rate of change of right ascension, DF100
+    tgd   = 0  # t_GD, DF101
+    svh   = 0  # SV health, DF102
+    l2p   = 0  # P flag, DF103
+    fi    = 0  # fit interval, DF137
+# GLO
+    fcn   = 0  # freq ch, DF040
+    iodn  = 0  # IODnav, DF209
+    sisa  = 0  # SIS Accuracy, DF291
+    t0e   = 0  # ephemeris reference time
+    t0c   = 0  # clock correction data reference TOW
+    be5a  = 0  # E1-E5a broadcast group delay
+    be5b  = 0  # E1-E5b broadcast group delay
+    ai0   = 0  # effective ionisation level 1st order parameter
+    ai1   = 0  # effective ionisation level 2nd order parameter
+    a0    = 0  # constant term of polynomial
+    a1    = 0  # 1st order term of polynomial
+    dtls  = 0  # leap Second count before leap second adjustment
+    t0t   = 0  # UTC data reference TOW
+    wn0t  = 0  # UTC data reference week number
+    wnlsf = 0  # week number of leap second adjustment
+    dn    = 0  # day number at the end of which a leap second adjustment becomes effective
+    dtlsf = 0  # leap second count after leap second adjustment
+    a0g   = 0  # constant term of the polynomial describing the offset
+    a1g   = 0  # rate of change of the offset
+    t0g   = 0  # reference time for GGTO data
+    wn0g  = 0  # week number of GGTO reference
 
 class EphData:
     ''' ephemeris data '''
-    pass
-
-def decode(ephraw, satsys):
-    '''
-    returns decoded ephemeris data
-    '''
-    ephdec = EphData()  # decoded ephemeris data
-    ephdec.svid  = ephraw.svid.u                # satellite id
-    ephdec.m0    = ephraw.m0.i   * 2**(-31)*PI  # mean anomaly at reference time
-    ephdec.e     = ephraw.e.u    * 2**(-33)     # eccentricity
-    ephdec.a12   = ephraw.a12.u  * 2**(-19)     # square root of the semi-major axis
-    ephdec.t0e   = ephraw.t0e.u  * 60           # ephemeris reference time
-    ephdec.omg0  = ephraw.omg0.i * 2**(-31)*PI  # longitude of ascending node of orbital plane
-    ephdec.i0    = ephraw.i0.i   * 2**(-31)*PI  # inclination angle at reference time
-    ephdec.omg   = ephraw.omg.i  * 2**(-31)*PI  # argument of perigee
-    ephdec.idot  = ephraw.idot.i * 2**(-43)*PI  # rate of change of inclination angle
-    ephdec.dn    = ephraw.dn.i   * 2**(-43)*PI  # mean motion difference from computed value
-    ephdec.omgd  = ephraw.omgd.i * 2**(-43)*PI  # rate of change of right ascension
-    ephdec.cuc   = ephraw.cuc.i  * 2**(-29)     # cos harmonic correction term to the argument of latitude
-    ephdec.cus   = ephraw.cus.i  * 2**(-29)     # sin harmonic correction term to the argument of latitude
-    ephdec.crc   = ephraw.crc.i  * 2**(-5)      # cos harmonic correction term to the orbit radius
-    ephdec.crs   = ephraw.crs.i  * 2**(-5)      # sin harmonic correction term to the orbit radius
-    ephdec.cic   = ephraw.cic.i  * 2**(-29)     # cos harmonic correction term to the angle of inclination
-    ephdec.cis   = ephraw.cis.i  * 2**(-29)     # sin harmonic correction term to the angle of inclination
-    ephdec.t0c   = ephraw.t0c.u  * 60           # clock correction data reference TOW
-    ephdec.af0   = ephraw.af0.i  * 2**(-34)     # SV clock bias correction coefficient
-    ephdec.af1   = ephraw.af1.i  * 2**(-46)     # SV clock drift correction coefficient
-    ephdec.af2   = ephraw.af2.i  * 2**(-59)     # SV clock drift rate correction coefficient
-    ephdec.be5a  = ephraw.be5a.i * 2**(-32)     # E1-E5a broadcast group delay
-    ephdec.be5b  = ephraw.be5b.i * 2**(-32)     # E1-E5b broadcast group delay
-    ephdec.ai0   = ephraw.ai0.u  * 2**(-2)      # effective ionisation level 1st order parameter
-    ephdec.ai1   = ephraw.ai1.i  * 2**(-8)      # effective ionisation level 2nd order parameter
-    ephdec.a0    = ephraw.a0.i   * 2**(-30)     # constant term of polynomial
-    ephdec.a1    = ephraw.a1.i   * 2**(-50)     # 1st order term of polynomial
-    ephdec.dtls  = ephraw.dtls.i                # leap Second count before leap second adjustment
-    ephdec.t0t   = ephraw.t0t.u                 # UTC data reference TOW
-    ephdec.wn0t  = ephraw.wn0t.u                # UTC data reference week number
-    ephdec.wnlsf = ephraw.wnlsf.u               # week number of leap second adjustment
-    ephdec.dn    = ephraw.dn.u                  # day number at the end of which a leap second adjustment becomes effective
-    ephdec.dtlsf = ephraw.dtlsf.i               # leap second count after leap second adjustment
-    ephdec.a0g   = ephraw.a0g.i  * 2**(-35)     # constant term of the polynomial describing the offset
-    ephdec.a1g   = ephraw.a1g.i  * 2**(-51)     # rate of change of the offset
-    ephdec.t0g   = ephraw.t0g.u  * 3600         # reference time for GGTO data
-    ephdec.wn0g  = ephraw.wn0g.u                # week number of GGTO reference
-    return ephdec
+    def __init__(self, satsys, r=EphRaw()):
+        '''
+        returns decoded ephemeris data
+        '''
+        self.svid  = r.svid.u                # satellite id
+        self.m0    = r.m0.i   * 2**(-31)*PI  # mean anomaly at reference time
+        self.e     = r.e.u    * 2**(-33)     # eccentricity
+        self.a12   = r.a12.u  * 2**(-19)     # square root of the semi-major axis
+        self.t0e   = r.t0e.u  * 60           # ephemeris reference time
+        self.omg0  = r.omg0.i * 2**(-31)*PI  # longitude of ascending node of orbital plane
+        self.i0    = r.i0.i   * 2**(-31)*PI  # inclination angle at reference time
+        self.omg   = r.omg.i  * 2**(-31)*PI  # argument of perigee
+        self.idot  = r.idot.i * 2**(-43)*PI  # rate of change of inclination angle
+        self.dn    = r.dn.i   * 2**(-43)*PI  # mean motion difference from computed value
+        self.omgd  = r.omgd.i * 2**(-43)*PI  # rate of change of right ascension
+        self.cuc   = r.cuc.i  * 2**(-29)     # cos harmonic correction term to the argument of latitude
+        self.cus   = r.cus.i  * 2**(-29)     # sin harmonic correction term to the argument of latitude
+        self.crc   = r.crc.i  * 2**(-5)      # cos harmonic correction term to the orbit radius
+        self.crs   = r.crs.i  * 2**(-5)      # sin harmonic correction term to the orbit radius
+        self.cic   = r.cic.i  * 2**(-29)     # cos harmonic correction term to the angle of inclination
+        self.cis   = r.cis.i  * 2**(-29)     # sin harmonic correction term to the angle of inclination
+        self.t0c   = r.t0c.u  * 60           # clock correction data reference TOW
+        self.af0   = r.af0.i  * 2**(-34)     # SV clock bias correction coefficient
+        self.af1   = r.af1.i  * 2**(-46)     # SV clock drift correction coefficient
+        self.af2   = r.af2.i  * 2**(-59)     # SV clock drift rate correction coefficient
+        self.be5a  = r.be5a.i * 2**(-32)     # E1-E5a broadcast group delay
+        self.be5b  = r.be5b.i * 2**(-32)     # E1-E5b broadcast group delay
+        self.ai0   = r.ai0.u  * 2**(-2)      # effective ionisation level 1st order parameter
+        self.ai1   = r.ai1.i  * 2**(-8)      # effective ionisation level 2nd order parameter
+        self.a0    = r.a0.i   * 2**(-30)     # constant term of polynomial
+        self.a1    = r.a1.i   * 2**(-50)     # 1st order term of polynomial
+        self.dtls  = r.dtls.i                # leap Second count before leap second adjustment
+        self.t0t   = r.t0t.u                 # UTC data reference TOW
+        self.wn0t  = r.wn0t.u                # UTC data reference week number
+        self.wnlsf = r.wnlsf.u               # week number of leap second adjustment
+        self.dn    = r.dn.u                  # day number at the end of which a leap second adjustment becomes effective
+        self.dtlsf = r.dtlsf.i               # leap second count after leap second adjustment
+        self.a0g   = r.a0g.i  * 2**(-35)     # constant term of the polynomial describing the offset
+        self.a1g   = r.a1g.i  * 2**(-51)     # rate of change of the offset
+        self.t0g   = r.t0g.u  * 3600         # reference time for GGTO data
+        self.wn0g  = r.wn0g.u                # week number of GGTO reference
 
 class Eph:
     ''' Ephemeris class '''
