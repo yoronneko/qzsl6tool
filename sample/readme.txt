@@ -4,14 +4,16 @@
 
 File Path : 2018001A.l6
 Date Time : 2018-01-01 00:00:00 UTC
-Duration  : 1 day
+Duration  : 40 seconds (trancated from 1 day)
+Note      : trancated version with "dd if=infile.l6 of=outfile.l6 count=20" of
 Note      : QZS L6 CLAS raw data obtained from the official archive at
 Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
 Note      : curl https://sys.qzss.go.jp/archives/l6/2018/2018001A.l6 -o 2018001A.l6
 
 File Path : 202201A.l6
 Date Time : 2022-01-01 00:00:00 UTC
-Duration  : 1 day
+Duration  : 40 seconds (trancated from 1 day)
+Note      : trancated version with "dd if=infile.l6 of=outfile.l6 count=20" of
 Note      : QZS L6 CLAS raw data obtained from the official archive at
 Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
 Note      : curl https://sys.qzss.go.jp/archives/l6/2022/2022001A.l6 -o 2022001A.l6

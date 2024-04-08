@@ -135,13 +135,12 @@ qzs_l6() {
     BASENAME=20230819-085030mdc-ppp
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    # commented out because they produce huge results
-    # SRCDIR=../sample/
-    # BASENAME=2018001A
-    # do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-    # 
-    # BASENAME=2022001A
-    # do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+    SRCDIR=../sample/
+    BASENAME=2018001A
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    BASENAME=2022001A
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""
 }

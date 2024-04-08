@@ -9,6 +9,7 @@ Please execute ``do_test.sh`` by
 This test compares the code result with the previously obtained result stored in ``expect`` directory, and the result should be as follows:
 
 ```text
+$ ./do_test.sh
 Pocket SDR log data conversion:
 - QZS L6 (../python/psdrread.py -l)
   20211226-082212clas.psdr: Passed.
@@ -39,6 +40,8 @@ Septentrio raw data conversion:
 u-blox raw data conversion:
 - QZS L1S (../python/ubxread.py --l1s -p 186)
   20230919-114418.ubx: Passed.
+- GAL I/NAV (../python/ubxread.py -i)
+  20230919-114418.ubx: Passed.
 
 QZS L6 message read (../python/qzsl6read.py -t 2):
   20220326-231200clas.l6: Passed.
@@ -46,6 +49,8 @@ QZS L6 message read (../python/qzsl6read.py -t 2):
   20221130-125237mdc-ppp.l6: Passed.
   20230819-082130clas.l6: Passed.
   20230819-085030mdc-ppp.l6: Passed.
+  2018001A.l6: Passed.
+  2022001A.l6: Passed.
 
 QZS L1S message read (../python/qzsl1sread.py ):
   20230919-114418.l1s: Passed.
@@ -61,13 +66,13 @@ RTCM message read (../python/rtcmread.py )
   20221130-125237mdc-ppp.rtcm: Passed.
   20221213-010900.rtcm: Passed.
 
+GAL I/NAV message read (../python/galinavread.py )
+  20230919-114418.inav: Passed.
+
 GAL E6 message read (../python/gale6read.py -t 2)
-  20230305-063900has.e6b: OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
-Passed.
-  20230819-081730hasbds.e6b: OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
-Passed.
+  20230305-063900has.e6b: Passed.
+  20230819-081730hasbds.e6b: Passed.
 
 BDS B2 message read (../python/bdsb2read.py -t 2 -p 60)
   20230819-081730hasbds.b2b: Passed.
   ```
-
