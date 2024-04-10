@@ -101,78 +101,76 @@ class Rtcm:
                 self.readbuf = self.readbuf[pos+3+mlen+3:]
                 break
         self.payload = bitstring.ConstBitStream(bp)
-        self.string = ''
         return True
 
     def decode(self):
         msgnum = self.payload.read('u12')  # message number
         satsys = msgnum2satsys(msgnum)
         mtype  = msgnum2mtype(msgnum)
-        msg    = ''
+        msg = self.trace.msg(0, f'RTCM {msgnum} ', fg='green') + self.trace.msg(0, f'{satsys:1} {mtype:14}', fg='yellow')
         if mtype == 'Ant Rcv info':
-            msg = self.decode_ant_info(self.payload, msgnum)
+            msg += self.decode_ant_info(self.payload, msgnum)
         elif mtype == 'Position':
-            msg = self.decode_antenna_position(self.payload, msgnum)
+            msg += self.decode_antenna_position(self.payload, msgnum)
         elif mtype == 'Code bias':
-            msg = self.decode_code_phase_bias(self.payload)
+            msg += self.decode_code_phase_bias(self.payload)
         elif 'Obs' in mtype:
-            msg = self.obs.decode_obs(self.payload, satsys, mtype)
+            msg += self.obs.decode_obs(self.payload, satsys, mtype)
         elif 'MSM' in mtype:
-            msg = self.obs.decode_msm(self.payload, satsys, mtype)
+            msg += self.obs.decode_msm(self.payload, satsys, mtype)
         elif 'NAV' in mtype:
-            msg = self.eph.decode_ephemerides(self.payload, satsys, mtype)
+            msg += self.eph.decode_ephemerides(self.payload, satsys, mtype)
         elif mtype == 'CSSR':
             # determine CSSR before SSR, otherwise CSSR is never selected
             self.payload.pos = 0  # reset bit position
-            msg = self.ssr.decode_cssr(self.payload)  # needs message type info
+            msg += self.ssr.decode_cssr(self.payload)  # needs message type info
         elif 'SSR' in mtype:
             self.ssr.ssr_decode_head(self.payload, satsys, mtype)
             if mtype == 'SSR orbit':
-                msg = self.ssr.ssr_decode_orbit(self.payload, satsys)
+                msg += self.ssr.ssr_decode_orbit(self.payload, satsys)
             elif mtype == 'SSR clock':
-                msg = self.ssr.ssr_decode_clock(self.payload, satsys)
+                msg += self.ssr.ssr_decode_clock(self.payload, satsys)
             elif mtype == 'SSR code bias':
-                msg = self.ssr.ssr_decode_code_bias(self.payload, satsys)
+                msg += self.ssr.ssr_decode_code_bias(self.payload, satsys)
             elif mtype == 'SSR URA':
-                msg = self.ssr.ssr_decode_ura(self.payload, satsys)
+                msg += self.ssr.ssr_decode_ura(self.payload, satsys)
             elif mtype == 'SSR hr clock':
-                msg = self.ssr.ssr_decode_hr_clock(self.payload, satsys)
+                msg += self.ssr.ssr_decode_hr_clock(self.payload, satsys)
             else:
-                msg = f'unknown SSR message: {msgnum} {mtype}'
+                msg += f'unknown SSR message: {msgnum} {mtype}'
         else:
-            msg = f'unknown message: {mtype}'
-        disp_msg = self.trace.msg(0, f'RTCM {msgnum} ', fg='green') + \
-            self.trace.msg(0, f'{satsys:1} {mtype:14}', fg='yellow') + msg
+            msg += f'unknown message: {mtype}'
         if self.payload.pos % 8 != 0:  # byte align
             self.payload.pos += 8 - (self.payload.pos % 8)
         if self.payload.pos != len(self.payload.bin):
-            disp_msg += '\n' + self.trace.msg(0, f'packet size mismatch: expected {len(self.payload.bin)}, actual {self.payload.pos}', fg='red')
-        self.trace.show(0, disp_msg)
+            msg += self.trace.msg(0, f' packet size mismatch: expected {len(self.payload.bin)}, actual {self.payload.pos}', fg='red')
+        self.trace.show(0, msg)
 
     def decode_antenna_position(self, payload, msgnum):
         ''' returns decoded position and antenna height if available '''
-        sid  = payload.read('u12')  # station id, DF003
-        payload.pos +=  6           # reserved ITRF year, DF921
-        payload.pos +=  1           # GPS indicator, DF022
-        payload.pos +=  1           # GLO indicator, DF023
-        payload.pos +=  1           # reserved GAL indicator, DF024
-        payload.pos +=  1           # reference station ind, DF141
-        ipx  = payload.read('i38')  # ARP ECEF-X, DF025
-        payload.pos +=  1           # single receiver osc ind, DF142
-        payload.pos +=  1           # reserved, DF001
-        ipy  = payload.read('i38')  # ARP ECEF-Y, DF026
-        payload.pos +=  2           # quater cycle indicator, DF364
-        ipz  = payload.read('i38')  # ARP ECEF-Z, DF027
+        stid  = payload.read('u12')  # station id, DF003
+        payload.pos +=  6            # reserved ITRF year, DF921
+        payload.pos +=  1            # GPS indicator, DF022
+        payload.pos +=  1            # GLO indicator, DF023
+        payload.pos +=  1            # reserved GAL indicator, DF024
+        payload.pos +=  1            # reference station ind, DF141
+        px  = payload.read('i38')    # ARP ECEF-X, DF025
+        payload.pos +=  1            # single receiver osc ind, DF142
+        payload.pos +=  1            # reserved, DF001
+        py  = payload.read('i38')    # ARP ECEF-Y, DF026
+        payload.pos +=  2            # quater cycle indicator, DF364
+        pz  = payload.read('i38')    # ARP ECEF-Z, DF027
         ahgt =  0
         if msgnum == 1006:  # antenna height for RTCM 1006
-            iahgt = payload.read('u16')  # antenna height, DF028
-            ahgt  = iahgt * 1e-4
-        px , py , pz     = ipx * 1e-4, ipy * 1e-4, ipz * 1e-4
-        lat, lon, height = ecef2llh.ecef2llh(px, py, pz)
-        disp_msg = f'{lat:.7f} {lon:.7f} {height:.3f}'
+            ahgt = payload.read('u16')  # antenna height, DF028
+        msg = ''
+        if stid != 0:
+            msg += f'{stid} '
+        lat, lon, height = ecef2llh.ecef2llh(px*1e-4, py*1e-4, pz*1e-4)
+        msg += f'{lat:.7f} {lon:.7f} {height:.3f}'
         if ahgt != 0:
-            disp_msg += f'(+{ahgt:.3f})'
-        return disp_msg
+            msg += f'(+{ahgt*1e-4:.3f})'
+        return msg
 
     def decode_ant_info(self, payload, msgnum):
         '''returns decoded antenna and receiver information '''
@@ -196,15 +194,15 @@ class Rtcm:
             for _ in range(cnt): str_ver += chr(payload.read('u8'))  # DF230
             cnt = payload.read('u8')    # receiver serial number, DF231
             for _ in range(cnt): str_rsn += chr(payload.read('u8'))  # DF232
-        disp_msg = ''
+        msg = ''
         if stid      !=  0: disp_msg += f'{stid} '
-        disp_msg += f'{str_ant}'
-        if ant_setup !=  0: disp_msg += f' {ant_setup}'
-        if str_ser   != '': disp_msg += f' s/n {str_ser}'
-        if str_rcv   != '': disp_msg += f' rcv "{str_rcv}"'
-        if str_ver   != '': disp_msg += f' ver {str_ver}'
-        if str_rsn   != '': disp_msg += f' s/n {str_rsn}'
-        return disp_msg
+        msg += f'{str_ant}'
+        if ant_setup !=  0: msg += f' {ant_setup}'
+        if str_ser   != '': msg += f' s/n {str_ser}'
+        if str_rcv   != '': msg += f' rcv "{str_rcv}"'
+        if str_ver   != '': msg += f' ver {str_ver}'
+        if str_rsn   != '': msg += f' s/n {str_rsn}'
+        return msg
 
     def decode_code_phase_bias(self, payload):
         '''decodes code-and-phase bias for GLONASS'''
@@ -216,8 +214,7 @@ class Rtcm:
         l1p  = payload.read('i16')  # L1 P code-phase bias, DF424
         l2ca = payload.read('i16')  # L2 C/A code-phase bias, DF425
         l2p  = payload.read('i16')  # L2 P  code-phase bias, DF426
-        disp_msg = f'L1CA={l1ca*0.02} L1P={l1p*0.02} L2CA={l2ca*0.02} L2P={l2p*0.02}'
-        return disp_msg
+        return f'L1CA={l1ca*0.02} L1P={l1p*0.02} L2CA={l2ca*0.02} L2P={l2p*0.02}'
 
 def send_rtcm(fp, rtcm_payload):
     if not fp:
