@@ -174,8 +174,15 @@ qzs_l6_rtcm() {
 }
 
 rtcm() {
-    CODE=${CODEDIR}rtcmread.py ARG= EXT_FROM=rtcm EXT_TO=rtcm.txt
+    CODE=${CODEDIR}rtcmread.py ARG='-t 2' EXT_FROM=rtcm EXT_TO=rtcm.txt
     echo "RTCM message read (${CODE} ${ARG})"
+
+    SRCDIR=../sample/
+    BASENAME=20210101jaxamdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    BASENAME=20221213-010900
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     SRCDIR=expect/
     BASENAME=20220326-231200clas
@@ -185,10 +192,6 @@ rtcm() {
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     BASENAME=20221130-125237mdc-ppp
-    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
-
-    SRCDIR=../sample/
-    BASENAME=20221213-010900
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""

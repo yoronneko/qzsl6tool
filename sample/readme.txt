@@ -18,6 +18,12 @@ Note      : QZS L6 CLAS raw data obtained from the official archive at
 Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
 Note      : curl https://sys.qzss.go.jp/archives/l6/2022/2022001A.l6 -o 2022001A.l6
 
+File Path : 20210101jaxamdc.rtcm3
+Date Time : 2021-01-01 00:00:00 UTC
+Duration  : 30 seconds
+Note      : JAXA (Japan Aerospace Exploration Agency) RTCM SSR data
+Note      : of MADOCA, provided through NTRIP
+
 File Path : 20211226-082212clas.psdr
 Date Time : 2021-12-26 08:22:12 UTC
 Duration  : 30 seconds

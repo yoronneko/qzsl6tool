@@ -107,21 +107,21 @@ class QzsL6:
 
     def show(self):
         ''' calls message decode functions and shows decoded message '''
-        if self.vendor == "MADOCA":
-            msg = self.show_mdc_msg()
-        elif self.vendor in {"CLAS", "MADOCA-PPP"}:
-            msg = self.show_cssr_msg()
-        elif self.vendor == "QZNMA":
-            msg = self.show_qznma_msg()
-        else:  # unknown vendor
-            msg = self.show_unknown_msg()
-        disp_msg = self.trace.msg(0, f'{self.prn} {self.facility:13s}', fg='green')
+        msg = self.trace.msg(0, f'{self.prn} {self.facility:13s}', fg='green')
         if self.alert:
-            disp_msg += self.trace.msg(0, '* ', fg='red')
+            msg += self.trace.msg(0, '* ', fg='red')
         else:
-            disp_msg += '  '
-        disp_msg += self.trace.msg(0, self.vendor, fg='yellow') + ' ' + msg
-        self.trace.show(0, disp_msg)
+            msg += '  '
+        msg += self.trace.msg(0, self.vendor, fg='yellow') + ' '
+        if self.vendor == "MADOCA":
+            msg += self.show_mdc_msg()
+        elif self.vendor in {"CLAS", "MADOCA-PPP"}:
+            msg += self.show_cssr_msg()
+        elif self.vendor == "QZNMA":
+            msg += self.show_qznma_msg()
+        else:  # unknown vendor
+            msg += self.show_unknown_msg()
+        self.trace.show(0, msg)
 
     def read_madoca(self):  # ref. [2]
         ''' returns True if success in decoding MADOCA message '''
@@ -145,6 +145,7 @@ class QzsL6:
             msg = self.ssr.ssr_decode_hr_clock(self.dpart, satsys)
         else:
             raise Exception(f'unsupported message type: {msgnum}')
+        self.trace.show(1, msg)
         if self.dpart.pos % 8 != 0:  # byte align
             self.dpart.pos += 8 - (self.dpart.pos % 8)
         send_rtcm(self.fp_rtcm, self.dpart[0:self.dpart.pos])
@@ -159,38 +160,37 @@ class QzsL6:
             return False
         if not self.ssr.decode_cssr_head(self.payload):
             return False
-        pos_prev = self.payload.pos
         if   self.ssr.subtype == 1:
-            stat = self.ssr.decode_cssr_st1(self.payload)
+            decoded = self.ssr.decode_cssr_st1(self.payload)
         elif self.ssr.subtype == 2:
-            stat = self.ssr.decode_cssr_st2(self.payload)
+            decoded = self.ssr.decode_cssr_st2(self.payload)
         elif self.ssr.subtype == 3:
-            stat = self.ssr.decode_cssr_st3(self.payload)
+            decoded = self.ssr.decode_cssr_st3(self.payload)
         elif self.ssr.subtype == 4:
-            stat = self.ssr.decode_cssr_st4(self.payload)
+            decoded = self.ssr.decode_cssr_st4(self.payload)
         elif self.ssr.subtype == 5:
-            stat = self.ssr.decode_cssr_st5(self.payload)
+            decoded = self.ssr.decode_cssr_st5(self.payload)
         elif self.ssr.subtype == 6:
-            stat = self.ssr.decode_cssr_st6(self.payload)
+            decoded = self.ssr.decode_cssr_st6(self.payload)
         elif self.ssr.subtype == 7:
-            stat = self.ssr.decode_cssr_st7(self.payload)
+            decoded = self.ssr.decode_cssr_st7(self.payload)
         elif self.ssr.subtype == 8:
-            stat = self.ssr.decode_cssr_st8(self.payload)
+            decoded = self.ssr.decode_cssr_st8(self.payload)
         elif self.ssr.subtype == 9:
-            stat = self.ssr.decode_cssr_st9(self.payload)
+            decoded = self.ssr.decode_cssr_st9(self.payload)
         elif self.ssr.subtype == 10:
-            stat = self.ssr.decode_cssr_st10(self.payload)
+            decoded = self.ssr.decode_cssr_st10(self.payload)
         elif self.ssr.subtype == 11:
-            stat = self.ssr.decode_cssr_st11(self.payload)
+            decoded = self.ssr.decode_cssr_st11(self.payload)
         elif self.ssr.subtype == 12:
-            stat = self.ssr.decode_cssr_st12(self.payload)
+            decoded = self.ssr.decode_cssr_st12(self.payload)
         else:
             raise Exception(f"Unknown CSSR subtype: {self.ssr.subtype}")
-        if stat:
+        if decoded:
             send_rtcm(self.fp_rtcm, self.payload[:self.payload.pos])  # RTCM MT 4073
             self.payload = self.payload[self.payload.pos:]  # discard decoded part
             self.payload.pos = 0
-        return stat
+        return decoded
 
     def show_mdc_msg(self):
         ''' returns decoded message '''
@@ -198,10 +198,10 @@ class QzsL6:
         self.wn    = self.dpart.read('u13')
         self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
         self.dpart.pos = 0
-        disp_msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
+        msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
         while self.read_madoca():
-            disp_msg += f'RTCM {self.msgnum}({self.ssr.ssr_nsat}) '
-        return disp_msg
+            msg += f'RTCM {self.msgnum}({self.ssr.ssr_nsat}) '
+        return msg
 
     def show_cssr_msg(self):
         ''' returns decoded message '''
@@ -233,35 +233,35 @@ class QzsL6:
                     pos = self.payload.pos  # save position
                     self.payload += self.dpart
                     self.payload.pos = pos  # restore position
-        disp_msg = ''
+        msg = ''
         if self.sfn != 0:
-            disp_msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
+            msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
             if self.vendor == "MADOCA-PPP":
-                disp_msg += f' ({self.servid} {self.msg_ext})'
+                msg += f' ({self.servid} {self.msg_ext})'
         pos = self.payload.pos  # save position
         if self.read_cssr():  # found a CSSR message
-            disp_msg += f' ST{self.ssr.subtype}'
+            msg += f' ST{self.ssr.subtype}'
             while self.read_cssr():  # try to decode next message
-                disp_msg += f' ST{self.ssr.subtype}'
+                msg += f' ST{self.ssr.subtype}'
                 pos = self.payload.pos  # save position
             if self.ssr.subtype != 0:   # continues to next datapart
                 self.payload.pos = pos  # restore position
-                disp_msg += f' ST{self.ssr.subtype}' + \
+                msg += f' ST{self.ssr.subtype}' + \
                     self.trace.msg(0, '...', fg='yellow')
             else:  # end of message in the subframe
                 self.payload = bitstring.BitStream()
         else:  # could not decode CSSR any messages
             if self.run and self.ssr.subtype == 0:  # whole message is null
-                disp_msg += self.trace.msg(0, ' (null)', dec='dark')
+                msg += self.trace.msg(0, ' (null)', dec='dark')
                 self.payload = bitstring.BitStream()
             elif self.run:  # or, continual message
                 self.payload.pos = pos  # restore position
-                disp_msg += f' ST{self.ssr.subtype}' + \
+                msg += f' ST{self.ssr.subtype}' + \
                     self.trace.msg(0, '...', 'yellow')
             else:  # ST1 mask message has not been found yet
                 self.payload.pos = pos  # restore position
-                disp_msg += self.trace.msg(0, ' (syncing)', dec='dark')
-        return disp_msg
+                msg += self.trace.msg(0, ' (syncing)', dec='dark')
+        return msg
 
     def show_qznma_msg(self):
         '''returns decoded message'''
