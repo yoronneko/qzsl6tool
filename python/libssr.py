@@ -901,7 +901,7 @@ class Ssr:
         cnid   = payload.read('u5')  # compact network ID
         ngrid  = payload.read('u6')  # number of grids
         msg_trace1 = f"ST12 tropo={tavail} stec={savail} NID={cnid} ngrid={ngrid}\n"
-        if tavail[0]:
+        if tavail[0]:  # bool object
             # 0 <= ttype (forward reference)
             if len_payload < payload.pos + 6 + 2 + 9:
                 return False
@@ -927,7 +927,7 @@ class Ssr:
                 if t11 != -64:
                     msg_trace1 += f" t11={t11*0.001:.3f}m/deg^2"
             msg_trace1 += '\n'
-        if tavail[1]:
+        if tavail[1]:  # bool object
             if len_payload < payload.pos + 1 + 4:
                 return False
             trs  = payload.read('u1')  # tropo residual size
@@ -942,7 +942,7 @@ class Ssr:
                     continue
                 msg_trace1 += f"ST12 Trop grid {grid+1:2d}/{ngrid:2d} residual={tr*0.004:{FMT_TROP}}m\n"
         stat_pos = payload.pos
-        if savail[0]:
+        if savail[0]:  # bool object
             svmask = {}
             for satsys in self.satsys:
                 ngsys = len(self.gsys[satsys])
@@ -999,8 +999,8 @@ class Ssr:
                            (srs == 3 and sr == -64):
                             continue
                         msg_trace1 += f"ST12 STEC {gsys} grid {grid+1:2d}/{ngrid:2d} residual={sr*lsb:{FMT_TECU}}TECU ({bw}bit)\n"
-        if savail[1]:
-            pass  # the use of this bit is not defined
+        if savail[1]:  # bool object
+            pass  # the use of this bit is not defined in ref.[1]
         self.trace.show(1, msg_trace1, end='')
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos

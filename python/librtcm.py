@@ -180,20 +180,20 @@ class Rtcm:
         str_ver = ''
         str_rsn = ''
         stid = payload.read('u12')      # station id, DF0003
-        cnt  = payload.read( 'u8')      # antenna descripter, DF029
+        cnt  = payload.read( 'u8')      # antenna descripter counter, DF029
         for _ in range(cnt):
-            str_ant += chr(payload.read('u8'))  # DF030
-        ant_setup = payload.read('u8')  # antenna setup id, DF031
+            str_ant += chr(payload.read('u8'))  # antenna descripter, DF030
+        ant_setup = payload.read('u8')          # antenna setup id, DF031
         if msgnum == 1008 or msgnum == 1033:
-            cnt = payload.read('u8')    # antenna serial number, DF032
-            for _ in range(cnt): str_ser += chr(payload.read('u8'))  # DF033
+            cnt = payload.read('u8')    # antenna serial number couner, DF032
+            for _ in range(cnt): str_ser += chr(payload.read('u8'))  # antenna ser num, DF033
         if msgnum == 1033:
-            cnt = payload.read('u8')    # receiver type descripter, DF227
-            for _ in range(cnt): str_rcv += chr(payload.read('u8'))  # DF228
-            cnt = payload.read('u8')    # receiver firmware, DF229
-            for _ in range(cnt): str_ver += chr(payload.read('u8'))  # DF230
-            cnt = payload.read('u8')    # receiver serial number, DF231
-            for _ in range(cnt): str_rsn += chr(payload.read('u8'))  # DF232
+            cnt = payload.read('u8')    # receiver type descripter counter, DF227
+            for _ in range(cnt): str_rcv += chr(payload.read('u8'))  # rec. type. desc., DF228
+            cnt = payload.read('u8')    # receiver firmware counter, DF229
+            for _ in range(cnt): str_ver += chr(payload.read('u8'))  # receier firmware, DF230
+            cnt = payload.read('u8')    # receiver serial number counter, DF231
+            for _ in range(cnt): str_rsn += chr(payload.read('u8'))  # antenna serial number, DF232
         msg = ''
         if stid      !=  0: disp_msg += f'{stid} '
         msg += f'{str_ant}'

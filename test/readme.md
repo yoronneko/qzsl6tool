@@ -61,6 +61,7 @@ QZS L6 to RTCM message conversion (../python/qzsl6read.py -r)
   20221130-125237mdc-ppp.l6: Passed.
 
 RTCM message read (../python/rtcmread.py )
+  20190529hiroshima.rtcm: Passed.
   20220326-231200clas.rtcm: Passed.
   20220326-231200mdc.rtcm: Passed.
   20221130-125237mdc-ppp.rtcm: Passed.

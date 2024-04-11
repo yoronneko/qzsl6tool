@@ -130,7 +130,7 @@ class Eph:
     def decode_ephemerides(self, payload, satsys, mtype):
         ''' returns decoded ephemeris data '''
         r = EphRaw()
-        string = ''
+        msg = ''
         if satsys == 'G':  # GPS ephemerides
             r.svid = payload.read( 'u6')  # satellite id, DF009
             r.wn   = payload.read('u10')  # week number, DF076
@@ -162,13 +162,13 @@ class Eph:
             r.svh  = payload.read( 'u6')  # SV health, DF102
             r.l2p  = payload.read( 'u1')  # P flag, DF103
             r.fi   = payload.read( 'u1')  # fit interval, DF137
-            string += f'G{r.svid:02d} WN={r.wn} IODE={r.iode:{FMT_IODE}} IODC={r.iodc:{FMT_IODC}}'
-            if   r.gpsc == '0b01': string += ' L2P'
-            elif r.gpsc == '0b10': string += ' L2C/A'
-            elif r.gpsc == '0b11': string += ' L2C'
-            else: string += f'unknown L2 code: {r.gpsc}'
+            msg += f'G{r.svid:02d} WN={r.wn} IODE={r.iode:{FMT_IODE}} IODC={r.iodc:{FMT_IODC}}'
+            if   r.gpsc == '0b01': msg += ' L2P'
+            elif r.gpsc == '0b10': msg += ' L2C/A'
+            elif r.gpsc == '0b11': msg += ' L2C'
+            else: msg += f'unknown L2 code: {r.gpsc}'
             if r.svh:
-                string += self.trace.msg(0, f' unhealthy({r.svh:02x})', fg='red')
+                msg += self.trace.msg(0, f' unhealthy({r.svh:02x})', fg='red')
         elif satsys == 'R':  # GLONASS ephemerides
             r.svid  = payload.read( 'u6')  # satellite id, DF038
             r.fcn   = payload.read( 'u5')  # freq ch, DF040
@@ -234,9 +234,9 @@ class Eph:
             if _sgn: r.tgps = -r.tgps
             r.in5   = payload.read( 'u1')  # I_n, DF136
             payload.pos +=  7              # reserved
-            string += f'R{r.svid:02d} f={r.fcn:02d} tk={r.tk[7:12].u:02d}:{r.tk[1:7].u:02d}:{r.tk[0:2].u*15:02d} tb={r.tb*15}min'
+            msg += f'R{r.svid:02d} f={r.fcn:02d} tk={r.tk[7:12].u:02d}:{r.tk[1:7].u:02d}:{r.tk[0:2].u*15:02d} tb={r.tb*15}min'
             if r.svh:
-                string += self.trace.msg(0, ' unhealthy', fg='red')
+                msg += self.trace.msg(0, ' unhealthy', fg='red')
         elif satsys == 'E':  # Galileo ephemerides
             r.svid  = payload.read( 'u6')  # satellite id, DF252
             r.wn    = payload.read('u12')  # week number, DF289
@@ -276,21 +276,21 @@ class Eph:
                 payload.pos += 2              # reserved, DF001
             else:
                 raise Exception(f'unknown Galileo nav message: {mtype}')
-            string += f'E{r.svid:02d} WN={r.wn} IODnav={r.iodn}'
+            msg += f'E{r.svid:02d} WN={r.wn} IODnav={r.iodn}'
             if   mtype == 'F/NAV':
                 if r.osh:
-                    string += self.trace.msg(0, f' unhealthy OS ({r.osh.uint})', fg='red')
+                    msg += self.trace.msg(0, f' unhealthy OS ({r.osh.uint})', fg='red')
                 if r.osv:
-                    string += self.trace.msg(0, ' invalid OS', fg='red')
+                    msg += self.trace.msg(0, ' invalid OS', fg='red')
             elif mtype == 'I/NAV':
                 if r.e5h:
-                    string += self.trace.msg(0, f' unhealthy E5b ({r.e5h.uint})', fg='red')
+                    msg += self.trace.msg(0, f' unhealthy E5b ({r.e5h.uint})', fg='red')
                 if r.e5v:
-                    string += self.trace.msg(0, ' invalid E5b', fg='red')
+                    msg += self.trace.msg(0, ' invalid E5b', fg='red')
                 if r.e1h:
-                    string += self.trace.msg(0, f' unhealthy E1b ({r.e1h.uint})', fg='red')
+                    msg += self.trace.msg(0, f' unhealthy E1b ({r.e1h.uint})', fg='red')
                 if r.e1v:
-                    string += self.trace.msg(0, ' invalid E1b', fg='red')
+                    msg += self.trace.msg(0, ' invalid E1b', fg='red')
             else:
                 raise Exception(f'unknown Galileo nav message: {mtype}')
         elif satsys == 'J':  # QZSS ephemerides
@@ -323,9 +323,9 @@ class Eph:
             r.tgd  = payload.read( 'i8')  # T_GD, DF455
             r.iodc = payload.read('u10')  # IODC, DF456
             r.fi   = payload.read( 'u1')  # fit interval, DF457
-            string += f'J{r.svid:02d} WN={r.wn} IODE={r.iode:{FMT_IODE}} IODC={r.iodc:{FMT_IODC}}'
+            msg += f'J{r.svid:02d} WN={r.wn} IODE={r.iode:{FMT_IODE}} IODC={r.iodc:{FMT_IODC}}'
             if r.svh:  # to be determined: L1 C/B operation
-                string += self.trace.msg(0, f' unhealthy ({r.svh:02x})', fg='red')
+                msg += self.trace.msg(0, f' unhealthy ({r.svh:02x})', fg='red')
         elif satsys == 'C':  # BeiDou ephemerides
             r.svid = payload.read( 'u6')  # satellite id, DF488
             r.wn   = payload.read('u13')  # week number, DF489
@@ -355,9 +355,9 @@ class Eph:
             r.tgd1 = payload.read('i10')  # T_GD1, DF513
             r.tgd2 = payload.read('i10')  # T_GD2, DF514
             r.svh  = payload.read( 'u1')  # SVH, DF515
-            string +=f'C{r.svid:02d} WN={r.wn} AODE={r.aode}'
+            msg +=f'C{r.svid:02d} WN={r.wn} AODE={r.aode}'
             if r.svh:
-                string += self.trace.msg(0, ' unhealthy', fg='red')
+                msg += self.trace.msg(0, ' unhealthy', fg='red')
         elif satsys == 'I':  # NavIC ephemerides
             r.svid  = payload.read( 'u6')  # satellite id, DF516
             r.wn    = payload.read('u10')  # week number, DF517
@@ -389,11 +389,11 @@ class Eph:
             r.i0    = payload.read('i32')  # i0, DF543
             payload.pos += 2               # spare, DF544
             payload.pos += 2               # spare, DF545
-            string += f'I{r.svid:02d} WN={r.wn} IODEC={r.iodec:{FMT_IODE}}'
+            msg += f'I{r.svid:02d} WN={r.wn} IODEC={r.iodec:{FMT_IODE}}'
             if r.hl5 or r.hs:
-                string += self.trace.msg(0, f" unhealthy{' L5' if r.hl5 else ''}{' S' if r.hs else ''}", fg='red')
+                msg += self.trace.msg(0, f" unhealthy{' L5' if r.hl5 else ''}{' S' if r.hs else ''}", fg='red')
         else:
             raise Exception(f'unknown satsys({satsys})')
-        return string
+        return msg
 
 # EOF
