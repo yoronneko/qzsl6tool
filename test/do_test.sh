@@ -178,6 +178,9 @@ rtcm() {
     echo "RTCM message read (${CODE} ${ARG})"
 
     SRCDIR=../sample/
+    BASENAME=20190529hiroshima
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
     BASENAME=20210101jaxamdc
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 

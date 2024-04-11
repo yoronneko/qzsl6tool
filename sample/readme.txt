@@ -18,7 +18,12 @@ Note      : QZS L6 CLAS raw data obtained from the official archive at
 Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
 Note      : curl https://sys.qzss.go.jp/archives/l6/2022/2022001A.l6 -o 2022001A.l6
 
-File Path : 20210101jaxamdc.rtcm3
+File Path : 20190529hiroshima.rtcm
+Date Time : 2019-05-29 ??:??:?? UTC
+Duration  : 40 seconds
+Note      : recorded in Hiroshima, Japan with Emlid Reach (u-blox M8T+RTKLIB, L1only)
+
+File Path : 20210101jaxamdc.rtcm
 Date Time : 2021-01-01 00:00:00 UTC
 Duration  : 30 seconds
 Note      : JAXA (Japan Aerospace Exploration Agency) RTCM SSR data
