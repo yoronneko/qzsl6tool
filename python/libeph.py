@@ -12,6 +12,9 @@
 # [1] Radio Technical Commission for Maritime Services (RTCM),
 #     Differential GNSS (Global Navigation Satellite Systems) Services
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
+# [2] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface Specification
+#     Satellite Positioning, Navigation and Timing Service (IS-QZSS-PNT-005),
+#     Oct. 2022.
 
 # format definitions
 FMT_IODC = '<4d'  # format string for issue of data clock
@@ -319,13 +322,22 @@ class Eph:
             r.l2   = payload.read( 'u2')  # L2 code, DF451
             r.wn   = payload.read('u10')  # week number, DF452
             r.ura  = payload.read( 'u4')  # URA, DF453
-            r.svh  = payload.read( 'u6')  # SVH, DF454
+            r.svh  = payload.read(   6 )  # SVH, DF454
             r.tgd  = payload.read( 'i8')  # T_GD, DF455
             r.iodc = payload.read('u10')  # IODC, DF456
             r.fi   = payload.read( 'u1')  # fit interval, DF457
             msg += f'J{r.svid:02d} WN={r.wn} IODE={r.iode:{FMT_IODE}} IODC={r.iodc:{FMT_IODC}}'
-            if r.svh:  # to be determined: L1 C/B operation
-                msg += self.trace.msg(0, f' unhealthy ({r.svh:02x})', fg='red')
+            if (r.svh[0:1]+r.svh[2:5]).u:  # determination of QZSS health including L1C/B is complex, ref.[2], p.47, 4.1.2.3(4)
+                unhealthy = ''
+                if r.svh[1]: unhealthy += ' L1C/A'
+                if r.svh[2]: unhealthy += ' L2C'
+                if r.svh[3]: unhealthy += ' L5'
+                if r.svh[4]: unhealthy += ' L1C'
+                if r.svh[5]: unhealthy += ' L1C/B'
+                msg += self.trace.msg(0, f' unhealthy ({unhealthy[1:]})', fg='red')
+            elif not r.svh[0]:                # L1 signal is healthy
+                if r.svh[1]: msg += ' L1C/B'  # transmitting L1C/B
+                if r.svh[5]: msg += ' L1C/A'  # transmitting L1C/A
         elif satsys == 'C':  # BeiDou ephemerides
             r.svid = payload.read( 'u6')  # satellite id, DF488
             r.wn   = payload.read('u13')  # week number, DF489
