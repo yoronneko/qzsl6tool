@@ -101,7 +101,7 @@ class Trace:
         dec: decoration color
         end: termination character
         '''
-        if self.t_level < level or not self.fp:
+        if self.t_level < level or not self.fp or not arg:
             return ''
         message = ''
         if self.colored:
@@ -110,7 +110,7 @@ class Trace:
             if dec: message += text_dec(dec)
         if arg:
             message += arg
-        if arg and self.colored:
+        if self.colored:
             if dec: message += text_dec()
             if bg : message += bg_color()
             if fg : message += fg_color()
@@ -128,8 +128,7 @@ class Trace:
         if self.t_level < level or not self.fp:
             return
         print(self.msg(level, arg, fg, bg, dec), end=end, file=self.fp)
-        if self.colored:
-            self.fp.flush()
+        self.fp.flush()
 
 if __name__ == '__main__':
     trace = Trace()

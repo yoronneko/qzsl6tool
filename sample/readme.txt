@@ -2,21 +2,23 @@
 # QZS L6 Tool - Sample data
 #
 
-File Path : 2018001A.l6
-Date Time : 2018-01-01 00:00:00 UTC
-Duration  : 40 seconds (trancated from 1 day)
-Note      : trancated version with "dd if=infile.l6 of=outfile.l6 count=20" of
+File 2018001A.l6 is removed because it used the draft version specification.
+
+File Path : 2019001A.l6
+Date Time : 2019-01-01 00:00:00 UTC
+Duration  : 2 minutes (trancated from 1-day data)
 Note      : QZS L6 CLAS raw data obtained from the official archive at
-Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
-Note      : curl https://sys.qzss.go.jp/archives/l6/2018/2018001A.l6 -o 2018001A.l6
+Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using:
+Note      : curl https://sys.qzss.go.jp/archives/l6/2019/2019001A.l6 -o aaa.l6
+Note      : dd if=aaa.l6 of=2019001A.l6 ibs=1000 count=30
 
 File Path : 202201A.l6
 Date Time : 2022-01-01 00:00:00 UTC
-Duration  : 40 seconds (trancated from 1 day)
-Note      : trancated version with "dd if=infile.l6 of=outfile.l6 count=20" of
+Duration  : 2 minutes (trancated from 1-day data)
 Note      : QZS L6 CLAS raw data obtained from the official archive at
-Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using
-Note      : curl https://sys.qzss.go.jp/archives/l6/2022/2022001A.l6 -o 2022001A.l6
+Note      : https://sys.qzss.go.jp/dod/archives/clas.html, by using:
+Note      : curl https://sys.qzss.go.jp/archives/l6/2022/2022001A.l6 -o aaa.l6
+Note      : dd if=aaa.l6 of=2022001A.l6 ibs=1000 count=30
 
 File Path : 20190529hiroshima.rtcm
 Date Time : 2019-05-29 ??:??:?? UTC

@@ -102,9 +102,9 @@ def sigmask2signame(satsys, sigmask):
     return signame
 
 class BdsB2():
-    epoch  = 0  # epoch in second within one BDT day
-    iodssr = 0  # issue of data indicating configuration change of data generation
-    iodp   = 0  # issue of data indicating the PRN mask change
+    epoch  =  0  # epoch in second within one BDT day
+    iodssr = -1  # issue of data indicating configuration change of data generation
+    iodp   = -1  # issue of data indicating the PRN mask change
     mask   = bitstring.BitStream(255)  # satellite mask
 
     def __init__(self, trace, stat):
@@ -254,13 +254,13 @@ class BdsB2():
         if 11 < st1:
             msg += self.trace.msg(0, f' ST1={st1} out of range', dec='dark')
             return msg
-        msg += self.trace.msg(1, '\nSAT IODCorr clock[m]')
+        msg += self.trace.msg(1, '\nSAT IODCorr   c0[m]')
         maskpos = st1 * 23
         for _ in range(23):
             iodcorr = mesdata.read( 3).u
             c0      = mesdata.read(15).i
             if self.mask[maskpos] and c0 != -16383:
-                msg += self.trace.msg(1, f'\n{slot2satname(maskpos+1)} {iodcorr:7d}  {c0*0.0016:{libssr.FMT_CLK}}')
+                msg += self.trace.msg(1, f'\n{slot2satname(maskpos+1)} {iodcorr:7d} {c0*0.0016:{libssr.FMT_CLK}}')
             maskpos += 1
         mesdata.pos += 10  # reserved
         return msg
@@ -313,7 +313,7 @@ class BdsB2():
         if iodp != self.iodp:
             msg += self.trace.msg(0, ' IODP mismatch', dec='dark')
             return msg
-        msg += self.trace.msg(1, '\nSAT IODCorr clock[m]')
+        msg += self.trace.msg(1, '\nSAT IODCorr    c0[m]')
         for _ in range(numc):
             iodcorr = mesdata.read( 3).u
             c0      = mesdata.read(15).i
@@ -357,7 +357,7 @@ class BdsB2():
         if iodssr != self.iodssr:
             msg += self.trace.msg(0, ' IODSSR mismatch', dec='dark')
             return msg
-        msg += self.trace.msg(1, '\nSAT IODCorr clock[m]')
+        msg += self.trace.msg(1, '\nSAT IODCorr    c0[m]')
         for _ in range(numc):
             slot    = mesdata.read( 9).u
             iodcorr = mesdata.read( 3).u

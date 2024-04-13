@@ -18,11 +18,17 @@ do_test() {
     cmp -s ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO}
     if [[ $? -eq 0 ]]; then
         printf "${ESC}[32mPassed.${ESC}[m\n"
-        rm ${BASENAME}.${EXT_TO}
     else
         printf  "${ESC}[31mFailed.${ESC}[m\n"
+        diff --color=always ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO} |lv
         exit 1
     fi
+    #grep -q dump ${BASENAME}.${EXT_TO}
+    #if [[ $? -ne 0 ]]; then
+    #    printf "  ${ESC}[33mWarning: Unexpected dump.${ESC}[m\n"
+    #    exit 1
+    #fi
+    rm ${BASENAME}.${EXT_TO}
 }
 
 psdr_conv() {
@@ -136,7 +142,7 @@ qzs_l6() {
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     SRCDIR=../sample/
-    BASENAME=2018001A
+    BASENAME=2019001A
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     BASENAME=2022001A
