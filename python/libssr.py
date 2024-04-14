@@ -56,7 +56,8 @@ FMT_IODE   = '4d'    # format string for issue of data ephemeris
 FMT_IODSSR = '<2d'   # format string for issue of data SSR
 FMT_GSIG   = '13s'   # format string for GNSS signal name
 FMT_URA    = '7.2f'  # format string for URA
-CLASGRID   = [       # CLAS grid, [location, number of grid, ([lat, lon]), ..., see https://s-taka.org/en/clasgrid/
+N_NID      = 19      # number of compact network ID, = len(CLASGRID)
+CLASGRID   = [       # CLAS grid, [location, number of grid, ([lat, lon]), ..., see ref[1] and https://s-taka.org/en/clasgrid/
 ["ISHIGAKI", 8, [
 (24.75, 125.37), (24.83, 125.17), (24.64, 124.69), (24.54, 124.30), (24.34, 124.17), (24.06, 123.80), (24.43, 123.79), (24.45, 122.94),],],
 ["OKINAWA", 11, [
@@ -90,7 +91,6 @@ CLASGRID   = [       # CLAS grid, [location, number of grid, ([lat, lon]), ..., 
 ["ISLAND (MINAMI-TORISHIMA)", 1, [(24.28, 153.99),],],
 ["ISLAND (OKINOSHIMA)", 1, [(20.44, 136.09),],],
 ]
-N_CLASGRID = 19         # = len(CLASGRID)
 
 def epoch2time(epoch):
     ''' convert epoch to time
@@ -151,9 +151,9 @@ def sigmask2signame(satsys, sigmask):
 def ura2dist(ura):
     ''' converts user range accuracy (URA) code to accuracy in distance [mm] '''
     dist = 0.0
-    if   ura.bin == 0b000000:   # undefined or unknown
+    if   ura.b == '000000':   # undefined or unknown
         dist = URA_INVALID
-    elif ura.bin == 0b111111:   # URA more than 5466.5 mm
+    elif ura.b == '111111':   # URA more than 5466.5 mm
         dist = 5466.5
     else:
         cls  = ura[4:7].u
@@ -202,19 +202,19 @@ class Ssr:
         self.ssr_pid       = payload.read('u16')  # SSR provider ID
         self.ssr_sid       = payload.read( 'u4')  # SSR solution ID
         # bit format of nsat changes with satsys
-        bw = 'u6' if satsys != 'J' else 'u4'
-        self.ssr_nsat      = payload.read(  bw )
+        bw = 6 if satsys != 'J' else 4
+        self.ssr_nsat      = payload.read(f'u{bw}')
 
     def ssr_decode_orbit(self, payload, satsys):
         ''' decodes SSR orbit correction and returns string '''
         # bit format of satid changes according to satellite system
-        if   satsys == 'J': bw = 'u4'  # ref. [2]
-        elif satsys == 'R': bw = 'u5'  # ref. [1]
-        else:               bw = 'u6'  # ref. [1]
+        if   satsys == 'J': bw = 4  # ref. [2]
+        elif satsys == 'R': bw = 5  # ref. [1]
+        else:               bw = 6  # ref. [1]
         msg1 = self.trace.msg(1, '\nSAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]')
         strsat = ''
         for _ in range(self.ssr_nsat):
-            satid   = payload.read(  bw )  # satellite ID, DF068
+            satid   = payload.read(f'u{bw}')  # satellite ID, DF068
             iode    = payload.read( 'u8')  # IODE, DF071
             radial  = payload.read('i22')  # radial, DF365
             along   = payload.read('i20')  # along track, DF366
@@ -230,13 +230,13 @@ class Ssr:
     def ssr_decode_clock(self, payload, satsys):
         ''' decodes SSR clock correction and returns string '''
         # bit format of satid changes according to satellite system
-        if   satsys == 'J': bw = 'u4'  # ref. [2]
-        elif satsys == 'R': bw = 'u5'  # ref. [1]
-        else              : bw = 'u6'  # ref. [1]
+        if   satsys == 'J': bw = 4  # ref. [2]
+        elif satsys == 'R': bw = 5  # ref. [1]
+        else              : bw = 6  # ref. [1]
         msg1 = self.trace.msg(1, '\nSAT   c0[m] c1[m/s] c2[m/s^2]')
         strsat = ''
         for _ in range(self.ssr_nsat):
-            satid = payload.read(  bw )  # satellite ID
+            satid = payload.read(f'u{bw}')  # satellite ID
             c0    = payload.read('i22')  # delta clock c0, DF376
             c1    = payload.read('i21')  # delta clock c1, DF377
             c2    = payload.read('i27')  # delta clock c2, DF378
@@ -248,13 +248,13 @@ class Ssr:
     def ssr_decode_code_bias(self, payload, satsys):
         ''' decodes SSR code bias and returns string '''
         # bit format of satid changes according to satellite system
-        if   satsys == 'J': bw = 'u4'   # ref. [2]
-        elif satsys == 'R': bw = 'u5'   # ref. [1]
-        else              : bw = 'u6'   # ref. [1]
+        if   satsys == 'J': bw = 4   # ref. [2]
+        elif satsys == 'R': bw = 5   # ref. [1]
+        else              : bw = 6   # ref. [1]
         msg1 = self.trace.msg(1, '\nSAT signal_name code_bias[m]')
         strsat = ''
         for _ in range(self.ssr_nsat):
-            satid = payload.read( bw )  # satellite ID, DF068, ...
+            satid = payload.read(f'u{bw}')  # satellite ID, DF068, ...
             ncb   = payload.read('u5')  # code bias number, DF383
             strsat += f"{satsys}{satid:02d} "
             for j in range(ncb):
@@ -268,13 +268,13 @@ class Ssr:
     def ssr_decode_ura(self, payload, satsys):
         ''' decodes SSR user range accuracy and returns string '''
         # bit format of satid changes according to satellite system
-        if   satsys == 'J': bw = 'u4'  # ref. [2]
-        elif satsys == 'R': bw = 'u5'  # ref. [1]
-        else              : bw = 'u6'  # ref. [1]
+        if   satsys == 'J': bw = 4  # ref. [2]
+        elif satsys == 'R': bw = 5  # ref. [1]
+        else              : bw = 6  # ref. [1]
         msg1 = self.trace.msg(1, '\nSAT URA[mm]')
         strsat = ''
         for i in range(self.ssr_nsat):
-            satid = payload.read(bw)  # satellite ID, DF068
+            satid = payload.read(f'u{bw}')  # satellite ID, DF068
             ura   = payload.read( 6)  # user range accuracy, DF389
             accuracy = ura2dist(ura)
             if accuracy != URA_INVALID:
@@ -286,13 +286,13 @@ class Ssr:
     def ssr_decode_hr_clock(self, payload, satsys):
         '''decodes SSR high rate clock and returns string'''
         # bit format of satid changes according to satellite system
-        if   satsys == 'J': bw = 'u4'
-        elif satsys == 'R': bw = 'u5'
-        else              : bw = 'u6'
+        if   satsys == 'J': bw = 4
+        elif satsys == 'R': bw = 5
+        else              : bw = 6
         msg1 = self.trace.msg(1, '\nSAT high_rate_clock[m]')
         strsat = ''
         for _ in range(self.ssr_nsat):
-            satid = payload.read(  bw )  # satellite ID
+            satid = payload.read(f'u{bw}')  # satellite ID
             hrc   = payload.read('i22')  # high rate clock, DF390
             strsat += f"{satsys}{satid:02} "
             msg1 += self.trace.msg(1, f'\n{satsys}{satid:02}            {hrc*1e-4:{FMT_CLK}}')
@@ -300,7 +300,7 @@ class Ssr:
         return msg
 
     def decode_cssr(self, payload):
-        ''' calls cssr decode functions and returns True if success '''
+        ''' calls cssr decode functions and returns decoded string '''
         if not self.decode_cssr_head(payload):
             return 'Could not decode CSSR header'
         if   self.subtype ==  1: self.decode_cssr_st1 (payload)
@@ -317,13 +317,13 @@ class Ssr:
         elif self.subtype == 12: self.decode_cssr_st12(payload)
         else:
             raise Exception(f"unknown CSSR subtype: {self.subtype}")
-        string = f'ST{self.subtype:<2d}'
+        msg = f'ST{self.subtype:<2d}'
         if self.subtype == 1:
-            string += f' Epoch={epoch2timedate(self.epoch)} ({self.epoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr} {"cont." if self.mmi else ""}'
+            msg += f' Epoch={epoch2timedate(self.epoch)} ({self.epoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr} {"cont." if self.mmi else ""}'
         else:
             etime=f'{self.hepoch//60:02d}:{self.hepoch%60:02d}'
-            string += f' Epoch={etime} ({self.hepoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr}{" cont." if self.mmi else ""}'
-        return string
+            msg += f' Epoch={etime} ({self.hepoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr}{" cont." if self.mmi else ""}'
+        return msg
 
     def show_cssr_stat(self):
         bit_total = self.stat_bsat + self.stat_bsig + self.stat_both + \
@@ -339,10 +339,10 @@ class Ssr:
         self.msgnum  = 0
         self.subtype = 0
         len_payload = len(payload)
-        if payload.all(0) or not len_payload:  # payload is zero padded
+        if payload.all(0):  # payload is zero padded
             self.trace.show(2, f"CSSR null data {len(payload.bin)} bits", fg='green')
             return False
-        if len_payload < 12 + 4:
+        if len_payload < payload.pos + 12 + 4:
             return False
         self.msgnum  = payload.read('u12')
         self.subtype = payload.read('u4')  # subtype
@@ -399,7 +399,7 @@ class Ssr:
             for i, val in enumerate(bsatmask):
                 if val:
                     t_satmask += 1
-                    t_gsys.append(t_satsys + f'{i + 1:02d}')
+                    t_gsys.append(f'{t_satsys}{i + 1:02d}')
             for i, val in enumerate(bsigmask):
                 if val:
                     t_sigmask += 1
@@ -494,17 +494,16 @@ class Ssr:
         vi = payload.read('u4')
         msg1 = f'ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval={HAS_VI[vi]}s ({vi})'
         for satsys in self.satsys:
-            if satsys == 'E': bw = 10
-            else            : bw =  8
+            bw = 10 if satsys == 'E' else 8
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + bw + 13 + 12 + 12:
                     return False
                 iode = payload.read(f'u{bw}')
-                rad  = payload.read(13)
-                alg  = payload.read(12)
-                crs  = payload.read(12)
-                if rad.bin != '1000000000000' and alg.bin != '100000000000' and crs.bin != '100000000000':
-                    msg1 += f'\nORBIT {gsys} {iode:{FMT_IODE}}   {rad.i*0.0025:{FMT_ORB}}  {alg.i*0.0080:{FMT_ORB}}  {crs.i*0.0080:{FMT_ORB}}'
+                radial = payload.read(13)
+                along  = payload.read(12)
+                cross  = payload.read(12)
+                if radial.b != '1000000000000' and along.b != '100000000000' and cross.b != '100000000000':
+                    msg1 += f'\nORBIT {gsys} {iode:{FMT_IODE}}   {radial.i*0.0025:{FMT_ORB}}  {along.i*0.0080:{FMT_ORB}}  {cross.i*0.0080:{FMT_ORB}}'
         self.trace.show(1, msg1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
@@ -545,7 +544,7 @@ class Ssr:
                 if len_payload < payload.pos + 13:
                     return False
                 c0 = payload.read(13)
-                if c0.bin != '1000000000000' and c0.bin != '0111111111111':
+                if c0.b != '1000000000000' and c0.b != '0111111111111':
                     msg1 += f"\nCKFUL {gsys} {c0.i*2.5e-3*multiplier[i]:{FMT_CLK}}"
         self.trace.show(1, msg1)
         self.stat_both += stat_pos
@@ -572,7 +571,7 @@ class Ssr:
                     if len_payload < payload.pos + 13:
                         return False
                     c0 = payload.read(13)
-                    if c0.bin != '1000000000000' and c0.bin == '0111111111111':
+                    if c0.b != '1000000000000' and c0.b == '0111111111111':
                         msg1 += f"\nCKSUB {gsys} {c0.i*2.5e-3*multiplier:{FMT_CLK}}"
         self.trace.show(1, msg1)
         self.stat_both += stat_pos
@@ -585,15 +584,6 @@ class Ssr:
         '''
         if ssr_type not in {'cssr', 'has'}:
             raise Exception(f'unknow ssr_type: {ssr_type}')
-        nsigsat = 0  # Nsig * Nsat
-        for i, satsys in enumerate(self.satsys):
-            pos_mask = 0  # mask position
-            for gsys in self.gsys[satsys]:
-                for gsig in self.gsig[satsys]:
-                    mask = self.cellmask[i][pos_mask]; pos_mask += 1
-                    if not mask:
-                        continue
-                    nsigsat += 1
         len_payload = len(payload)
         stat_pos    = payload.pos
         msg1 = 'ST4 SAT sinal_name      code_bias[m]'
@@ -602,15 +592,15 @@ class Ssr:
                 return False
             vi = payload.read('u4')
             msg1 = f'CBIAS SAT signal_name     code_bias[m] validity_interval={HAS_VI[vi]}s ({vi})'
-        if len(payload) < payload.pos + 11 * nsigsat:
-            return False
         for i, satsys in enumerate(self.satsys):
             pos_mask = 0  # mask position
-            for j, gsys in enumerate(self.gsys[satsys]):
-                for k, gsig in enumerate(self.gsig[satsys]):
+            for gsys in self.gsys[satsys]:
+                for gsig in self.gsig[satsys]:
                     mask = self.cellmask[i][pos_mask]; pos_mask += 1
                     if not mask:
                         continue
+                    if len_payload < payload.pos + 11:
+                        return False
                     cb  = payload.read('i11')
                     if cb != -1024:
                         if ssr_type == "cssr": msg1 += "\nST4"
@@ -682,13 +672,15 @@ class Ssr:
         ''' decode CSSR ST6 network bias message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
-        if len_payload < 45:
+        if len_payload < payload.pos + 3:
             return False
         f_cb = payload.read('u1')  # code    bias existing flag
         f_pb = payload.read('u1')  # phase   bias existing flag
         f_nb = payload.read('u1')  # network bias existing flag
         svmask = {}
-        cnid = 0
+        for satsys in self.satsys:
+            ngsys = len(self.gsys[satsys])
+            svmask[satsys] = bitstring.Bits('0b1')*ngsys
         msg1 = f"ST6 code_bias={'on' if f_cb else 'off'} phase_bias={'on' if f_pb else 'off'} network_bias={'on' if f_nb else 'off'}"
         msg1 += "\nST6 SAT signal_name    "
         if f_cb:
@@ -696,8 +688,10 @@ class Ssr:
         if f_pb:
             msg1 += " phase_bias[m] discontinuity"
         if f_nb:
+            if len_payload < payload.pos + 5:
+                return False
             cnid = payload.read('u5')  # compact network ID
-            if cnid < 1 or N_CLASGRID < cnid:
+            if cnid < 1 or N_NID < cnid:
                 raise Exception(f"invalid compact network ID: {cnid}")
             msg1 += f" NID={cnid} ({CLASGRID[cnid-1][0]})"
             for satsys in self.satsys:
@@ -710,7 +704,7 @@ class Ssr:
             for j, gsys in enumerate(self.gsys[satsys]):
                 for gsig in self.gsig[satsys]:
                     mask = self.cellmask[i][pos_mask]; pos_mask += 1
-                    if not svmask[satsys][j] or not mask:
+                    if not mask or not svmask[satsys][j]:
                         continue
                     msg1 += f"\nST6 {gsys} {gsig:{FMT_GSIG}}"
                     if f_cb:
@@ -735,8 +729,6 @@ class Ssr:
         ''' decode CSSR ST7 user range accuracy message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
-        if len_payload < 37:
-            return False
         msg1 = 'ST7 SAT URA[mm]'
         for satsys in self.satsys:
             for gsys in self.gsys[satsys]:
@@ -755,11 +747,11 @@ class Ssr:
         ''' decode CSSR ST8 STEC message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
-        if len_payload < 44:
+        if len_payload < payload.pos + 2 + 5:
             return False
         stec_type = payload.read('u2')  # STEC correction type
         cnid      = payload.read('u5')  # compact network ID
-        if cnid < 1 or N_CLASGRID < cnid:
+        if cnid < 1 or N_NID < cnid:
             raise Exception(f"invalid compact network ID: {cnid}")
         svmask = {}
         for satsys in self.satsys:
@@ -775,8 +767,8 @@ class Ssr:
         if 3 <= stec_type:
             msg1 += " c02[TECU/deg^2] c20[TECU/deg^2]"
         for satsys in self.satsys:
-            for i, gsys in enumerate(self.gsys[satsys]):
-                if not svmask[satsys][i]:
+            for maskpos, gsys in enumerate(self.gsys[satsys]):
+                if not svmask[satsys][maskpos]:
                     continue
                 if len_payload < payload.pos + 6 + 14:
                     return False
@@ -817,7 +809,7 @@ class Ssr:
         tctype = payload.read('u2')  # Trop correction type
         srange = payload.read('u1')  # STEC correction range
         cnid   = payload.read('u5')  # compact network ID
-        if cnid < 1 or N_CLASGRID < cnid:
+        if cnid < 1 or N_NID < cnid:
             raise Exception(f"invalid compact network ID: {cnid}")
         svmask = {}
         for satsys in self.satsys:
@@ -830,7 +822,7 @@ class Ssr:
         tqi   = payload.read(  6 )  # tropo quality indicator
         ngrid = payload.read('u6')  # number of grids
         if CLASGRID[cnid-1][1] != ngrid:
-            raise Exception(f"ngrid={ngrid} != {CLASGRID[cnid-1][1]}")
+            raise Exception(f"cnid={cnid}, ngrid={ngrid} != {CLASGRID[cnid-1][1]}")
         bw = 16 if srange else 7    # bit width of residual correction
         CSSR_TROP_CORR_TYPE = ['Not included', 'Neill mapping function', 'Reserved', 'Reserved',]
         msg1 = f"ST9 Trop Type: {CSSR_TROP_CORR_TYPE[tctype]} ({tctype}), resolution={bw}[bit] ({srange}), NID={cnid} ({CLASGRID[cnid-1][0]}), qual={ura2dist(tqi):{FMT_URA}}[mm], ngrid={ngrid}"
@@ -840,7 +832,7 @@ class Ssr:
         for grid in range(ngrid):
             if len_payload < payload.pos + 9 + 8:
                 return False
-            msg1 += '\nST9 SAT NID grid residual[TECU]'
+            msg1 += '\nST9 SAT  Lat.   Lon. residual[TECU]'
             vd_h = payload.read('i9')  # hydrostatic vertical delay
             vd_w = payload.read('i8')  # wet         vertical delay
             if vd_h != -256 and vd_w != -128:
@@ -854,8 +846,8 @@ class Ssr:
                     res  = payload.read(f'i{bw}')  # residual
                     if (srange == 1 and res != -32768) or \
                        (srange == 0 and res != -64):
-                        msg1 += f'\nST9 {gsys}  {cnid}   {grid+1:2d}         {res*0.04:{FMT_TECU}}'
-        self.trace.show(1, f"pos={payload.pos}, len_payload={len_payload}", fg='yellow')
+                        lat, lon = CLASGRID[cnid-1][2][grid]
+                        msg1 += f'\nST9 {gsys} {lat:5.2f} {lon:6.2f}         {res*0.04:{FMT_TECU}}'
         self.trace.show(1, msg1)
         self.stat_both += payload.pos
         return True
@@ -863,7 +855,7 @@ class Ssr:
     def decode_cssr_st10(self, payload):
         ''' decode CSSR ST10 auxiliary message and returns True if success '''
         len_payload = len(payload)
-        if len_payload < 5:
+        if len_payload < payload.pos + 5:
             return False
         counter = payload.read('u3')  # info message counter
         dsize   = payload.read('u2')  # data size
@@ -886,11 +878,14 @@ class Ssr:
         f_n = payload.read('u1')  # network correction
         msg1 = f"ST11 orbit_correction={'on' if f_o else 'off'} clock_correction={'on' if f_c else 'off'} network_correction={'on' if f_n else 'off'}"
         svmask = {}
+        for satsys in self.satsys:
+            ngsys = len(self.gsys[satsys])
+            svmask[satsys] = bitstring.Bits('0b1')*ngsys
         if f_n:
             if len_payload < payload.pos + 5:
                 return False
             cnid = payload.read('u5')  # compact network ID
-            if cnid < 1 or N_CLASGRID < cnid:
+            if cnid < 1 or N_NID < cnid:
                 raise Exception(f"invalid compact network ID: {cnid}")
             msg1 += f"\nST11 NID={cnid} ({CLASGRID[cnid-1][0]})"
             for satsys in self.satsys:
@@ -938,14 +933,16 @@ class Ssr:
     def decode_cssr_st12(self, payload):
         ''' decode CSSR ST12 network and troposphere corrections message and returns True if success '''
         len_payload = len(payload)
-        if len_payload < 52:
+        if len_payload < payload.pos + 2 + 2 + 5 + 6:
             return False
         tavail = payload.read(  2 )  # troposhpere correction availability
         savail = payload.read(  2 )  # STEC        correction availability
         cnid   = payload.read('u5')  # compact network ID
         ngrid  = payload.read('u6')  # number of grids
-        if cnid < 1 or N_CLASGRID < cnid:
+        if cnid < 1 or N_NID < cnid:
             raise Exception(f"invalid compact network ID: {cnid}")
+        if CLASGRID[cnid-1][1] != ngrid:
+            raise Exception(f"cnid={cnid}, ngrid={ngrid} != {CLASGRID[cnid-1][1]}")
         msg1 = f"ST12 Trop NID={cnid} ({CLASGRID[cnid-1][0]})"
         if tavail[0]:  # bool object
             # 0 <= ttype (forward reference)
@@ -979,11 +976,12 @@ class Ssr:
             msg1 += f" offset={tro*0.02:.3f}[m]"
             if len_payload < payload.pos + bw * ngrid:
                 return False
-            msg1 += "\nST12 Trop NID grid residual[m]"
+            msg1 += "\nST12 Trop  Lat.   Lon. residual[m]"
             for grid in range(ngrid):
                 tr = payload.read(f'i{bw}')  # tropo residual
                 if (bw == 6 and tr != -32) or (bw == 8 and tr != -128):
-                    msg1 += f"\nST12 Trop  {cnid:2d}   {grid+1:2d} {tr*0.004:{FMT_TROP}}"
+                    lat, lon = CLASGRID[cnid-1][2][grid]
+                    msg1 += f"\nST12 Trop {lat:5.2f} {lon:6.2f}     {tr*0.004:{FMT_TROP}}"
         stat_pos = payload.pos
         if savail[0]:  # bool object
             svmask = {}
@@ -1001,7 +999,7 @@ class Ssr:
                     sqi = payload.read(   6 )  # STEC quality indication
                     sct = payload.read( 'u2')   # STEC correct type
                     c00 = payload.read('i14')
-                    msg1 += f"\nST12 STEC {gsys} NID grid residual[TECU] qual={ura2dist(sqi):.3f}[TECU]"
+                    msg1 += f"\nST12 STEC {gsys}  Lat.   Lon. residual[TECU] qual={ura2dist(sqi):.3f}[TECU]"
                     if c00 != -8192:
                         msg1 += f" c00={c00*0.05:.3f}[TECU]"
                     if 1 <= sct:
@@ -1029,14 +1027,15 @@ class Ssr:
                     srs = payload.read('u2')  # STEC residual size
                     bw  = [   4,    4,    5,    7][srs]
                     lsb = [0.04, 0.12, 0.16, 0.24][srs]
+                    if len_payload < payload.pos + bw * ngrid:
+                        return False
                     for grid in range(ngrid):
-                        if len_payload < payload.pos + bw:
-                            return False
                         sr  = payload.read(f'i{bw}')  # STEC residual
+                        lat, lon = CLASGRID[cnid-1][2][grid]
                         if (bw == 4 and sr !=  -8) or \
                            (bw == 5 and sr != -16) or \
                            (bw == 7 and sr != -64):
-                            msg1 += f"\nST12 STEC {gsys}  {cnid:2d}   {grid+1:2d}         {sr*lsb:{FMT_TECU}}"
+                            msg1 += f"\nST12 STEC {gsys} {lat:5.2f} {lon:6.2f}         {sr*lsb:{FMT_TECU}}"
         if savail[1]:  # bool object
             pass  # the use of this bit is not defined in ref.[1]
         self.trace.show(1, msg1)
@@ -1045,4 +1044,3 @@ class Ssr:
         return True
 
 # EOF
-
