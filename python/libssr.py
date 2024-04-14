@@ -759,13 +759,14 @@ class Ssr:
             if len_payload < payload.pos + ngsys:
                 return False
             svmask[satsys] = payload.read(ngsys)
-        msg1 = "ST8 SAT NID qual[TECU] c00[TECU]"
+        msg1 = "ST8 SAT qual[TECU] c00[TECU]"
         if 1 <= stec_type:
             msg1 += " c01[TECU/deg] c10[TECU/deg]"
         if 2 <= stec_type:
             msg1 += " c11[TECU/deg^2]"
         if 3 <= stec_type:
             msg1 += " c02[TECU/deg^2] c20[TECU/deg^2]"
+        msg1 += f" NID={cnid} ({CLASGRID[cnid-1][0]})"
         for satsys in self.satsys:
             for maskpos, gsys in enumerate(self.gsys[satsys]):
                 if not svmask[satsys][maskpos]:
@@ -775,7 +776,7 @@ class Ssr:
                 qi   = payload.read(   6 )  # quality indicator
                 c00  = payload.read('i14')
                 if c00 != -8192:
-                    msg1 += f"\nST8 {gsys}  {cnid:2d}     {ura2dist(qi):{FMT_TECU}}    {c00*0.05:{FMT_TECU}}"
+                    msg1 += f"\nST8 {gsys}     {ura2dist(qi):{FMT_TECU}}    {c00*0.05:{FMT_TECU}}"
                 if 1 <= stec_type:
                     if len_payload < payload.pos + 12 + 12:
                         return False
