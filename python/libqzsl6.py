@@ -238,14 +238,22 @@ class QzsL6:
             msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
             if self.vendor == "MADOCA-PPP":
                 msg += f' ({self.servid} {self.msg_ext})'
-        pos = self.payload.pos  # save position
+        #pos = self.payload.pos  # save position
         if self.read_cssr():  # found a CSSR message
             msg += f' ST{self.ssr.subtype}'
+            #self.trace.show(1, f"1: pos={pos} payload.pos={self.payload.pos}")
+            #pos = self.payload.pos  # save position
             while self.read_cssr():  # try to decode next message
                 msg += f' ST{self.ssr.subtype}'
-                pos = self.payload.pos  # save position
-            if self.ssr.subtype != 0:   # continues to next datapart
-                self.payload.pos = pos  # restore position
+                #self.trace.show(1, f"2: pos={pos} payload.pos={self.payload.pos}")
+                #pos = self.payload.pos  # save position
+            #zeros = self.payload[pos:].all(0)
+            #zeros = self.payload.all(0)
+            #if not zeros:   # continues to next datapart
+            if not self.payload.all(0):   # continues to next datapart
+                #self.trace.show(1, f"3: pos={pos} payload.pos={self.payload.pos}")
+                #self.payload.pos = pos  # restore position
+                self.payload.pos = 0
                 msg += f' ST{self.ssr.subtype}' + \
                     self.trace.msg(0, '...', fg='yellow')
             else:  # end of message in the subframe
@@ -255,11 +263,13 @@ class QzsL6:
                 msg += self.trace.msg(0, ' (null)', dec='dark')
                 self.payload = bitstring.BitStream()
             elif self.run:  # or, continual message
-                self.payload.pos = pos  # restore position
+                #self.payload.pos = pos  # restore position
+                self.payload.pos = 0
                 msg += f' ST{self.ssr.subtype}' + \
                     self.trace.msg(0, '...', 'yellow')
             else:  # ST1 mask message has not been found yet
-                self.payload.pos = pos  # restore position
+                #self.payload.pos = pos  # restore position
+                self.payload.pos = 0
                 msg += self.trace.msg(0, ' (syncing)', dec='dark')
         return msg
 

@@ -12,7 +12,7 @@ Code bias       : off
 Phase bias      : off
 Mask ID         : 22
 IOD Set ID      : 1
-CKFUL validity_interval=60s (5)
+CKFUL SAT   c0[m] validity_interval=60[s] (5)
 ------ padding bits ------
 00001111101001011000011000010011111101010110000100100111000100011001100001101011001110010111010000000111100110000000000000000000011001000001010001100000111111011111101011100100000000000011111011110010000001001000111111100111011100100100101110111010111111010110100100000100111001111110100100000000011100011110110000111111101010111000011000101000010000001110000001111001111111111100111111110011101111110100111111111110010000000011110011111110100001111110100001100000100000011111101010110111111111110000000000111001111110001001111111100110100000010010010000000011000000000010111111111101000110000000011100111111100001100000001000001111111001101111111101100101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------
@@ -105,222 +105,222 @@ MASK E31 E1 C E5a Q E5b Q E6 C
 MASK E33 E1 C E5a Q E5b Q E6 C
 MASK E34 E1 C E5a Q E5b Q E6 C
 MASK E36 E1 C E5a Q E5b Q E6 C
-ORBIT validity_interval=300s (10)
-ORBIT G02 IODE=  94 d_radial=-0.0525m d_track= 0.9920m d_cross=-0.2560m
-ORBIT G03 IODE=  33 d_radial= 0.0050m d_track=-0.0480m d_cross=-0.4400m
-ORBIT G04 IODE=  28 d_radial=-1.0075m d_track= 0.1840m d_cross=-0.2400m
-ORBIT G05 IODE=  37 d_radial= 0.0175m d_track=-0.4880m d_cross= 0.2960m
-ORBIT G06 IODE=  15 d_radial=-0.2125m d_track= 0.3520m d_cross= 0.5440m
-ORBIT G07 IODE=  91 d_radial=-0.4325m d_track= 3.2720m d_cross= 2.6000m
-ORBIT G08 IODE= 116 d_radial=-0.0700m d_track=-1.0400m d_cross= 0.0800m
-ORBIT G09 IODE=  13 d_radial=-0.1200m d_track= 0.6960m d_cross= 0.1680m
-ORBIT G10 IODE=  79 d_radial= 0.1775m d_track= 1.0400m d_cross= 0.0720m
-ORBIT G11 IODE= 151 d_radial=-0.9650m d_track= 0.1840m d_cross= 0.5040m
-ORBIT G12 IODE=  53 d_radial= 0.0300m d_track=-1.5680m d_cross=-0.5840m
-ORBIT G13 IODE=  60 d_radial=-0.1975m d_track= 0.7760m d_cross= 0.2000m
-ORBIT G14 IODE=  68 d_radial=-0.9575m d_track=-1.6320m d_cross=-0.5440m
-ORBIT G15 IODE=  37 d_radial= 0.1100m d_track= 0.0400m d_cross= 0.3280m
-ORBIT G16 IODE=  90 d_radial=-0.0700m d_track= 0.5040m d_cross= 0.3680m
-ORBIT G17 IODE=  41 d_radial=-0.3475m d_track= 0.4320m d_cross=-0.2400m
-ORBIT G18 IODE= 128 d_radial=-0.8450m d_track=-0.5520m d_cross= 1.0400m
-ORBIT G19 IODE=  86 d_radial=-0.3350m d_track= 0.1920m d_cross=-0.2480m
-ORBIT G20 IODE=  88 d_radial=-0.0650m d_track= 0.6800m d_cross= 1.8640m
-ORBIT G21 IODE=  17 d_radial= 0.0400m d_track=-0.2480m d_cross=-0.2880m
-ORBIT G23 IODE= 183 d_radial=-0.7875m d_track=-2.3200m d_cross=-0.4960m
-ORBIT G25 IODE=  22 d_radial=-0.0750m d_track=-0.5040m d_cross=-0.0800m
-ORBIT G27 IODE=  11 d_radial= 0.0850m d_track=-0.1520m d_cross= 0.5920m
-ORBIT G29 IODE=  95 d_radial=-0.1875m d_track= 2.6240m d_cross= 0.2480m
-ORBIT G30 IODE=  47 d_radial=-0.2850m d_track= 0.2800m d_cross=-0.1600m
-ORBIT G31 IODE=  84 d_radial=-0.1300m d_track= 0.3040m d_cross=-0.4960m
-ORBIT G32 IODE=  58 d_radial= 0.5125m d_track=-2.5600m d_cross= 1.9840m
-ORBIT E02 IODE=  16 d_radial=-0.0575m d_track= 0.3280m d_cross= 0.0240m
-ORBIT E03 IODE=  16 d_radial= 0.0275m d_track= 0.0960m d_cross=-0.2960m
-ORBIT E04 IODE=  16 d_radial=-0.1700m d_track=-0.0080m d_cross= 0.0320m
-ORBIT E05 IODE=  16 d_radial= 0.0375m d_track=-0.6800m d_cross=-0.3680m
-ORBIT E07 IODE=  16 d_radial= 0.0425m d_track= 0.3360m d_cross=-0.4720m
-ORBIT E08 IODE=  16 d_radial= 0.0750m d_track= 0.1760m d_cross=-0.3520m
-ORBIT E09 IODE=  16 d_radial=-0.1600m d_track=-0.3920m d_cross=-0.3840m
-ORBIT E10 IODE=  16 d_radial=-0.1500m d_track=-0.4640m d_cross= 0.0720m
-ORBIT E11 IODE=  16 d_radial=-0.1000m d_track=-0.5120m d_cross= 0.0240m
-ORBIT E12 IODE=  15 d_radial=-0.2400m d_track=-0.5040m d_cross= 0.2160m
-ORBIT E13 IODE=  16 d_radial= 0.0750m d_track= 0.1200m d_cross=-0.1760m
-ORBIT E15 IODE=  16 d_radial= 0.2125m d_track=-0.0400m d_cross=-0.1600m
-ORBIT E19 IODE=  16 d_radial=-0.2775m d_track= 0.4720m d_cross= 0.0000m
-ORBIT E21 IODE=  16 d_radial=-0.1475m d_track= 0.0880m d_cross= 0.1920m
-ORBIT E24 IODE=  16 d_radial=-0.0475m d_track=-0.0800m d_cross= 0.2640m
-ORBIT E25 IODE=  16 d_radial= 0.0475m d_track= 0.3760m d_cross=-0.2320m
-ORBIT E26 IODE=  16 d_radial= 0.0425m d_track=-0.2480m d_cross= 0.0160m
-ORBIT E27 IODE=  13 d_radial=-0.1950m d_track= 0.1600m d_cross= 0.1440m
-ORBIT E30 IODE=  16 d_radial=-0.0575m d_track= 0.2560m d_cross= 0.0800m
-ORBIT E31 IODE=  16 d_radial=-0.0825m d_track= 0.2400m d_cross= 0.1040m
-ORBIT E33 IODE=  15 d_radial=-0.0025m d_track=-0.1280m d_cross=-0.0720m
-ORBIT E34 IODE=  16 d_radial= 0.0575m d_track= 0.0640m d_cross=-0.0800m
-ORBIT E36 IODE=  16 d_radial= 0.0025m d_track= 0.0080m d_cross=-0.1760m
-CBIAS validity_interval=300s (10)
-CBIAS G02 L1 C/A        code_bias=  4.420m
-CBIAS G02 L2 P          code_bias=  7.280m
-CBIAS G03 L1 C/A        code_bias= -2.880m
-CBIAS G03 L2 CL         code_bias= -4.340m
-CBIAS G03 L2 P          code_bias= -4.760m
-CBIAS G04 L1 C/A        code_bias= -0.520m
-CBIAS G04 L2 CL         code_bias= -0.120m
-CBIAS G04 L2 P          code_bias= -0.840m
-CBIAS G05 L1 C/A        code_bias=  1.260m
-CBIAS G05 L2 CL         code_bias=  2.520m
-CBIAS G05 L2 P          code_bias=  2.040m
-CBIAS G06 L1 C/A        code_bias= -3.460m
-CBIAS G06 L2 CL         code_bias= -5.400m
-CBIAS G06 L2 P          code_bias= -5.700m
-CBIAS G07 L1 C/A        code_bias=  1.680m
-CBIAS G07 L2 CL         code_bias=  3.380m
-CBIAS G07 L2 P          code_bias=  2.760m
-CBIAS G08 L1 C/A        code_bias= -3.140m
-CBIAS G08 L2 CL         code_bias= -4.960m
-CBIAS G08 L2 P          code_bias= -5.160m
-CBIAS G09 L1 C/A        code_bias= -1.940m
-CBIAS G09 L2 CL         code_bias= -2.560m
-CBIAS G09 L2 P          code_bias= -3.200m
-CBIAS G11 L1 C/A        code_bias=  0.740m
-CBIAS G11 L2 CL         code_bias=  1.820m
-CBIAS G11 L2 P          code_bias=  1.220m
-CBIAS G12 L1 C/A        code_bias=  1.900m
-CBIAS G12 L2 CL         code_bias=  3.620m
-CBIAS G12 L2 P          code_bias=  3.120m
-CBIAS G13 L1 C/A        code_bias=  1.840m
-CBIAS G13 L2 P          code_bias=  3.020m
-CBIAS G14 L1 C/A        code_bias=  0.660m
-CBIAS G14 L2 CL         code_bias=  1.600m
-CBIAS G14 L2 P          code_bias=  1.080m
-CBIAS G15 L1 C/A        code_bias=  1.100m
-CBIAS G15 L2 CL         code_bias=  2.340m
-CBIAS G15 L2 P          code_bias=  1.800m
-CBIAS G16 L1 C/A        code_bias=  2.180m
-CBIAS G16 L2 P          code_bias=  3.580m
-CBIAS G17 L1 C/A        code_bias=  1.660m
-CBIAS G17 L2 CL         code_bias=  3.340m
-CBIAS G17 L2 P          code_bias=  2.720m
-CBIAS G18 L1 C/A        code_bias=  0.580m
-CBIAS G18 L2 CL         code_bias=  1.520m
-CBIAS G18 L2 P          code_bias=  0.940m
-CBIAS G19 L1 C/A        code_bias=  4.460m
-CBIAS G19 L2 P          code_bias=  7.340m
-CBIAS G20 L1 C/A        code_bias=  1.720m
-CBIAS G20 L2 P          code_bias=  2.820m
-CBIAS G21 L1 C/A        code_bias=  2.200m
-CBIAS G21 L2 P          code_bias=  3.640m
-CBIAS G23 L1 C/A        code_bias=  0.680m
-CBIAS G23 L2 CL         code_bias=  1.720m
-CBIAS G23 L2 P          code_bias=  1.140m
-CBIAS G25 L1 C/A        code_bias= -2.900m
-CBIAS G25 L2 CL         code_bias= -4.460m
-CBIAS G25 L2 P          code_bias= -4.780m
-CBIAS G27 L1 C/A        code_bias= -2.060m
-CBIAS G27 L2 CL         code_bias= -2.860m
-CBIAS G27 L2 P          code_bias= -3.420m
-CBIAS G29 L1 C/A        code_bias=  1.340m
-CBIAS G29 L2 CL         code_bias=  2.620m
-CBIAS G29 L2 P          code_bias=  2.200m
-CBIAS G30 L1 C/A        code_bias= -2.220m
-CBIAS G30 L2 CL         code_bias= -3.320m
-CBIAS G30 L2 P          code_bias= -3.660m
-CBIAS G31 L1 C/A        code_bias=  2.240m
-CBIAS G31 L2 CL         code_bias=  4.040m
-CBIAS G31 L2 P          code_bias=  3.700m
-CBIAS G32 L1 C/A        code_bias= -2.340m
-CBIAS G32 L2 CL         code_bias= -3.440m
-CBIAS G32 L2 P          code_bias= -3.840m
-CBIAS E02 E1 C          code_bias=  0.360m
-CBIAS E02 E5a Q         code_bias=  0.640m
-CBIAS E02 E5b Q         code_bias=  0.780m
-CBIAS E02 E6 C          code_bias= -0.440m
-CBIAS E03 E1 C          code_bias= -0.920m
-CBIAS E03 E5a Q         code_bias= -1.660m
-CBIAS E03 E5b Q         code_bias= -1.660m
-CBIAS E03 E6 C          code_bias= -0.920m
-CBIAS E04 E1 C          code_bias=  0.860m
-CBIAS E04 E5a Q         code_bias=  1.560m
-CBIAS E04 E5b Q         code_bias=  1.540m
-CBIAS E04 E6 C          code_bias=  0.640m
-CBIAS E05 E1 C          code_bias= -1.040m
-CBIAS E05 E5a Q         code_bias= -1.860m
-CBIAS E05 E5b Q         code_bias= -1.880m
-CBIAS E05 E6 C          code_bias= -0.220m
-CBIAS E07 E1 C          code_bias= -1.620m
-CBIAS E07 E5a Q         code_bias= -2.900m
-CBIAS E07 E5b Q         code_bias= -2.860m
-CBIAS E07 E6 C          code_bias= -1.540m
-CBIAS E08 E1 C          code_bias=  1.060m
-CBIAS E08 E5a Q         code_bias=  1.920m
-CBIAS E08 E5b Q         code_bias=  1.940m
-CBIAS E08 E6 C          code_bias=  1.520m
-CBIAS E09 E1 C          code_bias= -0.500m
-CBIAS E09 E5a Q         code_bias= -0.900m
-CBIAS E09 E5b Q         code_bias= -0.900m
-CBIAS E09 E6 C          code_bias= -0.940m
-CBIAS E10 E1 C          code_bias= -0.120m
-CBIAS E10 E5a Q         code_bias= -0.220m
-CBIAS E10 E5b Q         code_bias= -0.380m
-CBIAS E10 E6 C          code_bias= -1.540m
-CBIAS E11 E1 C          code_bias=  3.940m
-CBIAS E11 E5a Q         code_bias=  7.060m
-CBIAS E11 E5b Q         code_bias=  6.960m
-CBIAS E11 E6 C          code_bias=  6.560m
-CBIAS E12 E1 C          code_bias=  3.140m
-CBIAS E12 E5a Q         code_bias=  5.620m
-CBIAS E12 E5b Q         code_bias=  5.300m
-CBIAS E12 E6 C          code_bias=  5.660m
-CBIAS E13 E1 C          code_bias= -1.660m
-CBIAS E13 E5a Q         code_bias= -2.960m
-CBIAS E13 E5b Q         code_bias= -2.860m
-CBIAS E13 E6 C          code_bias= -1.400m
-CBIAS E15 E1 C          code_bias= -1.880m
-CBIAS E15 E5a Q         code_bias= -3.360m
-CBIAS E15 E5b Q         code_bias= -3.300m
-CBIAS E15 E6 C          code_bias= -2.280m
-CBIAS E19 E1 C          code_bias=  0.940m
-CBIAS E19 E5a Q         code_bias=  1.680m
-CBIAS E19 E5b Q         code_bias=  1.620m
-CBIAS E19 E6 C          code_bias=  1.000m
-CBIAS E21 E1 C          code_bias= -0.720m
-CBIAS E21 E5a Q         code_bias= -1.280m
-CBIAS E21 E5b Q         code_bias= -1.240m
-CBIAS E21 E6 C          code_bias= -2.080m
-CBIAS E24 E1 C          code_bias=  1.100m
-CBIAS E24 E5a Q         code_bias=  1.980m
-CBIAS E24 E5b Q         code_bias=  2.060m
-CBIAS E24 E6 C          code_bias=  0.800m
-CBIAS E25 E1 C          code_bias= -1.100m
-CBIAS E25 E5a Q         code_bias= -1.960m
-CBIAS E25 E5b Q         code_bias= -1.920m
-CBIAS E25 E6 C          code_bias= -0.640m
-CBIAS E26 E1 C          code_bias=  1.240m
-CBIAS E26 E5a Q         code_bias=  2.200m
-CBIAS E26 E5b Q         code_bias=  2.220m
-CBIAS E26 E6 C          code_bias=  0.420m
-CBIAS E27 E1 C          code_bias= -0.620m
-CBIAS E27 E5a Q         code_bias= -1.100m
-CBIAS E27 E5b Q         code_bias= -1.080m
-CBIAS E27 E6 C          code_bias= -2.020m
-CBIAS E30 E1 C          code_bias= -0.520m
-CBIAS E30 E5a Q         code_bias= -0.940m
-CBIAS E30 E5b Q         code_bias= -0.900m
-CBIAS E30 E6 C          code_bias= -0.280m
-CBIAS E31 E1 C          code_bias= -1.380m
-CBIAS E31 E5a Q         code_bias= -2.460m
-CBIAS E31 E5b Q         code_bias= -2.440m
-CBIAS E31 E6 C          code_bias= -0.420m
-CBIAS E33 E1 C          code_bias=  1.020m
-CBIAS E33 E5a Q         code_bias=  1.840m
-CBIAS E33 E5b Q         code_bias=  1.860m
-CBIAS E33 E6 C          code_bias=  0.400m
-CBIAS E34 E1 C          code_bias= -1.280m
-CBIAS E34 E5a Q         code_bias= -2.300m
-CBIAS E34 E5b Q         code_bias= -2.400m
-CBIAS E34 E6 C          code_bias= -2.040m
-CBIAS E36 E1 C          code_bias= -1.780m
-CBIAS E36 E5a Q         code_bias= -3.180m
-CBIAS E36 E5b Q         code_bias= -3.200m
-CBIAS E36 E6 C          code_bias= -2.180m
+ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
+ORBIT G02   94   -0.0525   0.9920  -0.2560
+ORBIT G03   33    0.0050  -0.0480  -0.4400
+ORBIT G04   28   -1.0075   0.1840  -0.2400
+ORBIT G05   37    0.0175  -0.4880   0.2960
+ORBIT G06   15   -0.2125   0.3520   0.5440
+ORBIT G07   91   -0.4325   3.2720   2.6000
+ORBIT G08  116   -0.0700  -1.0400   0.0800
+ORBIT G09   13   -0.1200   0.6960   0.1680
+ORBIT G10   79    0.1775   1.0400   0.0720
+ORBIT G11  151   -0.9650   0.1840   0.5040
+ORBIT G12   53    0.0300  -1.5680  -0.5840
+ORBIT G13   60   -0.1975   0.7760   0.2000
+ORBIT G14   68   -0.9575  -1.6320  -0.5440
+ORBIT G15   37    0.1100   0.0400   0.3280
+ORBIT G16   90   -0.0700   0.5040   0.3680
+ORBIT G17   41   -0.3475   0.4320  -0.2400
+ORBIT G18  128   -0.8450  -0.5520   1.0400
+ORBIT G19   86   -0.3350   0.1920  -0.2480
+ORBIT G20   88   -0.0650   0.6800   1.8640
+ORBIT G21   17    0.0400  -0.2480  -0.2880
+ORBIT G23  183   -0.7875  -2.3200  -0.4960
+ORBIT G25   22   -0.0750  -0.5040  -0.0800
+ORBIT G27   11    0.0850  -0.1520   0.5920
+ORBIT G29   95   -0.1875   2.6240   0.2480
+ORBIT G30   47   -0.2850   0.2800  -0.1600
+ORBIT G31   84   -0.1300   0.3040  -0.4960
+ORBIT G32   58    0.5125  -2.5600   1.9840
+ORBIT E02   16   -0.0575   0.3280   0.0240
+ORBIT E03   16    0.0275   0.0960  -0.2960
+ORBIT E04   16   -0.1700  -0.0080   0.0320
+ORBIT E05   16    0.0375  -0.6800  -0.3680
+ORBIT E07   16    0.0425   0.3360  -0.4720
+ORBIT E08   16    0.0750   0.1760  -0.3520
+ORBIT E09   16   -0.1600  -0.3920  -0.3840
+ORBIT E10   16   -0.1500  -0.4640   0.0720
+ORBIT E11   16   -0.1000  -0.5120   0.0240
+ORBIT E12   15   -0.2400  -0.5040   0.2160
+ORBIT E13   16    0.0750   0.1200  -0.1760
+ORBIT E15   16    0.2125  -0.0400  -0.1600
+ORBIT E19   16   -0.2775   0.4720   0.0000
+ORBIT E21   16   -0.1475   0.0880   0.1920
+ORBIT E24   16   -0.0475  -0.0800   0.2640
+ORBIT E25   16    0.0475   0.3760  -0.2320
+ORBIT E26   16    0.0425  -0.2480   0.0160
+ORBIT E27   13   -0.1950   0.1600   0.1440
+ORBIT E30   16   -0.0575   0.2560   0.0800
+ORBIT E31   16   -0.0825   0.2400   0.1040
+ORBIT E33   15   -0.0025  -0.1280  -0.0720
+ORBIT E34   16    0.0575   0.0640  -0.0800
+ORBIT E36   16    0.0025   0.0080  -0.1760
+CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
+CBIAS G02 L1 C/A                 4.420
+CBIAS G02 L2 P                   7.280
+CBIAS G03 L1 C/A                -2.880
+CBIAS G03 L2 CL                 -4.340
+CBIAS G03 L2 P                  -4.760
+CBIAS G04 L1 C/A                -0.520
+CBIAS G04 L2 CL                 -0.120
+CBIAS G04 L2 P                  -0.840
+CBIAS G05 L1 C/A                 1.260
+CBIAS G05 L2 CL                  2.520
+CBIAS G05 L2 P                   2.040
+CBIAS G06 L1 C/A                -3.460
+CBIAS G06 L2 CL                 -5.400
+CBIAS G06 L2 P                  -5.700
+CBIAS G07 L1 C/A                 1.680
+CBIAS G07 L2 CL                  3.380
+CBIAS G07 L2 P                   2.760
+CBIAS G08 L1 C/A                -3.140
+CBIAS G08 L2 CL                 -4.960
+CBIAS G08 L2 P                  -5.160
+CBIAS G09 L1 C/A                -1.940
+CBIAS G09 L2 CL                 -2.560
+CBIAS G09 L2 P                  -3.200
+CBIAS G11 L1 C/A                 0.740
+CBIAS G11 L2 CL                  1.820
+CBIAS G11 L2 P                   1.220
+CBIAS G12 L1 C/A                 1.900
+CBIAS G12 L2 CL                  3.620
+CBIAS G12 L2 P                   3.120
+CBIAS G13 L1 C/A                 1.840
+CBIAS G13 L2 P                   3.020
+CBIAS G14 L1 C/A                 0.660
+CBIAS G14 L2 CL                  1.600
+CBIAS G14 L2 P                   1.080
+CBIAS G15 L1 C/A                 1.100
+CBIAS G15 L2 CL                  2.340
+CBIAS G15 L2 P                   1.800
+CBIAS G16 L1 C/A                 2.180
+CBIAS G16 L2 P                   3.580
+CBIAS G17 L1 C/A                 1.660
+CBIAS G17 L2 CL                  3.340
+CBIAS G17 L2 P                   2.720
+CBIAS G18 L1 C/A                 0.580
+CBIAS G18 L2 CL                  1.520
+CBIAS G18 L2 P                   0.940
+CBIAS G19 L1 C/A                 4.460
+CBIAS G19 L2 P                   7.340
+CBIAS G20 L1 C/A                 1.720
+CBIAS G20 L2 P                   2.820
+CBIAS G21 L1 C/A                 2.200
+CBIAS G21 L2 P                   3.640
+CBIAS G23 L1 C/A                 0.680
+CBIAS G23 L2 CL                  1.720
+CBIAS G23 L2 P                   1.140
+CBIAS G25 L1 C/A                -2.900
+CBIAS G25 L2 CL                 -4.460
+CBIAS G25 L2 P                  -4.780
+CBIAS G27 L1 C/A                -2.060
+CBIAS G27 L2 CL                 -2.860
+CBIAS G27 L2 P                  -3.420
+CBIAS G29 L1 C/A                 1.340
+CBIAS G29 L2 CL                  2.620
+CBIAS G29 L2 P                   2.200
+CBIAS G30 L1 C/A                -2.220
+CBIAS G30 L2 CL                 -3.320
+CBIAS G30 L2 P                  -3.660
+CBIAS G31 L1 C/A                 2.240
+CBIAS G31 L2 CL                  4.040
+CBIAS G31 L2 P                   3.700
+CBIAS G32 L1 C/A                -2.340
+CBIAS G32 L2 CL                 -3.440
+CBIAS G32 L2 P                  -3.840
+CBIAS E02 E1 C                   0.360
+CBIAS E02 E5a Q                  0.640
+CBIAS E02 E5b Q                  0.780
+CBIAS E02 E6 C                  -0.440
+CBIAS E03 E1 C                  -0.920
+CBIAS E03 E5a Q                 -1.660
+CBIAS E03 E5b Q                 -1.660
+CBIAS E03 E6 C                  -0.920
+CBIAS E04 E1 C                   0.860
+CBIAS E04 E5a Q                  1.560
+CBIAS E04 E5b Q                  1.540
+CBIAS E04 E6 C                   0.640
+CBIAS E05 E1 C                  -1.040
+CBIAS E05 E5a Q                 -1.860
+CBIAS E05 E5b Q                 -1.880
+CBIAS E05 E6 C                  -0.220
+CBIAS E07 E1 C                  -1.620
+CBIAS E07 E5a Q                 -2.900
+CBIAS E07 E5b Q                 -2.860
+CBIAS E07 E6 C                  -1.540
+CBIAS E08 E1 C                   1.060
+CBIAS E08 E5a Q                  1.920
+CBIAS E08 E5b Q                  1.940
+CBIAS E08 E6 C                   1.520
+CBIAS E09 E1 C                  -0.500
+CBIAS E09 E5a Q                 -0.900
+CBIAS E09 E5b Q                 -0.900
+CBIAS E09 E6 C                  -0.940
+CBIAS E10 E1 C                  -0.120
+CBIAS E10 E5a Q                 -0.220
+CBIAS E10 E5b Q                 -0.380
+CBIAS E10 E6 C                  -1.540
+CBIAS E11 E1 C                   3.940
+CBIAS E11 E5a Q                  7.060
+CBIAS E11 E5b Q                  6.960
+CBIAS E11 E6 C                   6.560
+CBIAS E12 E1 C                   3.140
+CBIAS E12 E5a Q                  5.620
+CBIAS E12 E5b Q                  5.300
+CBIAS E12 E6 C                   5.660
+CBIAS E13 E1 C                  -1.660
+CBIAS E13 E5a Q                 -2.960
+CBIAS E13 E5b Q                 -2.860
+CBIAS E13 E6 C                  -1.400
+CBIAS E15 E1 C                  -1.880
+CBIAS E15 E5a Q                 -3.360
+CBIAS E15 E5b Q                 -3.300
+CBIAS E15 E6 C                  -2.280
+CBIAS E19 E1 C                   0.940
+CBIAS E19 E5a Q                  1.680
+CBIAS E19 E5b Q                  1.620
+CBIAS E19 E6 C                   1.000
+CBIAS E21 E1 C                  -0.720
+CBIAS E21 E5a Q                 -1.280
+CBIAS E21 E5b Q                 -1.240
+CBIAS E21 E6 C                  -2.080
+CBIAS E24 E1 C                   1.100
+CBIAS E24 E5a Q                  1.980
+CBIAS E24 E5b Q                  2.060
+CBIAS E24 E6 C                   0.800
+CBIAS E25 E1 C                  -1.100
+CBIAS E25 E5a Q                 -1.960
+CBIAS E25 E5b Q                 -1.920
+CBIAS E25 E6 C                  -0.640
+CBIAS E26 E1 C                   1.240
+CBIAS E26 E5a Q                  2.200
+CBIAS E26 E5b Q                  2.220
+CBIAS E26 E6 C                   0.420
+CBIAS E27 E1 C                  -0.620
+CBIAS E27 E5a Q                 -1.100
+CBIAS E27 E5b Q                 -1.080
+CBIAS E27 E6 C                  -2.020
+CBIAS E30 E1 C                  -0.520
+CBIAS E30 E5a Q                 -0.940
+CBIAS E30 E5b Q                 -0.900
+CBIAS E30 E6 C                  -0.280
+CBIAS E31 E1 C                  -1.380
+CBIAS E31 E5a Q                 -2.460
+CBIAS E31 E5b Q                 -2.440
+CBIAS E31 E6 C                  -0.420
+CBIAS E33 E1 C                   1.020
+CBIAS E33 E5a Q                  1.840
+CBIAS E33 E5b Q                  1.860
+CBIAS E33 E6 C                   0.400
+CBIAS E34 E1 C                  -1.280
+CBIAS E34 E5a Q                 -2.300
+CBIAS E34 E5b Q                 -2.400
+CBIAS E34 E6 C                  -2.040
+CBIAS E36 E1 C                  -1.780
+CBIAS E36 E5a Q                 -3.180
+CBIAS E36 E5b Q                 -3.200
+CBIAS E36 E6 C                  -2.180
 ------ padding bits ------
 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------
@@ -369,55 +369,55 @@ Code bias       : off
 Phase bias      : off
 Mask ID         : 22
 IOD Set ID      : 1
-CKFUL validity_interval=60s (5)
-CKFUL G02 d_clock= -0.390m (multiplier=1)
-CKFUL G03 d_clock=  1.028m (multiplier=1)
-CKFUL G04 d_clock= -0.152m (multiplier=1)
-CKFUL G05 d_clock=  0.823m (multiplier=1)
-CKFUL G06 d_clock=  1.470m (multiplier=1)
-CKFUL G07 d_clock=  1.123m (multiplier=1)
-CKFUL G08 d_clock= -2.065m (multiplier=1)
-CKFUL G09 d_clock=  0.357m (multiplier=1)
-CKFUL G11 d_clock=  0.118m (multiplier=1)
-CKFUL G12 d_clock=  0.475m (multiplier=1)
-CKFUL G13 d_clock=  0.685m (multiplier=1)
-CKFUL G14 d_clock= -0.350m (multiplier=1)
-CKFUL G16 d_clock= -0.285m (multiplier=1)
-CKFUL G17 d_clock=  0.255m (multiplier=1)
-CKFUL G18 d_clock= -0.065m (multiplier=1)
-CKFUL G19 d_clock= -2.132m (multiplier=1)
-CKFUL G20 d_clock= -1.323m (multiplier=1)
-CKFUL G21 d_clock= -1.610m (multiplier=1)
-CKFUL G23 d_clock=  0.385m (multiplier=1)
-CKFUL G25 d_clock= -0.170m (multiplier=1)
-CKFUL G27 d_clock=  0.198m (multiplier=1)
-CKFUL G29 d_clock= -0.725m (multiplier=1)
-CKFUL G30 d_clock= -0.367m (multiplier=1)
-CKFUL G31 d_clock=  1.030m (multiplier=1)
-CKFUL G32 d_clock=  1.357m (multiplier=1)
-CKFUL E02 d_clock=  0.310m (multiplier=1)
-CKFUL E03 d_clock= -0.020m (multiplier=1)
-CKFUL E04 d_clock= -0.120m (multiplier=1)
-CKFUL E05 d_clock= -0.223m (multiplier=1)
-CKFUL E07 d_clock= -0.062m (multiplier=1)
-CKFUL E08 d_clock=  0.302m (multiplier=1)
-CKFUL E09 d_clock= -0.233m (multiplier=1)
-CKFUL E10 d_clock= -0.465m (multiplier=1)
-CKFUL E11 d_clock=  0.320m (multiplier=1)
-CKFUL E12 d_clock= -0.427m (multiplier=1)
-CKFUL E13 d_clock= -0.007m (multiplier=1)
-CKFUL E15 d_clock=  0.070m (multiplier=1)
-CKFUL E19 d_clock= -0.295m (multiplier=1)
-CKFUL E21 d_clock= -0.133m (multiplier=1)
-CKFUL E24 d_clock=  0.188m (multiplier=1)
-CKFUL E25 d_clock=  0.065m (multiplier=1)
-CKFUL E26 d_clock=  0.115m (multiplier=1)
-CKFUL E27 d_clock= -0.230m (multiplier=1)
-CKFUL E30 d_clock=  0.075m (multiplier=1)
-CKFUL E31 d_clock= -0.155m (multiplier=1)
-CKFUL E33 d_clock=  0.080m (multiplier=1)
-CKFUL E34 d_clock= -0.122m (multiplier=1)
-CKFUL E36 d_clock= -0.095m (multiplier=1)
+CKFUL SAT   c0[m] validity_interval=60[s] (5)
+CKFUL G02  -0.390
+CKFUL G03   1.028
+CKFUL G04  -0.152
+CKFUL G05   0.823
+CKFUL G06   1.470
+CKFUL G07   1.123
+CKFUL G08  -2.065
+CKFUL G09   0.357
+CKFUL G11   0.118
+CKFUL G12   0.475
+CKFUL G13   0.685
+CKFUL G14  -0.350
+CKFUL G16  -0.285
+CKFUL G17   0.255
+CKFUL G18  -0.065
+CKFUL G19  -2.132
+CKFUL G20  -1.323
+CKFUL G21  -1.610
+CKFUL G23   0.385
+CKFUL G25  -0.170
+CKFUL G27   0.198
+CKFUL G29  -0.725
+CKFUL G30  -0.367
+CKFUL G31   1.030
+CKFUL G32   1.357
+CKFUL E02   0.310
+CKFUL E03  -0.020
+CKFUL E04  -0.120
+CKFUL E05  -0.223
+CKFUL E07  -0.062
+CKFUL E08   0.302
+CKFUL E09  -0.233
+CKFUL E10  -0.465
+CKFUL E11   0.320
+CKFUL E12  -0.427
+CKFUL E13  -0.007
+CKFUL E15   0.070
+CKFUL E19  -0.295
+CKFUL E21  -0.133
+CKFUL E24   0.188
+CKFUL E25   0.065
+CKFUL E26   0.115
+CKFUL E27  -0.230
+CKFUL E30   0.075
+CKFUL E31  -0.155
+CKFUL E33   0.080
+CKFUL E34  -0.122
+CKFUL E36  -0.095
 ------ padding bits ------
 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------
@@ -510,222 +510,222 @@ MASK E31 E1 C E5a Q E5b Q E6 C
 MASK E33 E1 C E5a Q E5b Q E6 C
 MASK E34 E1 C E5a Q E5b Q E6 C
 MASK E36 E1 C E5a Q E5b Q E6 C
-ORBIT validity_interval=300s (10)
-ORBIT G02 IODE=  94 d_radial=-0.0525m d_track= 0.9920m d_cross=-0.2560m
-ORBIT G03 IODE=  33 d_radial= 0.0050m d_track=-0.0480m d_cross=-0.4400m
-ORBIT G04 IODE=  28 d_radial=-1.0075m d_track= 0.1840m d_cross=-0.2400m
-ORBIT G05 IODE=  37 d_radial= 0.0175m d_track=-0.4880m d_cross= 0.2960m
-ORBIT G06 IODE=  15 d_radial=-0.2125m d_track= 0.3520m d_cross= 0.5440m
-ORBIT G07 IODE=  91 d_radial=-0.4325m d_track= 3.2720m d_cross= 2.6000m
-ORBIT G08 IODE= 116 d_radial=-0.0700m d_track=-1.0400m d_cross= 0.0800m
-ORBIT G09 IODE=  13 d_radial=-0.1200m d_track= 0.6960m d_cross= 0.1680m
-ORBIT G10 IODE=  79 d_radial= 0.1775m d_track= 1.0400m d_cross= 0.0720m
-ORBIT G11 IODE= 151 d_radial=-0.9650m d_track= 0.1840m d_cross= 0.5040m
-ORBIT G12 IODE=  53 d_radial= 0.0300m d_track=-1.5680m d_cross=-0.5840m
-ORBIT G13 IODE=  60 d_radial=-0.1975m d_track= 0.7760m d_cross= 0.2000m
-ORBIT G14 IODE=  68 d_radial=-0.9575m d_track=-1.6320m d_cross=-0.5440m
-ORBIT G15 IODE=  37 d_radial= 0.1100m d_track= 0.0400m d_cross= 0.3280m
-ORBIT G16 IODE=  90 d_radial=-0.0700m d_track= 0.5040m d_cross= 0.3680m
-ORBIT G17 IODE=  41 d_radial=-0.3475m d_track= 0.4320m d_cross=-0.2400m
-ORBIT G18 IODE= 128 d_radial=-0.8450m d_track=-0.5520m d_cross= 1.0400m
-ORBIT G19 IODE=  86 d_radial=-0.3350m d_track= 0.1920m d_cross=-0.2480m
-ORBIT G20 IODE=  88 d_radial=-0.0650m d_track= 0.6800m d_cross= 1.8640m
-ORBIT G21 IODE=  17 d_radial= 0.0400m d_track=-0.2480m d_cross=-0.2880m
-ORBIT G23 IODE= 183 d_radial=-0.7875m d_track=-2.3200m d_cross=-0.4960m
-ORBIT G25 IODE=  22 d_radial=-0.0750m d_track=-0.5040m d_cross=-0.0800m
-ORBIT G27 IODE=  11 d_radial= 0.0850m d_track=-0.1520m d_cross= 0.5920m
-ORBIT G29 IODE=  95 d_radial=-0.1875m d_track= 2.6240m d_cross= 0.2480m
-ORBIT G30 IODE=  47 d_radial=-0.2850m d_track= 0.2800m d_cross=-0.1600m
-ORBIT G31 IODE=  84 d_radial=-0.1300m d_track= 0.3040m d_cross=-0.4960m
-ORBIT G32 IODE=  58 d_radial= 0.5125m d_track=-2.5600m d_cross= 1.9840m
-ORBIT E02 IODE=  16 d_radial=-0.0575m d_track= 0.3280m d_cross= 0.0240m
-ORBIT E03 IODE=  16 d_radial= 0.0275m d_track= 0.0960m d_cross=-0.2960m
-ORBIT E04 IODE=  16 d_radial=-0.1700m d_track=-0.0080m d_cross= 0.0320m
-ORBIT E05 IODE=  16 d_radial= 0.0375m d_track=-0.6800m d_cross=-0.3680m
-ORBIT E07 IODE=  16 d_radial= 0.0425m d_track= 0.3360m d_cross=-0.4720m
-ORBIT E08 IODE=  16 d_radial= 0.0750m d_track= 0.1760m d_cross=-0.3520m
-ORBIT E09 IODE=  16 d_radial=-0.1600m d_track=-0.3920m d_cross=-0.3840m
-ORBIT E10 IODE=  16 d_radial=-0.1500m d_track=-0.4640m d_cross= 0.0720m
-ORBIT E11 IODE=  16 d_radial=-0.1000m d_track=-0.5120m d_cross= 0.0240m
-ORBIT E12 IODE=  15 d_radial=-0.2400m d_track=-0.5040m d_cross= 0.2160m
-ORBIT E13 IODE=  16 d_radial= 0.0750m d_track= 0.1200m d_cross=-0.1760m
-ORBIT E15 IODE=  16 d_radial= 0.2125m d_track=-0.0400m d_cross=-0.1600m
-ORBIT E19 IODE=  16 d_radial=-0.2775m d_track= 0.4720m d_cross= 0.0000m
-ORBIT E21 IODE=  16 d_radial=-0.1475m d_track= 0.0880m d_cross= 0.1920m
-ORBIT E24 IODE=  16 d_radial=-0.0475m d_track=-0.0800m d_cross= 0.2640m
-ORBIT E25 IODE=  16 d_radial= 0.0475m d_track= 0.3760m d_cross=-0.2320m
-ORBIT E26 IODE=  16 d_radial= 0.0425m d_track=-0.2480m d_cross= 0.0160m
-ORBIT E27 IODE=  13 d_radial=-0.1950m d_track= 0.1600m d_cross= 0.1440m
-ORBIT E30 IODE=  16 d_radial=-0.0575m d_track= 0.2560m d_cross= 0.0800m
-ORBIT E31 IODE=  16 d_radial=-0.0825m d_track= 0.2400m d_cross= 0.1040m
-ORBIT E33 IODE=  15 d_radial=-0.0025m d_track=-0.1280m d_cross=-0.0720m
-ORBIT E34 IODE=  16 d_radial= 0.0575m d_track= 0.0640m d_cross=-0.0800m
-ORBIT E36 IODE=  16 d_radial= 0.0025m d_track= 0.0080m d_cross=-0.1760m
-CBIAS validity_interval=300s (10)
-CBIAS G02 L1 C/A        code_bias=  4.420m
-CBIAS G02 L2 P          code_bias=  7.280m
-CBIAS G03 L1 C/A        code_bias= -2.880m
-CBIAS G03 L2 CL         code_bias= -4.340m
-CBIAS G03 L2 P          code_bias= -4.760m
-CBIAS G04 L1 C/A        code_bias= -0.520m
-CBIAS G04 L2 CL         code_bias= -0.120m
-CBIAS G04 L2 P          code_bias= -0.840m
-CBIAS G05 L1 C/A        code_bias=  1.260m
-CBIAS G05 L2 CL         code_bias=  2.520m
-CBIAS G05 L2 P          code_bias=  2.040m
-CBIAS G06 L1 C/A        code_bias= -3.460m
-CBIAS G06 L2 CL         code_bias= -5.400m
-CBIAS G06 L2 P          code_bias= -5.700m
-CBIAS G07 L1 C/A        code_bias=  1.680m
-CBIAS G07 L2 CL         code_bias=  3.380m
-CBIAS G07 L2 P          code_bias=  2.760m
-CBIAS G08 L1 C/A        code_bias= -3.140m
-CBIAS G08 L2 CL         code_bias= -4.960m
-CBIAS G08 L2 P          code_bias= -5.160m
-CBIAS G09 L1 C/A        code_bias= -1.940m
-CBIAS G09 L2 CL         code_bias= -2.560m
-CBIAS G09 L2 P          code_bias= -3.200m
-CBIAS G11 L1 C/A        code_bias=  0.740m
-CBIAS G11 L2 CL         code_bias=  1.820m
-CBIAS G11 L2 P          code_bias=  1.220m
-CBIAS G12 L1 C/A        code_bias=  1.900m
-CBIAS G12 L2 CL         code_bias=  3.620m
-CBIAS G12 L2 P          code_bias=  3.120m
-CBIAS G13 L1 C/A        code_bias=  1.840m
-CBIAS G13 L2 P          code_bias=  3.020m
-CBIAS G14 L1 C/A        code_bias=  0.660m
-CBIAS G14 L2 CL         code_bias=  1.600m
-CBIAS G14 L2 P          code_bias=  1.080m
-CBIAS G15 L1 C/A        code_bias=  1.100m
-CBIAS G15 L2 CL         code_bias=  2.340m
-CBIAS G15 L2 P          code_bias=  1.800m
-CBIAS G16 L1 C/A        code_bias=  2.180m
-CBIAS G16 L2 P          code_bias=  3.580m
-CBIAS G17 L1 C/A        code_bias=  1.660m
-CBIAS G17 L2 CL         code_bias=  3.340m
-CBIAS G17 L2 P          code_bias=  2.720m
-CBIAS G18 L1 C/A        code_bias=  0.580m
-CBIAS G18 L2 CL         code_bias=  1.520m
-CBIAS G18 L2 P          code_bias=  0.940m
-CBIAS G19 L1 C/A        code_bias=  4.460m
-CBIAS G19 L2 P          code_bias=  7.340m
-CBIAS G20 L1 C/A        code_bias=  1.720m
-CBIAS G20 L2 P          code_bias=  2.820m
-CBIAS G21 L1 C/A        code_bias=  2.200m
-CBIAS G21 L2 P          code_bias=  3.640m
-CBIAS G23 L1 C/A        code_bias=  0.680m
-CBIAS G23 L2 CL         code_bias=  1.720m
-CBIAS G23 L2 P          code_bias=  1.140m
-CBIAS G25 L1 C/A        code_bias= -2.900m
-CBIAS G25 L2 CL         code_bias= -4.460m
-CBIAS G25 L2 P          code_bias= -4.780m
-CBIAS G27 L1 C/A        code_bias= -2.060m
-CBIAS G27 L2 CL         code_bias= -2.860m
-CBIAS G27 L2 P          code_bias= -3.420m
-CBIAS G29 L1 C/A        code_bias=  1.340m
-CBIAS G29 L2 CL         code_bias=  2.620m
-CBIAS G29 L2 P          code_bias=  2.200m
-CBIAS G30 L1 C/A        code_bias= -2.220m
-CBIAS G30 L2 CL         code_bias= -3.320m
-CBIAS G30 L2 P          code_bias= -3.660m
-CBIAS G31 L1 C/A        code_bias=  2.240m
-CBIAS G31 L2 CL         code_bias=  4.040m
-CBIAS G31 L2 P          code_bias=  3.700m
-CBIAS G32 L1 C/A        code_bias= -2.340m
-CBIAS G32 L2 CL         code_bias= -3.440m
-CBIAS G32 L2 P          code_bias= -3.840m
-CBIAS E02 E1 C          code_bias=  0.360m
-CBIAS E02 E5a Q         code_bias=  0.640m
-CBIAS E02 E5b Q         code_bias=  0.780m
-CBIAS E02 E6 C          code_bias= -0.440m
-CBIAS E03 E1 C          code_bias= -0.920m
-CBIAS E03 E5a Q         code_bias= -1.660m
-CBIAS E03 E5b Q         code_bias= -1.660m
-CBIAS E03 E6 C          code_bias= -0.920m
-CBIAS E04 E1 C          code_bias=  0.860m
-CBIAS E04 E5a Q         code_bias=  1.560m
-CBIAS E04 E5b Q         code_bias=  1.540m
-CBIAS E04 E6 C          code_bias=  0.640m
-CBIAS E05 E1 C          code_bias= -1.040m
-CBIAS E05 E5a Q         code_bias= -1.860m
-CBIAS E05 E5b Q         code_bias= -1.880m
-CBIAS E05 E6 C          code_bias= -0.220m
-CBIAS E07 E1 C          code_bias= -1.620m
-CBIAS E07 E5a Q         code_bias= -2.900m
-CBIAS E07 E5b Q         code_bias= -2.860m
-CBIAS E07 E6 C          code_bias= -1.540m
-CBIAS E08 E1 C          code_bias=  1.060m
-CBIAS E08 E5a Q         code_bias=  1.920m
-CBIAS E08 E5b Q         code_bias=  1.940m
-CBIAS E08 E6 C          code_bias=  1.520m
-CBIAS E09 E1 C          code_bias= -0.500m
-CBIAS E09 E5a Q         code_bias= -0.900m
-CBIAS E09 E5b Q         code_bias= -0.900m
-CBIAS E09 E6 C          code_bias= -0.940m
-CBIAS E10 E1 C          code_bias= -0.120m
-CBIAS E10 E5a Q         code_bias= -0.220m
-CBIAS E10 E5b Q         code_bias= -0.380m
-CBIAS E10 E6 C          code_bias= -1.540m
-CBIAS E11 E1 C          code_bias=  3.940m
-CBIAS E11 E5a Q         code_bias=  7.060m
-CBIAS E11 E5b Q         code_bias=  6.960m
-CBIAS E11 E6 C          code_bias=  6.560m
-CBIAS E12 E1 C          code_bias=  3.140m
-CBIAS E12 E5a Q         code_bias=  5.620m
-CBIAS E12 E5b Q         code_bias=  5.300m
-CBIAS E12 E6 C          code_bias=  5.660m
-CBIAS E13 E1 C          code_bias= -1.660m
-CBIAS E13 E5a Q         code_bias= -2.960m
-CBIAS E13 E5b Q         code_bias= -2.860m
-CBIAS E13 E6 C          code_bias= -1.400m
-CBIAS E15 E1 C          code_bias= -1.880m
-CBIAS E15 E5a Q         code_bias= -3.360m
-CBIAS E15 E5b Q         code_bias= -3.300m
-CBIAS E15 E6 C          code_bias= -2.280m
-CBIAS E19 E1 C          code_bias=  0.940m
-CBIAS E19 E5a Q         code_bias=  1.680m
-CBIAS E19 E5b Q         code_bias=  1.620m
-CBIAS E19 E6 C          code_bias=  1.000m
-CBIAS E21 E1 C          code_bias= -0.720m
-CBIAS E21 E5a Q         code_bias= -1.280m
-CBIAS E21 E5b Q         code_bias= -1.240m
-CBIAS E21 E6 C          code_bias= -2.080m
-CBIAS E24 E1 C          code_bias=  1.100m
-CBIAS E24 E5a Q         code_bias=  1.980m
-CBIAS E24 E5b Q         code_bias=  2.060m
-CBIAS E24 E6 C          code_bias=  0.800m
-CBIAS E25 E1 C          code_bias= -1.100m
-CBIAS E25 E5a Q         code_bias= -1.960m
-CBIAS E25 E5b Q         code_bias= -1.920m
-CBIAS E25 E6 C          code_bias= -0.640m
-CBIAS E26 E1 C          code_bias=  1.240m
-CBIAS E26 E5a Q         code_bias=  2.200m
-CBIAS E26 E5b Q         code_bias=  2.220m
-CBIAS E26 E6 C          code_bias=  0.420m
-CBIAS E27 E1 C          code_bias= -0.620m
-CBIAS E27 E5a Q         code_bias= -1.100m
-CBIAS E27 E5b Q         code_bias= -1.080m
-CBIAS E27 E6 C          code_bias= -2.020m
-CBIAS E30 E1 C          code_bias= -0.520m
-CBIAS E30 E5a Q         code_bias= -0.940m
-CBIAS E30 E5b Q         code_bias= -0.900m
-CBIAS E30 E6 C          code_bias= -0.280m
-CBIAS E31 E1 C          code_bias= -1.380m
-CBIAS E31 E5a Q         code_bias= -2.460m
-CBIAS E31 E5b Q         code_bias= -2.440m
-CBIAS E31 E6 C          code_bias= -0.420m
-CBIAS E33 E1 C          code_bias=  1.020m
-CBIAS E33 E5a Q         code_bias=  1.840m
-CBIAS E33 E5b Q         code_bias=  1.860m
-CBIAS E33 E6 C          code_bias=  0.400m
-CBIAS E34 E1 C          code_bias= -1.280m
-CBIAS E34 E5a Q         code_bias= -2.300m
-CBIAS E34 E5b Q         code_bias= -2.400m
-CBIAS E34 E6 C          code_bias= -2.040m
-CBIAS E36 E1 C          code_bias= -1.780m
-CBIAS E36 E5a Q         code_bias= -3.180m
-CBIAS E36 E5b Q         code_bias= -3.200m
-CBIAS E36 E6 C          code_bias= -2.180m
+ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
+ORBIT G02   94   -0.0525   0.9920  -0.2560
+ORBIT G03   33    0.0050  -0.0480  -0.4400
+ORBIT G04   28   -1.0075   0.1840  -0.2400
+ORBIT G05   37    0.0175  -0.4880   0.2960
+ORBIT G06   15   -0.2125   0.3520   0.5440
+ORBIT G07   91   -0.4325   3.2720   2.6000
+ORBIT G08  116   -0.0700  -1.0400   0.0800
+ORBIT G09   13   -0.1200   0.6960   0.1680
+ORBIT G10   79    0.1775   1.0400   0.0720
+ORBIT G11  151   -0.9650   0.1840   0.5040
+ORBIT G12   53    0.0300  -1.5680  -0.5840
+ORBIT G13   60   -0.1975   0.7760   0.2000
+ORBIT G14   68   -0.9575  -1.6320  -0.5440
+ORBIT G15   37    0.1100   0.0400   0.3280
+ORBIT G16   90   -0.0700   0.5040   0.3680
+ORBIT G17   41   -0.3475   0.4320  -0.2400
+ORBIT G18  128   -0.8450  -0.5520   1.0400
+ORBIT G19   86   -0.3350   0.1920  -0.2480
+ORBIT G20   88   -0.0650   0.6800   1.8640
+ORBIT G21   17    0.0400  -0.2480  -0.2880
+ORBIT G23  183   -0.7875  -2.3200  -0.4960
+ORBIT G25   22   -0.0750  -0.5040  -0.0800
+ORBIT G27   11    0.0850  -0.1520   0.5920
+ORBIT G29   95   -0.1875   2.6240   0.2480
+ORBIT G30   47   -0.2850   0.2800  -0.1600
+ORBIT G31   84   -0.1300   0.3040  -0.4960
+ORBIT G32   58    0.5125  -2.5600   1.9840
+ORBIT E02   16   -0.0575   0.3280   0.0240
+ORBIT E03   16    0.0275   0.0960  -0.2960
+ORBIT E04   16   -0.1700  -0.0080   0.0320
+ORBIT E05   16    0.0375  -0.6800  -0.3680
+ORBIT E07   16    0.0425   0.3360  -0.4720
+ORBIT E08   16    0.0750   0.1760  -0.3520
+ORBIT E09   16   -0.1600  -0.3920  -0.3840
+ORBIT E10   16   -0.1500  -0.4640   0.0720
+ORBIT E11   16   -0.1000  -0.5120   0.0240
+ORBIT E12   15   -0.2400  -0.5040   0.2160
+ORBIT E13   16    0.0750   0.1200  -0.1760
+ORBIT E15   16    0.2125  -0.0400  -0.1600
+ORBIT E19   16   -0.2775   0.4720   0.0000
+ORBIT E21   16   -0.1475   0.0880   0.1920
+ORBIT E24   16   -0.0475  -0.0800   0.2640
+ORBIT E25   16    0.0475   0.3760  -0.2320
+ORBIT E26   16    0.0425  -0.2480   0.0160
+ORBIT E27   13   -0.1950   0.1600   0.1440
+ORBIT E30   16   -0.0575   0.2560   0.0800
+ORBIT E31   16   -0.0825   0.2400   0.1040
+ORBIT E33   15   -0.0025  -0.1280  -0.0720
+ORBIT E34   16    0.0575   0.0640  -0.0800
+ORBIT E36   16    0.0025   0.0080  -0.1760
+CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
+CBIAS G02 L1 C/A                 4.420
+CBIAS G02 L2 P                   7.280
+CBIAS G03 L1 C/A                -2.880
+CBIAS G03 L2 CL                 -4.340
+CBIAS G03 L2 P                  -4.760
+CBIAS G04 L1 C/A                -0.520
+CBIAS G04 L2 CL                 -0.120
+CBIAS G04 L2 P                  -0.840
+CBIAS G05 L1 C/A                 1.260
+CBIAS G05 L2 CL                  2.520
+CBIAS G05 L2 P                   2.040
+CBIAS G06 L1 C/A                -3.460
+CBIAS G06 L2 CL                 -5.400
+CBIAS G06 L2 P                  -5.700
+CBIAS G07 L1 C/A                 1.680
+CBIAS G07 L2 CL                  3.380
+CBIAS G07 L2 P                   2.760
+CBIAS G08 L1 C/A                -3.140
+CBIAS G08 L2 CL                 -4.960
+CBIAS G08 L2 P                  -5.160
+CBIAS G09 L1 C/A                -1.940
+CBIAS G09 L2 CL                 -2.560
+CBIAS G09 L2 P                  -3.200
+CBIAS G11 L1 C/A                 0.740
+CBIAS G11 L2 CL                  1.820
+CBIAS G11 L2 P                   1.220
+CBIAS G12 L1 C/A                 1.900
+CBIAS G12 L2 CL                  3.620
+CBIAS G12 L2 P                   3.120
+CBIAS G13 L1 C/A                 1.840
+CBIAS G13 L2 P                   3.020
+CBIAS G14 L1 C/A                 0.660
+CBIAS G14 L2 CL                  1.600
+CBIAS G14 L2 P                   1.080
+CBIAS G15 L1 C/A                 1.100
+CBIAS G15 L2 CL                  2.340
+CBIAS G15 L2 P                   1.800
+CBIAS G16 L1 C/A                 2.180
+CBIAS G16 L2 P                   3.580
+CBIAS G17 L1 C/A                 1.660
+CBIAS G17 L2 CL                  3.340
+CBIAS G17 L2 P                   2.720
+CBIAS G18 L1 C/A                 0.580
+CBIAS G18 L2 CL                  1.520
+CBIAS G18 L2 P                   0.940
+CBIAS G19 L1 C/A                 4.460
+CBIAS G19 L2 P                   7.340
+CBIAS G20 L1 C/A                 1.720
+CBIAS G20 L2 P                   2.820
+CBIAS G21 L1 C/A                 2.200
+CBIAS G21 L2 P                   3.640
+CBIAS G23 L1 C/A                 0.680
+CBIAS G23 L2 CL                  1.720
+CBIAS G23 L2 P                   1.140
+CBIAS G25 L1 C/A                -2.900
+CBIAS G25 L2 CL                 -4.460
+CBIAS G25 L2 P                  -4.780
+CBIAS G27 L1 C/A                -2.060
+CBIAS G27 L2 CL                 -2.860
+CBIAS G27 L2 P                  -3.420
+CBIAS G29 L1 C/A                 1.340
+CBIAS G29 L2 CL                  2.620
+CBIAS G29 L2 P                   2.200
+CBIAS G30 L1 C/A                -2.220
+CBIAS G30 L2 CL                 -3.320
+CBIAS G30 L2 P                  -3.660
+CBIAS G31 L1 C/A                 2.240
+CBIAS G31 L2 CL                  4.040
+CBIAS G31 L2 P                   3.700
+CBIAS G32 L1 C/A                -2.340
+CBIAS G32 L2 CL                 -3.440
+CBIAS G32 L2 P                  -3.840
+CBIAS E02 E1 C                   0.360
+CBIAS E02 E5a Q                  0.640
+CBIAS E02 E5b Q                  0.780
+CBIAS E02 E6 C                  -0.440
+CBIAS E03 E1 C                  -0.920
+CBIAS E03 E5a Q                 -1.660
+CBIAS E03 E5b Q                 -1.660
+CBIAS E03 E6 C                  -0.920
+CBIAS E04 E1 C                   0.860
+CBIAS E04 E5a Q                  1.560
+CBIAS E04 E5b Q                  1.540
+CBIAS E04 E6 C                   0.640
+CBIAS E05 E1 C                  -1.040
+CBIAS E05 E5a Q                 -1.860
+CBIAS E05 E5b Q                 -1.880
+CBIAS E05 E6 C                  -0.220
+CBIAS E07 E1 C                  -1.620
+CBIAS E07 E5a Q                 -2.900
+CBIAS E07 E5b Q                 -2.860
+CBIAS E07 E6 C                  -1.540
+CBIAS E08 E1 C                   1.060
+CBIAS E08 E5a Q                  1.920
+CBIAS E08 E5b Q                  1.940
+CBIAS E08 E6 C                   1.520
+CBIAS E09 E1 C                  -0.500
+CBIAS E09 E5a Q                 -0.900
+CBIAS E09 E5b Q                 -0.900
+CBIAS E09 E6 C                  -0.940
+CBIAS E10 E1 C                  -0.120
+CBIAS E10 E5a Q                 -0.220
+CBIAS E10 E5b Q                 -0.380
+CBIAS E10 E6 C                  -1.540
+CBIAS E11 E1 C                   3.940
+CBIAS E11 E5a Q                  7.060
+CBIAS E11 E5b Q                  6.960
+CBIAS E11 E6 C                   6.560
+CBIAS E12 E1 C                   3.140
+CBIAS E12 E5a Q                  5.620
+CBIAS E12 E5b Q                  5.300
+CBIAS E12 E6 C                   5.660
+CBIAS E13 E1 C                  -1.660
+CBIAS E13 E5a Q                 -2.960
+CBIAS E13 E5b Q                 -2.860
+CBIAS E13 E6 C                  -1.400
+CBIAS E15 E1 C                  -1.880
+CBIAS E15 E5a Q                 -3.360
+CBIAS E15 E5b Q                 -3.300
+CBIAS E15 E6 C                  -2.280
+CBIAS E19 E1 C                   0.940
+CBIAS E19 E5a Q                  1.680
+CBIAS E19 E5b Q                  1.620
+CBIAS E19 E6 C                   1.000
+CBIAS E21 E1 C                  -0.720
+CBIAS E21 E5a Q                 -1.280
+CBIAS E21 E5b Q                 -1.240
+CBIAS E21 E6 C                  -2.080
+CBIAS E24 E1 C                   1.100
+CBIAS E24 E5a Q                  1.980
+CBIAS E24 E5b Q                  2.060
+CBIAS E24 E6 C                   0.800
+CBIAS E25 E1 C                  -1.100
+CBIAS E25 E5a Q                 -1.960
+CBIAS E25 E5b Q                 -1.920
+CBIAS E25 E6 C                  -0.640
+CBIAS E26 E1 C                   1.240
+CBIAS E26 E5a Q                  2.200
+CBIAS E26 E5b Q                  2.220
+CBIAS E26 E6 C                   0.420
+CBIAS E27 E1 C                  -0.620
+CBIAS E27 E5a Q                 -1.100
+CBIAS E27 E5b Q                 -1.080
+CBIAS E27 E6 C                  -2.020
+CBIAS E30 E1 C                  -0.520
+CBIAS E30 E5a Q                 -0.940
+CBIAS E30 E5b Q                 -0.900
+CBIAS E30 E6 C                  -0.280
+CBIAS E31 E1 C                  -1.380
+CBIAS E31 E5a Q                 -2.460
+CBIAS E31 E5b Q                 -2.440
+CBIAS E31 E6 C                  -0.420
+CBIAS E33 E1 C                   1.020
+CBIAS E33 E5a Q                  1.840
+CBIAS E33 E5b Q                  1.860
+CBIAS E33 E6 C                   0.400
+CBIAS E34 E1 C                  -1.280
+CBIAS E34 E5a Q                 -2.300
+CBIAS E34 E5b Q                 -2.400
+CBIAS E34 E6 C                  -2.040
+CBIAS E36 E1 C                  -1.780
+CBIAS E36 E5a Q                 -3.180
+CBIAS E36 E5b Q                 -3.200
+CBIAS E36 E6 C                  -2.180
 ------ padding bits ------
 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------
@@ -774,55 +774,55 @@ Code bias       : off
 Phase bias      : off
 Mask ID         : 22
 IOD Set ID      : 1
-CKFUL validity_interval=60s (5)
-CKFUL G02 d_clock= -0.455m (multiplier=1)
-CKFUL G03 d_clock=  0.960m (multiplier=1)
-CKFUL G04 d_clock= -0.220m (multiplier=1)
-CKFUL G05 d_clock=  0.748m (multiplier=1)
-CKFUL G06 d_clock=  1.403m (multiplier=1)
-CKFUL G07 d_clock=  1.045m (multiplier=1)
-CKFUL G08 d_clock= -2.130m (multiplier=1)
-CKFUL G09 d_clock=  0.297m (multiplier=1)
-CKFUL G11 d_clock=  0.048m (multiplier=1)
-CKFUL G12 d_clock=  0.405m (multiplier=1)
-CKFUL G13 d_clock=  0.628m (multiplier=1)
-CKFUL G14 d_clock= -0.415m (multiplier=1)
-CKFUL G16 d_clock= -0.352m (multiplier=1)
-CKFUL G17 d_clock=  0.215m (multiplier=1)
-CKFUL G18 d_clock= -0.128m (multiplier=1)
-CKFUL G19 d_clock= -2.185m (multiplier=1)
-CKFUL G20 d_clock= -1.385m (multiplier=1)
-CKFUL G21 d_clock= -1.680m (multiplier=1)
-CKFUL G23 d_clock=  0.367m (multiplier=1)
-CKFUL G25 d_clock= -0.233m (multiplier=1)
-CKFUL G27 d_clock=  0.130m (multiplier=1)
-CKFUL G29 d_clock= -0.792m (multiplier=1)
-CKFUL G30 d_clock= -0.430m (multiplier=1)
-CKFUL G31 d_clock=  0.953m (multiplier=1)
-CKFUL G32 d_clock=  1.288m (multiplier=1)
-CKFUL E02 d_clock=  0.305m (multiplier=1)
-CKFUL E03 d_clock= -0.020m (multiplier=1)
-CKFUL E04 d_clock= -0.122m (multiplier=1)
-CKFUL E05 d_clock= -0.220m (multiplier=1)
-CKFUL E07 d_clock= -0.068m (multiplier=1)
-CKFUL E08 d_clock=  0.302m (multiplier=1)
-CKFUL E09 d_clock= -0.238m (multiplier=1)
-CKFUL E10 d_clock= -0.475m (multiplier=1)
-CKFUL E11 d_clock=  0.320m (multiplier=1)
-CKFUL E12 d_clock= -0.430m (multiplier=1)
-CKFUL E13 d_clock= -0.007m (multiplier=1)
-CKFUL E15 d_clock=  0.065m (multiplier=1)
-CKFUL E19 d_clock= -0.300m (multiplier=1)
-CKFUL E21 d_clock= -0.130m (multiplier=1)
-CKFUL E24 d_clock=  0.182m (multiplier=1)
-CKFUL E25 d_clock=  0.062m (multiplier=1)
-CKFUL E26 d_clock=  0.115m (multiplier=1)
-CKFUL E27 d_clock= -0.235m (multiplier=1)
-CKFUL E30 d_clock=  0.072m (multiplier=1)
-CKFUL E31 d_clock= -0.155m (multiplier=1)
-CKFUL E33 d_clock=  0.083m (multiplier=1)
-CKFUL E34 d_clock= -0.125m (multiplier=1)
-CKFUL E36 d_clock= -0.100m (multiplier=1)
+CKFUL SAT   c0[m] validity_interval=60[s] (5)
+CKFUL G02  -0.455
+CKFUL G03   0.960
+CKFUL G04  -0.220
+CKFUL G05   0.748
+CKFUL G06   1.403
+CKFUL G07   1.045
+CKFUL G08  -2.130
+CKFUL G09   0.297
+CKFUL G11   0.048
+CKFUL G12   0.405
+CKFUL G13   0.628
+CKFUL G14  -0.415
+CKFUL G16  -0.352
+CKFUL G17   0.215
+CKFUL G18  -0.128
+CKFUL G19  -2.185
+CKFUL G20  -1.385
+CKFUL G21  -1.680
+CKFUL G23   0.367
+CKFUL G25  -0.233
+CKFUL G27   0.130
+CKFUL G29  -0.792
+CKFUL G30  -0.430
+CKFUL G31   0.953
+CKFUL G32   1.288
+CKFUL E02   0.305
+CKFUL E03  -0.020
+CKFUL E04  -0.122
+CKFUL E05  -0.220
+CKFUL E07  -0.068
+CKFUL E08   0.302
+CKFUL E09  -0.238
+CKFUL E10  -0.475
+CKFUL E11   0.320
+CKFUL E12  -0.430
+CKFUL E13  -0.007
+CKFUL E15   0.065
+CKFUL E19  -0.300
+CKFUL E21  -0.130
+CKFUL E24   0.182
+CKFUL E25   0.062
+CKFUL E26   0.115
+CKFUL E27  -0.235
+CKFUL E30   0.072
+CKFUL E31  -0.155
+CKFUL E33   0.083
+CKFUL E34  -0.125
+CKFUL E36  -0.100
 ------ padding bits ------
 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------
@@ -915,222 +915,222 @@ MASK E31 E1 C E5a Q E5b Q E6 C
 MASK E33 E1 C E5a Q E5b Q E6 C
 MASK E34 E1 C E5a Q E5b Q E6 C
 MASK E36 E1 C E5a Q E5b Q E6 C
-ORBIT validity_interval=300s (10)
-ORBIT G02 IODE=  94 d_radial=-0.0525m d_track= 0.9920m d_cross=-0.2560m
-ORBIT G03 IODE=  33 d_radial= 0.0050m d_track=-0.0480m d_cross=-0.4400m
-ORBIT G04 IODE=  28 d_radial=-1.0075m d_track= 0.1840m d_cross=-0.2400m
-ORBIT G05 IODE=  37 d_radial= 0.0175m d_track=-0.4880m d_cross= 0.2960m
-ORBIT G06 IODE=  15 d_radial=-0.2125m d_track= 0.3520m d_cross= 0.5440m
-ORBIT G07 IODE=  91 d_radial=-0.4325m d_track= 3.2720m d_cross= 2.6000m
-ORBIT G08 IODE= 116 d_radial=-0.0700m d_track=-1.0400m d_cross= 0.0800m
-ORBIT G09 IODE=  13 d_radial=-0.1200m d_track= 0.6960m d_cross= 0.1680m
-ORBIT G10 IODE=  79 d_radial= 0.1775m d_track= 1.0400m d_cross= 0.0720m
-ORBIT G11 IODE= 151 d_radial=-0.9650m d_track= 0.1840m d_cross= 0.5040m
-ORBIT G12 IODE=  53 d_radial= 0.0300m d_track=-1.5680m d_cross=-0.5840m
-ORBIT G13 IODE=  60 d_radial=-0.1975m d_track= 0.7760m d_cross= 0.2000m
-ORBIT G14 IODE=  68 d_radial=-0.9575m d_track=-1.6320m d_cross=-0.5440m
-ORBIT G15 IODE=  37 d_radial= 0.1100m d_track= 0.0400m d_cross= 0.3280m
-ORBIT G16 IODE=  90 d_radial=-0.0700m d_track= 0.5040m d_cross= 0.3680m
-ORBIT G17 IODE=  41 d_radial=-0.3475m d_track= 0.4320m d_cross=-0.2400m
-ORBIT G18 IODE= 128 d_radial=-0.8450m d_track=-0.5520m d_cross= 1.0400m
-ORBIT G19 IODE=  86 d_radial=-0.3350m d_track= 0.1920m d_cross=-0.2480m
-ORBIT G20 IODE=  88 d_radial=-0.0650m d_track= 0.6800m d_cross= 1.8640m
-ORBIT G21 IODE=  17 d_radial= 0.0400m d_track=-0.2480m d_cross=-0.2880m
-ORBIT G23 IODE= 183 d_radial=-0.7875m d_track=-2.3200m d_cross=-0.4960m
-ORBIT G25 IODE=  22 d_radial=-0.0750m d_track=-0.5040m d_cross=-0.0800m
-ORBIT G27 IODE=  11 d_radial= 0.0850m d_track=-0.1520m d_cross= 0.5920m
-ORBIT G29 IODE=  95 d_radial=-0.1875m d_track= 2.6240m d_cross= 0.2480m
-ORBIT G30 IODE=  47 d_radial=-0.2850m d_track= 0.2800m d_cross=-0.1600m
-ORBIT G31 IODE=  84 d_radial=-0.1300m d_track= 0.3040m d_cross=-0.4960m
-ORBIT G32 IODE=  58 d_radial= 0.5125m d_track=-2.5600m d_cross= 1.9840m
-ORBIT E02 IODE=  16 d_radial=-0.0575m d_track= 0.3280m d_cross= 0.0240m
-ORBIT E03 IODE=  16 d_radial= 0.0275m d_track= 0.0960m d_cross=-0.2960m
-ORBIT E04 IODE=  16 d_radial=-0.1700m d_track=-0.0080m d_cross= 0.0320m
-ORBIT E05 IODE=  16 d_radial= 0.0375m d_track=-0.6800m d_cross=-0.3680m
-ORBIT E07 IODE=  16 d_radial= 0.0425m d_track= 0.3360m d_cross=-0.4720m
-ORBIT E08 IODE=  16 d_radial= 0.0750m d_track= 0.1760m d_cross=-0.3520m
-ORBIT E09 IODE=  16 d_radial=-0.1600m d_track=-0.3920m d_cross=-0.3840m
-ORBIT E10 IODE=  16 d_radial=-0.1500m d_track=-0.4640m d_cross= 0.0720m
-ORBIT E11 IODE=  16 d_radial=-0.1000m d_track=-0.5120m d_cross= 0.0240m
-ORBIT E12 IODE=  15 d_radial=-0.2400m d_track=-0.5040m d_cross= 0.2160m
-ORBIT E13 IODE=  16 d_radial= 0.0750m d_track= 0.1200m d_cross=-0.1760m
-ORBIT E15 IODE=  16 d_radial= 0.2125m d_track=-0.0400m d_cross=-0.1600m
-ORBIT E19 IODE=  16 d_radial=-0.2775m d_track= 0.4720m d_cross= 0.0000m
-ORBIT E21 IODE=  16 d_radial=-0.1475m d_track= 0.0880m d_cross= 0.1920m
-ORBIT E24 IODE=  16 d_radial=-0.0475m d_track=-0.0800m d_cross= 0.2640m
-ORBIT E25 IODE=  16 d_radial= 0.0475m d_track= 0.3760m d_cross=-0.2320m
-ORBIT E26 IODE=  16 d_radial= 0.0425m d_track=-0.2480m d_cross= 0.0160m
-ORBIT E27 IODE=  13 d_radial=-0.1950m d_track= 0.1600m d_cross= 0.1440m
-ORBIT E30 IODE=  16 d_radial=-0.0575m d_track= 0.2560m d_cross= 0.0800m
-ORBIT E31 IODE=  16 d_radial=-0.0825m d_track= 0.2400m d_cross= 0.1040m
-ORBIT E33 IODE=  15 d_radial=-0.0025m d_track=-0.1280m d_cross=-0.0720m
-ORBIT E34 IODE=  16 d_radial= 0.0575m d_track= 0.0640m d_cross=-0.0800m
-ORBIT E36 IODE=  16 d_radial= 0.0025m d_track= 0.0080m d_cross=-0.1760m
-CBIAS validity_interval=300s (10)
-CBIAS G02 L1 C/A        code_bias=  4.420m
-CBIAS G02 L2 P          code_bias=  7.280m
-CBIAS G03 L1 C/A        code_bias= -2.880m
-CBIAS G03 L2 CL         code_bias= -4.340m
-CBIAS G03 L2 P          code_bias= -4.760m
-CBIAS G04 L1 C/A        code_bias= -0.520m
-CBIAS G04 L2 CL         code_bias= -0.120m
-CBIAS G04 L2 P          code_bias= -0.840m
-CBIAS G05 L1 C/A        code_bias=  1.260m
-CBIAS G05 L2 CL         code_bias=  2.520m
-CBIAS G05 L2 P          code_bias=  2.040m
-CBIAS G06 L1 C/A        code_bias= -3.460m
-CBIAS G06 L2 CL         code_bias= -5.400m
-CBIAS G06 L2 P          code_bias= -5.700m
-CBIAS G07 L1 C/A        code_bias=  1.680m
-CBIAS G07 L2 CL         code_bias=  3.380m
-CBIAS G07 L2 P          code_bias=  2.760m
-CBIAS G08 L1 C/A        code_bias= -3.140m
-CBIAS G08 L2 CL         code_bias= -4.960m
-CBIAS G08 L2 P          code_bias= -5.160m
-CBIAS G09 L1 C/A        code_bias= -1.940m
-CBIAS G09 L2 CL         code_bias= -2.560m
-CBIAS G09 L2 P          code_bias= -3.200m
-CBIAS G11 L1 C/A        code_bias=  0.740m
-CBIAS G11 L2 CL         code_bias=  1.820m
-CBIAS G11 L2 P          code_bias=  1.220m
-CBIAS G12 L1 C/A        code_bias=  1.900m
-CBIAS G12 L2 CL         code_bias=  3.620m
-CBIAS G12 L2 P          code_bias=  3.120m
-CBIAS G13 L1 C/A        code_bias=  1.840m
-CBIAS G13 L2 P          code_bias=  3.020m
-CBIAS G14 L1 C/A        code_bias=  0.660m
-CBIAS G14 L2 CL         code_bias=  1.600m
-CBIAS G14 L2 P          code_bias=  1.080m
-CBIAS G15 L1 C/A        code_bias=  1.100m
-CBIAS G15 L2 CL         code_bias=  2.340m
-CBIAS G15 L2 P          code_bias=  1.800m
-CBIAS G16 L1 C/A        code_bias=  2.180m
-CBIAS G16 L2 P          code_bias=  3.580m
-CBIAS G17 L1 C/A        code_bias=  1.660m
-CBIAS G17 L2 CL         code_bias=  3.340m
-CBIAS G17 L2 P          code_bias=  2.720m
-CBIAS G18 L1 C/A        code_bias=  0.580m
-CBIAS G18 L2 CL         code_bias=  1.520m
-CBIAS G18 L2 P          code_bias=  0.940m
-CBIAS G19 L1 C/A        code_bias=  4.460m
-CBIAS G19 L2 P          code_bias=  7.340m
-CBIAS G20 L1 C/A        code_bias=  1.720m
-CBIAS G20 L2 P          code_bias=  2.820m
-CBIAS G21 L1 C/A        code_bias=  2.200m
-CBIAS G21 L2 P          code_bias=  3.640m
-CBIAS G23 L1 C/A        code_bias=  0.680m
-CBIAS G23 L2 CL         code_bias=  1.720m
-CBIAS G23 L2 P          code_bias=  1.140m
-CBIAS G25 L1 C/A        code_bias= -2.900m
-CBIAS G25 L2 CL         code_bias= -4.460m
-CBIAS G25 L2 P          code_bias= -4.780m
-CBIAS G27 L1 C/A        code_bias= -2.060m
-CBIAS G27 L2 CL         code_bias= -2.860m
-CBIAS G27 L2 P          code_bias= -3.420m
-CBIAS G29 L1 C/A        code_bias=  1.340m
-CBIAS G29 L2 CL         code_bias=  2.620m
-CBIAS G29 L2 P          code_bias=  2.200m
-CBIAS G30 L1 C/A        code_bias= -2.220m
-CBIAS G30 L2 CL         code_bias= -3.320m
-CBIAS G30 L2 P          code_bias= -3.660m
-CBIAS G31 L1 C/A        code_bias=  2.240m
-CBIAS G31 L2 CL         code_bias=  4.040m
-CBIAS G31 L2 P          code_bias=  3.700m
-CBIAS G32 L1 C/A        code_bias= -2.340m
-CBIAS G32 L2 CL         code_bias= -3.440m
-CBIAS G32 L2 P          code_bias= -3.840m
-CBIAS E02 E1 C          code_bias=  0.360m
-CBIAS E02 E5a Q         code_bias=  0.640m
-CBIAS E02 E5b Q         code_bias=  0.780m
-CBIAS E02 E6 C          code_bias= -0.440m
-CBIAS E03 E1 C          code_bias= -0.920m
-CBIAS E03 E5a Q         code_bias= -1.660m
-CBIAS E03 E5b Q         code_bias= -1.660m
-CBIAS E03 E6 C          code_bias= -0.920m
-CBIAS E04 E1 C          code_bias=  0.860m
-CBIAS E04 E5a Q         code_bias=  1.560m
-CBIAS E04 E5b Q         code_bias=  1.540m
-CBIAS E04 E6 C          code_bias=  0.640m
-CBIAS E05 E1 C          code_bias= -1.040m
-CBIAS E05 E5a Q         code_bias= -1.860m
-CBIAS E05 E5b Q         code_bias= -1.880m
-CBIAS E05 E6 C          code_bias= -0.220m
-CBIAS E07 E1 C          code_bias= -1.620m
-CBIAS E07 E5a Q         code_bias= -2.900m
-CBIAS E07 E5b Q         code_bias= -2.860m
-CBIAS E07 E6 C          code_bias= -1.540m
-CBIAS E08 E1 C          code_bias=  1.060m
-CBIAS E08 E5a Q         code_bias=  1.920m
-CBIAS E08 E5b Q         code_bias=  1.940m
-CBIAS E08 E6 C          code_bias=  1.520m
-CBIAS E09 E1 C          code_bias= -0.500m
-CBIAS E09 E5a Q         code_bias= -0.900m
-CBIAS E09 E5b Q         code_bias= -0.900m
-CBIAS E09 E6 C          code_bias= -0.940m
-CBIAS E10 E1 C          code_bias= -0.120m
-CBIAS E10 E5a Q         code_bias= -0.220m
-CBIAS E10 E5b Q         code_bias= -0.380m
-CBIAS E10 E6 C          code_bias= -1.540m
-CBIAS E11 E1 C          code_bias=  3.940m
-CBIAS E11 E5a Q         code_bias=  7.060m
-CBIAS E11 E5b Q         code_bias=  6.960m
-CBIAS E11 E6 C          code_bias=  6.560m
-CBIAS E12 E1 C          code_bias=  3.140m
-CBIAS E12 E5a Q         code_bias=  5.620m
-CBIAS E12 E5b Q         code_bias=  5.300m
-CBIAS E12 E6 C          code_bias=  5.660m
-CBIAS E13 E1 C          code_bias= -1.660m
-CBIAS E13 E5a Q         code_bias= -2.960m
-CBIAS E13 E5b Q         code_bias= -2.860m
-CBIAS E13 E6 C          code_bias= -1.400m
-CBIAS E15 E1 C          code_bias= -1.880m
-CBIAS E15 E5a Q         code_bias= -3.360m
-CBIAS E15 E5b Q         code_bias= -3.300m
-CBIAS E15 E6 C          code_bias= -2.280m
-CBIAS E19 E1 C          code_bias=  0.940m
-CBIAS E19 E5a Q         code_bias=  1.680m
-CBIAS E19 E5b Q         code_bias=  1.620m
-CBIAS E19 E6 C          code_bias=  1.000m
-CBIAS E21 E1 C          code_bias= -0.720m
-CBIAS E21 E5a Q         code_bias= -1.280m
-CBIAS E21 E5b Q         code_bias= -1.240m
-CBIAS E21 E6 C          code_bias= -2.080m
-CBIAS E24 E1 C          code_bias=  1.100m
-CBIAS E24 E5a Q         code_bias=  1.980m
-CBIAS E24 E5b Q         code_bias=  2.060m
-CBIAS E24 E6 C          code_bias=  0.800m
-CBIAS E25 E1 C          code_bias= -1.100m
-CBIAS E25 E5a Q         code_bias= -1.960m
-CBIAS E25 E5b Q         code_bias= -1.920m
-CBIAS E25 E6 C          code_bias= -0.640m
-CBIAS E26 E1 C          code_bias=  1.240m
-CBIAS E26 E5a Q         code_bias=  2.200m
-CBIAS E26 E5b Q         code_bias=  2.220m
-CBIAS E26 E6 C          code_bias=  0.420m
-CBIAS E27 E1 C          code_bias= -0.620m
-CBIAS E27 E5a Q         code_bias= -1.100m
-CBIAS E27 E5b Q         code_bias= -1.080m
-CBIAS E27 E6 C          code_bias= -2.020m
-CBIAS E30 E1 C          code_bias= -0.520m
-CBIAS E30 E5a Q         code_bias= -0.940m
-CBIAS E30 E5b Q         code_bias= -0.900m
-CBIAS E30 E6 C          code_bias= -0.280m
-CBIAS E31 E1 C          code_bias= -1.380m
-CBIAS E31 E5a Q         code_bias= -2.460m
-CBIAS E31 E5b Q         code_bias= -2.440m
-CBIAS E31 E6 C          code_bias= -0.420m
-CBIAS E33 E1 C          code_bias=  1.020m
-CBIAS E33 E5a Q         code_bias=  1.840m
-CBIAS E33 E5b Q         code_bias=  1.860m
-CBIAS E33 E6 C          code_bias=  0.400m
-CBIAS E34 E1 C          code_bias= -1.280m
-CBIAS E34 E5a Q         code_bias= -2.300m
-CBIAS E34 E5b Q         code_bias= -2.400m
-CBIAS E34 E6 C          code_bias= -2.040m
-CBIAS E36 E1 C          code_bias= -1.780m
-CBIAS E36 E5a Q         code_bias= -3.180m
-CBIAS E36 E5b Q         code_bias= -3.200m
-CBIAS E36 E6 C          code_bias= -2.180m
+ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
+ORBIT G02   94   -0.0525   0.9920  -0.2560
+ORBIT G03   33    0.0050  -0.0480  -0.4400
+ORBIT G04   28   -1.0075   0.1840  -0.2400
+ORBIT G05   37    0.0175  -0.4880   0.2960
+ORBIT G06   15   -0.2125   0.3520   0.5440
+ORBIT G07   91   -0.4325   3.2720   2.6000
+ORBIT G08  116   -0.0700  -1.0400   0.0800
+ORBIT G09   13   -0.1200   0.6960   0.1680
+ORBIT G10   79    0.1775   1.0400   0.0720
+ORBIT G11  151   -0.9650   0.1840   0.5040
+ORBIT G12   53    0.0300  -1.5680  -0.5840
+ORBIT G13   60   -0.1975   0.7760   0.2000
+ORBIT G14   68   -0.9575  -1.6320  -0.5440
+ORBIT G15   37    0.1100   0.0400   0.3280
+ORBIT G16   90   -0.0700   0.5040   0.3680
+ORBIT G17   41   -0.3475   0.4320  -0.2400
+ORBIT G18  128   -0.8450  -0.5520   1.0400
+ORBIT G19   86   -0.3350   0.1920  -0.2480
+ORBIT G20   88   -0.0650   0.6800   1.8640
+ORBIT G21   17    0.0400  -0.2480  -0.2880
+ORBIT G23  183   -0.7875  -2.3200  -0.4960
+ORBIT G25   22   -0.0750  -0.5040  -0.0800
+ORBIT G27   11    0.0850  -0.1520   0.5920
+ORBIT G29   95   -0.1875   2.6240   0.2480
+ORBIT G30   47   -0.2850   0.2800  -0.1600
+ORBIT G31   84   -0.1300   0.3040  -0.4960
+ORBIT G32   58    0.5125  -2.5600   1.9840
+ORBIT E02   16   -0.0575   0.3280   0.0240
+ORBIT E03   16    0.0275   0.0960  -0.2960
+ORBIT E04   16   -0.1700  -0.0080   0.0320
+ORBIT E05   16    0.0375  -0.6800  -0.3680
+ORBIT E07   16    0.0425   0.3360  -0.4720
+ORBIT E08   16    0.0750   0.1760  -0.3520
+ORBIT E09   16   -0.1600  -0.3920  -0.3840
+ORBIT E10   16   -0.1500  -0.4640   0.0720
+ORBIT E11   16   -0.1000  -0.5120   0.0240
+ORBIT E12   15   -0.2400  -0.5040   0.2160
+ORBIT E13   16    0.0750   0.1200  -0.1760
+ORBIT E15   16    0.2125  -0.0400  -0.1600
+ORBIT E19   16   -0.2775   0.4720   0.0000
+ORBIT E21   16   -0.1475   0.0880   0.1920
+ORBIT E24   16   -0.0475  -0.0800   0.2640
+ORBIT E25   16    0.0475   0.3760  -0.2320
+ORBIT E26   16    0.0425  -0.2480   0.0160
+ORBIT E27   13   -0.1950   0.1600   0.1440
+ORBIT E30   16   -0.0575   0.2560   0.0800
+ORBIT E31   16   -0.0825   0.2400   0.1040
+ORBIT E33   15   -0.0025  -0.1280  -0.0720
+ORBIT E34   16    0.0575   0.0640  -0.0800
+ORBIT E36   16    0.0025   0.0080  -0.1760
+CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
+CBIAS G02 L1 C/A                 4.420
+CBIAS G02 L2 P                   7.280
+CBIAS G03 L1 C/A                -2.880
+CBIAS G03 L2 CL                 -4.340
+CBIAS G03 L2 P                  -4.760
+CBIAS G04 L1 C/A                -0.520
+CBIAS G04 L2 CL                 -0.120
+CBIAS G04 L2 P                  -0.840
+CBIAS G05 L1 C/A                 1.260
+CBIAS G05 L2 CL                  2.520
+CBIAS G05 L2 P                   2.040
+CBIAS G06 L1 C/A                -3.460
+CBIAS G06 L2 CL                 -5.400
+CBIAS G06 L2 P                  -5.700
+CBIAS G07 L1 C/A                 1.680
+CBIAS G07 L2 CL                  3.380
+CBIAS G07 L2 P                   2.760
+CBIAS G08 L1 C/A                -3.140
+CBIAS G08 L2 CL                 -4.960
+CBIAS G08 L2 P                  -5.160
+CBIAS G09 L1 C/A                -1.940
+CBIAS G09 L2 CL                 -2.560
+CBIAS G09 L2 P                  -3.200
+CBIAS G11 L1 C/A                 0.740
+CBIAS G11 L2 CL                  1.820
+CBIAS G11 L2 P                   1.220
+CBIAS G12 L1 C/A                 1.900
+CBIAS G12 L2 CL                  3.620
+CBIAS G12 L2 P                   3.120
+CBIAS G13 L1 C/A                 1.840
+CBIAS G13 L2 P                   3.020
+CBIAS G14 L1 C/A                 0.660
+CBIAS G14 L2 CL                  1.600
+CBIAS G14 L2 P                   1.080
+CBIAS G15 L1 C/A                 1.100
+CBIAS G15 L2 CL                  2.340
+CBIAS G15 L2 P                   1.800
+CBIAS G16 L1 C/A                 2.180
+CBIAS G16 L2 P                   3.580
+CBIAS G17 L1 C/A                 1.660
+CBIAS G17 L2 CL                  3.340
+CBIAS G17 L2 P                   2.720
+CBIAS G18 L1 C/A                 0.580
+CBIAS G18 L2 CL                  1.520
+CBIAS G18 L2 P                   0.940
+CBIAS G19 L1 C/A                 4.460
+CBIAS G19 L2 P                   7.340
+CBIAS G20 L1 C/A                 1.720
+CBIAS G20 L2 P                   2.820
+CBIAS G21 L1 C/A                 2.200
+CBIAS G21 L2 P                   3.640
+CBIAS G23 L1 C/A                 0.680
+CBIAS G23 L2 CL                  1.720
+CBIAS G23 L2 P                   1.140
+CBIAS G25 L1 C/A                -2.900
+CBIAS G25 L2 CL                 -4.460
+CBIAS G25 L2 P                  -4.780
+CBIAS G27 L1 C/A                -2.060
+CBIAS G27 L2 CL                 -2.860
+CBIAS G27 L2 P                  -3.420
+CBIAS G29 L1 C/A                 1.340
+CBIAS G29 L2 CL                  2.620
+CBIAS G29 L2 P                   2.200
+CBIAS G30 L1 C/A                -2.220
+CBIAS G30 L2 CL                 -3.320
+CBIAS G30 L2 P                  -3.660
+CBIAS G31 L1 C/A                 2.240
+CBIAS G31 L2 CL                  4.040
+CBIAS G31 L2 P                   3.700
+CBIAS G32 L1 C/A                -2.340
+CBIAS G32 L2 CL                 -3.440
+CBIAS G32 L2 P                  -3.840
+CBIAS E02 E1 C                   0.360
+CBIAS E02 E5a Q                  0.640
+CBIAS E02 E5b Q                  0.780
+CBIAS E02 E6 C                  -0.440
+CBIAS E03 E1 C                  -0.920
+CBIAS E03 E5a Q                 -1.660
+CBIAS E03 E5b Q                 -1.660
+CBIAS E03 E6 C                  -0.920
+CBIAS E04 E1 C                   0.860
+CBIAS E04 E5a Q                  1.560
+CBIAS E04 E5b Q                  1.540
+CBIAS E04 E6 C                   0.640
+CBIAS E05 E1 C                  -1.040
+CBIAS E05 E5a Q                 -1.860
+CBIAS E05 E5b Q                 -1.880
+CBIAS E05 E6 C                  -0.220
+CBIAS E07 E1 C                  -1.620
+CBIAS E07 E5a Q                 -2.900
+CBIAS E07 E5b Q                 -2.860
+CBIAS E07 E6 C                  -1.540
+CBIAS E08 E1 C                   1.060
+CBIAS E08 E5a Q                  1.920
+CBIAS E08 E5b Q                  1.940
+CBIAS E08 E6 C                   1.520
+CBIAS E09 E1 C                  -0.500
+CBIAS E09 E5a Q                 -0.900
+CBIAS E09 E5b Q                 -0.900
+CBIAS E09 E6 C                  -0.940
+CBIAS E10 E1 C                  -0.120
+CBIAS E10 E5a Q                 -0.220
+CBIAS E10 E5b Q                 -0.380
+CBIAS E10 E6 C                  -1.540
+CBIAS E11 E1 C                   3.940
+CBIAS E11 E5a Q                  7.060
+CBIAS E11 E5b Q                  6.960
+CBIAS E11 E6 C                   6.560
+CBIAS E12 E1 C                   3.140
+CBIAS E12 E5a Q                  5.620
+CBIAS E12 E5b Q                  5.300
+CBIAS E12 E6 C                   5.660
+CBIAS E13 E1 C                  -1.660
+CBIAS E13 E5a Q                 -2.960
+CBIAS E13 E5b Q                 -2.860
+CBIAS E13 E6 C                  -1.400
+CBIAS E15 E1 C                  -1.880
+CBIAS E15 E5a Q                 -3.360
+CBIAS E15 E5b Q                 -3.300
+CBIAS E15 E6 C                  -2.280
+CBIAS E19 E1 C                   0.940
+CBIAS E19 E5a Q                  1.680
+CBIAS E19 E5b Q                  1.620
+CBIAS E19 E6 C                   1.000
+CBIAS E21 E1 C                  -0.720
+CBIAS E21 E5a Q                 -1.280
+CBIAS E21 E5b Q                 -1.240
+CBIAS E21 E6 C                  -2.080
+CBIAS E24 E1 C                   1.100
+CBIAS E24 E5a Q                  1.980
+CBIAS E24 E5b Q                  2.060
+CBIAS E24 E6 C                   0.800
+CBIAS E25 E1 C                  -1.100
+CBIAS E25 E5a Q                 -1.960
+CBIAS E25 E5b Q                 -1.920
+CBIAS E25 E6 C                  -0.640
+CBIAS E26 E1 C                   1.240
+CBIAS E26 E5a Q                  2.200
+CBIAS E26 E5b Q                  2.220
+CBIAS E26 E6 C                   0.420
+CBIAS E27 E1 C                  -0.620
+CBIAS E27 E5a Q                 -1.100
+CBIAS E27 E5b Q                 -1.080
+CBIAS E27 E6 C                  -2.020
+CBIAS E30 E1 C                  -0.520
+CBIAS E30 E5a Q                 -0.940
+CBIAS E30 E5b Q                 -0.900
+CBIAS E30 E6 C                  -0.280
+CBIAS E31 E1 C                  -1.380
+CBIAS E31 E5a Q                 -2.460
+CBIAS E31 E5b Q                 -2.440
+CBIAS E31 E6 C                  -0.420
+CBIAS E33 E1 C                   1.020
+CBIAS E33 E5a Q                  1.840
+CBIAS E33 E5b Q                  1.860
+CBIAS E33 E6 C                   0.400
+CBIAS E34 E1 C                  -1.280
+CBIAS E34 E5a Q                 -2.300
+CBIAS E34 E5b Q                 -2.400
+CBIAS E34 E6 C                  -2.040
+CBIAS E36 E1 C                  -1.780
+CBIAS E36 E5a Q                 -3.180
+CBIAS E36 E5b Q                 -3.200
+CBIAS E36 E6 C                  -2.180
 ------ padding bits ------
 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------
@@ -1179,55 +1179,55 @@ Code bias       : off
 Phase bias      : off
 Mask ID         : 22
 IOD Set ID      : 1
-CKFUL validity_interval=60s (5)
-CKFUL G02 d_clock= -0.438m (multiplier=1)
-CKFUL G03 d_clock=  0.965m (multiplier=1)
-CKFUL G04 d_clock= -0.223m (multiplier=1)
-CKFUL G05 d_clock=  0.755m (multiplier=1)
-CKFUL G06 d_clock=  1.407m (multiplier=1)
-CKFUL G07 d_clock=  1.042m (multiplier=1)
-CKFUL G08 d_clock= -2.132m (multiplier=1)
-CKFUL G09 d_clock=  0.295m (multiplier=1)
-CKFUL G11 d_clock=  0.062m (multiplier=1)
-CKFUL G12 d_clock=  0.415m (multiplier=1)
-CKFUL G13 d_clock=  0.665m (multiplier=1)
-CKFUL G14 d_clock= -0.408m (multiplier=1)
-CKFUL G16 d_clock= -0.352m (multiplier=1)
-CKFUL G17 d_clock=  0.228m (multiplier=1)
-CKFUL G18 d_clock= -0.122m (multiplier=1)
-CKFUL G19 d_clock= -2.160m (multiplier=1)
-CKFUL G20 d_clock= -1.363m (multiplier=1)
-CKFUL G21 d_clock= -1.667m (multiplier=1)
-CKFUL G23 d_clock=  0.380m (multiplier=1)
-CKFUL G25 d_clock= -0.225m (multiplier=1)
-CKFUL G27 d_clock=  0.140m (multiplier=1)
-CKFUL G29 d_clock= -0.790m (multiplier=1)
-CKFUL G30 d_clock= -0.420m (multiplier=1)
-CKFUL G31 d_clock=  0.948m (multiplier=1)
-CKFUL G32 d_clock=  1.298m (multiplier=1)
-CKFUL E02 d_clock=  0.300m (multiplier=1)
-CKFUL E03 d_clock= -0.018m (multiplier=1)
-CKFUL E04 d_clock= -0.128m (multiplier=1)
-CKFUL E05 d_clock= -0.225m (multiplier=1)
-CKFUL E07 d_clock= -0.070m (multiplier=1)
-CKFUL E08 d_clock=  0.302m (multiplier=1)
-CKFUL E09 d_clock= -0.240m (multiplier=1)
-CKFUL E10 d_clock= -0.478m (multiplier=1)
-CKFUL E11 d_clock=  0.318m (multiplier=1)
-CKFUL E12 d_clock= -0.425m (multiplier=1)
-CKFUL E13 d_clock= -0.007m (multiplier=1)
-CKFUL E15 d_clock=  0.068m (multiplier=1)
-CKFUL E19 d_clock= -0.300m (multiplier=1)
-CKFUL E21 d_clock= -0.128m (multiplier=1)
-CKFUL E24 d_clock=  0.185m (multiplier=1)
-CKFUL E25 d_clock=  0.060m (multiplier=1)
-CKFUL E26 d_clock=  0.115m (multiplier=1)
-CKFUL E27 d_clock= -0.240m (multiplier=1)
-CKFUL E30 d_clock=  0.068m (multiplier=1)
-CKFUL E31 d_clock= -0.155m (multiplier=1)
-CKFUL E33 d_clock=  0.083m (multiplier=1)
-CKFUL E34 d_clock= -0.128m (multiplier=1)
-CKFUL E36 d_clock= -0.103m (multiplier=1)
+CKFUL SAT   c0[m] validity_interval=60[s] (5)
+CKFUL G02  -0.438
+CKFUL G03   0.965
+CKFUL G04  -0.223
+CKFUL G05   0.755
+CKFUL G06   1.407
+CKFUL G07   1.042
+CKFUL G08  -2.132
+CKFUL G09   0.295
+CKFUL G11   0.062
+CKFUL G12   0.415
+CKFUL G13   0.665
+CKFUL G14  -0.408
+CKFUL G16  -0.352
+CKFUL G17   0.228
+CKFUL G18  -0.122
+CKFUL G19  -2.160
+CKFUL G20  -1.363
+CKFUL G21  -1.667
+CKFUL G23   0.380
+CKFUL G25  -0.225
+CKFUL G27   0.140
+CKFUL G29  -0.790
+CKFUL G30  -0.420
+CKFUL G31   0.948
+CKFUL G32   1.298
+CKFUL E02   0.300
+CKFUL E03  -0.018
+CKFUL E04  -0.128
+CKFUL E05  -0.225
+CKFUL E07  -0.070
+CKFUL E08   0.302
+CKFUL E09  -0.240
+CKFUL E10  -0.478
+CKFUL E11   0.318
+CKFUL E12  -0.425
+CKFUL E13  -0.007
+CKFUL E15   0.068
+CKFUL E19  -0.300
+CKFUL E21  -0.128
+CKFUL E24   0.185
+CKFUL E25   0.060
+CKFUL E26   0.115
+CKFUL E27  -0.240
+CKFUL E30   0.068
+CKFUL E31  -0.155
+CKFUL E33   0.083
+CKFUL E34  -0.128
+CKFUL E36  -0.103
 ------ padding bits ------
 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
 ------

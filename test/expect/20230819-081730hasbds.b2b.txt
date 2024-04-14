@@ -6,27 +6,27 @@ C60 MT1  MASK  08:17:34 IODSSR=1 IODP=2 (updated)
  C19 C20 C21 C22 C23 C24 C25 C26 C27 C28 C29 C30 C32 C33 C34 C35 C36 C37 C38 C39 C40 C41 C42 C43 C44 C45 C46 G01 G02 G03 G04 G05 G06 G07 G08 G09 G10 G11 G12 G13 G14 G15 G16 G17 G18 G19 G20 G21 G22 G23 G24 G25 G26 G27 G28 G29 G30 G31 G32
 Mask: 000000000000000000111111111111011111111111111100000000000000000111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 C60 MT4  CLOCK 08:17:34 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C19       4    0.483
-C20       4   -0.035
-C23       6   -0.050
+SAT IODCorr   c0[m]
+C19       4   0.483
+C20       4  -0.035
+C23       6  -0.050
 C60 MT4  CLOCK 08:17:34 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C24       6   -0.178
-C26       4    0.000
-C35       2    1.682
-C37       3   -0.920
-C39       2    0.339
-C42       1    0.578
-C45       0    0.443
+SAT IODCorr   c0[m]
+C24       6  -0.178
+C26       4   0.000
+C35       2   1.682
+C37       3  -0.920
+C39       2   0.339
+C42       1   0.578
+C45       0   0.443
 C60 MT4  CLOCK 08:17:34 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-G01       0    0.000
-G02       0    0.000
-G03       0    0.000
-G04       0    0.000
-G05       0    0.000
-G06       0    0.000
+SAT IODCorr   c0[m]
+G01       0   0.000
+G02       0   0.000
+G03       0   0.000
+G04       0   0.000
+G05       0   0.000
+G06       0   0.000
 C60 MT3  CODE  08:17:27 IODSSR=1 numsat=3
 SAT Signal Code   Code Bias[m]
 C21 B1I                  3.383
@@ -106,27 +106,27 @@ C42 B2b-I               -2.074
 C42 B2b-Q               -1.581
 C42 B3 I                 0.000
 C60 MT4  CLOCK 08:17:40 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C19       4    0.485
-C20       4   -0.035
-C23       6   -0.048
+SAT IODCorr   c0[m]
+C19       4   0.485
+C20       4  -0.035
+C23       6  -0.048
 C60 MT4  CLOCK 08:17:40 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C24       6   -0.178
-C26       4    0.000
-C35       2    1.682
-C37       3   -0.918
-C39       2    0.331
-C42       1    0.571
-C45       0    0.445
+SAT IODCorr   c0[m]
+C24       6  -0.178
+C26       4   0.000
+C35       2   1.682
+C37       3  -0.918
+C39       2   0.331
+C42       1   0.571
+C45       0   0.445
 C60 MT4  CLOCK 08:17:40 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-G01       0    0.000
-G02       0    0.000
-G03       0    0.000
-G04       0    0.000
-G05       0    0.000
-G06       0    0.000
+SAT IODCorr   c0[m]
+G01       0   0.000
+G02       0   0.000
+G03       0   0.000
+G04       0   0.000
+G05       0   0.000
+G06       0   0.000
 C60 MT3  CODE  08:17:27 IODSSR=1 numsat=2
 SAT Signal Code   Code Bias[m]
 C43 B1I                 -0.986
@@ -162,27 +162,27 @@ C43   12       6   -0.0368   0.0192  -0.1152   86.75
 C45   12       4   -0.0256  -0.0064   0.0320   86.75
 G08  116       2   -0.0304   1.1008  -0.1216   86.75
 C60 MT4  CLOCK 08:17:46 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C19       4    0.486
-C20       4   -0.034
-C23       6   -0.048
+SAT IODCorr   c0[m]
+C19       4   0.486
+C20       4  -0.034
+C23       6  -0.048
 C60 MT4  CLOCK 08:17:46 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C24       6   -0.178
-C26       4    0.002
-C35       2    1.680
-C37       3   -0.910
-C39       2    0.341
-C42       1    0.566
-C45       0    0.442
+SAT IODCorr   c0[m]
+C24       6  -0.178
+C26       4   0.002
+C35       2   1.680
+C37       3  -0.910
+C39       2   0.341
+C42       1   0.566
+C45       0   0.442
 C60 MT4  CLOCK 08:17:46 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-G01       0    0.000
-G02       0    0.000
-G03       0    0.000
-G04       0    0.000
-G05       0    0.000
-G06       0    0.000
+SAT IODCorr   c0[m]
+G01       0   0.000
+G02       0   0.000
+G03       0   0.000
+G04       0   0.000
+G05       0   0.000
+G06       0   0.000
 C60 MT2  ORBIT 08:17:27 IODSSR=1
 SAT IODN IODCorr radial[m] along[m] cross[m] URA[mm]
 G10   80       3   -0.2544  -0.5824   0.0192   86.75
@@ -197,41 +197,41 @@ G27   11       3   -0.1360   0.1664  -0.5376   86.75
 G32   58       2   -0.6304   2.8608  -2.4512   86.75
 C60 MT63 NULL
 C60 MT4  CLOCK 08:17:52 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C19       4    0.483
-C20       4   -0.035
-C23       6   -0.050
+SAT IODCorr   c0[m]
+C19       4   0.483
+C20       4  -0.035
+C23       6  -0.050
 C60 MT4  CLOCK 08:17:52 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C24       6   -0.184
-C26       4    0.000
-C35       2    1.680
-C37       3   -0.912
-C39       2    0.344
-C42       1    0.560
-C45       0    0.442
+SAT IODCorr   c0[m]
+C24       6  -0.184
+C26       4   0.000
+C35       2   1.680
+C37       3  -0.912
+C39       2   0.344
+C42       1   0.560
+C45       0   0.442
 C60 MT4  CLOCK 08:17:52 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-G01       0    0.000
-G02       0    0.000
-G03       0    0.000
-G04       0    0.000
-G05       0    0.000
-G06       0    0.000
+SAT IODCorr   c0[m]
+G01       0   0.000
+G02       0   0.000
+G03       0   0.000
+G04       0   0.000
+G05       0   0.000
+G06       0   0.000
 C60 MT63 NULL
 C60 MT63 NULL
 C60 MT63 NULL
 C60 MT4  CLOCK 08:17:58 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C19       4    0.486
-C20       4   -0.032
-C23       6   -0.046
+SAT IODCorr   c0[m]
+C19       4   0.486
+C20       4  -0.032
+C23       6  -0.046
 C60 MT4  CLOCK 08:17:58 IODSSR=1 IODP=2
-SAT IODCorr clock[m]
-C24       6   -0.173
-C26       4    0.003
-C35       2    1.680
-C37       3   -0.914
-C39       2    0.347
-C42       1    0.554
-C45       0    0.443
+SAT IODCorr   c0[m]
+C24       6  -0.173
+C26       4   0.003
+C35       2   1.680
+C37       3  -0.914
+C39       2   0.347
+C42       1   0.554
+C45       0   0.443
