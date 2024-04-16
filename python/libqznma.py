@@ -16,7 +16,6 @@
 import sys
 
 sys.path.append(__file__)
-import libssr
 import libtrace
 
 try:
@@ -47,7 +46,7 @@ class Qznma:
         rds2     = payload.read(L_RDS)
         reserved = payload.read(L_RESERVED)
         if reserved.any(1):
-            self.trace(2, f"QZNMA reserved dump: {reserved.bin}")
+            self.trace.show(2, f"QZNMA reserved dump: {reserved.bin}")
         message = '      '
         message += self.decode_rds(rds1)
         message += self.decode_rds(rds2)
@@ -57,19 +56,18 @@ class Qznma:
         '''decodes reformat digital signature
         [1] p.43 Table 6-2 GPS LNAV RDS Message
         '''
-        pos = 0
-        nma_id = rds.read( 'b4')
-        rtow   = rds.read('u20')
-        svid   = rds.read( 'u8')
-        mt     = rds.read( 'u4')
-        reph   = rds.read( 'u4')
-        keyid  = rds.read( 'u8')
-        signat = rds.read(L_SIGNAT)
-        salt   = rds.read('u16')
+        nma_id = rds.read( 'b4')     # navigation message authentication ID
+        rtow   = rds.read('u20')     # reference time of week
+        svid   = rds.read( 'u8')     # space vehicle ID
+        mt     = rds.read( 'u4')     # message type
+        reph   = rds.read( 'u4')     # reference ephemeris
+        keyid  = rds.read( 'u8')     # key ID
+        signat = rds.read(L_SIGNAT)  # digital signature
+        salt   = rds.read('u16')     # salt (true random number)
         message = ''
-        if nma_id != '0000':
+        if nma_id != '0000':         # NMA is not used
             message = self.trace.msg(0, '(inactive) ', dec='dark')
-            if rds[4:].any(1):
+            if rds[4:].any(1):       # RDS field should be all zero
                 self.trace.show(2,f'NMA_ID={nma_id}: {rds[4:]}\n')
             return message
         satsig = ''
@@ -81,14 +79,15 @@ class Qznma:
         elif 129 <= svid and svid <= 191: satsig += f'S{svid    :03d}'
         elif 193 <= svid and svid <= 202: satsig += f'J{svid-192:02d}'
         else:
-            raise Exception(f'unknown SVID{svid}')
+            satsig += f'(unknown SVID{svid})'
         if   mt == 0b0001: satsig += '(LNAV) '
         elif mt == 0b0010: satsig += '(CNAV) '
         elif mt == 0b0011: satsig += '(CNAV2) '
         elif mt == 0b0100: satsig += '(F/NAV) '
         elif mt == 0b0101: satsig += '(I/NAV) '
+        elif mt == 0: satsig += '(inactive)'
         else:
-            raise Exception(f'unknown message_type={mt}')
+            satsig += f'(unknown message_type={mt}) '
         message += satsig
         self.trace.show(1, f'QZNMA {satsig}TOW={rtow} Eph={reph} KeyID={keyid} salt={salt}')
         self.trace.show(2, f'{signat.bin}')
