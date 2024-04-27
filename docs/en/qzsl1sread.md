@@ -14,6 +14,7 @@ positional arguments:
 options:
   -h, --help   show this help message and exit
   -c, --color  apply ANSI color escape sequences even for non-terminal.
+  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
 ```
 
 If no filename is provided, it reads from standard input. The input format is the same as the [SLAS Archive](https://sys.qzss.go.jp/dod/en/archives/slas.html) on the QZSS official page. Initially, 1 byte (8 bits) of PRN (pseudo random noise) number is followed by 32 bytes (250 bits, the rest is zero-padding) of data.
@@ -22,39 +23,55 @@ Terminal output is displayed in color using ANSI escape sequences. Redirecting t
 
 When the ``-c`` option is given, it forces the status display to appear in color. By default, if the output destination is a terminal, the status display appears in color. If the output destination is something else, color display is not used.
 
+When the ``-t`` option is given, it output detail on the messages. This option needs integer argument. The value 1 produces the detailed information, and the value 2 provides bit image display in addition of the detailed information.
+
 For example, we extract QZS L1S raw data from Allystar receiver raw data sample ``20230919-114418.ubx`` with [ubxread.py](ubxread.md), and display it with ``qzsl1sread.py``:
 
 ```bash
-$ ubxread.py --l1s < sample/20230919-114418.ubx | qzsl1sread.py
+$ ubxread.py --l1s < sample/20230919-114418.ubx | qzsl1sread.py -t 2
 
 PRN137: Long-term satellite error corrections
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
 PRN128: Fast corrections 2
-PRN184: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN184: DGPS correction (waiting for PRN mask, MT48)
 PRN137: Degradation parameters
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
 PRN128: Fast corrections 1
-PRN184: JMA DCR: Marine (Normal) 09-19 08:40 UTC
+PRN184: DCR: Marine (Normal) 09-19 08:40 UTC
 ...
-PRN186: PRN mask: G03 G04 G16 G18 G25 G26 G27 G28 G29 G31 G32 J02 J03 J04 J07 (15 sats, IODP=2)
+PRN186: PRN mask: selected sats: G03 G04 G16 G18 G25 G26 G27 G28 G29 G31 G32 J02 J03 J04 J07 (15 sats, IODP=2)
 ...
 PRN186: Data issue number: IODI=3 IODP=2
-  G03 IOD=100
-  G04 IOD=184
-  G16 IOD=  4
-  G18 IOD= 50
-  G25 IOD= 18
+PRN IOD
+G03 100
+G04 184
+G16   4
+G18  50
+G25  18
+G26  20
+G27   8
+G28 112
+G29  47
+G31  27
+G32 115
+J02  13
+J03  13
+J04  13
+J07  13
+ (15 sats)
 ...
 PRN186: DGPS correction: Sapporo
-  G16 PRC= -3.08 m
-  G26 PRC=  1.28 m
-  G28 PRC=  2.40 m
-  G29 PRC=  1.36 m
-  G31 PRC=  3.08 m
-  G32 PRC= -3.28 m
-  J02 PRC=  3.56 m
-  J04 PRC= -4.00 m
-  J07 PRC= -1.28 m
+PRN PRC[m]
+G16  -3.08
+G26   1.28
+G28   2.40
+G29   1.36
+G31   3.08
+G32  -3.28
+J02   3.56
+J04  -4.00
+J07  -1.28
+ (9 sats)
 ```
 
 Please refere the following page to know how you read the data: [L1S signal analysis with QZS L6 Tool](https://s-taka.org/en/qzsl6tool-20231111upd/)

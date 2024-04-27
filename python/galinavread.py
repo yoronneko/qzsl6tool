@@ -354,10 +354,10 @@ class GalInav:
             self.sar_beacon[svid] += data
             return msg
         elif self.sar_part[svid] == 4:  # message part 4 is for code and param.
-            self.sar_code [svid] = data.read( 4)  # message code
+            self.sar_code [svid] = data.read('u4')  # message code
             self.sar_param[svid] = data.read(16)    # parameter
             if self.sar_sl[svid] == 0:  # SAR short message 
-                msg += f' beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid].u} param={self.sar_param[svid].hex}'
+                msg += f' beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
                 self.sar_part  [svid] = 0  # clear all states
                 self.sar_sl    [svid] = sl.u
                 self.sar_beacon[svid] = bitstring.BitStream()
@@ -384,7 +384,7 @@ class GalInav:
         eo2   = inav.read(  1)  # Even/Odd, should be 1 (odd)
         pt2   = inav.read(  1)  # page type, should be 0 (normal)
         df2   = inav.read( 16)  # data 2/2
-        osnma = inav.read( 40)  # OSNMA
+        osnma = inav.read( 40)  # OSNMA (open service navigation message authentication)
         sar   = inav.read( 22)  # SAR (search and rescue)
         inav.pos += 2           # spare
         crc   = inav.read( 24)  # CRC

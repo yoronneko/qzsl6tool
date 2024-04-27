@@ -1,109 +1,124 @@
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction (waiting for PRN mask, MT48)
 PRN186: Null message
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-PRN186: JMA DCR: Weather (Normal) 09-19 10:25 UTC
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
+PRN186: DCR: Weather (Normal) 09-19 10:25 UTC
+PRN186: DGPS correction (waiting for PRN mask, MT48)
 PRN186: Null message
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction (waiting for PRN mask, MT48)
 PRN186: Null message
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction (waiting for PRN mask, MT48)
 PRN186: Null message
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction (waiting for PRN mask, MT48)
 PRN186: Null message
-PRN186: DGPS correction: IODP mismatch (mask IODP=0, DGPS IODP=2)
-PRN186: JMA DCR: Weather (Normal) 09-19 10:25 UTC
-PRN186: PRN mask: G03 G04 G16 G18 G25 G26 G27 G28 G29 G31 G32 J02 J03 J04 J07 (15 sats, IODP=2)
+PRN186: DGPS correction (waiting for PRN mask, MT48)
+PRN186: DCR: Weather (Normal) 09-19 10:25 UTC
+PRN186: PRN mask: selected sats: G03 G04 G16 G18 G25 G26 G27 G28 G29 G31 G32 J02 J03 J04 J07 (15 sats, IODP=2)
 PRN186: Null message
 PRN186: Data issue number: IODI=3 IODP=2
-  G03 IOD=100
-  G04 IOD=184
-  G16 IOD=  4
-  G18 IOD= 50
-  G25 IOD= 18
-  G26 IOD= 20
-  G27 IOD=  8
-  G28 IOD=112
-  G29 IOD= 47
-  G31 IOD= 27
-  G32 IOD=115
-  J02 IOD= 13
-  J03 IOD= 13
-  J04 IOD= 13
-  J07 IOD= 13
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: Sapporo    
-  G16 PRC= -3.08 m
-  G26 PRC=  1.28 m
-  G28 PRC=  2.40 m
-  G29 PRC=  1.36 m
-  G31 PRC=  3.08 m
-  G32 PRC= -3.28 m
-  J02 PRC=  3.56 m
-  J04 PRC= -4.00 m
-  J07 PRC= -1.28 m
+PRN IOD
+G03 100
+G04 184
+G16   4
+G18  50
+G25  18
+G26  20
+G27   8
+G28 112
+G29  47
+G31  27
+G32 115
+J02  13
+J03  13
+J04  13
+J07  13
+ (15 sats)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: Sapporo
+PRN PRC[m]
+G16  -3.08
+G26   1.28
+G28   2.40
+G29   1.36
+G31   3.08
+G32  -3.28
+J02   3.56
+J04  -4.00
+J07  -1.28
+ (9 sats)
 PRN186: Monitoring station information
-  location 1: Sapporo     43.150 141.220   50
-  location 2: Sendai      38.270 140.740  200
-  location 3: Hitachiota  36.580 140.550  150
-  location 4: Komatsu     36.400 136.410   50
-  location 5: Kobe        34.710 135.040  200
-PRN186: DGPS correction: Sendai     
-  G16 PRC= -3.00 m
-  G26 PRC=  0.84 m
-  G28 PRC=  1.80 m
-  G29 PRC=  0.76 m
-  G31 PRC=  2.28 m
-  G32 PRC= -2.40 m
-  J02 PRC=  3.08 m
-  J04 PRC= -2.84 m
-  J07 PRC= -0.56 m
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: Hitachiota 
-  G16 PRC= -3.28 m
-  G26 PRC=  0.24 m
-  G28 PRC=  1.40 m
-  G29 PRC=  0.20 m
-  G31 PRC=  1.88 m
-  G32 PRC= -2.72 m
-  J02 PRC=  2.68 m
-  J07 PRC= -0.40 m
+Location    Lat[deg]   Lon[deg] Hgt[m]
+Sapporo       43.150    141.220     50
+Sendai        38.270    140.740    200
+Hitachiota    36.580    140.550    150
+Komatsu       36.400    136.410     50
+Kobe          34.710    135.040    200
+PRN186: DGPS correction: Sendai
+PRN PRC[m]
+G16  -3.00
+G26   0.84
+G28   1.80
+G29   0.76
+G31   2.28
+G32  -2.40
+J02   3.08
+J04  -2.84
+J07  -0.56
+ (9 sats)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: Hitachiota
+PRN PRC[m]
+G16  -3.28
+G26   0.24
+G28   1.40
+G29   0.20
+G31   1.88
+G32  -2.72
+J02   2.68
+J07  -0.40
+ (8 sats)
 PRN186: Null message
-PRN186: DGPS correction: Komatsu    
-  G16 PRC= -2.56 m
-  G26 PRC=  0.32 m
-  G28 PRC=  1.28 m
-  G29 PRC= -0.36 m
-  G31 PRC=  1.76 m
-  G32 PRC= -2.72 m
-  J02 PRC=  2.64 m
-  J07 PRC= -0.32 m
-PRN186: JMA DCR: Marine (Normal) 09-19 08:40 UTC
-PRN186: DGPS correction: Kobe       
-  G16 PRC= -1.92 m
-  G26 PRC=  0.88 m
-  G28 PRC=  1.32 m
-  G29 PRC= -0.52 m
-  G31 PRC=  2.08 m
-  G32 PRC= -2.76 m
-  J02 PRC=  2.84 m
-  J04 PRC= -1.96 m
-  J07 PRC=  0.04 m
+PRN186: DGPS correction: Komatsu
+PRN PRC[m]
+G16  -2.56
+G26   0.32
+G28   1.28
+G29  -0.36
+G31   1.76
+G32  -2.72
+J02   2.64
+J07  -0.32
+ (8 sats)
+PRN186: DCR: Marine (Normal) 09-19 08:40 UTC
+PRN186: DGPS correction: Kobe
+PRN PRC[m]
+G16  -1.92
+G26   0.88
+G28   1.32
+G29  -0.52
+G31   2.08
+G32  -2.76
+J02   2.84
+J04  -1.96
+J07   0.04
+ (9 sats)
 PRN186: Null message
-PRN186: DGPS correction: Hiroshima  
-  G16 PRC= -1.96 m
-  G26 PRC=  0.92 m
-  G28 PRC=  1.32 m
-  G29 PRC= -0.84 m
-  G31 PRC=  2.04 m
-  G32 PRC= -2.52 m
-  J02 PRC=  2.84 m
-  J04 PRC= -2.04 m
-  J07 PRC=  0.28 m
+PRN186: DGPS correction: Hiroshima
+PRN PRC[m]
+G16  -1.96
+G26   0.92
+G28   1.32
+G29  -0.84
+G31   2.04
+G32  -2.52
+J02   2.84
+J04  -2.04
+J07   0.28
+ (9 sats)
