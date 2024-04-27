@@ -152,7 +152,7 @@ qzs_l6() {
 }
 
 qzs_l1s() {
-    CODE=${CODEDIR}qzsl1sread.py ARG='' EXT_FROM=l1s EXT_TO=l1s.txt
+    CODE=${CODEDIR}qzsl1sread.py ARG='-t 2' EXT_FROM=l1s EXT_TO=l1s.txt
     echo "QZS L1S message read (${CODE} ${ARG}):"
 
     SRCDIR=expect/

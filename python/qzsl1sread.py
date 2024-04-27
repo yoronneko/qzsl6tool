@@ -42,77 +42,108 @@ L_DF  = 212  # length data field in bits, ref.[3], pp.13, Fig.4.1.1.-1
 L_CRC =  24  # length of CRC in bits
 GMS2NAME = {  # GMS code, ref.[3], Table 4.1.2-4
     #  station       lat   lon    height
-     0: "Sapporo    ", # 43.15 141.22  50
-     1: "Sendai     ", # 38.27 140.74 200
-     3: "Hitachiota ", # 36.58 140.55 150
-     5: "Komatsu    ", # 36.40 136.41  50
-     6: "Kobe       ", # 34.71 135.04 200
-     7: "Hiroshima  ", # 34.35 132.45  50
-     8: "Fukuoka    ", # 33.60 130.23  50
+     0: "Sapporo"    , # 43.15 141.22  50
+     1: "Sendai"     , # 38.27 140.74 200
+     3: "Hitachiota" , # 36.58 140.55 150
+     5: "Komatsu"    , # 36.40 136.41  50
+     6: "Kobe"       , # 34.71 135.04 200
+     7: "Hiroshima"  , # 34.35 132.45  50
+     8: "Fukuoka"    , # 33.60 130.23  50
      9: "Tanegashima", # 30.55 130.94 100
-    10: "Amami      ", # 28.42 129.69  50
-    11: "Itoman     ", # 26.15 127.69 100
-    12: "Miyako     ", # 24.73 125.35 100
-    13: "Ishigaki   ", # 24.37 124.13 100
-    14: "Chichijima ", # 27.09 142.19 100
-    63: "N/A",
+    10: "Amami"      , # 28.42 129.69  50
+    11: "Itoman"     , # 26.15 127.69 100
+    12: "Miyako"     , # 24.73 125.35 100
+    13: "Ishigaki"   , # 24.37 124.13 100
+    14: "Chichijima" , # 27.09 142.19 100
+    63: "(unavail.)" , # (unavailable)
 }
+UNDEF = -1  # undefined value for IODP and IODI
 
 
 class QzsL1s:
-    iodp    = 0   # PRN mask update number
-    iodi    = 0   # IOD updating number
-    mask    = []  # satellite mask
-    mask_sv = [False for _ in range(23)]  # mask selected satellite
-    iod     = [0     for _ in range(23)]  # data issue number
-    unhealthy_sv = []  # unhealthy satellite
+    iodp     = UNDEF  # PRN mask update number
+    iodi     = UNDEF  # IOD updating number
+    mask_prn = []     # satellite mask defined by MT48 (PRN mask)
+    mask_sv  = []     # mask info for selected satellite defined by MT49 (data issue number)
+    mask_uh  = []     # mask info for unhealthy satellite defined by MT51 (satellite health)
+    iod      = [0 for _ in range(23)]  # data issue number
 
     def __init__(self, trace):
         self.trace = trace
 
+    def decode_test_mode(self, df):  # ref.[3], sect.4.1.2.3, MT0
+        ''' test mode messages solicit deleting previous messages stored in the receiver '''
+        self.iodp     = UNDEF  # clear PRN mask update number
+        self.iodi     = UNDEF  # clear IOD updating number
+        self.mask_prn = []  # clear satellite mask defined by MT48 (PRN mask)
+        self.mask_sv  = []  # clear selected satellite by MT49 (data issue number)
+        self.mask_uh  = []  # clear unhealthy satellite by MT51 (satellite health)
+        self.iod      = [0 for _ in range(23)]  # data issue number
+        df.pos += L_DF
+        return ''
+
     def decode_monitoring_station_info(self, df):  # ref.[3], sect.4.1.2.6, MT47
         ''' returns decoded message '''
-        msg = ''
+        msg = self.trace.msg(1, "\nLocation    Lat[deg]   Lon[deg] Hgt[m]")
         for i in range(5):
             gms_code = df.read( 'u6')
             gms_lat  = df.read('i15')
             gms_lon  = df.read('i15')
             gms_hgt  = df.read( 'u6')
             if gms_code == 63: continue
-            v_gms_code = GMS2NAME.get(gms_code, "undefined")
-            v_gms_lat  = gms_lat * 0.005
-            v_gms_lon  = gms_lon * 0.005 + 115.00
-            v_gms_hgt  = gms_hgt * 50 - 100
-            msg += f"\n  location {i+1}: {v_gms_code} {v_gms_lat:6.3f} {v_gms_lon:7.3f} {v_gms_hgt:4d}"
+            msg += self.trace.msg(1, f"\n{GMS2NAME.get(gms_code, 'undefined'):11s}   {gms_lat*0.005:6.3f}    {gms_lon*0.005+115.00:7.3f}   {gms_hgt*50-100:4d}")
         df.pos += 2  # spare
         return msg
 
     def decode_prn_mask(self, df):  # ref.[3], sect.4.1.2.7, MT48
         ''' returns decoded message '''
+        self.mask_prn = []         # clear satellite mask
+        self.mask_sv  = []         # clear selected satellite
+        self.mask_uh  = []         # clear unhealthy satellite
         self.iodp = df.read('u2')  # PRN mask update number
-        self.mask = []             # satellite mask
         for i in range(64):        # for GPS
-            if df.read('u1'): self.mask.append(f'G{i+1:02d}')
-        for i in range(9):         # for QZSS
-            if df.read('u1'): self.mask.append(f'J{i+1:02d}')
+            if df.read('u1'): self.mask_prn.append(f'G{i+1:02d}')
+        for i in range( 9):        # for QZSS
+            if df.read('u1'): self.mask_prn.append(f'J{i+1:02d}')
         for i in range(36):        # for GLONASS
-            if df.read('u1'): self.mask.append(f'R{i+1:02d}')
+            if df.read('u1'): self.mask_prn.append(f'R{i+1:02d}')
         for i in range(36):        # for Galileo
-            if df.read('u1'): self.mask.append(f'E{i+1:02d}')
+            if df.read('u1'): self.mask_prn.append(f'E{i+1:02d}')
         for i in range(36):        # for BeiDou
-            if df.read('u1'): self.mask.append(f'C{i+1:02d}')
+            if df.read('u1'): self.mask_prn.append(f'C{i+1:02d}')
         df.pos += 29               # spare
-        msg = f":"
-        for sat in self.mask:
+        msg = f": selected sats:"
+        for sat in self.mask_prn:
             msg += " " + sat
-        msg += f" ({len(self.mask)} sats, IODP={self.iodp})"
+        msg += f" ({len(self.mask_prn)} sats, IODP={self.iodp})"
+        return msg
+
+    def decode_satellite_health(self, df):  # ref.[3], sect.4.1.2.10, MT51
+        ''' returns decoded message '''
+        self.mask_uh = []    # clear unhealthy satellite
+        df.pos += 2          # spare
+        for i in range(64):  # for GPS
+            if not df.read('u1'): self.mask_uh.append(f'G{i:02d}')
+        for i in range( 9):  # for QZSS
+            if not df.read('u1'): self.mask_uh.append(f'J{i:02d}')
+        for i in range(36):  # for GLONASS
+            if not df.read('u1'): self.mask_uh.append(f'R{i:02d}')
+        for i in range(36):  # for Galileo
+            if not df.read('u1'): self.mask_uh.append(f'E{i:02d}')
+        for i in range(36):  # for BeiDou
+            if not df.read('u1'): self.mask_uh.append(f'C{i:02d}')
+        df.pos += 29         # spare
+        msg = ": lockout sats:"
+        for sat in self.mask_uh:
+            msg += " " + sat
+        msg += f" ({len(self.mask_uh)} sats)"
         return msg
 
     def decode_data_issue_number(self, df):  # ref.[3], sect.4.1.2.8, MT49
         ''' returns decoded message '''
-        mask_sv   = [False for _ in range(23)]  # mask selected satellite
-        iod       = [0     for _ in range(23)]  # data issue number
-        self.iodi = df.read('u2')  # IOD updating number
+        mask_sv   = [0 for _ in range(23)]  # selected satellite
+        iod       = [0 for _ in range(23)]  # data issue number
+        iodi = df.read('u2')                # IOD updating number
         for i in range(23):
             mask_sv[i] = df.read('u1')
         for i in range(23):
@@ -120,65 +151,59 @@ class QzsL1s:
         iodp = df.read('u2')
         df.pos += 1  # spare
         if iodp != self.iodp:
-            return f": IODP mismatch, IODs are not updated"
-        msg = f': IODI={self.iodi} IODP={self.iodp}'
-        for i in range(len(self.mask)):
-            msg += f"\n  {self.mask[i]} IOD={iod[i]:3d}"
-            if not mask_sv[i]:
-                msg += " (not avilable)"
-        self.mask_sv = mask_sv
-        self.iod     = iod
+            return self.trace.msg(0, f": IODP mismatch {iodp} != {self.iodp}", dec='dark')
+        msg = f': IODI={iodi} IODP={self.iodp}'
+        msg += self.trace.msg(1, "\nPRN IOD")
+        count = 0
+        self.mask_sv = []
+        for i, sat in enumerate(self.mask_prn):
+            if mask_sv[i]:
+                self.mask_sv.append(sat)
+                msg += self.trace.msg(1, f"\n{sat} {iod[i]:3d}")
+                count += 1
+        self.iodi = iodi
+        self.iod  = iod
+        msg += self.trace.msg(1, "\n")
+        msg += self.trace.msg(0, f" ({count} sats)")
+
         return msg
 
     def decode_dgps_correction(self, df):  # ref.[3], sect.4.1.2.9, MT50
         ''' returns decoded message '''
-        iodp = df.read('u2')         # PRN mask updating number
-        iodi = df.read('u2')         # IOD updating number
-        gms_code = df.read('u6')     # monitoring station code
-        gms_health = df.read('u1')   # monitoring station health
-        mask_sv   = [False for _ in range(23)]  # mask selected satellite
+        iodp       = df.read('u2')  # PRN mask updating number
+        iodi       = df.read('u2')  # IOD updating number
+        gms_code   = df.read('u6')  # monitoring station code
+        gms_health = df.read('u1')  # monitoring station health
+        mask_dgps  = [False for _ in range(23)]  # mask selected satellite
         for i in range(23):
-            mask_sv[i] = df.read('u1')  # mask selected satellite
-        prc = [0 for _ in range(14)]    # pseudorange correcion
+            mask_dgps[i] = df.read('u1')  # mask selected satellite
+        prc = [0 for _ in range(14)]      # pseudorange correcion
         for i in range(14):
-            prc[i] = df.read('i12') * 0.04  # pseudorange correction
-        df.pos += 10  # spare
+            prc[i] = df.read('i12')       # pseudorange correction
+        df.pos += 10                      # spare
+        if self.iodp == UNDEF:
+            return self.trace.msg(0, " (waiting for PRN mask, MT48)", dec='dark')
+        if self.iodi == UNDEF:
+            return self.trace.msg(0, " (waiting for data issue number, MT49)", dec='dark')
         if iodp != self.iodp:
-            return f": IODP mismatch (mask IODP={self.iodp}, DGPS IODP={iodp})"
+            return self.trace.msg(0, f" (IODP mismatch: mask {self.iodp} != DGPS {iodp})", dec='dark')
         if iodi != self.iodi:
-            return f": IODI mismatch (mask IODI={self.iodi}, DGPS IODI={iodi})"
+            return self.trace.msg(0, f" (IODI mismatch: mask {self.iodi} != DGPS {iodi})", dec='dark')
+        msg = f": {GMS2NAME.get(gms_code, f'(unknown GMS code: {gms_code})')}"
+        if gms_health:
+           msg += self.trace.msg(0, " (unhealthy)", fg='red')   
+        msg += self.trace.msg(1, "\nPRN PRC[m]")
         count = 0
-        msg = f": {GMS2NAME.get(gms_code, 'unknown')}"
-        for i in range(len(self.mask)):
-            if mask_sv[i]:
-                msg += f"\n  {self.mask[i]} PRC={prc[count]:6.2f} m"
-                count += 1
+        for i, sat in enumerate(self.mask_sv):
+            if not mask_dgps[i]:
+                continue
+            msg += self.trace.msg(1, f"\n{sat} {prc[count]*0.04:6.2f}")
+            if sat in self.mask_uh:
+                msg += self.trace.msg(1, f"(unhealthy)", fg='red')
+            count += 1
+        msg += self.trace.msg(1, "\n")
+        msg += self.trace.msg(0, f" ({count} sats)")
         return msg
-
-    def decode_satellite_health(self, df):  # ref.[3], sect.4.1.2.10, MT51
-        ''' returns decoded message '''
-        self.unhealthy_sv = []  # unhealthy satellite
-        df.pos += 2  # spare
-        for i in range(64):  # for GPS
-            if not df.read('u1'):
-                self.unhealthy_sv.append(f'G{i:02d}')
-        for i in range(9):  # for QZSS
-            if not df.read('u1'):
-                self.unhealthy_sv.append(f'J{i:02d}')
-        for i in range(36):  # for GLONASS
-            if not df.read('u1'):
-                self.unhealthy_sv.append(f'R{i:02d}')
-        for i in range(36):  # for Galileo
-            if not df.read('u1'):
-                self.unhealthy_sv.append(f'E{i:02d}')
-        for i in range(36):  # for BeiDou
-            if not df.read('u1'):
-                self.unhealthy_sv.append(f'C{i:02d}')
-        msg = ": unhealthy sats"
-        for sat in self.unhealthy_sv:
-            msg += " " + sat
-        return msg
-
 
     RC2NAME_EN = {     # report classification, ref.[2]
         1: "MaxPri",   # maximum priority
@@ -231,7 +256,7 @@ class QzsL1s:
         2: "取消",
     }
 
-    def decode_jma_dcr (self, df):
+    def decode_dcr (self, df):
         ''' returns decoded message
             Japan Meteorological Agency Disaster and Crisis Management Report
             ref.[2]
@@ -273,8 +298,8 @@ class QzsL1s:
         26: 'Ionospheric delay corrections',
         27: 'SBAS service message',
         28: 'Clock-ephemeris covariance matrix',
-        43: 'JMA DCR',
-        44: 'Organization DCR',
+        43: 'DCR',
+        44: 'DCX',
         47: 'Monitoring station information',
         48: 'PRN mask',
         49: 'Data issue number',
@@ -285,8 +310,8 @@ class QzsL1s:
 
     def decode_l1s (self, l1s):
         ''' returns decoded message '''
-        pab = l1s.read(L_PAB)      # preamble (8 bit), ref.[3], Fig.4.1.1-1
-        mt  = l1s.read(L_MT)       # message type (6 bit)
+        pab = l1s.read(L_PAB)  # preamble (8 bit), ref.[3], Fig.4.1.1-1
+        mt  = l1s.read(L_MT)   # message type (6 bit)
         df  = l1s.read(L_DF)   # data field (212 bit)
         crc = l1s.read(L_CRC)  # crc24, ref.[3] pp., sect.4.1.1.3
         pad = bitstring.Bits('uint6=0')  # padding for byte alignment
@@ -299,17 +324,19 @@ class QzsL1s:
             return msg
         mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")
         msg = self.trace.msg(0, mt_name, fg='cyan')
-        if mt_name == 'JMA DCR':
-            msg += self.decode_jma_dcr(df)
-        elif mt_name == 'Monitoring station information':
+        if   mt_name == 'Test mode':                       # MT0
+            msg += self.decode_test_mode(df)
+        elif mt_name == 'DCR':                             # MT43
+            msg += self.decode_dcr(df)
+        elif mt_name == 'Monitoring station information':  # MT47
             msg += self.decode_monitoring_station_info(df)
-        elif mt_name == 'PRN mask':
+        elif mt_name == 'PRN mask':                        # MT48
             msg += self.decode_prn_mask(df)
-        elif mt_name == 'Data issue number':
+        elif mt_name == 'Data issue number':               # MT49
             msg += self.decode_data_issue_number(df)
-        elif mt_name == 'DGPS correction':
+        elif mt_name == 'DGPS correction':                 # MT50
             msg += self.decode_dgps_correction(df)
-        elif mt_name == 'Satellite health':
+        elif mt_name == 'Satellite health':                # MT51
             msg += self.decode_satellite_health(df)
         return msg
 
@@ -358,11 +385,14 @@ if __name__ == '__main__':
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
+        '-t', '--trace', type=int, default=0,
+        help='show display verbosely: 1=subtype detail, 2=subtype and bit image.')
+    parser.add_argument(
         'l1s_files', metavar='file', nargs='*', default=None,
         help='L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html')
     args = parser.parse_args()
     fp_disp = sys.stdout
-    trace = libtrace.Trace(fp_disp, 0, args.color)
+    trace = libtrace.Trace(fp_disp, args.trace, args.color)
     qzsl1s = QzsL1s(trace)
     try:
         if args.l1s_files:  # read from file(s)
