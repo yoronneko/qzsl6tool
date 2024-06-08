@@ -254,7 +254,7 @@ def decode_word22(df):
         tv      = ism.read( 4)  # t_validity
         ism.pos += 6            # spare
         msg = f"GAL level=3 wn={wn} t0={t0} maskmsb={maskmsb} mask={mask} pconst={pconst} psat={psat} ura={ura} ure={ure} bnom={bnom} tv={tv}"
-    else:  # ohter service level
+    else:  # other service level
         msg = f"GAL level={slid+1} ism={ism.hex} crc={crc.hex}"
     return msg
 
@@ -276,7 +276,7 @@ def decode_word63(df):
     pass
 
 def modtime_from_wt_ssp(wt, ssp):
-    ''' returns estimated GST mod 30 (odd seconds) from the conbination of
+    ''' returns estimated GST mod 30 (odd seconds) from the combination of
         the word type (wt) and the ssp. if estimation is unable, returns -1
         wt: word type 0-63
         ssp: secondary synchronization pattern, 04, 2b, 2f, or 00 (no ssp)

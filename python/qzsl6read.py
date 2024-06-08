@@ -14,7 +14,7 @@
 #     IS-QZSS-L6-005, Sept. 21, 2022.
 # [2] Global Positioning Augmentation Service Corporation (GPAS),
 #     Quasi-Zenith Satellite System Correction Data on Centimeter Level
-#     Augmentation Serice for Experiment Data Format Specification,
+#     Augmentation Service for Experiment Data Format Specification,
 #     1st ed., Nov. 2017.
 # [3] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
 #     Specification Multi-GNSS Advanced Orbit and Clock Augmentation
@@ -219,7 +219,7 @@ class QzsL6:
                 if self.run:  # first data part but subtype is not ST1
                     self.payload.pos = 0  # restore position
                     self.sfn += 1
-                else:  # first data part but ST1 has not beed received
+                else:  # first data part but ST1 has not been received
                     self.payload = bitstring.BitStream()
         else:  # continual data part
             if self.run:

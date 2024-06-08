@@ -316,9 +316,11 @@ class GalE6():
         ''' returns True when HAS decode is ready, and
             stores HAS page, index, message id (MID), message size (MS)
         '''
-        rawb = bitstring.ConstBitStream(cnav)[14:14+448]
-        # HAS Page (rawb: raw binary) size is 448 bit
-        # discards top reserved 14 bit
+        rawb = bitstring.ConstBitStream(cnav)[14:14+448]  # HAS page (raw binary)
+        # discards reserved whose size is  14 bit
+        # reads    HAS Page whose size is 448 bit
+        # discards CRC24    whose size is  24 bit, because NovAtel receivers do not output CRC24
+        # discards tail     whose size is   6 bit, NovAtel receivers also do not output tail
         hass = rawb.read('u2')      # HAS status
         rawb.pos += 2               # reserved
         mt   = rawb.read('u2')      # message type, should be 1
