@@ -14,7 +14,7 @@
 #     IS-QZSS-L6-005, Sept. 21, 2022.
 # [2] Global Positioning Augmentation Service Corporation (GPAS),
 #     Quasi-Zenith Satellite System Correction Data on Centimeter Level
-#     Augmentation Serice for Experiment Data Format Specification,
+#     Augmentation Service for Experiment Data Format Specification,
 #     1st ed., Nov. 2017.
 # [3] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
 #     Specification Multi-GNSS Advanced Orbit and Clock Augmentation
@@ -176,8 +176,8 @@ class Ssr:
     nsatmask   = []     # array of number of satellite mask
     nsigmask   = []     # array of number of signal mask
     cellmask   = []     # array of cell mask
-    gsys       = {}     # dict of sat   name from system name
-    gsig       = {}     # dict of sigal name from system name
+    gsys       = {}     # dict of sat    name from system name
+    gsig       = {}     # dict of signal name from system name
     stat       = False  # statistics output
     stat_nsat  = 0      # stat: number of satellites
     stat_nsig  = 0      # stat: number of signals
@@ -351,13 +351,13 @@ class Ssr:
             self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}", fg='red')
             return False
         if self.subtype == 1:  # Mask message
-            if len_payload < payload.pos + 20:  # could not retreve the epoch
+            if len_payload < payload.pos + 20:  # could not retrieve the epoch
                 return False
             self.epoch = payload.read('u20')  # GPS epoch time 1s
         elif self.subtype == 10:  # Service Information
             return True
         else:
-            if len_payload < payload.pos + 12:  # could not retreve hourly epoch
+            if len_payload < payload.pos + 12:  # could not retrieve hourly epoch
                 return False
             self.hepoch = payload.read('u12')  # GNSS hourly epoch
         if len_payload < payload.pos + 4 + 1 + 4:
@@ -376,7 +376,7 @@ class Ssr:
         len_payload = len(payload)
         if len_payload < payload.pos + 4:
             return False
-        ngnss = payload.read('u4')  # numer of GNSS
+        ngnss = payload.read('u4')  # number of GNSS
         if len_payload < payload.pos + 61 * ngnss:
             return False
         satsys   = [None for i in range(ngnss)]
@@ -425,8 +425,8 @@ class Ssr:
         self.nsatmask  = nsatmask  # number of satellite mask
         self.nsigmask  = nsigmask  # number of signal mask
         self.cellmask  = cellmask  # cell mask
-        self.gsys      = gsys      # dict of sat   name from system name
-        self.gsig      = gsig      # dict of sigal name from system name
+        self.gsys      = gsys      # dict of sat    name from system name
+        self.gsig      = gsig      # dict of signal name from system name
         self.stat_nsat = 0
         self.stat_nsig = 0
         msg1 = ''

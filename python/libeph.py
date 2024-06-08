@@ -244,7 +244,7 @@ class Eph:
             r.svid  = payload.read( 'u6')  # satellite id, DF252
             r.wn    = payload.read('u12')  # week number, DF289
             r.iodn  = payload.read('u10')  # IODnav, DF290
-            r.sisa  = payload.read( 'u8')  # SIS Accracy, DF291
+            r.sisa  = payload.read( 'u8')  # SIS Accuracy, DF291
             r.idot  = payload.read('i14')  # IDOT, DF292
             r.toc   = payload.read('u14')  # t_oc, DF293
             r.af2   = payload.read( 'i6')  # a_f2, DF294

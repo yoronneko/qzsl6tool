@@ -133,7 +133,7 @@ class UbxReceiver:
         return True
 
     def decode_qzsl1s(self, args):
-        ''' retruns decoded raww
+        ''' returuns decoded raw
             format: [PRN(8)][RAW(250)][padding(6)]...
         '''
         if (self.signame != 'L1S' and self.gnssname != 'S') or \

@@ -115,7 +115,7 @@ class NovReceiver:
         '''
         payload = self.payload
         if len(payload) != 4+4+32+4:
-            self.trace.show(0, f"messge length mismatch: {len(payload)} != {4+4+32+4}", fg='red')
+            self.trace.show(0, f"message length mismatch: {len(payload)} != {4+4+32+4}", fg='red')
             return False
         pos = 0
         prn   = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
@@ -136,7 +136,7 @@ class NovReceiver:
         '''
         payload = self.payload
         if len(payload) != 4+4+2+2+58:
-            self.trace.show(0, f"messge length mismatch: {len(payload)} != {4+4+2+2+58}", fg='red')
+            self.trace.show(0, f"message length mismatch: {len(payload)} != {4+4+2+2+58}", fg='red')
             return False
         pos = 0
         sig_ch  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4

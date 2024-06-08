@@ -43,7 +43,7 @@ class Obs:
                 cnr1  = payload.read( 'u8')  # L1 CNR, DF015, DF045
             if 'L2' in mtype:
                 cind2 = payload.read( 'u2')  # L2 code indicator, DF016, DF046
-                prd   = payload.read('i14')  # L2-L1 pseudorange differnce, DF017, DF047
+                prd   = payload.read('i14')  # L2-L1 pseudorange difference, DF017, DF047
                 phpr2 = payload.read('i20')  # L2 phaserange-L1 pseudorange, DF018, DF048
                 lti2  = payload.read( 'u7')  # L2 locktime ind, DF019, DF049
                 if mtype in 'Full':
@@ -63,7 +63,7 @@ class Obs:
         payload.pos += 7              # reserved, DF001
         csi    = payload.read( 'u2')  # clock steering ind, DF411
         eci    = payload.read( 'u2')  # external clock ind, DF412
-        smind  = payload.read( 'u1')  # divergence-free smooting ind, DF417
+        smind  = payload.read( 'u1')  # divergence-free smoothing ind, DF417
         smint  = payload.read( 'u3')  # smoothing interval, DF418
         sat_mask = [0 for _ in range(64)]
         nsat = 0

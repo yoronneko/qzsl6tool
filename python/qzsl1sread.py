@@ -9,7 +9,7 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office of Japan, Submeter-level augentation sevice archive,
+# [1] Cabinet Office of Japan, Submeter-level augentation service archive,
 #     https://sys.qzss.go.jp/dod/archives/slas.html
 # [2] Cabinet Office of Japan, Quasi-zenith satellite system interface
 #     specification DC report service, IS-QZSS-DCR-011, Oct. 18 2023.
@@ -217,7 +217,7 @@ class QzsL1s:
         3: "通常",
         7: "訓練",
     }
-    DC2NAME_EN = {  # disaster catory, ref.[2]
+    DC2NAME_EN = {  # disaster category, ref.[2]
          1: "Earthquake Early Warning",
          2: "Hypocenter",
          3: "Seismic Intensity",
@@ -318,9 +318,7 @@ class QzsL1s:
         frame = (pad + pab + mt + df).tobytes()
         crc_test = rtk_crc24q(frame, len(frame))
         if crc.tobytes() != crc_test:
-            msg = self.msg_color.fg('red') + \
-                f"CRC error {crc_test.hex()} != {crc.hex}" + \
-                self.msg_color.fg()
+            msg = self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex}", fg='red')
             return msg
         mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")
         msg = self.trace.msg(0, mt_name, fg='cyan')

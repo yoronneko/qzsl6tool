@@ -25,7 +25,7 @@ class PocketSdr:
 
     def read(self):
         ''' returns True when L6D, L6E, E6B, or B2b signal log is read,
-            returns False when EOF is encounterd '''
+            returns False when EOF is encountered '''
         self.satid   = 0
         self.signame = None
         self.msg     = ''

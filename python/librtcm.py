@@ -18,7 +18,7 @@
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
 # [2] Global Positioning Augmentation Service Corporation (GPAS),
 #     Quasi-Zenith Satellite System Correction Data on Centimeter Level
-#     Augmentation Serice for Experiment Data Format Specification,
+#     Augmentation Service for Experiment Data Format Specification,
 #     1st ed., Nov. 2017, in Japanese.
 #     http://file.gpas.co.jp/L6E_MADOCA_DataFormat.pdf
 # [3] Global Positioning Augmentation Service Corporation (GPAS),
@@ -158,7 +158,7 @@ class Rtcm:
         payload.pos +=  1            # single receiver osc ind, DF142
         payload.pos +=  1            # reserved, DF001
         py  = payload.read('i38')    # ARP ECEF-Y, DF026
-        payload.pos +=  2            # quater cycle indicator, DF364
+        payload.pos +=  2            # quarter cycle indicator, DF364
         pz  = payload.read('i38')    # ARP ECEF-Z, DF027
         ahgt =  0
         if msgnum == 1006:  # antenna height for RTCM 1006
@@ -180,15 +180,15 @@ class Rtcm:
         str_ver = ''
         str_rsn = ''
         stid = payload.read('u12')      # station id, DF0003
-        cnt  = payload.read( 'u8')      # antenna descripter counter, DF029
+        cnt  = payload.read( 'u8')      # antenna descriptor counter, DF029
         for _ in range(cnt):
-            str_ant += chr(payload.read('u8'))  # antenna descripter, DF030
+            str_ant += chr(payload.read('u8'))  # antenna descriptor, DF030
         ant_setup = payload.read('u8')          # antenna setup id, DF031
         if msgnum == 1008 or msgnum == 1033:
             cnt = payload.read('u8')    # antenna serial number couner, DF032
             for _ in range(cnt): str_ser += chr(payload.read('u8'))  # antenna ser num, DF033
         if msgnum == 1033:
-            cnt = payload.read('u8')    # receiver type descripter counter, DF227
+            cnt = payload.read('u8')    # receiver type descriptor counter, DF227
             for _ in range(cnt): str_rcv += chr(payload.read('u8'))  # rec. type. desc., DF228
             cnt = payload.read('u8')    # receiver firmware counter, DF229
             for _ in range(cnt): str_ver += chr(payload.read('u8'))  # receier firmware, DF230
