@@ -15,7 +15,7 @@ options:
   -c, --color        apply ANSI color escape sequences even for non-terminal.
   -l, --l6           send QZS L6 messages to stdout (it also turns off Allystar and u-blox messages).
   -m, --message      show Allystar messages to stderr.
-  -p PRN, --prn PRN  satellite PRN to be specified.
+  -p PRN, --prn PRN  satellite PRN to be specified (0, 193-211).
 ```
 
 ``-c``オプションを与えると、強制的にカラーにて状態表示します。デフォルトでは、出力先がターミナルであれば、状態表示はカラーにて表示されます。出力先がそれ以外であれば、カラー表示されません。

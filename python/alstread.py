@@ -117,15 +117,15 @@ if __name__ == '__main__':
         help='show Allystar messages to stderr.')
     parser.add_argument(
         '-p', '--prn', type=int, default=0,
-        help='satellite PRN to be specified.')
+        help='satellite PRN to be specified (0, 193-211).')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
     if args.l6:  # QZS L6 raw message output to stdout
         fp_disp, fp_raw = None, sys.stdout
     if args.message:  # Allystar message to stderr
         fp_disp = sys.stderr
-    if args.prn not in {0, 193, 194, 195, 196, 199}:
-        libtrace.warn("PRN to be specified is either 193-196, or 199, all PRNs are selected.")
+    if (args.prn < 193 or 211 < args.prn) and args.prn != 0:
+        libtrace.warn("QZS L6 PRN is in range of 193-211 or 0")
         args.prn = 0
     trace = libtrace.Trace(fp_disp, 0, args.color)
     rcv = AllystarReceiver(trace)
