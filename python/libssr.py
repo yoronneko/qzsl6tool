@@ -478,7 +478,7 @@ class Ssr:
                 radial = payload.read('i15')
                 along  = payload.read('i13')
                 cross  = payload.read('i13')
-                if radial != -16384 and along != -16384 and cross != -16384:
+                if radial != -16384 and along != -4096 and cross != -4096:
                     msg1 += f'\nST2 {gsys} {iode:{FMT_IODE}}   {radial*0.0016:{FMT_ORB}}  {along*0.0064:{FMT_ORB}}  {cross*0.0064:{FMT_ORB}}'
         self.trace.show(1, msg1)
         self.stat_both += stat_pos
