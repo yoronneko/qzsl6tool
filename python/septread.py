@@ -73,7 +73,7 @@ class SeptReceiver:
             if not head:
                 return False
             crc     =                head[0:2]
-            msg_id  = int.from_bytes(head[2:4], 'little')
+            msg_id  = int.from_bytes(head[2:4], 'little') & 0x1fff
             msg_len = int.from_bytes(head[4:6], 'little')
             if msg_len % 4 != 0:
                 # the message length should be multiple of 4 as in [1].
@@ -108,16 +108,17 @@ class SeptReceiver:
         pos +=  1
         rx_channel  = int.from_bytes(payload[pos:pos+ 1], 'little'); pos +=  1
         nav_bits    =                payload[pos:pos+64]           ; pos += 64
-        e6b = bytearray(64)
-        u4perm(nav_bits, e6b)
         # see ref.[1] p.259 for converting from svid to sat code.
         self.satid = svid - 70
-        self.raw   = self.satid.to_bytes(1, byteorder='little') + e6b[:LEN_CNAV_PAGE]
         msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow // 1000), fg='green') + ' ' + \
             self.trace.msg(0, self.msg_name, fg='cyan') + \
-            self.trace.msg(0, f' E{self.satid:02d} ', fg='yellow') + \
-            self.raw.hex()
-        return msg
+            self.trace.msg(0, f' E{self.satid:02d} ', fg='yellow')
+        if crc_passed != 1:  # CRC check failed
+            return msg + self.trace.msg(0, 'CRC Error', fg='red') + ' ' + self.raw.hex()
+        e6b = bytearray(64)
+        u4perm(nav_bits, e6b)
+        self.raw   = self.satid.to_bytes(1, byteorder='little') + e6b[:LEN_CNAV_PAGE]
+        return msg + self.raw.hex()
 
     def qzsrawl6(self):
         ''' returns hex-decoded message
@@ -135,15 +136,16 @@ class SeptReceiver:
         rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
         nav_bits   =                payload[pos:pos+252]           ; pos += 252
         self.satid = svid - 180
+            # see ref.[2] p.243 for converting from svid to sat code, and see ref.[2] p.267 for determining signal name.
+        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow//1000), fg='green') + ' ' + \
+            self.trace.msg(0, self.msg_name, fg='cyan') + \
+            self.trace.msg(0, f' J{self.satid:02d}({"L6D" if source == 1 else "L6E"}) ', fg='yellow')
+        if parity == 0:  # parity check failed
+            return msg + self.trace.msg(0, 'Parity Error', fg='red') + ' ' + self.raw.hex()
         l6         = bytearray(252)
         u4perm(nav_bits, l6)
         self.raw   = l6[:LEN_L6_FRM]
-        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow//1000), fg='green') + ' ' + \
-            self.trace.msg(0, self.msg_name, fg='cyan') + \
-            self.trace.msg(0, f' J{self.satid:02d}({"L6D" if source == 1 else "L6E"}) ', fg='yellow') + \
-            self.raw.hex()
-            # see ref.[2] p.243 for converting from svid to sat code, and see ref.[2] p.267 for determining signal name.
-        return msg
+        return msg + self.raw.hex()
 
     def bdsrawb2b(self):
         ''' returns hex-decoded message
@@ -161,15 +163,16 @@ class SeptReceiver:
         rx_channel = int.from_bytes(payload[pos:pos+  1], 'little'); pos +=   1
         nav_bits   =                payload[pos:pos+124]           ; pos += 124
         self.satid = (svid - 140) if svid <= 180 else (svid - 182)
+        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow//1000), fg='green') + ' ' + \
+            self.trace.msg(0, self.msg_name, fg='cyan') + \
+            self.trace.msg(0, f' C{self.satid:02d} ', fg='yellow')
         # see ref.[1] p.259 for converting from svid to sat code.
+        if crc_passed != 1:  # CRC check failed
+            return msg + self.trace.msg(0, 'CRC Error', fg='red') + ' ' + self.raw.hex()
         b2b   = bytearray(124)
         u4perm(nav_bits, b2b)
         self.raw = (PREAMBLE_BCNAV3 + b2b)[:LEN_BCNAV3]
-        msg = self.trace.msg(0, libgnsstime.gps2utc(wnc, tow//1000), fg='green') + ' ' + \
-            self.trace.msg(0, self.msg_name, fg='cyan') + \
-            self.trace.msg(0, f' C{self.satid:02d} ', fg='yellow') + \
-            self.raw.hex()
-        return msg
+        return msg + self.raw.hex()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Septentrio message read')
