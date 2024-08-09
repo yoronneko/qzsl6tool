@@ -83,7 +83,7 @@ nov_conv() {
 }
 
 sept_conv() {
-    CODE=${CODEDIR}septread.py ARG=-l EXT_FROM=sept EXT_TO=l6
+    CODE=${CODEDIR}septread.py ARG=-l EXT_FROM=sbf EXT_TO=l6
     echo "Septentrio raw data conversion:"
     echo "- QZS L6 (${CODE} ${ARG})"
     SRCDIR=../sample/

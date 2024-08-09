@@ -89,17 +89,17 @@ Date Time : 2023-08-19 06:13:42 UTC
 Duration  : 43 seconds
 Note      : Navigation messages obtained with NovAtel OEM729 at Hiroshima, JP
 
-File Path : 20230819-081730hasbds.sept
+File Path : 20230819-081730hasbds.sbf
 Date Time : 2023-08-19 08:17:30 UTC
 Duration  : 31 seconds
 Note      : HAS and PPP-B2b raw data obtained with Septentrio mosaic-X5 at Hiroshima, JP
 
-File Path : 20230819-082130clas.sept
+File Path : 20230819-082130clas.sbf
 Date Time : 2023-08-19 08:21:30 UTC
 Duration  : 61 seconds
 Note      : CLAS raw data obtained with Septentrio mosaic-CLAS at Hiroshima, JP
 
-File Path : 20230819-085030mdc-ppp.sept
+File Path : 20230819-085030mdc-ppp.sbf
 Date Time : 2023-08-19 08:50:30 UTC
 Duration  : 60 seconds
 Note      : MADOCA-PPP raw data obtained with Septentrio mosaic-CLAS at Hiroshima, JP
