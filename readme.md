@@ -11,10 +11,10 @@
 - netcatの``nc``や、[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の``str2str``などと一緒に利用することを想定しています。
 - 当初、準天頂衛星みちびき（QZS: quasi-zenith satellite）がL6周波数帯にて放送する補強メッセージ（CLASやMADOCA-PPP）の内容表示を目指していましたが、Galileo HASメッセージなども表示できるようになりました。
 
-## Python非標準モジュールのインストール
+## 動作環境
 
-- Python 3.7以降が必要です。
-- ``bitstring``モジュールと``galois``モジュールが必要です。  
+- LinuxやmacOSのコマンドラインで利用することを想定しています。
+- Python 3.7以降が必要です。``bitstring``モジュールと``galois``モジュールが必要です。  
 ``pip3 install bitstring galois``
 
 ## 衛星信号表示
