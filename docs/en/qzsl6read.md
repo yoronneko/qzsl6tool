@@ -6,7 +6,7 @@ This program can handle raw data in L6 format as
 
 - CLAS (centimeter level augmentation service),
 - MADOCA (multi-GNSS advanced demonstration tool for orbit and clock analysis), and
-- MADOCA-PPP (Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning).
+- MADOCA-PPP (Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning) (Clock/Ephemeris and Ionosphere).
 
 MADOCA is in RTCM (Radio Technical Commission for Maritime Services) SSR (State Space Representation) format, and CLAS and MADOCA-PPP are in CSSR (Compact SSR) format.
 

@@ -9,16 +9,16 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
-#     Specification Centimeter Level Augmentation Service,
+# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Centimeter Level Augmentation Service,
 #     IS-QZSS-L6-005, Sept. 21, 2022.
 # [2] Global Positioning Augmentation Service Corporation (GPAS),
 #     Quasi-Zenith Satellite System Correction Data on Centimeter Level
 #     Augmentation Service for Experiment Data Format Specification,
 #     1st ed., Nov. 2017.
-# [3] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
-#     Specification Multi-GNSS Advanced Orbit and Clock Augmentation
-#     - Precise Point Positioning, IS-QZSS-MDC-001, Feb., 2022.
+# [3] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+#     - Precise Point Positioning, IS-QZSS-MDC-002, Nov., 2023.
 # [4] Radio Technical Commission for Maritime Services (RTCM),
 #     Differential GNSS (Global Navigation Satellite Systems) Services
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
@@ -46,22 +46,21 @@ except ModuleNotFoundError:
 class QzsL6:
     "Quasi-Zenith Satellite L6 message process class"
     dpart    = bitstring.BitStream()  # data part
-    dpn      = 0                     # data part number
-    sfn      = 0                     # subframe number
-    prn      = 0                     # psedudo random noise number
-    vendor   = ''                    # vendor name
-    facility = ''                    # facility name
-    servid   = ''                    # service name
-    msg_ext  = ''                    # extension (LNAV or CNAV)
-    sf_ind   = 0                     # subframe indicator (0 or 1)
-    alert    = 0                     # alert flag (0 or 1)
-    run      = False                 # CSSR decode in progress
+    dpn      = 0                      # data part number
+    sfn      = 0                      # subframe number
+    prn      = 0                      # psedudo random noise number
+    vendor   = ''                     # vendor name
+    facility = ''                     # facility name
+    servid   = ''                     # service name
+    msg_ext  = ''                     # extension (LNAV or CNAV)
+    sf_ind   = 0                      # subframe indicator (0 or 1)
+    alert    = 0                      # alert flag (0 or 1)
+    run      = False                  # CSSR decode in progress
     payload  = bitstring.BitStream()  # QZS L6 payload
-    msgnum   = 0                     # message type number
-    hepoch   = 0                     # hourly epoch
-    interval = 0                     # update interval
-    mmi      = 0                     # multiple message indication
-    iod      = 0                     # SSR issue of data
+    hepoch   = 0                      # hourly epoch
+    interval = 0                      # update interval
+    mmi      = 0                      # multiple message indication
+    iod      = 0                      # SSR issue of data
 
     def __init__(self, fp_rtcm, trace, stat):
         self.fp_rtcm = fp_rtcm
@@ -75,7 +74,7 @@ class QzsL6:
             self.ssr.show_cssr_stat()
 
     def read(self):  # ref. [1]
-        ''' reads L6 message and returns True if success '''
+        ''' reads L6 message and returns True if success in read '''
         sync = bytes(4)
         while sync != b'\x1a\xcf\xfc\x1d':
             b = sys.stdin.buffer.read(1)
@@ -98,8 +97,8 @@ class QzsL6:
         else:              self.vendor = f"vendor 0b{vid:03b}"
         self.facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
         self.facility += ":" + str((mtid >> 3) & 1)
-        self.servid   = "Ionosph" if (mtid >> 2) & 1 else "Clk/Eph"
-        self.msg_ext  = "CNAV"    if (mtid >> 1) & 1 else "LNAV"
+        self.servid   = "Iono" if (mtid >> 2) & 1 else "Clk/Eph"
+        self.msg_ext  = "CNAV" if (mtid >> 1) & 1 else "LNAV"
         self.sf_ind   = mtid & 1  # subframe indicator
         bdata         = bitstring.BitStream(data)
         self.alert    = bdata[0]
@@ -107,7 +106,7 @@ class QzsL6:
         return True
 
     def show(self):
-        ''' calls message decode functions and shows decoded message '''
+        ''' calls message decode functions and shows the messages '''
         msg = self.trace.msg(0, f'{self.prn} {self.facility:13s}', fg='green')
         if self.alert:
             msg += self.trace.msg(0, '* ', fg='red')
@@ -115,7 +114,9 @@ class QzsL6:
             msg += '  '
         msg += self.trace.msg(0, self.vendor, fg='yellow') + ' '
         if self.vendor == "MADOCA":
-            msg += self.show_mdc_msg()
+            msg += self.show_madoca_msg()
+        elif self.vendor == "MADOCA-PPP" and self.servid == "Iono":
+            msg += self.show_mdcppp_iono_msg()
         elif self.vendor in {"CLAS", "MADOCA-PPP"}:
             msg += self.show_cssr_msg()
         elif self.vendor == "QZNMA":
@@ -124,8 +125,19 @@ class QzsL6:
             msg += self.show_unknown_msg()
         self.trace.show(0, msg)
 
-    def read_madoca(self):  # ref. [2]
-        ''' returns True if success in decoding MADOCA message '''
+    def show_madoca_msg(self):
+        ''' returns decoded (old) MADOCA messages '''
+        self.tow   = self.dpart.read('u20')
+        self.wn    = self.dpart.read('u13')
+        self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
+        self.dpart.pos = 0
+        msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
+        while self.decode_madoca():
+            msg += f'RTCM {self.ssr.msgnum}({self.ssr.ssr_nsat}) '
+        return msg
+
+    def decode_madoca(self):  # ref. [2]
+        ''' decodes (old) MADOCA messages and returns True if success '''
         if len(self.dpart) < 12:
             return False
         msgnum = self.dpart.read('u12')
@@ -152,15 +164,75 @@ class QzsL6:
         send_rtcm(self.fp_rtcm, self.dpart[0:self.dpart.pos])
         self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
         self.dpart.pos = 0
-        self.msgnum = msgnum
+        self.ssr.msgnum = msgnum
         return True
 
-    def read_cssr(self):  # ref. [1]
-        ''' reads CSSR message and returns True if success '''
+    def show_cssr_msg(self):
+        ''' returns decoded CSSR messages '''
+        if self.sf_ind:  # first data part
+            self.dpn = 1
+            self.payload = bitstring.BitStream(self.dpart)
+            if not self.ssr.decode_cssr_head(self.payload):  # could not decode CSSR head
+                self.payload = bitstring.BitStream()
+            elif self.ssr.subtype == 1:
+                self.payload.pos = 0  # restore position
+                self.sfn = 1
+                self.run = True
+            else:
+                if self.run:  # first data part but subtype is not ST1
+                    self.payload.pos = 0  # restore position
+                    self.sfn += 1
+                else:  # first data part but ST1 has not been received
+                    self.payload = bitstring.BitStream()
+        else:  # continual data part
+            if self.run:
+                self.dpn += 1
+                if self.dpn == 6:  # data part number should be less than 6
+                    self.trace.show(1, "Warning: too many datapart", fg='red')
+                    self.run = False
+                    self.dpn = 0
+                    self.sfn = 0
+                    self.payload = bitstring.BitStream()
+                else:  # append next data part to the payload
+                    pos = self.payload.pos  # save position
+                    self.payload += self.dpart
+                    self.payload.pos = pos  # restore position
+        msg = ''
+        if self.sfn != 0:
+            msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
+            if self.vendor == "MADOCA-PPP":
+                msg += f' ({self.servid} {self.msg_ext})'
+        if self.read_cssr():  # found a CSSR message
+            msg += f' ST{self.ssr.subtype}'
+            while self.read_cssr():  # try to decode next message
+                msg += f' ST{self.ssr.subtype}'
+            if not self.payload.all(0):   # continues to next datapart
+                self.payload.pos = 0
+                msg += f' ST{self.ssr.subtype}' + self.trace.msg(0, '...', fg='yellow')
+            else:  # end of message in the subframe
+                self.payload = bitstring.BitStream()
+        else:  # could not decode CSSR any messages
+            if self.run and self.ssr.subtype == 0:  # whole message is null
+                msg += self.trace.msg(0, ' (null)', dec='dark')
+                self.payload = bitstring.BitStream()
+            elif self.run:  # or, continual message
+                self.payload.pos = 0
+                msg += f' ST{self.ssr.subtype}' + self.trace.msg(0, '...', 'yellow')
+            else:  # ST1 mask message has not been found yet
+                self.payload.pos = 0
+                msg += self.trace.msg(0, ' (syncing)', dec='dark')
+        return msg
+
+    def read_cssr(self):  # ref. [1, 3]
+        ''' reads CSSR messages and returns True if success '''
         if not self.run:
             return False
         if not self.ssr.decode_cssr_head(self.payload):
             return False
+        if self.ssr.msgnum != 4073:
+            self.trace.show(0, f"Unknown message number: {self.ssr.msgnum}", fg='red')
+            return False
+        # CLAS (ref.[1]) and MADOCA-PPP orbit & clock augmentation (ref.[3])
         if   self.ssr.subtype == 1:
             decoded = self.ssr.decode_cssr_st1(self.payload)
         elif self.ssr.subtype == 2:
@@ -193,99 +265,93 @@ class QzsL6:
             self.payload.pos = 0
         return decoded
 
-    def show_mdc_msg(self):
-        ''' returns decoded message '''
-        self.tow   = self.dpart.read('u20')
-        self.wn    = self.dpart.read('u13')
-        self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
-        self.dpart.pos = 0
-        msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
-        while self.read_madoca():
-            msg += f'RTCM {self.msgnum}({self.ssr.ssr_nsat}) '
-        return msg
-
-    def show_cssr_msg(self):
-        ''' returns decoded message '''
-        if self.sf_ind:         # first data part
-            self.dpn = 1
-            self.payload = bitstring.BitStream(self.dpart)
-            if not self.ssr.decode_cssr_head(self.payload): # could not decode CSSR head
-                self.payload = bitstring.BitStream()
-            elif self.ssr.subtype == 1:
-                self.payload.pos = 0  # restore position
-                self.sfn = 1
-                self.run = True
-            else:
-                if self.run:  # first data part but subtype is not ST1
-                    self.payload.pos = 0  # restore position
-                    self.sfn += 1
-                else:  # first data part but ST1 has not been received
-                    self.payload = bitstring.BitStream()
-        else:  # continual data part
-            if self.run:
-                self.dpn += 1
-                if self.dpn == 6:  # data part number should be less than 6
-                    self.trace.show(1, "Warning: too many datapart")
-                    self.run = False
-                    self.dpn = 0
-                    self.sfn = 0
-                    self.payload = bitstring.BitStream()
-                else:  # append next data part to the payload
-                    pos = self.payload.pos  # save position
-                    self.payload += self.dpart
-                    self.payload.pos = pos  # restore position
-        msg = ''
-        if self.sfn != 0:
-            msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
-            if self.vendor == "MADOCA-PPP":
-                msg += f' ({self.servid} {self.msg_ext})'
-        #pos = self.payload.pos  # save position
-        if self.read_cssr():  # found a CSSR message
-            msg += f' ST{self.ssr.subtype}'
-            #self.trace.show(1, f"1: pos={pos} payload.pos={self.payload.pos}")
-            #pos = self.payload.pos  # save position
-            while self.read_cssr():  # try to decode next message
-                msg += f' ST{self.ssr.subtype}'
-                #self.trace.show(1, f"2: pos={pos} payload.pos={self.payload.pos}")
-                #pos = self.payload.pos  # save position
-            #zeros = self.payload[pos:].all(0)
-            #zeros = self.payload.all(0)
-            #if not zeros:   # continues to next datapart
-            if not self.payload.all(0):   # continues to next datapart
-                #self.trace.show(1, f"3: pos={pos} payload.pos={self.payload.pos}")
-                #self.payload.pos = pos  # restore position
-                self.payload.pos = 0
-                msg += f' ST{self.ssr.subtype}' + \
-                    self.trace.msg(0, '...', fg='yellow')
-            else:  # end of message in the subframe
-                self.payload = bitstring.BitStream()
-        else:  # could not decode CSSR any messages
-            if self.run and self.ssr.subtype == 0:  # whole message is null
-                msg += self.trace.msg(0, ' (null)', dec='dark')
-                self.payload = bitstring.BitStream()
-            elif self.run:  # or, continual message
-                #self.payload.pos = pos  # restore position
-                self.payload.pos = 0
-                msg += f' ST{self.ssr.subtype}' + \
-                    self.trace.msg(0, '...', 'yellow')
-            else:  # ST1 mask message has not been found yet
-                #self.payload.pos = pos  # restore position
-                self.payload.pos = 0
-                msg += self.trace.msg(0, ' (syncing)', dec='dark')
-        return msg
-
     def show_qznma_msg(self):
-        '''returns decoded message'''
+        ''' returns decoded QZNMA messages '''
         payload = bitstring.BitStream(self.dpart)
         return self.qznma.decode(payload)
 
+    def show_mdcppp_iono_msg(self):
+        ''' returns decoded MADOCA-PPP ionospheric messages '''
+        if self.sf_ind:  # first data part
+            self.dpn = 1
+            self.payload = bitstring.BitStream(self.dpart)
+            if not self.ssr.decode_mdcppp_iono_head(self.payload):  # could not decode CSSR head
+                if not self.payload.all(0):
+                    self.trace.show(1, f"found sf_ind but couldn't decode: {self.payload.bin}", fg='cyan')
+                self.payload = bitstring.BitStream()
+                self.run = False
+            else:
+                self.payload.pos = 0  # restore position
+                self.sfn = 1
+                self.run = True
+        else:  # continual data part
+            if self.run:
+                self.dpn += 1
+                pos = self.payload.pos  # save position
+                self.payload += self.dpart # append next data part to the payload
+                self.payload.pos = pos  # restore position
+            # else:
+                # if not self.dpart.all(0):
+                    # self.trace.show(1, f"continual but couldn't decode: {self.dpart.bin}", fg='cyan')
+        msg = f' ({self.servid})'
+        if self.read_mdcppp_iono():
+            msg += self.brief_disp_mdcppp_iono()
+            while self.read_mdcppp_iono():
+                msg += self.brief_disp_mdcppp_iono()
+            if self.payload and not self.payload.all(0):
+                self.payload.pos = 0
+                msg += self.trace.msg(0, '...', fg='yellow')
+            else:
+                self.payload = bitstring.BitStream()
+        else:
+            if not self.payload or self.payload.all(0):
+                msg += self.trace.msg(0, ' (null)', dec='dark')
+            else:
+                msg += self.trace.msg(1, f'Undecoded message: {self.payload.bin}', fg='red')
+            # msg += f' run={self.run}' # msgnum={self.ssr.msgnum}'
+            # if self.run and self.ssr.msgnum == 0:  # no message in the subframe
+            #     msg += self.trace.msg(0, ' (null)', dec='dark')
+            #     self.payload = bitstring.BitStream()
+            # elif self.run:
+            #     self.payload.pos = 0
+            #     msg += self.trace.msg(0, '...', fg='yellow')
+            # else:  # subframe indication has not been received
+            #     self.payload.pos = 0
+            #     # msg += self.trace.msg(0, ' (syncing)', dec='dark')
+        return msg
+
+    def brief_disp_mdcppp_iono(self):
+        ''' returns brief display of MADOCA-PPP ionospheric messages '''
+        msg = f' MT{self.ssr.msgnum}(IOD={self.ssr.iodssr}, Reg{self.ssr.region_id}'
+        if self.ssr.msgnum == 1:
+            msg += f', {self.ssr.n_areas})'
+        else:
+            msg += f' #{self.ssr.area})'
+        return self.trace.msg(0, msg, fg='cyan')
+
+    def read_mdcppp_iono(self):
+        ''' reads MADOCA-PPP ionospheric messages and returns True if success '''
+        if not self.run:
+            return False
+        if not self.ssr.decode_mdcppp_iono_head(self.payload):
+            return False
+        if self.ssr.msgnum == 1:
+            decoded = self.ssr.decode_mdcppp_mt1(self.payload)
+        elif self.ssr.msgnum == 2:
+            decoded = self.ssr.decode_mdcppp_mt2(self.payload)
+        else:
+            self.trace.show(1, f"Unknown message number: {self.ssr.msgnum}", fg='red')
+            decoded = False
+        if decoded:
+            self.payload = self.payload[self.payload.pos:]  # discard decoded part
+            self.payload.pos = 0
+        return decoded
+
     def show_unknown_msg(self):
-        '''returns decoded message'''
+        ''' returns dump of unknown messages '''
         payload = bitstring.BitStream(self.dpart)
         self.trace.show(2, f"Unknown dump: {payload.bin}")
         return ''
-
-# EOF
 
 
 if __name__ == '__main__':

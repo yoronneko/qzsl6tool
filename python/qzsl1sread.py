@@ -9,13 +9,14 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office of Japan, Submeter-level augentation service archive,
-#     https://sys.qzss.go.jp/dod/archives/slas.html
-# [2] Cabinet Office of Japan, Quasi-zenith satellite system interface
-#     specification DC report service, IS-QZSS-DCR-011, Oct. 18 2023.
-# [3] Cabinet Office of Japan, Quasi-zenith satellite system interface
-#     specification Sub-meter level augmentation service, IS-QZSS-L1S-006,
-#     Oct. 25, 2023
+# [1] Cabinet Office, Government of Japan, Submeter-level augentation
+#     service archive, https://sys.qzss.go.jp/dod/archives/slas.html
+# [2] Cabinet Office, Government of Japan, Quasi-zenith satellite system
+#     interface specification DC report service, IS-QZSS-DCR-011,
+#     Oct. 18 2023.
+# [3] Cabinet Office, Government of Japan, Quasi-zenith satellite system
+#     interface specification Sub-meter level augmentation service,
+#     IS-QZSS-L1S-006, Oct. 25, 2023
 
 import argparse
 import os

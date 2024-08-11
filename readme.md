@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.0
 
 ![QZS L6 Tool](docs/img/qzsl6tool.png)
 
@@ -10,6 +10,7 @@
 - このツール集は、メッセージを標準入力で受け取り、変換結果を逐次的に標準出力に出力するPythonコードからなります。必要に応じて、標準エラー出力も利用できます。
 - netcatの``nc``や、[RTKLIB](https://github.com/tomojitakasu/RTKLIB)の``str2str``などと一緒に利用することを想定しています。
 - 当初、準天頂衛星みちびき（QZS: quasi-zenith satellite）がL6周波数帯にて放送する補強メッセージ（CLASやMADOCA-PPP）の内容表示を目指していましたが、Galileo HASメッセージなども表示できるようになりました。
+- 2024年8月11日バージョンから[セマンテック・バージョニング](https://packaging.python.org/en/latest/discussions/versioning/#choosing-a-versioning-scheme)を導入しました。
 
 ## 動作環境
 

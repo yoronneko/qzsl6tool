@@ -12,9 +12,9 @@
 # [1] Radio Technical Commission for Maritime Services (RTCM),
 #     Differential GNSS (Global Navigation Satellite Systems) Services
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
-# [2] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface Specification
-#     Satellite Positioning, Navigation and Timing Service (IS-QZSS-PNT-005),
-#     Oct. 2022.
+# [2] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Satellite Positioning, Navigation and Timing
+#     Service, IS-QZSS-PNT-005, Oct. 2022.
 
 # format definitions
 FMT_IODC = '<4d'  # format string for issue of data clock

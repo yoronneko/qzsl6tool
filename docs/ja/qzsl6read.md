@@ -6,7 +6,7 @@
 
 - CLAS（centimeter level augmentation service）
 - MADOCA（multi-GNSS advanced demonstration tool for orbit and clock analysis）
-- MADOCA-PPP（Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning）
+- MADOCA-PPP（Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning）（Clock/EphemerisとIonosphere）
 
 を扱えます。
 

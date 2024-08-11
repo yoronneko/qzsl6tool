@@ -9,8 +9,8 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
-#     Specification Signal Authentication Service,
+# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Signal Authentication Service,
 #     IS-QZSS-SAS-001 Draft-002, Jan. 24, 2023.
 
 import sys

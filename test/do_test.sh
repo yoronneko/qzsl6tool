@@ -148,6 +148,9 @@ qzs_l6() {
     BASENAME=2022001A
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
+    BASENAME=2024214A.200
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
     echo ""
 }
 

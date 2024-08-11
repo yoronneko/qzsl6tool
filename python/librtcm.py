@@ -140,6 +140,7 @@ class Rtcm:
                 msg += f'unknown SSR message: {msgnum} {mtype}'
         else:
             msg += f'unknown message: {mtype}'
+            self.payload.pos = len(self.payload.bin)  # skip unknown message
         if self.payload.pos % 8 != 0:  # byte align
             self.payload.pos += 8 - (self.payload.pos % 8)
         if self.payload.pos != len(self.payload.bin):
