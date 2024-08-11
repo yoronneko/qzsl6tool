@@ -9,16 +9,16 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
-#     Specification Centimeter Level Augmentation Service,
+# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Centimeter Level Augmentation Service,
 #     IS-QZSS-L6-005, Sept. 21, 2022.
 # [2] Global Positioning Augmentation Service Corporation (GPAS),
 #     Quasi-Zenith Satellite System Correction Data on Centimeter Level
 #     Augmentation Service for Experiment Data Format Specification,
 #     1st ed., Nov. 2017.
-# [3] Cabinet Office of Japan, Quasi-Zenith Satellite System Interface
-#     Specification Multi-GNSS Advanced Orbit and Clock Augmentation
-#     - Precise Point Positioning, IS-QZSS-MDC-001, Feb., 2022.
+# [3] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+#     - Precise Point Positioning, IS-QZSS-MDC-002, Nov., 2023.
 # [4] Radio Technical Commission for Maritime Services (RTCM),
 #     Differential GNSS (Global Navigation Satellite Systems) Services
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
@@ -51,7 +51,7 @@ FMT_CLK    = '7.3f'  # format string for clock
 FMT_CB     = '7.3f'  # format string for code bias
 FMT_PB     = '7.3f'  # format string for phase bias
 FMT_TROP   = '7.3f'  # format string for troposphere residual
-FMT_TECU   = '6.3f'  # format string for TECU
+FMT_TECU   = '6.2f'  # format string for TECU
 FMT_IODE   = '4d'    # format string for issue of data ephemeris
 FMT_IODSSR = '<2d'   # format string for issue of data SSR
 FMT_GSIG   = '13s'   # format string for GNSS signal name
@@ -342,30 +342,31 @@ class Ssr:
         if payload.all(0):  # payload is zero padded
             self.trace.show(2, f"CSSR null data {len(payload.bin)} bits", fg='green')
             return False
-        if len_payload < payload.pos + 12 + 4:
+        if len_payload < payload.pos + 12:
             return False
         self.msgnum  = payload.read('u12')
-        self.subtype = payload.read('u4')  # subtype
-        if self.msgnum != 4073:  # CSSR message number should be 4073
-            # raise Exception(f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}")
-            self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}", fg='red')
-            return False
-        if self.subtype == 1:  # Mask message
-            if len_payload < payload.pos + 20:  # could not retrieve the epoch
+        if self.msgnum == 4073:  # for CLAS and MADOCA-PPP clock & orbit corrections (ref. [1])
+            if len_payload < payload.pos + 4:
                 return False
-            self.epoch = payload.read('u20')  # GPS epoch time 1s
-        elif self.subtype == 10:  # Service Information
+            self.subtype = payload.read('u4')  # subtype
+            if self.subtype == 1:  # Mask message
+                if len_payload < payload.pos + 20:  # could not retrieve the epoch
+                    return False
+                self.epoch = payload.read('u20')  # GPS epoch time 1s
+            elif self.subtype == 10:  # Service Information
+                return True
+            else:
+                if len_payload < payload.pos + 12:  # could not retrieve hourly epoch
+                    return False
+                self.hepoch = payload.read('u12')  # GNSS hourly epoch
+            if len_payload < payload.pos + 4 + 1 + 4:
+                return False
+            self.ui     = payload.read('u4')  # update interval
+            self.mmi    = payload.read('u1')  # multiple message indication
+            self.iodssr = payload.read('u4')  # IOD SSR
             return True
-        else:
-            if len_payload < payload.pos + 12:  # could not retrieve hourly epoch
-                return False
-            self.hepoch = payload.read('u12')  # GNSS hourly epoch
-        if len_payload < payload.pos + 4 + 1 + 4:
-            return False
-        self.ui     = payload.read('u4')  # update interval
-        self.mmi    = payload.read('u1')  # multiple message indication
-        self.iodssr = payload.read('u4')  # IOD SSR
-        return True
+        self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}", fg='red')
+        return False
 
     def _decode_mask(self, payload, ssr_type):
         ''' decode mask information and returns True if success
@@ -1042,6 +1043,131 @@ class Ssr:
         self.trace.show(1, msg1)
         self.stat_both += stat_pos
         self.stat_bsat += payload.pos - stat_pos
+        return True
+
+    def decode_mdcppp_iono_head(self, payload):
+        ''' decode MADOCA-PPP ionosphere correction header and returns True if success '''
+        self.msgnum = 0
+        self.subtype = 0
+        len_payload = len(payload)
+        if payload.all(0):  # payload is zero padded
+            self.trace.show(2, f"null {len(payload.bin)} bits", dec='dark')
+            return False
+        if len_payload < payload.pos + 12 + 4:
+            return False
+        self.msgnum  = payload.read('u12')  # nessage number
+        self.subtype = payload.read( 'u4')  # subtype ID
+        if self.subtype != 0:
+            self.trace.show(0, f"Subtype should be 0 ({self.subtype})", fg='red')
+        if self.msgnum == 1:  # for MADOCA-PPP STEC coverage message (ref. [3])
+            if len_payload < payload.pos + 20 + 4 + 1 + 4 + 8 + 1 + 16 + 5:
+                return False
+            self.epoch        = payload.read('u20')  # epoch time, 1s, 0-604799
+            self.ui           = payload.read( 'u4')  # update interval
+            self.mmi          = payload.read( 'u1')  # multiple message indicator
+            self.iodssr       = payload.read( 'u4')  # IOD SSR
+            self.region_id    = payload.read( 'u8')  # region ID
+            self.region_alert = payload.read( 'u1')  # region alert
+            self.len_msg      = payload.read('u16')  # message length in bits
+            self.n_areas      = payload.read( 'u5')  # number of areas
+            return True
+        elif self.msgnum == 2:  # for MADOCA-PPP STEC correction message (ref. [3])
+            if len_payload < payload.pos + 12 + 4 + 1 + 4 + 8 + 5 + 2 + 5 + 5 + 5 + 5 + 5:
+                return False
+            self.epoch        = payload.read('u12')  # epoch time, 1s, 0-3599
+            self.ui           = payload.read( 'u4')  # update interval
+            self.mmi          = payload.read( 'u1')  # multiple message indicator
+            iodssr            = payload.read( 'u4')  # IOD SSR
+            self.region_id    = payload.read( 'u8')  # STEC region ID
+            self.area         = payload.read( 'u5')  # STEC area number
+            self.stec_type    = payload.read( 'u2')  # correction type
+            self.n_gps        = payload.read( 'u5')  # number of GPS satellites
+            self.n_glo        = payload.read( 'u5')  # number of GLONASS satellites
+            self.n_gal        = payload.read( 'u5')  # number of Galileo satellites
+            self.n_bds        = payload.read( 'u5')  # number of BeiDou satellites, 0 (not supported)
+            self.n_qzs        = payload.read( 'u5')  # number of QZSS satellites
+            if iodssr != self.iodssr:
+                self.trace.show(0, f"IOD SSR mismatch: {iodssr} != {iodssr}", fg='red')
+                return False
+            return True
+        self.trace.show(0, f"MDCCPPP-Iono msgnum should be 1 or 2 ({self.msgnum}), ST{self.subtype}, size {len(payload.bin)} bits\nMDCPPP dump: {payload.bin}", fg='red')
+        return False
+
+    def decode_mdcppp_mt1(self, payload):  # ref. [3]
+        ''' decodes MADOCA-PPP MT1 messages and returns True if success '''
+        len_payload = len(payload)
+        msg1 = f'MT1 Epoch={epoch2timedate(self.epoch)} UI={CSSR_UI[self.ui]:2d}s({self.ui}) MMI={self.mmi} IODSSR={self.iodssr} Region={self.region_id}{"*" if self.region_alert else" "} {self.len_msg}bit {"cont." if self.mmi else ""} NumAreas={self.n_areas}'
+        msg1 += '\n # shape lat[deg] lon[deg] lats lons / radius[km]'
+        for _ in range(self.n_areas):
+            if len_payload < payload.pos + 5 + 1:
+                return False
+            area_no = payload.read('u5')
+            shape   = payload.read('u1')
+            if shape == 0:
+                if len_payload < payload.pos + 11 + 12 + 8 + 8:
+                    return False
+                lat_ref  = payload.read('i11')  # center latitude  of rectangle area
+                lon_ref  = payload.read('u12')  # center longitude of rectangle area
+                lat_span = payload.read( 'u8')  # span   latitude  of rectangle area
+                lon_span = payload.read( 'u8')  # span   longitude of rectangle area
+                msg1 += f'\n{area_no:2d} RECT    {lat_ref*0.1:6.1f}  {lon_ref*0.1:7.1f} {lat_span*0.1:4.1f} {lon_span*0.1:4.1f}'
+            else:  # shape == 1
+                if len_payload < payload.pos + 15 + 16 + 8:
+                    return False
+                lat_ref  = payload.read('i15')  # center latitude  of circle area
+                lon_ref  = payload.read('u16')  # center longitude of circle area
+                radius   = payload.read( 'u8')  # radius           of circle area
+                msg1 += f'\n{area_no:2d} CIRCLE  {lat_ref*0.01:6.1f}  {lon_ref*0.01:7.1f} {radius*10:4d}'
+        self.trace.show(1, msg1)
+        return True
+
+    def decode_mdcppp_mt2(self, payload):  # ref. [3]
+        ''' decoding MADOCA-PPP MT2 messages and returns True if success '''
+        len_payload = len(payload)
+        bw = [                                  # bit width of a single STEC correction
+            6 + 6 + 14                       ,  # STEC correction type = 0
+            6 + 6 + 14 + 12 + 12             ,  # STEC correction type = 1
+            6 + 6 + 14 + 12 + 12 + 10        ,  # STEC correction type = 2
+            6 + 6 + 14 + 12 + 12 + 10 + 8 + 8,  # STEC correction type = 3
+            ][self.stec_type]
+        if len_payload < payload.pos + bw * (self.n_gps + self.n_glo + self.n_gal + self.n_bds + self.n_qzs):
+            return False
+        msg1 = f'MT2 Epoch={epoch2time(self.epoch)} IODSSR={self.iodssr} Region={self.region_id} Area={self.area} G={self.n_gps} R={self.n_glo} E={self.n_gal} C={self.n_bds} J={self.n_qzs}'
+        msg1 += '\nSAT  qual[mm] c00[TECU]'
+        if 1 <= self.stec_type:
+            msg1 += " c01[TECU/deg] c10[TECU/deg]"
+        if 2 <= self.stec_type:
+            msg1 += " c11[TECU/deg^2]"
+        if 3 <= self.stec_type:
+            msg1 += " c02[TECU/deg^2] c20[TECU/deg^2]"
+        for satsys in ["G", "R", "E", "C", "J"]:
+            numsat = 0
+            if   satsys == "G": numsat = self.n_gps
+            elif satsys == "R": numsat = self.n_glo
+            elif satsys == "E": numsat = self.n_gal
+            elif satsys == "C": numsat = self.n_bds
+            elif satsys == "J": numsat = self.n_qzs
+            for _ in range(numsat):
+                satid = payload.read( 'u6')    # GNSS satellite ID
+                qi    = payload.read(   6 )    # quality indicator
+                c00   = payload.read('i14')    # STEC correction coefficient C00
+                if c00 != -8192:
+                    msg1 += f'\n{satsys}{satid:02d}   {ura2dist(qi):7.2f}    {c00*0.05:{FMT_TECU}}'
+                if 1 <= self.stec_type:
+                    c01 = payload.read('i12')  # STEC correction coefficient C01
+                    c10 = payload.read('i12')  # STEC correction coefficient C10
+                    if c01 != -2048 and c10 != -2048:
+                        msg1 += f'        {c01*0.02:{FMT_TECU}}        {c10*0.02:{FMT_TECU}}'
+                if 2 <= self.stec_type:
+                    c11 = payload.read('i10')  # STEC correction coefficient C11
+                    if c11 != -512:
+                        msg1 += f'          {c11*0.02:{FMT_TECU}}'
+                if 3 <= self.stec_type:
+                    c02 = payload.read( 'i8')  # STEC correction coefficient C02
+                    c20 = payload.read( 'i8')  # STEC correction coefficient C20
+                    if c02 != -128 and c20 != -128:
+                        msg1 += f'          {c02*0.005:{FMT_TECU}}          {c20*0.005:{FMT_TECU}}'
+        self.trace.show(1, msg1)
         return True
 
 # EOF

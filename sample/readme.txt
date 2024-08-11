@@ -109,4 +109,13 @@ Date Time : 2023-09-19 11:44:18 UTC
 Duration  : 40 seconds
 Note      : u-blox ZED-F9P raw data obtained at Hiroshima, JP
 
+File Path : 2024214A.200.l6
+Date Time : 2024-08-01 00:00:00 UTC
+Duration  : 2 minutes (trancated from 1-hour data)
+Note      : QZS MADOCA-PPP ionosphere augmentation data
+Note      : obtained from the official archive at
+Note      : https://l6msg.go.gnss.go.jp/, by using:
+Note      : https://l6msg.go.gnss.go.jp/archives/2024/214/2024214A.200.l6
+Note      : dd if=aaa.l6 of=2024214A.200.l6 ibs=1000 count=30
+
 # EOF
