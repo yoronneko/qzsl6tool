@@ -28,11 +28,11 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-from   librtcm     import send_rtcm, msgnum2satsys, msgnum2mtype
 import libgnsstime
 import libqznma
 import libssr
 import libtrace
+from   rtcmread import send_rtcm, msgnum2satsys, msgnum2mtype
 
 try:
     import bitstring
@@ -62,10 +62,10 @@ class QzsL6:
     mmi      = 0                      # multiple message indication
     iod      = 0                      # SSR issue of data
 
-    def __init__(self, fp_rtcm, trace, stat):
-        self.fp_rtcm = fp_rtcm
+    def __init__(self, trace, stat):
         self.trace   = trace
         self.stat    = stat
+        self.fp_rtcm = None
         self.ssr     = libssr.Ssr(trace)
         self.qznma   = libqznma.Qznma(trace)
 
@@ -88,8 +88,8 @@ class QzsL6:
         self.prn = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
         mtid     = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
         data     = b[pos:pos+212]; pos += 212
-        rs       = b[pos:pos+ 32]; pos += 32
-        vid = mtid >> 5  # vender ID
+        rs       = b[pos:pos+ 32]; pos +=  32  # not used
+        vid = mtid >> 5                        # vender ID
         if   vid == 0b001: self.vendor = "MADOCA"
         elif vid == 0b010: self.vendor = "MADOCA-PPP"
         elif vid == 0b011: self.vendor = "QZNMA"
@@ -161,7 +161,8 @@ class QzsL6:
         self.trace.show(1, msg)
         if self.dpart.pos % 8 != 0:  # byte align
             self.dpart.pos += 8 - (self.dpart.pos % 8)
-        send_rtcm(self.fp_rtcm, self.dpart[0:self.dpart.pos])
+        if self.fp_rtcm:
+            send_rtcm(self.fp_rtcm, self.dpart[0:self.dpart.pos])
         self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
         self.dpart.pos = 0
         self.ssr.msgnum = msgnum
@@ -260,7 +261,8 @@ class QzsL6:
         else:
             raise Exception(f"Unknown CSSR subtype: {self.ssr.subtype}")
         if decoded:
-            send_rtcm(self.fp_rtcm, self.payload[:self.payload.pos])  # RTCM MT 4073
+            if self.fp_rtcm:
+                send_rtcm(self.fp_rtcm, self.payload[:self.payload.pos])  # RTCM MT 4073
             self.payload = self.payload[self.payload.pos:]  # discard decoded part
             self.payload.pos = 0
         return decoded
@@ -382,7 +384,8 @@ if __name__ == '__main__':
     if args.message:  # show QZS message to stderr
         fp_disp = sys.stderr
     trace = libtrace.Trace(fp_disp, args.trace, args.color)
-    qzsl6 = QzsL6(fp_rtcm, trace, args.statistics)
+    qzsl6 = QzsL6(trace, args.statistics)
+    qzsl6.fp_rtcm = fp_rtcm
     try:
         while qzsl6.read():
             qzsl6.show()

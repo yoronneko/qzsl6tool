@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.0
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.1
 
 ![QZS L6 Tool](docs/img/qzsl6tool.png)
 
@@ -11,6 +11,7 @@
 - It is designed to be used in conjunction with tools such as ``nc`` of netcat, and ``str2str`` of [RTKLIB](https://github.com/tomojitakasu/RTKLIB).
 - Initially, it aimed to display the content of augmentation messages broadcasted by the quasi-zenith satellite Michibiki (QZS) in the L6 frequency band, including CLAS and MADO. However, it is now also capable of displaying Galileo HAS messages.
 - [Semantic versioning](https://packaging.python.org/en/latest/discussions/versioning/#choosing-a-versioning-scheme) has been applied since 2024-08-11.
+- [Release note](release_note.md)
 
 ## Operating Environment
 
