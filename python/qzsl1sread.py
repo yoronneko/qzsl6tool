@@ -24,8 +24,8 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
-from   librtcm import rtk_crc24q
 import libtrace
+from   rtcmread import rtk_crc24q
 
 try:
     import bitstring

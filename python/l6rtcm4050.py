@@ -17,7 +17,7 @@ import argparse
 import os
 import sys
 import libtrace
-from   librtcm import send_rtcm
+from   rtcmread import send_rtcm
 try:
     import bitstring
 except ModuleNotFoundError:
@@ -50,14 +50,15 @@ def write_rtcm4050(l6msg):
     prn   = l6.read(8)  # PRN number
     mtid  = l6.read(8)  # Message type ID
     alert = l6.read(1)  # Alert flag
-    rtcm  =  bitstring.BitArray('u12=4050')          # message type 4050
-    rtcm  += bitstring.Bits('u4=0')                  # reserved
-    rtcm  += bitstring.Bits('u20=0')                 # TOW (time of week), but it is unknown
-    rtcm  += bitstring.Bits('u4=0')                  # number of correction error bits, but it is also unknown
-    rtcm  += bitstring.Bits(uint=prn.u,   length=8)  # pseudo-random noise number
-    rtcm  += bitstring.Bits(uint=mtid.u,  length=8)  # CSSR message type ID (4073)
-    rtcm  += bitstring.Bits(uint=alert.u, length=1)  # alert flag
-    rtcm  += l6[49:-256]                             # L6 message without preamble and RS error correction bits
+    rtcm  =  bitstring.BitArray()                     # RTCM message type 4050
+    rtcm  += bitstring.Bits(uint=4050,    length=12)  # message type 4050
+    rtcm  += bitstring.Bits(uint=0,       length= 4)  # reserved
+    rtcm  += bitstring.Bits(uint=0,       length=20)  # TOW (time of week), but it is unknown
+    rtcm  += bitstring.Bits(uint=0,       length= 4)  # number of correction error bits, but it is also unknown
+    rtcm  += bitstring.Bits(uint=prn.u,   length= 8)  # pseudo-random noise number
+    rtcm  += bitstring.Bits(uint=mtid.u,  length= 8)  # CSSR message type ID (4073)
+    rtcm  += bitstring.Bits(uint=alert.u, length= 1)  # alert flag
+    rtcm  += l6[49:-256]                              # L6 message without preamble and RS error correction bits
     send_rtcm(sys.stdout, rtcm)
 
 

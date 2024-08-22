@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CODEDIR=../python/
-#CODEDIR=
+CODEDIR=
 
 ESC=$(printf '\033')
 
@@ -165,18 +165,37 @@ qzs_l1s() {
     echo ""
 }
 
-qzs_l6_rtcm() {
+qzs_l6_rtcm_ssr() {
     CODE=${CODEDIR}qzsl6read.py ARG='-r' EXT_FROM=l6 EXT_TO=rtcm
-    echo "QZS L6 to RTCM message conversion (${CODE} ${ARG})"
+    echo "QZS L6 old MADOCA to RTCM SSR message conversion (${CODE} ${ARG})"
+
+    SRCDIR=expect/
+    BASENAME=20220326-231200mdc
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo ""
+}
+
+qzs_l6_rtcm_4073() {
+    CODE=${CODEDIR}qzsl6read.py ARG='-r' EXT_FROM=l6 EXT_TO=4073.rtcm
+    echo "QZS L6 CSSR to RTCM 4073 message conversion (${CODE} ${ARG})"
 
     SRCDIR=expect/
     BASENAME=20220326-231200clas
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    BASENAME=20220326-231200mdc
+    BASENAME=20221130-125237mdc-ppp
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    BASENAME=20221130-125237mdc-ppp
+    echo ""
+}
+
+l6rtcm4050() {
+    CODE=${CODEDIR}l6rtcm4050.py ARG= EXT_FROM=l6 EXT_TO=4050.rtcm
+    echo "QZS L6 CSSR to RTCM 4050 message conversion (${CODE} ${ARG})"
+
+    SRCDIR=../sample/
+    BASENAME=2022001A
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""
@@ -197,13 +216,13 @@ rtcm() {
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     SRCDIR=expect/
-    BASENAME=20220326-231200clas
+    BASENAME=20220326-231200clas.4073
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     BASENAME=20220326-231200mdc
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    BASENAME=20221130-125237mdc-ppp
+    BASENAME=20221130-125237mdc-ppp.4073
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""
@@ -253,7 +272,9 @@ sept_conv
 ubx_conv
 qzs_l6
 qzs_l1s
-qzs_l6_rtcm
+qzs_l6_rtcm_ssr
+qzs_l6_rtcm_4073
+l6rtcm4050
 rtcm
 gal_inav
 gal_e6

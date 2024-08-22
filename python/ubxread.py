@@ -24,7 +24,7 @@ import sys
 sys.path.append(os.path.dirname(__file__))
 from   alstread import checksum
 from   septread import u4perm
-from   librtcm  import rtk_crc24q
+from   rtcmread import rtk_crc24q
 import libtrace
 
 try:
