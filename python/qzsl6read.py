@@ -127,8 +127,8 @@ class QzsL6:
 
     def show_madoca_msg(self):
         ''' returns decoded (old) MADOCA messages '''
-        self.tow   = self.dpart.read('u20')
-        self.wn    = self.dpart.read('u13')
+        self.tow   = self.dpart.read(20).u
+        self.wn    = self.dpart.read(13).u
         self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
         self.dpart.pos = 0
         msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
@@ -140,11 +140,11 @@ class QzsL6:
         ''' decodes (old) MADOCA messages and returns True if success '''
         if len(self.dpart) < 12:
             return False
-        msgnum = self.dpart.read('u12')
+        msgnum = self.dpart.read(12).u
         if msgnum == 0:
             return False
         satsys = msgnum2satsys(msgnum)
-        mtype  = msgnum2mtype(msgnum)
+        mtype  = msgnum2mtype (msgnum)
         self.ssr.ssr_decode_head(self.dpart, satsys, mtype)
         if mtype == 'SSR orbit':
             msg = self.ssr.ssr_decode_orbit(self.dpart, satsys)
@@ -310,16 +310,6 @@ class QzsL6:
                 msg += self.trace.msg(0, ' (null)', dec='dark')
             else:
                 msg += self.trace.msg(1, f'Undecoded message: {self.payload.bin}', fg='red')
-            # msg += f' run={self.run}' # msgnum={self.ssr.msgnum}'
-            # if self.run and self.ssr.msgnum == 0:  # no message in the subframe
-            #     msg += self.trace.msg(0, ' (null)', dec='dark')
-            #     self.payload = bitstring.BitStream()
-            # elif self.run:
-            #     self.payload.pos = 0
-            #     msg += self.trace.msg(0, '...', fg='yellow')
-            # else:  # subframe indication has not been received
-            #     self.payload.pos = 0
-            #     # msg += self.trace.msg(0, ' (syncing)', dec='dark')
         return msg
 
     def brief_disp_mdcppp_iono(self):

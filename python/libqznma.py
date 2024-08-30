@@ -56,14 +56,14 @@ class Qznma:
         '''decodes reformat digital signature
         [1] p.43 Table 6-2 GPS LNAV RDS Message
         '''
-        nma_id = rds.read( 'b4')     # navigation message authentication ID
-        rtow   = rds.read('u20')     # reference time of week
-        svid   = rds.read( 'u8')     # space vehicle ID
-        mt     = rds.read( 'u4')     # message type
-        reph   = rds.read( 'u4')     # reference ephemeris
-        keyid  = rds.read( 'u8')     # key ID
+        nma_id = rds.read( 4).b      # navigation message authentication ID
+        rtow   = rds.read(20).u      # reference time of week
+        svid   = rds.read( 8).u      # space vehicle ID
+        mt     = rds.read( 4).u      # message type
+        reph   = rds.read( 4).u      # reference ephemeris
+        keyid  = rds.read( 8).u      # key ID
         signat = rds.read(L_SIGNAT)  # digital signature
-        salt   = rds.read('u16')     # salt (true random number)
+        salt   = rds.read(16).u      # salt (true random number)
         message = ''
         if nma_id != '0000':         # NMA is not used
             message = self.trace.msg(0, '(inactive) ', dec='dark')

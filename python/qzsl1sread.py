@@ -87,10 +87,10 @@ class QzsL1s:
         ''' returns decoded message '''
         msg = self.trace.msg(1, "\nLocation    Lat[deg]   Lon[deg] Hgt[m]")
         for i in range(5):
-            gms_code = df.read( 'u6')
-            gms_lat  = df.read('i15')
-            gms_lon  = df.read('i15')
-            gms_hgt  = df.read( 'u6')
+            gms_code = df.read( 6).u
+            gms_lat  = df.read(15).i
+            gms_lon  = df.read(15).i
+            gms_hgt  = df.read( 6).u
             if gms_code == 63: continue
             msg += self.trace.msg(1, f"\n{GMS2NAME.get(gms_code, 'undefined'):11s}   {gms_lat*0.005:6.3f}    {gms_lon*0.005+115.00:7.3f}   {gms_hgt*50-100:4d}")
         df.pos += 2  # spare
@@ -101,17 +101,17 @@ class QzsL1s:
         self.mask_prn = []         # clear satellite mask
         self.mask_sv  = []         # clear selected satellite
         self.mask_uh  = []         # clear unhealthy satellite
-        self.iodp = df.read('u2')  # PRN mask update number
+        self.iodp = df.read(2).u   # PRN mask update number
         for i in range(64):        # for GPS
-            if df.read('u1'): self.mask_prn.append(f'G{i+1:02d}')
+            if df.read(1).u: self.mask_prn.append(f'G{i+1:02d}')
         for i in range( 9):        # for QZSS
-            if df.read('u1'): self.mask_prn.append(f'J{i+1:02d}')
+            if df.read(1).u: self.mask_prn.append(f'J{i+1:02d}')
         for i in range(36):        # for GLONASS
-            if df.read('u1'): self.mask_prn.append(f'R{i+1:02d}')
+            if df.read(1).u: self.mask_prn.append(f'R{i+1:02d}')
         for i in range(36):        # for Galileo
-            if df.read('u1'): self.mask_prn.append(f'E{i+1:02d}')
+            if df.read(1).u: self.mask_prn.append(f'E{i+1:02d}')
         for i in range(36):        # for BeiDou
-            if df.read('u1'): self.mask_prn.append(f'C{i+1:02d}')
+            if df.read(1).u: self.mask_prn.append(f'C{i+1:02d}')
         df.pos += 29               # spare
         msg = f": selected sats:"
         for sat in self.mask_prn:
@@ -124,15 +124,15 @@ class QzsL1s:
         self.mask_uh = []    # clear unhealthy satellite
         df.pos += 2          # spare
         for i in range(64):  # for GPS
-            if not df.read('u1'): self.mask_uh.append(f'G{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'G{i:02d}')
         for i in range( 9):  # for QZSS
-            if not df.read('u1'): self.mask_uh.append(f'J{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'J{i:02d}')
         for i in range(36):  # for GLONASS
-            if not df.read('u1'): self.mask_uh.append(f'R{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'R{i:02d}')
         for i in range(36):  # for Galileo
-            if not df.read('u1'): self.mask_uh.append(f'E{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'E{i:02d}')
         for i in range(36):  # for BeiDou
-            if not df.read('u1'): self.mask_uh.append(f'C{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'C{i:02d}')
         df.pos += 29         # spare
         msg = ": lockout sats:"
         for sat in self.mask_uh:
@@ -144,12 +144,12 @@ class QzsL1s:
         ''' returns decoded message '''
         mask_sv   = [0 for _ in range(23)]  # selected satellite
         iod       = [0 for _ in range(23)]  # data issue number
-        iodi = df.read('u2')                # IOD updating number
+        iodi = df.read(2).u                 # IOD updating number
         for i in range(23):
-            mask_sv[i] = df.read('u1')
+            mask_sv[i] = df.read(1).u
         for i in range(23):
-            iod[i] = df.read('u8')
-        iodp = df.read('u2')
+            iod[i] = df.read(8).u
+        iodp = df.read(2).u
         df.pos += 1  # spare
         if iodp != self.iodp:
             return self.trace.msg(0, f": IODP mismatch {iodp} != {self.iodp}", dec='dark')
@@ -171,17 +171,17 @@ class QzsL1s:
 
     def decode_dgps_correction(self, df):  # ref.[3], sect.4.1.2.9, MT50
         ''' returns decoded message '''
-        iodp       = df.read('u2')  # PRN mask updating number
-        iodi       = df.read('u2')  # IOD updating number
-        gms_code   = df.read('u6')  # monitoring station code
-        gms_health = df.read('u1')  # monitoring station health
+        iodp       = df.read(2).u  # PRN mask updating number
+        iodi       = df.read(2).u  # IOD updating number
+        gms_code   = df.read(6).u  # monitoring station code
+        gms_health = df.read(1).u  # monitoring station health
         mask_dgps  = [False for _ in range(23)]  # mask selected satellite
         for i in range(23):
-            mask_dgps[i] = df.read('u1')  # mask selected satellite
-        prc = [0 for _ in range(14)]      # pseudorange correcion
+            mask_dgps[i] = df.read(1).u  # mask selected satellite
+        prc = [0 for _ in range(14)]     # pseudorange correcion
         for i in range(14):
-            prc[i] = df.read('i12')       # pseudorange correction
-        df.pos += 10                      # spare
+            prc[i] = df.read(12).i       # pseudorange correction
+        df.pos += 10                     # spare
         if self.iodp == UNDEF:
             return self.trace.msg(0, " (waiting for PRN mask, MT48)", dec='dark')
         if self.iodi == UNDEF:
@@ -262,15 +262,15 @@ class QzsL1s:
             Japan Meteorological Agency Disaster and Crisis Management Report
             ref.[2]
         '''
-        rc   = df.read('u3')  # report classification, ref.[2], pp.12, Fig 4.1.2-1
-        dc   = df.read('u4')  # disaster classification
-        atmo = df.read('u4')  # month
-        atda = df.read('u5')  # day
-        atho = df.read('u5')  # hour
-        atmi = df.read('u6')  # minute
-        it   = df.read('u2')  # information type
-        data = df.read( 171)  # data that depends on the disaster
-        vn   = df.read('u6')  # version
+        rc   = df.read(  3).u  # report classification, ref.[2], pp.12, Fig 4.1.2-1
+        dc   = df.read(  4).u  # disaster classification
+        atmo = df.read(  4).u  # month
+        atda = df.read(  5).u  # day
+        atho = df.read(  5).u  # hour
+        atmi = df.read(  6).u  # minute
+        it   = df.read(  2).u  # information type
+        data = df.read(171)    # data that depends on the disaster
+        vn   = df.read(  6).u  # version
         if vn != 1:
             raise Exception(f"\nversion number should be 1 ({vn})")
         msg = f": {self.DC2NAME_EN.get(dc, 'undefined classification')}" + \
@@ -353,8 +353,8 @@ def read_from_l1s_file(qzsl1s, l1s_file, fp_disp):
         raw = f.buffer.read(36)
         while raw:
             payload = bitstring.ConstBitStream(raw)
-            gpsweek = payload.read('u12')
-            gpstow  = payload.read('u20')
+            gpsweek = payload.read(12).u
+            gpstow  = payload.read(20).u
             l1s     = payload.read(L_L1S)
             payload.pos += 6  # spare
             msg = qzsl1s.trace.msg(0, libgnsstime.gps2utc(gpsweek, gpstow), fg='green') + \
@@ -369,7 +369,7 @@ def read_from_stdin(qzsl1s,  fp_disp):
     raw = sys.stdin.buffer.read(33)
     while raw:
         payload = bitstring.ConstBitStream(raw)
-        prn = payload.read('u8')
+        prn = payload.read(8).u
         l1s = payload.read(L_L1S)
         payload.pos += 6  # spare
         msg = qzsl1s.trace.msg(0, f'PRN{prn:3d}', fg='green') + \

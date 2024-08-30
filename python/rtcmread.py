@@ -35,7 +35,6 @@ import sys
 sys.path.append(os.path.dirname(__file__))
 import ecef2llh
 import libeph
-import libobs
 import libssr
 import libtrace
 
@@ -55,10 +54,9 @@ class Rtcm:
     payload = bitstring.ConstBitStream()
 
     def __init__(self, trace):
-        self.trace   = trace
-        self.eph       = libeph.Eph(trace)
-        self.obs       = libobs.Obs(trace)
-        self.ssr       = libssr.Ssr(trace)
+        self.trace = trace
+        self.eph   = libeph.Eph(trace)
+        self.ssr   = libssr.Ssr(trace)
 
     def read(self):
         '''returns true if successfully reading an RTCM message'''
@@ -116,9 +114,9 @@ class Rtcm:
         elif mtype == 'Code bias':
             msg += self.decode_code_phase_bias(self.payload)
         elif 'Obs' in mtype:
-            msg += self.obs.decode_obs(self.payload, satsys, mtype)
+            msg += self.decode_obs(self.payload, satsys, mtype)
         elif 'MSM' in mtype:
-            msg += self.obs.decode_msm(self.payload, satsys, mtype)
+            msg += self.decode_msm(self.payload, satsys, mtype)
         elif 'NAV' in mtype:
             msg += self.eph.decode_ephemerides(self.payload, satsys, mtype)
         elif mtype == 'CSSR':
@@ -152,21 +150,21 @@ class Rtcm:
 
     def decode_antenna_position(self, payload, msgnum):
         ''' returns decoded position and antenna height if available '''
-        stid  = payload.read('u12')  # station id, DF003
+        stid  = payload.read(12).u  # station id, DF003
         payload.pos +=  6            # reserved ITRF year, DF921
         payload.pos +=  1            # GPS indicator, DF022
         payload.pos +=  1            # GLO indicator, DF023
         payload.pos +=  1            # reserved GAL indicator, DF024
         payload.pos +=  1            # reference station ind, DF141
-        px  = payload.read('i38')    # ARP ECEF-X, DF025
+        px  = payload.read(38).i    # ARP ECEF-X, DF025
         payload.pos +=  1            # single receiver osc ind, DF142
         payload.pos +=  1            # reserved, DF001
-        py  = payload.read('i38')    # ARP ECEF-Y, DF026
+        py  = payload.read(38).i    # ARP ECEF-Y, DF026
         payload.pos +=  2            # quarter cycle indicator, DF364
-        pz  = payload.read('i38')    # ARP ECEF-Z, DF027
+        pz  = payload.read(38).i    # ARP ECEF-Z, DF027
         ahgt =  0
         if msgnum == 1006:  # antenna height for RTCM 1006
-            ahgt = payload.read('u16')  # antenna height, DF028
+            ahgt = payload.read(16).u  # antenna height, DF028
         msg = ''
         if stid != 0:
             msg += f'{stid} '
@@ -183,21 +181,21 @@ class Rtcm:
         str_rcv = ''
         str_ver = ''
         str_rsn = ''
-        stid = payload.read('u12')      # station id, DF0003
-        cnt  = payload.read( 'u8')      # antenna descriptor counter, DF029
+        stid = payload.read(12).u      # station id, DF0003
+        cnt  = payload.read( 8).u      # antenna descriptor counter, DF029
         for _ in range(cnt):
-            str_ant += chr(payload.read('u8'))  # antenna descriptor, DF030
-        ant_setup = payload.read('u8')          # antenna setup id, DF031
+            str_ant += chr(payload.read(8).u)  # antenna descriptor, DF030
+        ant_setup = payload.read(8).u          # antenna setup id, DF031
         if msgnum == 1008 or msgnum == 1033:
-            cnt = payload.read('u8')    # antenna serial number couner, DF032
-            for _ in range(cnt): str_ser += chr(payload.read('u8'))  # antenna ser num, DF033
+            cnt = payload.read(8).u    # antenna serial number couner, DF032
+            for _ in range(cnt): str_ser += chr(payload.read(8).u)  # antenna ser num, DF033
         if msgnum == 1033:
-            cnt = payload.read('u8')    # receiver type descriptor counter, DF227
-            for _ in range(cnt): str_rcv += chr(payload.read('u8'))  # rec. type. desc., DF228
-            cnt = payload.read('u8')    # receiver firmware counter, DF229
-            for _ in range(cnt): str_ver += chr(payload.read('u8'))  # receier firmware, DF230
-            cnt = payload.read('u8')    # receiver serial number counter, DF231
-            for _ in range(cnt): str_rsn += chr(payload.read('u8'))  # antenna serial number, DF232
+            cnt = payload.read(8).u    # receiver type descriptor counter, DF227
+            for _ in range(cnt): str_rcv += chr(payload.read(8).u)  # rec. type. desc., DF228
+            cnt = payload.read(8).u    # receiver firmware counter, DF229
+            for _ in range(cnt): str_ver += chr(payload.read(8).u)  # receier firmware, DF230
+            cnt = payload.read(8).u    # receiver serial number counter, DF231
+            for _ in range(cnt): str_rsn += chr(payload.read(8).u)  # antenna serial number, DF232
         msg = ''
         if stid      !=  0: disp_msg += f'{stid} '
         msg += f'{str_ant}'
@@ -210,15 +208,127 @@ class Rtcm:
 
     def decode_code_phase_bias(self, payload):
         '''decodes code-and-phase bias for GLONASS'''
-        sid  = payload.read('u12')  # reference station id, DF003
-        cpbi = payload.read( 'u1')  # code-phase bias ind, DF421
+        sid  = payload.read(12).u  # reference station id, DF003
+        cpbi = payload.read( 1).u  # code-phase bias ind, DF421
         payload.pos += 3            # reserved, DF001
-        mask = payload.read( 'u4')  # FDMA signal mask, DF422
-        l1ca = payload.read('i16')  # L1 C/A code-phase bias, DF423
-        l1p  = payload.read('i16')  # L1 P code-phase bias, DF424
-        l2ca = payload.read('i16')  # L2 C/A code-phase bias, DF425
-        l2p  = payload.read('i16')  # L2 P  code-phase bias, DF426
+        mask = payload.read( 4).u  # FDMA signal mask, DF422
+        l1ca = payload.read(16).i  # L1 C/A code-phase bias, DF423
+        l1p  = payload.read(16).i  # L1 P code-phase bias, DF424
+        l2ca = payload.read(16).i  # L2 C/A code-phase bias, DF425
+        l2p  = payload.read(16).i  # L2 P  code-phase bias, DF426
         return f'L1CA={l1ca*0.02} L1P={l1p*0.02} L2CA={l2ca*0.02} L2P={l2p*0.02}'
+
+    def decode_obs(self, payload, satsys, mtype):
+        ''' decodes observation message and returns message '''
+        be = 30 if satsys != 'R' else 27  # bit format of epoch time
+        bp = 24 if satsys != 'R' else 25  # bit format of pseudorange
+        bi =  8 if satsys != 'R' else  7  # bit format of pseudorange mod ambiguity
+        sid   = payload.read(12).u  # reference station id, DF003
+        tow   = payload.read(be).u  # epoch time, DF004 (GPS), DF034 (GLONASS)
+        sync  = payload.read( 1).u  # synchronous flag, DF005
+        nsat  = payload.read( 5).u  # number of signals, DF006 (GPS)
+        smind = payload.read( 1).u  # divrgence-free smoothing ind, DF007
+        smint = payload.read( 3).u  # smoothing interval, DF008
+        msg = ''
+        for _ in range(nsat):
+            satid     = payload.read( 6).u  # satellite id, DF009, DF038
+            cind1     = payload.read( 1).u  # L1 code indicator, DF010, DF039
+            if satsys == 'R':
+                fc    = payload.read( 5).u  # freq. channel number, DF040
+            pr1       = payload.read(bp).u  # L1 pseudorange, DF011, DF041
+            phpr1     = payload.read(20).i  # L1 phaserange-pseudorange, DF012, DF042
+            lti1      = payload.read( 7).u  # L1 locktime ind, DF013, DF043
+            if 'Full' in mtype:
+                pma1  = payload.read(bi).u  # L1 pseudorange modulus ambiguity, DF014, DF044
+                cnr1  = payload.read( 8).u  # L1 CNR, DF015, DF045
+            if 'L2' in mtype:
+                cind2 = payload.read( 2).u  # L2 code indicator, DF016, DF046
+                prd   = payload.read(14).i  # L2-L1 pseudorange difference, DF017, DF047
+                phpr2 = payload.read(20).i  # L2 phaserange-L1 pseudorange, DF018, DF048
+                lti2  = payload.read( 7).u  # L2 locktime ind, DF019, DF049
+                if mtype in 'Full':
+                    cnr2  = payload.read( 8).u  # L2 CNR, DF020, DF050
+            if satsys != 'S':
+                msg += f'{satsys}{satid:02} '
+            else:
+                msg += f'{satsys}{satid+119:3} '
+        return msg
+
+    def decode_msm(self, payload, satsys, mtype):
+        ''' decodes MSM message and returns message '''
+        sid    = payload.read(12).u  # reference station id, DF003
+        epoch  = payload.read(30).u  # GNSS epoch time, DF004
+        mm     = payload.read( 1).u  # multiple message bit, DF393
+        iods   = payload.read( 3).u  # issue of data station, DF409
+        payload.pos += 7              # reserved, DF001
+        csi    = payload.read( 2).u  # clock steering ind, DF411
+        eci    = payload.read( 2).u  # external clock ind, DF412
+        smind  = payload.read( 1).u  # divergence-free smoothing ind, DF417
+        smint  = payload.read( 3).u  # smoothing interval, DF418
+        sat_mask = [0 for _ in range(64)]
+        nsat = 0
+        for satid in range(64):
+            mask = payload.read(1).u  # satellite mask, DF394
+            if mask:
+                sat_mask[nsat] = satid
+                nsat += 1
+        sig_mask = [0 for _ in range(32)]
+        nsig = 0
+        for sigid in range(32):
+            mask = payload.read(1).u  # signal mask, DF395
+            if mask:
+                sig_mask[nsig] = sigid
+                nsig += 1
+        cell_mask = [0 for _ in range(nsat * nsig)]
+        n_cell_mask = 0
+        for maskpos in range(nsat * nsig):
+            mask = payload.read(1).u  # cell mask, DF396
+            cell_mask[maskpos] = mask
+            if mask:
+                n_cell_mask += 1
+        if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
+            for _ in range(nsat):
+                rng  = payload.read(8).u   # rough ranges, DF398
+        if '5' in mtype or '7' in mtype:
+            for _ in range(nsat):
+                einf = payload.read(4).u   # sat specific extended info
+        for _ in range(nsat):
+            rng_m    = payload.read(10).u  # range mod 1 ms, DF398
+        if '5' in mtype or '7' in mtype:
+            for _ in range(nsat):
+                prr  = payload.read(14).i  # phase range rates, DF399
+        for maskpos in range(nsat * nsig):
+            if not cell_mask[maskpos]:
+                continue
+            bfpsr = 15  # bit length of fine pseudorange
+            bfphr = 22  # bit length of fine phaserange
+            blti  =  4  # bit length of lock time indicator
+            bcnr  =  6  # bit length of CNR
+            if '6' in mtype or '7' in mtype:
+                bfpsr = 20  # extended bit length for fine pseudorange
+                bfphr = 24  # extended bit length for fine phaserange
+                blti  = 10  # extended bit length for lock time indicator
+                bcnr  = 10  # extended bit length for CNR
+            if '1' in mtype or '3' in mtype or '4' in mtype or \
+               '5' in mtype or '6' in mtype or '7' in mtype:
+                fpsr = payload.read(bfpsr).i  # fine pseudorange, DF400, DF405
+            if '2' in mtype or '3' in mtype or '4' in mtype or \
+               '5' in mtype or '6' in mtype or '7' in mtype:
+                fphr = payload.read(bfphr).i  # fine phaserange, DF401, DF406
+                lti  = payload.read( blti).u  # lock time ind, DF402, DF407
+                hai  = payload.read(    1).u  # half-cycle ambiguity, DF420
+            if '4' in mtype or '5' in mtype or '6' in mtype or '7' in mtype:
+                cnr  = payload.read( bcnr).u  # CNR, DF403, 408
+            if '5' in mtype or '7' in mtype:
+                fphr = payload.read(15).i  # fine phaserange rate, DF404
+        msg = ''
+        if satsys != 'S':
+            for satid in range(nsat):
+                msg += f'{satsys}{sat_mask[satid]+1:02} '
+        else:
+            for satid in range(nsat):
+                msg += f'{satsys}{sat_mask[satid]+119:3} '
+        return msg
 
 def send_rtcm(fp, rtcm_payload):
     if not fp:
