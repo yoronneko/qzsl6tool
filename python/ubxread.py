@@ -15,7 +15,6 @@
 #     rev.2.4.3 b34, Dec 2020.
 
 import argparse
-import datetime
 import functools
 import operator
 import os

@@ -1,5 +1,9 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.2 (2024-08-30)
+- Usage of bitstring's read: e.g. df.read('u10') -> df.read(10).u
+- Merge libobs.py to rtcmread.py
+
 ## ver.0.1.1 (2024-08-22)
 - Added a test of l6rtcm4050.py
 - Indicating RTCM MT 4073 and RTCM MT 4050 messages in test/expect directory

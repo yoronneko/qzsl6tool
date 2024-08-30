@@ -122,9 +122,9 @@ class BdsB2():
         rawb.pos   += 6  # reserved
         b2b_data   = rawb.read(486)
         b2b_parity = rawb.read(486)
-        mestype = b2b_data.read(  6)
-        mesdata = b2b_data.read(456)
-        crc     = b2b_data.read( 24)
+        mestype    = b2b_data.read(  6)
+        mesdata    = b2b_data.read(456)
+        crc        = b2b_data.read( 24)
         if prn_s != 0 and prn_s != prn:
             return ''
         msg = self.trace.msg(0, f'C{prn:02d}', fg='green') + \
@@ -411,7 +411,7 @@ class BdsB2():
         Crs          = mesdata.read(24).i
         Crc          = mesdata.read(24).i
         Cus          = mesdata.read(21).i
-        Cuc          = mesdata.read(21).i 
+        Cuc          = mesdata.read(21).i
         # parameters
         dif1         = mesdata.read( 1).u
         sif1         = mesdata.read( 1).u

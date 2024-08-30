@@ -304,9 +304,9 @@ class GalE6():
     hasindex = [0b0 for i in range(MAX_PAGES)]
 
     def __init__(self, trace, stat):
-        self.trace   = trace
-        self.stat      = stat
-        self.ssr       = libssr.Ssr(trace)
+        self.trace = trace
+        self.stat  = stat
+        self.ssr   = libssr.Ssr(trace)
 
     def __del__(self):
         if self.stat:
@@ -321,12 +321,12 @@ class GalE6():
         # reads    HAS Page whose size is 448 bit
         # discards CRC24    whose size is  24 bit, because NovAtel receivers do not output CRC24
         # discards tail     whose size is   6 bit, NovAtel receivers also do not output tail
-        hass = rawb.read('u2')      # HAS status
-        rawb.pos += 2               # reserved
-        mt   = rawb.read('u2')      # message type, should be 1
-        mid  = rawb.read('u5')      # message id
-        ms   = rawb.read('u5') + 1  # message size
-        pid  = rawb.read('u8')      # page id
+        hass = rawb.read(2).u      # HAS status
+        rawb.pos += 2              # reserved
+        mt   = rawb.read(2).u      # message type, should be 1
+        mid  = rawb.read(5).u      # message id
+        ms   = rawb.read(5).u + 1  # message size
+        pid  = rawb.read(8).u      # page id
         disp_msg = self.trace.msg(0, f'E{int(satid):02d}', fg='green')
         if rawb[0:24].hex == 'af3bc3':
             self.trace.show(0, disp_msg + ' Dummy page (0xaf3bc3)', dec='dark')
@@ -339,8 +339,8 @@ class GalE6():
         if mid != self.mid_prev:
             # new message id --- reset buffer and message pointer
             disp_msg += f' -> A new page for MID={mid}'
-            self.mid_prev = mid
-            self.num_has_pages = 0
+            self.mid_prev          = mid
+            self.num_has_pages     = 0
             self.storing_has_pages = True
         # discard the duplicate HAS page
         for i in range(self.num_has_pages):
@@ -368,13 +368,6 @@ class GalE6():
 
     def decode_has_message(self):
         d = GF(g[np.array(self.hasindex[:self.ms])-1, :self.ms])
-        # if np.linalg.matrix_rank(d) != self.ms:
-        #     disp_msg = 'decode failure --- ' + \
-        #         f'rank deficient when solving inverse matrix:\n{d}\n' + \
-        #         f'the reduced matrix is:\n{d.row_reduce()}'
-        #     if self.fp_disp:
-        #         print(disp_msg, file=self.fp_disp)
-        #     return
         w = GF(self.haspage[:self.ms])
         m = np.linalg.inv(d) @ w
         has_msg = bitstring.ConstBitStream(m.tobytes())
@@ -409,16 +402,16 @@ class GalE6():
 
     def decode_has_header(self, has_msg):
         ''' returns new HAS message position '''
-        self.toh     = has_msg.read('u12')
-        self.f_mask  = has_msg.read( 'u1')
-        self.f_orbit = has_msg.read( 'u1')
-        self.f_ckful = has_msg.read( 'u1')
-        self.f_cksub = has_msg.read( 'u1')
-        self.f_cbias = has_msg.read( 'u1')
-        self.f_pbias = has_msg.read( 'u1')
+        self.toh     = has_msg.read(12).u
+        self.f_mask  = has_msg.read( 1).u
+        self.f_orbit = has_msg.read( 1).u
+        self.f_ckful = has_msg.read( 1).u
+        self.f_cksub = has_msg.read( 1).u
+        self.f_cbias = has_msg.read( 1).u
+        self.f_pbias = has_msg.read( 1).u
         has_msg.pos += 4  # reserved
-        self.maskid  = has_msg.read('u5')
-        self.iodset  = has_msg.read('u5')
+        self.maskid  = has_msg.read( 5).u
+        self.iodset  = has_msg.read( 5).u
         disp_msg = f'Time of hour TOH: {self.toh} s\n' + \
                    f'Mask            : {"on" if self.f_mask  else "off"}\n' + \
                    f'Orbit correction: {"on" if self.f_orbit else "off"}\n' + \
@@ -438,13 +431,14 @@ def icd_test():
     >>> import gale6read
     >>> gale6read.icd_test()
     '''
-    trace = libtrace.Trace()
-    gale6 = GalE6(trace, False)
+    trace    = libtrace.Trace()
+    gale6    = GalE6(trace, False)
     gale6.mt = 1
-    has_msg = bitstring.ConstBitStream('0x000cc00b20ffdfffff008100f7ffff7df55ffdfe0beee8a79a41241000a6000a01a01280400200200113fbc041febbf00080080042ff6822fea21807c193f7598035fd7f6a2f00080080016ff90287e7967f702580587fee217a10c9dfcc0e7f651df577d981603ffe4147f903ff9df7805c15ff9fdcff8008004004000a002407ff9d7c07df7ffe2b5fdcee305519011fd7fd24479f00500e8e7edc31401c43fdb02304007fe5030ff1ac40020020000200100100077fec06e00141feb02afcb2c400200200043ff5f6c022097f7c0e3f4412ff4fe1ff8825fe8ffcff0048081fe3fda097f4c04bf3812fe5ff27f0025fc6ff5ff40480edfa601c08ffe8023fcc0f00b00b80a825fdf00fff704bf71ffffdc097fb400c00812fe781a7f8025fe602203204801001a01607ffd006404012fec00e000825fc7fe500c04bff405605c08804004403012fe27feffbf0bb23dc94458ef0420afe1fa61544abda77c130444320a1104303d3f76f65fbbee7ccf5fe6bddf8bfcff479b7a5f1dc3bf3fce1243b44e90d1784ac350b2f29f2bd607b1a1e7bb207519201003807069f8feb7cf00c0d42d85b061f33d2fa7fa00fc3506a02015c4b09409bf07cbf950400641582a04fc8f40e88d2dd9f73efbdc40080400407c198588ad0e9f43d67aef9009c220420cdefbc9f90f920f0338660401a45a0b411a0841c8380c206c1882d0121243e87d02bf27d1fa2fc6184518a50dcb000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    has_msg  = bitstring.ConstBitStream('0x000cc00b20ffdfffff008100f7ffff7df55ffdfe0beee8a79a41241000a6000a01a01280400200200113fbc041febbf00080080042ff6822fea21807c193f7598035fd7f6a2f00080080016ff90287e7967f702580587fee217a10c9dfcc0e7f651df577d981603ffe4147f903ff9df7805c15ff9fdcff8008004004000a002407ff9d7c07df7ffe2b5fdcee305519011fd7fd24479f00500e8e7edc31401c43fdb02304007fe5030ff1ac40020020000200100100077fec06e00141feb02afcb2c400200200043ff5f6c022097f7c0e3f4412ff4fe1ff8825fe8ffcff0048081fe3fda097f4c04bf3812fe5ff27f0025fc6ff5ff40480edfa601c08ffe8023fcc0f00b00b80a825fdf00fff704bf71ffffdc097fb400c00812fe781a7f8025fe602203204801001a01607ffd006404012fec00e000825fc7fe500c04bff405605c08804004403012fe27feffbf0bb23dc94458ef0420afe1fa61544abda77c130444320a1104303d3f76f65fbbee7ccf5fe6bddf8bfcff479b7a5f1dc3bf3fce1243b44e90d1784ac350b2f29f2bd607b1a1e7bb207519201003807069f8feb7cf00c0d42d85b061f33d2fa7fa00fc3506a02015c4b09409bf07cbf950400641582a04fc8f40e88d2dd9f73efbdc40080400407c198588ad0e9f43d67aef9009c220420cdefbc9f90f920f0338660401a45a0b411a0841c8380c206c1882d0121243e87d02bf27d1fa2fc6184518a50dcb000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008004002001000800400200100080040020010008002aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     gale6.decode_has_message(has_msg)
     has_msg = bitstring.ConstBitStream('0x0072000b58afe4002d03000acd5826ae3000aaa5532b15581aaa572aa175b8800516e941454a28550ebd5556aa8c002001546a92c002c08020fd6ff200bbfe4fe2fec41020210207ff7f85ff8007002bfe202d000ffbc052044febaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     gale6.decode_has_message(has_msg)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
