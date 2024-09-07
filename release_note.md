@@ -1,5 +1,8 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.3 (2024-09-07)
+- Bug fix: RTCM Galileo navigation message
+
 ## ver.0.1.2 (2024-08-30)
 - Usage of bitstring's read: e.g. df.read('u10') -> df.read(10).u
 - Merge libobs.py to rtcmread.py

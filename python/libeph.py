@@ -282,16 +282,16 @@ class Eph:
             msg += f'E{r.svid:02d} WN={r.wn} IODnav={r.iodn}'
             if   mtype == 'F/NAV':
                 if r.osh:
-                    msg += self.trace.msg(0, f' unhealthy OS ({r.osh.uint})', fg='red')
+                    msg += self.trace.msg(0, f' unhealthy OS ({r.osh})', fg='red')
                 if r.osv:
                     msg += self.trace.msg(0, ' invalid OS', fg='red')
             elif mtype == 'I/NAV':
                 if r.e5h:
-                    msg += self.trace.msg(0, f' unhealthy E5b ({r.e5h.uint})', fg='red')
+                    msg += self.trace.msg(0, f' unhealthy E5b ({r.e5h})', fg='red')
                 if r.e5v:
                     msg += self.trace.msg(0, ' invalid E5b', fg='red')
                 if r.e1h:
-                    msg += self.trace.msg(0, f' unhealthy E1b ({r.e1h.uint})', fg='red')
+                    msg += self.trace.msg(0, f' unhealthy E1b ({r.e1h})', fg='red')
                 if r.e1v:
                     msg += self.trace.msg(0, ' invalid E1b', fg='red')
             else:
