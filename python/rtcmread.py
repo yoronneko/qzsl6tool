@@ -61,9 +61,14 @@ class Rtcm:
     payload = bitstring.ConstBitStream()
 
     def __init__(self, trace):
-        self.trace = trace
-        self.eph   = libeph.Eph(trace)
-        self.ssr   = libssr.Ssr(trace)
+        self.trace   = trace
+        self.eph_gps = libeph.EphGps(trace)  # GPS     ephemeris
+        self.eph_glo = libeph.EphGlo(trace)  # GLONASS ephemeris
+        self.eph_gal = libeph.EphGal(trace)  # Galileo ephemeris
+        self.eph_qzs = libeph.EphQzs(trace)  # QZSS    ephemeris
+        self.eph_bds = libeph.EphBds(trace)  # BeiDou  ephemeris
+        self.eph_irn = libeph.EphIrn(trace)  # NavIC   ephemeris
+        self.ssr     = libssr.Ssr(trace)
 
     def read(self):
         '''returns true if successfully reading an RTCM message'''
@@ -125,7 +130,20 @@ class Rtcm:
         elif 'MSM' in mtype:
             msg += self.decode_msm(satsys, mtype)
         elif 'NAV' in mtype:
-            msg += self.eph.decode_ephemerides(self.payload, satsys, mtype)
+            if satsys == 'G':
+                msg += self.eph_gps.decode_rtcm(self.payload)
+            elif satsys == 'R':
+                msg += self.eph_glo.decode_rtcm(self.payload)
+            elif satsys == 'E':
+                msg += self.eph_gal.decode_rtcm(self.payload, mtype)
+            elif satsys == 'J':
+                msg += self.eph_qzs.decode_rtcm(self.payload)
+            elif satsys == 'C':
+                msg += self.eph_bds.decode_rtcm(self.payload)
+            elif satsys == 'I':
+                msg += self.eph_irn.decode_rtcm(self.payload)
+            else:
+                raise f'Unknown satellite system: {satsys} {mtype}'
         elif mtype == 'CSSR':
             # determine CSSR before SSR, otherwise CSSR is never selected
             self.payload.pos = 0  # reset bit position
