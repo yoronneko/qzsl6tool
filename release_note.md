@@ -1,5 +1,8 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.4 (2024-09-11)
+- Added RTCM3 detailed information (rtcmread.py)
+
 ## ver.0.1.3 (2024-09-07)
 - Bug fix: RTCM Galileo navigation message
 
