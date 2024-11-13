@@ -52,7 +52,7 @@ class PocketSdr:
             elif line[0:5] == '$INAV':
                 self.signame = 'inav'
                 self.satid = int(line.split(',')[3])
-                self.raw = satid.to_bytes(1, byteorder='little') + \
+                self.raw = self.satid.to_bytes(1, byteorder='little') + \
                     bytes.fromhex(line.split(',')[4])
                 self.msg = self.trace.msg(0, f"E{self.satid:02d} I/NAV: ", fg='green') + \
                     self.trace.msg(0, line.split(',')[4], fg='yellow')
