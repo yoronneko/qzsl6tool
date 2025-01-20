@@ -3,7 +3,9 @@
 CODEDIR=../python/
 #CODEDIR=
 
-ESC=$(printf '\033')
+COL_RED='\033[31m'
+COL_GRN='\033[32m'
+COL_NOR='\033[0m'
 
 do_test() {
     local CODE=$1
@@ -17,9 +19,9 @@ do_test() {
         > ${BASENAME}.${EXT_TO}
     cmp -s ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO}
     if [[ $? -eq 0 ]]; then
-        printf "${ESC}[32mPassed.${ESC}[m\n"
+        echo -e "${COL_GRN}Passed.${COL_NOR}\n"
     else
-        printf  "${ESC}[31mFailed.${ESC}[m\n"
+        echo -e "${COL_RED}Failed.${COL_NOR}\n"
         diff --color=always ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO} |lv
         exit 1
     fi
