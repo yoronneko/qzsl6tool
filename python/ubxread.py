@@ -119,6 +119,7 @@ class UbxReceiver:
             self.payload = inav + bitstring.Bits('uint4=0')
         elif signame == 'L1CA' or signame == 'L2CM':  # GPS or QZS L1C/A
             self.payload = bitstring.BitStream(payload_perm)[:LEN_L1CA+4]
+            #print(f'{self.satname}:{self.payload[49:52].u} {self.signame} {payload_perm.hex()} {self.payload[0:8].bin}', file=sys.stderr)
         elif signame == 'L1OF' or signame == 'L2OF':  # GLO L1OF and L2OF
             self.payload = bitstring.BitStream(payload_perm)[:LEN_L1OF+3]
         elif signame == 'B1I' or signame == 'B2I':    # BDS B1I and B2I
@@ -166,7 +167,7 @@ class UbxReceiver:
         inav = bitstring.BitStream(uint=self.svid, length=8) + self.payload
         return inav.tobytes()
 
-    def decode_gnsslnav(self):
+    def decode_gpslnav(self):
         ''' returns decoded raw
             format: [SVID(8)][L1C/A RAW(300)][padding(4)]...
         '''
@@ -204,7 +205,7 @@ if __name__ == '__main__':
     group.add_argument('--sbas', action='store_true',
         help='send SBAS messages to stdout')
     group.add_argument('-l', '--lnav', action='store_true',
-        help='send GNSS LNAV messages to stdout')
+        help='send GPS or QZS LNAV messages to stdout')
     group.add_argument('-i', '--inav', action='store_true',
         help='send GAL I/NAV messages to stdout')
     parser.add_argument('-d', '--duplicate', action='store_true',
@@ -217,7 +218,7 @@ if __name__ == '__main__':
         help='specify satellite PRN (PRN=0 means all sats)')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
-    if args.qzqsm or args.l1s or args.sbas or args.inav:
+    if args.l1s or args.qzqsm or args.sbas or args.lnav or args.inav:
         fp_disp, fp_raw = None, sys.stdout
         payload_prev = bitstring.BitStream()
     if args.message:
@@ -234,7 +235,7 @@ if __name__ == '__main__':
             if fp_raw:
                 if   args.l1s  : raw = rcv.decode_qzsl1s(args)
                 elif args.qzqsm: raw = rcv.decode_qzsl1s_qzqsm(args)
-                elif args.lnav : raw = rcv.decode_gnsslnav()
+                elif args.lnav : raw = rcv.decode_gpslnav()
                 elif args.inav : raw = rcv.decode_galinav()
                 if raw:
                     fp_raw.buffer.write(raw)

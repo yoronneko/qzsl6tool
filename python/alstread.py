@@ -46,10 +46,11 @@ class AllystarReceiver:
             sync = sync[1:4] + b
             if sync == b'\xf1\xd9\x02\x10':
                 break
-        l6 = b'\x02\x10' + sys.stdin.buffer.read(266)
+        l6   = sys.stdin.buffer.read(266)
         csum = sys.stdin.buffer.read(2)
         if not l6 or not csum:
             return False
+        l6 = b'\x02\x10' + l6
         len_l6    = int.from_bytes(l6[ 2: 4], 'little')
         self.prn  = int.from_bytes(l6[ 4: 6], 'little') - 700
         freqid    = int.from_bytes(l6[ 6: 7], 'little')
@@ -65,7 +66,7 @@ class AllystarReceiver:
         csum1, csum2 = checksum(l6)
         if csum[0] != csum1 or csum[1] != csum2: self.err += "CS "
         if len_l6 != 264                       : self.err += "Payload "
-        if len_data  !=  63                    : self.err += "Data "
+        if len_data !=  63                     : self.err += "Data "
         if flag & 0x01                         : self.err += "RS "
         if flag & 0x02                         : self.err += "Week "
         if flag & 0x04                         : self.err += "TOW "

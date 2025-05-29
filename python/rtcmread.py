@@ -34,7 +34,7 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import ecef2llh
-import libeph
+import libnav
 import libssr
 import libtrace
 
@@ -62,12 +62,12 @@ class Rtcm:
 
     def __init__(self, trace):
         self.trace   = trace
-        self.eph_gps = libeph.EphGps(trace)  # GPS     ephemeris
-        self.eph_glo = libeph.EphGlo(trace)  # GLONASS ephemeris
-        self.eph_gal = libeph.EphGal(trace)  # Galileo ephemeris
-        self.eph_qzs = libeph.EphQzs(trace)  # QZSS    ephemeris
-        self.eph_bds = libeph.EphBds(trace)  # BeiDou  ephemeris
-        self.eph_irn = libeph.EphIrn(trace)  # NavIC   ephemeris
+        self.eph_gps = libnav.NavGps(trace)  # GPS     ephemeris
+        self.eph_glo = libnav.NavGlo(trace)  # GLONASS ephemeris
+        self.eph_gal = libnav.NavGal(trace)  # Galileo ephemeris
+        self.eph_qzs = libnav.NavQzs(trace)  # QZSS    ephemeris
+        self.eph_bds = libnav.NavBds(trace)  # BeiDou  ephemeris
+        self.eph_irn = libnav.NavIrn(trace)  # NavIC   ephemeris
         self.ssr     = libssr.Ssr(trace)
 
     def read(self):
@@ -130,7 +130,7 @@ class Rtcm:
         elif 'MSM' in mtype:
             msg += self.decode_msm(satsys, mtype)
         elif 'NAV' in mtype:
-            if satsys == 'G':
+            if satsys   == 'G':
                 msg += self.eph_gps.decode_rtcm(self.payload)
             elif satsys == 'R':
                 msg += self.eph_glo.decode_rtcm(self.payload)
@@ -422,9 +422,9 @@ class Rtcm:
                 cnr  = self.payload.read( bcnr).u  # CNR, DF403, DF408
             if 'MSM5' in mtype or 'MSM7' in mtype:
                 df404 = self.payload.read(15).i    # fine phaserange rate, DF404
-            psr = (df397[sat] + df398[sat] * 2**(-10) + df405 * rfpsr) * 1e-3 * libeph.C
-            phr = df406 * rfphr * 1e-3 * libeph.C
-            phr_rate = (df399[sat] + df404 * 1e-4) * 1e-3 * libeph.C
+            psr = (df397[sat] + df398[sat] * 2**(-10) + df405 * rfpsr) * 1e-3 * libnav.C
+            phr = df406 * rfphr * 1e-3 * libnav.C
+            phr_rate = (df399[sat] + df404 * 1e-4) * 1e-3 * libnav.C
             if 'MSM6' in mtype or 'MSM7':
                 t_lti = t_lti2(lti) * 1e-3  # high resolution lock time indication in second
             else:

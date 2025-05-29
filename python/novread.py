@@ -123,8 +123,8 @@ class NovReceiver:
         raw   =                payload[pos:pos+32]           ; pos += 32
         chno  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
         self.satid = prn
-        self.raw   = raw
-        msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + \
+        self.raw   = prn.to_bytes(1, 'little') + raw
+        msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + ' ' + \
               self.trace.msg(0, self.msg_name + ' ', fg='cyan') + \
               self.trace.msg(0, f'J{prn-192:02d}:{sfid} ', fg='yellow') + \
             raw.hex()

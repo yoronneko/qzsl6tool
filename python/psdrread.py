@@ -64,6 +64,15 @@ class PocketSdr:
                 self.msg = self.trace.msg(0, f"C{self.satid:02d} B2b: ", fg='green') + \
                     self.trace.msg(0, line.split(',')[4], fg='yellow')
                 break
+            elif line[0:4] == '$NAV':  # new Pocket SDR format only for E6B (it should be modified for other signals)
+                self.signame = 'e6b'
+                self.satid = int(line.split(',')[2][1:])
+                self.raw = self.satid.to_bytes(1, byteorder='little') + \
+                    bytes.fromhex(line.split(',')[7]) + \
+                    bytes(LEN_CNAV_PAGE - 61)
+                self.msg = self.trace.msg(0, f"E{self.satid:02d} E6B: ", fg='green') + \
+                    self.trace.msg(0, line.split(',')[7], fg='yellow')
+                break
         return True
 
 if __name__ == '__main__':
