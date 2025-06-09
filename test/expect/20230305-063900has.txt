@@ -47,55 +47,55 @@ Code bias       : on
 Phase bias      : off
 Mask ID         : 3
 IOD Set ID      : 2
-MASK G01 L1 C/A L2 CL L2 P
-MASK G02 L1 C/A L2 P
-MASK G03 L1 C/A L2 CL L2 P
-MASK G04 L1 C/A L2 CL L2 P
-MASK G05 L1 C/A L2 CL L2 P
-MASK G06 L1 C/A L2 CL L2 P
-MASK G07 L1 C/A L2 CL L2 P
-MASK G08 L1 C/A L2 CL L2 P
-MASK G09 L1 C/A L2 CL L2 P
-MASK G11 L1 C/A L2 CL L2 P
-MASK G12 L1 C/A L2 CL L2 P
-MASK G13 L1 C/A L2 P
-MASK G14 L1 C/A L2 CL L2 P
-MASK G15 L1 C/A L2 CL L2 P
-MASK G16 L1 C/A L2 P
-MASK G17 L1 C/A L2 CL L2 P
-MASK G18 L1 C/A L2 CL L2 P
-MASK G19 L1 C/A L2 P
-MASK G20 L1 C/A L2 P
-MASK G21 L1 C/A L2 P
-MASK G23 L1 C/A L2 CL L2 P
-MASK G24 L1 C/A L2 CL L2 P
-MASK G27 L1 C/A L2 CL L2 P
-MASK G29 L1 C/A L2 CL L2 P
-MASK G30 L1 C/A L2 CL L2 P
-MASK G31 L1 C/A L2 CL L2 P
-MASK G32 L1 C/A L2 CL L2 P
-MASK E02 E1 C E5a Q E5b Q E6 C
-MASK E03 E1 C E5a Q E5b Q E6 C
-MASK E04 E1 C E5a Q E5b Q E6 C
-MASK E05 E1 C E5a Q E5b Q E6 C
-MASK E07 E1 C E5a Q E5b Q E6 C
-MASK E08 E1 C E5a Q E5b Q E6 C
-MASK E09 E1 C E5a Q E5b Q E6 C
-MASK E10 E1 C E5a Q E5b Q E6 C
-MASK E11 E1 C E5a Q E5b Q E6 C
-MASK E12 E1 C E5a Q E5b Q E6 C
-MASK E15 E1 C E5a Q E5b Q E6 C
-MASK E19 E1 C E5a Q E5b Q E6 C
-MASK E21 E1 C E5a Q E5b Q E6 C
-MASK E24 E1 C E5a Q E5b Q E6 C
-MASK E25 E1 C E5a Q E5b Q E6 C
-MASK E26 E1 C E5a Q E5b Q E6 C
-MASK E27 E1 C E5a Q E5b Q E6 C
-MASK E30 E1 C E5a Q E5b Q E6 C
-MASK E31 E1 C E5a Q E5b Q E6 C
-MASK E33 E1 C E5a Q E5b Q E6 C
-MASK E34 E1 C E5a Q E5b Q E6 C
-MASK E36 E1 C E5a Q E5b Q E6 C
+MASK G01 L1C/A L2CL L2P
+MASK G02 L1C/A L2P
+MASK G03 L1C/A L2CL L2P
+MASK G04 L1C/A L2CL L2P
+MASK G05 L1C/A L2CL L2P
+MASK G06 L1C/A L2CL L2P
+MASK G07 L1C/A L2CL L2P
+MASK G08 L1C/A L2CL L2P
+MASK G09 L1C/A L2CL L2P
+MASK G11 L1C/A L2CL L2P
+MASK G12 L1C/A L2CL L2P
+MASK G13 L1C/A L2P
+MASK G14 L1C/A L2CL L2P
+MASK G15 L1C/A L2CL L2P
+MASK G16 L1C/A L2P
+MASK G17 L1C/A L2CL L2P
+MASK G18 L1C/A L2CL L2P
+MASK G19 L1C/A L2P
+MASK G20 L1C/A L2P
+MASK G21 L1C/A L2P
+MASK G23 L1C/A L2CL L2P
+MASK G24 L1C/A L2CL L2P
+MASK G27 L1C/A L2CL L2P
+MASK G29 L1C/A L2CL L2P
+MASK G30 L1C/A L2CL L2P
+MASK G31 L1C/A L2CL L2P
+MASK G32 L1C/A L2CL L2P
+MASK E02 E1C E5aQ E5bQ E6C
+MASK E03 E1C E5aQ E5bQ E6C
+MASK E04 E1C E5aQ E5bQ E6C
+MASK E05 E1C E5aQ E5bQ E6C
+MASK E07 E1C E5aQ E5bQ E6C
+MASK E08 E1C E5aQ E5bQ E6C
+MASK E09 E1C E5aQ E5bQ E6C
+MASK E10 E1C E5aQ E5bQ E6C
+MASK E11 E1C E5aQ E5bQ E6C
+MASK E12 E1C E5aQ E5bQ E6C
+MASK E15 E1C E5aQ E5bQ E6C
+MASK E19 E1C E5aQ E5bQ E6C
+MASK E21 E1C E5aQ E5bQ E6C
+MASK E24 E1C E5aQ E5bQ E6C
+MASK E25 E1C E5aQ E5bQ E6C
+MASK E26 E1C E5aQ E5bQ E6C
+MASK E27 E1C E5aQ E5bQ E6C
+MASK E30 E1C E5aQ E5bQ E6C
+MASK E31 E1C E5aQ E5bQ E6C
+MASK E33 E1C E5aQ E5bQ E6C
+MASK E34 E1C E5aQ E5bQ E6C
+MASK E36 E1C E5aQ E5bQ E6C
 ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
 ORBIT G01   82    1.0850  -3.2480   0.7840
 ORBIT G02   50    0.0925  -0.2720   0.3280
@@ -147,169 +147,169 @@ ORBIT E33   38   -0.1275   0.3040  -0.0880
 ORBIT E34   38   -0.0175   0.1520   0.3200
 ORBIT E36   38    0.0850   0.1840   0.0800
 CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
-CBIAS G01 L1 C/A                -3.320
-CBIAS G01 L2 CL                 -4.660
-CBIAS G01 L2 P                  -5.460
-CBIAS G02 L1 C/A                 4.540
-CBIAS G02 L2 P                   7.480
-CBIAS G03 L1 C/A                -2.780
-CBIAS G03 L2 CL                 -4.220
-CBIAS G03 L2 P                  -4.600
-CBIAS G04 L1 C/A                -0.280
-CBIAS G04 L2 CL                  0.180
-CBIAS G04 L2 P                  -0.440
-CBIAS G05 L1 C/A                 1.040
-CBIAS G05 L2 CL                  2.220
-CBIAS G05 L2 P                   1.700
-CBIAS G06 L1 C/A                -3.820
-CBIAS G06 L2 CL                 -5.820
-CBIAS G06 L2 P                  -6.300
-CBIAS G07 L1 C/A                 1.740
-CBIAS G07 L2 CL                  3.460
-CBIAS G07 L2 P                   2.860
-CBIAS G08 L1 C/A                -3.040
-CBIAS G08 L2 CL                 -4.800
-CBIAS G08 L2 P                  -4.980
-CBIAS G09 L1 C/A                -1.860
-CBIAS G09 L2 CL                 -2.480
-CBIAS G09 L2 P                  -3.060
-CBIAS G11 L1 C/A                 0.420
-CBIAS G11 L2 CL                  1.440
-CBIAS G11 L2 P                   0.680
-CBIAS G12 L1 C/A                 2.160
-CBIAS G12 L2 CL                  3.860
-CBIAS G12 L2 P                   3.540
-CBIAS G13 L1 C/A                 1.800
-CBIAS G13 L2 P                   2.960
-CBIAS G14 L1 C/A                 0.640
-CBIAS G14 L2 CL                  1.580
-CBIAS G14 L2 P                   1.060
-CBIAS G15 L1 C/A                 1.320
-CBIAS G15 L2 CL                  2.560
-CBIAS G15 L2 P                   2.180
-CBIAS G16 L1 C/A                 2.040
-CBIAS G16 L2 P                   3.360
-CBIAS G17 L1 C/A                 1.480
-CBIAS G17 L2 CL                  3.160
-CBIAS G17 L2 P                   2.420
-CBIAS G18 L1 C/A                 0.740
-CBIAS G18 L2 CL                  1.680
-CBIAS G18 L2 P                   1.220
-CBIAS G19 L1 C/A                 4.060
-CBIAS G19 L2 P                   6.660
-CBIAS G20 L1 C/A                 1.660
-CBIAS G20 L2 P                   2.720
-CBIAS G21 L1 C/A                 2.560
-CBIAS G21 L2 P                   4.220
-CBIAS G23 L1 C/A                 1.040
-CBIAS G23 L2 CL                  2.060
-CBIAS G23 L2 P                   1.700
-CBIAS G24 L1 C/A                -2.440
-CBIAS G24 L2 CL                 -3.580
-CBIAS G24 L2 P                  -4.020
-CBIAS G27 L1 C/A                -1.820
-CBIAS G27 L2 CL                 -2.580
-CBIAS G27 L2 P                  -3.000
-CBIAS G29 L1 C/A                 1.300
-CBIAS G29 L2 CL                  2.620
-CBIAS G29 L2 P                   2.140
-CBIAS G30 L1 C/A                -2.400
-CBIAS G30 L2 CL                 -3.520
-CBIAS G30 L2 P                  -3.960
-CBIAS G31 L1 C/A                 2.520
-CBIAS G31 L2 CL                  4.320
-CBIAS G31 L2 P                   4.160
-CBIAS G32 L1 C/A                -1.920
-CBIAS G32 L2 CL                 -3.020
-CBIAS G32 L2 P                  -3.160
-CBIAS E02 E1 C                   0.340
-CBIAS E02 E5a Q                  0.600
-CBIAS E02 E5b Q                  0.740
-CBIAS E02 E6 C                  -0.420
-CBIAS E03 E1 C                  -1.000
-CBIAS E03 E5a Q                 -1.800
-CBIAS E03 E5b Q                 -1.800
-CBIAS E03 E6 C                  -1.000
-CBIAS E04 E1 C                   1.000
-CBIAS E04 E5a Q                  1.800
-CBIAS E04 E5b Q                  1.780
-CBIAS E04 E6 C                   0.900
-CBIAS E05 E1 C                  -1.140
-CBIAS E05 E5a Q                 -2.040
-CBIAS E05 E5b Q                 -2.040
-CBIAS E05 E6 C                  -0.340
-CBIAS E07 E1 C                  -1.520
-CBIAS E07 E5a Q                 -2.700
-CBIAS E07 E5b Q                 -2.700
-CBIAS E07 E6 C                  -1.340
-CBIAS E08 E1 C                   1.120
-CBIAS E08 E5a Q                  2.000
-CBIAS E08 E5b Q                  2.040
-CBIAS E08 E6 C                   1.640
-CBIAS E09 E1 C                  -0.360
-CBIAS E09 E5a Q                 -0.640
-CBIAS E09 E5b Q                 -0.640
-CBIAS E09 E6 C                  -0.640
-CBIAS E10 E1 C                  -0.220
-CBIAS E10 E5a Q                 -0.400
-CBIAS E10 E5b Q                 -0.540
-CBIAS E10 E6 C                  -1.620
-CBIAS E11 E1 C                   3.860
-CBIAS E11 E5a Q                  6.920
-CBIAS E11 E5b Q                  6.820
-CBIAS E11 E6 C                   6.480
-CBIAS E12 E1 C                   2.880
-CBIAS E12 E5a Q                  5.160
-CBIAS E12 E5b Q                  4.900
-CBIAS E12 E6 C                   5.320
-CBIAS E15 E1 C                  -2.000
-CBIAS E15 E5a Q                 -3.580
-CBIAS E15 E5b Q                 -3.520
-CBIAS E15 E6 C                  -2.420
-CBIAS E19 E1 C                   1.020
-CBIAS E19 E5a Q                  1.840
-CBIAS E19 E5b Q                  1.760
-CBIAS E19 E6 C                   1.160
-CBIAS E21 E1 C                  -0.700
-CBIAS E21 E5a Q                 -1.260
-CBIAS E21 E5b Q                 -1.220
-CBIAS E21 E6 C                  -2.020
-CBIAS E24 E1 C                   0.880
-CBIAS E24 E5a Q                  1.580
-CBIAS E24 E5b Q                  1.680
-CBIAS E24 E6 C                   0.500
-CBIAS E25 E1 C                  -1.240
-CBIAS E25 E5a Q                 -2.220
-CBIAS E25 E5b Q                 -2.200
-CBIAS E25 E6 C                  -0.820
-CBIAS E26 E1 C                   1.040
-CBIAS E26 E5a Q                  1.880
-CBIAS E26 E5b Q                  1.900
-CBIAS E26 E6 C                   0.180
-CBIAS E27 E1 C                  -0.640
-CBIAS E27 E5a Q                 -1.160
-CBIAS E27 E5b Q                 -1.140
-CBIAS E27 E6 C                  -2.000
-CBIAS E30 E1 C                  -0.540
-CBIAS E30 E5a Q                 -0.940
-CBIAS E30 E5b Q                 -0.900
-CBIAS E30 E6 C                  -0.220
-CBIAS E31 E1 C                  -1.520
-CBIAS E31 E5a Q                 -2.720
-CBIAS E31 E5b Q                 -2.700
-CBIAS E31 E6 C                  -0.580
-CBIAS E33 E1 C                   0.780
-CBIAS E33 E5a Q                  1.400
-CBIAS E33 E5b Q                  1.400
-CBIAS E33 E6 C                   0.080
-CBIAS E34 E1 C                  -1.320
-CBIAS E34 E5a Q                 -2.380
-CBIAS E34 E5b Q                 -2.480
-CBIAS E34 E6 C                  -2.040
-CBIAS E36 E1 C                  -1.800
-CBIAS E36 E5a Q                 -3.220
-CBIAS E36 E5b Q                 -3.240
-CBIAS E36 E6 C                  -2.160
+CBIAS G01 L1C/A                 -3.320
+CBIAS G01 L2CL                  -4.660
+CBIAS G01 L2P                   -5.460
+CBIAS G02 L1C/A                  4.540
+CBIAS G02 L2P                    7.480
+CBIAS G03 L1C/A                 -2.780
+CBIAS G03 L2CL                  -4.220
+CBIAS G03 L2P                   -4.600
+CBIAS G04 L1C/A                 -0.280
+CBIAS G04 L2CL                   0.180
+CBIAS G04 L2P                   -0.440
+CBIAS G05 L1C/A                  1.040
+CBIAS G05 L2CL                   2.220
+CBIAS G05 L2P                    1.700
+CBIAS G06 L1C/A                 -3.820
+CBIAS G06 L2CL                  -5.820
+CBIAS G06 L2P                   -6.300
+CBIAS G07 L1C/A                  1.740
+CBIAS G07 L2CL                   3.460
+CBIAS G07 L2P                    2.860
+CBIAS G08 L1C/A                 -3.040
+CBIAS G08 L2CL                  -4.800
+CBIAS G08 L2P                   -4.980
+CBIAS G09 L1C/A                 -1.860
+CBIAS G09 L2CL                  -2.480
+CBIAS G09 L2P                   -3.060
+CBIAS G11 L1C/A                  0.420
+CBIAS G11 L2CL                   1.440
+CBIAS G11 L2P                    0.680
+CBIAS G12 L1C/A                  2.160
+CBIAS G12 L2CL                   3.860
+CBIAS G12 L2P                    3.540
+CBIAS G13 L1C/A                  1.800
+CBIAS G13 L2P                    2.960
+CBIAS G14 L1C/A                  0.640
+CBIAS G14 L2CL                   1.580
+CBIAS G14 L2P                    1.060
+CBIAS G15 L1C/A                  1.320
+CBIAS G15 L2CL                   2.560
+CBIAS G15 L2P                    2.180
+CBIAS G16 L1C/A                  2.040
+CBIAS G16 L2P                    3.360
+CBIAS G17 L1C/A                  1.480
+CBIAS G17 L2CL                   3.160
+CBIAS G17 L2P                    2.420
+CBIAS G18 L1C/A                  0.740
+CBIAS G18 L2CL                   1.680
+CBIAS G18 L2P                    1.220
+CBIAS G19 L1C/A                  4.060
+CBIAS G19 L2P                    6.660
+CBIAS G20 L1C/A                  1.660
+CBIAS G20 L2P                    2.720
+CBIAS G21 L1C/A                  2.560
+CBIAS G21 L2P                    4.220
+CBIAS G23 L1C/A                  1.040
+CBIAS G23 L2CL                   2.060
+CBIAS G23 L2P                    1.700
+CBIAS G24 L1C/A                 -2.440
+CBIAS G24 L2CL                  -3.580
+CBIAS G24 L2P                   -4.020
+CBIAS G27 L1C/A                 -1.820
+CBIAS G27 L2CL                  -2.580
+CBIAS G27 L2P                   -3.000
+CBIAS G29 L1C/A                  1.300
+CBIAS G29 L2CL                   2.620
+CBIAS G29 L2P                    2.140
+CBIAS G30 L1C/A                 -2.400
+CBIAS G30 L2CL                  -3.520
+CBIAS G30 L2P                   -3.960
+CBIAS G31 L1C/A                  2.520
+CBIAS G31 L2CL                   4.320
+CBIAS G31 L2P                    4.160
+CBIAS G32 L1C/A                 -1.920
+CBIAS G32 L2CL                  -3.020
+CBIAS G32 L2P                   -3.160
+CBIAS E02 E1C                    0.340
+CBIAS E02 E5aQ                   0.600
+CBIAS E02 E5bQ                   0.740
+CBIAS E02 E6C                   -0.420
+CBIAS E03 E1C                   -1.000
+CBIAS E03 E5aQ                  -1.800
+CBIAS E03 E5bQ                  -1.800
+CBIAS E03 E6C                   -1.000
+CBIAS E04 E1C                    1.000
+CBIAS E04 E5aQ                   1.800
+CBIAS E04 E5bQ                   1.780
+CBIAS E04 E6C                    0.900
+CBIAS E05 E1C                   -1.140
+CBIAS E05 E5aQ                  -2.040
+CBIAS E05 E5bQ                  -2.040
+CBIAS E05 E6C                   -0.340
+CBIAS E07 E1C                   -1.520
+CBIAS E07 E5aQ                  -2.700
+CBIAS E07 E5bQ                  -2.700
+CBIAS E07 E6C                   -1.340
+CBIAS E08 E1C                    1.120
+CBIAS E08 E5aQ                   2.000
+CBIAS E08 E5bQ                   2.040
+CBIAS E08 E6C                    1.640
+CBIAS E09 E1C                   -0.360
+CBIAS E09 E5aQ                  -0.640
+CBIAS E09 E5bQ                  -0.640
+CBIAS E09 E6C                   -0.640
+CBIAS E10 E1C                   -0.220
+CBIAS E10 E5aQ                  -0.400
+CBIAS E10 E5bQ                  -0.540
+CBIAS E10 E6C                   -1.620
+CBIAS E11 E1C                    3.860
+CBIAS E11 E5aQ                   6.920
+CBIAS E11 E5bQ                   6.820
+CBIAS E11 E6C                    6.480
+CBIAS E12 E1C                    2.880
+CBIAS E12 E5aQ                   5.160
+CBIAS E12 E5bQ                   4.900
+CBIAS E12 E6C                    5.320
+CBIAS E15 E1C                   -2.000
+CBIAS E15 E5aQ                  -3.580
+CBIAS E15 E5bQ                  -3.520
+CBIAS E15 E6C                   -2.420
+CBIAS E19 E1C                    1.020
+CBIAS E19 E5aQ                   1.840
+CBIAS E19 E5bQ                   1.760
+CBIAS E19 E6C                    1.160
+CBIAS E21 E1C                   -0.700
+CBIAS E21 E5aQ                  -1.260
+CBIAS E21 E5bQ                  -1.220
+CBIAS E21 E6C                   -2.020
+CBIAS E24 E1C                    0.880
+CBIAS E24 E5aQ                   1.580
+CBIAS E24 E5bQ                   1.680
+CBIAS E24 E6C                    0.500
+CBIAS E25 E1C                   -1.240
+CBIAS E25 E5aQ                  -2.220
+CBIAS E25 E5bQ                  -2.200
+CBIAS E25 E6C                   -0.820
+CBIAS E26 E1C                    1.040
+CBIAS E26 E5aQ                   1.880
+CBIAS E26 E5bQ                   1.900
+CBIAS E26 E6C                    0.180
+CBIAS E27 E1C                   -0.640
+CBIAS E27 E5aQ                  -1.160
+CBIAS E27 E5bQ                  -1.140
+CBIAS E27 E6C                   -2.000
+CBIAS E30 E1C                   -0.540
+CBIAS E30 E5aQ                  -0.940
+CBIAS E30 E5bQ                  -0.900
+CBIAS E30 E6C                   -0.220
+CBIAS E31 E1C                   -1.520
+CBIAS E31 E5aQ                  -2.720
+CBIAS E31 E5bQ                  -2.700
+CBIAS E31 E6C                   -0.580
+CBIAS E33 E1C                    0.780
+CBIAS E33 E5aQ                   1.400
+CBIAS E33 E5bQ                   1.400
+CBIAS E33 E6C                    0.080
+CBIAS E34 E1C                   -1.320
+CBIAS E34 E5aQ                  -2.380
+CBIAS E34 E5bQ                  -2.480
+CBIAS E34 E6C                   -2.040
+CBIAS E36 E1C                   -1.800
+CBIAS E36 E5aQ                  -3.220
+CBIAS E36 E5bQ                  -3.240
+CBIAS E36 E6C                   -2.160
 ------ padding bits ------
 010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
 ------
@@ -439,55 +439,55 @@ Code bias       : on
 Phase bias      : off
 Mask ID         : 3
 IOD Set ID      : 2
-MASK G01 L1 C/A L2 CL L2 P
-MASK G02 L1 C/A L2 P
-MASK G03 L1 C/A L2 CL L2 P
-MASK G04 L1 C/A L2 CL L2 P
-MASK G05 L1 C/A L2 CL L2 P
-MASK G06 L1 C/A L2 CL L2 P
-MASK G07 L1 C/A L2 CL L2 P
-MASK G08 L1 C/A L2 CL L2 P
-MASK G09 L1 C/A L2 CL L2 P
-MASK G11 L1 C/A L2 CL L2 P
-MASK G12 L1 C/A L2 CL L2 P
-MASK G13 L1 C/A L2 P
-MASK G14 L1 C/A L2 CL L2 P
-MASK G15 L1 C/A L2 CL L2 P
-MASK G16 L1 C/A L2 P
-MASK G17 L1 C/A L2 CL L2 P
-MASK G18 L1 C/A L2 CL L2 P
-MASK G19 L1 C/A L2 P
-MASK G20 L1 C/A L2 P
-MASK G21 L1 C/A L2 P
-MASK G23 L1 C/A L2 CL L2 P
-MASK G24 L1 C/A L2 CL L2 P
-MASK G27 L1 C/A L2 CL L2 P
-MASK G29 L1 C/A L2 CL L2 P
-MASK G30 L1 C/A L2 CL L2 P
-MASK G31 L1 C/A L2 CL L2 P
-MASK G32 L1 C/A L2 CL L2 P
-MASK E02 E1 C E5a Q E5b Q E6 C
-MASK E03 E1 C E5a Q E5b Q E6 C
-MASK E04 E1 C E5a Q E5b Q E6 C
-MASK E05 E1 C E5a Q E5b Q E6 C
-MASK E07 E1 C E5a Q E5b Q E6 C
-MASK E08 E1 C E5a Q E5b Q E6 C
-MASK E09 E1 C E5a Q E5b Q E6 C
-MASK E10 E1 C E5a Q E5b Q E6 C
-MASK E11 E1 C E5a Q E5b Q E6 C
-MASK E12 E1 C E5a Q E5b Q E6 C
-MASK E15 E1 C E5a Q E5b Q E6 C
-MASK E19 E1 C E5a Q E5b Q E6 C
-MASK E21 E1 C E5a Q E5b Q E6 C
-MASK E24 E1 C E5a Q E5b Q E6 C
-MASK E25 E1 C E5a Q E5b Q E6 C
-MASK E26 E1 C E5a Q E5b Q E6 C
-MASK E27 E1 C E5a Q E5b Q E6 C
-MASK E30 E1 C E5a Q E5b Q E6 C
-MASK E31 E1 C E5a Q E5b Q E6 C
-MASK E33 E1 C E5a Q E5b Q E6 C
-MASK E34 E1 C E5a Q E5b Q E6 C
-MASK E36 E1 C E5a Q E5b Q E6 C
+MASK G01 L1C/A L2CL L2P
+MASK G02 L1C/A L2P
+MASK G03 L1C/A L2CL L2P
+MASK G04 L1C/A L2CL L2P
+MASK G05 L1C/A L2CL L2P
+MASK G06 L1C/A L2CL L2P
+MASK G07 L1C/A L2CL L2P
+MASK G08 L1C/A L2CL L2P
+MASK G09 L1C/A L2CL L2P
+MASK G11 L1C/A L2CL L2P
+MASK G12 L1C/A L2CL L2P
+MASK G13 L1C/A L2P
+MASK G14 L1C/A L2CL L2P
+MASK G15 L1C/A L2CL L2P
+MASK G16 L1C/A L2P
+MASK G17 L1C/A L2CL L2P
+MASK G18 L1C/A L2CL L2P
+MASK G19 L1C/A L2P
+MASK G20 L1C/A L2P
+MASK G21 L1C/A L2P
+MASK G23 L1C/A L2CL L2P
+MASK G24 L1C/A L2CL L2P
+MASK G27 L1C/A L2CL L2P
+MASK G29 L1C/A L2CL L2P
+MASK G30 L1C/A L2CL L2P
+MASK G31 L1C/A L2CL L2P
+MASK G32 L1C/A L2CL L2P
+MASK E02 E1C E5aQ E5bQ E6C
+MASK E03 E1C E5aQ E5bQ E6C
+MASK E04 E1C E5aQ E5bQ E6C
+MASK E05 E1C E5aQ E5bQ E6C
+MASK E07 E1C E5aQ E5bQ E6C
+MASK E08 E1C E5aQ E5bQ E6C
+MASK E09 E1C E5aQ E5bQ E6C
+MASK E10 E1C E5aQ E5bQ E6C
+MASK E11 E1C E5aQ E5bQ E6C
+MASK E12 E1C E5aQ E5bQ E6C
+MASK E15 E1C E5aQ E5bQ E6C
+MASK E19 E1C E5aQ E5bQ E6C
+MASK E21 E1C E5aQ E5bQ E6C
+MASK E24 E1C E5aQ E5bQ E6C
+MASK E25 E1C E5aQ E5bQ E6C
+MASK E26 E1C E5aQ E5bQ E6C
+MASK E27 E1C E5aQ E5bQ E6C
+MASK E30 E1C E5aQ E5bQ E6C
+MASK E31 E1C E5aQ E5bQ E6C
+MASK E33 E1C E5aQ E5bQ E6C
+MASK E34 E1C E5aQ E5bQ E6C
+MASK E36 E1C E5aQ E5bQ E6C
 ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
 ORBIT G01   82    1.0850  -3.2480   0.7840
 ORBIT G02   50    0.0925  -0.2720   0.3280
@@ -539,169 +539,169 @@ ORBIT E33   38   -0.1275   0.3040  -0.0880
 ORBIT E34   38   -0.0175   0.1520   0.3200
 ORBIT E36   38    0.0850   0.1840   0.0800
 CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
-CBIAS G01 L1 C/A                -3.320
-CBIAS G01 L2 CL                 -4.660
-CBIAS G01 L2 P                  -5.460
-CBIAS G02 L1 C/A                 4.540
-CBIAS G02 L2 P                   7.480
-CBIAS G03 L1 C/A                -2.780
-CBIAS G03 L2 CL                 -4.220
-CBIAS G03 L2 P                  -4.600
-CBIAS G04 L1 C/A                -0.280
-CBIAS G04 L2 CL                  0.180
-CBIAS G04 L2 P                  -0.440
-CBIAS G05 L1 C/A                 1.040
-CBIAS G05 L2 CL                  2.220
-CBIAS G05 L2 P                   1.700
-CBIAS G06 L1 C/A                -3.820
-CBIAS G06 L2 CL                 -5.820
-CBIAS G06 L2 P                  -6.300
-CBIAS G07 L1 C/A                 1.740
-CBIAS G07 L2 CL                  3.460
-CBIAS G07 L2 P                   2.860
-CBIAS G08 L1 C/A                -3.040
-CBIAS G08 L2 CL                 -4.800
-CBIAS G08 L2 P                  -4.980
-CBIAS G09 L1 C/A                -1.860
-CBIAS G09 L2 CL                 -2.480
-CBIAS G09 L2 P                  -3.060
-CBIAS G11 L1 C/A                 0.420
-CBIAS G11 L2 CL                  1.440
-CBIAS G11 L2 P                   0.680
-CBIAS G12 L1 C/A                 2.160
-CBIAS G12 L2 CL                  3.860
-CBIAS G12 L2 P                   3.540
-CBIAS G13 L1 C/A                 1.800
-CBIAS G13 L2 P                   2.960
-CBIAS G14 L1 C/A                 0.640
-CBIAS G14 L2 CL                  1.580
-CBIAS G14 L2 P                   1.060
-CBIAS G15 L1 C/A                 1.320
-CBIAS G15 L2 CL                  2.560
-CBIAS G15 L2 P                   2.180
-CBIAS G16 L1 C/A                 2.040
-CBIAS G16 L2 P                   3.360
-CBIAS G17 L1 C/A                 1.480
-CBIAS G17 L2 CL                  3.160
-CBIAS G17 L2 P                   2.420
-CBIAS G18 L1 C/A                 0.740
-CBIAS G18 L2 CL                  1.680
-CBIAS G18 L2 P                   1.220
-CBIAS G19 L1 C/A                 4.060
-CBIAS G19 L2 P                   6.660
-CBIAS G20 L1 C/A                 1.660
-CBIAS G20 L2 P                   2.720
-CBIAS G21 L1 C/A                 2.560
-CBIAS G21 L2 P                   4.220
-CBIAS G23 L1 C/A                 1.040
-CBIAS G23 L2 CL                  2.060
-CBIAS G23 L2 P                   1.700
-CBIAS G24 L1 C/A                -2.440
-CBIAS G24 L2 CL                 -3.580
-CBIAS G24 L2 P                  -4.020
-CBIAS G27 L1 C/A                -1.820
-CBIAS G27 L2 CL                 -2.580
-CBIAS G27 L2 P                  -3.000
-CBIAS G29 L1 C/A                 1.300
-CBIAS G29 L2 CL                  2.620
-CBIAS G29 L2 P                   2.140
-CBIAS G30 L1 C/A                -2.400
-CBIAS G30 L2 CL                 -3.520
-CBIAS G30 L2 P                  -3.960
-CBIAS G31 L1 C/A                 2.520
-CBIAS G31 L2 CL                  4.320
-CBIAS G31 L2 P                   4.160
-CBIAS G32 L1 C/A                -1.920
-CBIAS G32 L2 CL                 -3.020
-CBIAS G32 L2 P                  -3.160
-CBIAS E02 E1 C                   0.340
-CBIAS E02 E5a Q                  0.600
-CBIAS E02 E5b Q                  0.740
-CBIAS E02 E6 C                  -0.420
-CBIAS E03 E1 C                  -1.000
-CBIAS E03 E5a Q                 -1.800
-CBIAS E03 E5b Q                 -1.800
-CBIAS E03 E6 C                  -1.000
-CBIAS E04 E1 C                   1.000
-CBIAS E04 E5a Q                  1.800
-CBIAS E04 E5b Q                  1.780
-CBIAS E04 E6 C                   0.900
-CBIAS E05 E1 C                  -1.140
-CBIAS E05 E5a Q                 -2.040
-CBIAS E05 E5b Q                 -2.040
-CBIAS E05 E6 C                  -0.340
-CBIAS E07 E1 C                  -1.520
-CBIAS E07 E5a Q                 -2.700
-CBIAS E07 E5b Q                 -2.700
-CBIAS E07 E6 C                  -1.340
-CBIAS E08 E1 C                   1.120
-CBIAS E08 E5a Q                  2.000
-CBIAS E08 E5b Q                  2.040
-CBIAS E08 E6 C                   1.640
-CBIAS E09 E1 C                  -0.360
-CBIAS E09 E5a Q                 -0.640
-CBIAS E09 E5b Q                 -0.640
-CBIAS E09 E6 C                  -0.640
-CBIAS E10 E1 C                  -0.220
-CBIAS E10 E5a Q                 -0.400
-CBIAS E10 E5b Q                 -0.540
-CBIAS E10 E6 C                  -1.620
-CBIAS E11 E1 C                   3.860
-CBIAS E11 E5a Q                  6.920
-CBIAS E11 E5b Q                  6.820
-CBIAS E11 E6 C                   6.480
-CBIAS E12 E1 C                   2.880
-CBIAS E12 E5a Q                  5.160
-CBIAS E12 E5b Q                  4.900
-CBIAS E12 E6 C                   5.320
-CBIAS E15 E1 C                  -2.000
-CBIAS E15 E5a Q                 -3.580
-CBIAS E15 E5b Q                 -3.520
-CBIAS E15 E6 C                  -2.420
-CBIAS E19 E1 C                   1.020
-CBIAS E19 E5a Q                  1.840
-CBIAS E19 E5b Q                  1.760
-CBIAS E19 E6 C                   1.160
-CBIAS E21 E1 C                  -0.700
-CBIAS E21 E5a Q                 -1.260
-CBIAS E21 E5b Q                 -1.220
-CBIAS E21 E6 C                  -2.020
-CBIAS E24 E1 C                   0.880
-CBIAS E24 E5a Q                  1.580
-CBIAS E24 E5b Q                  1.680
-CBIAS E24 E6 C                   0.500
-CBIAS E25 E1 C                  -1.240
-CBIAS E25 E5a Q                 -2.220
-CBIAS E25 E5b Q                 -2.200
-CBIAS E25 E6 C                  -0.820
-CBIAS E26 E1 C                   1.040
-CBIAS E26 E5a Q                  1.880
-CBIAS E26 E5b Q                  1.900
-CBIAS E26 E6 C                   0.180
-CBIAS E27 E1 C                  -0.640
-CBIAS E27 E5a Q                 -1.160
-CBIAS E27 E5b Q                 -1.140
-CBIAS E27 E6 C                  -2.000
-CBIAS E30 E1 C                  -0.540
-CBIAS E30 E5a Q                 -0.940
-CBIAS E30 E5b Q                 -0.900
-CBIAS E30 E6 C                  -0.220
-CBIAS E31 E1 C                  -1.520
-CBIAS E31 E5a Q                 -2.720
-CBIAS E31 E5b Q                 -2.700
-CBIAS E31 E6 C                  -0.580
-CBIAS E33 E1 C                   0.780
-CBIAS E33 E5a Q                  1.400
-CBIAS E33 E5b Q                  1.400
-CBIAS E33 E6 C                   0.080
-CBIAS E34 E1 C                  -1.320
-CBIAS E34 E5a Q                 -2.380
-CBIAS E34 E5b Q                 -2.480
-CBIAS E34 E6 C                  -2.040
-CBIAS E36 E1 C                  -1.800
-CBIAS E36 E5a Q                 -3.220
-CBIAS E36 E5b Q                 -3.240
-CBIAS E36 E6 C                  -2.160
+CBIAS G01 L1C/A                 -3.320
+CBIAS G01 L2CL                  -4.660
+CBIAS G01 L2P                   -5.460
+CBIAS G02 L1C/A                  4.540
+CBIAS G02 L2P                    7.480
+CBIAS G03 L1C/A                 -2.780
+CBIAS G03 L2CL                  -4.220
+CBIAS G03 L2P                   -4.600
+CBIAS G04 L1C/A                 -0.280
+CBIAS G04 L2CL                   0.180
+CBIAS G04 L2P                   -0.440
+CBIAS G05 L1C/A                  1.040
+CBIAS G05 L2CL                   2.220
+CBIAS G05 L2P                    1.700
+CBIAS G06 L1C/A                 -3.820
+CBIAS G06 L2CL                  -5.820
+CBIAS G06 L2P                   -6.300
+CBIAS G07 L1C/A                  1.740
+CBIAS G07 L2CL                   3.460
+CBIAS G07 L2P                    2.860
+CBIAS G08 L1C/A                 -3.040
+CBIAS G08 L2CL                  -4.800
+CBIAS G08 L2P                   -4.980
+CBIAS G09 L1C/A                 -1.860
+CBIAS G09 L2CL                  -2.480
+CBIAS G09 L2P                   -3.060
+CBIAS G11 L1C/A                  0.420
+CBIAS G11 L2CL                   1.440
+CBIAS G11 L2P                    0.680
+CBIAS G12 L1C/A                  2.160
+CBIAS G12 L2CL                   3.860
+CBIAS G12 L2P                    3.540
+CBIAS G13 L1C/A                  1.800
+CBIAS G13 L2P                    2.960
+CBIAS G14 L1C/A                  0.640
+CBIAS G14 L2CL                   1.580
+CBIAS G14 L2P                    1.060
+CBIAS G15 L1C/A                  1.320
+CBIAS G15 L2CL                   2.560
+CBIAS G15 L2P                    2.180
+CBIAS G16 L1C/A                  2.040
+CBIAS G16 L2P                    3.360
+CBIAS G17 L1C/A                  1.480
+CBIAS G17 L2CL                   3.160
+CBIAS G17 L2P                    2.420
+CBIAS G18 L1C/A                  0.740
+CBIAS G18 L2CL                   1.680
+CBIAS G18 L2P                    1.220
+CBIAS G19 L1C/A                  4.060
+CBIAS G19 L2P                    6.660
+CBIAS G20 L1C/A                  1.660
+CBIAS G20 L2P                    2.720
+CBIAS G21 L1C/A                  2.560
+CBIAS G21 L2P                    4.220
+CBIAS G23 L1C/A                  1.040
+CBIAS G23 L2CL                   2.060
+CBIAS G23 L2P                    1.700
+CBIAS G24 L1C/A                 -2.440
+CBIAS G24 L2CL                  -3.580
+CBIAS G24 L2P                   -4.020
+CBIAS G27 L1C/A                 -1.820
+CBIAS G27 L2CL                  -2.580
+CBIAS G27 L2P                   -3.000
+CBIAS G29 L1C/A                  1.300
+CBIAS G29 L2CL                   2.620
+CBIAS G29 L2P                    2.140
+CBIAS G30 L1C/A                 -2.400
+CBIAS G30 L2CL                  -3.520
+CBIAS G30 L2P                   -3.960
+CBIAS G31 L1C/A                  2.520
+CBIAS G31 L2CL                   4.320
+CBIAS G31 L2P                    4.160
+CBIAS G32 L1C/A                 -1.920
+CBIAS G32 L2CL                  -3.020
+CBIAS G32 L2P                   -3.160
+CBIAS E02 E1C                    0.340
+CBIAS E02 E5aQ                   0.600
+CBIAS E02 E5bQ                   0.740
+CBIAS E02 E6C                   -0.420
+CBIAS E03 E1C                   -1.000
+CBIAS E03 E5aQ                  -1.800
+CBIAS E03 E5bQ                  -1.800
+CBIAS E03 E6C                   -1.000
+CBIAS E04 E1C                    1.000
+CBIAS E04 E5aQ                   1.800
+CBIAS E04 E5bQ                   1.780
+CBIAS E04 E6C                    0.900
+CBIAS E05 E1C                   -1.140
+CBIAS E05 E5aQ                  -2.040
+CBIAS E05 E5bQ                  -2.040
+CBIAS E05 E6C                   -0.340
+CBIAS E07 E1C                   -1.520
+CBIAS E07 E5aQ                  -2.700
+CBIAS E07 E5bQ                  -2.700
+CBIAS E07 E6C                   -1.340
+CBIAS E08 E1C                    1.120
+CBIAS E08 E5aQ                   2.000
+CBIAS E08 E5bQ                   2.040
+CBIAS E08 E6C                    1.640
+CBIAS E09 E1C                   -0.360
+CBIAS E09 E5aQ                  -0.640
+CBIAS E09 E5bQ                  -0.640
+CBIAS E09 E6C                   -0.640
+CBIAS E10 E1C                   -0.220
+CBIAS E10 E5aQ                  -0.400
+CBIAS E10 E5bQ                  -0.540
+CBIAS E10 E6C                   -1.620
+CBIAS E11 E1C                    3.860
+CBIAS E11 E5aQ                   6.920
+CBIAS E11 E5bQ                   6.820
+CBIAS E11 E6C                    6.480
+CBIAS E12 E1C                    2.880
+CBIAS E12 E5aQ                   5.160
+CBIAS E12 E5bQ                   4.900
+CBIAS E12 E6C                    5.320
+CBIAS E15 E1C                   -2.000
+CBIAS E15 E5aQ                  -3.580
+CBIAS E15 E5bQ                  -3.520
+CBIAS E15 E6C                   -2.420
+CBIAS E19 E1C                    1.020
+CBIAS E19 E5aQ                   1.840
+CBIAS E19 E5bQ                   1.760
+CBIAS E19 E6C                    1.160
+CBIAS E21 E1C                   -0.700
+CBIAS E21 E5aQ                  -1.260
+CBIAS E21 E5bQ                  -1.220
+CBIAS E21 E6C                   -2.020
+CBIAS E24 E1C                    0.880
+CBIAS E24 E5aQ                   1.580
+CBIAS E24 E5bQ                   1.680
+CBIAS E24 E6C                    0.500
+CBIAS E25 E1C                   -1.240
+CBIAS E25 E5aQ                  -2.220
+CBIAS E25 E5bQ                  -2.200
+CBIAS E25 E6C                   -0.820
+CBIAS E26 E1C                    1.040
+CBIAS E26 E5aQ                   1.880
+CBIAS E26 E5bQ                   1.900
+CBIAS E26 E6C                    0.180
+CBIAS E27 E1C                   -0.640
+CBIAS E27 E5aQ                  -1.160
+CBIAS E27 E5bQ                  -1.140
+CBIAS E27 E6C                   -2.000
+CBIAS E30 E1C                   -0.540
+CBIAS E30 E5aQ                  -0.940
+CBIAS E30 E5bQ                  -0.900
+CBIAS E30 E6C                   -0.220
+CBIAS E31 E1C                   -1.520
+CBIAS E31 E5aQ                  -2.720
+CBIAS E31 E5bQ                  -2.700
+CBIAS E31 E6C                   -0.580
+CBIAS E33 E1C                    0.780
+CBIAS E33 E5aQ                   1.400
+CBIAS E33 E5bQ                   1.400
+CBIAS E33 E6C                    0.080
+CBIAS E34 E1C                   -1.320
+CBIAS E34 E5aQ                  -2.380
+CBIAS E34 E5bQ                  -2.480
+CBIAS E34 E6C                   -2.040
+CBIAS E36 E1C                   -1.800
+CBIAS E36 E5aQ                  -3.220
+CBIAS E36 E5bQ                  -3.240
+CBIAS E36 E6C                   -2.160
 ------ padding bits ------
 010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
 ------
@@ -831,55 +831,55 @@ Code bias       : on
 Phase bias      : off
 Mask ID         : 3
 IOD Set ID      : 2
-MASK G01 L1 C/A L2 CL L2 P
-MASK G02 L1 C/A L2 P
-MASK G03 L1 C/A L2 CL L2 P
-MASK G04 L1 C/A L2 CL L2 P
-MASK G05 L1 C/A L2 CL L2 P
-MASK G06 L1 C/A L2 CL L2 P
-MASK G07 L1 C/A L2 CL L2 P
-MASK G08 L1 C/A L2 CL L2 P
-MASK G09 L1 C/A L2 CL L2 P
-MASK G11 L1 C/A L2 CL L2 P
-MASK G12 L1 C/A L2 CL L2 P
-MASK G13 L1 C/A L2 P
-MASK G14 L1 C/A L2 CL L2 P
-MASK G15 L1 C/A L2 CL L2 P
-MASK G16 L1 C/A L2 P
-MASK G17 L1 C/A L2 CL L2 P
-MASK G18 L1 C/A L2 CL L2 P
-MASK G19 L1 C/A L2 P
-MASK G20 L1 C/A L2 P
-MASK G21 L1 C/A L2 P
-MASK G23 L1 C/A L2 CL L2 P
-MASK G24 L1 C/A L2 CL L2 P
-MASK G27 L1 C/A L2 CL L2 P
-MASK G29 L1 C/A L2 CL L2 P
-MASK G30 L1 C/A L2 CL L2 P
-MASK G31 L1 C/A L2 CL L2 P
-MASK G32 L1 C/A L2 CL L2 P
-MASK E02 E1 C E5a Q E5b Q E6 C
-MASK E03 E1 C E5a Q E5b Q E6 C
-MASK E04 E1 C E5a Q E5b Q E6 C
-MASK E05 E1 C E5a Q E5b Q E6 C
-MASK E07 E1 C E5a Q E5b Q E6 C
-MASK E08 E1 C E5a Q E5b Q E6 C
-MASK E09 E1 C E5a Q E5b Q E6 C
-MASK E10 E1 C E5a Q E5b Q E6 C
-MASK E11 E1 C E5a Q E5b Q E6 C
-MASK E12 E1 C E5a Q E5b Q E6 C
-MASK E15 E1 C E5a Q E5b Q E6 C
-MASK E19 E1 C E5a Q E5b Q E6 C
-MASK E21 E1 C E5a Q E5b Q E6 C
-MASK E24 E1 C E5a Q E5b Q E6 C
-MASK E25 E1 C E5a Q E5b Q E6 C
-MASK E26 E1 C E5a Q E5b Q E6 C
-MASK E27 E1 C E5a Q E5b Q E6 C
-MASK E30 E1 C E5a Q E5b Q E6 C
-MASK E31 E1 C E5a Q E5b Q E6 C
-MASK E33 E1 C E5a Q E5b Q E6 C
-MASK E34 E1 C E5a Q E5b Q E6 C
-MASK E36 E1 C E5a Q E5b Q E6 C
+MASK G01 L1C/A L2CL L2P
+MASK G02 L1C/A L2P
+MASK G03 L1C/A L2CL L2P
+MASK G04 L1C/A L2CL L2P
+MASK G05 L1C/A L2CL L2P
+MASK G06 L1C/A L2CL L2P
+MASK G07 L1C/A L2CL L2P
+MASK G08 L1C/A L2CL L2P
+MASK G09 L1C/A L2CL L2P
+MASK G11 L1C/A L2CL L2P
+MASK G12 L1C/A L2CL L2P
+MASK G13 L1C/A L2P
+MASK G14 L1C/A L2CL L2P
+MASK G15 L1C/A L2CL L2P
+MASK G16 L1C/A L2P
+MASK G17 L1C/A L2CL L2P
+MASK G18 L1C/A L2CL L2P
+MASK G19 L1C/A L2P
+MASK G20 L1C/A L2P
+MASK G21 L1C/A L2P
+MASK G23 L1C/A L2CL L2P
+MASK G24 L1C/A L2CL L2P
+MASK G27 L1C/A L2CL L2P
+MASK G29 L1C/A L2CL L2P
+MASK G30 L1C/A L2CL L2P
+MASK G31 L1C/A L2CL L2P
+MASK G32 L1C/A L2CL L2P
+MASK E02 E1C E5aQ E5bQ E6C
+MASK E03 E1C E5aQ E5bQ E6C
+MASK E04 E1C E5aQ E5bQ E6C
+MASK E05 E1C E5aQ E5bQ E6C
+MASK E07 E1C E5aQ E5bQ E6C
+MASK E08 E1C E5aQ E5bQ E6C
+MASK E09 E1C E5aQ E5bQ E6C
+MASK E10 E1C E5aQ E5bQ E6C
+MASK E11 E1C E5aQ E5bQ E6C
+MASK E12 E1C E5aQ E5bQ E6C
+MASK E15 E1C E5aQ E5bQ E6C
+MASK E19 E1C E5aQ E5bQ E6C
+MASK E21 E1C E5aQ E5bQ E6C
+MASK E24 E1C E5aQ E5bQ E6C
+MASK E25 E1C E5aQ E5bQ E6C
+MASK E26 E1C E5aQ E5bQ E6C
+MASK E27 E1C E5aQ E5bQ E6C
+MASK E30 E1C E5aQ E5bQ E6C
+MASK E31 E1C E5aQ E5bQ E6C
+MASK E33 E1C E5aQ E5bQ E6C
+MASK E34 E1C E5aQ E5bQ E6C
+MASK E36 E1C E5aQ E5bQ E6C
 ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
 ORBIT G01   82    1.0850  -3.2480   0.7840
 ORBIT G02   50    0.0925  -0.2720   0.3280
@@ -931,169 +931,169 @@ ORBIT E33   38   -0.1275   0.3040  -0.0880
 ORBIT E34   38   -0.0175   0.1520   0.3200
 ORBIT E36   38    0.0850   0.1840   0.0800
 CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
-CBIAS G01 L1 C/A                -3.320
-CBIAS G01 L2 CL                 -4.660
-CBIAS G01 L2 P                  -5.460
-CBIAS G02 L1 C/A                 4.540
-CBIAS G02 L2 P                   7.480
-CBIAS G03 L1 C/A                -2.780
-CBIAS G03 L2 CL                 -4.220
-CBIAS G03 L2 P                  -4.600
-CBIAS G04 L1 C/A                -0.280
-CBIAS G04 L2 CL                  0.180
-CBIAS G04 L2 P                  -0.440
-CBIAS G05 L1 C/A                 1.040
-CBIAS G05 L2 CL                  2.220
-CBIAS G05 L2 P                   1.700
-CBIAS G06 L1 C/A                -3.820
-CBIAS G06 L2 CL                 -5.820
-CBIAS G06 L2 P                  -6.300
-CBIAS G07 L1 C/A                 1.740
-CBIAS G07 L2 CL                  3.460
-CBIAS G07 L2 P                   2.860
-CBIAS G08 L1 C/A                -3.040
-CBIAS G08 L2 CL                 -4.800
-CBIAS G08 L2 P                  -4.980
-CBIAS G09 L1 C/A                -1.860
-CBIAS G09 L2 CL                 -2.480
-CBIAS G09 L2 P                  -3.060
-CBIAS G11 L1 C/A                 0.420
-CBIAS G11 L2 CL                  1.440
-CBIAS G11 L2 P                   0.680
-CBIAS G12 L1 C/A                 2.160
-CBIAS G12 L2 CL                  3.860
-CBIAS G12 L2 P                   3.540
-CBIAS G13 L1 C/A                 1.800
-CBIAS G13 L2 P                   2.960
-CBIAS G14 L1 C/A                 0.640
-CBIAS G14 L2 CL                  1.580
-CBIAS G14 L2 P                   1.060
-CBIAS G15 L1 C/A                 1.320
-CBIAS G15 L2 CL                  2.560
-CBIAS G15 L2 P                   2.180
-CBIAS G16 L1 C/A                 2.040
-CBIAS G16 L2 P                   3.360
-CBIAS G17 L1 C/A                 1.480
-CBIAS G17 L2 CL                  3.160
-CBIAS G17 L2 P                   2.420
-CBIAS G18 L1 C/A                 0.740
-CBIAS G18 L2 CL                  1.680
-CBIAS G18 L2 P                   1.220
-CBIAS G19 L1 C/A                 4.060
-CBIAS G19 L2 P                   6.660
-CBIAS G20 L1 C/A                 1.660
-CBIAS G20 L2 P                   2.720
-CBIAS G21 L1 C/A                 2.560
-CBIAS G21 L2 P                   4.220
-CBIAS G23 L1 C/A                 1.040
-CBIAS G23 L2 CL                  2.060
-CBIAS G23 L2 P                   1.700
-CBIAS G24 L1 C/A                -2.440
-CBIAS G24 L2 CL                 -3.580
-CBIAS G24 L2 P                  -4.020
-CBIAS G27 L1 C/A                -1.820
-CBIAS G27 L2 CL                 -2.580
-CBIAS G27 L2 P                  -3.000
-CBIAS G29 L1 C/A                 1.300
-CBIAS G29 L2 CL                  2.620
-CBIAS G29 L2 P                   2.140
-CBIAS G30 L1 C/A                -2.400
-CBIAS G30 L2 CL                 -3.520
-CBIAS G30 L2 P                  -3.960
-CBIAS G31 L1 C/A                 2.520
-CBIAS G31 L2 CL                  4.320
-CBIAS G31 L2 P                   4.160
-CBIAS G32 L1 C/A                -1.920
-CBIAS G32 L2 CL                 -3.020
-CBIAS G32 L2 P                  -3.160
-CBIAS E02 E1 C                   0.340
-CBIAS E02 E5a Q                  0.600
-CBIAS E02 E5b Q                  0.740
-CBIAS E02 E6 C                  -0.420
-CBIAS E03 E1 C                  -1.000
-CBIAS E03 E5a Q                 -1.800
-CBIAS E03 E5b Q                 -1.800
-CBIAS E03 E6 C                  -1.000
-CBIAS E04 E1 C                   1.000
-CBIAS E04 E5a Q                  1.800
-CBIAS E04 E5b Q                  1.780
-CBIAS E04 E6 C                   0.900
-CBIAS E05 E1 C                  -1.140
-CBIAS E05 E5a Q                 -2.040
-CBIAS E05 E5b Q                 -2.040
-CBIAS E05 E6 C                  -0.340
-CBIAS E07 E1 C                  -1.520
-CBIAS E07 E5a Q                 -2.700
-CBIAS E07 E5b Q                 -2.700
-CBIAS E07 E6 C                  -1.340
-CBIAS E08 E1 C                   1.120
-CBIAS E08 E5a Q                  2.000
-CBIAS E08 E5b Q                  2.040
-CBIAS E08 E6 C                   1.640
-CBIAS E09 E1 C                  -0.360
-CBIAS E09 E5a Q                 -0.640
-CBIAS E09 E5b Q                 -0.640
-CBIAS E09 E6 C                  -0.640
-CBIAS E10 E1 C                  -0.220
-CBIAS E10 E5a Q                 -0.400
-CBIAS E10 E5b Q                 -0.540
-CBIAS E10 E6 C                  -1.620
-CBIAS E11 E1 C                   3.860
-CBIAS E11 E5a Q                  6.920
-CBIAS E11 E5b Q                  6.820
-CBIAS E11 E6 C                   6.480
-CBIAS E12 E1 C                   2.880
-CBIAS E12 E5a Q                  5.160
-CBIAS E12 E5b Q                  4.900
-CBIAS E12 E6 C                   5.320
-CBIAS E15 E1 C                  -2.000
-CBIAS E15 E5a Q                 -3.580
-CBIAS E15 E5b Q                 -3.520
-CBIAS E15 E6 C                  -2.420
-CBIAS E19 E1 C                   1.020
-CBIAS E19 E5a Q                  1.840
-CBIAS E19 E5b Q                  1.760
-CBIAS E19 E6 C                   1.160
-CBIAS E21 E1 C                  -0.700
-CBIAS E21 E5a Q                 -1.260
-CBIAS E21 E5b Q                 -1.220
-CBIAS E21 E6 C                  -2.020
-CBIAS E24 E1 C                   0.880
-CBIAS E24 E5a Q                  1.580
-CBIAS E24 E5b Q                  1.680
-CBIAS E24 E6 C                   0.500
-CBIAS E25 E1 C                  -1.240
-CBIAS E25 E5a Q                 -2.220
-CBIAS E25 E5b Q                 -2.200
-CBIAS E25 E6 C                  -0.820
-CBIAS E26 E1 C                   1.040
-CBIAS E26 E5a Q                  1.880
-CBIAS E26 E5b Q                  1.900
-CBIAS E26 E6 C                   0.180
-CBIAS E27 E1 C                  -0.640
-CBIAS E27 E5a Q                 -1.160
-CBIAS E27 E5b Q                 -1.140
-CBIAS E27 E6 C                  -2.000
-CBIAS E30 E1 C                  -0.540
-CBIAS E30 E5a Q                 -0.940
-CBIAS E30 E5b Q                 -0.900
-CBIAS E30 E6 C                  -0.220
-CBIAS E31 E1 C                  -1.520
-CBIAS E31 E5a Q                 -2.720
-CBIAS E31 E5b Q                 -2.700
-CBIAS E31 E6 C                  -0.580
-CBIAS E33 E1 C                   0.780
-CBIAS E33 E5a Q                  1.400
-CBIAS E33 E5b Q                  1.400
-CBIAS E33 E6 C                   0.080
-CBIAS E34 E1 C                  -1.320
-CBIAS E34 E5a Q                 -2.380
-CBIAS E34 E5b Q                 -2.480
-CBIAS E34 E6 C                  -2.040
-CBIAS E36 E1 C                  -1.800
-CBIAS E36 E5a Q                 -3.220
-CBIAS E36 E5b Q                 -3.240
-CBIAS E36 E6 C                  -2.160
+CBIAS G01 L1C/A                 -3.320
+CBIAS G01 L2CL                  -4.660
+CBIAS G01 L2P                   -5.460
+CBIAS G02 L1C/A                  4.540
+CBIAS G02 L2P                    7.480
+CBIAS G03 L1C/A                 -2.780
+CBIAS G03 L2CL                  -4.220
+CBIAS G03 L2P                   -4.600
+CBIAS G04 L1C/A                 -0.280
+CBIAS G04 L2CL                   0.180
+CBIAS G04 L2P                   -0.440
+CBIAS G05 L1C/A                  1.040
+CBIAS G05 L2CL                   2.220
+CBIAS G05 L2P                    1.700
+CBIAS G06 L1C/A                 -3.820
+CBIAS G06 L2CL                  -5.820
+CBIAS G06 L2P                   -6.300
+CBIAS G07 L1C/A                  1.740
+CBIAS G07 L2CL                   3.460
+CBIAS G07 L2P                    2.860
+CBIAS G08 L1C/A                 -3.040
+CBIAS G08 L2CL                  -4.800
+CBIAS G08 L2P                   -4.980
+CBIAS G09 L1C/A                 -1.860
+CBIAS G09 L2CL                  -2.480
+CBIAS G09 L2P                   -3.060
+CBIAS G11 L1C/A                  0.420
+CBIAS G11 L2CL                   1.440
+CBIAS G11 L2P                    0.680
+CBIAS G12 L1C/A                  2.160
+CBIAS G12 L2CL                   3.860
+CBIAS G12 L2P                    3.540
+CBIAS G13 L1C/A                  1.800
+CBIAS G13 L2P                    2.960
+CBIAS G14 L1C/A                  0.640
+CBIAS G14 L2CL                   1.580
+CBIAS G14 L2P                    1.060
+CBIAS G15 L1C/A                  1.320
+CBIAS G15 L2CL                   2.560
+CBIAS G15 L2P                    2.180
+CBIAS G16 L1C/A                  2.040
+CBIAS G16 L2P                    3.360
+CBIAS G17 L1C/A                  1.480
+CBIAS G17 L2CL                   3.160
+CBIAS G17 L2P                    2.420
+CBIAS G18 L1C/A                  0.740
+CBIAS G18 L2CL                   1.680
+CBIAS G18 L2P                    1.220
+CBIAS G19 L1C/A                  4.060
+CBIAS G19 L2P                    6.660
+CBIAS G20 L1C/A                  1.660
+CBIAS G20 L2P                    2.720
+CBIAS G21 L1C/A                  2.560
+CBIAS G21 L2P                    4.220
+CBIAS G23 L1C/A                  1.040
+CBIAS G23 L2CL                   2.060
+CBIAS G23 L2P                    1.700
+CBIAS G24 L1C/A                 -2.440
+CBIAS G24 L2CL                  -3.580
+CBIAS G24 L2P                   -4.020
+CBIAS G27 L1C/A                 -1.820
+CBIAS G27 L2CL                  -2.580
+CBIAS G27 L2P                   -3.000
+CBIAS G29 L1C/A                  1.300
+CBIAS G29 L2CL                   2.620
+CBIAS G29 L2P                    2.140
+CBIAS G30 L1C/A                 -2.400
+CBIAS G30 L2CL                  -3.520
+CBIAS G30 L2P                   -3.960
+CBIAS G31 L1C/A                  2.520
+CBIAS G31 L2CL                   4.320
+CBIAS G31 L2P                    4.160
+CBIAS G32 L1C/A                 -1.920
+CBIAS G32 L2CL                  -3.020
+CBIAS G32 L2P                   -3.160
+CBIAS E02 E1C                    0.340
+CBIAS E02 E5aQ                   0.600
+CBIAS E02 E5bQ                   0.740
+CBIAS E02 E6C                   -0.420
+CBIAS E03 E1C                   -1.000
+CBIAS E03 E5aQ                  -1.800
+CBIAS E03 E5bQ                  -1.800
+CBIAS E03 E6C                   -1.000
+CBIAS E04 E1C                    1.000
+CBIAS E04 E5aQ                   1.800
+CBIAS E04 E5bQ                   1.780
+CBIAS E04 E6C                    0.900
+CBIAS E05 E1C                   -1.140
+CBIAS E05 E5aQ                  -2.040
+CBIAS E05 E5bQ                  -2.040
+CBIAS E05 E6C                   -0.340
+CBIAS E07 E1C                   -1.520
+CBIAS E07 E5aQ                  -2.700
+CBIAS E07 E5bQ                  -2.700
+CBIAS E07 E6C                   -1.340
+CBIAS E08 E1C                    1.120
+CBIAS E08 E5aQ                   2.000
+CBIAS E08 E5bQ                   2.040
+CBIAS E08 E6C                    1.640
+CBIAS E09 E1C                   -0.360
+CBIAS E09 E5aQ                  -0.640
+CBIAS E09 E5bQ                  -0.640
+CBIAS E09 E6C                   -0.640
+CBIAS E10 E1C                   -0.220
+CBIAS E10 E5aQ                  -0.400
+CBIAS E10 E5bQ                  -0.540
+CBIAS E10 E6C                   -1.620
+CBIAS E11 E1C                    3.860
+CBIAS E11 E5aQ                   6.920
+CBIAS E11 E5bQ                   6.820
+CBIAS E11 E6C                    6.480
+CBIAS E12 E1C                    2.880
+CBIAS E12 E5aQ                   5.160
+CBIAS E12 E5bQ                   4.900
+CBIAS E12 E6C                    5.320
+CBIAS E15 E1C                   -2.000
+CBIAS E15 E5aQ                  -3.580
+CBIAS E15 E5bQ                  -3.520
+CBIAS E15 E6C                   -2.420
+CBIAS E19 E1C                    1.020
+CBIAS E19 E5aQ                   1.840
+CBIAS E19 E5bQ                   1.760
+CBIAS E19 E6C                    1.160
+CBIAS E21 E1C                   -0.700
+CBIAS E21 E5aQ                  -1.260
+CBIAS E21 E5bQ                  -1.220
+CBIAS E21 E6C                   -2.020
+CBIAS E24 E1C                    0.880
+CBIAS E24 E5aQ                   1.580
+CBIAS E24 E5bQ                   1.680
+CBIAS E24 E6C                    0.500
+CBIAS E25 E1C                   -1.240
+CBIAS E25 E5aQ                  -2.220
+CBIAS E25 E5bQ                  -2.200
+CBIAS E25 E6C                   -0.820
+CBIAS E26 E1C                    1.040
+CBIAS E26 E5aQ                   1.880
+CBIAS E26 E5bQ                   1.900
+CBIAS E26 E6C                    0.180
+CBIAS E27 E1C                   -0.640
+CBIAS E27 E5aQ                  -1.160
+CBIAS E27 E5bQ                  -1.140
+CBIAS E27 E6C                   -2.000
+CBIAS E30 E1C                   -0.540
+CBIAS E30 E5aQ                  -0.940
+CBIAS E30 E5bQ                  -0.900
+CBIAS E30 E6C                   -0.220
+CBIAS E31 E1C                   -1.520
+CBIAS E31 E5aQ                  -2.720
+CBIAS E31 E5bQ                  -2.700
+CBIAS E31 E6C                   -0.580
+CBIAS E33 E1C                    0.780
+CBIAS E33 E5aQ                   1.400
+CBIAS E33 E5bQ                   1.400
+CBIAS E33 E6C                    0.080
+CBIAS E34 E1C                   -1.320
+CBIAS E34 E5aQ                  -2.380
+CBIAS E34 E5bQ                  -2.480
+CBIAS E34 E6C                   -2.040
+CBIAS E36 E1C                   -1.800
+CBIAS E36 E5aQ                  -3.220
+CBIAS E36 E5bQ                  -3.240
+CBIAS E36 E6C                   -2.160
 ------ padding bits ------
 010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
 ------
@@ -1223,55 +1223,55 @@ Code bias       : on
 Phase bias      : off
 Mask ID         : 3
 IOD Set ID      : 2
-MASK G01 L1 C/A L2 CL L2 P
-MASK G02 L1 C/A L2 P
-MASK G03 L1 C/A L2 CL L2 P
-MASK G04 L1 C/A L2 CL L2 P
-MASK G05 L1 C/A L2 CL L2 P
-MASK G06 L1 C/A L2 CL L2 P
-MASK G07 L1 C/A L2 CL L2 P
-MASK G08 L1 C/A L2 CL L2 P
-MASK G09 L1 C/A L2 CL L2 P
-MASK G11 L1 C/A L2 CL L2 P
-MASK G12 L1 C/A L2 CL L2 P
-MASK G13 L1 C/A L2 P
-MASK G14 L1 C/A L2 CL L2 P
-MASK G15 L1 C/A L2 CL L2 P
-MASK G16 L1 C/A L2 P
-MASK G17 L1 C/A L2 CL L2 P
-MASK G18 L1 C/A L2 CL L2 P
-MASK G19 L1 C/A L2 P
-MASK G20 L1 C/A L2 P
-MASK G21 L1 C/A L2 P
-MASK G23 L1 C/A L2 CL L2 P
-MASK G24 L1 C/A L2 CL L2 P
-MASK G27 L1 C/A L2 CL L2 P
-MASK G29 L1 C/A L2 CL L2 P
-MASK G30 L1 C/A L2 CL L2 P
-MASK G31 L1 C/A L2 CL L2 P
-MASK G32 L1 C/A L2 CL L2 P
-MASK E02 E1 C E5a Q E5b Q E6 C
-MASK E03 E1 C E5a Q E5b Q E6 C
-MASK E04 E1 C E5a Q E5b Q E6 C
-MASK E05 E1 C E5a Q E5b Q E6 C
-MASK E07 E1 C E5a Q E5b Q E6 C
-MASK E08 E1 C E5a Q E5b Q E6 C
-MASK E09 E1 C E5a Q E5b Q E6 C
-MASK E10 E1 C E5a Q E5b Q E6 C
-MASK E11 E1 C E5a Q E5b Q E6 C
-MASK E12 E1 C E5a Q E5b Q E6 C
-MASK E15 E1 C E5a Q E5b Q E6 C
-MASK E19 E1 C E5a Q E5b Q E6 C
-MASK E21 E1 C E5a Q E5b Q E6 C
-MASK E24 E1 C E5a Q E5b Q E6 C
-MASK E25 E1 C E5a Q E5b Q E6 C
-MASK E26 E1 C E5a Q E5b Q E6 C
-MASK E27 E1 C E5a Q E5b Q E6 C
-MASK E30 E1 C E5a Q E5b Q E6 C
-MASK E31 E1 C E5a Q E5b Q E6 C
-MASK E33 E1 C E5a Q E5b Q E6 C
-MASK E34 E1 C E5a Q E5b Q E6 C
-MASK E36 E1 C E5a Q E5b Q E6 C
+MASK G01 L1C/A L2CL L2P
+MASK G02 L1C/A L2P
+MASK G03 L1C/A L2CL L2P
+MASK G04 L1C/A L2CL L2P
+MASK G05 L1C/A L2CL L2P
+MASK G06 L1C/A L2CL L2P
+MASK G07 L1C/A L2CL L2P
+MASK G08 L1C/A L2CL L2P
+MASK G09 L1C/A L2CL L2P
+MASK G11 L1C/A L2CL L2P
+MASK G12 L1C/A L2CL L2P
+MASK G13 L1C/A L2P
+MASK G14 L1C/A L2CL L2P
+MASK G15 L1C/A L2CL L2P
+MASK G16 L1C/A L2P
+MASK G17 L1C/A L2CL L2P
+MASK G18 L1C/A L2CL L2P
+MASK G19 L1C/A L2P
+MASK G20 L1C/A L2P
+MASK G21 L1C/A L2P
+MASK G23 L1C/A L2CL L2P
+MASK G24 L1C/A L2CL L2P
+MASK G27 L1C/A L2CL L2P
+MASK G29 L1C/A L2CL L2P
+MASK G30 L1C/A L2CL L2P
+MASK G31 L1C/A L2CL L2P
+MASK G32 L1C/A L2CL L2P
+MASK E02 E1C E5aQ E5bQ E6C
+MASK E03 E1C E5aQ E5bQ E6C
+MASK E04 E1C E5aQ E5bQ E6C
+MASK E05 E1C E5aQ E5bQ E6C
+MASK E07 E1C E5aQ E5bQ E6C
+MASK E08 E1C E5aQ E5bQ E6C
+MASK E09 E1C E5aQ E5bQ E6C
+MASK E10 E1C E5aQ E5bQ E6C
+MASK E11 E1C E5aQ E5bQ E6C
+MASK E12 E1C E5aQ E5bQ E6C
+MASK E15 E1C E5aQ E5bQ E6C
+MASK E19 E1C E5aQ E5bQ E6C
+MASK E21 E1C E5aQ E5bQ E6C
+MASK E24 E1C E5aQ E5bQ E6C
+MASK E25 E1C E5aQ E5bQ E6C
+MASK E26 E1C E5aQ E5bQ E6C
+MASK E27 E1C E5aQ E5bQ E6C
+MASK E30 E1C E5aQ E5bQ E6C
+MASK E31 E1C E5aQ E5bQ E6C
+MASK E33 E1C E5aQ E5bQ E6C
+MASK E34 E1C E5aQ E5bQ E6C
+MASK E36 E1C E5aQ E5bQ E6C
 ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
 ORBIT G01   82    1.0850  -3.2480   0.7840
 ORBIT G02   50    0.0925  -0.2720   0.3280
@@ -1323,169 +1323,169 @@ ORBIT E33   38   -0.1275   0.3040  -0.0880
 ORBIT E34   38   -0.0175   0.1520   0.3200
 ORBIT E36   38    0.0850   0.1840   0.0800
 CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
-CBIAS G01 L1 C/A                -3.320
-CBIAS G01 L2 CL                 -4.660
-CBIAS G01 L2 P                  -5.460
-CBIAS G02 L1 C/A                 4.540
-CBIAS G02 L2 P                   7.480
-CBIAS G03 L1 C/A                -2.780
-CBIAS G03 L2 CL                 -4.220
-CBIAS G03 L2 P                  -4.600
-CBIAS G04 L1 C/A                -0.280
-CBIAS G04 L2 CL                  0.180
-CBIAS G04 L2 P                  -0.440
-CBIAS G05 L1 C/A                 1.040
-CBIAS G05 L2 CL                  2.220
-CBIAS G05 L2 P                   1.700
-CBIAS G06 L1 C/A                -3.820
-CBIAS G06 L2 CL                 -5.820
-CBIAS G06 L2 P                  -6.300
-CBIAS G07 L1 C/A                 1.740
-CBIAS G07 L2 CL                  3.460
-CBIAS G07 L2 P                   2.860
-CBIAS G08 L1 C/A                -3.040
-CBIAS G08 L2 CL                 -4.800
-CBIAS G08 L2 P                  -4.980
-CBIAS G09 L1 C/A                -1.860
-CBIAS G09 L2 CL                 -2.480
-CBIAS G09 L2 P                  -3.060
-CBIAS G11 L1 C/A                 0.420
-CBIAS G11 L2 CL                  1.440
-CBIAS G11 L2 P                   0.680
-CBIAS G12 L1 C/A                 2.160
-CBIAS G12 L2 CL                  3.860
-CBIAS G12 L2 P                   3.540
-CBIAS G13 L1 C/A                 1.800
-CBIAS G13 L2 P                   2.960
-CBIAS G14 L1 C/A                 0.640
-CBIAS G14 L2 CL                  1.580
-CBIAS G14 L2 P                   1.060
-CBIAS G15 L1 C/A                 1.320
-CBIAS G15 L2 CL                  2.560
-CBIAS G15 L2 P                   2.180
-CBIAS G16 L1 C/A                 2.040
-CBIAS G16 L2 P                   3.360
-CBIAS G17 L1 C/A                 1.480
-CBIAS G17 L2 CL                  3.160
-CBIAS G17 L2 P                   2.420
-CBIAS G18 L1 C/A                 0.740
-CBIAS G18 L2 CL                  1.680
-CBIAS G18 L2 P                   1.220
-CBIAS G19 L1 C/A                 4.060
-CBIAS G19 L2 P                   6.660
-CBIAS G20 L1 C/A                 1.660
-CBIAS G20 L2 P                   2.720
-CBIAS G21 L1 C/A                 2.560
-CBIAS G21 L2 P                   4.220
-CBIAS G23 L1 C/A                 1.040
-CBIAS G23 L2 CL                  2.060
-CBIAS G23 L2 P                   1.700
-CBIAS G24 L1 C/A                -2.440
-CBIAS G24 L2 CL                 -3.580
-CBIAS G24 L2 P                  -4.020
-CBIAS G27 L1 C/A                -1.820
-CBIAS G27 L2 CL                 -2.580
-CBIAS G27 L2 P                  -3.000
-CBIAS G29 L1 C/A                 1.300
-CBIAS G29 L2 CL                  2.620
-CBIAS G29 L2 P                   2.140
-CBIAS G30 L1 C/A                -2.400
-CBIAS G30 L2 CL                 -3.520
-CBIAS G30 L2 P                  -3.960
-CBIAS G31 L1 C/A                 2.520
-CBIAS G31 L2 CL                  4.320
-CBIAS G31 L2 P                   4.160
-CBIAS G32 L1 C/A                -1.920
-CBIAS G32 L2 CL                 -3.020
-CBIAS G32 L2 P                  -3.160
-CBIAS E02 E1 C                   0.340
-CBIAS E02 E5a Q                  0.600
-CBIAS E02 E5b Q                  0.740
-CBIAS E02 E6 C                  -0.420
-CBIAS E03 E1 C                  -1.000
-CBIAS E03 E5a Q                 -1.800
-CBIAS E03 E5b Q                 -1.800
-CBIAS E03 E6 C                  -1.000
-CBIAS E04 E1 C                   1.000
-CBIAS E04 E5a Q                  1.800
-CBIAS E04 E5b Q                  1.780
-CBIAS E04 E6 C                   0.900
-CBIAS E05 E1 C                  -1.140
-CBIAS E05 E5a Q                 -2.040
-CBIAS E05 E5b Q                 -2.040
-CBIAS E05 E6 C                  -0.340
-CBIAS E07 E1 C                  -1.520
-CBIAS E07 E5a Q                 -2.700
-CBIAS E07 E5b Q                 -2.700
-CBIAS E07 E6 C                  -1.340
-CBIAS E08 E1 C                   1.120
-CBIAS E08 E5a Q                  2.000
-CBIAS E08 E5b Q                  2.040
-CBIAS E08 E6 C                   1.640
-CBIAS E09 E1 C                  -0.360
-CBIAS E09 E5a Q                 -0.640
-CBIAS E09 E5b Q                 -0.640
-CBIAS E09 E6 C                  -0.640
-CBIAS E10 E1 C                  -0.220
-CBIAS E10 E5a Q                 -0.400
-CBIAS E10 E5b Q                 -0.540
-CBIAS E10 E6 C                  -1.620
-CBIAS E11 E1 C                   3.860
-CBIAS E11 E5a Q                  6.920
-CBIAS E11 E5b Q                  6.820
-CBIAS E11 E6 C                   6.480
-CBIAS E12 E1 C                   2.880
-CBIAS E12 E5a Q                  5.160
-CBIAS E12 E5b Q                  4.900
-CBIAS E12 E6 C                   5.320
-CBIAS E15 E1 C                  -2.000
-CBIAS E15 E5a Q                 -3.580
-CBIAS E15 E5b Q                 -3.520
-CBIAS E15 E6 C                  -2.420
-CBIAS E19 E1 C                   1.020
-CBIAS E19 E5a Q                  1.840
-CBIAS E19 E5b Q                  1.760
-CBIAS E19 E6 C                   1.160
-CBIAS E21 E1 C                  -0.700
-CBIAS E21 E5a Q                 -1.260
-CBIAS E21 E5b Q                 -1.220
-CBIAS E21 E6 C                  -2.020
-CBIAS E24 E1 C                   0.880
-CBIAS E24 E5a Q                  1.580
-CBIAS E24 E5b Q                  1.680
-CBIAS E24 E6 C                   0.500
-CBIAS E25 E1 C                  -1.240
-CBIAS E25 E5a Q                 -2.220
-CBIAS E25 E5b Q                 -2.200
-CBIAS E25 E6 C                  -0.820
-CBIAS E26 E1 C                   1.040
-CBIAS E26 E5a Q                  1.880
-CBIAS E26 E5b Q                  1.900
-CBIAS E26 E6 C                   0.180
-CBIAS E27 E1 C                  -0.640
-CBIAS E27 E5a Q                 -1.160
-CBIAS E27 E5b Q                 -1.140
-CBIAS E27 E6 C                  -2.000
-CBIAS E30 E1 C                  -0.540
-CBIAS E30 E5a Q                 -0.940
-CBIAS E30 E5b Q                 -0.900
-CBIAS E30 E6 C                  -0.220
-CBIAS E31 E1 C                  -1.520
-CBIAS E31 E5a Q                 -2.720
-CBIAS E31 E5b Q                 -2.700
-CBIAS E31 E6 C                  -0.580
-CBIAS E33 E1 C                   0.780
-CBIAS E33 E5a Q                  1.400
-CBIAS E33 E5b Q                  1.400
-CBIAS E33 E6 C                   0.080
-CBIAS E34 E1 C                  -1.320
-CBIAS E34 E5a Q                 -2.380
-CBIAS E34 E5b Q                 -2.480
-CBIAS E34 E6 C                  -2.040
-CBIAS E36 E1 C                  -1.800
-CBIAS E36 E5a Q                 -3.220
-CBIAS E36 E5b Q                 -3.240
-CBIAS E36 E6 C                  -2.160
+CBIAS G01 L1C/A                 -3.320
+CBIAS G01 L2CL                  -4.660
+CBIAS G01 L2P                   -5.460
+CBIAS G02 L1C/A                  4.540
+CBIAS G02 L2P                    7.480
+CBIAS G03 L1C/A                 -2.780
+CBIAS G03 L2CL                  -4.220
+CBIAS G03 L2P                   -4.600
+CBIAS G04 L1C/A                 -0.280
+CBIAS G04 L2CL                   0.180
+CBIAS G04 L2P                   -0.440
+CBIAS G05 L1C/A                  1.040
+CBIAS G05 L2CL                   2.220
+CBIAS G05 L2P                    1.700
+CBIAS G06 L1C/A                 -3.820
+CBIAS G06 L2CL                  -5.820
+CBIAS G06 L2P                   -6.300
+CBIAS G07 L1C/A                  1.740
+CBIAS G07 L2CL                   3.460
+CBIAS G07 L2P                    2.860
+CBIAS G08 L1C/A                 -3.040
+CBIAS G08 L2CL                  -4.800
+CBIAS G08 L2P                   -4.980
+CBIAS G09 L1C/A                 -1.860
+CBIAS G09 L2CL                  -2.480
+CBIAS G09 L2P                   -3.060
+CBIAS G11 L1C/A                  0.420
+CBIAS G11 L2CL                   1.440
+CBIAS G11 L2P                    0.680
+CBIAS G12 L1C/A                  2.160
+CBIAS G12 L2CL                   3.860
+CBIAS G12 L2P                    3.540
+CBIAS G13 L1C/A                  1.800
+CBIAS G13 L2P                    2.960
+CBIAS G14 L1C/A                  0.640
+CBIAS G14 L2CL                   1.580
+CBIAS G14 L2P                    1.060
+CBIAS G15 L1C/A                  1.320
+CBIAS G15 L2CL                   2.560
+CBIAS G15 L2P                    2.180
+CBIAS G16 L1C/A                  2.040
+CBIAS G16 L2P                    3.360
+CBIAS G17 L1C/A                  1.480
+CBIAS G17 L2CL                   3.160
+CBIAS G17 L2P                    2.420
+CBIAS G18 L1C/A                  0.740
+CBIAS G18 L2CL                   1.680
+CBIAS G18 L2P                    1.220
+CBIAS G19 L1C/A                  4.060
+CBIAS G19 L2P                    6.660
+CBIAS G20 L1C/A                  1.660
+CBIAS G20 L2P                    2.720
+CBIAS G21 L1C/A                  2.560
+CBIAS G21 L2P                    4.220
+CBIAS G23 L1C/A                  1.040
+CBIAS G23 L2CL                   2.060
+CBIAS G23 L2P                    1.700
+CBIAS G24 L1C/A                 -2.440
+CBIAS G24 L2CL                  -3.580
+CBIAS G24 L2P                   -4.020
+CBIAS G27 L1C/A                 -1.820
+CBIAS G27 L2CL                  -2.580
+CBIAS G27 L2P                   -3.000
+CBIAS G29 L1C/A                  1.300
+CBIAS G29 L2CL                   2.620
+CBIAS G29 L2P                    2.140
+CBIAS G30 L1C/A                 -2.400
+CBIAS G30 L2CL                  -3.520
+CBIAS G30 L2P                   -3.960
+CBIAS G31 L1C/A                  2.520
+CBIAS G31 L2CL                   4.320
+CBIAS G31 L2P                    4.160
+CBIAS G32 L1C/A                 -1.920
+CBIAS G32 L2CL                  -3.020
+CBIAS G32 L2P                   -3.160
+CBIAS E02 E1C                    0.340
+CBIAS E02 E5aQ                   0.600
+CBIAS E02 E5bQ                   0.740
+CBIAS E02 E6C                   -0.420
+CBIAS E03 E1C                   -1.000
+CBIAS E03 E5aQ                  -1.800
+CBIAS E03 E5bQ                  -1.800
+CBIAS E03 E6C                   -1.000
+CBIAS E04 E1C                    1.000
+CBIAS E04 E5aQ                   1.800
+CBIAS E04 E5bQ                   1.780
+CBIAS E04 E6C                    0.900
+CBIAS E05 E1C                   -1.140
+CBIAS E05 E5aQ                  -2.040
+CBIAS E05 E5bQ                  -2.040
+CBIAS E05 E6C                   -0.340
+CBIAS E07 E1C                   -1.520
+CBIAS E07 E5aQ                  -2.700
+CBIAS E07 E5bQ                  -2.700
+CBIAS E07 E6C                   -1.340
+CBIAS E08 E1C                    1.120
+CBIAS E08 E5aQ                   2.000
+CBIAS E08 E5bQ                   2.040
+CBIAS E08 E6C                    1.640
+CBIAS E09 E1C                   -0.360
+CBIAS E09 E5aQ                  -0.640
+CBIAS E09 E5bQ                  -0.640
+CBIAS E09 E6C                   -0.640
+CBIAS E10 E1C                   -0.220
+CBIAS E10 E5aQ                  -0.400
+CBIAS E10 E5bQ                  -0.540
+CBIAS E10 E6C                   -1.620
+CBIAS E11 E1C                    3.860
+CBIAS E11 E5aQ                   6.920
+CBIAS E11 E5bQ                   6.820
+CBIAS E11 E6C                    6.480
+CBIAS E12 E1C                    2.880
+CBIAS E12 E5aQ                   5.160
+CBIAS E12 E5bQ                   4.900
+CBIAS E12 E6C                    5.320
+CBIAS E15 E1C                   -2.000
+CBIAS E15 E5aQ                  -3.580
+CBIAS E15 E5bQ                  -3.520
+CBIAS E15 E6C                   -2.420
+CBIAS E19 E1C                    1.020
+CBIAS E19 E5aQ                   1.840
+CBIAS E19 E5bQ                   1.760
+CBIAS E19 E6C                    1.160
+CBIAS E21 E1C                   -0.700
+CBIAS E21 E5aQ                  -1.260
+CBIAS E21 E5bQ                  -1.220
+CBIAS E21 E6C                   -2.020
+CBIAS E24 E1C                    0.880
+CBIAS E24 E5aQ                   1.580
+CBIAS E24 E5bQ                   1.680
+CBIAS E24 E6C                    0.500
+CBIAS E25 E1C                   -1.240
+CBIAS E25 E5aQ                  -2.220
+CBIAS E25 E5bQ                  -2.200
+CBIAS E25 E6C                   -0.820
+CBIAS E26 E1C                    1.040
+CBIAS E26 E5aQ                   1.880
+CBIAS E26 E5bQ                   1.900
+CBIAS E26 E6C                    0.180
+CBIAS E27 E1C                   -0.640
+CBIAS E27 E5aQ                  -1.160
+CBIAS E27 E5bQ                  -1.140
+CBIAS E27 E6C                   -2.000
+CBIAS E30 E1C                   -0.540
+CBIAS E30 E5aQ                  -0.940
+CBIAS E30 E5bQ                  -0.900
+CBIAS E30 E6C                   -0.220
+CBIAS E31 E1C                   -1.520
+CBIAS E31 E5aQ                  -2.720
+CBIAS E31 E5bQ                  -2.700
+CBIAS E31 E6C                   -0.580
+CBIAS E33 E1C                    0.780
+CBIAS E33 E5aQ                   1.400
+CBIAS E33 E5bQ                   1.400
+CBIAS E33 E6C                    0.080
+CBIAS E34 E1C                   -1.320
+CBIAS E34 E5aQ                  -2.380
+CBIAS E34 E5bQ                  -2.480
+CBIAS E34 E6C                   -2.040
+CBIAS E36 E1C                   -1.800
+CBIAS E36 E5aQ                  -3.220
+CBIAS E36 E5bQ                  -3.240
+CBIAS E36 E6C                   -2.160
 ------ padding bits ------
 010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
 ------
@@ -1614,54 +1614,54 @@ Code bias       : on
 Phase bias      : off
 Mask ID         : 4
 IOD Set ID      : 0
-MASK G01 L1 C/A L2 CL L2 P
-MASK G02 L1 C/A L2 P
-MASK G03 L1 C/A L2 CL L2 P
-MASK G04 L1 C/A L2 CL L2 P
-MASK G05 L1 C/A L2 CL L2 P
-MASK G06 L1 C/A L2 CL L2 P
-MASK G08 L1 C/A L2 CL L2 P
-MASK G09 L1 C/A L2 CL L2 P
-MASK G11 L1 C/A L2 CL L2 P
-MASK G12 L1 C/A L2 CL L2 P
-MASK G13 L1 C/A L2 P
-MASK G14 L1 C/A L2 CL L2 P
-MASK G15 L1 C/A L2 CL L2 P
-MASK G16 L1 C/A L2 P
-MASK G17 L1 C/A L2 CL L2 P
-MASK G18 L1 C/A L2 CL L2 P
-MASK G19 L1 C/A L2 P
-MASK G20 L1 C/A L2 P
-MASK G21 L1 C/A L2 P
-MASK G23 L1 C/A L2 CL L2 P
-MASK G24 L1 C/A L2 CL L2 P
-MASK G27 L1 C/A L2 CL L2 P
-MASK G29 L1 C/A L2 CL L2 P
-MASK G30 L1 C/A L2 CL L2 P
-MASK G31 L1 C/A L2 CL L2 P
-MASK G32 L1 C/A L2 CL L2 P
-MASK E02 E1 C E5a Q E5b Q E6 C
-MASK E03 E1 C E5a Q E5b Q E6 C
-MASK E04 E1 C E5a Q E5b Q E6 C
-MASK E05 E1 C E5a Q E5b Q E6 C
-MASK E07 E1 C E5a Q E5b Q E6 C
-MASK E08 E1 C E5a Q E5b Q E6 C
-MASK E09 E1 C E5a Q E5b Q E6 C
-MASK E10 E1 C E5a Q E5b Q E6 C
-MASK E11 E1 C E5a Q E5b Q E6 C
-MASK E12 E1 C E5a Q E5b Q E6 C
-MASK E15 E1 C E5a Q E5b Q E6 C
-MASK E19 E1 C E5a Q E5b Q E6 C
-MASK E21 E1 C E5a Q E5b Q E6 C
-MASK E24 E1 C E5a Q E5b Q E6 C
-MASK E25 E1 C E5a Q E5b Q E6 C
-MASK E26 E1 C E5a Q E5b Q E6 C
-MASK E27 E1 C E5a Q E5b Q E6 C
-MASK E30 E1 C E5a Q E5b Q E6 C
-MASK E31 E1 C E5a Q E5b Q E6 C
-MASK E33 E1 C E5a Q E5b Q E6 C
-MASK E34 E1 C E5a Q E5b Q E6 C
-MASK E36 E1 C E5a Q E5b Q E6 C
+MASK G01 L1C/A L2CL L2P
+MASK G02 L1C/A L2P
+MASK G03 L1C/A L2CL L2P
+MASK G04 L1C/A L2CL L2P
+MASK G05 L1C/A L2CL L2P
+MASK G06 L1C/A L2CL L2P
+MASK G08 L1C/A L2CL L2P
+MASK G09 L1C/A L2CL L2P
+MASK G11 L1C/A L2CL L2P
+MASK G12 L1C/A L2CL L2P
+MASK G13 L1C/A L2P
+MASK G14 L1C/A L2CL L2P
+MASK G15 L1C/A L2CL L2P
+MASK G16 L1C/A L2P
+MASK G17 L1C/A L2CL L2P
+MASK G18 L1C/A L2CL L2P
+MASK G19 L1C/A L2P
+MASK G20 L1C/A L2P
+MASK G21 L1C/A L2P
+MASK G23 L1C/A L2CL L2P
+MASK G24 L1C/A L2CL L2P
+MASK G27 L1C/A L2CL L2P
+MASK G29 L1C/A L2CL L2P
+MASK G30 L1C/A L2CL L2P
+MASK G31 L1C/A L2CL L2P
+MASK G32 L1C/A L2CL L2P
+MASK E02 E1C E5aQ E5bQ E6C
+MASK E03 E1C E5aQ E5bQ E6C
+MASK E04 E1C E5aQ E5bQ E6C
+MASK E05 E1C E5aQ E5bQ E6C
+MASK E07 E1C E5aQ E5bQ E6C
+MASK E08 E1C E5aQ E5bQ E6C
+MASK E09 E1C E5aQ E5bQ E6C
+MASK E10 E1C E5aQ E5bQ E6C
+MASK E11 E1C E5aQ E5bQ E6C
+MASK E12 E1C E5aQ E5bQ E6C
+MASK E15 E1C E5aQ E5bQ E6C
+MASK E19 E1C E5aQ E5bQ E6C
+MASK E21 E1C E5aQ E5bQ E6C
+MASK E24 E1C E5aQ E5bQ E6C
+MASK E25 E1C E5aQ E5bQ E6C
+MASK E26 E1C E5aQ E5bQ E6C
+MASK E27 E1C E5aQ E5bQ E6C
+MASK E30 E1C E5aQ E5bQ E6C
+MASK E31 E1C E5aQ E5bQ E6C
+MASK E33 E1C E5aQ E5bQ E6C
+MASK E34 E1C E5aQ E5bQ E6C
+MASK E36 E1C E5aQ E5bQ E6C
 ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
 ORBIT G01   82    1.1125  -3.3760   0.8240
 ORBIT G02   50    0.0900  -0.2560   0.3360
@@ -1712,166 +1712,166 @@ ORBIT E33   38   -0.1275   0.3040  -0.0880
 ORBIT E34   38   -0.0175   0.1520   0.3200
 ORBIT E36   38    0.0875   0.1840   0.0800
 CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
-CBIAS G01 L1 C/A                -3.320
-CBIAS G01 L2 CL                 -4.660
-CBIAS G01 L2 P                  -5.460
-CBIAS G02 L1 C/A                 4.540
-CBIAS G02 L2 P                   7.480
-CBIAS G03 L1 C/A                -2.780
-CBIAS G03 L2 CL                 -4.220
-CBIAS G03 L2 P                  -4.600
-CBIAS G04 L1 C/A                -0.280
-CBIAS G04 L2 CL                  0.180
-CBIAS G04 L2 P                  -0.440
-CBIAS G05 L1 C/A                 1.040
-CBIAS G05 L2 CL                  2.220
-CBIAS G05 L2 P                   1.700
-CBIAS G06 L1 C/A                -3.820
-CBIAS G06 L2 CL                 -5.820
-CBIAS G06 L2 P                  -6.300
-CBIAS G08 L1 C/A                -3.040
-CBIAS G08 L2 CL                 -4.800
-CBIAS G08 L2 P                  -4.980
-CBIAS G09 L1 C/A                -1.860
-CBIAS G09 L2 CL                 -2.480
-CBIAS G09 L2 P                  -3.060
-CBIAS G11 L1 C/A                 0.420
-CBIAS G11 L2 CL                  1.440
-CBIAS G11 L2 P                   0.680
-CBIAS G12 L1 C/A                 2.160
-CBIAS G12 L2 CL                  3.860
-CBIAS G12 L2 P                   3.540
-CBIAS G13 L1 C/A                 1.800
-CBIAS G13 L2 P                   2.960
-CBIAS G14 L1 C/A                 0.640
-CBIAS G14 L2 CL                  1.580
-CBIAS G14 L2 P                   1.060
-CBIAS G15 L1 C/A                 1.320
-CBIAS G15 L2 CL                  2.560
-CBIAS G15 L2 P                   2.180
-CBIAS G16 L1 C/A                 2.040
-CBIAS G16 L2 P                   3.360
-CBIAS G17 L1 C/A                 1.480
-CBIAS G17 L2 CL                  3.160
-CBIAS G17 L2 P                   2.420
-CBIAS G18 L1 C/A                 0.740
-CBIAS G18 L2 CL                  1.680
-CBIAS G18 L2 P                   1.220
-CBIAS G19 L1 C/A                 4.060
-CBIAS G19 L2 P                   6.660
-CBIAS G20 L1 C/A                 1.660
-CBIAS G20 L2 P                   2.720
-CBIAS G21 L1 C/A                 2.560
-CBIAS G21 L2 P                   4.220
-CBIAS G23 L1 C/A                 1.040
-CBIAS G23 L2 CL                  2.060
-CBIAS G23 L2 P                   1.700
-CBIAS G24 L1 C/A                -2.440
-CBIAS G24 L2 CL                 -3.580
-CBIAS G24 L2 P                  -4.020
-CBIAS G27 L1 C/A                -1.820
-CBIAS G27 L2 CL                 -2.580
-CBIAS G27 L2 P                  -3.000
-CBIAS G29 L1 C/A                 1.300
-CBIAS G29 L2 CL                  2.620
-CBIAS G29 L2 P                   2.140
-CBIAS G30 L1 C/A                -2.400
-CBIAS G30 L2 CL                 -3.520
-CBIAS G30 L2 P                  -3.960
-CBIAS G31 L1 C/A                 2.520
-CBIAS G31 L2 CL                  4.320
-CBIAS G31 L2 P                   4.160
-CBIAS G32 L1 C/A                -1.920
-CBIAS G32 L2 CL                 -3.020
-CBIAS G32 L2 P                  -3.160
-CBIAS E02 E1 C                   0.340
-CBIAS E02 E5a Q                  0.600
-CBIAS E02 E5b Q                  0.740
-CBIAS E02 E6 C                  -0.420
-CBIAS E03 E1 C                  -1.000
-CBIAS E03 E5a Q                 -1.800
-CBIAS E03 E5b Q                 -1.800
-CBIAS E03 E6 C                  -1.000
-CBIAS E04 E1 C                   1.000
-CBIAS E04 E5a Q                  1.800
-CBIAS E04 E5b Q                  1.780
-CBIAS E04 E6 C                   0.900
-CBIAS E05 E1 C                  -1.140
-CBIAS E05 E5a Q                 -2.040
-CBIAS E05 E5b Q                 -2.040
-CBIAS E05 E6 C                  -0.340
-CBIAS E07 E1 C                  -1.520
-CBIAS E07 E5a Q                 -2.700
-CBIAS E07 E5b Q                 -2.700
-CBIAS E07 E6 C                  -1.340
-CBIAS E08 E1 C                   1.120
-CBIAS E08 E5a Q                  2.000
-CBIAS E08 E5b Q                  2.040
-CBIAS E08 E6 C                   1.640
-CBIAS E09 E1 C                  -0.360
-CBIAS E09 E5a Q                 -0.640
-CBIAS E09 E5b Q                 -0.640
-CBIAS E09 E6 C                  -0.640
-CBIAS E10 E1 C                  -0.220
-CBIAS E10 E5a Q                 -0.400
-CBIAS E10 E5b Q                 -0.540
-CBIAS E10 E6 C                  -1.620
-CBIAS E11 E1 C                   3.860
-CBIAS E11 E5a Q                  6.920
-CBIAS E11 E5b Q                  6.820
-CBIAS E11 E6 C                   6.480
-CBIAS E12 E1 C                   2.880
-CBIAS E12 E5a Q                  5.160
-CBIAS E12 E5b Q                  4.900
-CBIAS E12 E6 C                   5.320
-CBIAS E15 E1 C                  -2.000
-CBIAS E15 E5a Q                 -3.580
-CBIAS E15 E5b Q                 -3.520
-CBIAS E15 E6 C                  -2.420
-CBIAS E19 E1 C                   1.020
-CBIAS E19 E5a Q                  1.840
-CBIAS E19 E5b Q                  1.760
-CBIAS E19 E6 C                   1.160
-CBIAS E21 E1 C                  -0.700
-CBIAS E21 E5a Q                 -1.260
-CBIAS E21 E5b Q                 -1.220
-CBIAS E21 E6 C                  -2.020
-CBIAS E24 E1 C                   0.880
-CBIAS E24 E5a Q                  1.580
-CBIAS E24 E5b Q                  1.680
-CBIAS E24 E6 C                   0.500
-CBIAS E25 E1 C                  -1.240
-CBIAS E25 E5a Q                 -2.220
-CBIAS E25 E5b Q                 -2.200
-CBIAS E25 E6 C                  -0.820
-CBIAS E26 E1 C                   1.040
-CBIAS E26 E5a Q                  1.880
-CBIAS E26 E5b Q                  1.900
-CBIAS E26 E6 C                   0.180
-CBIAS E27 E1 C                  -0.640
-CBIAS E27 E5a Q                 -1.160
-CBIAS E27 E5b Q                 -1.140
-CBIAS E27 E6 C                  -2.000
-CBIAS E30 E1 C                  -0.540
-CBIAS E30 E5a Q                 -0.940
-CBIAS E30 E5b Q                 -0.900
-CBIAS E30 E6 C                  -0.220
-CBIAS E31 E1 C                  -1.520
-CBIAS E31 E5a Q                 -2.720
-CBIAS E31 E5b Q                 -2.700
-CBIAS E31 E6 C                  -0.580
-CBIAS E33 E1 C                   0.780
-CBIAS E33 E5a Q                  1.400
-CBIAS E33 E5b Q                  1.400
-CBIAS E33 E6 C                   0.080
-CBIAS E34 E1 C                  -1.320
-CBIAS E34 E5a Q                 -2.380
-CBIAS E34 E5b Q                 -2.480
-CBIAS E34 E6 C                  -2.040
-CBIAS E36 E1 C                  -1.800
-CBIAS E36 E5a Q                 -3.220
-CBIAS E36 E5b Q                 -3.240
-CBIAS E36 E6 C                  -2.160
+CBIAS G01 L1C/A                 -3.320
+CBIAS G01 L2CL                  -4.660
+CBIAS G01 L2P                   -5.460
+CBIAS G02 L1C/A                  4.540
+CBIAS G02 L2P                    7.480
+CBIAS G03 L1C/A                 -2.780
+CBIAS G03 L2CL                  -4.220
+CBIAS G03 L2P                   -4.600
+CBIAS G04 L1C/A                 -0.280
+CBIAS G04 L2CL                   0.180
+CBIAS G04 L2P                   -0.440
+CBIAS G05 L1C/A                  1.040
+CBIAS G05 L2CL                   2.220
+CBIAS G05 L2P                    1.700
+CBIAS G06 L1C/A                 -3.820
+CBIAS G06 L2CL                  -5.820
+CBIAS G06 L2P                   -6.300
+CBIAS G08 L1C/A                 -3.040
+CBIAS G08 L2CL                  -4.800
+CBIAS G08 L2P                   -4.980
+CBIAS G09 L1C/A                 -1.860
+CBIAS G09 L2CL                  -2.480
+CBIAS G09 L2P                   -3.060
+CBIAS G11 L1C/A                  0.420
+CBIAS G11 L2CL                   1.440
+CBIAS G11 L2P                    0.680
+CBIAS G12 L1C/A                  2.160
+CBIAS G12 L2CL                   3.860
+CBIAS G12 L2P                    3.540
+CBIAS G13 L1C/A                  1.800
+CBIAS G13 L2P                    2.960
+CBIAS G14 L1C/A                  0.640
+CBIAS G14 L2CL                   1.580
+CBIAS G14 L2P                    1.060
+CBIAS G15 L1C/A                  1.320
+CBIAS G15 L2CL                   2.560
+CBIAS G15 L2P                    2.180
+CBIAS G16 L1C/A                  2.040
+CBIAS G16 L2P                    3.360
+CBIAS G17 L1C/A                  1.480
+CBIAS G17 L2CL                   3.160
+CBIAS G17 L2P                    2.420
+CBIAS G18 L1C/A                  0.740
+CBIAS G18 L2CL                   1.680
+CBIAS G18 L2P                    1.220
+CBIAS G19 L1C/A                  4.060
+CBIAS G19 L2P                    6.660
+CBIAS G20 L1C/A                  1.660
+CBIAS G20 L2P                    2.720
+CBIAS G21 L1C/A                  2.560
+CBIAS G21 L2P                    4.220
+CBIAS G23 L1C/A                  1.040
+CBIAS G23 L2CL                   2.060
+CBIAS G23 L2P                    1.700
+CBIAS G24 L1C/A                 -2.440
+CBIAS G24 L2CL                  -3.580
+CBIAS G24 L2P                   -4.020
+CBIAS G27 L1C/A                 -1.820
+CBIAS G27 L2CL                  -2.580
+CBIAS G27 L2P                   -3.000
+CBIAS G29 L1C/A                  1.300
+CBIAS G29 L2CL                   2.620
+CBIAS G29 L2P                    2.140
+CBIAS G30 L1C/A                 -2.400
+CBIAS G30 L2CL                  -3.520
+CBIAS G30 L2P                   -3.960
+CBIAS G31 L1C/A                  2.520
+CBIAS G31 L2CL                   4.320
+CBIAS G31 L2P                    4.160
+CBIAS G32 L1C/A                 -1.920
+CBIAS G32 L2CL                  -3.020
+CBIAS G32 L2P                   -3.160
+CBIAS E02 E1C                    0.340
+CBIAS E02 E5aQ                   0.600
+CBIAS E02 E5bQ                   0.740
+CBIAS E02 E6C                   -0.420
+CBIAS E03 E1C                   -1.000
+CBIAS E03 E5aQ                  -1.800
+CBIAS E03 E5bQ                  -1.800
+CBIAS E03 E6C                   -1.000
+CBIAS E04 E1C                    1.000
+CBIAS E04 E5aQ                   1.800
+CBIAS E04 E5bQ                   1.780
+CBIAS E04 E6C                    0.900
+CBIAS E05 E1C                   -1.140
+CBIAS E05 E5aQ                  -2.040
+CBIAS E05 E5bQ                  -2.040
+CBIAS E05 E6C                   -0.340
+CBIAS E07 E1C                   -1.520
+CBIAS E07 E5aQ                  -2.700
+CBIAS E07 E5bQ                  -2.700
+CBIAS E07 E6C                   -1.340
+CBIAS E08 E1C                    1.120
+CBIAS E08 E5aQ                   2.000
+CBIAS E08 E5bQ                   2.040
+CBIAS E08 E6C                    1.640
+CBIAS E09 E1C                   -0.360
+CBIAS E09 E5aQ                  -0.640
+CBIAS E09 E5bQ                  -0.640
+CBIAS E09 E6C                   -0.640
+CBIAS E10 E1C                   -0.220
+CBIAS E10 E5aQ                  -0.400
+CBIAS E10 E5bQ                  -0.540
+CBIAS E10 E6C                   -1.620
+CBIAS E11 E1C                    3.860
+CBIAS E11 E5aQ                   6.920
+CBIAS E11 E5bQ                   6.820
+CBIAS E11 E6C                    6.480
+CBIAS E12 E1C                    2.880
+CBIAS E12 E5aQ                   5.160
+CBIAS E12 E5bQ                   4.900
+CBIAS E12 E6C                    5.320
+CBIAS E15 E1C                   -2.000
+CBIAS E15 E5aQ                  -3.580
+CBIAS E15 E5bQ                  -3.520
+CBIAS E15 E6C                   -2.420
+CBIAS E19 E1C                    1.020
+CBIAS E19 E5aQ                   1.840
+CBIAS E19 E5bQ                   1.760
+CBIAS E19 E6C                    1.160
+CBIAS E21 E1C                   -0.700
+CBIAS E21 E5aQ                  -1.260
+CBIAS E21 E5bQ                  -1.220
+CBIAS E21 E6C                   -2.020
+CBIAS E24 E1C                    0.880
+CBIAS E24 E5aQ                   1.580
+CBIAS E24 E5bQ                   1.680
+CBIAS E24 E6C                    0.500
+CBIAS E25 E1C                   -1.240
+CBIAS E25 E5aQ                  -2.220
+CBIAS E25 E5bQ                  -2.200
+CBIAS E25 E6C                   -0.820
+CBIAS E26 E1C                    1.040
+CBIAS E26 E5aQ                   1.880
+CBIAS E26 E5bQ                   1.900
+CBIAS E26 E6C                    0.180
+CBIAS E27 E1C                   -0.640
+CBIAS E27 E5aQ                  -1.160
+CBIAS E27 E5bQ                  -1.140
+CBIAS E27 E6C                   -2.000
+CBIAS E30 E1C                   -0.540
+CBIAS E30 E5aQ                  -0.940
+CBIAS E30 E5bQ                  -0.900
+CBIAS E30 E6C                   -0.220
+CBIAS E31 E1C                   -1.520
+CBIAS E31 E5aQ                  -2.720
+CBIAS E31 E5bQ                  -2.700
+CBIAS E31 E6C                   -0.580
+CBIAS E33 E1C                    0.780
+CBIAS E33 E5aQ                   1.400
+CBIAS E33 E5bQ                   1.400
+CBIAS E33 E6C                    0.080
+CBIAS E34 E1C                   -1.320
+CBIAS E34 E5aQ                  -2.380
+CBIAS E34 E5bQ                  -2.480
+CBIAS E34 E6C                   -2.040
+CBIAS E36 E1C                   -1.800
+CBIAS E36 E5aQ                  -3.220
+CBIAS E36 E5bQ                  -3.240
+CBIAS E36 E6C                   -2.160
 ------ padding bits ------
 01010101010101010101
 ------
@@ -2001,54 +2001,54 @@ Code bias       : on
 Phase bias      : off
 Mask ID         : 4
 IOD Set ID      : 0
-MASK G01 L1 C/A L2 CL L2 P
-MASK G02 L1 C/A L2 P
-MASK G03 L1 C/A L2 CL L2 P
-MASK G04 L1 C/A L2 CL L2 P
-MASK G05 L1 C/A L2 CL L2 P
-MASK G06 L1 C/A L2 CL L2 P
-MASK G08 L1 C/A L2 CL L2 P
-MASK G09 L1 C/A L2 CL L2 P
-MASK G11 L1 C/A L2 CL L2 P
-MASK G12 L1 C/A L2 CL L2 P
-MASK G13 L1 C/A L2 P
-MASK G14 L1 C/A L2 CL L2 P
-MASK G15 L1 C/A L2 CL L2 P
-MASK G16 L1 C/A L2 P
-MASK G17 L1 C/A L2 CL L2 P
-MASK G18 L1 C/A L2 CL L2 P
-MASK G19 L1 C/A L2 P
-MASK G20 L1 C/A L2 P
-MASK G21 L1 C/A L2 P
-MASK G23 L1 C/A L2 CL L2 P
-MASK G24 L1 C/A L2 CL L2 P
-MASK G27 L1 C/A L2 CL L2 P
-MASK G29 L1 C/A L2 CL L2 P
-MASK G30 L1 C/A L2 CL L2 P
-MASK G31 L1 C/A L2 CL L2 P
-MASK G32 L1 C/A L2 CL L2 P
-MASK E02 E1 C E5a Q E5b Q E6 C
-MASK E03 E1 C E5a Q E5b Q E6 C
-MASK E04 E1 C E5a Q E5b Q E6 C
-MASK E05 E1 C E5a Q E5b Q E6 C
-MASK E07 E1 C E5a Q E5b Q E6 C
-MASK E08 E1 C E5a Q E5b Q E6 C
-MASK E09 E1 C E5a Q E5b Q E6 C
-MASK E10 E1 C E5a Q E5b Q E6 C
-MASK E11 E1 C E5a Q E5b Q E6 C
-MASK E12 E1 C E5a Q E5b Q E6 C
-MASK E15 E1 C E5a Q E5b Q E6 C
-MASK E19 E1 C E5a Q E5b Q E6 C
-MASK E21 E1 C E5a Q E5b Q E6 C
-MASK E24 E1 C E5a Q E5b Q E6 C
-MASK E25 E1 C E5a Q E5b Q E6 C
-MASK E26 E1 C E5a Q E5b Q E6 C
-MASK E27 E1 C E5a Q E5b Q E6 C
-MASK E30 E1 C E5a Q E5b Q E6 C
-MASK E31 E1 C E5a Q E5b Q E6 C
-MASK E33 E1 C E5a Q E5b Q E6 C
-MASK E34 E1 C E5a Q E5b Q E6 C
-MASK E36 E1 C E5a Q E5b Q E6 C
+MASK G01 L1C/A L2CL L2P
+MASK G02 L1C/A L2P
+MASK G03 L1C/A L2CL L2P
+MASK G04 L1C/A L2CL L2P
+MASK G05 L1C/A L2CL L2P
+MASK G06 L1C/A L2CL L2P
+MASK G08 L1C/A L2CL L2P
+MASK G09 L1C/A L2CL L2P
+MASK G11 L1C/A L2CL L2P
+MASK G12 L1C/A L2CL L2P
+MASK G13 L1C/A L2P
+MASK G14 L1C/A L2CL L2P
+MASK G15 L1C/A L2CL L2P
+MASK G16 L1C/A L2P
+MASK G17 L1C/A L2CL L2P
+MASK G18 L1C/A L2CL L2P
+MASK G19 L1C/A L2P
+MASK G20 L1C/A L2P
+MASK G21 L1C/A L2P
+MASK G23 L1C/A L2CL L2P
+MASK G24 L1C/A L2CL L2P
+MASK G27 L1C/A L2CL L2P
+MASK G29 L1C/A L2CL L2P
+MASK G30 L1C/A L2CL L2P
+MASK G31 L1C/A L2CL L2P
+MASK G32 L1C/A L2CL L2P
+MASK E02 E1C E5aQ E5bQ E6C
+MASK E03 E1C E5aQ E5bQ E6C
+MASK E04 E1C E5aQ E5bQ E6C
+MASK E05 E1C E5aQ E5bQ E6C
+MASK E07 E1C E5aQ E5bQ E6C
+MASK E08 E1C E5aQ E5bQ E6C
+MASK E09 E1C E5aQ E5bQ E6C
+MASK E10 E1C E5aQ E5bQ E6C
+MASK E11 E1C E5aQ E5bQ E6C
+MASK E12 E1C E5aQ E5bQ E6C
+MASK E15 E1C E5aQ E5bQ E6C
+MASK E19 E1C E5aQ E5bQ E6C
+MASK E21 E1C E5aQ E5bQ E6C
+MASK E24 E1C E5aQ E5bQ E6C
+MASK E25 E1C E5aQ E5bQ E6C
+MASK E26 E1C E5aQ E5bQ E6C
+MASK E27 E1C E5aQ E5bQ E6C
+MASK E30 E1C E5aQ E5bQ E6C
+MASK E31 E1C E5aQ E5bQ E6C
+MASK E33 E1C E5aQ E5bQ E6C
+MASK E34 E1C E5aQ E5bQ E6C
+MASK E36 E1C E5aQ E5bQ E6C
 ORBIT SAT IODE radial[m] along[m] cross[m] validity_interval=300s (10)
 ORBIT G01   82    1.1125  -3.3760   0.8240
 ORBIT G02   50    0.0900  -0.2560   0.3360
@@ -2099,166 +2099,166 @@ ORBIT E33   38   -0.1275   0.3040  -0.0880
 ORBIT E34   38   -0.0175   0.1520   0.3200
 ORBIT E36   38    0.0875   0.1840   0.0800
 CBIAS SAT signal_name     code_bias[m] validity_interval=300s (10)
-CBIAS G01 L1 C/A                -3.320
-CBIAS G01 L2 CL                 -4.660
-CBIAS G01 L2 P                  -5.460
-CBIAS G02 L1 C/A                 4.540
-CBIAS G02 L2 P                   7.480
-CBIAS G03 L1 C/A                -2.780
-CBIAS G03 L2 CL                 -4.220
-CBIAS G03 L2 P                  -4.600
-CBIAS G04 L1 C/A                -0.280
-CBIAS G04 L2 CL                  0.180
-CBIAS G04 L2 P                  -0.440
-CBIAS G05 L1 C/A                 1.040
-CBIAS G05 L2 CL                  2.220
-CBIAS G05 L2 P                   1.700
-CBIAS G06 L1 C/A                -3.820
-CBIAS G06 L2 CL                 -5.820
-CBIAS G06 L2 P                  -6.300
-CBIAS G08 L1 C/A                -3.040
-CBIAS G08 L2 CL                 -4.800
-CBIAS G08 L2 P                  -4.980
-CBIAS G09 L1 C/A                -1.860
-CBIAS G09 L2 CL                 -2.480
-CBIAS G09 L2 P                  -3.060
-CBIAS G11 L1 C/A                 0.420
-CBIAS G11 L2 CL                  1.440
-CBIAS G11 L2 P                   0.680
-CBIAS G12 L1 C/A                 2.160
-CBIAS G12 L2 CL                  3.860
-CBIAS G12 L2 P                   3.540
-CBIAS G13 L1 C/A                 1.800
-CBIAS G13 L2 P                   2.960
-CBIAS G14 L1 C/A                 0.640
-CBIAS G14 L2 CL                  1.580
-CBIAS G14 L2 P                   1.060
-CBIAS G15 L1 C/A                 1.320
-CBIAS G15 L2 CL                  2.560
-CBIAS G15 L2 P                   2.180
-CBIAS G16 L1 C/A                 2.040
-CBIAS G16 L2 P                   3.360
-CBIAS G17 L1 C/A                 1.480
-CBIAS G17 L2 CL                  3.160
-CBIAS G17 L2 P                   2.420
-CBIAS G18 L1 C/A                 0.740
-CBIAS G18 L2 CL                  1.680
-CBIAS G18 L2 P                   1.220
-CBIAS G19 L1 C/A                 4.060
-CBIAS G19 L2 P                   6.660
-CBIAS G20 L1 C/A                 1.660
-CBIAS G20 L2 P                   2.720
-CBIAS G21 L1 C/A                 2.560
-CBIAS G21 L2 P                   4.220
-CBIAS G23 L1 C/A                 1.040
-CBIAS G23 L2 CL                  2.060
-CBIAS G23 L2 P                   1.700
-CBIAS G24 L1 C/A                -2.440
-CBIAS G24 L2 CL                 -3.580
-CBIAS G24 L2 P                  -4.020
-CBIAS G27 L1 C/A                -1.820
-CBIAS G27 L2 CL                 -2.580
-CBIAS G27 L2 P                  -3.000
-CBIAS G29 L1 C/A                 1.300
-CBIAS G29 L2 CL                  2.620
-CBIAS G29 L2 P                   2.140
-CBIAS G30 L1 C/A                -2.400
-CBIAS G30 L2 CL                 -3.520
-CBIAS G30 L2 P                  -3.960
-CBIAS G31 L1 C/A                 2.520
-CBIAS G31 L2 CL                  4.320
-CBIAS G31 L2 P                   4.160
-CBIAS G32 L1 C/A                -1.920
-CBIAS G32 L2 CL                 -3.020
-CBIAS G32 L2 P                  -3.160
-CBIAS E02 E1 C                   0.340
-CBIAS E02 E5a Q                  0.600
-CBIAS E02 E5b Q                  0.740
-CBIAS E02 E6 C                  -0.420
-CBIAS E03 E1 C                  -1.000
-CBIAS E03 E5a Q                 -1.800
-CBIAS E03 E5b Q                 -1.800
-CBIAS E03 E6 C                  -1.000
-CBIAS E04 E1 C                   1.000
-CBIAS E04 E5a Q                  1.800
-CBIAS E04 E5b Q                  1.780
-CBIAS E04 E6 C                   0.900
-CBIAS E05 E1 C                  -1.140
-CBIAS E05 E5a Q                 -2.040
-CBIAS E05 E5b Q                 -2.040
-CBIAS E05 E6 C                  -0.340
-CBIAS E07 E1 C                  -1.520
-CBIAS E07 E5a Q                 -2.700
-CBIAS E07 E5b Q                 -2.700
-CBIAS E07 E6 C                  -1.340
-CBIAS E08 E1 C                   1.120
-CBIAS E08 E5a Q                  2.000
-CBIAS E08 E5b Q                  2.040
-CBIAS E08 E6 C                   1.640
-CBIAS E09 E1 C                  -0.360
-CBIAS E09 E5a Q                 -0.640
-CBIAS E09 E5b Q                 -0.640
-CBIAS E09 E6 C                  -0.640
-CBIAS E10 E1 C                  -0.220
-CBIAS E10 E5a Q                 -0.400
-CBIAS E10 E5b Q                 -0.540
-CBIAS E10 E6 C                  -1.620
-CBIAS E11 E1 C                   3.860
-CBIAS E11 E5a Q                  6.920
-CBIAS E11 E5b Q                  6.820
-CBIAS E11 E6 C                   6.480
-CBIAS E12 E1 C                   2.880
-CBIAS E12 E5a Q                  5.160
-CBIAS E12 E5b Q                  4.900
-CBIAS E12 E6 C                   5.320
-CBIAS E15 E1 C                  -2.000
-CBIAS E15 E5a Q                 -3.580
-CBIAS E15 E5b Q                 -3.520
-CBIAS E15 E6 C                  -2.420
-CBIAS E19 E1 C                   1.020
-CBIAS E19 E5a Q                  1.840
-CBIAS E19 E5b Q                  1.760
-CBIAS E19 E6 C                   1.160
-CBIAS E21 E1 C                  -0.700
-CBIAS E21 E5a Q                 -1.260
-CBIAS E21 E5b Q                 -1.220
-CBIAS E21 E6 C                  -2.020
-CBIAS E24 E1 C                   0.880
-CBIAS E24 E5a Q                  1.580
-CBIAS E24 E5b Q                  1.680
-CBIAS E24 E6 C                   0.500
-CBIAS E25 E1 C                  -1.240
-CBIAS E25 E5a Q                 -2.220
-CBIAS E25 E5b Q                 -2.200
-CBIAS E25 E6 C                  -0.820
-CBIAS E26 E1 C                   1.040
-CBIAS E26 E5a Q                  1.880
-CBIAS E26 E5b Q                  1.900
-CBIAS E26 E6 C                   0.180
-CBIAS E27 E1 C                  -0.640
-CBIAS E27 E5a Q                 -1.160
-CBIAS E27 E5b Q                 -1.140
-CBIAS E27 E6 C                  -2.000
-CBIAS E30 E1 C                  -0.540
-CBIAS E30 E5a Q                 -0.940
-CBIAS E30 E5b Q                 -0.900
-CBIAS E30 E6 C                  -0.220
-CBIAS E31 E1 C                  -1.520
-CBIAS E31 E5a Q                 -2.720
-CBIAS E31 E5b Q                 -2.700
-CBIAS E31 E6 C                  -0.580
-CBIAS E33 E1 C                   0.780
-CBIAS E33 E5a Q                  1.400
-CBIAS E33 E5b Q                  1.400
-CBIAS E33 E6 C                   0.080
-CBIAS E34 E1 C                  -1.320
-CBIAS E34 E5a Q                 -2.380
-CBIAS E34 E5b Q                 -2.480
-CBIAS E34 E6 C                  -2.040
-CBIAS E36 E1 C                  -1.800
-CBIAS E36 E5a Q                 -3.220
-CBIAS E36 E5b Q                 -3.240
-CBIAS E36 E6 C                  -2.160
+CBIAS G01 L1C/A                 -3.320
+CBIAS G01 L2CL                  -4.660
+CBIAS G01 L2P                   -5.460
+CBIAS G02 L1C/A                  4.540
+CBIAS G02 L2P                    7.480
+CBIAS G03 L1C/A                 -2.780
+CBIAS G03 L2CL                  -4.220
+CBIAS G03 L2P                   -4.600
+CBIAS G04 L1C/A                 -0.280
+CBIAS G04 L2CL                   0.180
+CBIAS G04 L2P                   -0.440
+CBIAS G05 L1C/A                  1.040
+CBIAS G05 L2CL                   2.220
+CBIAS G05 L2P                    1.700
+CBIAS G06 L1C/A                 -3.820
+CBIAS G06 L2CL                  -5.820
+CBIAS G06 L2P                   -6.300
+CBIAS G08 L1C/A                 -3.040
+CBIAS G08 L2CL                  -4.800
+CBIAS G08 L2P                   -4.980
+CBIAS G09 L1C/A                 -1.860
+CBIAS G09 L2CL                  -2.480
+CBIAS G09 L2P                   -3.060
+CBIAS G11 L1C/A                  0.420
+CBIAS G11 L2CL                   1.440
+CBIAS G11 L2P                    0.680
+CBIAS G12 L1C/A                  2.160
+CBIAS G12 L2CL                   3.860
+CBIAS G12 L2P                    3.540
+CBIAS G13 L1C/A                  1.800
+CBIAS G13 L2P                    2.960
+CBIAS G14 L1C/A                  0.640
+CBIAS G14 L2CL                   1.580
+CBIAS G14 L2P                    1.060
+CBIAS G15 L1C/A                  1.320
+CBIAS G15 L2CL                   2.560
+CBIAS G15 L2P                    2.180
+CBIAS G16 L1C/A                  2.040
+CBIAS G16 L2P                    3.360
+CBIAS G17 L1C/A                  1.480
+CBIAS G17 L2CL                   3.160
+CBIAS G17 L2P                    2.420
+CBIAS G18 L1C/A                  0.740
+CBIAS G18 L2CL                   1.680
+CBIAS G18 L2P                    1.220
+CBIAS G19 L1C/A                  4.060
+CBIAS G19 L2P                    6.660
+CBIAS G20 L1C/A                  1.660
+CBIAS G20 L2P                    2.720
+CBIAS G21 L1C/A                  2.560
+CBIAS G21 L2P                    4.220
+CBIAS G23 L1C/A                  1.040
+CBIAS G23 L2CL                   2.060
+CBIAS G23 L2P                    1.700
+CBIAS G24 L1C/A                 -2.440
+CBIAS G24 L2CL                  -3.580
+CBIAS G24 L2P                   -4.020
+CBIAS G27 L1C/A                 -1.820
+CBIAS G27 L2CL                  -2.580
+CBIAS G27 L2P                   -3.000
+CBIAS G29 L1C/A                  1.300
+CBIAS G29 L2CL                   2.620
+CBIAS G29 L2P                    2.140
+CBIAS G30 L1C/A                 -2.400
+CBIAS G30 L2CL                  -3.520
+CBIAS G30 L2P                   -3.960
+CBIAS G31 L1C/A                  2.520
+CBIAS G31 L2CL                   4.320
+CBIAS G31 L2P                    4.160
+CBIAS G32 L1C/A                 -1.920
+CBIAS G32 L2CL                  -3.020
+CBIAS G32 L2P                   -3.160
+CBIAS E02 E1C                    0.340
+CBIAS E02 E5aQ                   0.600
+CBIAS E02 E5bQ                   0.740
+CBIAS E02 E6C                   -0.420
+CBIAS E03 E1C                   -1.000
+CBIAS E03 E5aQ                  -1.800
+CBIAS E03 E5bQ                  -1.800
+CBIAS E03 E6C                   -1.000
+CBIAS E04 E1C                    1.000
+CBIAS E04 E5aQ                   1.800
+CBIAS E04 E5bQ                   1.780
+CBIAS E04 E6C                    0.900
+CBIAS E05 E1C                   -1.140
+CBIAS E05 E5aQ                  -2.040
+CBIAS E05 E5bQ                  -2.040
+CBIAS E05 E6C                   -0.340
+CBIAS E07 E1C                   -1.520
+CBIAS E07 E5aQ                  -2.700
+CBIAS E07 E5bQ                  -2.700
+CBIAS E07 E6C                   -1.340
+CBIAS E08 E1C                    1.120
+CBIAS E08 E5aQ                   2.000
+CBIAS E08 E5bQ                   2.040
+CBIAS E08 E6C                    1.640
+CBIAS E09 E1C                   -0.360
+CBIAS E09 E5aQ                  -0.640
+CBIAS E09 E5bQ                  -0.640
+CBIAS E09 E6C                   -0.640
+CBIAS E10 E1C                   -0.220
+CBIAS E10 E5aQ                  -0.400
+CBIAS E10 E5bQ                  -0.540
+CBIAS E10 E6C                   -1.620
+CBIAS E11 E1C                    3.860
+CBIAS E11 E5aQ                   6.920
+CBIAS E11 E5bQ                   6.820
+CBIAS E11 E6C                    6.480
+CBIAS E12 E1C                    2.880
+CBIAS E12 E5aQ                   5.160
+CBIAS E12 E5bQ                   4.900
+CBIAS E12 E6C                    5.320
+CBIAS E15 E1C                   -2.000
+CBIAS E15 E5aQ                  -3.580
+CBIAS E15 E5bQ                  -3.520
+CBIAS E15 E6C                   -2.420
+CBIAS E19 E1C                    1.020
+CBIAS E19 E5aQ                   1.840
+CBIAS E19 E5bQ                   1.760
+CBIAS E19 E6C                    1.160
+CBIAS E21 E1C                   -0.700
+CBIAS E21 E5aQ                  -1.260
+CBIAS E21 E5bQ                  -1.220
+CBIAS E21 E6C                   -2.020
+CBIAS E24 E1C                    0.880
+CBIAS E24 E5aQ                   1.580
+CBIAS E24 E5bQ                   1.680
+CBIAS E24 E6C                    0.500
+CBIAS E25 E1C                   -1.240
+CBIAS E25 E5aQ                  -2.220
+CBIAS E25 E5bQ                  -2.200
+CBIAS E25 E6C                   -0.820
+CBIAS E26 E1C                    1.040
+CBIAS E26 E5aQ                   1.880
+CBIAS E26 E5bQ                   1.900
+CBIAS E26 E6C                    0.180
+CBIAS E27 E1C                   -0.640
+CBIAS E27 E5aQ                  -1.160
+CBIAS E27 E5bQ                  -1.140
+CBIAS E27 E6C                   -2.000
+CBIAS E30 E1C                   -0.540
+CBIAS E30 E5aQ                  -0.940
+CBIAS E30 E5bQ                  -0.900
+CBIAS E30 E6C                   -0.220
+CBIAS E31 E1C                   -1.520
+CBIAS E31 E5aQ                  -2.720
+CBIAS E31 E5bQ                  -2.700
+CBIAS E31 E6C                   -0.580
+CBIAS E33 E1C                    0.780
+CBIAS E33 E5aQ                   1.400
+CBIAS E33 E5bQ                   1.400
+CBIAS E33 E6C                    0.080
+CBIAS E34 E1C                   -1.320
+CBIAS E34 E5aQ                  -2.380
+CBIAS E34 E5bQ                  -2.480
+CBIAS E34 E6C                   -2.040
+CBIAS E36 E1C                   -1.800
+CBIAS E36 E5aQ                  -3.220
+CBIAS E36 E5bQ                  -3.240
+CBIAS E36 E6C                   -2.160
 ------ padding bits ------
 01010101010101010101
 ------

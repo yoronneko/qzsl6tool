@@ -19,9 +19,9 @@ do_test() {
         > ${BASENAME}.${EXT_TO}
     cmp -s ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO}
     if [[ $? -eq 0 ]]; then
-        echo -e "${COL_GRN}Passed.${COL_NOR}\n"
+        echo -e "${COL_GRN}Passed.${COL_NOR}"
     else
-        echo -e "${COL_RED}Failed.${COL_NOR}\n"
+        echo -e "${COL_RED}Failed.${COL_NOR}"
         diff --color=always ${BASENAME}.${EXT_TO} expect/${BASENAME}.${EXT_TO} |lv
         exit 1
     fi

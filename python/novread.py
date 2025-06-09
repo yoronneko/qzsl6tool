@@ -4,7 +4,7 @@
 # novread.py: NovAtel receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2023 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -17,6 +17,7 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
+import libqzsl6tool
 import libtrace
 
 LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
@@ -123,8 +124,8 @@ class NovReceiver:
         raw   =                payload[pos:pos+32]           ; pos += 32
         chno  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
         self.satid = prn
-        self.raw   = raw
-        msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + \
+        self.raw   = prn.to_bytes(1, 'little') + raw
+        msg = self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000), fg='green') + ' ' + \
               self.trace.msg(0, self.msg_name + ' ', fg='cyan') + \
               self.trace.msg(0, f'J{prn-192:02d}:{sfid} ', fg='yellow') + \
             raw.hex()
@@ -155,19 +156,20 @@ class NovReceiver:
         return msg
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='NovAtel message read')
+    parser = argparse.ArgumentParser(description=f'NovAtel message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        '-e', '--e6b', action='store_true',
+        help='send E6B C/NAV messages to stdout, and also turns off display message.')
+    group.add_argument(
+        '-q', '--qlnav', action='store_true',
+        help='send QZSS LNAV messages to stdout, and also turns off display message.')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')
     parser.add_argument(
-        '-e', '--e6b', action='store_true',
-        help='send E6B C/NAV messages to stdout, and also turns off display message.')
-    parser.add_argument(
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
-    parser.add_argument(
-        '-q', '--qlnav', action='store_true',
-        help='send QZSS LNAV messages to stdout, and also turns off display message.')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
     if args.e6b:

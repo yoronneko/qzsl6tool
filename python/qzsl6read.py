@@ -4,7 +4,7 @@
 # qzsl6read.py: quasi-zenith satellite (QZS) L6 message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2024 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -22,6 +22,12 @@
 # [4] Radio Technical Commission for Maritime Services (RTCM),
 #     Differential GNSS (Global Navigation Satellite Systems) Services
 #     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
+# [5] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Centimeter Level Augmentation Service,
+#     IS-QZSS-L6-006, Jan. 21, 2025.
+# [6] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+#     - Precise Point Positioning, IS-QZSS-MDC-004-Draft, May 2025.
 
 import argparse
 import os
@@ -30,6 +36,7 @@ import sys
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
 import libqznma
+import libqzsl6tool
 import libssr
 import libtrace
 from   rtcmread import send_rtcm, msgnum2satsys, msgnum2mtype
@@ -51,8 +58,9 @@ class QzsL6:
     prn      = 0                      # psedudo random noise number
     vendor   = ''                     # vendor name
     facility = ''                     # facility name
-    servid   = ''                     # service name
-    msg_ext  = ''                     # extension (LNAV or CNAV)
+    servid   = ''                     # MADOCA-PPP: service name
+    msg_ext  = ''                     # MADOCA-PPP: extension (LNAV/CNAV)
+    patid    = 0b00                   # CLAS: transmit pattern ID
     sf_ind   = 0                      # subframe indicator (0 or 1)
     alert    = 0                      # alert flag (0 or 1)
     run      = False                  # CSSR decode in progress
@@ -88,7 +96,7 @@ class QzsL6:
         self.prn = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
         mtid     = int.from_bytes(b[pos:pos+1], 'big'); pos += 1
         data     = b[pos:pos+212]; pos += 212
-        rs       = b[pos:pos+ 32]; pos +=  32  # not used
+        rs       = b[pos:pos+ 32]; pos +=  32  # Reed Solomon error correction
         vid = mtid >> 5                        # vender ID
         if   vid == 0b001: self.vendor = "MADOCA"
         elif vid == 0b010: self.vendor = "MADOCA-PPP"
@@ -97,8 +105,14 @@ class QzsL6:
         else:              self.vendor = f"vendor 0b{vid:03b}"
         self.facility = "Kobe" if (mtid >> 4) & 1 else "Hitachi-Ota"
         self.facility += ":" + str((mtid >> 3) & 1)
-        self.servid   = "Iono" if (mtid >> 2) & 1 else "Clk/Eph"
-        self.msg_ext  = "CNAV" if (mtid >> 1) & 1 else "LNAV"
+        if vid == 0b010:    # MADOCA-PPP
+            self.servid   = "Iono" if (mtid >> 2) & 1 else "Clk/Eph"
+            self.msg_ext  = "CNAV" if (mtid >> 1) & 1 else "LNAV"
+        elif vid == 0b101:  # CLAS, ref[5], Table 4.1.2-2
+            if (mtid >> 2) & 1:
+                self.patid = "Reserved"
+            else:
+                self.patid = "Pattern" + str((mtid >> 2) & 1)
         self.sf_ind   = mtid & 1  # subframe indicator
         bdata         = bitstring.BitStream(data)
         self.alert    = bdata[0]
@@ -145,7 +159,7 @@ class QzsL6:
             return False
         satsys = msgnum2satsys(msgnum)
         mtype  = msgnum2mtype (msgnum)
-        self.ssr.ssr_decode_head(self.dpart, satsys, mtype)
+        msg2 = self.ssr.ssr_decode_head(self.dpart, satsys, mtype)
         if mtype == 'SSR orbit':
             msg = self.ssr.ssr_decode_orbit(self.dpart, satsys)
         elif mtype == 'SSR clock':
@@ -158,7 +172,7 @@ class QzsL6:
             msg = self.ssr.ssr_decode_hr_clock(self.dpart, satsys)
         else:
             raise Exception(f'unsupported message type: {msgnum}')
-        self.trace.show(1, msg)
+        self.trace.show(0, msg + msg2)
         if self.dpart.pos % 8 != 0:  # byte align
             self.dpart.pos += 8 - (self.dpart.pos % 8)
         if self.fp_rtcm:
@@ -201,8 +215,10 @@ class QzsL6:
         msg = ''
         if self.sfn != 0:
             msg += ' SF' + str(self.sfn) + ' DP' + str(self.dpn)
-            if self.vendor == "MADOCA-PPP":
+            if self.vendor == "MADOCA-PPP":  # ref.[3]
                 msg += f' ({self.servid} {self.msg_ext})'
+            if self.vendor == "CLAS:":  # ref.[5]
+                msg += f' ({self.patid})'
         if self.read_cssr():  # found a CSSR message
             msg += f' ST{self.ssr.subtype}'
             while self.read_cssr():  # try to decode next message
@@ -348,7 +364,7 @@ class QzsL6:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Quasi-zenith satellite (QZS) L6 message read')
+        description=f'Quasi-zenith satellite (QZS) L6 message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')

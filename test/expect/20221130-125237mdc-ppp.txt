@@ -5,68 +5,68 @@
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
-ST1 G01 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G03 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G04 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G06 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G08 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G09 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G10 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G11 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G13 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G14 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G15 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G16 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G17 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G18 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G19 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G21 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G22 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G23 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G25 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G27 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G30 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G31 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G32 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 R01 G1 C/A G1 P G2 C/A G2 P
-ST1 R02 G1 C/A G1 P G2 C/A G2 P
-ST1 R03 G1 C/A G1 P G2 C/A G2 P
-ST1 R04 G1 C/A G1 P G2 C/A G2 P
-ST1 R05 G1 C/A G1 P G2 C/A G2 P
-ST1 R07 G1 C/A G1 P G2 C/A G2 P
-ST1 R08 G1 C/A G1 P G2 C/A G2 P
-ST1 R09 G1 C/A G1 P G2 C/A G2 P
-ST1 R11 G1 C/A G1 P G2 C/A G2 P
-ST1 R12 G1 C/A G1 P G2 C/A G2 P
-ST1 R13 G1 C/A G1 P G2 C/A G2 P
-ST1 R14 G1 C/A G1 P G2 C/A G2 P
-ST1 R15 G1 C/A G1 P G2 C/A G2 P
-ST1 R17 G1 C/A G1 P G2 C/A G2 P
-ST1 R18 G1 C/A G1 P G2 C/A G2 P
-ST1 R19 G1 C/A G1 P G2 C/A G2 P
-ST1 R21 G1 C/A G1 P G2 C/A G2 P
-ST1 R24 G1 C/A G1 P G2 C/A G2 P
-ST1 E02 E1 B+C E5a I+Q
-ST1 E03 E1 B+C E5a I+Q
-ST1 E04 E1 B+C E5a I+Q
-ST1 E05 E1 B+C E5a I+Q
-ST1 E07 E1 B+C E5a I+Q
-ST1 E09 E1 B+C E5a I+Q
-ST1 E13 E1 B+C E5a I+Q
-ST1 E15 E1 B+C E5a I+Q
-ST1 E19 E1 B+C E5a I+Q
-ST1 E21 E1 B+C E5a I+Q
-ST1 E24 E1 B+C E5a I+Q
-ST1 E25 E1 B+C E5a I+Q
-ST1 E27 E1 B+C E5a I+Q
-ST1 E30 E1 B+C E5a I+Q
-ST1 E33 E1 B+C E5a I+Q
-ST1 E36 E1 B+C E5a I+Q
-ST1 J02 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
-ST1 J03 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
+ST1 G01 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G03 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G04 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G06 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G08 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G09 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G10 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G11 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G12 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G13 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G14 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G15 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G16 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G17 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G18 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G19 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G21 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G22 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G23 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G25 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G26 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G27 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G29 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G30 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G31 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G32 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 R01 G1C/A G1P G2C/A G2P
+ST1 R02 G1C/A G1P G2C/A G2P
+ST1 R03 G1C/A G1P G2C/A G2P
+ST1 R04 G1C/A G1P G2C/A G2P
+ST1 R05 G1C/A G1P G2C/A G2P
+ST1 R07 G1C/A G1P G2C/A G2P
+ST1 R08 G1C/A G1P G2C/A G2P
+ST1 R09 G1C/A G1P G2C/A G2P
+ST1 R11 G1C/A G1P G2C/A G2P
+ST1 R12 G1C/A G1P G2C/A G2P
+ST1 R13 G1C/A G1P G2C/A G2P
+ST1 R14 G1C/A G1P G2C/A G2P
+ST1 R15 G1C/A G1P G2C/A G2P
+ST1 R17 G1C/A G1P G2C/A G2P
+ST1 R18 G1C/A G1P G2C/A G2P
+ST1 R19 G1C/A G1P G2C/A G2P
+ST1 R21 G1C/A G1P G2C/A G2P
+ST1 R24 G1C/A G1P G2C/A G2P
+ST1 E02 E1B+C E5aI+Q
+ST1 E03 E1B+C E5aI+Q
+ST1 E04 E1B+C E5aI+Q
+ST1 E05 E1B+C E5aI+Q
+ST1 E07 E1B+C E5aI+Q
+ST1 E09 E1B+C E5aI+Q
+ST1 E13 E1B+C E5aI+Q
+ST1 E15 E1B+C E5aI+Q
+ST1 E19 E1B+C E5aI+Q
+ST1 E21 E1B+C E5aI+Q
+ST1 E24 E1B+C E5aI+Q
+ST1 E25 E1B+C E5aI+Q
+ST1 E27 E1B+C E5aI+Q
+ST1 E30 E1B+C E5aI+Q
+ST1 E33 E1B+C E5aI+Q
+ST1 E36 E1B+C E5aI+Q
+ST1 J02 L1C/A L1C(D+P) L2CM+L L5I+Q
+ST1 J03 L1C/A L1C(D+P) L2CM+L L5I+Q
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
 ST2 SAT IODE radial[m] along[m] cross[m]
@@ -337,241 +337,241 @@ CSSR null data 1695 bits
 204 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 (Clk/Eph LNAV) (null)
 204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 (Clk/Eph LNAV) ST4...
 ST4 SAT sinal_name      code_bias[m]
-ST4 G01 L1 C/A                -1.100
-ST4 G01 L1 Z-tracking         -1.400
-ST4 G01 L2 CM+CL              -1.400
-ST4 G01 L2 Z-tracking         -2.300
-ST4 G01 L5 I+Q                -1.400
-ST4 G03 L1 C/A                -0.560
-ST4 G03 L1 Z-tracking         -0.560
-ST4 G03 L2 CM+CL              -0.560
-ST4 G03 L2 Z-tracking         -0.920
-ST4 G03 L5 I+Q                -0.560
-ST4 G04 L1 C/A                 1.400
-ST4 G04 L1 Z-tracking          1.400
+ST4 G01 L1C/A                 -1.100
+ST4 G01 L1Z-tracking          -1.400
+ST4 G01 L2CM+L                -1.400
+ST4 G01 L2Z-tracking          -2.300
+ST4 G01 L5I+Q                 -1.400
+ST4 G03 L1C/A                 -0.560
+ST4 G03 L1Z-tracking          -0.560
+ST4 G03 L2CM+L                -0.560
+ST4 G03 L2Z-tracking          -0.920
+ST4 G03 L5I+Q                 -0.560
+ST4 G04 L1C/A                  1.400
+ST4 G04 L1Z-tracking           1.400
 ST4 G04 L1C(D+P)               1.400
-ST4 G04 L2 CM+CL               1.400
-ST4 G04 L2 Z-tracking          2.300
-ST4 G04 L5 I+Q                 1.400
-ST4 G06 L1 C/A                -1.120
-ST4 G06 L1 Z-tracking         -1.120
-ST4 G06 L2 CM+CL              -1.120
-ST4 G06 L2 Z-tracking         -1.840
-ST4 G06 L5 I+Q                -1.120
-ST4 G08 L1 C/A                -1.540
-ST4 G08 L1 Z-tracking         -1.540
-ST4 G08 L2 CM+CL              -1.540
-ST4 G08 L2 Z-tracking         -2.520
-ST4 G08 L5 I+Q                -1.540
-ST4 G09 L1 C/A                -0.280
-ST4 G09 L1 Z-tracking         -0.280
-ST4 G09 L2 CM+CL              -0.280
-ST4 G09 L2 Z-tracking         -0.460
-ST4 G09 L5 I+Q                -0.280
-ST4 G10 L1 C/A                -0.700
-ST4 G10 L1 Z-tracking         -0.700
-ST4 G10 L2 CM+CL              -0.700
-ST4 G10 L2 Z-tracking         -1.140
-ST4 G10 L5 I+Q                -0.700
-ST4 G11 L1 C/A                 2.660
-ST4 G11 L1 Z-tracking          2.660
-ST4 G11 L2 CM+CL               2.660
-ST4 G11 L2 Z-tracking          4.360
-ST4 G11 L5 I+Q                 2.660
-ST4 G12 L1 C/A                 3.760
-ST4 G12 L1 Z-tracking          3.760
-ST4 G12 L2 CM+CL               3.760
-ST4 G12 L2 Z-tracking          6.220
-ST4 G13 L1 C/A                 3.500
-ST4 G13 L1 Z-tracking          3.500
-ST4 G13 L2 CM+CL               3.500
-ST4 G13 L2 Z-tracking          5.760
-ST4 G14 L1 C/A                 2.360
-ST4 G14 L1 Z-tracking          2.360
+ST4 G04 L2CM+L                 1.400
+ST4 G04 L2Z-tracking           2.300
+ST4 G04 L5I+Q                  1.400
+ST4 G06 L1C/A                 -1.120
+ST4 G06 L1Z-tracking          -1.120
+ST4 G06 L2CM+L                -1.120
+ST4 G06 L2Z-tracking          -1.840
+ST4 G06 L5I+Q                 -1.120
+ST4 G08 L1C/A                 -1.540
+ST4 G08 L1Z-tracking          -1.540
+ST4 G08 L2CM+L                -1.540
+ST4 G08 L2Z-tracking          -2.520
+ST4 G08 L5I+Q                 -1.540
+ST4 G09 L1C/A                 -0.280
+ST4 G09 L1Z-tracking          -0.280
+ST4 G09 L2CM+L                -0.280
+ST4 G09 L2Z-tracking          -0.460
+ST4 G09 L5I+Q                 -0.280
+ST4 G10 L1C/A                 -0.700
+ST4 G10 L1Z-tracking          -0.700
+ST4 G10 L2CM+L                -0.700
+ST4 G10 L2Z-tracking          -1.140
+ST4 G10 L5I+Q                 -0.700
+ST4 G11 L1C/A                  2.660
+ST4 G11 L1Z-tracking           2.660
+ST4 G11 L2CM+L                 2.660
+ST4 G11 L2Z-tracking           4.360
+ST4 G11 L5I+Q                  2.660
+ST4 G12 L1C/A                  3.760
+ST4 G12 L1Z-tracking           3.760
+ST4 G12 L2CM+L                 3.760
+ST4 G12 L2Z-tracking           6.220
+ST4 G13 L1C/A                  3.500
+ST4 G13 L1Z-tracking           3.500
+ST4 G13 L2CM+L                 3.500
+ST4 G13 L2Z-tracking           5.760
+ST4 G14 L1C/A                  2.360
+ST4 G14 L1Z-tracking           2.360
 ST4 G14 L1C(D+P)               2.360
-ST4 G14 L2 CM+CL               2.360
-ST4 G14 L2 Z-tracking          3.920
-ST4 G14 L5 I+Q                 2.360
-ST4 G15 L1 C/A                 3.220
-ST4 G15 L1 Z-tracking          3.220
-ST4 G15 L2 CM+CL               3.220
-ST4 G15 L2 Z-tracking          5.280
-ST4 G16 L1 C/A                 3.060
-ST4 G16 L1 Z-tracking          3.060
-ST4 G16 L2 CM+CL               3.060
-ST4 G16 L2 Z-tracking          5.060
-ST4 G17 L1 C/A                 3.340
-ST4 G17 L1 Z-tracking          3.340
-ST4 G17 L2 CM+CL               3.340
-ST4 G17 L2 Z-tracking          5.520
-ST4 G18 L1 C/A                 2.500
-ST4 G18 L1 Z-tracking          2.500
-ST4 G18 L2 CM+CL               2.500
-ST4 G18 L2 Z-tracking          4.140
-ST4 G18 L5 I+Q                 2.500
-ST4 G19 L1 C/A                 4.620
-ST4 G19 L1 Z-tracking          4.620
-ST4 G19 L2 CM+CL               4.620
-ST4 G19 L2 Z-tracking          7.600
-ST4 G21 L1 C/A                 3.060
-ST4 G21 L1 Z-tracking          3.060
-ST4 G21 L2 CM+CL               3.060
-ST4 G21 L2 Z-tracking          5.060
-ST4 G22 L1 C/A                 2.500
-ST4 G22 L1 Z-tracking          2.500
-ST4 G22 L2 CM+CL               2.500
-ST4 G22 L2 Z-tracking          4.140
-ST4 G23 L1 C/A                 2.500
-ST4 G23 L1 Z-tracking          2.500
+ST4 G14 L2CM+L                 2.360
+ST4 G14 L2Z-tracking           3.920
+ST4 G14 L5I+Q                  2.360
+ST4 G15 L1C/A                  3.220
+ST4 G15 L1Z-tracking           3.220
+ST4 G15 L2CM+L                 3.220
+ST4 G15 L2Z-tracking           5.280
+ST4 G16 L1C/A                  3.060
+ST4 G16 L1Z-tracking           3.060
+ST4 G16 L2CM+L                 3.060
+ST4 G16 L2Z-tracking           5.060
+ST4 G17 L1C/A                  3.340
+ST4 G17 L1Z-tracking           3.340
+ST4 G17 L2CM+L                 3.340
+ST4 G17 L2Z-tracking           5.520
+ST4 G18 L1C/A                  2.500
+ST4 G18 L1Z-tracking           2.500
+ST4 G18 L2CM+L                 2.500
+ST4 G18 L2Z-tracking           4.140
+ST4 G18 L5I+Q                  2.500
+ST4 G19 L1C/A                  4.620
+ST4 G19 L1Z-tracking           4.620
+ST4 G19 L2CM+L                 4.620
+ST4 G19 L2Z-tracking           7.600
+ST4 G21 L1C/A                  3.060
+ST4 G21 L1Z-tracking           3.060
+ST4 G21 L2CM+L                 3.060
+ST4 G21 L2Z-tracking           5.060
+ST4 G22 L1C/A                  2.500
+ST4 G22 L1Z-tracking           2.500
+ST4 G22 L2CM+L                 2.500
+ST4 G22 L2Z-tracking           4.140
+ST4 G23 L1C/A                  2.500
+ST4 G23 L1Z-tracking           2.500
 ST4 G23 L1C(D+P)               2.500
-ST4 G23 L2 CM+CL               2.500
-ST4 G23 L2 Z-tracking          4.140
-ST4 G23 L5 I+Q                 2.500
-ST4 G25 L1 C/A                -1.680
-ST4 G25 L1 Z-tracking         -1.680
-ST4 G25 L2 CM+CL              -1.680
-ST4 G25 L2 Z-tracking         -2.760
-ST4 G25 L5 I+Q                -1.680
-ST4 G26 L1 C/A                -2.080
-ST4 G26 L1 Z-tracking         -2.080
-ST4 G26 L2 CM+CL              -2.080
-ST4 G26 L2 Z-tracking         -3.460
-ST4 G26 L5 I+Q                -2.080
-ST4 G27 L1 C/A                -0.420
-ST4 G27 L1 Z-tracking         -0.420
-ST4 G27 L2 CM+CL              -0.420
-ST4 G27 L2 Z-tracking         -0.680
-ST4 G27 L5 I+Q                -0.420
-ST4 G29 L1 C/A                 3.060
-ST4 G29 L1 Z-tracking          3.060
-ST4 G29 L2 CM+CL               3.060
-ST4 G29 L2 Z-tracking          5.060
-ST4 G30 L1 C/A                -1.120
-ST4 G30 L1 Z-tracking         -1.120
-ST4 G30 L2 CM+CL              -1.120
-ST4 G30 L2 Z-tracking         -1.840
-ST4 G30 L5 I+Q                -1.120
-ST4 G31 L1 C/A                 4.060
-ST4 G31 L1 Z-tracking          4.060
-ST4 G31 L2 CM+CL               4.060
-ST4 G31 L2 Z-tracking          6.680
-ST4 G32 L1 C/A                -0.140
-ST4 G32 L1 Z-tracking         -0.140
-ST4 G32 L2 CM+CL              -0.140
-ST4 G32 L2 Z-tracking         -0.240
-ST4 G32 L5 I+Q                -0.140
-ST4 R01 G1 C/A                 0.000
-ST4 R01 G1 P                   0.000
-ST4 R01 G2 C/A                 0.000
-ST4 R01 G2 P                   0.000
-ST4 R02 G1 C/A                 0.000
-ST4 R02 G1 P                   0.000
-ST4 R02 G2 C/A                 0.000
-ST4 R02 G2 P                   0.000
-ST4 R03 G1 C/A                 0.000
-ST4 R03 G1 P                   0.000
-ST4 R03 G2 C/A                 0.000
-ST4 R03 G2 P                   0.000
-ST4 R04 G1 C/A                 0.000
-ST4 R04 G1 P                   0.000
-ST4 R04 G2 C/A                 0.000
-ST4 R04 G2 P                   0.000
-ST4 R05 G1 C/A                 0.000
-ST4 R05 G1 P                   0.000
-ST4 R05 G2 C/A                 0.000
-ST4 R05 G2 P                   0.000
-ST4 R07 G1 C/A                 0.000
-ST4 R07 G1 P                   0.000
-ST4 R07 G2 C/A                 0.000
-ST4 R07 G2 P                   0.000
-ST4 R08 G1 C/A                 0.000
-ST4 R08 G1 P                   0.000
-ST4 R08 G2 C/A                 0.000
-ST4 R08 G2 P                   0.000
-ST4 R09 G1 C/A                 0.000
-ST4 R09 G1 P                   0.000
-ST4 R09 G2 C/A                 0.000
-ST4 R09 G2 P                   0.000
-ST4 R11 G1 C/A                 0.000
-ST4 R11 G1 P                   0.000
-ST4 R11 G2 C/A                 0.000
-ST4 R11 G2 P                   0.000
-ST4 R12 G1 C/A                 0.000
-ST4 R12 G1 P                   0.000
-ST4 R12 G2 C/A                 0.000
-ST4 R12 G2 P                   0.000
-ST4 R13 G1 C/A                 0.000
-ST4 R13 G1 P                   0.000
-ST4 R13 G2 C/A                 0.000
-ST4 R13 G2 P                   0.000
-ST4 R14 G1 C/A                 0.000
-ST4 R14 G1 P                   0.000
-ST4 R14 G2 C/A                 0.000
-ST4 R14 G2 P                   0.000
-ST4 R15 G1 C/A                 0.000
-ST4 R15 G1 P                   0.000
-ST4 R15 G2 C/A                 0.000
-ST4 R15 G2 P                   0.000
-ST4 R17 G1 C/A                 0.000
-ST4 R17 G1 P                   0.000
-ST4 R17 G2 C/A                 0.000
-ST4 R17 G2 P                   0.000
-ST4 R18 G1 C/A                 0.000
-ST4 R18 G1 P                   0.000
-ST4 R18 G2 C/A                 0.000
-ST4 R18 G2 P                   0.000
-ST4 R19 G1 C/A                 0.000
-ST4 R19 G1 P                   0.000
-ST4 R19 G2 C/A                 0.000
-ST4 R19 G2 P                   0.000
-ST4 R21 G1 C/A                 0.000
-ST4 R21 G1 P                   0.000
-ST4 R21 G2 C/A                 0.000
-ST4 R21 G2 P                   0.000
-ST4 R24 G1 C/A                 0.000
-ST4 R24 G1 P                   0.000
-ST4 R24 G2 C/A                 0.000
-ST4 R24 G2 P                   0.000
-ST4 E02 E1 B+C                 0.420
-ST4 E02 E5a I+Q                0.760
-ST4 E03 E1 B+C                -0.920
-ST4 E03 E5a I+Q               -1.620
-ST4 E04 E1 B+C                 0.920
-ST4 E04 E5a I+Q                1.620
-ST4 E05 E1 B+C                -1.040
-ST4 E05 E5a I+Q               -1.880
-ST4 E07 E1 B+C                -1.680
-ST4 E07 E5a I+Q               -3.000
-ST4 E09 E1 B+C                -0.560
-ST4 E09 E5a I+Q               -1.000
-ST4 E13 E1 B+C                -0.140
-ST4 E13 E5a I+Q               -0.260
-ST4 E15 E1 B+C                -1.760
-ST4 E15 E5a I+Q               -3.140
-ST4 E19 E1 B+C                 1.120
-ST4 E19 E5a I+Q                2.000
-ST4 E21 E1 B+C                -0.980
-ST4 E21 E5a I+Q               -1.760
-ST4 E24 E1 B+C                 0.920
-ST4 E24 E5a I+Q                1.620
-ST4 E25 E1 B+C                -1.040
-ST4 E25 E5a I+Q               -1.880
-ST4 E27 E1 B+C                -0.760
-ST4 E27 E5a I+Q               -1.380
-ST4 E30 E1 B+C                -0.560
-ST4 E30 E5a I+Q               -1.000
-ST4 E33 E1 B+C                 0.920
-ST4 E33 E5a I+Q                1.620
-ST4 E36 E1 B+C                -1.680
-ST4 E36 E5a I+Q               -3.000
-ST4 J02 L1 C/A                -0.140
-ST4 J02 L1 L1C(D+P)           -0.140
-ST4 J02 L2 L2C(M+L)           -0.240
-ST4 J02 L5 I+Q                -0.140
-ST4 J03 L1 C/A                 0.140
-ST4 J03 L1 L1C(D+P)            0.140
-ST4 J03 L2 L2C(M+L)            0.240
-ST4 J03 L5 I+Q                 0.140
+ST4 G23 L2CM+L                 2.500
+ST4 G23 L2Z-tracking           4.140
+ST4 G23 L5I+Q                  2.500
+ST4 G25 L1C/A                 -1.680
+ST4 G25 L1Z-tracking          -1.680
+ST4 G25 L2CM+L                -1.680
+ST4 G25 L2Z-tracking          -2.760
+ST4 G25 L5I+Q                 -1.680
+ST4 G26 L1C/A                 -2.080
+ST4 G26 L1Z-tracking          -2.080
+ST4 G26 L2CM+L                -2.080
+ST4 G26 L2Z-tracking          -3.460
+ST4 G26 L5I+Q                 -2.080
+ST4 G27 L1C/A                 -0.420
+ST4 G27 L1Z-tracking          -0.420
+ST4 G27 L2CM+L                -0.420
+ST4 G27 L2Z-tracking          -0.680
+ST4 G27 L5I+Q                 -0.420
+ST4 G29 L1C/A                  3.060
+ST4 G29 L1Z-tracking           3.060
+ST4 G29 L2CM+L                 3.060
+ST4 G29 L2Z-tracking           5.060
+ST4 G30 L1C/A                 -1.120
+ST4 G30 L1Z-tracking          -1.120
+ST4 G30 L2CM+L                -1.120
+ST4 G30 L2Z-tracking          -1.840
+ST4 G30 L5I+Q                 -1.120
+ST4 G31 L1C/A                  4.060
+ST4 G31 L1Z-tracking           4.060
+ST4 G31 L2CM+L                 4.060
+ST4 G31 L2Z-tracking           6.680
+ST4 G32 L1C/A                 -0.140
+ST4 G32 L1Z-tracking          -0.140
+ST4 G32 L2CM+L                -0.140
+ST4 G32 L2Z-tracking          -0.240
+ST4 G32 L5I+Q                 -0.140
+ST4 R01 G1C/A                  0.000
+ST4 R01 G1P                    0.000
+ST4 R01 G2C/A                  0.000
+ST4 R01 G2P                    0.000
+ST4 R02 G1C/A                  0.000
+ST4 R02 G1P                    0.000
+ST4 R02 G2C/A                  0.000
+ST4 R02 G2P                    0.000
+ST4 R03 G1C/A                  0.000
+ST4 R03 G1P                    0.000
+ST4 R03 G2C/A                  0.000
+ST4 R03 G2P                    0.000
+ST4 R04 G1C/A                  0.000
+ST4 R04 G1P                    0.000
+ST4 R04 G2C/A                  0.000
+ST4 R04 G2P                    0.000
+ST4 R05 G1C/A                  0.000
+ST4 R05 G1P                    0.000
+ST4 R05 G2C/A                  0.000
+ST4 R05 G2P                    0.000
+ST4 R07 G1C/A                  0.000
+ST4 R07 G1P                    0.000
+ST4 R07 G2C/A                  0.000
+ST4 R07 G2P                    0.000
+ST4 R08 G1C/A                  0.000
+ST4 R08 G1P                    0.000
+ST4 R08 G2C/A                  0.000
+ST4 R08 G2P                    0.000
+ST4 R09 G1C/A                  0.000
+ST4 R09 G1P                    0.000
+ST4 R09 G2C/A                  0.000
+ST4 R09 G2P                    0.000
+ST4 R11 G1C/A                  0.000
+ST4 R11 G1P                    0.000
+ST4 R11 G2C/A                  0.000
+ST4 R11 G2P                    0.000
+ST4 R12 G1C/A                  0.000
+ST4 R12 G1P                    0.000
+ST4 R12 G2C/A                  0.000
+ST4 R12 G2P                    0.000
+ST4 R13 G1C/A                  0.000
+ST4 R13 G1P                    0.000
+ST4 R13 G2C/A                  0.000
+ST4 R13 G2P                    0.000
+ST4 R14 G1C/A                  0.000
+ST4 R14 G1P                    0.000
+ST4 R14 G2C/A                  0.000
+ST4 R14 G2P                    0.000
+ST4 R15 G1C/A                  0.000
+ST4 R15 G1P                    0.000
+ST4 R15 G2C/A                  0.000
+ST4 R15 G2P                    0.000
+ST4 R17 G1C/A                  0.000
+ST4 R17 G1P                    0.000
+ST4 R17 G2C/A                  0.000
+ST4 R17 G2P                    0.000
+ST4 R18 G1C/A                  0.000
+ST4 R18 G1P                    0.000
+ST4 R18 G2C/A                  0.000
+ST4 R18 G2P                    0.000
+ST4 R19 G1C/A                  0.000
+ST4 R19 G1P                    0.000
+ST4 R19 G2C/A                  0.000
+ST4 R19 G2P                    0.000
+ST4 R21 G1C/A                  0.000
+ST4 R21 G1P                    0.000
+ST4 R21 G2C/A                  0.000
+ST4 R21 G2P                    0.000
+ST4 R24 G1C/A                  0.000
+ST4 R24 G1P                    0.000
+ST4 R24 G2C/A                  0.000
+ST4 R24 G2P                    0.000
+ST4 E02 E1B+C                  0.420
+ST4 E02 E5aI+Q                 0.760
+ST4 E03 E1B+C                 -0.920
+ST4 E03 E5aI+Q                -1.620
+ST4 E04 E1B+C                  0.920
+ST4 E04 E5aI+Q                 1.620
+ST4 E05 E1B+C                 -1.040
+ST4 E05 E5aI+Q                -1.880
+ST4 E07 E1B+C                 -1.680
+ST4 E07 E5aI+Q                -3.000
+ST4 E09 E1B+C                 -0.560
+ST4 E09 E5aI+Q                -1.000
+ST4 E13 E1B+C                 -0.140
+ST4 E13 E5aI+Q                -0.260
+ST4 E15 E1B+C                 -1.760
+ST4 E15 E5aI+Q                -3.140
+ST4 E19 E1B+C                  1.120
+ST4 E19 E5aI+Q                 2.000
+ST4 E21 E1B+C                 -0.980
+ST4 E21 E5aI+Q                -1.760
+ST4 E24 E1B+C                  0.920
+ST4 E24 E5aI+Q                 1.620
+ST4 E25 E1B+C                 -1.040
+ST4 E25 E5aI+Q                -1.880
+ST4 E27 E1B+C                 -0.760
+ST4 E27 E5aI+Q                -1.380
+ST4 E30 E1B+C                 -0.560
+ST4 E30 E5aI+Q                -1.000
+ST4 E33 E1B+C                  0.920
+ST4 E33 E5aI+Q                 1.620
+ST4 E36 E1B+C                 -1.680
+ST4 E36 E5aI+Q                -3.000
+ST4 J02 L1C/A                 -0.140
+ST4 J02 L1C(D+P)              -0.140
+ST4 J02 L2CM+L                -0.240
+ST4 J02 L5I+Q                 -0.140
+ST4 J03 L1C/A                  0.140
+ST4 J03 L1C(D+P)               0.140
+ST4 J03 L2CM+L                 0.240
+ST4 J03 L5I+Q                  0.140
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 (Clk/Eph LNAV) ST4 ST3...
 ST3 SAT   c0[m]
 ST3 G01   0.131
@@ -716,241 +716,241 @@ CSSR null data 1695 bits
 204 Hitachi-Ota:1  MADOCA-PPP  SF5 DP1 (Clk/Eph LNAV) ST5...
 204 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 (Clk/Eph LNAV) ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
-ST5 G01 L1 C/A             -0.264       0
-ST5 G01 L1 Z-tracking      -0.264       0
-ST5 G01 L2 CM+CL           -0.329       0
-ST5 G01 L2 Z-tracking      -0.329       0
-ST5 G01 L5 I+Q             -0.092       0
-ST5 G03 L1 C/A             -0.006       0
-ST5 G03 L1 Z-tracking      -0.006       0
-ST5 G03 L2 CM+CL           -0.148       0
-ST5 G03 L2 Z-tracking      -0.148       0
-ST5 G03 L5 I+Q             -0.295       0
-ST5 G04 L1 C/A             -0.379       0
-ST5 G04 L1 Z-tracking      -0.379       0
+ST5 G01 L1C/A              -0.264       0
+ST5 G01 L1Z-tracking       -0.264       0
+ST5 G01 L2CM+L             -0.329       0
+ST5 G01 L2Z-tracking       -0.329       0
+ST5 G01 L5I+Q              -0.092       0
+ST5 G03 L1C/A              -0.006       0
+ST5 G03 L1Z-tracking       -0.006       0
+ST5 G03 L2CM+L             -0.148       0
+ST5 G03 L2Z-tracking       -0.148       0
+ST5 G03 L5I+Q              -0.295       0
+ST5 G04 L1C/A              -0.379       0
+ST5 G04 L1Z-tracking       -0.379       0
 ST5 G04 L1C(D+P)           -0.379       0
-ST5 G04 L2 CM+CL           -0.366       0
-ST5 G04 L2 Z-tracking      -0.366       0
-ST5 G04 L5 I+Q             -0.651       0
-ST5 G06 L1 C/A             -0.603       0
-ST5 G06 L1 Z-tracking      -0.603       0
-ST5 G06 L2 CM+CL           -0.677       0
-ST5 G06 L2 Z-tracking      -0.677       0
-ST5 G06 L5 I+Q             -1.006       0
-ST5 G08 L1 C/A              0.729       0
-ST5 G08 L1 Z-tracking       0.729       0
-ST5 G08 L2 CM+CL            1.051       0
-ST5 G08 L2 Z-tracking       1.051       0
-ST5 G08 L5 I+Q              0.990       0
-ST5 G09 L1 C/A              0.451       0
-ST5 G09 L1 Z-tracking       0.451       0
-ST5 G09 L2 CM+CL            0.555       0
-ST5 G09 L2 Z-tracking       0.555       0
-ST5 G09 L5 I+Q              0.510       0
-ST5 G10 L1 C/A              0.247       0
-ST5 G10 L1 Z-tracking       0.247       0
-ST5 G10 L2 CM+CL            0.260       0
-ST5 G10 L2 Z-tracking       0.260       0
-ST5 G10 L5 I+Q              0.244       0
-ST5 G11 L1 C/A             -0.717       0
-ST5 G11 L1 Z-tracking      -0.717       0
-ST5 G11 L2 CM+CL           -1.167       0
-ST5 G11 L2 Z-tracking      -1.167       0
-ST5 G11 L5 I+Q             -1.036       0
-ST5 G12 L1 C/A             -0.243       0
-ST5 G12 L1 Z-tracking      -0.243       0
-ST5 G12 L2 CM+CL           -0.400       0
-ST5 G12 L2 Z-tracking      -0.400       0
-ST5 G13 L1 C/A             -0.376       0
-ST5 G13 L1 Z-tracking      -0.376       0
-ST5 G13 L2 CM+CL           -0.623       0
-ST5 G13 L2 Z-tracking      -0.623       0
-ST5 G14 L1 C/A              0.554       0
-ST5 G14 L1 Z-tracking       0.554       0
+ST5 G04 L2CM+L             -0.366       0
+ST5 G04 L2Z-tracking       -0.366       0
+ST5 G04 L5I+Q              -0.651       0
+ST5 G06 L1C/A              -0.603       0
+ST5 G06 L1Z-tracking       -0.603       0
+ST5 G06 L2CM+L             -0.677       0
+ST5 G06 L2Z-tracking       -0.677       0
+ST5 G06 L5I+Q              -1.006       0
+ST5 G08 L1C/A               0.729       0
+ST5 G08 L1Z-tracking        0.729       0
+ST5 G08 L2CM+L              1.051       0
+ST5 G08 L2Z-tracking        1.051       0
+ST5 G08 L5I+Q               0.990       0
+ST5 G09 L1C/A               0.451       0
+ST5 G09 L1Z-tracking        0.451       0
+ST5 G09 L2CM+L              0.555       0
+ST5 G09 L2Z-tracking        0.555       0
+ST5 G09 L5I+Q               0.510       0
+ST5 G10 L1C/A               0.247       0
+ST5 G10 L1Z-tracking        0.247       0
+ST5 G10 L2CM+L              0.260       0
+ST5 G10 L2Z-tracking        0.260       0
+ST5 G10 L5I+Q               0.244       0
+ST5 G11 L1C/A              -0.717       0
+ST5 G11 L1Z-tracking       -0.717       0
+ST5 G11 L2CM+L             -1.167       0
+ST5 G11 L2Z-tracking       -1.167       0
+ST5 G11 L5I+Q              -1.036       0
+ST5 G12 L1C/A              -0.243       0
+ST5 G12 L1Z-tracking       -0.243       0
+ST5 G12 L2CM+L             -0.400       0
+ST5 G12 L2Z-tracking       -0.400       0
+ST5 G13 L1C/A              -0.376       0
+ST5 G13 L1Z-tracking       -0.376       0
+ST5 G13 L2CM+L             -0.623       0
+ST5 G13 L2Z-tracking       -0.623       0
+ST5 G14 L1C/A               0.554       0
+ST5 G14 L1Z-tracking        0.554       0
 ST5 G14 L1C(D+P)            0.554       0
-ST5 G14 L2 CM+CL            0.800       0
-ST5 G14 L2 Z-tracking       0.800       0
-ST5 G14 L5 I+Q              0.751       0
-ST5 G15 L1 C/A             -1.465       0
-ST5 G15 L1 Z-tracking      -1.465       0
-ST5 G15 L2 CM+CL           -2.201       0
-ST5 G15 L2 Z-tracking      -2.201       0
-ST5 G16 L1 C/A             -0.187       0
-ST5 G16 L1 Z-tracking      -0.187       0
-ST5 G16 L2 CM+CL           -0.219       0
-ST5 G16 L2 Z-tracking      -0.219       0
-ST5 G17 L1 C/A              0.433       0
-ST5 G17 L1 Z-tracking       0.433       0
-ST5 G17 L2 CM+CL            0.541       0
-ST5 G17 L2 Z-tracking       0.541       0
-ST5 G18 L1 C/A              0.093       0
-ST5 G18 L1 Z-tracking       0.093       0
-ST5 G18 L2 CM+CL           -0.058       0
-ST5 G18 L2 Z-tracking      -0.058       0
-ST5 G18 L5 I+Q             -0.165       0
-ST5 G19 L1 C/A             -0.738       0
-ST5 G19 L1 Z-tracking      -0.738       0
-ST5 G19 L2 CM+CL           -1.060       0
-ST5 G19 L2 Z-tracking      -1.060       0
-ST5 G21 L1 C/A              0.427       0
-ST5 G21 L1 Z-tracking       0.427       0
-ST5 G21 L2 CM+CL            0.472       0
-ST5 G21 L2 Z-tracking       0.472       0
-ST5 G22 L1 C/A              0.325       0
-ST5 G22 L1 Z-tracking       0.325       0
-ST5 G22 L2 CM+CL            0.253       0
-ST5 G22 L2 Z-tracking       0.253       0
-ST5 G23 L1 C/A              0.132       0
-ST5 G23 L1 Z-tracking       0.132       0
+ST5 G14 L2CM+L              0.800       0
+ST5 G14 L2Z-tracking        0.800       0
+ST5 G14 L5I+Q               0.751       0
+ST5 G15 L1C/A              -1.465       0
+ST5 G15 L1Z-tracking       -1.465       0
+ST5 G15 L2CM+L             -2.201       0
+ST5 G15 L2Z-tracking       -2.201       0
+ST5 G16 L1C/A              -0.187       0
+ST5 G16 L1Z-tracking       -0.187       0
+ST5 G16 L2CM+L             -0.219       0
+ST5 G16 L2Z-tracking       -0.219       0
+ST5 G17 L1C/A               0.433       0
+ST5 G17 L1Z-tracking        0.433       0
+ST5 G17 L2CM+L              0.541       0
+ST5 G17 L2Z-tracking        0.541       0
+ST5 G18 L1C/A               0.093       0
+ST5 G18 L1Z-tracking        0.093       0
+ST5 G18 L2CM+L             -0.058       0
+ST5 G18 L2Z-tracking       -0.058       0
+ST5 G18 L5I+Q              -0.165       0
+ST5 G19 L1C/A              -0.738       0
+ST5 G19 L1Z-tracking       -0.738       0
+ST5 G19 L2CM+L             -1.060       0
+ST5 G19 L2Z-tracking       -1.060       0
+ST5 G21 L1C/A               0.427       0
+ST5 G21 L1Z-tracking        0.427       0
+ST5 G21 L2CM+L              0.472       0
+ST5 G21 L2Z-tracking        0.472       0
+ST5 G22 L1C/A               0.325       0
+ST5 G22 L1Z-tracking        0.325       0
+ST5 G22 L2CM+L              0.253       0
+ST5 G22 L2Z-tracking        0.253       0
+ST5 G23 L1C/A               0.132       0
+ST5 G23 L1Z-tracking        0.132       0
 ST5 G23 L1C(D+P)            0.132       0
-ST5 G23 L2 CM+CL            0.344       0
-ST5 G23 L2 Z-tracking       0.344       0
-ST5 G23 L5 I+Q              0.133       0
-ST5 G25 L1 C/A             -0.066       0
-ST5 G25 L1 Z-tracking      -0.066       0
-ST5 G25 L2 CM+CL           -0.103       0
-ST5 G25 L2 Z-tracking      -0.103       0
-ST5 G25 L5 I+Q             -0.262       0
-ST5 G26 L1 C/A             -0.897       0
-ST5 G26 L1 Z-tracking      -0.897       0
-ST5 G26 L2 CM+CL           -1.295       0
-ST5 G26 L2 Z-tracking      -1.295       0
-ST5 G26 L5 I+Q             -1.541       0
-ST5 G27 L1 C/A              2.079       0
-ST5 G27 L1 Z-tracking       2.079       0
-ST5 G27 L2 CM+CL            2.693       0
-ST5 G27 L2 Z-tracking       2.693       0
-ST5 G27 L5 I+Q              2.632       0
-ST5 G29 L1 C/A             -0.232       0
-ST5 G29 L1 Z-tracking      -0.232       0
-ST5 G29 L2 CM+CL           -0.476       0
-ST5 G29 L2 Z-tracking      -0.476       0
-ST5 G30 L1 C/A             -0.638       0
-ST5 G30 L1 Z-tracking      -0.638       0
-ST5 G30 L2 CM+CL           -0.748       0
-ST5 G30 L2 Z-tracking      -0.748       0
-ST5 G30 L5 I+Q             -0.937       0
-ST5 G31 L1 C/A              0.271       0
-ST5 G31 L1 Z-tracking       0.271       0
-ST5 G31 L2 CM+CL            0.124       0
-ST5 G31 L2 Z-tracking       0.124       0
-ST5 G32 L1 C/A             -0.810       0
-ST5 G32 L1 Z-tracking      -0.810       0
-ST5 G32 L2 CM+CL           -1.176       0
-ST5 G32 L2 Z-tracking      -1.176       0
-ST5 G32 L5 I+Q             -1.280       0
-ST5 R01 G1 C/A              0.000       0
-ST5 R01 G1 P                0.000       0
-ST5 R01 G2 C/A              0.000       0
-ST5 R01 G2 P                0.000       0
-ST5 R02 G1 C/A              0.000       0
-ST5 R02 G1 P                0.000       0
-ST5 R02 G2 C/A              0.000       0
-ST5 R02 G2 P                0.000       0
-ST5 R03 G1 C/A              0.000       0
-ST5 R03 G1 P                0.000       0
-ST5 R03 G2 C/A              0.000       0
-ST5 R03 G2 P                0.000       0
-ST5 R04 G1 C/A              0.000       0
-ST5 R04 G1 P                0.000       0
-ST5 R04 G2 C/A              0.000       0
-ST5 R04 G2 P                0.000       0
-ST5 R05 G1 C/A              0.000       0
-ST5 R05 G1 P                0.000       0
-ST5 R05 G2 C/A              0.000       0
-ST5 R05 G2 P                0.000       0
-ST5 R07 G1 C/A              0.000       0
-ST5 R07 G1 P                0.000       0
-ST5 R07 G2 C/A              0.000       0
-ST5 R07 G2 P                0.000       0
-ST5 R08 G1 C/A              0.000       0
-ST5 R08 G1 P                0.000       0
-ST5 R08 G2 C/A              0.000       0
-ST5 R08 G2 P                0.000       0
-ST5 R09 G1 C/A              0.000       0
-ST5 R09 G1 P                0.000       0
-ST5 R09 G2 C/A              0.000       0
-ST5 R09 G2 P                0.000       0
-ST5 R11 G1 C/A              0.000       0
-ST5 R11 G1 P                0.000       0
-ST5 R11 G2 C/A              0.000       0
-ST5 R11 G2 P                0.000       0
-ST5 R12 G1 C/A              0.000       0
-ST5 R12 G1 P                0.000       0
-ST5 R12 G2 C/A              0.000       0
-ST5 R12 G2 P                0.000       0
-ST5 R13 G1 C/A              0.000       0
-ST5 R13 G1 P                0.000       0
-ST5 R13 G2 C/A              0.000       0
-ST5 R13 G2 P                0.000       0
-ST5 R14 G1 C/A              0.000       0
-ST5 R14 G1 P                0.000       0
-ST5 R14 G2 C/A              0.000       0
-ST5 R14 G2 P                0.000       0
-ST5 R15 G1 C/A              0.000       0
-ST5 R15 G1 P                0.000       0
-ST5 R15 G2 C/A              0.000       0
-ST5 R15 G2 P                0.000       0
-ST5 R17 G1 C/A              0.000       0
-ST5 R17 G1 P                0.000       0
-ST5 R17 G2 C/A              0.000       0
-ST5 R17 G2 P                0.000       0
-ST5 R18 G1 C/A              0.000       0
-ST5 R18 G1 P                0.000       0
-ST5 R18 G2 C/A              0.000       0
-ST5 R18 G2 P                0.000       0
-ST5 R19 G1 C/A              0.000       0
-ST5 R19 G1 P                0.000       0
-ST5 R19 G2 C/A              0.000       0
-ST5 R19 G2 P                0.000       0
-ST5 R21 G1 C/A              0.000       0
-ST5 R21 G1 P                0.000       0
-ST5 R21 G2 C/A              0.000       0
-ST5 R21 G2 P                0.000       0
-ST5 R24 G1 C/A              0.000       0
-ST5 R24 G1 P                0.000       0
-ST5 R24 G2 C/A              0.000       0
-ST5 R24 G2 P                0.000       0
-ST5 E02 E1 B+C              0.001       0
-ST5 E02 E5a I+Q             0.031       0
-ST5 E03 E1 B+C              0.154       0
-ST5 E03 E5a I+Q             0.262       0
-ST5 E04 E1 B+C              0.611       0
-ST5 E04 E5a I+Q             0.966       0
-ST5 E05 E1 B+C             -0.189       0
-ST5 E05 E5a I+Q            -0.202       0
-ST5 E07 E1 B+C              0.645       0
-ST5 E07 E5a I+Q             1.059       0
-ST5 E09 E1 B+C             -0.327       0
-ST5 E09 E5a I+Q            -0.589       0
-ST5 E13 E1 B+C             -0.041       0
-ST5 E13 E5a I+Q            -0.389       0
-ST5 E15 E1 B+C              0.276       0
-ST5 E15 E5a I+Q             0.501       0
-ST5 E19 E1 B+C             -0.381       0
-ST5 E19 E5a I+Q            -0.839       0
-ST5 E21 E1 B+C              0.227       0
-ST5 E21 E5a I+Q             0.401       0
-ST5 E24 E1 B+C             -1.220       0
-ST5 E24 E5a I+Q            -1.977       0
-ST5 E25 E1 B+C             -0.669       0
-ST5 E25 E5a I+Q            -1.315       0
-ST5 E27 E1 B+C             -0.973       0
-ST5 E27 E5a I+Q            -1.607       0
-ST5 E30 E1 B+C             -0.437       0
-ST5 E30 E5a I+Q            -0.594       0
-ST5 E33 E1 B+C              0.646       0
-ST5 E33 E5a I+Q             0.705       0
-ST5 E36 E1 B+C             -1.463       0
-ST5 E36 E5a I+Q            -2.917       0
-ST5 J02 L1 C/A              1.824       1
-ST5 J02 L1 L1C(D+P)         1.824       1
-ST5 J02 L2 L2C(M+L)         3.009       1
-ST5 J02 L5 I+Q              2.958       1
-ST5 J03 L1 C/A             -1.678       1
-ST5 J03 L1 L1C(D+P)        -1.678       1
-ST5 J03 L2 L2C(M+L)        -2.733       1
-ST5 J03 L5 I+Q             -2.550       1
+ST5 G23 L2CM+L              0.344       0
+ST5 G23 L2Z-tracking        0.344       0
+ST5 G23 L5I+Q               0.133       0
+ST5 G25 L1C/A              -0.066       0
+ST5 G25 L1Z-tracking       -0.066       0
+ST5 G25 L2CM+L             -0.103       0
+ST5 G25 L2Z-tracking       -0.103       0
+ST5 G25 L5I+Q              -0.262       0
+ST5 G26 L1C/A              -0.897       0
+ST5 G26 L1Z-tracking       -0.897       0
+ST5 G26 L2CM+L             -1.295       0
+ST5 G26 L2Z-tracking       -1.295       0
+ST5 G26 L5I+Q              -1.541       0
+ST5 G27 L1C/A               2.079       0
+ST5 G27 L1Z-tracking        2.079       0
+ST5 G27 L2CM+L              2.693       0
+ST5 G27 L2Z-tracking        2.693       0
+ST5 G27 L5I+Q               2.632       0
+ST5 G29 L1C/A              -0.232       0
+ST5 G29 L1Z-tracking       -0.232       0
+ST5 G29 L2CM+L             -0.476       0
+ST5 G29 L2Z-tracking       -0.476       0
+ST5 G30 L1C/A              -0.638       0
+ST5 G30 L1Z-tracking       -0.638       0
+ST5 G30 L2CM+L             -0.748       0
+ST5 G30 L2Z-tracking       -0.748       0
+ST5 G30 L5I+Q              -0.937       0
+ST5 G31 L1C/A               0.271       0
+ST5 G31 L1Z-tracking        0.271       0
+ST5 G31 L2CM+L              0.124       0
+ST5 G31 L2Z-tracking        0.124       0
+ST5 G32 L1C/A              -0.810       0
+ST5 G32 L1Z-tracking       -0.810       0
+ST5 G32 L2CM+L             -1.176       0
+ST5 G32 L2Z-tracking       -1.176       0
+ST5 G32 L5I+Q              -1.280       0
+ST5 R01 G1C/A               0.000       0
+ST5 R01 G1P                 0.000       0
+ST5 R01 G2C/A               0.000       0
+ST5 R01 G2P                 0.000       0
+ST5 R02 G1C/A               0.000       0
+ST5 R02 G1P                 0.000       0
+ST5 R02 G2C/A               0.000       0
+ST5 R02 G2P                 0.000       0
+ST5 R03 G1C/A               0.000       0
+ST5 R03 G1P                 0.000       0
+ST5 R03 G2C/A               0.000       0
+ST5 R03 G2P                 0.000       0
+ST5 R04 G1C/A               0.000       0
+ST5 R04 G1P                 0.000       0
+ST5 R04 G2C/A               0.000       0
+ST5 R04 G2P                 0.000       0
+ST5 R05 G1C/A               0.000       0
+ST5 R05 G1P                 0.000       0
+ST5 R05 G2C/A               0.000       0
+ST5 R05 G2P                 0.000       0
+ST5 R07 G1C/A               0.000       0
+ST5 R07 G1P                 0.000       0
+ST5 R07 G2C/A               0.000       0
+ST5 R07 G2P                 0.000       0
+ST5 R08 G1C/A               0.000       0
+ST5 R08 G1P                 0.000       0
+ST5 R08 G2C/A               0.000       0
+ST5 R08 G2P                 0.000       0
+ST5 R09 G1C/A               0.000       0
+ST5 R09 G1P                 0.000       0
+ST5 R09 G2C/A               0.000       0
+ST5 R09 G2P                 0.000       0
+ST5 R11 G1C/A               0.000       0
+ST5 R11 G1P                 0.000       0
+ST5 R11 G2C/A               0.000       0
+ST5 R11 G2P                 0.000       0
+ST5 R12 G1C/A               0.000       0
+ST5 R12 G1P                 0.000       0
+ST5 R12 G2C/A               0.000       0
+ST5 R12 G2P                 0.000       0
+ST5 R13 G1C/A               0.000       0
+ST5 R13 G1P                 0.000       0
+ST5 R13 G2C/A               0.000       0
+ST5 R13 G2P                 0.000       0
+ST5 R14 G1C/A               0.000       0
+ST5 R14 G1P                 0.000       0
+ST5 R14 G2C/A               0.000       0
+ST5 R14 G2P                 0.000       0
+ST5 R15 G1C/A               0.000       0
+ST5 R15 G1P                 0.000       0
+ST5 R15 G2C/A               0.000       0
+ST5 R15 G2P                 0.000       0
+ST5 R17 G1C/A               0.000       0
+ST5 R17 G1P                 0.000       0
+ST5 R17 G2C/A               0.000       0
+ST5 R17 G2P                 0.000       0
+ST5 R18 G1C/A               0.000       0
+ST5 R18 G1P                 0.000       0
+ST5 R18 G2C/A               0.000       0
+ST5 R18 G2P                 0.000       0
+ST5 R19 G1C/A               0.000       0
+ST5 R19 G1P                 0.000       0
+ST5 R19 G2C/A               0.000       0
+ST5 R19 G2P                 0.000       0
+ST5 R21 G1C/A               0.000       0
+ST5 R21 G1P                 0.000       0
+ST5 R21 G2C/A               0.000       0
+ST5 R21 G2P                 0.000       0
+ST5 R24 G1C/A               0.000       0
+ST5 R24 G1P                 0.000       0
+ST5 R24 G2C/A               0.000       0
+ST5 R24 G2P                 0.000       0
+ST5 E02 E1B+C               0.001       0
+ST5 E02 E5aI+Q              0.031       0
+ST5 E03 E1B+C               0.154       0
+ST5 E03 E5aI+Q              0.262       0
+ST5 E04 E1B+C               0.611       0
+ST5 E04 E5aI+Q              0.966       0
+ST5 E05 E1B+C              -0.189       0
+ST5 E05 E5aI+Q             -0.202       0
+ST5 E07 E1B+C               0.645       0
+ST5 E07 E5aI+Q              1.059       0
+ST5 E09 E1B+C              -0.327       0
+ST5 E09 E5aI+Q             -0.589       0
+ST5 E13 E1B+C              -0.041       0
+ST5 E13 E5aI+Q             -0.389       0
+ST5 E15 E1B+C               0.276       0
+ST5 E15 E5aI+Q              0.501       0
+ST5 E19 E1B+C              -0.381       0
+ST5 E19 E5aI+Q             -0.839       0
+ST5 E21 E1B+C               0.227       0
+ST5 E21 E5aI+Q              0.401       0
+ST5 E24 E1B+C              -1.220       0
+ST5 E24 E5aI+Q             -1.977       0
+ST5 E25 E1B+C              -0.669       0
+ST5 E25 E5aI+Q             -1.315       0
+ST5 E27 E1B+C              -0.973       0
+ST5 E27 E5aI+Q             -1.607       0
+ST5 E30 E1B+C              -0.437       0
+ST5 E30 E5aI+Q             -0.594       0
+ST5 E33 E1B+C               0.646       0
+ST5 E33 E5aI+Q              0.705       0
+ST5 E36 E1B+C              -1.463       0
+ST5 E36 E5aI+Q             -2.917       0
+ST5 J02 L1C/A               1.824       1
+ST5 J02 L1C(D+P)            1.824       1
+ST5 J02 L2CM+L              3.009       1
+ST5 J02 L5I+Q               2.958       1
+ST5 J03 L1C/A              -1.678       1
+ST5 J03 L1C(D+P)           -1.678       1
+ST5 J03 L2CM+L             -2.733       1
+ST5 J03 L5I+Q              -2.550       1
 ST3 SAT   c0[m]
 ST3 G01   0.130
 ST3 G03   1.494
@@ -1091,68 +1091,68 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP2 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 (Clk/Eph LNAV) (null)
-ST1 G01 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G03 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G04 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G06 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G08 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G09 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G10 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G11 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G13 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G14 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G15 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G16 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G17 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G18 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G19 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G21 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G22 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G23 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G25 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G27 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G30 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G31 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G32 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 R01 G1 C/A G1 P G2 C/A G2 P
-ST1 R02 G1 C/A G1 P G2 C/A G2 P
-ST1 R03 G1 C/A G1 P G2 C/A G2 P
-ST1 R04 G1 C/A G1 P G2 C/A G2 P
-ST1 R05 G1 C/A G1 P G2 C/A G2 P
-ST1 R07 G1 C/A G1 P G2 C/A G2 P
-ST1 R08 G1 C/A G1 P G2 C/A G2 P
-ST1 R09 G1 C/A G1 P G2 C/A G2 P
-ST1 R11 G1 C/A G1 P G2 C/A G2 P
-ST1 R12 G1 C/A G1 P G2 C/A G2 P
-ST1 R13 G1 C/A G1 P G2 C/A G2 P
-ST1 R14 G1 C/A G1 P G2 C/A G2 P
-ST1 R15 G1 C/A G1 P G2 C/A G2 P
-ST1 R17 G1 C/A G1 P G2 C/A G2 P
-ST1 R18 G1 C/A G1 P G2 C/A G2 P
-ST1 R19 G1 C/A G1 P G2 C/A G2 P
-ST1 R21 G1 C/A G1 P G2 C/A G2 P
-ST1 R24 G1 C/A G1 P G2 C/A G2 P
-ST1 E02 E1 B+C E5a I+Q
-ST1 E03 E1 B+C E5a I+Q
-ST1 E04 E1 B+C E5a I+Q
-ST1 E05 E1 B+C E5a I+Q
-ST1 E07 E1 B+C E5a I+Q
-ST1 E09 E1 B+C E5a I+Q
-ST1 E13 E1 B+C E5a I+Q
-ST1 E15 E1 B+C E5a I+Q
-ST1 E19 E1 B+C E5a I+Q
-ST1 E21 E1 B+C E5a I+Q
-ST1 E24 E1 B+C E5a I+Q
-ST1 E25 E1 B+C E5a I+Q
-ST1 E27 E1 B+C E5a I+Q
-ST1 E30 E1 B+C E5a I+Q
-ST1 E33 E1 B+C E5a I+Q
-ST1 E36 E1 B+C E5a I+Q
-ST1 J02 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
-ST1 J03 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
+ST1 G01 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G03 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G04 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G06 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G08 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G09 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G10 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G11 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G12 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G13 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G14 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G15 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G16 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G17 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G18 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G19 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G21 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G22 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G23 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G25 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G26 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G27 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G29 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G30 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G31 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G32 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 R01 G1C/A G1P G2C/A G2P
+ST1 R02 G1C/A G1P G2C/A G2P
+ST1 R03 G1C/A G1P G2C/A G2P
+ST1 R04 G1C/A G1P G2C/A G2P
+ST1 R05 G1C/A G1P G2C/A G2P
+ST1 R07 G1C/A G1P G2C/A G2P
+ST1 R08 G1C/A G1P G2C/A G2P
+ST1 R09 G1C/A G1P G2C/A G2P
+ST1 R11 G1C/A G1P G2C/A G2P
+ST1 R12 G1C/A G1P G2C/A G2P
+ST1 R13 G1C/A G1P G2C/A G2P
+ST1 R14 G1C/A G1P G2C/A G2P
+ST1 R15 G1C/A G1P G2C/A G2P
+ST1 R17 G1C/A G1P G2C/A G2P
+ST1 R18 G1C/A G1P G2C/A G2P
+ST1 R19 G1C/A G1P G2C/A G2P
+ST1 R21 G1C/A G1P G2C/A G2P
+ST1 R24 G1C/A G1P G2C/A G2P
+ST1 E02 E1B+C E5aI+Q
+ST1 E03 E1B+C E5aI+Q
+ST1 E04 E1B+C E5aI+Q
+ST1 E05 E1B+C E5aI+Q
+ST1 E07 E1B+C E5aI+Q
+ST1 E09 E1B+C E5aI+Q
+ST1 E13 E1B+C E5aI+Q
+ST1 E15 E1B+C E5aI+Q
+ST1 E19 E1B+C E5aI+Q
+ST1 E21 E1B+C E5aI+Q
+ST1 E24 E1B+C E5aI+Q
+ST1 E25 E1B+C E5aI+Q
+ST1 E27 E1B+C E5aI+Q
+ST1 E30 E1B+C E5aI+Q
+ST1 E33 E1B+C E5aI+Q
+ST1 E36 E1B+C E5aI+Q
+ST1 J02 L1C/A L1C(D+P) L2CM+L L5I+Q
+ST1 J03 L1C/A L1C(D+P) L2CM+L L5I+Q
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
 ST2 SAT IODE radial[m] along[m] cross[m]
@@ -1423,241 +1423,241 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 (Clk/Eph LNAV) (null)
 204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 (Clk/Eph LNAV) ST4...
 ST4 SAT sinal_name      code_bias[m]
-ST4 G01 L1 C/A                -1.100
-ST4 G01 L1 Z-tracking         -1.400
-ST4 G01 L2 CM+CL              -1.400
-ST4 G01 L2 Z-tracking         -2.300
-ST4 G01 L5 I+Q                -1.400
-ST4 G03 L1 C/A                -0.560
-ST4 G03 L1 Z-tracking         -0.560
-ST4 G03 L2 CM+CL              -0.560
-ST4 G03 L2 Z-tracking         -0.920
-ST4 G03 L5 I+Q                -0.560
-ST4 G04 L1 C/A                 1.400
-ST4 G04 L1 Z-tracking          1.400
+ST4 G01 L1C/A                 -1.100
+ST4 G01 L1Z-tracking          -1.400
+ST4 G01 L2CM+L                -1.400
+ST4 G01 L2Z-tracking          -2.300
+ST4 G01 L5I+Q                 -1.400
+ST4 G03 L1C/A                 -0.560
+ST4 G03 L1Z-tracking          -0.560
+ST4 G03 L2CM+L                -0.560
+ST4 G03 L2Z-tracking          -0.920
+ST4 G03 L5I+Q                 -0.560
+ST4 G04 L1C/A                  1.400
+ST4 G04 L1Z-tracking           1.400
 ST4 G04 L1C(D+P)               1.400
-ST4 G04 L2 CM+CL               1.400
-ST4 G04 L2 Z-tracking          2.300
-ST4 G04 L5 I+Q                 1.400
-ST4 G06 L1 C/A                -1.120
-ST4 G06 L1 Z-tracking         -1.120
-ST4 G06 L2 CM+CL              -1.120
-ST4 G06 L2 Z-tracking         -1.840
-ST4 G06 L5 I+Q                -1.120
-ST4 G08 L1 C/A                -1.540
-ST4 G08 L1 Z-tracking         -1.540
-ST4 G08 L2 CM+CL              -1.540
-ST4 G08 L2 Z-tracking         -2.520
-ST4 G08 L5 I+Q                -1.540
-ST4 G09 L1 C/A                -0.280
-ST4 G09 L1 Z-tracking         -0.280
-ST4 G09 L2 CM+CL              -0.280
-ST4 G09 L2 Z-tracking         -0.460
-ST4 G09 L5 I+Q                -0.280
-ST4 G10 L1 C/A                -0.700
-ST4 G10 L1 Z-tracking         -0.700
-ST4 G10 L2 CM+CL              -0.700
-ST4 G10 L2 Z-tracking         -1.140
-ST4 G10 L5 I+Q                -0.700
-ST4 G11 L1 C/A                 2.660
-ST4 G11 L1 Z-tracking          2.660
-ST4 G11 L2 CM+CL               2.660
-ST4 G11 L2 Z-tracking          4.360
-ST4 G11 L5 I+Q                 2.660
-ST4 G12 L1 C/A                 3.760
-ST4 G12 L1 Z-tracking          3.760
-ST4 G12 L2 CM+CL               3.760
-ST4 G12 L2 Z-tracking          6.220
-ST4 G13 L1 C/A                 3.500
-ST4 G13 L1 Z-tracking          3.500
-ST4 G13 L2 CM+CL               3.500
-ST4 G13 L2 Z-tracking          5.760
-ST4 G14 L1 C/A                 2.360
-ST4 G14 L1 Z-tracking          2.360
+ST4 G04 L2CM+L                 1.400
+ST4 G04 L2Z-tracking           2.300
+ST4 G04 L5I+Q                  1.400
+ST4 G06 L1C/A                 -1.120
+ST4 G06 L1Z-tracking          -1.120
+ST4 G06 L2CM+L                -1.120
+ST4 G06 L2Z-tracking          -1.840
+ST4 G06 L5I+Q                 -1.120
+ST4 G08 L1C/A                 -1.540
+ST4 G08 L1Z-tracking          -1.540
+ST4 G08 L2CM+L                -1.540
+ST4 G08 L2Z-tracking          -2.520
+ST4 G08 L5I+Q                 -1.540
+ST4 G09 L1C/A                 -0.280
+ST4 G09 L1Z-tracking          -0.280
+ST4 G09 L2CM+L                -0.280
+ST4 G09 L2Z-tracking          -0.460
+ST4 G09 L5I+Q                 -0.280
+ST4 G10 L1C/A                 -0.700
+ST4 G10 L1Z-tracking          -0.700
+ST4 G10 L2CM+L                -0.700
+ST4 G10 L2Z-tracking          -1.140
+ST4 G10 L5I+Q                 -0.700
+ST4 G11 L1C/A                  2.660
+ST4 G11 L1Z-tracking           2.660
+ST4 G11 L2CM+L                 2.660
+ST4 G11 L2Z-tracking           4.360
+ST4 G11 L5I+Q                  2.660
+ST4 G12 L1C/A                  3.760
+ST4 G12 L1Z-tracking           3.760
+ST4 G12 L2CM+L                 3.760
+ST4 G12 L2Z-tracking           6.220
+ST4 G13 L1C/A                  3.500
+ST4 G13 L1Z-tracking           3.500
+ST4 G13 L2CM+L                 3.500
+ST4 G13 L2Z-tracking           5.760
+ST4 G14 L1C/A                  2.360
+ST4 G14 L1Z-tracking           2.360
 ST4 G14 L1C(D+P)               2.360
-ST4 G14 L2 CM+CL               2.360
-ST4 G14 L2 Z-tracking          3.920
-ST4 G14 L5 I+Q                 2.360
-ST4 G15 L1 C/A                 3.220
-ST4 G15 L1 Z-tracking          3.220
-ST4 G15 L2 CM+CL               3.220
-ST4 G15 L2 Z-tracking          5.280
-ST4 G16 L1 C/A                 3.060
-ST4 G16 L1 Z-tracking          3.060
-ST4 G16 L2 CM+CL               3.060
-ST4 G16 L2 Z-tracking          5.060
-ST4 G17 L1 C/A                 3.340
-ST4 G17 L1 Z-tracking          3.340
-ST4 G17 L2 CM+CL               3.340
-ST4 G17 L2 Z-tracking          5.520
-ST4 G18 L1 C/A                 2.500
-ST4 G18 L1 Z-tracking          2.500
-ST4 G18 L2 CM+CL               2.500
-ST4 G18 L2 Z-tracking          4.140
-ST4 G18 L5 I+Q                 2.500
-ST4 G19 L1 C/A                 4.620
-ST4 G19 L1 Z-tracking          4.620
-ST4 G19 L2 CM+CL               4.620
-ST4 G19 L2 Z-tracking          7.600
-ST4 G21 L1 C/A                 3.060
-ST4 G21 L1 Z-tracking          3.060
-ST4 G21 L2 CM+CL               3.060
-ST4 G21 L2 Z-tracking          5.060
-ST4 G22 L1 C/A                 2.500
-ST4 G22 L1 Z-tracking          2.500
-ST4 G22 L2 CM+CL               2.500
-ST4 G22 L2 Z-tracking          4.140
-ST4 G23 L1 C/A                 2.500
-ST4 G23 L1 Z-tracking          2.500
+ST4 G14 L2CM+L                 2.360
+ST4 G14 L2Z-tracking           3.920
+ST4 G14 L5I+Q                  2.360
+ST4 G15 L1C/A                  3.220
+ST4 G15 L1Z-tracking           3.220
+ST4 G15 L2CM+L                 3.220
+ST4 G15 L2Z-tracking           5.280
+ST4 G16 L1C/A                  3.060
+ST4 G16 L1Z-tracking           3.060
+ST4 G16 L2CM+L                 3.060
+ST4 G16 L2Z-tracking           5.060
+ST4 G17 L1C/A                  3.340
+ST4 G17 L1Z-tracking           3.340
+ST4 G17 L2CM+L                 3.340
+ST4 G17 L2Z-tracking           5.520
+ST4 G18 L1C/A                  2.500
+ST4 G18 L1Z-tracking           2.500
+ST4 G18 L2CM+L                 2.500
+ST4 G18 L2Z-tracking           4.140
+ST4 G18 L5I+Q                  2.500
+ST4 G19 L1C/A                  4.620
+ST4 G19 L1Z-tracking           4.620
+ST4 G19 L2CM+L                 4.620
+ST4 G19 L2Z-tracking           7.600
+ST4 G21 L1C/A                  3.060
+ST4 G21 L1Z-tracking           3.060
+ST4 G21 L2CM+L                 3.060
+ST4 G21 L2Z-tracking           5.060
+ST4 G22 L1C/A                  2.500
+ST4 G22 L1Z-tracking           2.500
+ST4 G22 L2CM+L                 2.500
+ST4 G22 L2Z-tracking           4.140
+ST4 G23 L1C/A                  2.500
+ST4 G23 L1Z-tracking           2.500
 ST4 G23 L1C(D+P)               2.500
-ST4 G23 L2 CM+CL               2.500
-ST4 G23 L2 Z-tracking          4.140
-ST4 G23 L5 I+Q                 2.500
-ST4 G25 L1 C/A                -1.680
-ST4 G25 L1 Z-tracking         -1.680
-ST4 G25 L2 CM+CL              -1.680
-ST4 G25 L2 Z-tracking         -2.760
-ST4 G25 L5 I+Q                -1.680
-ST4 G26 L1 C/A                -2.080
-ST4 G26 L1 Z-tracking         -2.080
-ST4 G26 L2 CM+CL              -2.080
-ST4 G26 L2 Z-tracking         -3.460
-ST4 G26 L5 I+Q                -2.080
-ST4 G27 L1 C/A                -0.420
-ST4 G27 L1 Z-tracking         -0.420
-ST4 G27 L2 CM+CL              -0.420
-ST4 G27 L2 Z-tracking         -0.680
-ST4 G27 L5 I+Q                -0.420
-ST4 G29 L1 C/A                 3.060
-ST4 G29 L1 Z-tracking          3.060
-ST4 G29 L2 CM+CL               3.060
-ST4 G29 L2 Z-tracking          5.060
-ST4 G30 L1 C/A                -1.120
-ST4 G30 L1 Z-tracking         -1.120
-ST4 G30 L2 CM+CL              -1.120
-ST4 G30 L2 Z-tracking         -1.840
-ST4 G30 L5 I+Q                -1.120
-ST4 G31 L1 C/A                 4.060
-ST4 G31 L1 Z-tracking          4.060
-ST4 G31 L2 CM+CL               4.060
-ST4 G31 L2 Z-tracking          6.680
-ST4 G32 L1 C/A                -0.140
-ST4 G32 L1 Z-tracking         -0.140
-ST4 G32 L2 CM+CL              -0.140
-ST4 G32 L2 Z-tracking         -0.240
-ST4 G32 L5 I+Q                -0.140
-ST4 R01 G1 C/A                 0.000
-ST4 R01 G1 P                   0.000
-ST4 R01 G2 C/A                 0.000
-ST4 R01 G2 P                   0.000
-ST4 R02 G1 C/A                 0.000
-ST4 R02 G1 P                   0.000
-ST4 R02 G2 C/A                 0.000
-ST4 R02 G2 P                   0.000
-ST4 R03 G1 C/A                 0.000
-ST4 R03 G1 P                   0.000
-ST4 R03 G2 C/A                 0.000
-ST4 R03 G2 P                   0.000
-ST4 R04 G1 C/A                 0.000
-ST4 R04 G1 P                   0.000
-ST4 R04 G2 C/A                 0.000
-ST4 R04 G2 P                   0.000
-ST4 R05 G1 C/A                 0.000
-ST4 R05 G1 P                   0.000
-ST4 R05 G2 C/A                 0.000
-ST4 R05 G2 P                   0.000
-ST4 R07 G1 C/A                 0.000
-ST4 R07 G1 P                   0.000
-ST4 R07 G2 C/A                 0.000
-ST4 R07 G2 P                   0.000
-ST4 R08 G1 C/A                 0.000
-ST4 R08 G1 P                   0.000
-ST4 R08 G2 C/A                 0.000
-ST4 R08 G2 P                   0.000
-ST4 R09 G1 C/A                 0.000
-ST4 R09 G1 P                   0.000
-ST4 R09 G2 C/A                 0.000
-ST4 R09 G2 P                   0.000
-ST4 R11 G1 C/A                 0.000
-ST4 R11 G1 P                   0.000
-ST4 R11 G2 C/A                 0.000
-ST4 R11 G2 P                   0.000
-ST4 R12 G1 C/A                 0.000
-ST4 R12 G1 P                   0.000
-ST4 R12 G2 C/A                 0.000
-ST4 R12 G2 P                   0.000
-ST4 R13 G1 C/A                 0.000
-ST4 R13 G1 P                   0.000
-ST4 R13 G2 C/A                 0.000
-ST4 R13 G2 P                   0.000
-ST4 R14 G1 C/A                 0.000
-ST4 R14 G1 P                   0.000
-ST4 R14 G2 C/A                 0.000
-ST4 R14 G2 P                   0.000
-ST4 R15 G1 C/A                 0.000
-ST4 R15 G1 P                   0.000
-ST4 R15 G2 C/A                 0.000
-ST4 R15 G2 P                   0.000
-ST4 R17 G1 C/A                 0.000
-ST4 R17 G1 P                   0.000
-ST4 R17 G2 C/A                 0.000
-ST4 R17 G2 P                   0.000
-ST4 R18 G1 C/A                 0.000
-ST4 R18 G1 P                   0.000
-ST4 R18 G2 C/A                 0.000
-ST4 R18 G2 P                   0.000
-ST4 R19 G1 C/A                 0.000
-ST4 R19 G1 P                   0.000
-ST4 R19 G2 C/A                 0.000
-ST4 R19 G2 P                   0.000
-ST4 R21 G1 C/A                 0.000
-ST4 R21 G1 P                   0.000
-ST4 R21 G2 C/A                 0.000
-ST4 R21 G2 P                   0.000
-ST4 R24 G1 C/A                 0.000
-ST4 R24 G1 P                   0.000
-ST4 R24 G2 C/A                 0.000
-ST4 R24 G2 P                   0.000
-ST4 E02 E1 B+C                 0.420
-ST4 E02 E5a I+Q                0.760
-ST4 E03 E1 B+C                -0.920
-ST4 E03 E5a I+Q               -1.620
-ST4 E04 E1 B+C                 0.920
-ST4 E04 E5a I+Q                1.620
-ST4 E05 E1 B+C                -1.040
-ST4 E05 E5a I+Q               -1.880
-ST4 E07 E1 B+C                -1.680
-ST4 E07 E5a I+Q               -3.000
-ST4 E09 E1 B+C                -0.560
-ST4 E09 E5a I+Q               -1.000
-ST4 E13 E1 B+C                -0.140
-ST4 E13 E5a I+Q               -0.260
-ST4 E15 E1 B+C                -1.760
-ST4 E15 E5a I+Q               -3.140
-ST4 E19 E1 B+C                 1.120
-ST4 E19 E5a I+Q                2.000
-ST4 E21 E1 B+C                -0.980
-ST4 E21 E5a I+Q               -1.760
-ST4 E24 E1 B+C                 0.920
-ST4 E24 E5a I+Q                1.620
-ST4 E25 E1 B+C                -1.040
-ST4 E25 E5a I+Q               -1.880
-ST4 E27 E1 B+C                -0.760
-ST4 E27 E5a I+Q               -1.380
-ST4 E30 E1 B+C                -0.560
-ST4 E30 E5a I+Q               -1.000
-ST4 E33 E1 B+C                 0.920
-ST4 E33 E5a I+Q                1.620
-ST4 E36 E1 B+C                -1.680
-ST4 E36 E5a I+Q               -3.000
-ST4 J02 L1 C/A                -0.140
-ST4 J02 L1 L1C(D+P)           -0.140
-ST4 J02 L2 L2C(M+L)           -0.240
-ST4 J02 L5 I+Q                -0.140
-ST4 J03 L1 C/A                 0.140
-ST4 J03 L1 L1C(D+P)            0.140
-ST4 J03 L2 L2C(M+L)            0.240
-ST4 J03 L5 I+Q                 0.140
+ST4 G23 L2CM+L                 2.500
+ST4 G23 L2Z-tracking           4.140
+ST4 G23 L5I+Q                  2.500
+ST4 G25 L1C/A                 -1.680
+ST4 G25 L1Z-tracking          -1.680
+ST4 G25 L2CM+L                -1.680
+ST4 G25 L2Z-tracking          -2.760
+ST4 G25 L5I+Q                 -1.680
+ST4 G26 L1C/A                 -2.080
+ST4 G26 L1Z-tracking          -2.080
+ST4 G26 L2CM+L                -2.080
+ST4 G26 L2Z-tracking          -3.460
+ST4 G26 L5I+Q                 -2.080
+ST4 G27 L1C/A                 -0.420
+ST4 G27 L1Z-tracking          -0.420
+ST4 G27 L2CM+L                -0.420
+ST4 G27 L2Z-tracking          -0.680
+ST4 G27 L5I+Q                 -0.420
+ST4 G29 L1C/A                  3.060
+ST4 G29 L1Z-tracking           3.060
+ST4 G29 L2CM+L                 3.060
+ST4 G29 L2Z-tracking           5.060
+ST4 G30 L1C/A                 -1.120
+ST4 G30 L1Z-tracking          -1.120
+ST4 G30 L2CM+L                -1.120
+ST4 G30 L2Z-tracking          -1.840
+ST4 G30 L5I+Q                 -1.120
+ST4 G31 L1C/A                  4.060
+ST4 G31 L1Z-tracking           4.060
+ST4 G31 L2CM+L                 4.060
+ST4 G31 L2Z-tracking           6.680
+ST4 G32 L1C/A                 -0.140
+ST4 G32 L1Z-tracking          -0.140
+ST4 G32 L2CM+L                -0.140
+ST4 G32 L2Z-tracking          -0.240
+ST4 G32 L5I+Q                 -0.140
+ST4 R01 G1C/A                  0.000
+ST4 R01 G1P                    0.000
+ST4 R01 G2C/A                  0.000
+ST4 R01 G2P                    0.000
+ST4 R02 G1C/A                  0.000
+ST4 R02 G1P                    0.000
+ST4 R02 G2C/A                  0.000
+ST4 R02 G2P                    0.000
+ST4 R03 G1C/A                  0.000
+ST4 R03 G1P                    0.000
+ST4 R03 G2C/A                  0.000
+ST4 R03 G2P                    0.000
+ST4 R04 G1C/A                  0.000
+ST4 R04 G1P                    0.000
+ST4 R04 G2C/A                  0.000
+ST4 R04 G2P                    0.000
+ST4 R05 G1C/A                  0.000
+ST4 R05 G1P                    0.000
+ST4 R05 G2C/A                  0.000
+ST4 R05 G2P                    0.000
+ST4 R07 G1C/A                  0.000
+ST4 R07 G1P                    0.000
+ST4 R07 G2C/A                  0.000
+ST4 R07 G2P                    0.000
+ST4 R08 G1C/A                  0.000
+ST4 R08 G1P                    0.000
+ST4 R08 G2C/A                  0.000
+ST4 R08 G2P                    0.000
+ST4 R09 G1C/A                  0.000
+ST4 R09 G1P                    0.000
+ST4 R09 G2C/A                  0.000
+ST4 R09 G2P                    0.000
+ST4 R11 G1C/A                  0.000
+ST4 R11 G1P                    0.000
+ST4 R11 G2C/A                  0.000
+ST4 R11 G2P                    0.000
+ST4 R12 G1C/A                  0.000
+ST4 R12 G1P                    0.000
+ST4 R12 G2C/A                  0.000
+ST4 R12 G2P                    0.000
+ST4 R13 G1C/A                  0.000
+ST4 R13 G1P                    0.000
+ST4 R13 G2C/A                  0.000
+ST4 R13 G2P                    0.000
+ST4 R14 G1C/A                  0.000
+ST4 R14 G1P                    0.000
+ST4 R14 G2C/A                  0.000
+ST4 R14 G2P                    0.000
+ST4 R15 G1C/A                  0.000
+ST4 R15 G1P                    0.000
+ST4 R15 G2C/A                  0.000
+ST4 R15 G2P                    0.000
+ST4 R17 G1C/A                  0.000
+ST4 R17 G1P                    0.000
+ST4 R17 G2C/A                  0.000
+ST4 R17 G2P                    0.000
+ST4 R18 G1C/A                  0.000
+ST4 R18 G1P                    0.000
+ST4 R18 G2C/A                  0.000
+ST4 R18 G2P                    0.000
+ST4 R19 G1C/A                  0.000
+ST4 R19 G1P                    0.000
+ST4 R19 G2C/A                  0.000
+ST4 R19 G2P                    0.000
+ST4 R21 G1C/A                  0.000
+ST4 R21 G1P                    0.000
+ST4 R21 G2C/A                  0.000
+ST4 R21 G2P                    0.000
+ST4 R24 G1C/A                  0.000
+ST4 R24 G1P                    0.000
+ST4 R24 G2C/A                  0.000
+ST4 R24 G2P                    0.000
+ST4 E02 E1B+C                  0.420
+ST4 E02 E5aI+Q                 0.760
+ST4 E03 E1B+C                 -0.920
+ST4 E03 E5aI+Q                -1.620
+ST4 E04 E1B+C                  0.920
+ST4 E04 E5aI+Q                 1.620
+ST4 E05 E1B+C                 -1.040
+ST4 E05 E5aI+Q                -1.880
+ST4 E07 E1B+C                 -1.680
+ST4 E07 E5aI+Q                -3.000
+ST4 E09 E1B+C                 -0.560
+ST4 E09 E5aI+Q                -1.000
+ST4 E13 E1B+C                 -0.140
+ST4 E13 E5aI+Q                -0.260
+ST4 E15 E1B+C                 -1.760
+ST4 E15 E5aI+Q                -3.140
+ST4 E19 E1B+C                  1.120
+ST4 E19 E5aI+Q                 2.000
+ST4 E21 E1B+C                 -0.980
+ST4 E21 E5aI+Q                -1.760
+ST4 E24 E1B+C                  0.920
+ST4 E24 E5aI+Q                 1.620
+ST4 E25 E1B+C                 -1.040
+ST4 E25 E5aI+Q                -1.880
+ST4 E27 E1B+C                 -0.760
+ST4 E27 E5aI+Q                -1.380
+ST4 E30 E1B+C                 -0.560
+ST4 E30 E5aI+Q                -1.000
+ST4 E33 E1B+C                  0.920
+ST4 E33 E5aI+Q                 1.620
+ST4 E36 E1B+C                 -1.680
+ST4 E36 E5aI+Q                -3.000
+ST4 J02 L1C/A                 -0.140
+ST4 J02 L1C(D+P)              -0.140
+ST4 J02 L2CM+L                -0.240
+ST4 J02 L5I+Q                 -0.140
+ST4 J03 L1C/A                  0.140
+ST4 J03 L1C(D+P)               0.140
+ST4 J03 L2CM+L                 0.240
+ST4 J03 L5I+Q                  0.140
 205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 (Clk/Eph LNAV) ST4 ST3...
 ST3 SAT   c0[m]
 ST3 G01   0.128
@@ -1802,241 +1802,241 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP1 (Clk/Eph LNAV) ST5...
 205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 (Clk/Eph LNAV) ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
-ST5 G01 L1 C/A             -0.264       0
-ST5 G01 L1 Z-tracking      -0.264       0
-ST5 G01 L2 CM+CL           -0.329       0
-ST5 G01 L2 Z-tracking      -0.329       0
-ST5 G01 L5 I+Q             -0.092       0
-ST5 G03 L1 C/A             -0.006       0
-ST5 G03 L1 Z-tracking      -0.006       0
-ST5 G03 L2 CM+CL           -0.148       0
-ST5 G03 L2 Z-tracking      -0.148       0
-ST5 G03 L5 I+Q             -0.295       0
-ST5 G04 L1 C/A             -0.379       0
-ST5 G04 L1 Z-tracking      -0.379       0
+ST5 G01 L1C/A              -0.264       0
+ST5 G01 L1Z-tracking       -0.264       0
+ST5 G01 L2CM+L             -0.329       0
+ST5 G01 L2Z-tracking       -0.329       0
+ST5 G01 L5I+Q              -0.092       0
+ST5 G03 L1C/A              -0.006       0
+ST5 G03 L1Z-tracking       -0.006       0
+ST5 G03 L2CM+L             -0.148       0
+ST5 G03 L2Z-tracking       -0.148       0
+ST5 G03 L5I+Q              -0.295       0
+ST5 G04 L1C/A              -0.379       0
+ST5 G04 L1Z-tracking       -0.379       0
 ST5 G04 L1C(D+P)           -0.379       0
-ST5 G04 L2 CM+CL           -0.366       0
-ST5 G04 L2 Z-tracking      -0.366       0
-ST5 G04 L5 I+Q             -0.651       0
-ST5 G06 L1 C/A             -0.603       0
-ST5 G06 L1 Z-tracking      -0.603       0
-ST5 G06 L2 CM+CL           -0.677       0
-ST5 G06 L2 Z-tracking      -0.677       0
-ST5 G06 L5 I+Q             -1.006       0
-ST5 G08 L1 C/A              0.729       0
-ST5 G08 L1 Z-tracking       0.729       0
-ST5 G08 L2 CM+CL            1.051       0
-ST5 G08 L2 Z-tracking       1.051       0
-ST5 G08 L5 I+Q              0.990       0
-ST5 G09 L1 C/A              0.451       0
-ST5 G09 L1 Z-tracking       0.451       0
-ST5 G09 L2 CM+CL            0.555       0
-ST5 G09 L2 Z-tracking       0.555       0
-ST5 G09 L5 I+Q              0.510       0
-ST5 G10 L1 C/A              0.247       0
-ST5 G10 L1 Z-tracking       0.247       0
-ST5 G10 L2 CM+CL            0.260       0
-ST5 G10 L2 Z-tracking       0.260       0
-ST5 G10 L5 I+Q              0.244       0
-ST5 G11 L1 C/A             -0.717       0
-ST5 G11 L1 Z-tracking      -0.717       0
-ST5 G11 L2 CM+CL           -1.167       0
-ST5 G11 L2 Z-tracking      -1.167       0
-ST5 G11 L5 I+Q             -1.036       0
-ST5 G12 L1 C/A             -0.243       0
-ST5 G12 L1 Z-tracking      -0.243       0
-ST5 G12 L2 CM+CL           -0.400       0
-ST5 G12 L2 Z-tracking      -0.400       0
-ST5 G13 L1 C/A             -0.376       0
-ST5 G13 L1 Z-tracking      -0.376       0
-ST5 G13 L2 CM+CL           -0.623       0
-ST5 G13 L2 Z-tracking      -0.623       0
-ST5 G14 L1 C/A              0.554       0
-ST5 G14 L1 Z-tracking       0.554       0
+ST5 G04 L2CM+L             -0.366       0
+ST5 G04 L2Z-tracking       -0.366       0
+ST5 G04 L5I+Q              -0.651       0
+ST5 G06 L1C/A              -0.603       0
+ST5 G06 L1Z-tracking       -0.603       0
+ST5 G06 L2CM+L             -0.677       0
+ST5 G06 L2Z-tracking       -0.677       0
+ST5 G06 L5I+Q              -1.006       0
+ST5 G08 L1C/A               0.729       0
+ST5 G08 L1Z-tracking        0.729       0
+ST5 G08 L2CM+L              1.051       0
+ST5 G08 L2Z-tracking        1.051       0
+ST5 G08 L5I+Q               0.990       0
+ST5 G09 L1C/A               0.451       0
+ST5 G09 L1Z-tracking        0.451       0
+ST5 G09 L2CM+L              0.555       0
+ST5 G09 L2Z-tracking        0.555       0
+ST5 G09 L5I+Q               0.510       0
+ST5 G10 L1C/A               0.247       0
+ST5 G10 L1Z-tracking        0.247       0
+ST5 G10 L2CM+L              0.260       0
+ST5 G10 L2Z-tracking        0.260       0
+ST5 G10 L5I+Q               0.244       0
+ST5 G11 L1C/A              -0.717       0
+ST5 G11 L1Z-tracking       -0.717       0
+ST5 G11 L2CM+L             -1.167       0
+ST5 G11 L2Z-tracking       -1.167       0
+ST5 G11 L5I+Q              -1.036       0
+ST5 G12 L1C/A              -0.243       0
+ST5 G12 L1Z-tracking       -0.243       0
+ST5 G12 L2CM+L             -0.400       0
+ST5 G12 L2Z-tracking       -0.400       0
+ST5 G13 L1C/A              -0.376       0
+ST5 G13 L1Z-tracking       -0.376       0
+ST5 G13 L2CM+L             -0.623       0
+ST5 G13 L2Z-tracking       -0.623       0
+ST5 G14 L1C/A               0.554       0
+ST5 G14 L1Z-tracking        0.554       0
 ST5 G14 L1C(D+P)            0.554       0
-ST5 G14 L2 CM+CL            0.800       0
-ST5 G14 L2 Z-tracking       0.800       0
-ST5 G14 L5 I+Q              0.751       0
-ST5 G15 L1 C/A             -1.465       0
-ST5 G15 L1 Z-tracking      -1.465       0
-ST5 G15 L2 CM+CL           -2.201       0
-ST5 G15 L2 Z-tracking      -2.201       0
-ST5 G16 L1 C/A             -0.187       0
-ST5 G16 L1 Z-tracking      -0.187       0
-ST5 G16 L2 CM+CL           -0.219       0
-ST5 G16 L2 Z-tracking      -0.219       0
-ST5 G17 L1 C/A              0.433       0
-ST5 G17 L1 Z-tracking       0.433       0
-ST5 G17 L2 CM+CL            0.541       0
-ST5 G17 L2 Z-tracking       0.541       0
-ST5 G18 L1 C/A              0.093       0
-ST5 G18 L1 Z-tracking       0.093       0
-ST5 G18 L2 CM+CL           -0.058       0
-ST5 G18 L2 Z-tracking      -0.058       0
-ST5 G18 L5 I+Q             -0.165       0
-ST5 G19 L1 C/A             -0.738       0
-ST5 G19 L1 Z-tracking      -0.738       0
-ST5 G19 L2 CM+CL           -1.060       0
-ST5 G19 L2 Z-tracking      -1.060       0
-ST5 G21 L1 C/A              0.427       0
-ST5 G21 L1 Z-tracking       0.427       0
-ST5 G21 L2 CM+CL            0.472       0
-ST5 G21 L2 Z-tracking       0.472       0
-ST5 G22 L1 C/A              0.325       0
-ST5 G22 L1 Z-tracking       0.325       0
-ST5 G22 L2 CM+CL            0.253       0
-ST5 G22 L2 Z-tracking       0.253       0
-ST5 G23 L1 C/A              0.132       0
-ST5 G23 L1 Z-tracking       0.132       0
+ST5 G14 L2CM+L              0.800       0
+ST5 G14 L2Z-tracking        0.800       0
+ST5 G14 L5I+Q               0.751       0
+ST5 G15 L1C/A              -1.465       0
+ST5 G15 L1Z-tracking       -1.465       0
+ST5 G15 L2CM+L             -2.201       0
+ST5 G15 L2Z-tracking       -2.201       0
+ST5 G16 L1C/A              -0.187       0
+ST5 G16 L1Z-tracking       -0.187       0
+ST5 G16 L2CM+L             -0.219       0
+ST5 G16 L2Z-tracking       -0.219       0
+ST5 G17 L1C/A               0.433       0
+ST5 G17 L1Z-tracking        0.433       0
+ST5 G17 L2CM+L              0.541       0
+ST5 G17 L2Z-tracking        0.541       0
+ST5 G18 L1C/A               0.093       0
+ST5 G18 L1Z-tracking        0.093       0
+ST5 G18 L2CM+L             -0.058       0
+ST5 G18 L2Z-tracking       -0.058       0
+ST5 G18 L5I+Q              -0.165       0
+ST5 G19 L1C/A              -0.738       0
+ST5 G19 L1Z-tracking       -0.738       0
+ST5 G19 L2CM+L             -1.060       0
+ST5 G19 L2Z-tracking       -1.060       0
+ST5 G21 L1C/A               0.427       0
+ST5 G21 L1Z-tracking        0.427       0
+ST5 G21 L2CM+L              0.472       0
+ST5 G21 L2Z-tracking        0.472       0
+ST5 G22 L1C/A               0.325       0
+ST5 G22 L1Z-tracking        0.325       0
+ST5 G22 L2CM+L              0.253       0
+ST5 G22 L2Z-tracking        0.253       0
+ST5 G23 L1C/A               0.132       0
+ST5 G23 L1Z-tracking        0.132       0
 ST5 G23 L1C(D+P)            0.132       0
-ST5 G23 L2 CM+CL            0.344       0
-ST5 G23 L2 Z-tracking       0.344       0
-ST5 G23 L5 I+Q              0.133       0
-ST5 G25 L1 C/A             -0.066       0
-ST5 G25 L1 Z-tracking      -0.066       0
-ST5 G25 L2 CM+CL           -0.103       0
-ST5 G25 L2 Z-tracking      -0.103       0
-ST5 G25 L5 I+Q             -0.262       0
-ST5 G26 L1 C/A             -0.897       0
-ST5 G26 L1 Z-tracking      -0.897       0
-ST5 G26 L2 CM+CL           -1.295       0
-ST5 G26 L2 Z-tracking      -1.295       0
-ST5 G26 L5 I+Q             -1.541       0
-ST5 G27 L1 C/A              2.079       0
-ST5 G27 L1 Z-tracking       2.079       0
-ST5 G27 L2 CM+CL            2.693       0
-ST5 G27 L2 Z-tracking       2.693       0
-ST5 G27 L5 I+Q              2.632       0
-ST5 G29 L1 C/A             -0.232       0
-ST5 G29 L1 Z-tracking      -0.232       0
-ST5 G29 L2 CM+CL           -0.476       0
-ST5 G29 L2 Z-tracking      -0.476       0
-ST5 G30 L1 C/A             -0.638       0
-ST5 G30 L1 Z-tracking      -0.638       0
-ST5 G30 L2 CM+CL           -0.748       0
-ST5 G30 L2 Z-tracking      -0.748       0
-ST5 G30 L5 I+Q             -0.937       0
-ST5 G31 L1 C/A              0.271       0
-ST5 G31 L1 Z-tracking       0.271       0
-ST5 G31 L2 CM+CL            0.124       0
-ST5 G31 L2 Z-tracking       0.124       0
-ST5 G32 L1 C/A             -0.810       0
-ST5 G32 L1 Z-tracking      -0.810       0
-ST5 G32 L2 CM+CL           -1.176       0
-ST5 G32 L2 Z-tracking      -1.176       0
-ST5 G32 L5 I+Q             -1.280       0
-ST5 R01 G1 C/A              0.000       0
-ST5 R01 G1 P                0.000       0
-ST5 R01 G2 C/A              0.000       0
-ST5 R01 G2 P                0.000       0
-ST5 R02 G1 C/A              0.000       0
-ST5 R02 G1 P                0.000       0
-ST5 R02 G2 C/A              0.000       0
-ST5 R02 G2 P                0.000       0
-ST5 R03 G1 C/A              0.000       0
-ST5 R03 G1 P                0.000       0
-ST5 R03 G2 C/A              0.000       0
-ST5 R03 G2 P                0.000       0
-ST5 R04 G1 C/A              0.000       0
-ST5 R04 G1 P                0.000       0
-ST5 R04 G2 C/A              0.000       0
-ST5 R04 G2 P                0.000       0
-ST5 R05 G1 C/A              0.000       0
-ST5 R05 G1 P                0.000       0
-ST5 R05 G2 C/A              0.000       0
-ST5 R05 G2 P                0.000       0
-ST5 R07 G1 C/A              0.000       0
-ST5 R07 G1 P                0.000       0
-ST5 R07 G2 C/A              0.000       0
-ST5 R07 G2 P                0.000       0
-ST5 R08 G1 C/A              0.000       0
-ST5 R08 G1 P                0.000       0
-ST5 R08 G2 C/A              0.000       0
-ST5 R08 G2 P                0.000       0
-ST5 R09 G1 C/A              0.000       0
-ST5 R09 G1 P                0.000       0
-ST5 R09 G2 C/A              0.000       0
-ST5 R09 G2 P                0.000       0
-ST5 R11 G1 C/A              0.000       0
-ST5 R11 G1 P                0.000       0
-ST5 R11 G2 C/A              0.000       0
-ST5 R11 G2 P                0.000       0
-ST5 R12 G1 C/A              0.000       0
-ST5 R12 G1 P                0.000       0
-ST5 R12 G2 C/A              0.000       0
-ST5 R12 G2 P                0.000       0
-ST5 R13 G1 C/A              0.000       0
-ST5 R13 G1 P                0.000       0
-ST5 R13 G2 C/A              0.000       0
-ST5 R13 G2 P                0.000       0
-ST5 R14 G1 C/A              0.000       0
-ST5 R14 G1 P                0.000       0
-ST5 R14 G2 C/A              0.000       0
-ST5 R14 G2 P                0.000       0
-ST5 R15 G1 C/A              0.000       0
-ST5 R15 G1 P                0.000       0
-ST5 R15 G2 C/A              0.000       0
-ST5 R15 G2 P                0.000       0
-ST5 R17 G1 C/A              0.000       0
-ST5 R17 G1 P                0.000       0
-ST5 R17 G2 C/A              0.000       0
-ST5 R17 G2 P                0.000       0
-ST5 R18 G1 C/A              0.000       0
-ST5 R18 G1 P                0.000       0
-ST5 R18 G2 C/A              0.000       0
-ST5 R18 G2 P                0.000       0
-ST5 R19 G1 C/A              0.000       0
-ST5 R19 G1 P                0.000       0
-ST5 R19 G2 C/A              0.000       0
-ST5 R19 G2 P                0.000       0
-ST5 R21 G1 C/A              0.000       0
-ST5 R21 G1 P                0.000       0
-ST5 R21 G2 C/A              0.000       0
-ST5 R21 G2 P                0.000       0
-ST5 R24 G1 C/A              0.000       0
-ST5 R24 G1 P                0.000       0
-ST5 R24 G2 C/A              0.000       0
-ST5 R24 G2 P                0.000       0
-ST5 E02 E1 B+C              0.001       0
-ST5 E02 E5a I+Q             0.031       0
-ST5 E03 E1 B+C              0.154       0
-ST5 E03 E5a I+Q             0.262       0
-ST5 E04 E1 B+C              0.611       0
-ST5 E04 E5a I+Q             0.966       0
-ST5 E05 E1 B+C             -0.189       0
-ST5 E05 E5a I+Q            -0.202       0
-ST5 E07 E1 B+C              0.645       0
-ST5 E07 E5a I+Q             1.059       0
-ST5 E09 E1 B+C             -0.327       0
-ST5 E09 E5a I+Q            -0.589       0
-ST5 E13 E1 B+C             -0.041       0
-ST5 E13 E5a I+Q            -0.389       0
-ST5 E15 E1 B+C              0.276       0
-ST5 E15 E5a I+Q             0.501       0
-ST5 E19 E1 B+C             -0.381       0
-ST5 E19 E5a I+Q            -0.839       0
-ST5 E21 E1 B+C              0.227       0
-ST5 E21 E5a I+Q             0.401       0
-ST5 E24 E1 B+C             -1.220       0
-ST5 E24 E5a I+Q            -1.977       0
-ST5 E25 E1 B+C             -0.669       0
-ST5 E25 E5a I+Q            -1.315       0
-ST5 E27 E1 B+C             -0.973       0
-ST5 E27 E5a I+Q            -1.607       0
-ST5 E30 E1 B+C             -0.437       0
-ST5 E30 E5a I+Q            -0.594       0
-ST5 E33 E1 B+C              0.646       0
-ST5 E33 E5a I+Q             0.705       0
-ST5 E36 E1 B+C             -1.463       0
-ST5 E36 E5a I+Q            -2.917       0
-ST5 J02 L1 C/A              1.824       1
-ST5 J02 L1 L1C(D+P)         1.824       1
-ST5 J02 L2 L2C(M+L)         3.009       1
-ST5 J02 L5 I+Q              2.958       1
-ST5 J03 L1 C/A             -1.678       1
-ST5 J03 L1 L1C(D+P)        -1.678       1
-ST5 J03 L2 L2C(M+L)        -2.733       1
-ST5 J03 L5 I+Q             -2.550       1
+ST5 G23 L2CM+L              0.344       0
+ST5 G23 L2Z-tracking        0.344       0
+ST5 G23 L5I+Q               0.133       0
+ST5 G25 L1C/A              -0.066       0
+ST5 G25 L1Z-tracking       -0.066       0
+ST5 G25 L2CM+L             -0.103       0
+ST5 G25 L2Z-tracking       -0.103       0
+ST5 G25 L5I+Q              -0.262       0
+ST5 G26 L1C/A              -0.897       0
+ST5 G26 L1Z-tracking       -0.897       0
+ST5 G26 L2CM+L             -1.295       0
+ST5 G26 L2Z-tracking       -1.295       0
+ST5 G26 L5I+Q              -1.541       0
+ST5 G27 L1C/A               2.079       0
+ST5 G27 L1Z-tracking        2.079       0
+ST5 G27 L2CM+L              2.693       0
+ST5 G27 L2Z-tracking        2.693       0
+ST5 G27 L5I+Q               2.632       0
+ST5 G29 L1C/A              -0.232       0
+ST5 G29 L1Z-tracking       -0.232       0
+ST5 G29 L2CM+L             -0.476       0
+ST5 G29 L2Z-tracking       -0.476       0
+ST5 G30 L1C/A              -0.638       0
+ST5 G30 L1Z-tracking       -0.638       0
+ST5 G30 L2CM+L             -0.748       0
+ST5 G30 L2Z-tracking       -0.748       0
+ST5 G30 L5I+Q              -0.937       0
+ST5 G31 L1C/A               0.271       0
+ST5 G31 L1Z-tracking        0.271       0
+ST5 G31 L2CM+L              0.124       0
+ST5 G31 L2Z-tracking        0.124       0
+ST5 G32 L1C/A              -0.810       0
+ST5 G32 L1Z-tracking       -0.810       0
+ST5 G32 L2CM+L             -1.176       0
+ST5 G32 L2Z-tracking       -1.176       0
+ST5 G32 L5I+Q              -1.280       0
+ST5 R01 G1C/A               0.000       0
+ST5 R01 G1P                 0.000       0
+ST5 R01 G2C/A               0.000       0
+ST5 R01 G2P                 0.000       0
+ST5 R02 G1C/A               0.000       0
+ST5 R02 G1P                 0.000       0
+ST5 R02 G2C/A               0.000       0
+ST5 R02 G2P                 0.000       0
+ST5 R03 G1C/A               0.000       0
+ST5 R03 G1P                 0.000       0
+ST5 R03 G2C/A               0.000       0
+ST5 R03 G2P                 0.000       0
+ST5 R04 G1C/A               0.000       0
+ST5 R04 G1P                 0.000       0
+ST5 R04 G2C/A               0.000       0
+ST5 R04 G2P                 0.000       0
+ST5 R05 G1C/A               0.000       0
+ST5 R05 G1P                 0.000       0
+ST5 R05 G2C/A               0.000       0
+ST5 R05 G2P                 0.000       0
+ST5 R07 G1C/A               0.000       0
+ST5 R07 G1P                 0.000       0
+ST5 R07 G2C/A               0.000       0
+ST5 R07 G2P                 0.000       0
+ST5 R08 G1C/A               0.000       0
+ST5 R08 G1P                 0.000       0
+ST5 R08 G2C/A               0.000       0
+ST5 R08 G2P                 0.000       0
+ST5 R09 G1C/A               0.000       0
+ST5 R09 G1P                 0.000       0
+ST5 R09 G2C/A               0.000       0
+ST5 R09 G2P                 0.000       0
+ST5 R11 G1C/A               0.000       0
+ST5 R11 G1P                 0.000       0
+ST5 R11 G2C/A               0.000       0
+ST5 R11 G2P                 0.000       0
+ST5 R12 G1C/A               0.000       0
+ST5 R12 G1P                 0.000       0
+ST5 R12 G2C/A               0.000       0
+ST5 R12 G2P                 0.000       0
+ST5 R13 G1C/A               0.000       0
+ST5 R13 G1P                 0.000       0
+ST5 R13 G2C/A               0.000       0
+ST5 R13 G2P                 0.000       0
+ST5 R14 G1C/A               0.000       0
+ST5 R14 G1P                 0.000       0
+ST5 R14 G2C/A               0.000       0
+ST5 R14 G2P                 0.000       0
+ST5 R15 G1C/A               0.000       0
+ST5 R15 G1P                 0.000       0
+ST5 R15 G2C/A               0.000       0
+ST5 R15 G2P                 0.000       0
+ST5 R17 G1C/A               0.000       0
+ST5 R17 G1P                 0.000       0
+ST5 R17 G2C/A               0.000       0
+ST5 R17 G2P                 0.000       0
+ST5 R18 G1C/A               0.000       0
+ST5 R18 G1P                 0.000       0
+ST5 R18 G2C/A               0.000       0
+ST5 R18 G2P                 0.000       0
+ST5 R19 G1C/A               0.000       0
+ST5 R19 G1P                 0.000       0
+ST5 R19 G2C/A               0.000       0
+ST5 R19 G2P                 0.000       0
+ST5 R21 G1C/A               0.000       0
+ST5 R21 G1P                 0.000       0
+ST5 R21 G2C/A               0.000       0
+ST5 R21 G2P                 0.000       0
+ST5 R24 G1C/A               0.000       0
+ST5 R24 G1P                 0.000       0
+ST5 R24 G2C/A               0.000       0
+ST5 R24 G2P                 0.000       0
+ST5 E02 E1B+C               0.001       0
+ST5 E02 E5aI+Q              0.031       0
+ST5 E03 E1B+C               0.154       0
+ST5 E03 E5aI+Q              0.262       0
+ST5 E04 E1B+C               0.611       0
+ST5 E04 E5aI+Q              0.966       0
+ST5 E05 E1B+C              -0.189       0
+ST5 E05 E5aI+Q             -0.202       0
+ST5 E07 E1B+C               0.645       0
+ST5 E07 E5aI+Q              1.059       0
+ST5 E09 E1B+C              -0.327       0
+ST5 E09 E5aI+Q             -0.589       0
+ST5 E13 E1B+C              -0.041       0
+ST5 E13 E5aI+Q             -0.389       0
+ST5 E15 E1B+C               0.276       0
+ST5 E15 E5aI+Q              0.501       0
+ST5 E19 E1B+C              -0.381       0
+ST5 E19 E5aI+Q             -0.839       0
+ST5 E21 E1B+C               0.227       0
+ST5 E21 E5aI+Q              0.401       0
+ST5 E24 E1B+C              -1.220       0
+ST5 E24 E5aI+Q             -1.977       0
+ST5 E25 E1B+C              -0.669       0
+ST5 E25 E5aI+Q             -1.315       0
+ST5 E27 E1B+C              -0.973       0
+ST5 E27 E5aI+Q             -1.607       0
+ST5 E30 E1B+C              -0.437       0
+ST5 E30 E5aI+Q             -0.594       0
+ST5 E33 E1B+C               0.646       0
+ST5 E33 E5aI+Q              0.705       0
+ST5 E36 E1B+C              -1.463       0
+ST5 E36 E5aI+Q             -2.917       0
+ST5 J02 L1C/A               1.824       1
+ST5 J02 L1C(D+P)            1.824       1
+ST5 J02 L2CM+L              3.009       1
+ST5 J02 L5I+Q               2.958       1
+ST5 J03 L1C/A              -1.678       1
+ST5 J03 L1C(D+P)           -1.678       1
+ST5 J03 L2CM+L             -2.733       1
+ST5 J03 L5I+Q              -2.550       1
 ST3 SAT   c0[m]
 ST3 G01   0.131
 ST3 G03   1.491
@@ -2177,68 +2177,68 @@ CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP2 (Clk/Eph LNAV) (null)
 CSSR null data 1695 bits
 205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 (Clk/Eph LNAV) (null)
-ST1 G01 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G03 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G04 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G06 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G08 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G09 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G10 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G11 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G13 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G14 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G15 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G16 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G17 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G18 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G19 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G21 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G22 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G23 L1 C/A L1 Z-tracking L1C(D+P) L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G25 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G26 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G27 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G29 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G30 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G31 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking
-ST1 G32 L1 C/A L1 Z-tracking L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 R01 G1 C/A G1 P G2 C/A G2 P
-ST1 R02 G1 C/A G1 P G2 C/A G2 P
-ST1 R03 G1 C/A G1 P G2 C/A G2 P
-ST1 R04 G1 C/A G1 P G2 C/A G2 P
-ST1 R05 G1 C/A G1 P G2 C/A G2 P
-ST1 R07 G1 C/A G1 P G2 C/A G2 P
-ST1 R08 G1 C/A G1 P G2 C/A G2 P
-ST1 R09 G1 C/A G1 P G2 C/A G2 P
-ST1 R11 G1 C/A G1 P G2 C/A G2 P
-ST1 R12 G1 C/A G1 P G2 C/A G2 P
-ST1 R13 G1 C/A G1 P G2 C/A G2 P
-ST1 R14 G1 C/A G1 P G2 C/A G2 P
-ST1 R15 G1 C/A G1 P G2 C/A G2 P
-ST1 R17 G1 C/A G1 P G2 C/A G2 P
-ST1 R18 G1 C/A G1 P G2 C/A G2 P
-ST1 R19 G1 C/A G1 P G2 C/A G2 P
-ST1 R21 G1 C/A G1 P G2 C/A G2 P
-ST1 R24 G1 C/A G1 P G2 C/A G2 P
-ST1 E02 E1 B+C E5a I+Q
-ST1 E03 E1 B+C E5a I+Q
-ST1 E04 E1 B+C E5a I+Q
-ST1 E05 E1 B+C E5a I+Q
-ST1 E07 E1 B+C E5a I+Q
-ST1 E09 E1 B+C E5a I+Q
-ST1 E13 E1 B+C E5a I+Q
-ST1 E15 E1 B+C E5a I+Q
-ST1 E19 E1 B+C E5a I+Q
-ST1 E21 E1 B+C E5a I+Q
-ST1 E24 E1 B+C E5a I+Q
-ST1 E25 E1 B+C E5a I+Q
-ST1 E27 E1 B+C E5a I+Q
-ST1 E30 E1 B+C E5a I+Q
-ST1 E33 E1 B+C E5a I+Q
-ST1 E36 E1 B+C E5a I+Q
-ST1 J02 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
-ST1 J03 L1 C/A L1 L1C(D+P) L2 L2C(M+L) L5 I+Q
+ST1 G01 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G03 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G04 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G06 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G08 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G09 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G10 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G11 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G12 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G13 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G14 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G15 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G16 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G17 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G18 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G19 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G21 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G22 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G23 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
+ST1 G25 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G26 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G27 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G29 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G30 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 G31 L1C/A L1Z-tracking L2CM+L L2Z-tracking
+ST1 G32 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
+ST1 R01 G1C/A G1P G2C/A G2P
+ST1 R02 G1C/A G1P G2C/A G2P
+ST1 R03 G1C/A G1P G2C/A G2P
+ST1 R04 G1C/A G1P G2C/A G2P
+ST1 R05 G1C/A G1P G2C/A G2P
+ST1 R07 G1C/A G1P G2C/A G2P
+ST1 R08 G1C/A G1P G2C/A G2P
+ST1 R09 G1C/A G1P G2C/A G2P
+ST1 R11 G1C/A G1P G2C/A G2P
+ST1 R12 G1C/A G1P G2C/A G2P
+ST1 R13 G1C/A G1P G2C/A G2P
+ST1 R14 G1C/A G1P G2C/A G2P
+ST1 R15 G1C/A G1P G2C/A G2P
+ST1 R17 G1C/A G1P G2C/A G2P
+ST1 R18 G1C/A G1P G2C/A G2P
+ST1 R19 G1C/A G1P G2C/A G2P
+ST1 R21 G1C/A G1P G2C/A G2P
+ST1 R24 G1C/A G1P G2C/A G2P
+ST1 E02 E1B+C E5aI+Q
+ST1 E03 E1B+C E5aI+Q
+ST1 E04 E1B+C E5aI+Q
+ST1 E05 E1B+C E5aI+Q
+ST1 E07 E1B+C E5aI+Q
+ST1 E09 E1B+C E5aI+Q
+ST1 E13 E1B+C E5aI+Q
+ST1 E15 E1B+C E5aI+Q
+ST1 E19 E1B+C E5aI+Q
+ST1 E21 E1B+C E5aI+Q
+ST1 E24 E1B+C E5aI+Q
+ST1 E25 E1B+C E5aI+Q
+ST1 E27 E1B+C E5aI+Q
+ST1 E30 E1B+C E5aI+Q
+ST1 E33 E1B+C E5aI+Q
+ST1 E36 E1B+C E5aI+Q
+ST1 J02 L1C/A L1C(D+P) L2CM+L L5I+Q
+ST1 J03 L1C/A L1C(D+P) L2CM+L L5I+Q
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
 205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
 ST2 SAT IODE radial[m] along[m] cross[m]

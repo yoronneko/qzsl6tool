@@ -4,7 +4,7 @@
 # ubxread.py: u-blox receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2023 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -21,9 +21,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-from   alstread import checksum
-from   septread import u4perm
-from   rtcmread import rtk_crc24q
+import libqzsl6tool
 import libtrace
 
 try:
@@ -78,7 +76,7 @@ class UbxReceiver:
             csum    = sys.stdin.buffer.read(2)
             if not payload or not csum:
                 return False
-            csum1, csum2 = checksum(b'\x02\x13' + head + payload)
+            csum1, csum2 = libqzsl6tool.checksum(b'\x02\x13' + head + payload)
             if csum[0] != csum1 or csum[1] != csum2:
                 libtrace.err(f'checksum error: {csum.hex()}!={csum1:02x}{csum2:02x}')
                 continue
@@ -97,7 +95,7 @@ class UbxReceiver:
         ['L5'],                                                         # IRN
         ][gnssid][sigid]
         payload_perm = bytearray(n_word * 4)
-        u4perm(payload, payload_perm)
+        libqzsl6tool.u4perm(payload, payload_perm)
         self.svid     = svid
         self.prn      = svid + 182 if signame == 'L1S' else svid
         self.gnssname = gnssname
@@ -113,12 +111,13 @@ class UbxReceiver:
             # CRC is calculated with 4-bit padding and 196-bit I/NAV
             inav_crc = (bitstring.Bits('uint4=0') + inav[:196]).tobytes()
             crc = inav[196:196+24].tobytes()
-            crc_calc = rtk_crc24q(inav_crc, len(inav_crc))
+            crc_calc = libqzsl6tool.rtk_crc24q(inav_crc, len(inav_crc))
             if crc != crc_calc:
                 libtrace.err(f"CRC error {crc_calc.hex()} != {crc.hex()}")
             self.payload = inav + bitstring.Bits('uint4=0')
         elif signame == 'L1CA' or signame == 'L2CM':  # GPS or QZS L1C/A
             self.payload = bitstring.BitStream(payload_perm)[:LEN_L1CA+4]
+            #print(f'{self.satname}:{self.payload[49:52].u} {self.signame} {payload_perm.hex()} {self.payload[0:8].bin}', file=sys.stderr)
         elif signame == 'L1OF' or signame == 'L2OF':  # GLO L1OF and L2OF
             self.payload = bitstring.BitStream(payload_perm)[:LEN_L1OF+3]
         elif signame == 'B1I' or signame == 'B2I':    # BDS B1I and B2I
@@ -166,7 +165,7 @@ class UbxReceiver:
         inav = bitstring.BitStream(uint=self.svid, length=8) + self.payload
         return inav.tobytes()
 
-    def decode_gnsslnav(self):
+    def decode_gpslnav(self):
         ''' returns decoded raw
             format: [SVID(8)][L1C/A RAW(300)][padding(4)]...
         '''
@@ -195,7 +194,7 @@ class UbxReceiver:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='u-blox message read')
+        description=f'u-blox message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--l1s', action='store_true',
         help='send QZS L1S messages to stdout')
@@ -204,7 +203,7 @@ if __name__ == '__main__':
     group.add_argument('--sbas', action='store_true',
         help='send SBAS messages to stdout')
     group.add_argument('-l', '--lnav', action='store_true',
-        help='send GNSS LNAV messages to stdout')
+        help='send GPS or QZS LNAV messages to stdout')
     group.add_argument('-i', '--inav', action='store_true',
         help='send GAL I/NAV messages to stdout')
     parser.add_argument('-d', '--duplicate', action='store_true',
@@ -217,7 +216,7 @@ if __name__ == '__main__':
         help='specify satellite PRN (PRN=0 means all sats)')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
-    if args.qzqsm or args.l1s or args.sbas or args.inav:
+    if args.l1s or args.qzqsm or args.sbas or args.lnav or args.inav:
         fp_disp, fp_raw = None, sys.stdout
         payload_prev = bitstring.BitStream()
     if args.message:
@@ -232,13 +231,13 @@ if __name__ == '__main__':
             if args.prn != 0 and rcv.prn != args.prn: continue
             rcv.trace.show(0, rcv.msg)
             if fp_raw:
+                raw = b""
                 if   args.l1s  : raw = rcv.decode_qzsl1s(args)
                 elif args.qzqsm: raw = rcv.decode_qzsl1s_qzqsm(args)
-                elif args.lnav : raw = rcv.decode_gnsslnav()
+                elif args.lnav : raw = rcv.decode_gpslnav()
                 elif args.inav : raw = rcv.decode_galinav()
                 if raw:
                     fp_raw.buffer.write(raw)
-                    fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())
