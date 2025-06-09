@@ -4,7 +4,7 @@
 # l6rtcm4050.py: QZS L6 message to RTCM message type 4050 conversion
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2024 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2024-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -16,8 +16,12 @@
 import argparse
 import os
 import sys
+
+sys.path.append(os.path.dirname(__file__))
+import libqzsl6tool
 import libtrace
 from   rtcmread import send_rtcm
+
 try:
     import bitstring
 except ModuleNotFoundError:
@@ -64,7 +68,7 @@ def write_rtcm4050(l6msg):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-    description='QZS L6 message to RTCM message type 4050 conversion')
+    description=f'QZS L6 message to RTCM message type 4050 conversion, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     args = parser.parse_args()
     try:
         l6msg = read_l6()

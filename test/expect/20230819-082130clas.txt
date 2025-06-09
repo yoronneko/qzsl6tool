@@ -11,25 +11,25 @@
 196 Hitachi-Ota:0  CLAS  (syncing)
 196 Hitachi-Ota:0  CLAS  (syncing)
 196 Hitachi-Ota:0  CLAS  (syncing)
-ST1 G10 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L2 CM+CL L2 Z-tracking
-ST1 G13 L1 C/A L2 Z-tracking
-ST1 G15 L1 C/A L2 CM+CL L2 Z-tracking
-ST1 G18 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G23 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G24 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 E02 E1 B+C E5a I+Q
-ST1 E03 E1 B+C E5a I+Q
-ST1 E05 E1 B+C E5a I+Q
-ST1 E08 E1 B+C E5a I+Q
-ST1 E13 E1 B+C E5a I+Q
-ST1 E15 E1 B+C E5a I+Q
-ST1 E24 E1 B+C E5a I+Q
-ST1 E25 E1 B+C E5a I+Q
-ST1 E34 E1 B+C E5a I+Q
-ST1 J02 L1 C/A L2 L2C(M+L) L5 I+Q
-ST1 J03 L1 C/A L2 L2C(M+L) L5 I+Q
-ST1 J04 L1 C/A L2 L2C(M+L) L5 I+Q
+ST1 G10 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 G12 L1C/A L2CM+L L2Z-tracking
+ST1 G13 L1C/A L2Z-tracking
+ST1 G15 L1C/A L2CM+L L2Z-tracking
+ST1 G18 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 G23 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 G24 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 E02 E1B+C E5aI+Q
+ST1 E03 E1B+C E5aI+Q
+ST1 E05 E1B+C E5aI+Q
+ST1 E08 E1B+C E5aI+Q
+ST1 E13 E1B+C E5aI+Q
+ST1 E15 E1B+C E5aI+Q
+ST1 E24 E1B+C E5aI+Q
+ST1 E25 E1B+C E5aI+Q
+ST1 E34 E1B+C E5aI+Q
+ST1 J02 L1C/A L2CM+L L5I+Q
+ST1 J03 L1C/A L2CM+L L5I+Q
+ST1 J04 L1C/A L2CM+L L5I+Q
 ST3 SAT   c0[m]
 ST3 G10  -1.982
 ST3 G12   1.302
@@ -72,57 +72,57 @@ ST2 J03  161    2.0464  -0.2624  -0.3456
 ST2 J04  161    0.0208  -0.1216  -0.1792
 196 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
 ST4 SAT sinal_name      code_bias[m]
-ST4 G10 L1 C/A                 0.000
-ST4 G10 L2 CM+CL               0.600
-ST4 G10 L2 Z-tracking          1.340
-ST4 G10 L5 I+Q                -2.040
-ST4 G12 L1 C/A                 0.000
-ST4 G12 L2 CM+CL              -0.380
-ST4 G12 L2 Z-tracking         -0.280
-ST4 G13 L1 C/A                 0.000
-ST4 G13 L2 Z-tracking          0.340
-ST4 G15 L1 C/A                 0.000
-ST4 G15 L2 CM+CL               0.320
-ST4 G15 L2 Z-tracking          0.500
-ST4 G18 L1 C/A                 0.000
-ST4 G18 L2 CM+CL              -0.460
-ST4 G18 L2 Z-tracking         -0.240
-ST4 G18 L5 I+Q                 2.520
-ST4 G23 L1 C/A                 0.000
-ST4 G23 L2 CM+CL              -0.540
-ST4 G23 L2 Z-tracking         -0.160
-ST4 G23 L5 I+Q                 2.460
-ST4 G24 L1 C/A                 0.000
-ST4 G24 L2 CM+CL               1.020
-ST4 G24 L2 Z-tracking          1.240
-ST4 G24 L5 I+Q                 0.120
-ST4 E02 E1 B+C                 0.000
-ST4 E02 E5a I+Q               -0.280
-ST4 E03 E1 B+C                 0.000
-ST4 E03 E5a I+Q                0.120
-ST4 E05 E1 B+C                 0.000
-ST4 E05 E5a I+Q                0.180
-ST4 E08 E1 B+C                 0.000
-ST4 E08 E5a I+Q               -0.140
-ST4 E13 E1 B+C                 0.000
-ST4 E13 E5a I+Q                0.060
-ST4 E15 E1 B+C                 0.000
-ST4 E15 E5a I+Q                0.020
-ST4 E24 E1 B+C                 0.000
-ST4 E24 E5a I+Q               -0.540
-ST4 E25 E1 B+C                 0.000
-ST4 E25 E5a I+Q                0.280
-ST4 E34 E1 B+C                 0.000
-ST4 E34 E5a I+Q                0.100
-ST4 J02 L1 C/A                 0.000
-ST4 J02 L2 L2C(M+L)            0.120
-ST4 J02 L5 I+Q                -0.200
-ST4 J03 L1 C/A                 0.000
-ST4 J03 L2 L2C(M+L)           -0.460
-ST4 J03 L5 I+Q                -0.520
-ST4 J04 L1 C/A                 0.000
-ST4 J04 L2 L2C(M+L)            0.400
-ST4 J04 L5 I+Q                 0.820
+ST4 G10 L1C/A                  0.000
+ST4 G10 L2CM+L                 0.600
+ST4 G10 L2Z-tracking           1.340
+ST4 G10 L5I+Q                 -2.040
+ST4 G12 L1C/A                  0.000
+ST4 G12 L2CM+L                -0.380
+ST4 G12 L2Z-tracking          -0.280
+ST4 G13 L1C/A                  0.000
+ST4 G13 L2Z-tracking           0.340
+ST4 G15 L1C/A                  0.000
+ST4 G15 L2CM+L                 0.320
+ST4 G15 L2Z-tracking           0.500
+ST4 G18 L1C/A                  0.000
+ST4 G18 L2CM+L                -0.460
+ST4 G18 L2Z-tracking          -0.240
+ST4 G18 L5I+Q                  2.520
+ST4 G23 L1C/A                  0.000
+ST4 G23 L2CM+L                -0.540
+ST4 G23 L2Z-tracking          -0.160
+ST4 G23 L5I+Q                  2.460
+ST4 G24 L1C/A                  0.000
+ST4 G24 L2CM+L                 1.020
+ST4 G24 L2Z-tracking           1.240
+ST4 G24 L5I+Q                  0.120
+ST4 E02 E1B+C                  0.000
+ST4 E02 E5aI+Q                -0.280
+ST4 E03 E1B+C                  0.000
+ST4 E03 E5aI+Q                 0.120
+ST4 E05 E1B+C                  0.000
+ST4 E05 E5aI+Q                 0.180
+ST4 E08 E1B+C                  0.000
+ST4 E08 E5aI+Q                -0.140
+ST4 E13 E1B+C                  0.000
+ST4 E13 E5aI+Q                 0.060
+ST4 E15 E1B+C                  0.000
+ST4 E15 E5aI+Q                 0.020
+ST4 E24 E1B+C                  0.000
+ST4 E24 E5aI+Q                -0.540
+ST4 E25 E1B+C                  0.000
+ST4 E25 E5aI+Q                 0.280
+ST4 E34 E1B+C                  0.000
+ST4 E34 E5aI+Q                 0.100
+ST4 J02 L1C/A                  0.000
+ST4 J02 L2CM+L                 0.120
+ST4 J02 L5I+Q                 -0.200
+ST4 J03 L1C/A                  0.000
+ST4 J03 L2CM+L                -0.460
+ST4 J03 L5I+Q                 -0.520
+ST4 J04 L1C/A                  0.000
+ST4 J04 L2CM+L                 0.400
+ST4 J04 L5I+Q                  0.820
 ST7 SAT URA[mm]
 ST7 G10    8.00
 ST7 G12    8.00
@@ -165,49 +165,49 @@ ST11 J04   0.550
 196 Hitachi-Ota:0  CLAS  SF1 DP2 ST4 ST7 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=12 (OGASAWARA)
-ST6 G12 L1 C/A                 -0.086     3
-ST6 G12 L2 CM+CL               -0.187     3
-ST6 G12 L2 Z-tracking          -0.156     3
-ST6 G13 L1 C/A                 -1.492     0
-ST6 G13 L2 Z-tracking          -1.875     0
-ST6 G15 L1 C/A                  0.019     1
-ST6 G15 L2 CM+CL               -0.022     1
-ST6 G15 L2 Z-tracking           0.010     3
-ST6 G18 L1 C/A                  1.318     2
-ST6 G18 L2 CM+CL                1.710     2
-ST6 G18 L2 Z-tracking           1.741     2
-ST6 G18 L5 I+Q                  0.868     2
-ST6 G23 L1 C/A                  0.890     0
-ST6 G23 L2 CM+CL                1.022     0
-ST6 G23 L2 Z-tracking           1.051     2
-ST6 G23 L5 I+Q                  1.034     2
-ST6 G24 L1 C/A                  0.416     0
-ST6 G24 L2 CM+CL                0.451     0
-ST6 G24 L2 Z-tracking           0.481     1
-ST6 G24 L5 I+Q                  0.461     1
-ST6 E02 E1 B+C                 -2.002     1
-ST6 E02 E5a I+Q                -2.779     1
-ST6 E03 E1 B+C                  0.871     3
-ST6 E03 E5a I+Q                 1.229     3
-ST6 E05 E1 B+C                 -0.017     0
-ST6 E05 E5a I+Q                -0.087     0
-ST6 E15 E1 B+C                 -0.742     1
-ST6 E15 E5a I+Q                -1.118     1
-ST6 E24 E1 B+C                 -1.093     1
-ST6 E24 E5a I+Q                -1.743     1
-ST6 E25 E1 B+C                 -0.419     3
-ST6 E25 E5a I+Q                -0.551     3
-ST6 E34 E1 B+C                 -2.341     1
-ST6 E34 E5a I+Q                -2.789     1
-ST6 J02 L1 C/A                  0.159     2
-ST6 J02 L2 L2C(M+L)             0.244     0
-ST6 J02 L5 I+Q                  0.253     2
-ST6 J03 L1 C/A                 -0.087     1
-ST6 J03 L2 L2C(M+L)            -0.004     3
-ST6 J03 L5 I+Q                  0.037     3
-ST6 J04 L1 C/A                 -1.890     2
-ST6 J04 L2 L2C(M+L)            -2.482     2
-ST6 J04 L5 I+Q                 -2.474     2
+ST6 G12 L1C/A                  -0.086     3
+ST6 G12 L2CM+L                 -0.187     3
+ST6 G12 L2Z-tracking           -0.156     3
+ST6 G13 L1C/A                  -1.492     0
+ST6 G13 L2Z-tracking           -1.875     0
+ST6 G15 L1C/A                   0.019     1
+ST6 G15 L2CM+L                 -0.022     1
+ST6 G15 L2Z-tracking            0.010     3
+ST6 G18 L1C/A                   1.318     2
+ST6 G18 L2CM+L                  1.710     2
+ST6 G18 L2Z-tracking            1.741     2
+ST6 G18 L5I+Q                   0.868     2
+ST6 G23 L1C/A                   0.890     0
+ST6 G23 L2CM+L                  1.022     0
+ST6 G23 L2Z-tracking            1.051     2
+ST6 G23 L5I+Q                   1.034     2
+ST6 G24 L1C/A                   0.416     0
+ST6 G24 L2CM+L                  0.451     0
+ST6 G24 L2Z-tracking            0.481     1
+ST6 G24 L5I+Q                   0.461     1
+ST6 E02 E1B+C                  -2.002     1
+ST6 E02 E5aI+Q                 -2.779     1
+ST6 E03 E1B+C                   0.871     3
+ST6 E03 E5aI+Q                  1.229     3
+ST6 E05 E1B+C                  -0.017     0
+ST6 E05 E5aI+Q                 -0.087     0
+ST6 E15 E1B+C                  -0.742     1
+ST6 E15 E5aI+Q                 -1.118     1
+ST6 E24 E1B+C                  -1.093     1
+ST6 E24 E5aI+Q                 -1.743     1
+ST6 E25 E1B+C                  -0.419     3
+ST6 E25 E5aI+Q                 -0.551     3
+ST6 E34 E1B+C                  -2.341     1
+ST6 E34 E5aI+Q                 -2.789     1
+ST6 J02 L1C/A                   0.159     2
+ST6 J02 L2CM+L                  0.244     0
+ST6 J02 L5I+Q                   0.253     2
+ST6 J03 L1C/A                  -0.087     1
+ST6 J03 L2CM+L                 -0.004     3
+ST6 J03 L5I+Q                   0.037     3
+ST6 J04 L1C/A                  -1.890     2
+ST6 J04 L2CM+L                 -2.482     2
+ST6 J04 L5I+Q                  -2.474     2
 ST12 Trop NID=12 (OGASAWARA) qual=8.0[mm] t00=0.044[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 27.07 142.20       0.000
@@ -262,50 +262,50 @@ ST12 STEC J04 27.07 142.20          -0.60
 ST12 STEC J04 26.64 142.16           0.60
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=2 (OKINAWA)
-ST6 G10 L1 C/A                 -1.130     2
-ST6 G10 L2 CM+CL               -1.400     2
-ST6 G10 L2 Z-tracking          -1.376     0
-ST6 G10 L5 I+Q                 -1.637     2
-ST6 G12 L1 C/A                  1.991     3
-ST6 G12 L2 CM+CL                2.675     3
-ST6 G12 L2 Z-tracking           2.700     3
-ST6 G15 L1 C/A                 -1.305     1
-ST6 G15 L2 CM+CL               -1.714     1
-ST6 G15 L2 Z-tracking          -1.688     3
-ST6 G18 L1 C/A                 -0.587     2
-ST6 G18 L2 CM+CL               -1.019     2
-ST6 G18 L2 Z-tracking          -0.993     2
-ST6 G18 L5 I+Q                 -0.917     2
-ST6 G23 L1 C/A                 -0.543     0
-ST6 G23 L2 CM+CL               -0.854     0
-ST6 G23 L2 Z-tracking          -0.828     2
-ST6 G23 L5 I+Q                 -0.882     2
-ST6 G24 L1 C/A                 -0.518     0
-ST6 G24 L2 CM+CL               -0.766     0
-ST6 G24 L2 Z-tracking          -0.740     1
-ST6 G24 L5 I+Q                 -0.762     1
-ST6 E02 E1 B+C                  1.562     1
-ST6 E02 E5a I+Q                 1.959     1
-ST6 E03 E1 B+C                 -0.847     3
-ST6 E03 E5a I+Q                -1.110     3
-ST6 E05 E1 B+C                 -0.156     0
-ST6 E05 E5a I+Q                -0.345     0
-ST6 E08 E1 B+C                 -0.599     3
-ST6 E08 E5a I+Q                -0.959     3
-ST6 E15 E1 B+C                  0.061     1
-ST6 E15 E5a I+Q                -0.072     1
-ST6 E24 E1 B+C                  2.637     1
-ST6 E24 E5a I+Q                 3.716     1
-ST6 E25 E1 B+C                  0.845     3
-ST6 E25 E5a I+Q                 1.102     3
-ST6 E34 E1 B+C                 -0.213     1
-ST6 E34 E5a I+Q                -0.294     1
-ST6 J02 L1 C/A                  0.409     2
-ST6 J02 L2 L2C(M+L)             0.525     0
-ST6 J02 L5 I+Q                  0.504     2
-ST6 J04 L1 C/A                 -0.990     2
-ST6 J04 L2 L2C(M+L)            -1.416     2
-ST6 J04 L5 I+Q                 -1.666     2
+ST6 G10 L1C/A                  -1.130     2
+ST6 G10 L2CM+L                 -1.400     2
+ST6 G10 L2Z-tracking           -1.376     0
+ST6 G10 L5I+Q                  -1.637     2
+ST6 G12 L1C/A                   1.991     3
+ST6 G12 L2CM+L                  2.675     3
+ST6 G12 L2Z-tracking            2.700     3
+ST6 G15 L1C/A                  -1.305     1
+ST6 G15 L2CM+L                 -1.714     1
+ST6 G15 L2Z-tracking           -1.688     3
+ST6 G18 L1C/A                  -0.587     2
+ST6 G18 L2CM+L                 -1.019     2
+ST6 G18 L2Z-tracking           -0.993     2
+ST6 G18 L5I+Q                  -0.917     2
+ST6 G23 L1C/A                  -0.543     0
+ST6 G23 L2CM+L                 -0.854     0
+ST6 G23 L2Z-tracking           -0.828     2
+ST6 G23 L5I+Q                  -0.882     2
+ST6 G24 L1C/A                  -0.518     0
+ST6 G24 L2CM+L                 -0.766     0
+ST6 G24 L2Z-tracking           -0.740     1
+ST6 G24 L5I+Q                  -0.762     1
+ST6 E02 E1B+C                   1.562     1
+ST6 E02 E5aI+Q                  1.959     1
+ST6 E03 E1B+C                  -0.847     3
+ST6 E03 E5aI+Q                 -1.110     3
+ST6 E05 E1B+C                  -0.156     0
+ST6 E05 E5aI+Q                 -0.345     0
+ST6 E08 E1B+C                  -0.599     3
+ST6 E08 E5aI+Q                 -0.959     3
+ST6 E15 E1B+C                   0.061     1
+ST6 E15 E5aI+Q                 -0.072     1
+ST6 E24 E1B+C                   2.637     1
+ST6 E24 E5aI+Q                  3.716     1
+ST6 E25 E1B+C                   0.845     3
+ST6 E25 E5aI+Q                  1.102     3
+ST6 E34 E1B+C                  -0.213     1
+ST6 E34 E5aI+Q                 -0.294     1
+ST6 J02 L1C/A                   0.409     2
+ST6 J02 L2CM+L                  0.525     0
+ST6 J02 L5I+Q                   0.504     2
+ST6 J04 L1C/A                  -0.990     2
+ST6 J04 L2CM+L                 -1.416     2
+ST6 J04 L5I+Q                  -1.666     2
 196 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST12 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF1 DP4 ST12...
 ST12 Trop NID=2 (OKINAWA) qual=53.0[mm] t00=0.084[m] offset=0.280[m]
@@ -556,48 +556,48 @@ ST11 J02  -1.285
 ST11 J04   0.552
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=3 (KYUSYU)
-ST6 G10 L1 C/A                 -0.379     2
-ST6 G10 L2 CM+CL               -0.435     2
-ST6 G10 L2 Z-tracking          -0.465     0
-ST6 G10 L5 I+Q                 -0.519     2
-ST6 G12 L1 C/A                  0.401     3
-ST6 G12 L2 CM+CL                0.388     3
-ST6 G12 L2 Z-tracking           0.603     3
-ST6 G15 L1 C/A                  0.531     1
-ST6 G15 L2 CM+CL                0.643     1
-ST6 G15 L2 Z-tracking           0.616     3
-ST6 G18 L1 C/A                 -0.189     2
-ST6 G18 L2 CM+CL               -0.237     2
-ST6 G18 L2 Z-tracking          -0.266     2
-ST6 G18 L5 I+Q                 -0.242     2
-ST6 G23 L1 C/A                  0.912     0
-ST6 G23 L2 CM+CL                1.004     0
-ST6 G23 L2 Z-tracking           0.976     2
-ST6 G23 L5 I+Q                  0.911     2
-ST6 G24 L1 C/A                  0.080     0
-ST6 G24 L2 CM+CL                0.264     0
-ST6 G24 L2 Z-tracking           0.235     1
-ST6 G24 L5 I+Q                  0.172     1
-ST6 E03 E1 B+C                  1.126     3
-ST6 E03 E5a I+Q                 1.384     3
-ST6 E05 E1 B+C                  0.013     0
-ST6 E05 E5a I+Q                 0.024     0
-ST6 E13 E1 B+C                 -0.303     0
-ST6 E13 E5a I+Q                -0.473     0
-ST6 E15 E1 B+C                 -0.010     1
-ST6 E15 E5a I+Q                -0.046     1
-ST6 E24 E1 B+C                  0.923     1
-ST6 E24 E5a I+Q                 1.305     1
-ST6 E25 E1 B+C                 -0.748     3
-ST6 E25 E5a I+Q                -0.911     3
-ST6 E34 E1 B+C                  0.777     1
-ST6 E34 E5a I+Q                 0.846     1
-ST6 J02 L1 C/A                 -1.201     2
-ST6 J02 L2 L2C(M+L)            -1.549     0
-ST6 J02 L5 I+Q                 -1.584     2
-ST6 J04 L1 C/A                  1.081     2
-ST6 J04 L2 L2C(M+L)             1.509     2
-ST6 J04 L5 I+Q                  1.469     2
+ST6 G10 L1C/A                  -0.379     2
+ST6 G10 L2CM+L                 -0.435     2
+ST6 G10 L2Z-tracking           -0.465     0
+ST6 G10 L5I+Q                  -0.519     2
+ST6 G12 L1C/A                   0.401     3
+ST6 G12 L2CM+L                  0.388     3
+ST6 G12 L2Z-tracking            0.603     3
+ST6 G15 L1C/A                   0.531     1
+ST6 G15 L2CM+L                  0.643     1
+ST6 G15 L2Z-tracking            0.616     3
+ST6 G18 L1C/A                  -0.189     2
+ST6 G18 L2CM+L                 -0.237     2
+ST6 G18 L2Z-tracking           -0.266     2
+ST6 G18 L5I+Q                  -0.242     2
+ST6 G23 L1C/A                   0.912     0
+ST6 G23 L2CM+L                  1.004     0
+ST6 G23 L2Z-tracking            0.976     2
+ST6 G23 L5I+Q                   0.911     2
+ST6 G24 L1C/A                   0.080     0
+ST6 G24 L2CM+L                  0.264     0
+ST6 G24 L2Z-tracking            0.235     1
+ST6 G24 L5I+Q                   0.172     1
+ST6 E03 E1B+C                   1.126     3
+ST6 E03 E5aI+Q                  1.384     3
+ST6 E05 E1B+C                   0.013     0
+ST6 E05 E5aI+Q                  0.024     0
+ST6 E13 E1B+C                  -0.303     0
+ST6 E13 E5aI+Q                 -0.473     0
+ST6 E15 E1B+C                  -0.010     1
+ST6 E15 E5aI+Q                 -0.046     1
+ST6 E24 E1B+C                   0.923     1
+ST6 E24 E5aI+Q                  1.305     1
+ST6 E25 E1B+C                  -0.748     3
+ST6 E25 E5aI+Q                 -0.911     3
+ST6 E34 E1B+C                   0.777     1
+ST6 E34 E5aI+Q                  0.846     1
+ST6 J02 L1C/A                  -1.201     2
+ST6 J02 L2CM+L                 -1.549     0
+ST6 J02 L5I+Q                  -1.584     2
+ST6 J04 L1C/A                   1.081     2
+ST6 J04 L2CM+L                  1.509     2
+ST6 J04 L5I+Q                   1.469     2
 196 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF2 DP2 ST12...
 ST12 Trop NID=3 (KYUSYU) qual=39.5[mm] t00=0.060[m] offset=0.280[m]
@@ -1132,48 +1132,48 @@ ST12 STEC J04 29.92 130.16          -0.04
 196 Hitachi-Ota:0  CLAS  SF2 DP3 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
-ST6 G10 L1 C/A                 -1.159     2
-ST6 G10 L2 CM+CL               -1.429     2
-ST6 G10 L2 Z-tracking          -1.451     0
-ST6 G10 L5 I+Q                 -1.701     2
-ST6 G12 L1 C/A                  0.866     3
-ST6 G12 L2 CM+CL                1.275     3
-ST6 G12 L2 Z-tracking           1.255     3
-ST6 G15 L1 C/A                  0.575     1
-ST6 G15 L2 CM+CL                0.713     1
-ST6 G15 L2 Z-tracking           0.693     3
-ST6 G18 L1 C/A                 -1.024     2
-ST6 G18 L2 CM+CL               -1.564     2
-ST6 G18 L2 Z-tracking          -1.585     2
-ST6 G18 L5 I+Q                 -1.520     2
-ST6 G23 L1 C/A                  0.100     0
-ST6 G23 L2 CM+CL               -0.006     0
-ST6 G23 L2 Z-tracking          -0.027     2
-ST6 G23 L5 I+Q                 -0.027     2
-ST6 G24 L1 C/A                 -0.232     0
-ST6 G24 L2 CM+CL               -0.372     0
-ST6 G24 L2 Z-tracking          -0.393     1
-ST6 G24 L5 I+Q                 -0.379     1
-ST6 E03 E1 B+C                  1.218     3
-ST6 E03 E5a I+Q                 1.686     3
-ST6 E05 E1 B+C                  0.281     0
-ST6 E05 E5a I+Q                 0.308     0
-ST6 E08 E1 B+C                 -0.880     3
-ST6 E08 E5a I+Q                -1.295     3
-ST6 E15 E1 B+C                 -0.121     1
-ST6 E15 E5a I+Q                -0.255     1
-ST6 E24 E1 B+C                 -0.629     1
-ST6 E24 E5a I+Q                -1.130     1
-ST6 E25 E1 B+C                 -1.300     3
-ST6 E25 E5a I+Q                -1.748     3
-ST6 E34 E1 B+C                 -0.335     1
-ST6 E34 E5a I+Q                -0.429     1
-ST6 J02 L1 C/A                 -1.464     2
-ST6 J02 L2 L2C(M+L)            -2.110     0
-ST6 J02 L5 I+Q                 -2.037     2
-ST6 J04 L1 C/A                  1.171     2
-ST6 J04 L2 L2C(M+L)             1.368     2
-ST6 J04 L5 I+Q                  1.447     2
+ST6 G10 L1C/A                  -1.159     2
+ST6 G10 L2CM+L                 -1.429     2
+ST6 G10 L2Z-tracking           -1.451     0
+ST6 G10 L5I+Q                  -1.701     2
+ST6 G12 L1C/A                   0.866     3
+ST6 G12 L2CM+L                  1.275     3
+ST6 G12 L2Z-tracking            1.255     3
+ST6 G15 L1C/A                   0.575     1
+ST6 G15 L2CM+L                  0.713     1
+ST6 G15 L2Z-tracking            0.693     3
+ST6 G18 L1C/A                  -1.024     2
+ST6 G18 L2CM+L                 -1.564     2
+ST6 G18 L2Z-tracking           -1.585     2
+ST6 G18 L5I+Q                  -1.520     2
+ST6 G23 L1C/A                   0.100     0
+ST6 G23 L2CM+L                 -0.006     0
+ST6 G23 L2Z-tracking           -0.027     2
+ST6 G23 L5I+Q                  -0.027     2
+ST6 G24 L1C/A                  -0.232     0
+ST6 G24 L2CM+L                 -0.372     0
+ST6 G24 L2Z-tracking           -0.393     1
+ST6 G24 L5I+Q                  -0.379     1
+ST6 E03 E1B+C                   1.218     3
+ST6 E03 E5aI+Q                  1.686     3
+ST6 E05 E1B+C                   0.281     0
+ST6 E05 E5aI+Q                  0.308     0
+ST6 E08 E1B+C                  -0.880     3
+ST6 E08 E5aI+Q                 -1.295     3
+ST6 E15 E1B+C                  -0.121     1
+ST6 E15 E5aI+Q                 -0.255     1
+ST6 E24 E1B+C                  -0.629     1
+ST6 E24 E5aI+Q                 -1.130     1
+ST6 E25 E1B+C                  -1.300     3
+ST6 E25 E5aI+Q                 -1.748     3
+ST6 E34 E1B+C                  -0.335     1
+ST6 E34 E5aI+Q                 -0.429     1
+ST6 J02 L1C/A                  -1.464     2
+ST6 J02 L2CM+L                 -2.110     0
+ST6 J02 L5I+Q                  -2.037     2
+ST6 J04 L1C/A                   1.171     2
+ST6 J04 L2CM+L                  1.368     2
+ST6 J04 L5I+Q                   1.447     2
 196 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST12...
 ST12 Trop NID=4 (SHIKOKU) qual=5.0[mm] t00=0.144[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -1475,48 +1475,48 @@ ST11 J02  -1.285
 ST11 J04   0.549
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=5 (CHUGOKU)
-ST6 G10 L1 C/A                 -0.889     2
-ST6 G10 L2 CM+CL               -0.998     2
-ST6 G10 L2 Z-tracking          -1.000     0
-ST6 G10 L5 I+Q                 -1.262     2
-ST6 G12 L1 C/A                  0.245     3
-ST6 G12 L2 CM+CL                0.274     3
-ST6 G12 L2 Z-tracking           0.271     3
-ST6 G15 L1 C/A                  0.008     1
-ST6 G15 L2 CM+CL               -0.209     1
-ST6 G15 L2 Z-tracking          -0.210     3
-ST6 G18 L1 C/A                 -0.249     2
-ST6 G18 L2 CM+CL               -0.260     2
-ST6 G18 L2 Z-tracking          -0.262     2
-ST6 G18 L5 I+Q                 -0.430     2
-ST6 G23 L1 C/A                  0.126     0
-ST6 G23 L2 CM+CL                0.078     0
-ST6 G23 L2 Z-tracking           0.076     2
-ST6 G23 L5 I+Q                  0.043     2
-ST6 G24 L1 C/A                  0.060     0
-ST6 G24 L2 CM+CL                0.078     0
-ST6 G24 L2 Z-tracking           0.076     1
-ST6 G24 L5 I+Q                  0.077     1
-ST6 E03 E1 B+C                  0.660     3
-ST6 E03 E5a I+Q                 1.056     3
-ST6 E05 E1 B+C                  1.005     0
-ST6 E05 E5a I+Q                 1.382     0
-ST6 E13 E1 B+C                 -0.710     0
-ST6 E13 E5a I+Q                -0.975     0
-ST6 E15 E1 B+C                 -0.090     1
-ST6 E15 E5a I+Q                -0.116     1
-ST6 E24 E1 B+C                 -0.625     1
-ST6 E24 E5a I+Q                -0.732     1
-ST6 E25 E1 B+C                 -0.684     3
-ST6 E25 E5a I+Q                -1.037     3
-ST6 E34 E1 B+C                 -0.470     1
-ST6 E34 E5a I+Q                -0.765     1
-ST6 J02 L1 C/A                 -2.005     2
-ST6 J02 L2 L2C(M+L)            -2.786     0
-ST6 J02 L5 I+Q                 -2.877     2
-ST6 J04 L1 C/A                  1.607     2
-ST6 J04 L2 L2C(M+L)             2.182     2
-ST6 J04 L5 I+Q                  2.161     2
+ST6 G10 L1C/A                  -0.889     2
+ST6 G10 L2CM+L                 -0.998     2
+ST6 G10 L2Z-tracking           -1.000     0
+ST6 G10 L5I+Q                  -1.262     2
+ST6 G12 L1C/A                   0.245     3
+ST6 G12 L2CM+L                  0.274     3
+ST6 G12 L2Z-tracking            0.271     3
+ST6 G15 L1C/A                   0.008     1
+ST6 G15 L2CM+L                 -0.209     1
+ST6 G15 L2Z-tracking           -0.210     3
+ST6 G18 L1C/A                  -0.249     2
+ST6 G18 L2CM+L                 -0.260     2
+ST6 G18 L2Z-tracking           -0.262     2
+ST6 G18 L5I+Q                  -0.430     2
+ST6 G23 L1C/A                   0.126     0
+ST6 G23 L2CM+L                  0.078     0
+ST6 G23 L2Z-tracking            0.076     2
+ST6 G23 L5I+Q                   0.043     2
+ST6 G24 L1C/A                   0.060     0
+ST6 G24 L2CM+L                  0.078     0
+ST6 G24 L2Z-tracking            0.076     1
+ST6 G24 L5I+Q                   0.077     1
+ST6 E03 E1B+C                   0.660     3
+ST6 E03 E5aI+Q                  1.056     3
+ST6 E05 E1B+C                   1.005     0
+ST6 E05 E5aI+Q                  1.382     0
+ST6 E13 E1B+C                  -0.710     0
+ST6 E13 E5aI+Q                 -0.975     0
+ST6 E15 E1B+C                  -0.090     1
+ST6 E15 E5aI+Q                 -0.116     1
+ST6 E24 E1B+C                  -0.625     1
+ST6 E24 E5aI+Q                 -0.732     1
+ST6 E25 E1B+C                  -0.684     3
+ST6 E25 E5aI+Q                 -1.037     3
+ST6 E34 E1B+C                  -0.470     1
+ST6 E34 E5aI+Q                 -0.765     1
+ST6 J02 L1C/A                  -2.005     2
+ST6 J02 L2CM+L                 -2.786     0
+ST6 J02 L5I+Q                  -2.877     2
+ST6 J04 L1C/A                   1.607     2
+ST6 J04 L2CM+L                  2.182     2
+ST6 J04 L5I+Q                   2.161     2
 196 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
 ST12 Trop NID=5 (CHUGOKU) qual=12.5[mm] t00=0.196[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -1778,48 +1778,48 @@ ST12 STEC J04 35.85 134.11           0.16
 196 Hitachi-Ota:0  CLAS  SF3 DP2 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
-ST6 G10 L1 C/A                 -0.086     2
-ST6 G10 L2 CM+CL               -0.184     2
-ST6 G10 L2 Z-tracking          -0.188     0
-ST6 G10 L5 I+Q                 -0.124     2
-ST6 G12 L1 C/A                  1.004     3
-ST6 G12 L2 CM+CL                1.271     3
-ST6 G12 L2 Z-tracking           1.267     3
-ST6 G15 L1 C/A                  1.134     1
-ST6 G15 L2 CM+CL                1.508     1
-ST6 G15 L2 Z-tracking           1.505     3
-ST6 G18 L1 C/A                  0.751     2
-ST6 G18 L2 CM+CL                0.806     2
-ST6 G18 L2 Z-tracking           0.802     2
-ST6 G18 L5 I+Q                  0.970     2
-ST6 G23 L1 C/A                  0.295     0
-ST6 G23 L2 CM+CL                0.329     0
-ST6 G23 L2 Z-tracking           0.326     2
-ST6 G23 L5 I+Q                  0.338     2
-ST6 G24 L1 C/A                 -0.165     0
-ST6 G24 L2 CM+CL               -0.177     0
-ST6 G24 L2 Z-tracking          -0.181     1
-ST6 G24 L5 I+Q                 -0.155     1
-ST6 E03 E1 B+C                  0.488     3
-ST6 E03 E5a I+Q                 0.627     3
-ST6 E05 E1 B+C                  0.077     0
-ST6 E05 E5a I+Q                 0.181     0
-ST6 E13 E1 B+C                  0.469     0
-ST6 E13 E5a I+Q                 0.615     0
-ST6 E15 E1 B+C                  0.446     1
-ST6 E15 E5a I+Q                 0.641     1
-ST6 E24 E1 B+C                  3.455     1
-ST6 E24 E5a I+Q                 4.771     1
-ST6 E25 E1 B+C                  0.645     3
-ST6 E25 E5a I+Q                 0.772     3
-ST6 E34 E1 B+C                  1.443     1
-ST6 E34 E5a I+Q                 2.096     1
-ST6 J02 L1 C/A                  1.394     2
-ST6 J02 L2 L2C(M+L)             1.948     0
-ST6 J02 L5 I+Q                  2.053     2
-ST6 J04 L1 C/A                  0.107     2
-ST6 J04 L2 L2C(M+L)             0.191     2
-ST6 J04 L5 I+Q                  0.081     2
+ST6 G10 L1C/A                  -0.086     2
+ST6 G10 L2CM+L                 -0.184     2
+ST6 G10 L2Z-tracking           -0.188     0
+ST6 G10 L5I+Q                  -0.124     2
+ST6 G12 L1C/A                   1.004     3
+ST6 G12 L2CM+L                  1.271     3
+ST6 G12 L2Z-tracking            1.267     3
+ST6 G15 L1C/A                   1.134     1
+ST6 G15 L2CM+L                  1.508     1
+ST6 G15 L2Z-tracking            1.505     3
+ST6 G18 L1C/A                   0.751     2
+ST6 G18 L2CM+L                  0.806     2
+ST6 G18 L2Z-tracking            0.802     2
+ST6 G18 L5I+Q                   0.970     2
+ST6 G23 L1C/A                   0.295     0
+ST6 G23 L2CM+L                  0.329     0
+ST6 G23 L2Z-tracking            0.326     2
+ST6 G23 L5I+Q                   0.338     2
+ST6 G24 L1C/A                  -0.165     0
+ST6 G24 L2CM+L                 -0.177     0
+ST6 G24 L2Z-tracking           -0.181     1
+ST6 G24 L5I+Q                  -0.155     1
+ST6 E03 E1B+C                   0.488     3
+ST6 E03 E5aI+Q                  0.627     3
+ST6 E05 E1B+C                   0.077     0
+ST6 E05 E5aI+Q                  0.181     0
+ST6 E13 E1B+C                   0.469     0
+ST6 E13 E5aI+Q                  0.615     0
+ST6 E15 E1B+C                   0.446     1
+ST6 E15 E5aI+Q                  0.641     1
+ST6 E24 E1B+C                   3.455     1
+ST6 E24 E5aI+Q                  4.771     1
+ST6 E25 E1B+C                   0.645     3
+ST6 E25 E5aI+Q                  0.772     3
+ST6 E34 E1B+C                   1.443     1
+ST6 E34 E5aI+Q                  2.096     1
+ST6 J02 L1C/A                   1.394     2
+ST6 J02 L2CM+L                  1.948     0
+ST6 J02 L5I+Q                   2.053     2
+ST6 J04 L1C/A                   0.107     2
+ST6 J04 L2CM+L                  0.191     2
+ST6 J04 L5I+Q                   0.081     2
 196 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST12...
 ST12 Trop NID=6 (KANSAI) qual=39.5[mm] t00=0.128[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -2315,46 +2315,46 @@ ST11 J02  -1.291
 ST11 J04   0.544
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=7 (KANTO)
-ST6 G10 L1 C/A                 -0.244     2
-ST6 G10 L2 CM+CL               -0.447     2
-ST6 G10 L2 Z-tracking          -0.463     0
-ST6 G10 L5 I+Q                 -0.317     2
-ST6 G12 L1 C/A                  1.198     3
-ST6 G12 L2 CM+CL                1.450     3
-ST6 G12 L2 Z-tracking           1.433     3
-ST6 G15 L1 C/A                  0.696     1
-ST6 G15 L2 CM+CL                0.901     1
-ST6 G15 L2 Z-tracking           0.886     3
-ST6 G18 L1 C/A                 -1.606     2
-ST6 G18 L2 CM+CL               -1.994     2
-ST6 G18 L2 Z-tracking          -2.010     2
-ST6 G18 L5 I+Q                 -2.118     2
-ST6 G23 L1 C/A                  0.036     0
-ST6 G23 L2 CM+CL               -0.056     0
-ST6 G23 L2 Z-tracking          -0.072     2
-ST6 G23 L5 I+Q                  0.018     2
-ST6 G24 L1 C/A                  0.645     0
-ST6 G24 L2 CM+CL                0.790     0
-ST6 G24 L2 Z-tracking           0.774     1
-ST6 G24 L5 I+Q                  0.933     1
-ST6 E03 E1 B+C                  0.986     3
-ST6 E03 E5a I+Q                 1.271     3
-ST6 E05 E1 B+C                  0.591     0
-ST6 E05 E5a I+Q                 0.857     0
-ST6 E15 E1 B+C                 -0.142     1
-ST6 E15 E5a I+Q                -0.144     1
-ST6 E24 E1 B+C                  0.878     1
-ST6 E24 E5a I+Q                 1.301     1
-ST6 E25 E1 B+C                  0.551     3
-ST6 E25 E5a I+Q                 0.620     3
-ST6 E34 E1 B+C                 -0.203     1
-ST6 E34 E5a I+Q                -0.260     1
-ST6 J02 L1 C/A                  0.870     2
-ST6 J02 L2 L2C(M+L)             1.191     0
-ST6 J02 L5 I+Q                  1.247     2
-ST6 J04 L1 C/A                  0.218     2
-ST6 J04 L2 L2C(M+L)             0.257     2
-ST6 J04 L5 I+Q                  0.391     2
+ST6 G10 L1C/A                  -0.244     2
+ST6 G10 L2CM+L                 -0.447     2
+ST6 G10 L2Z-tracking           -0.463     0
+ST6 G10 L5I+Q                  -0.317     2
+ST6 G12 L1C/A                   1.198     3
+ST6 G12 L2CM+L                  1.450     3
+ST6 G12 L2Z-tracking            1.433     3
+ST6 G15 L1C/A                   0.696     1
+ST6 G15 L2CM+L                  0.901     1
+ST6 G15 L2Z-tracking            0.886     3
+ST6 G18 L1C/A                  -1.606     2
+ST6 G18 L2CM+L                 -1.994     2
+ST6 G18 L2Z-tracking           -2.010     2
+ST6 G18 L5I+Q                  -2.118     2
+ST6 G23 L1C/A                   0.036     0
+ST6 G23 L2CM+L                 -0.056     0
+ST6 G23 L2Z-tracking           -0.072     2
+ST6 G23 L5I+Q                   0.018     2
+ST6 G24 L1C/A                   0.645     0
+ST6 G24 L2CM+L                  0.790     0
+ST6 G24 L2Z-tracking            0.774     1
+ST6 G24 L5I+Q                   0.933     1
+ST6 E03 E1B+C                   0.986     3
+ST6 E03 E5aI+Q                  1.271     3
+ST6 E05 E1B+C                   0.591     0
+ST6 E05 E5aI+Q                  0.857     0
+ST6 E15 E1B+C                  -0.142     1
+ST6 E15 E5aI+Q                 -0.144     1
+ST6 E24 E1B+C                   0.878     1
+ST6 E24 E5aI+Q                  1.301     1
+ST6 E25 E1B+C                   0.551     3
+ST6 E25 E5aI+Q                  0.620     3
+ST6 E34 E1B+C                  -0.203     1
+ST6 E34 E5aI+Q                 -0.260     1
+ST6 J02 L1C/A                   0.870     2
+ST6 J02 L2CM+L                  1.191     0
+ST6 J02 L5I+Q                   1.247     2
+ST6 J04 L1C/A                   0.218     2
+ST6 J04 L2CM+L                  0.257     2
+ST6 J04 L5I+Q                   0.391     2
 196 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF4 DP2 ST12...
 ST12 Trop NID=7 (KANTO) qual=4.25[mm] t00=0.160[m] offset=0.260[m]
@@ -2705,48 +2705,48 @@ ST12 STEC J04 36.39 140.69          -0.08
 ST12 STEC J04 33.11 139.79          -0.08
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=8 (TOHOKU-SOUTH)
-ST6 G10 L1 C/A                 -0.020     2
-ST6 G10 L2 CM+CL                0.007     2
-ST6 G10 L2 Z-tracking           0.001     0
-ST6 G10 L5 I+Q                 -0.008     2
-ST6 G12 L1 C/A                 -0.057     3
-ST6 G12 L2 CM+CL                0.024     3
-ST6 G12 L2 Z-tracking           0.020     3
-ST6 G13 L1 C/A                 -1.892     0
-ST6 G13 L2 Z-tracking          -2.524     0
-ST6 G15 L1 C/A                  0.788     1
-ST6 G15 L2 CM+CL                0.954     1
-ST6 G15 L2 Z-tracking           0.950     3
-ST6 G18 L1 C/A                  0.055     2
-ST6 G18 L2 CM+CL                0.040     2
-ST6 G18 L2 Z-tracking           0.035     2
-ST6 G18 L5 I+Q                  0.092     2
-ST6 G23 L1 C/A                  0.303     0
-ST6 G23 L2 CM+CL                0.203     0
-ST6 G23 L2 Z-tracking           0.198     2
-ST6 G23 L5 I+Q                  0.125     2
-ST6 G24 L1 C/A                 -0.171     0
-ST6 G24 L2 CM+CL               -0.328     0
-ST6 G24 L2 Z-tracking          -0.333     1
-ST6 G24 L5 I+Q                 -0.394     1
-ST6 E03 E1 B+C                  1.423     3
-ST6 E03 E5a I+Q                 1.840     3
-ST6 E05 E1 B+C                  0.452     0
-ST6 E05 E5a I+Q                 0.404     0
-ST6 E15 E1 B+C                  0.478     1
-ST6 E15 E5a I+Q                 0.634     1
-ST6 E24 E1 B+C                 -1.349     1
-ST6 E24 E5a I+Q                -1.939     1
-ST6 E25 E1 B+C                 -0.552     3
-ST6 E25 E5a I+Q                -0.870     3
-ST6 E34 E1 B+C                  0.487     1
-ST6 E34 E5a I+Q                 0.605     1
-ST6 J02 L1 C/A                 -0.808     2
-ST6 J02 L2 L2C(M+L)            -1.190     0
-ST6 J02 L5 I+Q                 -1.248     2
-ST6 J04 L1 C/A                 -0.894     2
-ST6 J04 L2 L2C(M+L)            -1.180     2
-ST6 J04 L5 I+Q                 -1.123     2
+ST6 G10 L1C/A                  -0.020     2
+ST6 G10 L2CM+L                  0.007     2
+ST6 G10 L2Z-tracking            0.001     0
+ST6 G10 L5I+Q                  -0.008     2
+ST6 G12 L1C/A                  -0.057     3
+ST6 G12 L2CM+L                  0.024     3
+ST6 G12 L2Z-tracking            0.020     3
+ST6 G13 L1C/A                  -1.892     0
+ST6 G13 L2Z-tracking           -2.524     0
+ST6 G15 L1C/A                   0.788     1
+ST6 G15 L2CM+L                  0.954     1
+ST6 G15 L2Z-tracking            0.950     3
+ST6 G18 L1C/A                   0.055     2
+ST6 G18 L2CM+L                  0.040     2
+ST6 G18 L2Z-tracking            0.035     2
+ST6 G18 L5I+Q                   0.092     2
+ST6 G23 L1C/A                   0.303     0
+ST6 G23 L2CM+L                  0.203     0
+ST6 G23 L2Z-tracking            0.198     2
+ST6 G23 L5I+Q                   0.125     2
+ST6 G24 L1C/A                  -0.171     0
+ST6 G24 L2CM+L                 -0.328     0
+ST6 G24 L2Z-tracking           -0.333     1
+ST6 G24 L5I+Q                  -0.394     1
+ST6 E03 E1B+C                   1.423     3
+ST6 E03 E5aI+Q                  1.840     3
+ST6 E05 E1B+C                   0.452     0
+ST6 E05 E5aI+Q                  0.404     0
+ST6 E15 E1B+C                   0.478     1
+ST6 E15 E5aI+Q                  0.634     1
+ST6 E24 E1B+C                  -1.349     1
+ST6 E24 E5aI+Q                 -1.939     1
+ST6 E25 E1B+C                  -0.552     3
+ST6 E25 E5aI+Q                 -0.870     3
+ST6 E34 E1B+C                   0.487     1
+ST6 E34 E5aI+Q                  0.605     1
+ST6 J02 L1C/A                  -0.808     2
+ST6 J02 L2CM+L                 -1.190     0
+ST6 J02 L5I+Q                  -1.248     2
+ST6 J04 L1C/A                  -0.894     2
+ST6 J04 L2CM+L                 -1.180     2
+ST6 J04 L5I+Q                  -1.123     2
 196 Hitachi-Ota:0  CLAS  SF4 DP3 ST12 ST6 ST12...
 ST12 Trop NID=8 (TOHOKU-SOUTH) qual=17.0[mm] t00=0.248[m] offset=0.240[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -3130,48 +3130,48 @@ ST11 J02  -1.286
 ST11 J04   0.549
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=9 (TOHOKU-NORTH)
-ST6 G10 L1 C/A                  0.308     2
-ST6 G10 L2 CM+CL                0.427     2
-ST6 G10 L2 Z-tracking           0.394     0
-ST6 G10 L5 I+Q                  0.344     2
-ST6 G12 L1 C/A                  0.597     3
-ST6 G12 L2 CM+CL                0.853     3
-ST6 G12 L2 Z-tracking           0.822     3
-ST6 G13 L1 C/A                 -1.627     0
-ST6 G13 L2 Z-tracking          -1.964     0
-ST6 G15 L1 C/A                  0.225     1
-ST6 G15 L2 CM+CL                0.221     1
-ST6 G15 L2 Z-tracking           0.189     3
-ST6 G18 L1 C/A                  0.553     2
-ST6 G18 L2 CM+CL                0.662     2
-ST6 G18 L2 Z-tracking           0.630     2
-ST6 G18 L5 I+Q                  0.651     2
-ST6 G23 L1 C/A                 -0.048     0
-ST6 G23 L2 CM+CL               -0.252     0
-ST6 G23 L2 Z-tracking          -0.284     2
-ST6 G23 L5 I+Q                 -0.183     2
-ST6 G24 L1 C/A                 -0.555     0
-ST6 G24 L2 CM+CL               -0.840     0
-ST6 G24 L2 Z-tracking          -0.873     1
-ST6 G24 L5 I+Q                 -1.020     1
-ST6 E03 E1 B+C                  1.509     3
-ST6 E03 E5a I+Q                 2.003     3
-ST6 E05 E1 B+C                  2.444     0
-ST6 E05 E5a I+Q                 3.369     0
-ST6 E13 E1 B+C                  0.373     0
-ST6 E13 E5a I+Q                 0.530     0
-ST6 E15 E1 B+C                  0.465     1
-ST6 E15 E5a I+Q                 0.666     1
-ST6 E24 E1 B+C                 -1.030     1
-ST6 E24 E5a I+Q                -1.466     1
-ST6 E25 E1 B+C                  0.732     3
-ST6 E25 E5a I+Q                 0.914     3
-ST6 J02 L1 C/A                  0.264     2
-ST6 J02 L2 L2C(M+L)             0.419     0
-ST6 J02 L5 I+Q                  0.402     2
-ST6 J04 L1 C/A                 -0.308     2
-ST6 J04 L2 L2C(M+L)            -0.446     2
-ST6 J04 L5 I+Q                 -0.389     2
+ST6 G10 L1C/A                   0.308     2
+ST6 G10 L2CM+L                  0.427     2
+ST6 G10 L2Z-tracking            0.394     0
+ST6 G10 L5I+Q                   0.344     2
+ST6 G12 L1C/A                   0.597     3
+ST6 G12 L2CM+L                  0.853     3
+ST6 G12 L2Z-tracking            0.822     3
+ST6 G13 L1C/A                  -1.627     0
+ST6 G13 L2Z-tracking           -1.964     0
+ST6 G15 L1C/A                   0.225     1
+ST6 G15 L2CM+L                  0.221     1
+ST6 G15 L2Z-tracking            0.189     3
+ST6 G18 L1C/A                   0.553     2
+ST6 G18 L2CM+L                  0.662     2
+ST6 G18 L2Z-tracking            0.630     2
+ST6 G18 L5I+Q                   0.651     2
+ST6 G23 L1C/A                  -0.048     0
+ST6 G23 L2CM+L                 -0.252     0
+ST6 G23 L2Z-tracking           -0.284     2
+ST6 G23 L5I+Q                  -0.183     2
+ST6 G24 L1C/A                  -0.555     0
+ST6 G24 L2CM+L                 -0.840     0
+ST6 G24 L2Z-tracking           -0.873     1
+ST6 G24 L5I+Q                  -1.020     1
+ST6 E03 E1B+C                   1.509     3
+ST6 E03 E5aI+Q                  2.003     3
+ST6 E05 E1B+C                   2.444     0
+ST6 E05 E5aI+Q                  3.369     0
+ST6 E13 E1B+C                   0.373     0
+ST6 E13 E5aI+Q                  0.530     0
+ST6 E15 E1B+C                   0.465     1
+ST6 E15 E5aI+Q                  0.666     1
+ST6 E24 E1B+C                  -1.030     1
+ST6 E24 E5aI+Q                 -1.466     1
+ST6 E25 E1B+C                   0.732     3
+ST6 E25 E5aI+Q                  0.914     3
+ST6 J02 L1C/A                   0.264     2
+ST6 J02 L2CM+L                  0.419     0
+ST6 J02 L5I+Q                   0.402     2
+ST6 J04 L1C/A                  -0.308     2
+ST6 J04 L2CM+L                 -0.446     2
+ST6 J04 L5I+Q                  -0.389     2
 196 Hitachi-Ota:0  CLAS  SF5 DP1 ST3 ST11 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF5 DP2 ST12...
 ST12 Trop NID=9 (TOHOKU-NORTH) qual=39.5[mm] t00=0.212[m] offset=0.220[m]
@@ -3481,48 +3481,48 @@ ST12 STEC J04 39.62 142.00          -0.04
 ST12 STEC J04 40.16 142.00           0.04
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=10 (HOKKAIDO-WEST)
-ST6 G10 L1 C/A                 -0.152     2
-ST6 G10 L2 CM+CL               -0.366     2
-ST6 G10 L2 Z-tracking          -0.195     0
-ST6 G10 L5 I+Q                 -0.223     2
-ST6 G12 L1 C/A                  0.140     3
-ST6 G12 L2 CM+CL                0.072     3
-ST6 G12 L2 Z-tracking           0.243     3
-ST6 G13 L1 C/A                 -1.568     0
-ST6 G13 L2 Z-tracking          -2.143     0
-ST6 G15 L1 C/A                  0.562     1
-ST6 G15 L2 CM+CL                0.705     1
-ST6 G15 L2 Z-tracking           0.633     3
-ST6 G18 L1 C/A                 -0.839     2
-ST6 G18 L2 CM+CL               -1.072     2
-ST6 G18 L2 Z-tracking          -1.146     2
-ST6 G18 L5 I+Q                 -1.151     2
-ST6 G23 L1 C/A                 -0.097     0
-ST6 G23 L2 CM+CL               -0.270     0
-ST6 G23 L2 Z-tracking          -0.344     2
-ST6 G23 L5 I+Q                 -0.452     2
-ST6 G24 L1 C/A                  0.022     0
-ST6 G24 L2 CM+CL               -0.044     0
-ST6 G24 L2 Z-tracking          -0.117     1
-ST6 G24 L5 I+Q                 -0.182     1
-ST6 E03 E1 B+C                 -0.049     3
-ST6 E03 E5a I+Q                -0.122     3
-ST6 E05 E1 B+C                  0.312     0
-ST6 E05 E5a I+Q                 0.476     0
-ST6 E13 E1 B+C                  0.059     0
-ST6 E13 E5a I+Q                 0.062     0
-ST6 E15 E1 B+C                  0.043     1
-ST6 E15 E5a I+Q                 0.078     1
-ST6 E24 E1 B+C                  0.427     1
-ST6 E24 E5a I+Q                 0.695     1
-ST6 E25 E1 B+C                 -0.086     3
-ST6 E25 E5a I+Q                -0.224     3
-ST6 J02 L1 C/A                 -0.466     2
-ST6 J02 L2 L2C(M+L)            -0.550     0
-ST6 J02 L5 I+Q                 -0.599     2
-ST6 J04 L1 C/A                 -2.315     2
-ST6 J04 L2 L2C(M+L)            -3.044     2
-ST6 J04 L5 I+Q                 -3.344     2
+ST6 G10 L1C/A                  -0.152     2
+ST6 G10 L2CM+L                 -0.366     2
+ST6 G10 L2Z-tracking           -0.195     0
+ST6 G10 L5I+Q                  -0.223     2
+ST6 G12 L1C/A                   0.140     3
+ST6 G12 L2CM+L                  0.072     3
+ST6 G12 L2Z-tracking            0.243     3
+ST6 G13 L1C/A                  -1.568     0
+ST6 G13 L2Z-tracking           -2.143     0
+ST6 G15 L1C/A                   0.562     1
+ST6 G15 L2CM+L                  0.705     1
+ST6 G15 L2Z-tracking            0.633     3
+ST6 G18 L1C/A                  -0.839     2
+ST6 G18 L2CM+L                 -1.072     2
+ST6 G18 L2Z-tracking           -1.146     2
+ST6 G18 L5I+Q                  -1.151     2
+ST6 G23 L1C/A                  -0.097     0
+ST6 G23 L2CM+L                 -0.270     0
+ST6 G23 L2Z-tracking           -0.344     2
+ST6 G23 L5I+Q                  -0.452     2
+ST6 G24 L1C/A                   0.022     0
+ST6 G24 L2CM+L                 -0.044     0
+ST6 G24 L2Z-tracking           -0.117     1
+ST6 G24 L5I+Q                  -0.182     1
+ST6 E03 E1B+C                  -0.049     3
+ST6 E03 E5aI+Q                 -0.122     3
+ST6 E05 E1B+C                   0.312     0
+ST6 E05 E5aI+Q                  0.476     0
+ST6 E13 E1B+C                   0.059     0
+ST6 E13 E5aI+Q                  0.062     0
+ST6 E15 E1B+C                   0.043     1
+ST6 E15 E5aI+Q                  0.078     1
+ST6 E24 E1B+C                   0.427     1
+ST6 E24 E5aI+Q                  0.695     1
+ST6 E25 E1B+C                  -0.086     3
+ST6 E25 E5aI+Q                 -0.224     3
+ST6 J02 L1C/A                  -0.466     2
+ST6 J02 L2CM+L                 -0.550     0
+ST6 J02 L5I+Q                  -0.599     2
+ST6 J04 L1C/A                  -2.315     2
+ST6 J04 L2CM+L                 -3.044     2
+ST6 J04 L5I+Q                  -3.344     2
 196 Hitachi-Ota:0  CLAS  SF5 DP3 ST12 ST6 ST12...
 ST12 Trop NID=10 (HOKKAIDO-WEST) qual=3.5[mm] t00=0.208[m] offset=0.200[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -3955,48 +3955,48 @@ ST11 J04  161    0.0192  -0.1216  -0.1728   0.557
 196 Hitachi-Ota:0  CLAS  SF6 DP1 ST3 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=11 (HOKKAIDO-EAST)
-ST6 G10 L1 C/A                  0.443     2
-ST6 G10 L2 CM+CL                0.676     2
-ST6 G10 L2 Z-tracking           0.604     0
-ST6 G10 L5 I+Q                  0.765     2
-ST6 G12 L1 C/A                  0.837     3
-ST6 G12 L2 CM+CL                1.269     3
-ST6 G12 L2 Z-tracking           1.197     3
-ST6 G13 L1 C/A                 -1.811     0
-ST6 G13 L2 Z-tracking          -2.401     0
-ST6 G15 L1 C/A                 -0.535     1
-ST6 G15 L2 CM+CL               -0.893     1
-ST6 G15 L2 Z-tracking          -0.964     3
-ST6 G18 L1 C/A                  0.223     2
-ST6 G18 L2 CM+CL                0.083     2
-ST6 G18 L2 Z-tracking           0.012     2
-ST6 G18 L5 I+Q                  0.209     2
-ST6 G23 L1 C/A                  1.248     0
-ST6 G23 L2 CM+CL                1.500     0
-ST6 G23 L2 Z-tracking           1.429     2
-ST6 G23 L5 I+Q                  1.553     2
-ST6 G24 L1 C/A                 -0.534     0
-ST6 G24 L2 CM+CL               -0.710     0
-ST6 G24 L2 Z-tracking          -0.782     1
-ST6 G24 L5 I+Q                 -0.720     1
-ST6 E03 E1 B+C                  1.063     3
-ST6 E03 E5a I+Q                 1.566     3
-ST6 E05 E1 B+C                  0.486     0
-ST6 E05 E5a I+Q                 0.654     0
-ST6 E13 E1 B+C                  1.448     0
-ST6 E13 E5a I+Q                 1.842     0
-ST6 E15 E1 B+C                  0.587     1
-ST6 E15 E5a I+Q                 0.735     1
-ST6 E24 E1 B+C                 -0.163     1
-ST6 E24 E5a I+Q                -0.160     1
-ST6 E25 E1 B+C                  0.302     3
-ST6 E25 E5a I+Q                 0.496     3
-ST6 J02 L1 C/A                  0.189     2
-ST6 J02 L2 L2C(M+L)             0.267     0
-ST6 J02 L5 I+Q                  0.256     2
-ST6 J04 L1 C/A                 -0.995     2
-ST6 J04 L2 L2C(M+L)            -1.379     2
-ST6 J04 L5 I+Q                 -1.350     2
+ST6 G10 L1C/A                   0.443     2
+ST6 G10 L2CM+L                  0.676     2
+ST6 G10 L2Z-tracking            0.604     0
+ST6 G10 L5I+Q                   0.765     2
+ST6 G12 L1C/A                   0.837     3
+ST6 G12 L2CM+L                  1.269     3
+ST6 G12 L2Z-tracking            1.197     3
+ST6 G13 L1C/A                  -1.811     0
+ST6 G13 L2Z-tracking           -2.401     0
+ST6 G15 L1C/A                  -0.535     1
+ST6 G15 L2CM+L                 -0.893     1
+ST6 G15 L2Z-tracking           -0.964     3
+ST6 G18 L1C/A                   0.223     2
+ST6 G18 L2CM+L                  0.083     2
+ST6 G18 L2Z-tracking            0.012     2
+ST6 G18 L5I+Q                   0.209     2
+ST6 G23 L1C/A                   1.248     0
+ST6 G23 L2CM+L                  1.500     0
+ST6 G23 L2Z-tracking            1.429     2
+ST6 G23 L5I+Q                   1.553     2
+ST6 G24 L1C/A                  -0.534     0
+ST6 G24 L2CM+L                 -0.710     0
+ST6 G24 L2Z-tracking           -0.782     1
+ST6 G24 L5I+Q                  -0.720     1
+ST6 E03 E1B+C                   1.063     3
+ST6 E03 E5aI+Q                  1.566     3
+ST6 E05 E1B+C                   0.486     0
+ST6 E05 E5aI+Q                  0.654     0
+ST6 E13 E1B+C                   1.448     0
+ST6 E13 E5aI+Q                  1.842     0
+ST6 E15 E1B+C                   0.587     1
+ST6 E15 E5aI+Q                  0.735     1
+ST6 E24 E1B+C                  -0.163     1
+ST6 E24 E5aI+Q                 -0.160     1
+ST6 E25 E1B+C                   0.302     3
+ST6 E25 E5aI+Q                  0.496     3
+ST6 J02 L1C/A                   0.189     2
+ST6 J02 L2CM+L                  0.267     0
+ST6 J02 L5I+Q                   0.256     2
+ST6 J04 L1C/A                  -0.995     2
+ST6 J04 L2CM+L                 -1.379     2
+ST6 J04 L5I+Q                  -1.350     2
 196 Hitachi-Ota:0  CLAS  SF6 DP2 ST6 ST12...
 ST12 Trop NID=11 (HOKKAIDO-EAST) qual=39.5[mm] t00=0.108[m] offset=0.180[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -4322,50 +4322,50 @@ ST12 STEC J04 44.48 145.29           0.04
 196 Hitachi-Ota:0  CLAS  SF6 DP3 ST12 ST6...
 ST6 code_bias=on phase_bias=on network_bias=on
 ST6 SAT signal_name     code_bias[m] phase_bias[m] discontinuity NID=1 (ISHIGAKI)
-ST6 G10 L1 C/A          0.000           0.161     0
-ST6 G10 L2 CM+CL       -0.160           0.161     0
-ST6 G10 L2 Z-tracking  -0.080           0.140     0
-ST6 G10 L5 I+Q         -0.180           0.106     0
-ST6 G12 L1 C/A          0.000           0.647     1
-ST6 G12 L2 CM+CL        0.900           0.727     1
-ST6 G12 L2 Z-tracking   1.000           0.707     1
-ST6 G15 L1 C/A          0.000          -0.299     1
-ST6 G15 L2 CM+CL       -0.180          -0.491     1
-ST6 G15 L2 Z-tracking  -0.220          -0.510     1
-ST6 G18 L1 C/A          0.000          -0.879     2
-ST6 G18 L2 CM+CL        0.240          -1.319     2
-ST6 G18 L2 Z-tracking   0.340          -1.339     3
-ST6 G18 L5 I+Q          0.280          -1.391     2
-ST6 G23 L1 C/A          0.000          -0.408     2
-ST6 G23 L2 CM+CL        0.340          -0.601     2
-ST6 G23 L2 Z-tracking   0.400          -0.622     2
-ST6 G23 L5 I+Q          0.580          -0.784     2
-ST6 G24 L1 C/A          0.000           1.457     0
-ST6 G24 L2 CM+CL        0.400           1.868     0
-ST6 G24 L2 Z-tracking   0.500           1.847     0
-ST6 G24 L5 I+Q          0.420           1.816     0
-ST6 E02 E1 B+C          0.000           0.016     3
-ST6 E02 E5a I+Q         0.560          -0.106     3
-ST6 E03 E1 B+C          0.000           0.740     0
-ST6 E03 E5a I+Q         0.120           1.123     0
-ST6 E05 E1 B+C          0.000           1.232     3
-ST6 E05 E5a I+Q        -0.160           1.677     3
-ST6 E08 E1 B+C          0.000           0.339     1
-ST6 E08 E5a I+Q        -1.020           0.302     1
-ST6 E15 E1 B+C          0.000           0.661     0
-ST6 E15 E5a I+Q         0.140           0.827     0
-ST6 E24 E1 B+C          0.000           0.032     0
-ST6 E24 E5a I+Q         0.260           0.101     0
-ST6 E25 E1 B+C          0.000           0.964     0
-ST6 E25 E5a I+Q         0.380           1.319     0
-ST6 E34 E1 B+C          0.000           0.005     2
-ST6 E34 E5a I+Q        -0.160           0.131     2
-ST6 J02 L1 C/A          0.000           0.834     2
-ST6 J02 L2 L2C(M+L)     0.360           1.133     2
-ST6 J02 L5 I+Q          0.420           1.262     2
-ST6 J04 L1 C/A          0.000           1.032     2
-ST6 J04 L2 L2C(M+L)    -0.020           1.308     2
-ST6 J04 L5 I+Q         -0.040           1.323     2
+ST6 G10 L1C/A           0.000           0.161     0
+ST6 G10 L2CM+L         -0.160           0.161     0
+ST6 G10 L2Z-tracking   -0.080           0.140     0
+ST6 G10 L5I+Q          -0.180           0.106     0
+ST6 G12 L1C/A           0.000           0.647     1
+ST6 G12 L2CM+L          0.900           0.727     1
+ST6 G12 L2Z-tracking    1.000           0.707     1
+ST6 G15 L1C/A           0.000          -0.299     1
+ST6 G15 L2CM+L         -0.180          -0.491     1
+ST6 G15 L2Z-tracking   -0.220          -0.510     1
+ST6 G18 L1C/A           0.000          -0.879     2
+ST6 G18 L2CM+L          0.240          -1.319     2
+ST6 G18 L2Z-tracking    0.340          -1.339     3
+ST6 G18 L5I+Q           0.280          -1.391     2
+ST6 G23 L1C/A           0.000          -0.408     2
+ST6 G23 L2CM+L          0.340          -0.601     2
+ST6 G23 L2Z-tracking    0.400          -0.622     2
+ST6 G23 L5I+Q           0.580          -0.784     2
+ST6 G24 L1C/A           0.000           1.457     0
+ST6 G24 L2CM+L          0.400           1.868     0
+ST6 G24 L2Z-tracking    0.500           1.847     0
+ST6 G24 L5I+Q           0.420           1.816     0
+ST6 E02 E1B+C           0.000           0.016     3
+ST6 E02 E5aI+Q          0.560          -0.106     3
+ST6 E03 E1B+C           0.000           0.740     0
+ST6 E03 E5aI+Q          0.120           1.123     0
+ST6 E05 E1B+C           0.000           1.232     3
+ST6 E05 E5aI+Q         -0.160           1.677     3
+ST6 E08 E1B+C           0.000           0.339     1
+ST6 E08 E5aI+Q         -1.020           0.302     1
+ST6 E15 E1B+C           0.000           0.661     0
+ST6 E15 E5aI+Q          0.140           0.827     0
+ST6 E24 E1B+C           0.000           0.032     0
+ST6 E24 E5aI+Q          0.260           0.101     0
+ST6 E25 E1B+C           0.000           0.964     0
+ST6 E25 E5aI+Q          0.380           1.319     0
+ST6 E34 E1B+C           0.000           0.005     2
+ST6 E34 E5aI+Q         -0.160           0.131     2
+ST6 J02 L1C/A           0.000           0.834     2
+ST6 J02 L2CM+L          0.360           1.133     2
+ST6 J02 L5I+Q           0.420           1.262     2
+ST6 J04 L1C/A           0.000           1.032     2
+ST6 J04 L2CM+L         -0.020           1.308     2
+ST6 J04 L5I+Q          -0.040           1.323     2
 196 Hitachi-Ota:0  CLAS  SF6 DP4 ST6 ST12...
 ST12 Trop NID=1 (ISHIGAKI) qual=2.0[mm] t00=0.088[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -4523,25 +4523,25 @@ ST12 STEC J04 24.43 123.79          -0.12
 ST12 STEC J04 24.45 122.94           0.08
 CSSR null data 1391 bits
 196 Hitachi-Ota:0  CLAS  SF6 DP5 ST12
-ST1 G10 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G12 L1 C/A L2 CM+CL L2 Z-tracking
-ST1 G13 L1 C/A L2 Z-tracking
-ST1 G15 L1 C/A L2 CM+CL L2 Z-tracking
-ST1 G18 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G23 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 G24 L1 C/A L2 CM+CL L2 Z-tracking L5 I+Q
-ST1 E02 E1 B+C E5a I+Q
-ST1 E03 E1 B+C E5a I+Q
-ST1 E05 E1 B+C E5a I+Q
-ST1 E08 E1 B+C E5a I+Q
-ST1 E13 E1 B+C E5a I+Q
-ST1 E15 E1 B+C E5a I+Q
-ST1 E24 E1 B+C E5a I+Q
-ST1 E25 E1 B+C E5a I+Q
-ST1 E34 E1 B+C E5a I+Q
-ST1 J02 L1 C/A L2 L2C(M+L) L5 I+Q
-ST1 J03 L1 C/A L2 L2C(M+L) L5 I+Q
-ST1 J04 L1 C/A L2 L2C(M+L) L5 I+Q
+ST1 G10 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 G12 L1C/A L2CM+L L2Z-tracking
+ST1 G13 L1C/A L2Z-tracking
+ST1 G15 L1C/A L2CM+L L2Z-tracking
+ST1 G18 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 G23 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 G24 L1C/A L2CM+L L2Z-tracking L5I+Q
+ST1 E02 E1B+C E5aI+Q
+ST1 E03 E1B+C E5aI+Q
+ST1 E05 E1B+C E5aI+Q
+ST1 E08 E1B+C E5aI+Q
+ST1 E13 E1B+C E5aI+Q
+ST1 E15 E1B+C E5aI+Q
+ST1 E24 E1B+C E5aI+Q
+ST1 E25 E1B+C E5aI+Q
+ST1 E34 E1B+C E5aI+Q
+ST1 J02 L1C/A L2CM+L L5I+Q
+ST1 J03 L1C/A L2CM+L L5I+Q
+ST1 J04 L1C/A L2CM+L L5I+Q
 ST3 SAT   c0[m]
 ST3 G10  -1.989
 ST3 G12   1.296
@@ -4584,57 +4584,57 @@ ST2 J03  161    2.0464  -0.2624  -0.3456
 ST2 J04  161    0.0192  -0.1216  -0.1792
 196 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
 ST4 SAT sinal_name      code_bias[m]
-ST4 G10 L1 C/A                 0.000
-ST4 G10 L2 CM+CL               0.600
-ST4 G10 L2 Z-tracking          1.340
-ST4 G10 L5 I+Q                -2.040
-ST4 G12 L1 C/A                 0.000
-ST4 G12 L2 CM+CL              -0.380
-ST4 G12 L2 Z-tracking         -0.280
-ST4 G13 L1 C/A                 0.000
-ST4 G13 L2 Z-tracking          0.300
-ST4 G15 L1 C/A                 0.000
-ST4 G15 L2 CM+CL               0.320
-ST4 G15 L2 Z-tracking          0.500
-ST4 G18 L1 C/A                 0.000
-ST4 G18 L2 CM+CL              -0.480
-ST4 G18 L2 Z-tracking         -0.260
-ST4 G18 L5 I+Q                 2.520
-ST4 G23 L1 C/A                 0.000
-ST4 G23 L2 CM+CL              -0.540
-ST4 G23 L2 Z-tracking         -0.160
-ST4 G23 L5 I+Q                 2.440
-ST4 G24 L1 C/A                 0.000
-ST4 G24 L2 CM+CL               1.020
-ST4 G24 L2 Z-tracking          1.240
-ST4 G24 L5 I+Q                 0.120
-ST4 E02 E1 B+C                 0.000
-ST4 E02 E5a I+Q               -0.320
-ST4 E03 E1 B+C                 0.000
-ST4 E03 E5a I+Q                0.120
-ST4 E05 E1 B+C                 0.000
-ST4 E05 E5a I+Q                0.180
-ST4 E08 E1 B+C                 0.000
-ST4 E08 E5a I+Q               -0.140
-ST4 E13 E1 B+C                 0.000
-ST4 E13 E5a I+Q                0.080
-ST4 E15 E1 B+C                 0.000
-ST4 E15 E5a I+Q                0.040
-ST4 E24 E1 B+C                 0.000
-ST4 E24 E5a I+Q               -0.540
-ST4 E25 E1 B+C                 0.000
-ST4 E25 E5a I+Q                0.280
-ST4 E34 E1 B+C                 0.000
-ST4 E34 E5a I+Q                0.100
-ST4 J02 L1 C/A                 0.000
-ST4 J02 L2 L2C(M+L)            0.120
-ST4 J02 L5 I+Q                -0.220
-ST4 J03 L1 C/A                 0.000
-ST4 J03 L2 L2C(M+L)           -0.460
-ST4 J03 L5 I+Q                -0.540
-ST4 J04 L1 C/A                 0.000
-ST4 J04 L2 L2C(M+L)            0.400
-ST4 J04 L5 I+Q                 0.820
+ST4 G10 L1C/A                  0.000
+ST4 G10 L2CM+L                 0.600
+ST4 G10 L2Z-tracking           1.340
+ST4 G10 L5I+Q                 -2.040
+ST4 G12 L1C/A                  0.000
+ST4 G12 L2CM+L                -0.380
+ST4 G12 L2Z-tracking          -0.280
+ST4 G13 L1C/A                  0.000
+ST4 G13 L2Z-tracking           0.300
+ST4 G15 L1C/A                  0.000
+ST4 G15 L2CM+L                 0.320
+ST4 G15 L2Z-tracking           0.500
+ST4 G18 L1C/A                  0.000
+ST4 G18 L2CM+L                -0.480
+ST4 G18 L2Z-tracking          -0.260
+ST4 G18 L5I+Q                  2.520
+ST4 G23 L1C/A                  0.000
+ST4 G23 L2CM+L                -0.540
+ST4 G23 L2Z-tracking          -0.160
+ST4 G23 L5I+Q                  2.440
+ST4 G24 L1C/A                  0.000
+ST4 G24 L2CM+L                 1.020
+ST4 G24 L2Z-tracking           1.240
+ST4 G24 L5I+Q                  0.120
+ST4 E02 E1B+C                  0.000
+ST4 E02 E5aI+Q                -0.320
+ST4 E03 E1B+C                  0.000
+ST4 E03 E5aI+Q                 0.120
+ST4 E05 E1B+C                  0.000
+ST4 E05 E5aI+Q                 0.180
+ST4 E08 E1B+C                  0.000
+ST4 E08 E5aI+Q                -0.140
+ST4 E13 E1B+C                  0.000
+ST4 E13 E5aI+Q                 0.080
+ST4 E15 E1B+C                  0.000
+ST4 E15 E5aI+Q                 0.040
+ST4 E24 E1B+C                  0.000
+ST4 E24 E5aI+Q                -0.540
+ST4 E25 E1B+C                  0.000
+ST4 E25 E5aI+Q                 0.280
+ST4 E34 E1B+C                  0.000
+ST4 E34 E5aI+Q                 0.100
+ST4 J02 L1C/A                  0.000
+ST4 J02 L2CM+L                 0.120
+ST4 J02 L5I+Q                 -0.220
+ST4 J03 L1C/A                  0.000
+ST4 J03 L2CM+L                -0.460
+ST4 J03 L5I+Q                 -0.540
+ST4 J04 L1C/A                  0.000
+ST4 J04 L2CM+L                 0.400
+ST4 J04 L5I+Q                  0.820
 ST7 SAT URA[mm]
 ST7 G10    8.00
 ST7 G12    8.00
@@ -4677,49 +4677,49 @@ ST11 J04   0.560
 196 Hitachi-Ota:0  CLAS  SF1 DP2 ST4 ST7 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=12 (OGASAWARA)
-ST6 G12 L1 C/A                 -0.078     3
-ST6 G12 L2 CM+CL               -0.176     3
-ST6 G12 L2 Z-tracking          -0.147     3
-ST6 G13 L1 C/A                 -1.512     0
-ST6 G13 L2 Z-tracking          -1.946     0
-ST6 G15 L1 C/A                  0.044     1
-ST6 G15 L2 CM+CL                0.011     1
-ST6 G15 L2 Z-tracking           0.041     3
-ST6 G18 L1 C/A                  1.290     2
-ST6 G18 L2 CM+CL                1.650     2
-ST6 G18 L2 Z-tracking           1.682     2
-ST6 G18 L5 I+Q                  0.802     2
-ST6 G23 L1 C/A                  0.933     0
-ST6 G23 L2 CM+CL                1.080     0
-ST6 G23 L2 Z-tracking           1.109     2
-ST6 G23 L5 I+Q                  1.096     2
-ST6 G24 L1 C/A                  0.423     0
-ST6 G24 L2 CM+CL                0.451     0
-ST6 G24 L2 Z-tracking           0.481     1
-ST6 G24 L5 I+Q                  0.459     1
-ST6 E02 E1 B+C                 -1.977     1
-ST6 E02 E5a I+Q                -2.718     1
-ST6 E03 E1 B+C                  0.864     3
-ST6 E03 E5a I+Q                 1.207     3
-ST6 E05 E1 B+C                  0.021     0
-ST6 E05 E5a I+Q                -0.030     0
-ST6 E15 E1 B+C                 -0.723     1
-ST6 E15 E5a I+Q                -1.103     1
-ST6 E24 E1 B+C                 -1.049     1
-ST6 E24 E5a I+Q                -1.677     1
-ST6 E25 E1 B+C                 -0.416     3
-ST6 E25 E5a I+Q                -0.553     3
-ST6 E34 E1 B+C                 -2.287     1
-ST6 E34 E5a I+Q                -2.716     1
-ST6 J02 L1 C/A                  0.204     2
-ST6 J02 L2 L2C(M+L)             0.310     0
-ST6 J02 L5 I+Q                  0.323     2
-ST6 J03 L1 C/A                 -0.033     1
-ST6 J03 L2 L2C(M+L)             0.070     3
-ST6 J03 L5 I+Q                  0.115     3
-ST6 J04 L1 C/A                 -1.878     2
-ST6 J04 L2 L2C(M+L)            -2.474     2
-ST6 J04 L5 I+Q                 -2.468     2
+ST6 G12 L1C/A                  -0.078     3
+ST6 G12 L2CM+L                 -0.176     3
+ST6 G12 L2Z-tracking           -0.147     3
+ST6 G13 L1C/A                  -1.512     0
+ST6 G13 L2Z-tracking           -1.946     0
+ST6 G15 L1C/A                   0.044     1
+ST6 G15 L2CM+L                  0.011     1
+ST6 G15 L2Z-tracking            0.041     3
+ST6 G18 L1C/A                   1.290     2
+ST6 G18 L2CM+L                  1.650     2
+ST6 G18 L2Z-tracking            1.682     2
+ST6 G18 L5I+Q                   0.802     2
+ST6 G23 L1C/A                   0.933     0
+ST6 G23 L2CM+L                  1.080     0
+ST6 G23 L2Z-tracking            1.109     2
+ST6 G23 L5I+Q                   1.096     2
+ST6 G24 L1C/A                   0.423     0
+ST6 G24 L2CM+L                  0.451     0
+ST6 G24 L2Z-tracking            0.481     1
+ST6 G24 L5I+Q                   0.459     1
+ST6 E02 E1B+C                  -1.977     1
+ST6 E02 E5aI+Q                 -2.718     1
+ST6 E03 E1B+C                   0.864     3
+ST6 E03 E5aI+Q                  1.207     3
+ST6 E05 E1B+C                   0.021     0
+ST6 E05 E5aI+Q                 -0.030     0
+ST6 E15 E1B+C                  -0.723     1
+ST6 E15 E5aI+Q                 -1.103     1
+ST6 E24 E1B+C                  -1.049     1
+ST6 E24 E5aI+Q                 -1.677     1
+ST6 E25 E1B+C                  -0.416     3
+ST6 E25 E5aI+Q                 -0.553     3
+ST6 E34 E1B+C                  -2.287     1
+ST6 E34 E5aI+Q                 -2.716     1
+ST6 J02 L1C/A                   0.204     2
+ST6 J02 L2CM+L                  0.310     0
+ST6 J02 L5I+Q                   0.323     2
+ST6 J03 L1C/A                  -0.033     1
+ST6 J03 L2CM+L                  0.070     3
+ST6 J03 L5I+Q                   0.115     3
+ST6 J04 L1C/A                  -1.878     2
+ST6 J04 L2CM+L                 -2.474     2
+ST6 J04 L5I+Q                  -2.468     2
 ST12 Trop NID=12 (OGASAWARA) qual=8.0[mm] t00=0.040[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 27.07 142.20       0.000
@@ -4774,50 +4774,50 @@ ST12 STEC J04 27.07 142.20          -0.60
 ST12 STEC J04 26.64 142.16           0.60
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=2 (OKINAWA)
-ST6 G10 L1 C/A                 -1.116     2
-ST6 G10 L2 CM+CL               -1.382     2
-ST6 G10 L2 Z-tracking          -1.358     0
-ST6 G10 L5 I+Q                 -1.616     2
-ST6 G12 L1 C/A                  2.029     3
-ST6 G12 L2 CM+CL                2.740     3
-ST6 G12 L2 Z-tracking           2.765     3
-ST6 G15 L1 C/A                 -1.328     1
-ST6 G15 L2 CM+CL               -1.751     1
-ST6 G15 L2 Z-tracking          -1.725     3
-ST6 G18 L1 C/A                 -0.580     2
-ST6 G18 L2 CM+CL               -1.010     2
-ST6 G18 L2 Z-tracking          -0.985     2
-ST6 G18 L5 I+Q                 -0.907     2
-ST6 G23 L1 C/A                 -0.533     0
-ST6 G23 L2 CM+CL               -0.840     0
-ST6 G23 L2 Z-tracking          -0.815     2
-ST6 G23 L5 I+Q                 -0.866     2
-ST6 G24 L1 C/A                 -0.508     0
-ST6 G24 L2 CM+CL               -0.751     0
-ST6 G24 L2 Z-tracking          -0.726     1
-ST6 G24 L5 I+Q                 -0.745     1
-ST6 E02 E1 B+C                  1.524     1
-ST6 E02 E5a I+Q                 1.919     1
-ST6 E03 E1 B+C                 -0.847     3
-ST6 E03 E5a I+Q                -1.113     3
-ST6 E05 E1 B+C                 -0.151     0
-ST6 E05 E5a I+Q                -0.338     0
-ST6 E08 E1 B+C                 -0.582     3
-ST6 E08 E5a I+Q                -0.918     3
-ST6 E15 E1 B+C                  0.078     1
-ST6 E15 E5a I+Q                -0.046     1
-ST6 E24 E1 B+C                  2.606     1
-ST6 E24 E5a I+Q                 3.660     1
-ST6 E25 E1 B+C                  0.851     3
-ST6 E25 E5a I+Q                 1.112     3
-ST6 E34 E1 B+C                 -0.178     1
-ST6 E34 E5a I+Q                -0.244     1
-ST6 J02 L1 C/A                  0.416     2
-ST6 J02 L2 L2C(M+L)             0.530     0
-ST6 J02 L5 I+Q                  0.509     2
-ST6 J04 L1 C/A                 -0.960     2
-ST6 J04 L2 L2C(M+L)            -1.374     2
-ST6 J04 L5 I+Q                 -1.621     2
+ST6 G10 L1C/A                  -1.116     2
+ST6 G10 L2CM+L                 -1.382     2
+ST6 G10 L2Z-tracking           -1.358     0
+ST6 G10 L5I+Q                  -1.616     2
+ST6 G12 L1C/A                   2.029     3
+ST6 G12 L2CM+L                  2.740     3
+ST6 G12 L2Z-tracking            2.765     3
+ST6 G15 L1C/A                  -1.328     1
+ST6 G15 L2CM+L                 -1.751     1
+ST6 G15 L2Z-tracking           -1.725     3
+ST6 G18 L1C/A                  -0.580     2
+ST6 G18 L2CM+L                 -1.010     2
+ST6 G18 L2Z-tracking           -0.985     2
+ST6 G18 L5I+Q                  -0.907     2
+ST6 G23 L1C/A                  -0.533     0
+ST6 G23 L2CM+L                 -0.840     0
+ST6 G23 L2Z-tracking           -0.815     2
+ST6 G23 L5I+Q                  -0.866     2
+ST6 G24 L1C/A                  -0.508     0
+ST6 G24 L2CM+L                 -0.751     0
+ST6 G24 L2Z-tracking           -0.726     1
+ST6 G24 L5I+Q                  -0.745     1
+ST6 E02 E1B+C                   1.524     1
+ST6 E02 E5aI+Q                  1.919     1
+ST6 E03 E1B+C                  -0.847     3
+ST6 E03 E5aI+Q                 -1.113     3
+ST6 E05 E1B+C                  -0.151     0
+ST6 E05 E5aI+Q                 -0.338     0
+ST6 E08 E1B+C                  -0.582     3
+ST6 E08 E5aI+Q                 -0.918     3
+ST6 E15 E1B+C                   0.078     1
+ST6 E15 E5aI+Q                 -0.046     1
+ST6 E24 E1B+C                   2.606     1
+ST6 E24 E5aI+Q                  3.660     1
+ST6 E25 E1B+C                   0.851     3
+ST6 E25 E5aI+Q                  1.112     3
+ST6 E34 E1B+C                  -0.178     1
+ST6 E34 E5aI+Q                 -0.244     1
+ST6 J02 L1C/A                   0.416     2
+ST6 J02 L2CM+L                  0.530     0
+ST6 J02 L5I+Q                   0.509     2
+ST6 J04 L1C/A                  -0.960     2
+ST6 J04 L2CM+L                 -1.374     2
+ST6 J04 L5I+Q                  -1.621     2
 196 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST12 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF1 DP4 ST12...
 ST12 Trop NID=2 (OKINAWA) qual=17.0[mm] t00=0.084[m] offset=0.280[m]
@@ -5068,48 +5068,48 @@ ST11 J02  -1.290
 ST11 J04   0.558
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=3 (KYUSYU)
-ST6 G10 L1 C/A                 -0.351     2
-ST6 G10 L2 CM+CL               -0.397     2
-ST6 G10 L2 Z-tracking          -0.427     0
-ST6 G10 L5 I+Q                 -0.478     2
-ST6 G12 L1 C/A                  0.395     3
-ST6 G12 L2 CM+CL                0.376     3
-ST6 G12 L2 Z-tracking           0.591     3
-ST6 G15 L1 C/A                  0.534     1
-ST6 G15 L2 CM+CL                0.645     1
-ST6 G15 L2 Z-tracking           0.617     3
-ST6 G18 L1 C/A                 -0.172     2
-ST6 G18 L2 CM+CL               -0.217     2
-ST6 G18 L2 Z-tracking          -0.246     2
-ST6 G18 L5 I+Q                 -0.221     2
-ST6 G23 L1 C/A                  0.925     0
-ST6 G23 L2 CM+CL                1.020     0
-ST6 G23 L2 Z-tracking           0.991     2
-ST6 G23 L5 I+Q                  0.926     2
-ST6 G24 L1 C/A                  0.098     0
-ST6 G24 L2 CM+CL                0.287     0
-ST6 G24 L2 Z-tracking           0.258     1
-ST6 G24 L5 I+Q                  0.196     1
-ST6 E03 E1 B+C                  1.140     3
-ST6 E03 E5a I+Q                 1.402     3
-ST6 E05 E1 B+C                  0.022     0
-ST6 E05 E5a I+Q                 0.033     0
-ST6 E13 E1 B+C                 -0.278     0
-ST6 E13 E5a I+Q                -0.445     0
-ST6 E15 E1 B+C                  0.005     1
-ST6 E15 E5a I+Q                -0.027     1
-ST6 E24 E1 B+C                  0.943     1
-ST6 E24 E5a I+Q                 1.337     1
-ST6 E25 E1 B+C                 -0.742     3
-ST6 E25 E5a I+Q                -0.901     3
-ST6 E34 E1 B+C                  0.792     1
-ST6 E34 E5a I+Q                 0.859     1
-ST6 J02 L1 C/A                 -1.183     2
-ST6 J02 L2 L2C(M+L)            -1.527     0
-ST6 J02 L5 I+Q                 -1.561     2
-ST6 J04 L1 C/A                  1.105     2
-ST6 J04 L2 L2C(M+L)             1.539     2
-ST6 J04 L5 I+Q                  1.501     2
+ST6 G10 L1C/A                  -0.351     2
+ST6 G10 L2CM+L                 -0.397     2
+ST6 G10 L2Z-tracking           -0.427     0
+ST6 G10 L5I+Q                  -0.478     2
+ST6 G12 L1C/A                   0.395     3
+ST6 G12 L2CM+L                  0.376     3
+ST6 G12 L2Z-tracking            0.591     3
+ST6 G15 L1C/A                   0.534     1
+ST6 G15 L2CM+L                  0.645     1
+ST6 G15 L2Z-tracking            0.617     3
+ST6 G18 L1C/A                  -0.172     2
+ST6 G18 L2CM+L                 -0.217     2
+ST6 G18 L2Z-tracking           -0.246     2
+ST6 G18 L5I+Q                  -0.221     2
+ST6 G23 L1C/A                   0.925     0
+ST6 G23 L2CM+L                  1.020     0
+ST6 G23 L2Z-tracking            0.991     2
+ST6 G23 L5I+Q                   0.926     2
+ST6 G24 L1C/A                   0.098     0
+ST6 G24 L2CM+L                  0.287     0
+ST6 G24 L2Z-tracking            0.258     1
+ST6 G24 L5I+Q                   0.196     1
+ST6 E03 E1B+C                   1.140     3
+ST6 E03 E5aI+Q                  1.402     3
+ST6 E05 E1B+C                   0.022     0
+ST6 E05 E5aI+Q                  0.033     0
+ST6 E13 E1B+C                  -0.278     0
+ST6 E13 E5aI+Q                 -0.445     0
+ST6 E15 E1B+C                   0.005     1
+ST6 E15 E5aI+Q                 -0.027     1
+ST6 E24 E1B+C                   0.943     1
+ST6 E24 E5aI+Q                  1.337     1
+ST6 E25 E1B+C                  -0.742     3
+ST6 E25 E5aI+Q                 -0.901     3
+ST6 E34 E1B+C                   0.792     1
+ST6 E34 E5aI+Q                  0.859     1
+ST6 J02 L1C/A                  -1.183     2
+ST6 J02 L2CM+L                 -1.527     0
+ST6 J02 L5I+Q                  -1.561     2
+ST6 J04 L1C/A                   1.105     2
+ST6 J04 L2CM+L                  1.539     2
+ST6 J04 L5I+Q                   1.501     2
 196 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF2 DP2 ST12...
 ST12 Trop NID=3 (KYUSYU) qual=39.5[mm] t00=0.060[m] offset=0.280[m]
@@ -5644,48 +5644,48 @@ ST12 STEC J04 29.92 130.16          -0.04
 196 Hitachi-Ota:0  CLAS  SF2 DP3 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
-ST6 G10 L1 C/A                 -1.146     2
-ST6 G10 L2 CM+CL               -1.414     2
-ST6 G10 L2 Z-tracking          -1.435     0
-ST6 G10 L5 I+Q                 -1.686     2
-ST6 G12 L1 C/A                  0.879     3
-ST6 G12 L2 CM+CL                1.296     3
-ST6 G12 L2 Z-tracking           1.276     3
-ST6 G15 L1 C/A                  0.590     1
-ST6 G15 L2 CM+CL                0.733     1
-ST6 G15 L2 Z-tracking           0.714     3
-ST6 G18 L1 C/A                 -0.999     2
-ST6 G18 L2 CM+CL               -1.531     2
-ST6 G18 L2 Z-tracking          -1.552     2
-ST6 G18 L5 I+Q                 -1.487     2
-ST6 G23 L1 C/A                  0.116     0
-ST6 G23 L2 CM+CL                0.015     0
-ST6 G23 L2 Z-tracking          -0.006     2
-ST6 G23 L5 I+Q                 -0.006     2
-ST6 G24 L1 C/A                 -0.215     0
-ST6 G24 L2 CM+CL               -0.350     0
-ST6 G24 L2 Z-tracking          -0.371     1
-ST6 G24 L5 I+Q                 -0.357     1
-ST6 E03 E1 B+C                  1.237     3
-ST6 E03 E5a I+Q                 1.711     3
-ST6 E05 E1 B+C                  0.302     0
-ST6 E05 E5a I+Q                 0.338     0
-ST6 E08 E1 B+C                 -0.877     3
-ST6 E08 E5a I+Q                -1.281     3
-ST6 E15 E1 B+C                 -0.101     1
-ST6 E15 E5a I+Q                -0.228     1
-ST6 E24 E1 B+C                 -0.623     1
-ST6 E24 E5a I+Q                -1.122     1
-ST6 E25 E1 B+C                 -1.282     3
-ST6 E25 E5a I+Q                -1.720     3
-ST6 E34 E1 B+C                 -0.296     1
-ST6 E34 E5a I+Q                -0.372     1
-ST6 J02 L1 C/A                 -1.437     2
-ST6 J02 L2 L2C(M+L)            -2.075     0
-ST6 J02 L5 I+Q                 -2.000     2
-ST6 J04 L1 C/A                  1.197     2
-ST6 J04 L2 L2C(M+L)             1.400     2
-ST6 J04 L5 I+Q                  1.481     2
+ST6 G10 L1C/A                  -1.146     2
+ST6 G10 L2CM+L                 -1.414     2
+ST6 G10 L2Z-tracking           -1.435     0
+ST6 G10 L5I+Q                  -1.686     2
+ST6 G12 L1C/A                   0.879     3
+ST6 G12 L2CM+L                  1.296     3
+ST6 G12 L2Z-tracking            1.276     3
+ST6 G15 L1C/A                   0.590     1
+ST6 G15 L2CM+L                  0.733     1
+ST6 G15 L2Z-tracking            0.714     3
+ST6 G18 L1C/A                  -0.999     2
+ST6 G18 L2CM+L                 -1.531     2
+ST6 G18 L2Z-tracking           -1.552     2
+ST6 G18 L5I+Q                  -1.487     2
+ST6 G23 L1C/A                   0.116     0
+ST6 G23 L2CM+L                  0.015     0
+ST6 G23 L2Z-tracking           -0.006     2
+ST6 G23 L5I+Q                  -0.006     2
+ST6 G24 L1C/A                  -0.215     0
+ST6 G24 L2CM+L                 -0.350     0
+ST6 G24 L2Z-tracking           -0.371     1
+ST6 G24 L5I+Q                  -0.357     1
+ST6 E03 E1B+C                   1.237     3
+ST6 E03 E5aI+Q                  1.711     3
+ST6 E05 E1B+C                   0.302     0
+ST6 E05 E5aI+Q                  0.338     0
+ST6 E08 E1B+C                  -0.877     3
+ST6 E08 E5aI+Q                 -1.281     3
+ST6 E15 E1B+C                  -0.101     1
+ST6 E15 E5aI+Q                 -0.228     1
+ST6 E24 E1B+C                  -0.623     1
+ST6 E24 E5aI+Q                 -1.122     1
+ST6 E25 E1B+C                  -1.282     3
+ST6 E25 E5aI+Q                 -1.720     3
+ST6 E34 E1B+C                  -0.296     1
+ST6 E34 E5aI+Q                 -0.372     1
+ST6 J02 L1C/A                  -1.437     2
+ST6 J02 L2CM+L                 -2.075     0
+ST6 J02 L5I+Q                  -2.000     2
+ST6 J04 L1C/A                   1.197     2
+ST6 J04 L2CM+L                  1.400     2
+ST6 J04 L5I+Q                   1.481     2
 196 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST12...
 ST12 Trop NID=4 (SHIKOKU) qual=5.0[mm] t00=0.144[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -5987,48 +5987,48 @@ ST11 J02  -1.290
 ST11 J04   0.557
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=5 (CHUGOKU)
-ST6 G10 L1 C/A                 -0.872     2
-ST6 G10 L2 CM+CL               -0.980     2
-ST6 G10 L2 Z-tracking          -0.980     0
-ST6 G10 L5 I+Q                 -1.244     2
-ST6 G12 L1 C/A                  0.246     3
-ST6 G12 L2 CM+CL                0.273     3
-ST6 G12 L2 Z-tracking           0.273     3
-ST6 G15 L1 C/A                  0.023     1
-ST6 G15 L2 CM+CL               -0.187     1
-ST6 G15 L2 Z-tracking          -0.186     3
-ST6 G18 L1 C/A                 -0.242     2
-ST6 G18 L2 CM+CL               -0.260     2
-ST6 G18 L2 Z-tracking          -0.260     2
-ST6 G18 L5 I+Q                 -0.431     2
-ST6 G23 L1 C/A                  0.146     0
-ST6 G23 L2 CM+CL                0.101     0
-ST6 G23 L2 Z-tracking           0.101     2
-ST6 G23 L5 I+Q                  0.067     2
-ST6 G24 L1 C/A                  0.085     0
-ST6 G24 L2 CM+CL                0.109     0
-ST6 G24 L2 Z-tracking           0.109     1
-ST6 G24 L5 I+Q                  0.110     1
-ST6 E03 E1 B+C                  0.674     3
-ST6 E03 E5a I+Q                 1.072     3
-ST6 E05 E1 B+C                  1.020     0
-ST6 E05 E5a I+Q                 1.401     0
-ST6 E13 E1 B+C                 -0.706     0
-ST6 E13 E5a I+Q                -0.983     0
-ST6 E15 E1 B+C                 -0.105     1
-ST6 E15 E5a I+Q                -0.106     1
-ST6 E24 E1 B+C                 -0.609     1
-ST6 E24 E5a I+Q                -0.709     1
-ST6 E25 E1 B+C                 -0.681     3
-ST6 E25 E5a I+Q                -1.034     3
-ST6 E34 E1 B+C                 -0.462     1
-ST6 E34 E5a I+Q                -0.762     1
-ST6 J02 L1 C/A                 -1.983     2
-ST6 J02 L2 L2C(M+L)            -2.759     0
-ST6 J02 L5 I+Q                 -2.848     2
-ST6 J04 L1 C/A                  1.634     2
-ST6 J04 L2 L2C(M+L)             2.215     2
-ST6 J04 L5 I+Q                  2.195     2
+ST6 G10 L1C/A                  -0.872     2
+ST6 G10 L2CM+L                 -0.980     2
+ST6 G10 L2Z-tracking           -0.980     0
+ST6 G10 L5I+Q                  -1.244     2
+ST6 G12 L1C/A                   0.246     3
+ST6 G12 L2CM+L                  0.273     3
+ST6 G12 L2Z-tracking            0.273     3
+ST6 G15 L1C/A                   0.023     1
+ST6 G15 L2CM+L                 -0.187     1
+ST6 G15 L2Z-tracking           -0.186     3
+ST6 G18 L1C/A                  -0.242     2
+ST6 G18 L2CM+L                 -0.260     2
+ST6 G18 L2Z-tracking           -0.260     2
+ST6 G18 L5I+Q                  -0.431     2
+ST6 G23 L1C/A                   0.146     0
+ST6 G23 L2CM+L                  0.101     0
+ST6 G23 L2Z-tracking            0.101     2
+ST6 G23 L5I+Q                   0.067     2
+ST6 G24 L1C/A                   0.085     0
+ST6 G24 L2CM+L                  0.109     0
+ST6 G24 L2Z-tracking            0.109     1
+ST6 G24 L5I+Q                   0.110     1
+ST6 E03 E1B+C                   0.674     3
+ST6 E03 E5aI+Q                  1.072     3
+ST6 E05 E1B+C                   1.020     0
+ST6 E05 E5aI+Q                  1.401     0
+ST6 E13 E1B+C                  -0.706     0
+ST6 E13 E5aI+Q                 -0.983     0
+ST6 E15 E1B+C                  -0.105     1
+ST6 E15 E5aI+Q                 -0.106     1
+ST6 E24 E1B+C                  -0.609     1
+ST6 E24 E5aI+Q                 -0.709     1
+ST6 E25 E1B+C                  -0.681     3
+ST6 E25 E5aI+Q                 -1.034     3
+ST6 E34 E1B+C                  -0.462     1
+ST6 E34 E5aI+Q                 -0.762     1
+ST6 J02 L1C/A                  -1.983     2
+ST6 J02 L2CM+L                 -2.759     0
+ST6 J02 L5I+Q                  -2.848     2
+ST6 J04 L1C/A                   1.634     2
+ST6 J04 L2CM+L                  2.215     2
+ST6 J04 L5I+Q                   2.195     2
 196 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
 ST12 Trop NID=5 (CHUGOKU) qual=12.5[mm] t00=0.200[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -6290,48 +6290,48 @@ ST12 STEC J04 35.85 134.11           0.20
 196 Hitachi-Ota:0  CLAS  SF3 DP2 ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
-ST6 G10 L1 C/A                 -0.085     2
-ST6 G10 L2 CM+CL               -0.187     2
-ST6 G10 L2 Z-tracking          -0.192     0
-ST6 G10 L5 I+Q                 -0.128     2
-ST6 G12 L1 C/A                  0.998     3
-ST6 G12 L2 CM+CL                1.264     3
-ST6 G12 L2 Z-tracking           1.260     3
-ST6 G15 L1 C/A                  1.131     1
-ST6 G15 L2 CM+CL                1.505     1
-ST6 G15 L2 Z-tracking           1.503     3
-ST6 G18 L1 C/A                  0.757     2
-ST6 G18 L2 CM+CL                0.810     2
-ST6 G18 L2 Z-tracking           0.807     2
-ST6 G18 L5 I+Q                  0.975     2
-ST6 G23 L1 C/A                  0.305     0
-ST6 G23 L2 CM+CL                0.342     0
-ST6 G23 L2 Z-tracking           0.339     2
-ST6 G23 L5 I+Q                  0.352     2
-ST6 G24 L1 C/A                 -0.149     0
-ST6 G24 L2 CM+CL               -0.154     0
-ST6 G24 L2 Z-tracking          -0.158     1
-ST6 G24 L5 I+Q                 -0.131     1
-ST6 E03 E1 B+C                  0.490     3
-ST6 E03 E5a I+Q                 0.626     3
-ST6 E05 E1 B+C                  0.081     0
-ST6 E05 E5a I+Q                 0.186     0
-ST6 E13 E1 B+C                  0.467     0
-ST6 E13 E5a I+Q                 0.599     0
-ST6 E15 E1 B+C                  0.448     1
-ST6 E15 E5a I+Q                 0.644     1
-ST6 E24 E1 B+C                  3.449     1
-ST6 E24 E5a I+Q                 4.760     1
-ST6 E25 E1 B+C                  0.638     3
-ST6 E25 E5a I+Q                 0.760     3
-ST6 E34 E1 B+C                  1.443     1
-ST6 E34 E5a I+Q                 2.087     1
-ST6 J02 L1 C/A                  1.396     2
-ST6 J02 L2 L2C(M+L)             1.945     0
-ST6 J02 L5 I+Q                  2.048     2
-ST6 J04 L1 C/A                  0.123     2
-ST6 J04 L2 L2C(M+L)             0.208     2
-ST6 J04 L5 I+Q                  0.099     2
+ST6 G10 L1C/A                  -0.085     2
+ST6 G10 L2CM+L                 -0.187     2
+ST6 G10 L2Z-tracking           -0.192     0
+ST6 G10 L5I+Q                  -0.128     2
+ST6 G12 L1C/A                   0.998     3
+ST6 G12 L2CM+L                  1.264     3
+ST6 G12 L2Z-tracking            1.260     3
+ST6 G15 L1C/A                   1.131     1
+ST6 G15 L2CM+L                  1.505     1
+ST6 G15 L2Z-tracking            1.503     3
+ST6 G18 L1C/A                   0.757     2
+ST6 G18 L2CM+L                  0.810     2
+ST6 G18 L2Z-tracking            0.807     2
+ST6 G18 L5I+Q                   0.975     2
+ST6 G23 L1C/A                   0.305     0
+ST6 G23 L2CM+L                  0.342     0
+ST6 G23 L2Z-tracking            0.339     2
+ST6 G23 L5I+Q                   0.352     2
+ST6 G24 L1C/A                  -0.149     0
+ST6 G24 L2CM+L                 -0.154     0
+ST6 G24 L2Z-tracking           -0.158     1
+ST6 G24 L5I+Q                  -0.131     1
+ST6 E03 E1B+C                   0.490     3
+ST6 E03 E5aI+Q                  0.626     3
+ST6 E05 E1B+C                   0.081     0
+ST6 E05 E5aI+Q                  0.186     0
+ST6 E13 E1B+C                   0.467     0
+ST6 E13 E5aI+Q                  0.599     0
+ST6 E15 E1B+C                   0.448     1
+ST6 E15 E5aI+Q                  0.644     1
+ST6 E24 E1B+C                   3.449     1
+ST6 E24 E5aI+Q                  4.760     1
+ST6 E25 E1B+C                   0.638     3
+ST6 E25 E5aI+Q                  0.760     3
+ST6 E34 E1B+C                   1.443     1
+ST6 E34 E5aI+Q                  2.087     1
+ST6 J02 L1C/A                   1.396     2
+ST6 J02 L2CM+L                  1.945     0
+ST6 J02 L5I+Q                   2.048     2
+ST6 J04 L1C/A                   0.123     2
+ST6 J04 L2CM+L                  0.208     2
+ST6 J04 L5I+Q                   0.099     2
 196 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST12...
 ST12 Trop NID=6 (KANSAI) qual=39.5[mm] t00=0.128[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
@@ -6827,46 +6827,46 @@ ST11 J02  -1.286
 ST11 J04   0.560
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=7 (KANTO)
-ST6 G10 L1 C/A                 -0.237     2
-ST6 G10 L2 CM+CL               -0.437     2
-ST6 G10 L2 Z-tracking          -0.454     0
-ST6 G10 L5 I+Q                 -0.307     2
-ST6 G12 L1 C/A                  1.181     3
-ST6 G12 L2 CM+CL                1.427     3
-ST6 G12 L2 Z-tracking           1.411     3
-ST6 G15 L1 C/A                  0.682     1
-ST6 G15 L2 CM+CL                0.883     1
-ST6 G15 L2 Z-tracking           0.868     3
-ST6 G18 L1 C/A                 -1.618     2
-ST6 G18 L2 CM+CL               -2.016     2
-ST6 G18 L2 Z-tracking          -2.032     2
-ST6 G18 L5 I+Q                 -2.142     2
-ST6 G23 L1 C/A                  0.028     0
-ST6 G23 L2 CM+CL               -0.068     0
-ST6 G23 L2 Z-tracking          -0.085     2
-ST6 G23 L5 I+Q                  0.004     2
-ST6 G24 L1 C/A                  0.642     0
-ST6 G24 L2 CM+CL                0.785     0
-ST6 G24 L2 Z-tracking           0.769     1
-ST6 G24 L5 I+Q                  0.926     1
-ST6 E03 E1 B+C                  0.991     3
-ST6 E03 E5a I+Q                 1.282     3
-ST6 E05 E1 B+C                  0.597     0
-ST6 E05 E5a I+Q                 0.870     0
-ST6 E15 E1 B+C                 -0.104     1
-ST6 E15 E5a I+Q                -0.135     1
-ST6 E24 E1 B+C                  0.885     1
-ST6 E24 E5a I+Q                 1.318     1
-ST6 E25 E1 B+C                  0.548     3
-ST6 E25 E5a I+Q                 0.621     3
-ST6 E34 E1 B+C                 -0.202     1
-ST6 E34 E5a I+Q                -0.262     1
-ST6 J02 L1 C/A                  0.866     2
-ST6 J02 L2 L2C(M+L)             1.185     0
-ST6 J02 L5 I+Q                  1.241     2
-ST6 J04 L1 C/A                  0.219     2
-ST6 J04 L2 L2C(M+L)             0.257     2
-ST6 J04 L5 I+Q                  0.390     2
+ST6 G10 L1C/A                  -0.237     2
+ST6 G10 L2CM+L                 -0.437     2
+ST6 G10 L2Z-tracking           -0.454     0
+ST6 G10 L5I+Q                  -0.307     2
+ST6 G12 L1C/A                   1.181     3
+ST6 G12 L2CM+L                  1.427     3
+ST6 G12 L2Z-tracking            1.411     3
+ST6 G15 L1C/A                   0.682     1
+ST6 G15 L2CM+L                  0.883     1
+ST6 G15 L2Z-tracking            0.868     3
+ST6 G18 L1C/A                  -1.618     2
+ST6 G18 L2CM+L                 -2.016     2
+ST6 G18 L2Z-tracking           -2.032     2
+ST6 G18 L5I+Q                  -2.142     2
+ST6 G23 L1C/A                   0.028     0
+ST6 G23 L2CM+L                 -0.068     0
+ST6 G23 L2Z-tracking           -0.085     2
+ST6 G23 L5I+Q                   0.004     2
+ST6 G24 L1C/A                   0.642     0
+ST6 G24 L2CM+L                  0.785     0
+ST6 G24 L2Z-tracking            0.769     1
+ST6 G24 L5I+Q                   0.926     1
+ST6 E03 E1B+C                   0.991     3
+ST6 E03 E5aI+Q                  1.282     3
+ST6 E05 E1B+C                   0.597     0
+ST6 E05 E5aI+Q                  0.870     0
+ST6 E15 E1B+C                  -0.104     1
+ST6 E15 E5aI+Q                 -0.135     1
+ST6 E24 E1B+C                   0.885     1
+ST6 E24 E5aI+Q                  1.318     1
+ST6 E25 E1B+C                   0.548     3
+ST6 E25 E5aI+Q                  0.621     3
+ST6 E34 E1B+C                  -0.202     1
+ST6 E34 E5aI+Q                 -0.262     1
+ST6 J02 L1C/A                   0.866     2
+ST6 J02 L2CM+L                  1.185     0
+ST6 J02 L5I+Q                   1.241     2
+ST6 J04 L1C/A                   0.219     2
+ST6 J04 L2CM+L                  0.257     2
+ST6 J04 L5I+Q                   0.390     2
 196 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST12...
 196 Hitachi-Ota:0  CLAS  SF4 DP2 ST12...
 ST12 Trop NID=7 (KANTO) qual=0.75[mm] t00=0.156[m] offset=0.260[m]
@@ -7217,48 +7217,48 @@ ST12 STEC J04 36.39 140.69          -0.08
 ST12 STEC J04 33.11 139.79          -0.12
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=8 (TOHOKU-SOUTH)
-ST6 G10 L1 C/A                  0.012     2
-ST6 G10 L2 CM+CL                0.049     2
-ST6 G10 L2 Z-tracking           0.043     0
-ST6 G10 L5 I+Q                  0.038     2
-ST6 G12 L1 C/A                 -0.046     3
-ST6 G12 L2 CM+CL                0.041     3
-ST6 G12 L2 Z-tracking           0.035     3
-ST6 G13 L1 C/A                 -1.816     0
-ST6 G13 L2 Z-tracking          -2.426     0
-ST6 G15 L1 C/A                  0.803     1
-ST6 G15 L2 CM+CL                0.972     1
-ST6 G15 L2 Z-tracking           0.968     3
-ST6 G18 L1 C/A                  0.079     2
-ST6 G18 L2 CM+CL                0.066     2
-ST6 G18 L2 Z-tracking           0.062     2
-ST6 G18 L5 I+Q                  0.121     2
-ST6 G23 L1 C/A                  0.319     0
-ST6 G23 L2 CM+CL                0.221     0
-ST6 G23 L2 Z-tracking           0.216     2
-ST6 G23 L5 I+Q                  0.145     2
-ST6 G24 L1 C/A                 -0.150     0
-ST6 G24 L2 CM+CL               -0.303     0
-ST6 G24 L2 Z-tracking          -0.308     1
-ST6 G24 L5 I+Q                 -0.367     1
-ST6 E03 E1 B+C                  1.444     3
-ST6 E03 E5a I+Q                 1.868     3
-ST6 E05 E1 B+C                  0.476     0
-ST6 E05 E5a I+Q                 0.437     0
-ST6 E15 E1 B+C                  0.503     1
-ST6 E15 E5a I+Q                 0.671     1
-ST6 E24 E1 B+C                 -1.326     1
-ST6 E24 E5a I+Q                -1.901     1
-ST6 E25 E1 B+C                 -0.535     3
-ST6 E25 E5a I+Q                -0.844     3
-ST6 E34 E1 B+C                  0.533     1
-ST6 E34 E5a I+Q                 0.670     1
-ST6 J02 L1 C/A                 -0.781     2
-ST6 J02 L2 L2C(M+L)            -1.154     0
-ST6 J02 L5 I+Q                 -1.211     2
-ST6 J04 L1 C/A                 -0.871     2
-ST6 J04 L2 L2C(M+L)            -1.152     2
-ST6 J04 L5 I+Q                 -1.095     2
+ST6 G10 L1C/A                   0.012     2
+ST6 G10 L2CM+L                  0.049     2
+ST6 G10 L2Z-tracking            0.043     0
+ST6 G10 L5I+Q                   0.038     2
+ST6 G12 L1C/A                  -0.046     3
+ST6 G12 L2CM+L                  0.041     3
+ST6 G12 L2Z-tracking            0.035     3
+ST6 G13 L1C/A                  -1.816     0
+ST6 G13 L2Z-tracking           -2.426     0
+ST6 G15 L1C/A                   0.803     1
+ST6 G15 L2CM+L                  0.972     1
+ST6 G15 L2Z-tracking            0.968     3
+ST6 G18 L1C/A                   0.079     2
+ST6 G18 L2CM+L                  0.066     2
+ST6 G18 L2Z-tracking            0.062     2
+ST6 G18 L5I+Q                   0.121     2
+ST6 G23 L1C/A                   0.319     0
+ST6 G23 L2CM+L                  0.221     0
+ST6 G23 L2Z-tracking            0.216     2
+ST6 G23 L5I+Q                   0.145     2
+ST6 G24 L1C/A                  -0.150     0
+ST6 G24 L2CM+L                 -0.303     0
+ST6 G24 L2Z-tracking           -0.308     1
+ST6 G24 L5I+Q                  -0.367     1
+ST6 E03 E1B+C                   1.444     3
+ST6 E03 E5aI+Q                  1.868     3
+ST6 E05 E1B+C                   0.476     0
+ST6 E05 E5aI+Q                  0.437     0
+ST6 E15 E1B+C                   0.503     1
+ST6 E15 E5aI+Q                  0.671     1
+ST6 E24 E1B+C                  -1.326     1
+ST6 E24 E5aI+Q                 -1.901     1
+ST6 E25 E1B+C                  -0.535     3
+ST6 E25 E5aI+Q                 -0.844     3
+ST6 E34 E1B+C                   0.533     1
+ST6 E34 E5aI+Q                  0.670     1
+ST6 J02 L1C/A                  -0.781     2
+ST6 J02 L2CM+L                 -1.154     0
+ST6 J02 L5I+Q                  -1.211     2
+ST6 J04 L1C/A                  -0.871     2
+ST6 J04 L2CM+L                 -1.152     2
+ST6 J04 L5I+Q                  -1.095     2
 196 Hitachi-Ota:0  CLAS  SF4 DP3 ST12 ST6 ST12...
 ST12 Trop NID=8 (TOHOKU-SOUTH) qual=17.0[mm] t00=0.248[m] offset=0.240[m]
 ST12 Trop  Lat.   Lon. residual[m]

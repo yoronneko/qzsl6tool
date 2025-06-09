@@ -4,7 +4,7 @@
 # alstread.py: Allystar HD9310 option C raw data read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -18,15 +18,8 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
+import libqzsl6tool
 import libtrace
-
-def checksum(payload):  # ref. [1]
-    csum1 = 0
-    csum2 = 0
-    for b in payload:
-        csum1 = (csum1 + b    ) & 0xff
-        csum2 = (csum1 + csum2) & 0xff
-    return csum1, csum2
 
 class AllystarReceiver:
     dict_snr  = {}   # SNR dictionary
@@ -63,7 +56,7 @@ class AllystarReceiver:
         if self.last_gpst == 0:
             self.last_gpst = self.gpst
         self.err = ""
-        csum1, csum2 = checksum(l6)
+        csum1, csum2 = libqzsl6tool.checksum(l6)
         if csum[0] != csum1 or csum[1] != csum2: self.err += "CS "
         if len_l6 != 264                       : self.err += "Payload "
         if len_data !=  63                     : self.err += "Data "
@@ -105,7 +98,7 @@ class AllystarReceiver:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Allystar HD9310 message read')
+        description=f'Allystar HD9310 message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     parser_group = parser.add_mutually_exclusive_group()
     parser.add_argument(
         '-c', '--color', action='store_true',

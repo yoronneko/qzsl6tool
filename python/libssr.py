@@ -4,7 +4,7 @@
 # libssr.py: library for SSR and compact SSR message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2024 Satoshi Takahashi
+# Copyright (c) 2022-2025 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -25,6 +25,9 @@
 # [5] European Union Agency for the Space Programme,
 #     Galileo High Accuracy Service Signal-in-Space Interface Control
 #     Document (HAS SIS ICD), Issue 1.0 May 2022.
+# [6] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
+#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+#     - Precise Point Positioning, IS-QZSS-MDC-004-Draft, May 2025.
 
 import sys
 
@@ -108,41 +111,50 @@ def epoch2timedate(epoch):
 
 def gnssid2satsys(gnssid):
     ''' convert gnss id to satellite system '''
-    if   gnssid == 0: satsys = 'G'
-    elif gnssid == 1: satsys = 'R'
-    elif gnssid == 2: satsys = 'E'
-    elif gnssid == 3: satsys = 'C'
-    elif gnssid == 4: satsys = 'J'
-    elif gnssid == 5: satsys = 'S'
-    else: raise Exception(f'undefined gnssid {gnssid}')
+    if   gnssid == 0: satsys = 'G'  # GPS
+    elif gnssid == 1: satsys = 'R'  # GLONASS
+    elif gnssid == 2: satsys = 'E'  # Galileo
+    elif gnssid == 3: satsys = 'C'  # BeiDou
+    elif gnssid == 4: satsys = 'J'  # QZSS
+    elif gnssid == 5: satsys = 'S'  # SBAS in ref.[1]
+    elif gnssid == 7: satsys = 'D'  # BDS3 in ref.[6], MADOCA-PPP workaround (D01 stand for C19, D02 for C20, ...)
+    else            : satsys = '?'  # reserved
     return satsys
 
 def sigmask2signame(satsys, sigmask):
     ''' convert satellite system and signal mask to signal name '''
     signame = f'satsys={satsys} sigmask={sigmask}'
     if satsys == 'G':
-        signame = [ "L1 C/A", "L1 P", "L1 Z-tracking", "L1C(D)", "L1C(P)",
-            "L1C(D+P)", "L2 CM", "L2 CL", "L2 CM+CL", "L2 P", "L2 Z-tracking",
-            "L5 I", "L5 Q", "L5 I+Q", "", ""][sigmask]
+        signame = [ "L1C/A", "L1P", "L1Z-tracking", "L1C(D)", "L1C(P)", "L1C(D+P)", "L2CM", "L2CL", "L2CM+L", "L2P", "L2Z-tracking", "L5I", "L5Q", "L5I+Q", "", ""][sigmask]
     elif satsys == 'R':
-        signame = [ "G1 C/A", "G1 P", "G2 C/A", "G2 P", "G1a(D)", "G1a(P)",
-            "G1a(D+P)", "G2a(D)", "G2a(P)", "G2a(D+P)", "G3 I", "G3 Q",
-            "G3 I+Q", "", "", "", ""][sigmask]
+        signame = [ "G1C/A", "G1P", "G2C/A", "G2P", "G1a(D)", "G1a(P)", "G1a(D+P)", "G2a(D)", "G2a(P)", "G2a(D+P)", "G3I", "G3Q", "G3I+Q", "", "", "", ""][sigmask]
     elif satsys == 'E':
-        signame = [ "E1 B", "E1 C", "E1 B+C", "E5a I", "E5a Q", "E5a I+Q",
-            "E5b I", "E5b Q", "E5b I+Q", "E5 I", "E5 Q", "E5 I+Q",
-            "E6 B", "E6 C", "E6 B+C", ""][sigmask]
+        signame = [ "E1B", "E1C", "E1B+C", "E5aI", "E5aQ", "E5aI+Q", "E5bI", "E5bQ", "E5bI+Q", "E5I", "E5Q", "E5I+Q", "E6B", "E6C", "E6B+C", ""][sigmask]
     elif satsys == 'C':
-        signame = [ "B1 I", "B1 Q", "B1 I+Q", "B3 I", "B3 Q", "B3 I+Q",
-            "B2 I", "B2 Q", "B2 I+Q", "", "", "", "", "", "", "", ""][sigmask]
+        signame = [ "B1I", "B1Q", "B1I+Q", "B3I", "B3Q", "B3I+Q", "B2I", "B2Q", "B2I+Q", "", "", "", "", "", "", ""][sigmask]
+    elif satsys == 'D':  # MADOCA-PPP workaround for ref.[6]
+        signame = [ "B1I", "B1Q", "B1I+Q", "B3I", "B3Q", "B3I+Q", "B2bI", "B2bQ", "B2bI+Q", "B1C(D)", "B1C(P)", "B1C(D+P)", "B2a(D)", "B2a(P)", "B2a(D+P)", ""][sigmask]
     elif satsys == 'J':
-        signame = [ "L1 C/A", "L1 L1C(D)", "L1 L1C(P)", "L1 L1C(D+P)",
-            "L2 L2C(M)", "L2 L2C(L)", "L2 L2C(M+L)", "L5 I", "L5 Q",
-            "L5 I+Q", "", "", "", "", "", ""][sigmask]
+        signame = [ "L1C/A", "L1C(D)", "L1C(P)", "L1C(D+P)", "L2CM", "L2CL", "L2CM+L", "L5I", "L5Q", "L5I+Q", "", "", "", "", "", ""][sigmask]
     elif satsys == 'S':
         signame = [
-            "L1 C/A", "L5 I", "L5 Q", "L5 I+Q", "", "", "", "", "", "",
-            "", "", "", "", "", "", ""][sigmask]
+            "L1C/A", "L5I", "L5Q", "L5I+Q", "", "", "", "", "", "", "", "", "", "", "", "", ""][sigmask]
+    else:
+        raise Exception(
+            f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
+    return signame
+
+def sigmask2signame_b2b(satsys, sigmask):
+    ''' convert satellite system and signal mask to signal name '''
+    signame = f'satsys={satsys} sigmask={sigmask}'
+    if satsys == 'G':
+        signame = ["L1C/A", "L1P", "", "", "L1C(P)", "L1C(D+P)", "", "L2CL", "L2CM+L", "", "", "L5I", "L5Q", "L5I+Q", "", ""][sigmask]
+    elif satsys == 'R':
+        signame = ["G1C/A", "G1P", "G2C/A", "", "", "", "", "", "", "", "", "", "", "", "", ""][sigmask]
+    elif satsys == 'E':
+        signame = ["", "E1B", "E1C", "", "E5aQ", "E5aI", "", "E5bI", "E5bQ", "", "", "E6C", "", "", "", ""][sigmask]
+    elif satsys == 'C':
+        signame = ["B1I", "B1C(D)", "B1C(P)", "", "B2a(D)", "B2a(P)", "", "B2bI", "B2bQ", "", "", "", "B3I", "", "", ""][sigmask]
     else:
         raise Exception(
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
@@ -204,6 +216,11 @@ class Ssr:
         # bit format of nsat changes with satsys
         bw = 6 if satsys != 'J' else 4
         self.ssr_nsat      = payload.read(bw).u
+        msg = f'\nEpoch={epoch2timedate(self.ssr_epoch)} UI={CSSR_UI[self.ssr_interval]} MMI={self.ssr_mmi}'
+        if mtype == 'SSR orbit' or mtype == 'SSR obt/clk':
+            msg += f' Datum={self.ssr_sdat}'
+        msg += f' IODSSR={self.ssr_iod:{FMT_IODSSR}} Provider={self.ssr_pid} Solution={self.ssr_sid}'
+        return self.trace.msg(2, msg)
 
     def ssr_decode_orbit(self, payload, satsys):
         ''' decodes SSR orbit correction and returns string '''
@@ -211,7 +228,7 @@ class Ssr:
         if   satsys == 'J': bw = 4  # ref. [2]
         elif satsys == 'R': bw = 5  # ref. [1]
         else:               bw = 6  # ref. [1]
-        msg1 = self.trace.msg(1, '\nSAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]')
+        msg1 = self.trace.msg(1, '\nSAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]')
         strsat = ''
         for _ in range(self.ssr_nsat):
             satid   = payload.read(bw).u  # satellite ID, DF068
@@ -223,8 +240,8 @@ class Ssr:
             dalong  = payload.read(19).i  # dot_along track, DF369
             dcross  = payload.read(19).i  # dot_cross track, DF370
             strsat += f"{satsys}{satid:02} "
-            msg1 += self.trace.msg(1, f'\n{satsys}{satid:02d}   {radial*1e-4:{FMT_ORB}}  {along*4e-4:{FMT_ORB}}  {cross*4e-5:{FMT_ORB}}       {dradial*1e-6:{FMT_ORB}}      {dalong*4e-6:{FMT_ORB}}      {dcross*4e-6:{FMT_ORB}}')
-        msg = self.trace.msg(0, f"{strsat}(IOD={self.ssr_iod} IODE={iode} nsat={self.ssr_nsat}{' cont.' if self.ssr_mmi else ''})") + msg1
+            msg1 += self.trace.msg(1, f'\n{satsys}{satid:02d} {iode:{FMT_IODE}}   {radial*1e-4:{FMT_ORB}}  {along*4e-4:{FMT_ORB}}  {cross*4e-5:{FMT_ORB}}       {dradial*1e-6:{FMT_ORB}}      {dalong*4e-6:{FMT_ORB}}      {dcross*4e-6:{FMT_ORB}}')
+        msg = self.trace.msg(0, f"{strsat}(IOD={self.ssr_iod} nsat={self.ssr_nsat}{' cont.' if self.ssr_mmi else ''})") + msg1
         return msg
 
     def ssr_decode_clock(self, payload, satsys):
@@ -380,11 +397,11 @@ class Ssr:
         ngnss = payload.read('u4')  # number of GNSS
         if len_payload < payload.pos + 61 * ngnss:
             return False
-        satsys   = [None for i in range(ngnss)]
-        nsatmask = [None for i in range(ngnss)]
-        nsigmask = [None for i in range(ngnss)]
-        cellmask = [None for i in range(ngnss)]
-        navmsg   = [None for i in range(ngnss)]
+        satsys   = [''               for _ in range(ngnss)]
+        nsatmask = [0                for _ in range(ngnss)]
+        nsigmask = [0                for _ in range(ngnss)]
+        cellmask = [bitstring.Bits() for _ in range(ngnss)]
+        navmsg   = [0                for _ in range(ngnss)]
         gsys     = {}
         gsig     = {}
         for ignss in range(ngnss):
@@ -400,7 +417,10 @@ class Ssr:
             for i, val in enumerate(bsatmask):
                 if val:
                     t_satmask += 1
-                    t_gsys.append(f'{t_satsys}{i + 1:02d}')
+                    if t_satsys == 'D':  # MADOCA-PPP gnssid workaround, ref[6]
+                        t_gsys.append(f'C{i + 18:02d}') # D01->C19, D02->C20, ...
+                    else:
+                        t_gsys.append(f'{t_satsys}{i + 1:02d}')
             for i, val in enumerate(bsigmask):
                 if val:
                     t_sigmask += 1
@@ -447,7 +467,7 @@ class Ssr:
                     self.stat_nsig += 1
                 msg1 += '\n'
             if ssr_type == 'has' and navmsg[i] != 0:
-                msg1 += '\n{satsys}: NavMsg should be zero.\n'
+                msg1 += '\n' + self.trace.msg(1, '{satsys}: HAS NavMsg should be zero.', fg='red')
         self.trace.show(1, msg1, end='')
         if self.stat:
             self.show_cssr_stat()
@@ -499,7 +519,7 @@ class Ssr:
             for gsys in self.gsys[satsys]:
                 if len_payload < payload.pos + bw + 13 + 12 + 12:
                     return False
-                iode = payload.read(bw).u
+                iode   = payload.read(bw).u
                 radial = payload.read(13)
                 along  = payload.read(12)
                 cross  = payload.read(12)
@@ -904,6 +924,13 @@ class Ssr:
             for i, gsys in enumerate(self.gsys[satsys]):
                 if not svmask[satsys][i]:
                     continue
+                f_o_disp = f_o
+                f_c_disp = f_c
+                iode     = 0
+                radial   = 0
+                along    = 0
+                cross    = 0
+                c0       = 0
                 if f_o:
                     bw = 10 if satsys == 'E' else 8  # IODE bit width
                     if len_payload < payload.pos + bw + 15 + 13 + 13:
@@ -912,17 +939,19 @@ class Ssr:
                     radial = payload.read(15).i  # radial
                     along  = payload.read(13).i  # along
                     cross  = payload.read(13).i  # cross
+                    if radial == -16384 or along == -4096 or cross == -4096:
+                        f_o_disp = False
                 if f_c:
                     if len_payload < payload.pos + 15:
                         return False
                     c0  = payload.read(15).i
-                f_o_ok = f_o and (radial != -16384 and along != -4096 and cross != -4096)
-                f_c_ok = f_c and c0 != -16384
-                if f_o_ok or f_c_ok:
+                    if c0 == -16384:
+                        f_c_disp = False
+                if f_o_disp or f_c_disp:
                     msg1 += f"\nST11 {gsys}"
-                if f_o_ok:
+                if f_o_disp:
                     msg1 += f' {iode:{FMT_IODE}}   {radial*0.0016:{FMT_ORB}}  {along*0.0064:{FMT_ORB}}  {cross*0.0064:{FMT_ORB}}'
-                if f_c_ok:
+                if f_c_disp:
                     msg1 += f" {c0*1.6e-3:{FMT_CLK}}"
         self.trace.show(1, msg1)
         self.stat_both += stat_pos + 3

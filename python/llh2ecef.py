@@ -5,12 +5,16 @@
 #              height to earth-centered earth-fixed (ECEF)
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 
 import math
+import os
 import sys
+
+sys.path.append(os.path.dirname(__file__))
+import libqzsl6tool
 
 def llh2ecef(lat, lon, height):
     wgs84er = 6378137.
@@ -29,7 +33,7 @@ def llh2ecef(lat, lon, height):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("Latitude Longitude and Height to ECEF")
+        print(f"Latitude Longitude and Height to ECEF, QZS L6 Tool ver.{libqzsl6tool.VERSION}")
         print(f"Usage: {sys.argv[0]} lat lon height")
         sys.exit()
     lat = float(sys.argv[1])

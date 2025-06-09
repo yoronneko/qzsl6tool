@@ -4,7 +4,7 @@
 # galinavead.py: Galileo I/NAV message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023-2024 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -22,10 +22,10 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import libnav
 import libgnsstime
+import libnav
+import libqzsl6tool
 import libtrace
-from   rtcmread import rtk_crc24q
 
 try:
     import bitstring
@@ -302,10 +302,10 @@ def decode_word22(df, nav):
     elif nav.gnss_id.u != 1:          # not Galileo
         libtrace.info(f"gnss_id={nav.gnss_id} gnss_ism={(nav.gnss_ism + bitstring.Bits(1)).hex} crc={nav.crc.hex}")
         return
-    nav.slid = e.gnss_ism.read(3).u   # service level ID
+    nav.slid = nav.gnss_ism.read(3).u # service level ID
     ism  = nav.gnss_ism.read( 84 )    # integrity support message content
     if   nav.slid == 0:               # service level 1
-        msg = f"GAL level={e.slid+1} spare={ism.hex} crc={e.crc.hex}"
+        msg = f"GAL level={nav.slid+1} spare={ism.hex} crc={nav.crc.hex}"
     elif nav.slid == 2:               # service level 3
         nav.wn      = ism.read(12)    # WN_ISM
         nav.t0      = ism.read( 9)    # t0_ISM
@@ -382,7 +382,7 @@ class GalInav:
         else: msg += self.trace.msg(0, f'SSP? ({ssp.hex}) ', fg='red')
 # --- data check ---
         frame = (bitstring.Bits('uint4=0') + inav[0:196]).tobytes()
-        crc_frame = rtk_crc24q(frame, len(frame))
+        crc_frame = libqzsl6tool.rtk_crc24q(frame, len(frame))
         if crc_frame != crc.tobytes():
             return msg + self.trace.msg(0, f'Word {wt:2d} CRC error: {crc_frame.hex()} != {crc.hex}', fg='red')
         if eo1.u != 0 or eo2.u != 1:
@@ -477,7 +477,7 @@ class GalInav:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Galileo I/NAV message read')
+        description=f'Galileo I/NAV message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')

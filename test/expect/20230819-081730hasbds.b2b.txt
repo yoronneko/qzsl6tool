@@ -34,25 +34,25 @@ C21 B1C(D)               4.369
 C21 B1C(P)               4.539
 C21 B2a(D)              -3.145
 C21 B2a(P)              -2.091
-C21 B2b-I               -1.887
-C21 B2b-Q               -1.632
-C21 B3 I                 0.000
+C21 B2bI                -1.887
+C21 B2bQ                -1.632
+C21 B3I                  0.000
 C22 B1I                  4.097
 C22 B1C(D)               5.168
 C22 B1C(P)               5.219
 C22 B2a(D)              -4.131
 C22 B2a(P)              -3.281
-C22 B2b-I               -2.856
-C22 B2b-Q               -2.329
-C22 B3 I                 0.000
+C22 B2bI                -2.856
+C22 B2bQ                -2.329
+C22 B3I                  0.000
 C26 B1I                 -1.547
 C26 B1C(D)              -0.136
 C26 B1C(P)              -0.051
 C26 B2a(D)              -5.814
 C26 B2a(P)              -4.998
-C26 B2b-I               -4.641
-C26 B2b-Q               -4.080
-C26 B3 I                 0.000
+C26 B2bI                -4.641
+C26 B2bQ                -4.080
+C26 B3I                  0.000
 C60 MT3  CODE  08:17:27 IODSSR=1 numsat=3
 SAT Signal Code   Code Bias[m]
 C28 B1I                 -1.326
@@ -60,25 +60,25 @@ C28 B1C(D)              -1.156
 C28 B1C(P)              -0.935
 C28 B2a(D)              -5.797
 C28 B2a(P)              -5.015
-C28 B2b-I               -4.301
-C28 B2b-Q               -3.774
-C28 B3 I                 0.000
+C28 B2bI                -4.301
+C28 B2bQ                -3.774
+C28 B3I                  0.000
 C34 B1I                 -1.819
 C34 B1C(D)              -0.969
 C34 B1C(P)              -0.867
 C34 B2a(D)              -5.678
 C34 B2a(P)              -4.862
-C34 B2b-I               -4.556
-C34 B2b-Q               -4.029
-C34 B3 I                 0.000
+C34 B2bI                -4.556
+C34 B2bQ                -4.029
+C34 B3I                  0.000
 C36 B1I                 -6.290
 C36 B1C(D)              -5.576
 C36 B1C(P)              -5.491
 C36 B2a(D)              -3.638
 C36 B2a(P)              -2.822
-C36 B2b-I               -2.703
-C36 B2b-Q               -2.227
-C36 B3 I                 0.000
+C36 B2bI                -2.703
+C36 B2bQ                -2.227
+C36 B3I                  0.000
 C60 MT3  CODE  08:17:27 IODSSR=1 numsat=3
 SAT Signal Code   Code Bias[m]
 C38 B1I                  0.782
@@ -86,25 +86,25 @@ C38 B1C(D)               1.377
 C38 B1C(P)               1.632
 C38 B2a(D)              -4.590
 C38 B2a(P)              -3.808
-C38 B2b-I               -3.536
-C38 B2b-Q               -3.043
-C38 B3 I                 0.000
+C38 B2bI                -3.536
+C38 B2bQ                -3.043
+C38 B3I                  0.000
 C39 B1I                  1.819
 C39 B1C(D)               2.788
 C39 B1C(P)               2.941
 C39 B2a(D)              -4.998
 C39 B2a(P)              -4.199
-C39 B2b-I               -3.706
-C39 B2b-Q               -3.247
-C39 B3 I                 0.000
+C39 B2bI                -3.706
+C39 B2bQ                -3.247
+C39 B3I                  0.000
 C42 B1I                 -9.690
 C42 B1C(D)              -8.194
 C42 B1C(P)              -8.058
 C42 B2a(D)              -3.281
 C42 B2a(P)              -2.465
-C42 B2b-I               -2.074
-C42 B2b-Q               -1.581
-C42 B3 I                 0.000
+C42 B2bI                -2.074
+C42 B2bQ                -1.581
+C42 B3I                  0.000
 C60 MT4  CLOCK 08:17:40 IODSSR=1 IODP=2
 SAT IODCorr   c0[m]
 C19       4   0.485
@@ -134,17 +134,17 @@ C43 B1C(D)              -0.629
 C43 B1C(P)              -0.425
 C43 B2a(D)              -4.182
 C43 B2a(P)              -3.417
-C43 B2b-I               -3.417
-C43 B2b-Q               -2.890
-C43 B3 I                 0.000
+C43 B2bI                -3.417
+C43 B2bQ                -2.890
+C43 B3I                  0.000
 C45 B1I                  5.661
 C45 B1C(D)               7.684
 C45 B1C(P)               7.871
 C45 B2a(D)              -5.457
 C45 B2a(P)              -4.709
-C45 B2b-I               -4.454
-C45 B2b-Q               -3.961
-C45 B3 I                 0.000
+C45 B2bI                -4.454
+C45 B2bQ                -3.961
+C45 B3I                  0.000
 C60 MT2  ORBIT 08:17:27 IODSSR=1
 SAT IODN IODCorr radial[m] along[m] cross[m] URA[mm]
 C21   12       2   -0.0016  -0.1024  -0.0832   86.75

@@ -4,7 +4,7 @@
 # qzsl1sread.py: quasi-zenith satellite (QZS) L1S message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023-2024 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -24,8 +24,8 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
+import libqzsl6tool
 import libtrace
-from   rtcmread import rtk_crc24q
 
 try:
     import bitstring
@@ -317,7 +317,7 @@ class QzsL1s:
         crc = l1s.read(L_CRC)  # crc24, ref.[3] pp., sect.4.1.1.3
         pad = bitstring.Bits('uint6=0')  # padding for byte alignment
         frame = (pad + pab + mt + df).tobytes()
-        crc_test = rtk_crc24q(frame, len(frame))
+        crc_test = libqzsl6tool.rtk_crc24q(frame, len(frame))
         if crc.tobytes() != crc_test:
             msg = self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex}", fg='red')
             return msg
@@ -379,7 +379,7 @@ def read_from_stdin(qzsl1s,  fp_disp):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Quasi-zenith satellite (QZS) L1S message read')
+        description=f'Quasi-zenith satellite (QZS) L1S message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')

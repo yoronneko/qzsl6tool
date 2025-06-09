@@ -4,7 +4,7 @@
 # bdsb2read.py: BeiDou B2b message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2024 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2024-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -29,6 +29,7 @@ import sys
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
+import libqzsl6tool
 import libssr
 import libtrace
 
@@ -41,29 +42,6 @@ except ModuleNotFoundError:
     ''')
     sys.exit(1)
 
-try:
-    if POCKET_SDR_LDPC:
-        import sdr_ldpc
-        import numpy as np
-except ModuleNotFoundError:
-    POCKET_SDR_LDPC = 0
-
-
-def rtk_crc24(data):
-    ''' calculate CRC24 for BDS B2b message
-        g(x) = x^24 + x^23 + x^18 + x^17 + x^14 + x^11 + x^10 + x^7 + x^6 + x^5 + x^4 + x^3 + x + 1
-        data:   data to be calculated
-    '''
-    crc = 0
-    for byte in data:
-        crc ^= byte << 16
-        for _ in range(8):
-            if crc & 0x800000:
-                crc = (crc << 1) ^ 0x864cfb
-            else:
-                crc = crc << 1
-            crc &= 0xffffff
-    return crc.to_bytes(3, 'big')
 
 def slot2satname(slot):
     ''' returns satellite name from mask slot
@@ -83,22 +61,6 @@ def slot2satname(slot):
     if 138 <= slot and slot <= 174:  # GLO has 37 satellites
         return f'R{slot-137:02d}'
     raise Exception(f"mask position should be 1-174 (actual {slot}).")
-
-def sigmask2signame(satsys, sigmask):
-    ''' convert satellite system and signal mask to signal name '''
-    signame = f'satsys={satsys} sigmask={sigmask}'
-    if   satsys == 'C':
-        signame = ["B1I", "B1C(D)", "B1C(P)", "Reserved", "B2a(D)", "B2a(P)", "Reserved", "B2b-I", "B2b-Q", "Reserved", "Reserved", "Reserved", "B3 I", "Reserved", "Reserved", "Reserved"][sigmask]
-    elif satsys == 'G':
-        signame = ["L1 C/A", "L1 P", "Reserved", "Reserved", "L1C(P)", "L1C(D+P)", "Reserved", "L2C(L)", "L2C(M+L)", "Reserved", "Reserved", "L5 I", "L5 Q", "L5 I+Q", "Reserved", "Reserved"][sigmask]
-    elif satsys == 'R':
-        signame = ["G1 C/A", "G1 P", "G2 C/A", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved", "Reserved"][sigmask]
-    elif satsys == 'E':
-        signame = ["Reserved", "E1 B", "E1 C", "Reserved", "E5a Q", "E5a I", "Reserved", "E5b I", "E5b Q", "Reserved", "Reserved", "E6 C", "Reserved", "Reserved", "Reserved", "Reserved"][sigmask]
-    else:
-        raise Exception(
-            f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
-    return signame
 
 class BdsB2():
     epoch  =  0  # epoch in second within one BDT day
@@ -134,13 +96,9 @@ class BdsB2():
             self.trace.show(0, msg)
             self.trace.show(2, mesdata.hex)
             return
-        if POCKET_SDR_LDPC:  # if Pocket SDR (ref.[3]) LDPC python module is available
-            syms = np.fromstring((b2b_data + b2b_parity).bin, 'u1') - ord('0')
-            bits, _ = sdr_ldpc.decode_LDPC_BCNV3(syms)
-            b2b_data = bitstring.Bits(bits)[:486]
         pad = bitstring.Bits('uint2=0')  # padding for byte alignment
         frame = (pad + mestype + mesdata).tobytes()
-        crc_test = rtk_crc24(frame)
+        crc_test = libqzsl6tool.rtk_crc24(frame)
         if crc.tobytes() != crc_test:
             msg += self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex}", fg='red')
             self.trace.show(0, msg)
@@ -230,7 +188,7 @@ class BdsB2():
             for _ in range(numcb):
                 sigcode = mesdata.read( 4).u
                 cb      = mesdata.read(12).i
-                msg += self.trace.msg(1, f'\n{satname} {sigmask2signame(satsys, sigcode):{libssr.FMT_GSIG}}      {cb*0.017:{libssr.FMT_CB}}')
+                msg += self.trace.msg(1, f'\n{satname} {libssr.sigmask2signame_b2b(satsys, sigcode):{libssr.FMT_GSIG}}      {cb*0.017:{libssr.FMT_CB}}')
         return msg
 
     def decode_b2b_4(self, mesdata):
@@ -524,7 +482,7 @@ class BdsB2():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='BeiDou B2b message read')
+        description=f'BeiDou B2b message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     parser.add_argument(
         '-c', '--color', action='store_true',
         help='apply ANSI color escape sequences even for non-terminal.')

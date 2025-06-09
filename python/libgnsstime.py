@@ -4,12 +4,16 @@
 # libgnsstime.py: GNSS time and universal coordinated time (UTC) conversion
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2023 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 
 import datetime
+import os
 import sys
+
+sys.path.append(os.path.dirname(__file__))
+import libqzsl6tool
 
 FORMAT_DT = "%Y-%m-%d %H:%M:%S"
 
@@ -50,7 +54,7 @@ def utc2gps(current, gsys='GPS'):
 if __name__ == '__main__':
     if 'utc2gps.py' in sys.argv[0]:
         if len(sys.argv) < 3:
-            print("UTC to GNSS time conversion")
+            print(f"UTC to GNSS time conversion, QZS L6 Tool ver.{libqzsl6tool.VERSION}")
             print(f"Usage: {sys.argv[0]} YYYY-MM-DD hh:mm:ss")
             print("Current GNSS time (week number, time of week):")
             current = datetime.datetime.now()
@@ -63,7 +67,7 @@ if __name__ == '__main__':
         print(f'BDT {utc2gps(current, "BDS")}')
     elif 'gps2utc.py' in sys.argv[0]:
         if len(sys.argv) < 3:
-            print("GNSS time to UTC conversion")
+            print(f"GNSS time to UTC conversion, QZS L6 Tool ver.{libqzsl6tool.VERSION}")
             print(f"Usage: {sys.argv[0]} week_no time_of_week")
             sys.exit()
         weekno = int(sys.argv[1])

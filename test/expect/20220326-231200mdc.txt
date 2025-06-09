@@ -26,6 +26,7 @@ G29              0.545
 G30             -0.031
 G31              0.127
 G32             -0.252
+Epoch=23:12:02+6 UI=2 MMI=0 IODSSR=12 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=8 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.755
@@ -45,17 +46,19 @@ R19             -7.845
 R20            -13.458
 R21            -11.930
 R22            -13.630
+Epoch=02:11:44+0 UI=2 MMI=0 IODSSR=8  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:44 RTCM 1062(26) RTCM 1068(17) 
-G10 G12 G13 G15 G16 G17 G19 G20 (IOD=13 IODE=38 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G10    0.0038   0.6916  -0.0513       -0.0002      -0.0005       0.0001
-G12   -0.0195   1.9788   0.0381       -0.0003      -0.0001      -0.0002
-G13   -0.1780   0.7764   0.0341       -0.0001      -0.0001       0.0004
-G15   -0.1291   1.7160  -0.0044       -0.0002       0.0000       0.0005
-G16    0.0664   0.9816   0.0381       -0.0003       0.0000      -0.0002
-G17   -0.4193   3.6020   0.1660       -0.0006       0.0005       0.0001
-G19   -0.0203  -0.4240  -0.0567       -0.0002      -0.0001      -0.0001
-G20   -0.0857   0.6144   0.0257       -0.0004       0.0001      -0.0001
+G10 G12 G13 G15 G16 G17 G19 G20 (IOD=13 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G10   10    0.0038   0.6916  -0.0513       -0.0002      -0.0005       0.0001
+G12   56   -0.0195   1.9788   0.0381       -0.0003      -0.0001      -0.0002
+G13    5   -0.1780   0.7764   0.0341       -0.0001      -0.0001       0.0004
+G15   15   -0.1291   1.7160  -0.0044       -0.0002       0.0000       0.0005
+G16   64    0.0664   0.9816   0.0381       -0.0003       0.0000      -0.0002
+G17   65   -0.4193   3.6020   0.1660       -0.0006       0.0005       0.0001
+G19   45   -0.0203  -0.4240  -0.0567       -0.0002      -0.0001      -0.0001
+G20   38   -0.0857   0.6144   0.0257       -0.0004       0.0001      -0.0001
+Epoch=23:12:00+6 UI=30 MMI=1 Datum=0 IODSSR=13 Provider=0 Solution=0
 G10 G12 G13 G15 G16 G17 G19 G20 (IOD=13 nsat=8 cont.)
 SAT URA[mm]
 G10    3.50
@@ -66,6 +69,7 @@ G16    3.50
 G17    0.50
 G19    0.50
 G20    0.75
+Epoch=23:12:00+6 UI=30 MMI=1 IODSSR=13 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:44 RTCM 1057(8) RTCM 1061(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=12 nsat=26)
 SAT high_rate_clock[m]
@@ -95,6 +99,7 @@ G29              0.545
 G30             -0.025
 G31              0.129
 G32             -0.252
+Epoch=23:12:04+6 UI=2 MMI=0 IODSSR=12 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=8 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.759
@@ -114,17 +119,19 @@ R19             -7.845
 R20            -13.462
 R21            -11.936
 R22            -13.624
+Epoch=02:11:46+0 UI=2 MMI=0 IODSSR=8  Provider=0 Solution=0
 206 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:46 RTCM 1062(26) RTCM 1068(17) 
-G21 G22 G24 G25 G26 G27 G29 G30 (IOD=13 IODE=84 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G21   -0.1430  -0.5068  -0.0808       -0.0002       0.0004       0.0005
-G22   -0.1160  -1.2924  -0.1155       -0.0001       0.0000       0.0000
-G24   -0.2507  -0.0716  -0.0602       -0.0001      -0.0003       0.0002
-G25   -0.0500   0.0160   0.0250       -0.0001      -0.0000      -0.0001
-G26    0.0666  -0.1872   0.0691       -0.0002      -0.0002      -0.0001
-G27   -0.0844   0.6984   0.0014       -0.0002      -0.0001       0.0002
-G29   -0.2622  -0.0300   0.0484       -0.0003       0.0004      -0.0004
-G30    0.0607   1.4320  -0.0760       -0.0001      -0.0002       0.0002
+G21 G22 G24 G25 G26 G27 G29 G30 (IOD=13 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G21   89   -0.1430  -0.5068  -0.0808       -0.0002       0.0004       0.0005
+G22   35   -0.1160  -1.2924  -0.1155       -0.0001       0.0000       0.0000
+G24   14   -0.2507  -0.0716  -0.0602       -0.0001      -0.0003       0.0002
+G25   42   -0.0500   0.0160   0.0250       -0.0001      -0.0000      -0.0001
+G26  101    0.0666  -0.1872   0.0691       -0.0002      -0.0002      -0.0001
+G27    3   -0.0844   0.6984   0.0014       -0.0002      -0.0001       0.0002
+G29   26   -0.2622  -0.0300   0.0484       -0.0003       0.0004      -0.0004
+G30   84    0.0607   1.4320  -0.0760       -0.0001      -0.0002       0.0002
+Epoch=23:12:00+6 UI=30 MMI=1 Datum=0 IODSSR=13 Provider=0 Solution=0
 G21 G22 G24 G25 G26 G27 G29 G30 (IOD=13 nsat=8 cont.)
 SAT URA[mm]
 G21    3.50
@@ -135,6 +142,7 @@ G26    3.50
 G27    3.50
 G29    3.50
 G30    3.50
+Epoch=23:12:00+6 UI=30 MMI=1 IODSSR=13 Provider=0 Solution=0
 206 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:46 RTCM 1057(8) RTCM 1061(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=12 nsat=26)
 SAT high_rate_clock[m]
@@ -164,6 +172,7 @@ G29              0.544
 G30             -0.023
 G31              0.131
 G32             -0.252
+Epoch=23:12:06+6 UI=2 MMI=0 IODSSR=12 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=8 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.764
@@ -183,15 +192,18 @@ R19             -7.843
 R20            -13.470
 R21            -11.927
 R22            -13.618
+Epoch=02:11:48+0 UI=2 MMI=0 IODSSR=8  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:48 RTCM 1062(26) RTCM 1068(17) 
-G31 G32 (IOD=13 IODE=51 nsat=2)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G31    0.0620   0.5620   0.0151       -0.0002      -0.0004      -0.0003
-G32   -0.0900  -2.3308  -0.1420       -0.0000      -0.0001       0.0001
+G31 G32 (IOD=13 nsat=2)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G31   70    0.0620   0.5620   0.0151       -0.0002      -0.0004      -0.0003
+G32   51   -0.0900  -2.3308  -0.1420       -0.0000      -0.0001       0.0001
+Epoch=23:12:00+6 UI=30 MMI=0 Datum=0 IODSSR=13 Provider=0 Solution=0
 G31 G32 (IOD=13 nsat=2)
 SAT URA[mm]
 G31    3.50
 G32    3.50
+Epoch=23:12:00+6 UI=30 MMI=0 IODSSR=13 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:48 RTCM 1057(2) RTCM 1061(2) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -221,6 +233,7 @@ G29              0.545
 G30             -0.027
 G31              0.133
 G32             -0.251
+Epoch=23:12:08+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=8 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.764
@@ -240,17 +253,19 @@ R19             -7.843
 R20            -13.475
 R21            -11.928
 R22            -13.628
+Epoch=02:11:50+0 UI=2 MMI=0 IODSSR=8  Provider=0 Solution=0
 206 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:50 RTCM 1062(26) RTCM 1068(17) 
-R01 R02 R03 R04 R05 R07 R08 R12 (IOD=9 IODE=9 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-R01    0.3061  -0.7100   0.0759        0.0003       0.0006      -0.0006
-R02    0.5118  -2.8624  -0.0003        0.0007      -0.0003      -0.0003
-R03    0.6108  -0.5548  -0.0386        0.0000      -0.0005      -0.0002
-R04    0.5398  -0.7520  -0.0128       -0.0003      -0.0001       0.0002
-R05    0.9530  -1.6444  -0.0480        0.0002      -0.0001       0.0006
-R07    0.5664  -2.1492  -0.0621        0.0003       0.0004       0.0003
-R08   -0.0287   1.8308   0.0010       -0.0003      -0.0000      -0.0001
-R12    0.2357   2.9776  -0.0186       -0.0004       0.0003       0.0003
+R01 R02 R03 R04 R05 R07 R08 R12 (IOD=9 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+R01    9    0.3061  -0.7100   0.0759        0.0003       0.0006      -0.0006
+R02    9    0.5118  -2.8624  -0.0003        0.0007      -0.0003      -0.0003
+R03    9    0.6108  -0.5548  -0.0386        0.0000      -0.0005      -0.0002
+R04    9    0.5398  -0.7520  -0.0128       -0.0003      -0.0001       0.0002
+R05    9    0.9530  -1.6444  -0.0480        0.0002      -0.0001       0.0006
+R07    9    0.5664  -2.1492  -0.0621        0.0003       0.0004       0.0003
+R08    9   -0.0287   1.8308   0.0010       -0.0003      -0.0000      -0.0001
+R12    9    0.2357   2.9776  -0.0186       -0.0004       0.0003       0.0003
+Epoch=02:11:50+0 UI=30 MMI=1 Datum=0 IODSSR=9  Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 (IOD=9 nsat=8 cont.)
 SAT URA[mm]
 R01    4.25
@@ -261,6 +276,7 @@ R05    4.25
 R07   14.75
 R08   14.75
 R12    1.00
+Epoch=02:11:50+0 UI=30 MMI=1 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:50 RTCM 1063(8) RTCM 1067(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -290,6 +306,7 @@ G29              0.544
 G30             -0.050
 G31              0.136
 G32             -0.252
+Epoch=23:12:10+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=8 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.762
@@ -309,17 +326,19 @@ R19             -7.844
 R20            -13.481
 R21            -11.930
 R22            -13.633
+Epoch=02:11:52+0 UI=2 MMI=0 IODSSR=8  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:52 RTCM 1062(26) RTCM 1068(17) 
-R13 R14 R15 R17 R18 R19 R20 R21 (IOD=9 IODE=9 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-R13    0.3509   1.6912   0.0007        0.0001       0.0000       0.0006
-R14   -0.1315   3.3672   0.1615       -0.0009       0.0003      -0.0005
-R15    0.0970   1.3760   0.0247       -0.0002       0.0005       0.0001
-R17    0.4278  -0.0748   0.0287       -0.0006       0.0004       0.0001
-R18    0.4698  -1.9872   0.1368       -0.0006       0.0001       0.0002
-R19    0.3099   2.7240  -0.2320       -0.0008       0.0001       0.0005
-R20   -0.1538  -1.9364   0.1546        0.0002      -0.0002       0.0005
-R21    0.4614   1.8424   0.0016       -0.0011      -0.0000       0.0000
+R13 R14 R15 R17 R18 R19 R20 R21 (IOD=9 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+R13    9    0.3509   1.6912   0.0007        0.0001       0.0000       0.0006
+R14    9   -0.1315   3.3672   0.1615       -0.0009       0.0003      -0.0005
+R15    9    0.0970   1.3760   0.0247       -0.0002       0.0005       0.0001
+R17    9    0.4278  -0.0748   0.0287       -0.0006       0.0004       0.0001
+R18    9    0.4698  -1.9872   0.1368       -0.0006       0.0001       0.0002
+R19    9    0.3099   2.7240  -0.2320       -0.0008       0.0001       0.0005
+R20    9   -0.1538  -1.9364   0.1546        0.0002      -0.0002       0.0005
+R21    9    0.4614   1.8424   0.0016       -0.0011      -0.0000       0.0000
+Epoch=02:11:50+0 UI=30 MMI=1 Datum=0 IODSSR=9  Provider=0 Solution=0
 R13 R14 R15 R17 R18 R19 R20 R21 (IOD=9 nsat=8 cont.)
 SAT URA[mm]
 R13    1.00
@@ -330,6 +349,7 @@ R18   14.75
 R19    4.25
 R20   14.75
 R21   14.75
+Epoch=02:11:50+0 UI=30 MMI=1 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:52 RTCM 1063(8) RTCM 1067(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -359,6 +379,7 @@ G29              0.546
 G30             -0.062
 G31              0.137
 G32             -0.253
+Epoch=23:12:12+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=8 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.757
@@ -378,13 +399,16 @@ R19             -7.845
 R20            -13.482
 R21            -11.925
 R22            -13.635
+Epoch=02:11:54+0 UI=2 MMI=0 IODSSR=8  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:54 RTCM 1062(26) RTCM 1068(17) 
-R22 (IOD=9 IODE=9 nsat=1)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-R22    0.1806   2.1756   0.1939       -0.0003      -0.0002       0.0003
+R22 (IOD=9 nsat=1)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+R22    9    0.1806   2.1756   0.1939       -0.0003      -0.0002       0.0003
+Epoch=02:11:50+0 UI=30 MMI=0 Datum=0 IODSSR=9  Provider=0 Solution=0
 R22 (IOD=9 nsat=1)
 SAT URA[mm]
 R22   46.25
+Epoch=02:11:50+0 UI=30 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:54 RTCM 1063(1) RTCM 1067(1) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -414,6 +438,7 @@ G29              0.546
 G30             -0.064
 G31              0.139
 G32             -0.253
+Epoch=23:12:14+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.753
@@ -433,6 +458,7 @@ R19             -7.844
 R20            -13.481
 R21            -11.934
 R22            -13.631
+Epoch=02:11:56+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:56 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:56 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
@@ -463,6 +489,7 @@ G29              0.544
 G30             -0.065
 G31              0.142
 G32             -0.256
+Epoch=23:12:16+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.757
@@ -482,57 +509,59 @@ R19             -7.844
 R20            -13.481
 R21            -11.926
 R22            -13.622
+Epoch=02:11:58+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:58 RTCM 1062(26) RTCM 1068(17) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 (IOD=13 nsat=24 cont.)
 SAT signal_name code_bias[m]
-G01 L1 C/A             0.310
-G01 L5 I              -2.010
-G02 L1 C/A            -0.530
-G02 L5 I               2.380
-G03 L1 C/A             0.380
-G03 L5 I              -1.420
-G05 L1 C/A             0.210
-G05 L5 I               1.120
-G06 L1 C/A             0.390
-G06 L5 I              -1.810
-G07 L1 C/A             0.070
-G07 L5 I               1.160
-G08 L1 C/A            -0.080
-G08 L5 I              -1.980
-G09 L1 C/A             0.040
-G09 L5 I              -1.260
-G10 L1 C/A             0.210
-G10 L5 I              -1.530
-G12 L1 C/A            -0.010
-G12 L5 I               1.350
-G13 L1 C/A             0.080
-G13 L5 I               1.160
-G15 L1 C/A             0.250
-G15 L5 I               1.060
-G16 L1 C/A            -0.350
-G16 L5 I               1.010
-G17 L1 C/A             0.120
-G17 L5 I               1.150
-G19 L1 C/A            -0.770
-G19 L5 I               2.000
-G20 L1 C/A            -0.630
-G20 L5 I               0.610
-G21 L1 C/A            -0.620
-G21 L5 I               0.950
-G22 L1 C/A            -0.150
-G22 L5 I               0.520
-G24 L1 C/A             0.220
-G24 L5 I              -1.530
-G25 L1 C/A            -0.300
-G25 L5 I              -2.150
-G26 L1 C/A            -0.080
-G26 L5 I              -2.400
-G27 L1 C/A            -0.090
-G27 L5 I              -1.350
-G29 L1 C/A             0.030
-G29 L5 I               0.940
-G30 L1 C/A            -0.340
-G30 L5 I              -1.790
+G01 L1C/A              0.310
+G01 L5I               -2.010
+G02 L1C/A             -0.530
+G02 L5I                2.380
+G03 L1C/A              0.380
+G03 L5I               -1.420
+G05 L1C/A              0.210
+G05 L5I                1.120
+G06 L1C/A              0.390
+G06 L5I               -1.810
+G07 L1C/A              0.070
+G07 L5I                1.160
+G08 L1C/A             -0.080
+G08 L5I               -1.980
+G09 L1C/A              0.040
+G09 L5I               -1.260
+G10 L1C/A              0.210
+G10 L5I               -1.530
+G12 L1C/A             -0.010
+G12 L5I                1.350
+G13 L1C/A              0.080
+G13 L5I                1.160
+G15 L1C/A              0.250
+G15 L5I                1.060
+G16 L1C/A             -0.350
+G16 L5I                1.010
+G17 L1C/A              0.120
+G17 L5I                1.150
+G19 L1C/A             -0.770
+G19 L5I                2.000
+G20 L1C/A             -0.630
+G20 L5I                0.610
+G21 L1C/A             -0.620
+G21 L5I                0.950
+G22 L1C/A             -0.150
+G22 L5I                0.520
+G24 L1C/A              0.220
+G24 L5I               -1.530
+G25 L1C/A             -0.300
+G25 L5I               -2.150
+G26 L1C/A             -0.080
+G26 L5I               -2.400
+G27 L1C/A             -0.090
+G27 L5I               -1.350
+G29 L1C/A              0.030
+G29 L5I                0.940
+G30 L1C/A             -0.340
+G30 L5I               -1.790
+Epoch=21:00:00+6 UI=10800 MMI=1 IODSSR=13 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:11:58 RTCM 1059(24) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -562,6 +591,7 @@ G29              0.541
 G30             -0.066
 G31              0.147
 G32             -0.255
+Epoch=23:12:18+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.757
@@ -581,13 +611,15 @@ R19             -7.844
 R20            -13.473
 R21            -11.930
 R22            -13.624
+Epoch=02:12:00+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:00 RTCM 1062(26) RTCM 1068(17) 
 G31 G32 (IOD=13 nsat=2)
 SAT signal_name code_bias[m]
-G31 L1 C/A             0.180
-G31 L5 I               1.550
-G32 L1 C/A             0.380
-G32 L5 I              -1.160
+G31 L1C/A              0.180
+G31 L5I                1.550
+G32 L1C/A              0.380
+G32 L5I               -1.160
+Epoch=21:00:00+6 UI=10800 MMI=0 IODSSR=13 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:00 RTCM 1059(2) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -617,6 +649,7 @@ G29              0.540
 G30             -0.067
 G31              0.150
 G32             -0.256
+Epoch=23:12:20+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.764
@@ -636,45 +669,47 @@ R19             -7.841
 R20            -13.477
 R21            -11.937
 R22            -13.640
+Epoch=02:12:02+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:02 RTCM 1062(26) RTCM 1068(17) 
 R01 R02 R03 R04 R05 R07 R08 R11 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=18)
 SAT signal_name code_bias[m]
-R01 G1 C/A            -0.090
-R01 G2 P              -1.940
-R02 G1 C/A             0.000
-R02 G2 P              -0.340
-R03 G1 C/A             0.160
-R03 G2 P               0.600
-R04 G1 C/A             0.280
-R04 G2 P               0.760
-R05 G1 C/A             0.190
-R05 G2 P               0.210
-R07 G1 C/A             0.140
-R07 G2 P               0.150
-R08 G1 C/A             0.370
-R08 G2 P               1.120
-R11 G1 C/A             0.090
-R11 G2 P               1.280
-R12 G1 C/A             0.190
-R12 G2 P              -0.400
-R13 G1 C/A            -0.570
-R13 G2 P              -0.590
-R14 G1 C/A            -0.050
-R14 G2 P              -0.530
-R15 G1 C/A             0.160
-R15 G2 P               0.000
-R17 G1 C/A             0.090
-R17 G2 P               0.190
-R18 G1 C/A            -0.030
-R18 G2 P              -0.640
-R19 G1 C/A            -0.200
-R19 G2 P               0.030
-R20 G1 C/A            -0.090
-R20 G2 P              -1.500
-R21 G1 C/A             0.150
-R21 G2 P               0.090
-R22 G1 C/A            -0.070
-R22 G2 P               0.470
+R01 G1C/A             -0.090
+R01 G2P               -1.940
+R02 G1C/A              0.000
+R02 G2P               -0.340
+R03 G1C/A              0.160
+R03 G2P                0.600
+R04 G1C/A              0.280
+R04 G2P                0.760
+R05 G1C/A              0.190
+R05 G2P                0.210
+R07 G1C/A              0.140
+R07 G2P                0.150
+R08 G1C/A              0.370
+R08 G2P                1.120
+R11 G1C/A              0.090
+R11 G2P                1.280
+R12 G1C/A              0.190
+R12 G2P               -0.400
+R13 G1C/A             -0.570
+R13 G2P               -0.590
+R14 G1C/A             -0.050
+R14 G2P               -0.530
+R15 G1C/A              0.160
+R15 G2P                0.000
+R17 G1C/A              0.090
+R17 G2P                0.190
+R18 G1C/A             -0.030
+R18 G2P               -0.640
+R19 G1C/A             -0.200
+R19 G2P                0.030
+R20 G1C/A             -0.090
+R20 G2P               -1.500
+R21 G1C/A              0.150
+R21 G2P                0.090
+R22 G1C/A             -0.070
+R22 G2P                0.470
+Epoch=23:59:42+0 UI=10800 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:02 RTCM 1065(18) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -704,6 +739,7 @@ G29              0.540
 G30             -0.064
 G31              0.153
 G32             -0.255
+Epoch=23:12:22+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.772
@@ -723,6 +759,7 @@ R19             -7.834
 R20            -13.473
 R21            -11.936
 R22            -13.649
+Epoch=02:12:04+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:04 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:04 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
@@ -753,6 +790,7 @@ G29              0.540
 G30             -0.066
 G31              0.156
 G32             -0.257
+Epoch=23:12:24+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.770
@@ -772,6 +810,7 @@ R19             -7.829
 R20            -13.470
 R21            -11.942
 R22            -13.640
+Epoch=02:12:06+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:06 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:06 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
@@ -802,6 +841,7 @@ G29              0.541
 G30             -0.065
 G31              0.160
 G32             -0.259
+Epoch=23:12:26+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.763
@@ -821,6 +861,7 @@ R19             -7.825
 R20            -13.471
 R21            -11.938
 R22            -13.640
+Epoch=02:12:08+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:08 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:08 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
@@ -851,6 +892,7 @@ G29              0.540
 G30             -0.066
 G31              0.162
 G32             -0.258
+Epoch=23:12:28+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.753
@@ -870,6 +912,7 @@ R19             -7.822
 R20            -13.473
 R21            -11.947
 R22            -13.632
+Epoch=02:12:10+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:10 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:10 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
@@ -900,6 +943,7 @@ G29              0.538
 G30             -0.065
 G31              0.165
 G32             -0.259
+Epoch=23:12:30+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.750
@@ -919,17 +963,19 @@ R19             -7.819
 R20            -13.477
 R21            -11.938
 R22            -13.628
+Epoch=02:12:12+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:12 RTCM 1062(26) RTCM 1068(17) 
-G01 G02 G03 G05 G06 G07 G08 G09 (IOD=14 IODE=40 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G01    0.3181   0.5652   0.0230       -0.0002      -0.0001      -0.0002
-G02   -0.1558   2.1300  -0.0195       -0.0004       0.0003      -0.0004
-G03    0.0986   1.1224   0.0243       -0.0002      -0.0003      -0.0004
-G05   -0.1629  -1.1544   0.1119       -0.0003      -0.0001       0.0001
-G06    0.0401  -2.3028   0.1122        0.0002      -0.0002      -0.0001
-G07    0.1828   0.3916   0.0456       -0.0001      -0.0001       0.0000
-G08    0.2666  -2.5936  -0.1158        0.0000       0.0002       0.0000
-G09    0.1885   0.6544   0.0028       -0.0003      -0.0001      -0.0003
+G01 G02 G03 G05 G06 G07 G08 G09 (IOD=14 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G01   48    0.3181   0.5652   0.0230       -0.0002      -0.0001      -0.0002
+G02   68   -0.1558   2.1300  -0.0195       -0.0004       0.0003      -0.0004
+G03   48    0.0986   1.1224   0.0243       -0.0002      -0.0003      -0.0004
+G05   65   -0.1629  -1.1544   0.1119       -0.0003      -0.0001       0.0001
+G06  104    0.0401  -2.3028   0.1122        0.0002      -0.0002      -0.0001
+G07    6    0.1828   0.3916   0.0456       -0.0001      -0.0001       0.0000
+G08   55    0.2666  -2.5936  -0.1158        0.0000       0.0002       0.0000
+G09   40    0.1885   0.6544   0.0028       -0.0003      -0.0001      -0.0003
+Epoch=23:12:30+6 UI=30 MMI=1 Datum=0 IODSSR=14 Provider=0 Solution=0
 G01 G02 G03 G05 G06 G07 G08 G09 (IOD=14 nsat=8 cont.)
 SAT URA[mm]
 G01    3.50
@@ -940,6 +986,7 @@ G06    3.50
 G07    3.50
 G08    3.50
 G09    3.50
+Epoch=23:12:30+6 UI=30 MMI=1 IODSSR=14 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:12 RTCM 1057(8) RTCM 1061(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -969,6 +1016,7 @@ G29              0.539
 G30             -0.065
 G31              0.168
 G32             -0.260
+Epoch=23:12:32+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.756
@@ -988,17 +1036,19 @@ R19             -7.813
 R20            -13.478
 R21            -11.939
 R22            -13.634
+Epoch=02:12:14+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:14 RTCM 1062(26) RTCM 1068(17) 
-G10 G12 G13 G15 G16 G17 G19 G20 (IOD=14 IODE=38 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G10    0.0057   0.6792  -0.0520       -0.0002      -0.0005       0.0001
-G12   -0.0177   1.9756   0.0382       -0.0003      -0.0001      -0.0002
-G13   -0.1758   0.7784   0.0340       -0.0001      -0.0001       0.0004
-G15   -0.1258   1.7196  -0.0047       -0.0002       0.0000       0.0005
-G16    0.0678   0.9888   0.0377       -0.0003       0.0000      -0.0002
-G17   -0.4200   3.6156   0.1667       -0.0006       0.0005       0.0001
-G19   -0.0223  -0.4264  -0.0572       -0.0002      -0.0001      -0.0001
-G20   -0.0893   0.6180   0.0256       -0.0004       0.0001      -0.0001
+G10 G12 G13 G15 G16 G17 G19 G20 (IOD=14 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G10   10    0.0057   0.6792  -0.0520       -0.0002      -0.0005       0.0001
+G12   56   -0.0177   1.9756   0.0382       -0.0003      -0.0001      -0.0002
+G13    5   -0.1758   0.7784   0.0340       -0.0001      -0.0001       0.0004
+G15   15   -0.1258   1.7196  -0.0047       -0.0002       0.0000       0.0005
+G16   64    0.0678   0.9888   0.0377       -0.0003       0.0000      -0.0002
+G17   65   -0.4200   3.6156   0.1667       -0.0006       0.0005       0.0001
+G19   45   -0.0223  -0.4264  -0.0572       -0.0002      -0.0001      -0.0001
+G20   38   -0.0893   0.6180   0.0256       -0.0004       0.0001      -0.0001
+Epoch=23:12:30+6 UI=30 MMI=1 Datum=0 IODSSR=14 Provider=0 Solution=0
 G10 G12 G13 G15 G16 G17 G19 G20 (IOD=14 nsat=8 cont.)
 SAT URA[mm]
 G10    3.50
@@ -1009,6 +1059,7 @@ G16    3.50
 G17    0.50
 G19    0.50
 G20    0.75
+Epoch=23:12:30+6 UI=30 MMI=1 IODSSR=14 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:14 RTCM 1057(8) RTCM 1061(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -1038,6 +1089,7 @@ G29              0.539
 G30             -0.062
 G31              0.169
 G32             -0.259
+Epoch=23:12:34+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.755
@@ -1057,17 +1109,19 @@ R19             -7.817
 R20            -13.477
 R21            -11.931
 R22            -13.647
+Epoch=02:12:16+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:16 RTCM 1062(26) RTCM 1068(17) 
-G21 G22 G24 G25 G26 G27 G29 G30 (IOD=14 IODE=84 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G21   -0.1450  -0.4932  -0.0796       -0.0002       0.0004       0.0005
-G22   -0.1172  -1.2844  -0.1154       -0.0001       0.0000       0.0000
-G24   -0.2514  -0.0684  -0.0606       -0.0002      -0.0003       0.0000
-G25   -0.0493   0.0212   0.0250       -0.0001      -0.0000      -0.0001
-G26    0.0665  -0.1880   0.0693       -0.0002      -0.0002      -0.0001
-G27   -0.0818   0.6968   0.0014       -0.0002      -0.0002       0.0002
-G29   -0.2661  -0.0180   0.0476       -0.0003       0.0004      -0.0004
-G30    0.0637   1.4296  -0.0764       -0.0001      -0.0001       0.0002
+G21 G22 G24 G25 G26 G27 G29 G30 (IOD=14 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G21   89   -0.1450  -0.4932  -0.0796       -0.0002       0.0004       0.0005
+G22   35   -0.1172  -1.2844  -0.1154       -0.0001       0.0000       0.0000
+G24   14   -0.2514  -0.0684  -0.0606       -0.0002      -0.0003       0.0000
+G25   42   -0.0493   0.0212   0.0250       -0.0001      -0.0000      -0.0001
+G26  101    0.0665  -0.1880   0.0693       -0.0002      -0.0002      -0.0001
+G27    3   -0.0818   0.6968   0.0014       -0.0002      -0.0002       0.0002
+G29   26   -0.2661  -0.0180   0.0476       -0.0003       0.0004      -0.0004
+G30   84    0.0637   1.4296  -0.0764       -0.0001      -0.0001       0.0002
+Epoch=23:12:30+6 UI=30 MMI=1 Datum=0 IODSSR=14 Provider=0 Solution=0
 G21 G22 G24 G25 G26 G27 G29 G30 (IOD=14 nsat=8 cont.)
 SAT URA[mm]
 G21    3.50
@@ -1078,6 +1132,7 @@ G26    3.50
 G27    3.50
 G29    3.50
 G30    3.50
+Epoch=23:12:30+6 UI=30 MMI=1 IODSSR=14 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:16 RTCM 1057(8) RTCM 1061(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=13 nsat=26)
 SAT high_rate_clock[m]
@@ -1107,6 +1162,7 @@ G29              0.540
 G30             -0.064
 G31              0.170
 G32             -0.256
+Epoch=23:12:36+6 UI=2 MMI=0 IODSSR=13 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.753
@@ -1126,15 +1182,18 @@ R19             -7.819
 R20            -13.476
 R21            -11.925
 R22            -13.654
+Epoch=02:12:18+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:18 RTCM 1062(26) RTCM 1068(17) 
-G31 G32 (IOD=14 IODE=51 nsat=2)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-G31    0.0615   0.5548   0.0152       -0.0002      -0.0004      -0.0003
-G32   -0.0913  -2.3256  -0.1422        0.0000      -0.0001       0.0000
+G31 G32 (IOD=14 nsat=2)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+G31   70    0.0615   0.5548   0.0152       -0.0002      -0.0004      -0.0003
+G32   51   -0.0913  -2.3256  -0.1422        0.0000      -0.0001       0.0000
+Epoch=23:12:30+6 UI=30 MMI=0 Datum=0 IODSSR=14 Provider=0 Solution=0
 G31 G32 (IOD=14 nsat=2)
 SAT URA[mm]
 G31    3.50
 G32    3.50
+Epoch=23:12:30+6 UI=30 MMI=0 IODSSR=14 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:18 RTCM 1057(2) RTCM 1061(2) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
 SAT high_rate_clock[m]
@@ -1164,6 +1223,7 @@ G29              0.542
 G30             -0.063
 G31              0.170
 G32             -0.258
+Epoch=23:12:38+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.751
@@ -1183,17 +1243,19 @@ R19             -7.825
 R20            -13.474
 R21            -11.940
 R22            -13.650
+Epoch=02:12:20+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:20 RTCM 1062(26) RTCM 1068(17) 
-R01 R02 R03 R04 R05 R07 R08 R12 (IOD=10 IODE=9 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-R01    0.3190  -0.6816   0.0744        0.0003       0.0005      -0.0006
-R02    0.5295  -2.8632  -0.0011        0.0007      -0.0003      -0.0003
-R03    0.6169  -0.5644  -0.0399        0.0000      -0.0005      -0.0002
-R04    0.5333  -0.7484  -0.0130       -0.0004      -0.0001       0.0002
-R05    0.9588  -1.6436  -0.0466        0.0002      -0.0001       0.0005
-R07    0.5720  -2.1292  -0.0610        0.0003       0.0004       0.0003
-R08   -0.0272   1.8408   0.0026       -0.0003      -0.0000      -0.0000
-R12    0.2408   2.9972  -0.0196       -0.0004       0.0003       0.0003
+R01 R02 R03 R04 R05 R07 R08 R12 (IOD=10 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+R01    9    0.3190  -0.6816   0.0744        0.0003       0.0005      -0.0006
+R02    9    0.5295  -2.8632  -0.0011        0.0007      -0.0003      -0.0003
+R03    9    0.6169  -0.5644  -0.0399        0.0000      -0.0005      -0.0002
+R04    9    0.5333  -0.7484  -0.0130       -0.0004      -0.0001       0.0002
+R05    9    0.9588  -1.6436  -0.0466        0.0002      -0.0001       0.0005
+R07    9    0.5720  -2.1292  -0.0610        0.0003       0.0004       0.0003
+R08    9   -0.0272   1.8408   0.0026       -0.0003      -0.0000      -0.0000
+R12    9    0.2408   2.9972  -0.0196       -0.0004       0.0003       0.0003
+Epoch=02:12:20+0 UI=30 MMI=1 Datum=0 IODSSR=10 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 (IOD=10 nsat=8 cont.)
 SAT URA[mm]
 R01    4.25
@@ -1204,6 +1266,7 @@ R05    4.25
 R07   14.75
 R08   14.75
 R12    1.00
+Epoch=02:12:20+0 UI=30 MMI=1 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:20 RTCM 1063(8) RTCM 1067(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
 SAT high_rate_clock[m]
@@ -1233,6 +1296,7 @@ G29              0.542
 G30             -0.064
 G31              0.170
 G32             -0.257
+Epoch=23:12:40+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.749
@@ -1252,17 +1316,19 @@ R19             -7.829
 R20            -13.474
 R21            -11.936
 R22            -13.640
+Epoch=02:12:22+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:22 RTCM 1062(26) RTCM 1068(17) 
-R13 R14 R15 R17 R18 R19 R20 R21 (IOD=10 IODE=9 nsat=8 cont.)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-R13    0.3685   1.7044   0.0016        0.0001       0.0000       0.0006
-R14   -0.1365   3.3884   0.1599       -0.0009       0.0003      -0.0005
-R15    0.1020   1.3992   0.0257       -0.0002       0.0005       0.0001
-R17    0.4185  -0.0600   0.0296       -0.0006       0.0004       0.0002
-R18    0.4548  -1.9804   0.1374       -0.0005       0.0001       0.0002
-R19    0.3021   2.7296  -0.2311       -0.0008       0.0001       0.0004
-R20   -0.1514  -1.9300   0.1564        0.0002      -0.0002       0.0005
-R21    0.4410   1.8460   0.0004       -0.0010      -0.0000       0.0000
+R13 R14 R15 R17 R18 R19 R20 R21 (IOD=10 nsat=8 cont.)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+R13    9    0.3685   1.7044   0.0016        0.0001       0.0000       0.0006
+R14    9   -0.1365   3.3884   0.1599       -0.0009       0.0003      -0.0005
+R15    9    0.1020   1.3992   0.0257       -0.0002       0.0005       0.0001
+R17    9    0.4185  -0.0600   0.0296       -0.0006       0.0004       0.0002
+R18    9    0.4548  -1.9804   0.1374       -0.0005       0.0001       0.0002
+R19    9    0.3021   2.7296  -0.2311       -0.0008       0.0001       0.0004
+R20    9   -0.1514  -1.9300   0.1564        0.0002      -0.0002       0.0005
+R21    9    0.4410   1.8460   0.0004       -0.0010      -0.0000       0.0000
+Epoch=02:12:20+0 UI=30 MMI=1 Datum=0 IODSSR=10 Provider=0 Solution=0
 R13 R14 R15 R17 R18 R19 R20 R21 (IOD=10 nsat=8 cont.)
 SAT URA[mm]
 R13    1.00
@@ -1273,6 +1339,7 @@ R18   14.75
 R19    4.25
 R20   14.75
 R21   14.75
+Epoch=02:12:20+0 UI=30 MMI=1 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:22 RTCM 1063(8) RTCM 1067(8) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
 SAT high_rate_clock[m]
@@ -1302,6 +1369,7 @@ G29              0.544
 G30             -0.062
 G31              0.170
 G32             -0.258
+Epoch=23:12:42+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=9 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.754
@@ -1321,13 +1389,16 @@ R19             -7.829
 R20            -13.482
 R21            -11.927
 R22            -13.644
+Epoch=02:12:24+0 UI=2 MMI=0 IODSSR=9  Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:24 RTCM 1062(26) RTCM 1068(17) 
-R22 (IOD=10 IODE=9 nsat=1)
-SAT radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
-R22    0.1865   2.1792   0.1942       -0.0003      -0.0002       0.0003
+R22 (IOD=10 nsat=1)
+SAT IODE radial[m] along[m] cross[m] d_radial[m/s] d_along[m/s] d_cross[m/s]
+R22    9    0.1865   2.1792   0.1942       -0.0003      -0.0002       0.0003
+Epoch=02:12:20+0 UI=30 MMI=0 Datum=0 IODSSR=10 Provider=0 Solution=0
 R22 (IOD=10 nsat=1)
 SAT URA[mm]
 R22   46.25
+Epoch=02:12:20+0 UI=30 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:24 RTCM 1063(1) RTCM 1067(1) 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
 SAT high_rate_clock[m]
@@ -1357,6 +1428,7 @@ G29              0.545
 G30             -0.064
 G31              0.171
 G32             -0.258
+Epoch=23:12:44+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.755
@@ -1376,6 +1448,7 @@ R19             -7.829
 R20            -13.492
 R21            -11.935
 R22            -13.658
+Epoch=02:12:26+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:26 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:26 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1406,6 +1479,7 @@ G29              0.545
 G30             -0.064
 G31              0.170
 G32             -0.258
+Epoch=23:12:46+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.751
@@ -1425,6 +1499,7 @@ R19             -7.829
 R20            -13.499
 R21            -11.941
 R22            -13.666
+Epoch=02:12:28+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:28 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:28 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1455,6 +1530,7 @@ G29              0.546
 G30             -0.062
 G31              0.170
 G32             -0.259
+Epoch=23:12:48+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.748
@@ -1474,6 +1550,7 @@ R19             -7.829
 R20            -13.507
 R21            -11.933
 R22            -13.666
+Epoch=02:12:30+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:30 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:30 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1504,6 +1581,7 @@ G29              0.544
 G30             -0.061
 G31              0.169
 G32             -0.259
+Epoch=23:12:50+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.751
@@ -1523,6 +1601,7 @@ R19             -7.831
 R20            -13.511
 R21            -11.936
 R22            -13.660
+Epoch=02:12:32+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:32 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:32 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1553,6 +1632,7 @@ G29              0.546
 G30             -0.059
 G31              0.168
 G32             -0.258
+Epoch=23:12:52+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.755
@@ -1572,6 +1652,7 @@ R19             -7.832
 R20            -13.511
 R21            -11.945
 R22            -13.664
+Epoch=02:12:34+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:34 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:34 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1602,6 +1683,7 @@ G29              0.547
 G30             -0.058
 G31              0.167
 G32             -0.259
+Epoch=23:12:54+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.760
@@ -1621,6 +1703,7 @@ R19             -7.836
 R20            -13.506
 R21            -11.939
 R22            -13.660
+Epoch=02:12:36+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:36 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:36 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1651,6 +1734,7 @@ G29              0.548
 G30             -0.057
 G31              0.167
 G32             -0.259
+Epoch=23:12:56+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.760
@@ -1670,6 +1754,7 @@ R19             -7.835
 R20            -13.497
 R21            -11.940
 R22            -13.662
+Epoch=02:12:38+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:38 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:38 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1700,6 +1785,7 @@ G29              0.550
 G30             -0.059
 G31              0.165
 G32             -0.257
+Epoch=23:12:58+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.757
@@ -1719,6 +1805,7 @@ R19             -7.835
 R20            -13.488
 R21            -11.944
 R22            -13.662
+Epoch=02:12:40+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:40 RTCM 1062(26) RTCM 1068(17) 
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:40 
 G01 G02 G03 G05 G06 G07 G08 G09 G10 G12 G13 G15 G16 G17 G19 G20 G21 G22 G24 G25 G26 G27 G29 G30 G31 G32 (IOD=14 nsat=26)
@@ -1749,6 +1836,7 @@ G29              0.551
 G30             -0.060
 G31              0.167
 G32             -0.257
+Epoch=23:13:00+6 UI=2 MMI=0 IODSSR=14 Provider=0 Solution=0
 R01 R02 R03 R04 R05 R07 R08 R12 R13 R14 R15 R17 R18 R19 R20 R21 R22 (IOD=10 nsat=17)
 SAT high_rate_clock[m]
 R01             -7.752
@@ -1768,4 +1856,5 @@ R19             -7.838
 R20            -13.482
 R21            -11.940
 R22            -13.657
+Epoch=02:12:42+0 UI=2 MMI=0 IODSSR=10 Provider=0 Solution=0
 209 Hitachi-Ota:0* MADOCA 2022-03-26 23:12:42 RTCM 1062(26) RTCM 1068(17) 
