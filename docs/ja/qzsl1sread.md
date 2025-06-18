@@ -6,16 +6,16 @@
 
 ```bash
 $ qzsl1sread.py --help
-usage: qzsl1sread.py [-h] [-c] [file ...]
+usage: qzsl1sread.py [-h] [-c] [-t TRACE] [file ...]
 
-Quasi-zenith satellite (QZS) L1S message read
+Quasi-zenith satellite (QZS) L1S message read, QZS L6 Tool ver.x.x.x
 
 positional arguments:
-  file         L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html
+  file                  L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html
 
 options:
-  -h, --help   show this help message and exit
-  -c, --color  apply ANSI color escape sequences even for non-terminal.
+  -h, --help            show this help message and exit
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
   -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
 ```
 

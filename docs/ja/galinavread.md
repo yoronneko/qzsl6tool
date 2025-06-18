@@ -8,7 +8,7 @@
 $ galinavread.py --help
 usage: galinavread.py [-h] [-c]
 
-Galileo I/NAV message read
+Galileo I/NAV message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help   show this help message and exit

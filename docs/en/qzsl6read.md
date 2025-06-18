@@ -16,11 +16,11 @@ The ``--help`` option displays the options it accepts.
 $ qzsl6read.py --help
 usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
-Quasi-zenith satellite (QZS) L6 message read
+Quasi-zenith satellite (QZS) L6 message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help            show this help message and exit
-  -c, --color           apply ANSI color escape sequences even for non- terminal.
+  -c, --color           apply ANSI color escape sequences even for non-terminal.
   -m, --message         show display messages to stderr
   -r, --rtcm            send RTCM messages to stdout (it also turns off display messages unless -m is specified).
   -s, --statistics      show CSSR statistics in display messages.

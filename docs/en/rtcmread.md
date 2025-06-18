@@ -8,7 +8,7 @@ The ``--help`` option displays the options it accepts.
 $ rtcmread.py --help
 usage: rtcmread.py [-h] [-c] [-t TRACE]
 
-RTCM message read
+RTCM message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help            show this help message and exit

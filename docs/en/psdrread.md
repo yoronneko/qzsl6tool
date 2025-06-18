@@ -11,17 +11,17 @@ The ``--help`` option displays the options it accepts.
 
 ```bash
 $ psdrread.py --help
-usage: psdrread.py [-h] [-c] [-b] [-i] [-e] [-l] [-m] [-s] [-t TRACE]
+usage: psdrread.py [-h] [-b | -i | -e | -l] [-c]
 
-Pocket SDR message read
+Pocket SDR message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help   show this help message and exit
-  -c, --color  apply ANSI color escape sequences even for non-terminal.
   -b, --b2b    send BDS B2b messages to stdout, and also turns off display message.
   -i, --inav   send GAL I/NAV messages to stdout, and also turns off display message.
   -e, --e6b    send GAL E6B messages to stdout, and also turns off display message.
   -l, --l6     send QZS L6 messages to stdout, and also turns off display message.
+  -c, --color  apply ANSI color escape sequences even for non-terminal.
 ```
 
 When the ``-c`` option is given, it forces the status display to appear in color. By default, if the output destination is a terminal, the status display appears in color. If the output destination is something else, color display is not used.
