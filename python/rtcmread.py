@@ -25,11 +25,11 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__))
-import ecef2llh
+import libecef
 import libnav
+import libqzsl6tool
 import libssr
 import libtrace
-import libqzsl6tool
 
 try:
     import bitstring
@@ -219,7 +219,7 @@ class Rtcm:
         msg = ''
         if stid != 0:
             msg += f'{stid} '
-        lat, lon, height = ecef2llh.ecef2llh(px*1e-4, py*1e-4, pz*1e-4)
+        lat, lon, height = libecef.ecef2llh(px*1e-4, py*1e-4, pz*1e-4)
         msg += f'{lat:.7f} {lon:.7f} {height:.3f}'
         if ahgt != 0:
             msg += f'(+{ahgt*1e-4:.3f})'

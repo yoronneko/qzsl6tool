@@ -8,7 +8,7 @@
 $ bdsb2read.py --help
 usage: bdsb2read.py [-h] [-c] [-m] [-p PRN] [-s] [-t TRACE]
 
-BeiDou B2b message read
+BeiDou B2b message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help            show this help message and exit

@@ -8,7 +8,7 @@ In each row of the status display, the 1st column is the PRN number, the 2nd and
 $ alstread.py --help
 usage: alstread.py [-h] [-c] [-l] [-m] [-p PRN]
 
-Allystar HD9310 message read
+Allystar HD9310 message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help         show this help message and exit

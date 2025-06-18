@@ -10,16 +10,16 @@
 
 ```bash
 $ septread.py --help
-usage: septread.py [-h] [-c] [-e] [-l] [-m]
+usage: septread.py [-h] [-e | -l | -b] [-c] [-m]
 
-Septentrio message read
+Septentrio message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help     show this help message and exit
-  -c, --color    apply ANSI color escape sequences even for non-terminal.
   -e, --e6b      send E6B messages to stdout, and also turns off display message.
   -l, --l6       send QZS L6 messages to stdout (it also turns off Septentrio messages).
   -b, --b2b      send BDS B2b messages to stdout, and also turns off display message.
+  -c, --color    apply ANSI color escape sequences even for non-terminal.
   -m, --message  show display messages to stderr
 ```
 

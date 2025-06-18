@@ -12,17 +12,16 @@
 
 ```bash
 $ ubxread.py --help
-usage: ubxread.py [-h] [--l1s | --qzqsm | --sbas | -l | -i] [-d] [-c] [-m]
-                  [-p PRN]
+usage: ubxread.py [-h] [--l1s | --qzqsm | --sbas | -l | -i] [-d] [-c] [-m] [-p PRN]
 
-u-blox message read
+u-blox message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help         show this help message and exit
   --l1s              send QZS L1S messages to stdout
   --qzqsm            send QZS L1S DCR NMEA messages to stdout
   --sbas             send SBAS messages to stdout
-  -l, --lnav         send GNSS LNAV messages to stdout
+  -l, --lnav         send GPS or QZS LNAV messages to stdout
   -i, --inav         send GAL I/NAV messages to stdout
   -d, --duplicate    allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)
   -c, --color        apply ANSI color escape sequences even for non-terminal.

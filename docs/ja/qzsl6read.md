@@ -18,7 +18,7 @@ MADOCAはRTCM（Radio Technical Commission for Maritime Services） SSR（状態
 $ qzsl6read.py --help
 usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
 
-Quasi-zenith satellite (QZS) L6 message read
+Quasi-zenith satellite (QZS) L6 message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help            show this help message and exit

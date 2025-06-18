@@ -8,7 +8,7 @@
 $ alstread.py --help
 usage: alstread.py [-h] [-c] [-l] [-m] [-p PRN]
 
-Allystar HD9310 message read
+Allystar HD9310 message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help         show this help message and exit

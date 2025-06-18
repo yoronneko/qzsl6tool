@@ -4,7 +4,7 @@ GPS時刻、GST（Galileo Standard Time）、BDT（BeiDou Standard Time）をUTC
 
 ```bash
 $ gps2utc.py
-GNSS time to UTC conversion
+GNSS time to UTC conversion, QZS L6 Tool ver.x.x.x
 Usage: /Users/sat/bin/gps2utc.py week_no time_of_week
 ```
 

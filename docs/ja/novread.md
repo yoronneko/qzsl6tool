@@ -4,16 +4,16 @@
 
 ```bash
 $ novread.py --help
-usage: novread.py [-h] [-c] [-e] [-l] [-m] [-s] [-t TRACE]
+usage: novread.py [-h] [-e | -q] [-c] [-m]
 
-NovAtel message read
+NovAtel message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help     show this help message and exit
-  -c, --color    apply ANSI color escape sequences even for non-terminal.
   -e, --e6b      send E6B C/NAV messages to stdout, and also turns off display message.
-  -m, --message  show display messages to stderr
   -q, --qlnav    send QZSS LNAV messages to stdout, and also turns off display message.
+  -c, --color    apply ANSI color escape sequences even for non-terminal.
+  -m, --message  show display messages to stderr
 ```
 
 ``-c``オプションを与えると、強制的にカラーにて状態表示します。デフォルトでは、出力先がターミナルであれば、状態表示はカラーにて表示されます。出力先がそれ以外であれば、カラー表示されません。

@@ -4,12 +4,12 @@ This program converts UTC time to GPS time, Galileo Standard Time (GST), and Bei
 
 ```bash
 $ utc2gps.py
-UTC to GNSS time conversion
-Usage: /Users/sat/bin/utc2gps.py YYYY-MM-DD hh:mm:ss
+UTC to GNSS time conversion, QZS L6 Tool ver.x.x.x
+Usage: /Users/sat/env/bin/utc2gps.py YYYY-MM-DD hh:mm:ss
 Current GNSS time (week number, time of week):
-GPS 2302 396952
-GST 1278 396947
-BDT 946 396938
+GPS xxxx xxxxxx
+GST xxxx xxxxxx
+BDT xxxx xxxxxx
 ```
 
 An execution example to provide the UTC of 2022-11-30 12:52:37 is as follows:

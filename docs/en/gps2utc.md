@@ -4,7 +4,7 @@ This program converts GPS time, Galileo Standard Time (GST), and BeiDou Standard
 
 ```bash
 $ gps2utc.py
-GNSS time to UTC conversion
+GNSS time to UTC conversion, QZS L6 Tool ver.x.x.x
 Usage: /Users/sat/bin/gps2utc.py week_no time_of_week
 ```
 

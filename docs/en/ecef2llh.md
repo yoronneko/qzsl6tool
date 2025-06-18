@@ -4,8 +4,7 @@ This program converts ECEF (earth-centered, earth-fix) coordinates to latitude, 
 
 ```bash
 $ ecef2llh.py
-
-ECEF to Latitude Longitude and Height
+ECEF to LLH conversion, QZS L6 Tool ver.x.x.x
 Usage: /Users/sat/bin/ecef2llh.py x y z
 ```
 
