@@ -26,7 +26,7 @@ N_GLOSAT = 63   # maximum number of GLONASS satellites
 N_GALSAT = 63   # maximum number of Galileo satellites
 N_QZSSAT = 11   # maximum number of QZSS    satellites
 N_BDSAT  = 63   # maximum number of BeiDou  satellites
-N_IRNSAT = 10   # maximum number of NavIC   satellites
+N_IRNSAT = 12   # maximum number of NavIC   satellites
 
 # format definitions
 FMT_IODC = '<4d'  # format string for issue of data clock
