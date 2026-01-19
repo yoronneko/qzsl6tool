@@ -4,7 +4,7 @@
 # septread.py: Septentrio receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -35,10 +35,10 @@ SEPT_MSG_NAME = {      # dictionary for obtaining message name from ID
 class SeptReceiver:
     raw = b''
 
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
 
-    def read(self):
+    def read(self) -> bool:
         ''' reads standard input as SBF raw, [1]
             and returns true if successful '''
         while True:
@@ -72,7 +72,7 @@ class SeptReceiver:
         self.payload  = payload
         return True
 
-    def galrawcnav(self):
+    def galrawcnav(self) -> str:
         ''' returns hex-decoded messages
             GALRawCNAV (4024) ref.[1], p.282
         '''
@@ -99,7 +99,7 @@ class SeptReceiver:
         self.raw = self.satid.to_bytes(1, byteorder='little') + e6b[:LEN_CNAV_PAGE]
         return msg + self.raw.hex()
 
-    def qzsrawl6(self):
+    def qzsrawl6(self) -> str:
         ''' returns hex-decoded message
             QZSRawL6 (4096) ref.[2], p.267
         '''
@@ -126,7 +126,7 @@ class SeptReceiver:
         self.raw   = l6[:LEN_L6_FRM]
         return msg + self.raw.hex()
 
-    def bdsrawb2b(self):
+    def bdsrawb2b(self) -> str:
         ''' returns hex-decoded message
             BDSRawB2b (4242) ref.[1], p.288
         '''

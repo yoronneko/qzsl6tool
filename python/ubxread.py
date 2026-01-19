@@ -4,7 +4,7 @@
 # ubxread.py: u-blox receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -19,13 +19,14 @@ import functools
 import operator
 import os
 import sys
+from   typing import TextIO
 
 sys.path.append(os.path.dirname(__file__))
 import libqzsl6tool
 import libtrace
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     This code needs bitstring module.
@@ -33,47 +34,47 @@ except ModuleNotFoundError:
     ''')
     sys.exit(1)
 
-LEN_L1CA = 300  # message length of GPS & QZS L1C/A, L2C, L5
-LEN_L1OF =  85  # message length of GLO L1OF, L2OF
-LEN_L1S  = 250  # message length of QZS L1S & SBAS L1C/A
-LEN_B1I  = 300  # message length of BDS B1I, B2I
+LEN_L1CA: int = 300  # message length of GPS & QZS L1C/A, L2C, L5
+LEN_L1OF: int =  85  # message length of GLO L1OF, L2OF
+LEN_L1S : int = 250  # message length of QZS L1S & SBAS L1C/A
+LEN_B1I : int = 300  # message length of BDS B1I, B2I
 
 class UbxReceiver:
-    payload_prev = bitstring.BitStream()  # previous payload
+    payload_prev = BitStream()  # previous payload
 
-    def __init__(self, trace):
-        self.trace = trace
+    def __init__(self, trace: libtrace.Trace) -> None:
+        self.trace: libtrace.Trace = trace
 
-    def read(self):
+    def read(self) -> bool:
         ''' reads from standard input as u-blox raw message,
             and returns true if successful '''
         while True:
-            sync = bytes(4)
+            sync: bytes = bytes(4)
             while sync != b'\xb5\x62\x02\x13':  # ubx-rxm-sfrbx ([1], 3.17.9)
                 b = sys.stdin.buffer.read(1)
                 if not b:
                     return False
                 sync = sync[1:4] + b
-            head = sys.stdin.buffer.read(10)
+            head: bytes = sys.stdin.buffer.read(10)
             if not head:
                 return False
-            msg_len = int.from_bytes(head[0: 2], 'little')
-            gnssid  = int.from_bytes(head[2: 3], 'little')
-            svid    = int.from_bytes(head[3: 4], 'little')
-            sigid   = int.from_bytes(head[4: 5], 'little')
-            freqid  = int.from_bytes(head[5: 6], 'little')
-            n_word  = int.from_bytes(head[6: 7], 'little')
-            chn     = int.from_bytes(head[7: 8], 'little')
-            ver     = int.from_bytes(head[8: 9], 'little')
-            res     = int.from_bytes(head[9:10], 'little')
+            msg_len: int = int.from_bytes(head[0: 2], 'little')
+            gnssid: int  = int.from_bytes(head[2: 3], 'little')
+            svid  : int  = int.from_bytes(head[3: 4], 'little')
+            sigid : int  = int.from_bytes(head[4: 5], 'little')
+            freqid: int  = int.from_bytes(head[5: 6], 'little')  # unused
+            n_word: int  = int.from_bytes(head[6: 7], 'little')
+            chn   : int  = int.from_bytes(head[7: 8], 'little')  # unused
+            ver   : int  = int.from_bytes(head[8: 9], 'little')
+            res   : int  = int.from_bytes(head[9:10], 'little')  # unused
             if ver != 0x02:  # [1], sect.3.17.9
                 libtrace.err(f'ubx sfrbx version should be 2 ({ver})')
                 continue
             if (msg_len-8)/4 != n_word:
                 libtrace.err(f'numWord mismatch: {(msg_len-8)/4} != {n_word}')
                 continue
-            payload = sys.stdin.buffer.read(n_word * 4)
-            csum    = sys.stdin.buffer.read(2)
+            payload: bytes = sys.stdin.buffer.read(n_word * 4)
+            csum   : bytes = sys.stdin.buffer.read(2)
             if not payload or not csum:
                 return False
             csum1, csum2 = libqzsl6tool.checksum(b'\x02\x13' + head + payload)
@@ -82,9 +83,9 @@ class UbxReceiver:
                 continue
             break
         # [1] 1.5.2 GNSS identifiers
-        gnssname = ['G', 'S', 'E', 'B', 'IMES', 'J', 'R', 'I'][gnssid]
+        gnssname: str = ['G', 'S', 'E', 'B', 'IMES', 'J', 'R', 'I'][gnssid]
         # [1] 1.5.4 Signal identifiers
-        signame = [ # signal name table: (gnssid, signae) -> signal name
+        signame: str = [ # signal name table: (gnssid, signae) -> signal name
         ['L1CA', '', '', 'L2CL', 'L2CM', '', 'L5I', 'L5Q'],             # GPS
         ['L1CA'],                                                       # SBAS
         ['E1C', 'E1B', '', 'E5aI', 'E5aQ', 'E5bI', 'E5bQ'],             # GAL
@@ -94,7 +95,7 @@ class UbxReceiver:
         ['L1OF', '', 'L2OF'],                                           # GLO
         ['L5'],                                                         # IRN
         ][gnssid][sigid]
-        payload_perm = bytearray(n_word * 4)
+        payload_perm: bytearray = bytearray(n_word * 4)
         libqzsl6tool.u4perm(payload, payload_perm)
         self.svid     = svid
         self.prn      = svid + 182 if signame == 'L1S' else svid
@@ -102,26 +103,26 @@ class UbxReceiver:
         self.signame  = signame
         self.satname  = f'{gnssname}{svid:02d}'
         if   signame == 'L1S' or gnssname == 'S':     # QZS L1S or SBAS L1C/A
-            self.payload = bitstring.BitStream(payload_perm)[:LEN_L1S+6]
+            self.payload = BitStream(payload_perm)[:LEN_L1S+6]
         elif signame == 'E1B' or signame == 'E5bI':   # GAL I/NAV
-            inav = bitstring.BitStream(payload_perm)
+            inav = BitStream(payload_perm)
             # undocumented u-blox I/NAV raw data structure solved in
             # ref.[2], src/rcv/ublox.c:785 (int decode_enav(.))
             inav = inav[:120-6] + inav[128:128+120-6]  # tail 6-bit are removed
             # CRC is calculated with 4-bit padding and 196-bit I/NAV
-            inav_crc = (bitstring.Bits('uint4=0') + inav[:196]).tobytes()
+            inav_crc = (BitStream('uint4=0') + inav[:196]).tobytes()
             crc = inav[196:196+24].tobytes()
             crc_calc = libqzsl6tool.rtk_crc24q(inav_crc, len(inav_crc))
             if crc != crc_calc:
                 libtrace.err(f"CRC error {crc_calc.hex()} != {crc.hex()}")
-            self.payload = inav + bitstring.Bits('uint4=0')
+            self.payload = inav + BitStream('uint4=0')
         elif signame == 'L1CA' or signame == 'L2CM':  # GPS or QZS L1C/A
-            self.payload = bitstring.BitStream(payload_perm)[:LEN_L1CA+4]
+            self.payload = BitStream(payload_perm)[:LEN_L1CA+4]
             #print(f'{self.satname}:{self.payload[49:52].u} {self.signame} {payload_perm.hex()} {self.payload[0:8].bin}', file=sys.stderr)
         elif signame == 'L1OF' or signame == 'L2OF':  # GLO L1OF and L2OF
-            self.payload = bitstring.BitStream(payload_perm)[:LEN_L1OF+3]
+            self.payload = BitStream(payload_perm)[:LEN_L1OF+3]
         elif signame == 'B1I' or signame == 'B2I':    # BDS B1I and B2I
-            self.payload = bitstring.BitStream(payload_perm)[:LEN_B1I+4]
+            self.payload = BitStream(payload_perm)[:LEN_B1I+4]
         else:
             raise Exception(f'unknown signal: {signame}')
         self.msg = \
@@ -130,66 +131,66 @@ class UbxReceiver:
             f'{self.payload.hex}'
         return True
 
-    def decode_qzsl1s(self, args):
+    def decode_qzsl1s(self, args: argparse.Namespace) -> bytes | None:
         ''' returuns decoded raw
             format: [PRN(8)][RAW(250)][padding(6)]...
         '''
         if (self.signame != 'L1S' and self.gnssname != 'S') or \
            (not args.duplicate and self.payload == self.payload_prev):
-            return
-        l1s = bitstring.BitStream(uint=self.prn, length=8) + self.payload
+            return None
+        l1s = BitStream(uint=self.prn, length=8) + self.payload
         self.payload_prev = self.payload
         return l1s.tobytes()
 
-    def decode_qzsl1s_qzqsm(self, args):
+    def decode_qzsl1s_qzqsm(self, args: argparse.Namespace) -> bytes | None:
         ''' returns decoded nmea text
             format: $QZQSM, [hex][hex]...[hex]*[checksum]
         '''
         if self.signame != 'L1S' or \
-           (not args.duplicate and rcv.payload == payload_prev):
-            return
-        mt = self.payload[8:8+6].uint
+           (not args.duplicate and self.payload == self.payload_prev):
+            return None
+        mt: int = self.payload[8:8+6].uint
         if mt != 43 and mt != 44:
-            return
+            return None
         self.payload_prev = self.payload
-        sentence = f'QZQSM,{self.prn-128},{self.payload.hex}'
-        cksum = functools.reduce(operator.xor, (ord(s) for s in sentence), 0)
+        sentence: str = f'QZQSM,{self.prn-128},{self.payload.hex}'
+        cksum: int = functools.reduce(operator.xor, (ord(s) for s in sentence), 0)
         return bytes(f'${sentence}*{cksum:02x}\n', 'utf-8')
 
-    def decode_galinav(self):
+    def decode_galinav(self) -> bytes | None:
         ''' returns decoded raw (E1B only)
             format: [SVID(8)][I/NAV RAW(114x2)][padding(4)]...
         '''
         if self.signame != 'E1B':
-            return
-        inav = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+            return None
+        inav = BitStream(uint=self.svid, length=8) + self.payload
         return inav.tobytes()
 
-    def decode_gpslnav(self):
+    def decode_gpslnav(self) -> bytes | None:
         ''' returns decoded raw
             format: [SVID(8)][L1C/A RAW(300)][padding(4)]...
         '''
         if self.signame != 'L1CA' or self.gnssname == 'S':
-            return
-        l1ca = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+            return None
+        l1ca = BitStream(uint=self.svid, length=8) + self.payload
         return l1ca.tobytes()
 
-    def decode_glol1of(self):
+    def decode_glol1of(self) -> bytes | None:
         ''' returns decoded raw
             format: [SVID(8)][L1OF/L2OF RAW(300)][padding(3)]...
         '''
         if self.signame != 'L1OF' or self.signame != 'L2OF':
-            return
-        l1of = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+            return None
+        l1of = BitStream(uint=self.svid, length=8) + self.payload
         return l1of.tobytes()
 
-    def decode_bdsb1i(self):
+    def decode_bdsb1i(self) -> bytes | None:
         ''' returns decoded raw
             format: [SVID(8)][B1I/B2I RAW(300)][padding(4)]...
         '''
         if self.signame != 'B1I' or self.signame != 'B2I':
-            return
-        b1i = bitstring.BitStream(uint=self.svid, length=8) + self.payload
+            return None
+        b1i = BitStream(uint=self.svid, length=8) + self.payload
         return b1i.tobytes()
 
 if __name__ == '__main__':
@@ -215,10 +216,12 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--prn', type=int, default=0,
         help='specify satellite PRN (PRN=0 means all sats)')
     args = parser.parse_args()
-    fp_disp, fp_raw = sys.stdout, None
+    fp_disp: TextIO | None = sys.stdout
+    fp_raw : TextIO | None  = None
     if args.l1s or args.qzqsm or args.sbas or args.lnav or args.inav:
-        fp_disp, fp_raw = None, sys.stdout
-        payload_prev = bitstring.BitStream()
+        fp_disp = None
+        fp_raw = sys.stdout
+        payload_prev = BitStream()
     if args.message:
         fp_disp = sys.stderr
     if args.prn < 0:

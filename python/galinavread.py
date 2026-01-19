@@ -4,7 +4,7 @@
 # galinavead.py: Galileo I/NAV message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -28,7 +28,7 @@ import libqzsl6tool
 import libtrace
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     The code needs bitstring module.
@@ -54,7 +54,7 @@ TSM_STAT_UTC = [  # ref.[2], Table 7 and Table 4
     "Monitoring not available",
 ]
 
-def modtime_from_wt_ssp(wt, ssp):
+def modtime_from_wt_ssp(wt: int, ssp: BitStream) -> int:
     ''' returns estimated GST mod 30 (odd seconds) from the combination of
         the word type (wt) and the ssp. if estimation is unable, returns -1
         wt: word type 0-63
@@ -85,7 +85,7 @@ def modtime_from_wt_ssp(wt, ssp):
         if wt == 16: return 29
     return -1
 
-def decode_word1(df, nav, svid):
+def decode_word1(df: BitStream, nav: libnav.NavGal, svid: int) -> None:
     ''' decodes word 1 and modifies ephemeris e
     '''
     e = nav.eph[svid-1]   # ephemeris for the satellite svid
@@ -96,7 +96,7 @@ def decode_word1(df, nav, svid):
     e.a12  = df.read(32)  # sqrt(A)
     df.pos += 2           # reserved
 
-def decode_word2(df, nav, svid):
+def decode_word2(df: BitStream, nav: libnav.NavGal, svid: int) -> None:
     ''' decodes word 2 and modifies ephemeris e
     '''
     e = nav.eph[svid-1]   # ephemeris for the satellite svid
@@ -107,7 +107,7 @@ def decode_word2(df, nav, svid):
     e.idot = df.read(14)  # idot
     df.pos += 2           # reserved
 
-def decode_word3(df, nav, svid):
+def decode_word3(df: BitStream, nav: libnav.NavGal, svid: int) -> None:
     ''' decodes word 3 and modifies ephemeris e
     '''
     e = nav.eph[svid-1]   # ephemeris for the satellite svid
@@ -120,7 +120,7 @@ def decode_word3(df, nav, svid):
     e.crs  = df.read(16)  # crs
     e.se5b = df.read( 8)  # SISA(E1, E5b)
 
-def decode_word4(df, nav, svid):
+def decode_word4(df: BitStream, nav: libnav.NavGal, svid: int) -> None:
     ''' decodes word 4 and modifies ephemeris e
     '''
     e = nav.eph[svid-1]    # ephemeris for the satellite svid
@@ -134,7 +134,7 @@ def decode_word4(df, nav, svid):
     e.af2   = df.read( 6)  # af2
     df.pos += 2            # spare
 
-def decode_word5(df, nav, svid):
+def decode_word5(df: BitStream, nav: libnav.NavGal, svid: int) -> None:
     ''' decodes word 5 and modifies ephemeris e
     '''
     e = nav.eph[svid-1]     # ephemeris for the satellite svid
@@ -152,7 +152,7 @@ def decode_word5(df, nav, svid):
     nav.tow  = df.read(20)  # time of week
     df.pos += 23            # spare
 
-def decode_word6(df, nav):
+def decode_word6(df: BitStream, nav: libnav.NavGal) -> None:
     ''' decodes word 6 and modifies ephemeris e
     '''
     nav.a0    = df.read(32)  # A0
@@ -166,7 +166,7 @@ def decode_word6(df, nav):
     nav.tow   = df.read(20)  # time of week
     df.pos += 3              # spare
 
-def decode_word7(df, nav):
+def decode_word7(df: BitStream, nav: libnav.NavGal) -> None:
     ''' decodes word 7 and modifies almanac nav
     '''
     nav.ioda  = df.read( 4)    # issue of data - almanac
@@ -182,7 +182,7 @@ def decode_word7(df, nav):
     a1.omgd = df.read(11)      # omgd
     a1.m0   = df.read(16)      # m0
 
-def decode_word8(df, nav):
+def decode_word8(df: BitStream, nav: libnav.NavGal) -> None:
     ''' decodes word 8 and modifies almanac nav
     '''
     nav.ioda = df.read( 4)         # issue of data - almanac
@@ -204,7 +204,7 @@ def decode_word8(df, nav):
     a2.omgd = df.read(11)          # omgd
     df.pos += 1                    # spare
 
-def decode_word9(df, nav):
+def decode_word9(df: BitStream, nav: libnav.NavGal) -> None:
     ''' decodes word 9 and modifies almanac nav
     '''
     nav.ioda = df.read( 4)     # issue of data - almanac
@@ -226,7 +226,7 @@ def decode_word9(df, nav):
     a3.omg  = df.read(16)      # omg
     a3.di   = df.read(11)      # delta_i
 
-def decode_word10(df, nav):
+def decode_word10(df: BitStream, nav: libnav.NavGal) -> None:
     ''' decodes word 10 and modifies almanac nav
     '''
     nav.ioda = df.read( 4)           # issue of data - almanac
@@ -246,7 +246,7 @@ def decode_word10(df, nav):
     nav.t0g  = df.read( 8)           # t_0G
     nav.wn0g = df.read( 6)           # WN_0G
 
-def decode_word16(df, nav, svid):
+def decode_word16(df: BitStream, nav: libnav.NavGal, svid: int) -> None:
     ''' decodes reduced CED 
     '''
     e = nav.eph[svid-1]   # ephemeris for the satellite svid
@@ -259,7 +259,7 @@ def decode_word16(df, nav, svid):
     e.af0  = df.read(22)  # af0
     e.af1  = df.read( 6)  # af1
 
-def decode_fec2(df, nav, wt):
+def decode_fec2(df: BitStream, nav: libnav.NavGal, wt: int) -> None:
     ''' returns decoded values
     '''
     if wt == 17:
@@ -281,7 +281,7 @@ def decode_fec2(df, nav, wt):
     else:
         raise Exception(f"word type for FEC2 should be either 17, 18, 19, 20 ({wt})")
 
-def decode_word0(df, nav):
+def decode_word0(df: BitStream, nav: libnav.NavGal) -> None:
     ''' returns decoded values
     '''
     nav.time  = df.read( 2)  # time
@@ -289,7 +289,7 @@ def decode_word0(df, nav):
     nav.wn    = df.read(12)  # week number
     nav.tow   = df.read(20)  # time of week
 
-def decode_word22(df, nav):
+def decode_word22(df: BitStream, nav: libnav.NavGal) -> None:
     ''' returns decoded message
         I/NAV ARAIM integrity support message (ISM), ref.[1], sect.4.3.7
     '''
@@ -297,10 +297,10 @@ def decode_word22(df, nav):
     nav.gnss_ism = df.read(87)  # specific ISM content
     nav.crc      = df.read(32)  # ISM CRC
     if   nav.gnss_id.u == 0:    # test ISM I/NAV
-        libtrace.info(f"Test gnss_ism={(nav.gnss_ism + bitstring.Bits(1)).hex} crc={nav.crc.hex}")
+        libtrace.info(f"Test gnss_ism={(nav.gnss_ism + BitStream(1)).hex} crc={nav.crc.hex}")
         return
     elif nav.gnss_id.u != 1:          # not Galileo
-        libtrace.info(f"gnss_id={nav.gnss_id} gnss_ism={(nav.gnss_ism + bitstring.Bits(1)).hex} crc={nav.crc.hex}")
+        libtrace.info(f"gnss_id={nav.gnss_id} gnss_ism={(nav.gnss_ism + BitStream(1)).hex} crc={nav.crc.hex}")
         return
     nav.slid = nav.gnss_ism.read(3).u # service level ID
     ism  = nav.gnss_ism.read( 84 )    # integrity support message content
@@ -323,7 +323,7 @@ def decode_word22(df, nav):
         msg = f"GAL level={nav.slid+1} ism={ism.hex} crc={nav.crc.hex}"
     libtrace.info(msg)
 
-def decode_word44(df, nav):
+def decode_word44(df: BitStream, nav: libnav.NavGal) -> None:
     ''' returns decoded message
         Galileo Timing Service Message, ref.[2], Table 5 (p.5)
     '''
@@ -338,7 +338,7 @@ def decode_word44(df, nav):
     msg += f'\nUTC: {TSM_STAT_UTC[sl]}'
     libtrace.info(msg)
 
-def decode_word63():
+def decode_word63() -> None:
     ''' returns decoded message
     '''
     pass
@@ -347,14 +347,14 @@ class GalInav:
     sar_sl     = [0 for _ in range(libnav.N_GALSAT)]  # SAR (search and rescue) short/long identifier
     sar_part   = [0 for _ in range(libnav.N_GALSAT)]  # SAR part number, 0=not ready
     sar_code   = [0 for _ in range(libnav.N_GALSAT)]  # SAR message code
-    sar_beacon = [bitstring.BitStream() for _ in range(libnav.N_GALSAT)]  # SAR data
-    sar_param  = [bitstring.BitStream() for _ in range(libnav.N_GALSAT)]  # SAR parameter
+    sar_beacon = [BitStream() for _ in range(libnav.N_GALSAT)]  # SAR data
+    sar_param  = [BitStream() for _ in range(libnav.N_GALSAT)]  # SAR parameter
 
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.nav  = libnav.NavGal(trace)  # navigation messages
 
-    def decode_inav(self, svid, inav):
+    def decode_inav(self, svid: int, inav: BitStream) -> str:
         ''' returns decoded message
             svid: 1-36
             inav: 228-bit long
@@ -381,7 +381,7 @@ class GalInav:
         elif  ssp.hex == 'fd': msg += '     '
         else: msg += self.trace.msg(0, f'SSP? ({ssp.hex}) ', fg='red')
 # --- data check ---
-        frame = (bitstring.Bits('uint4=0') + inav[0:196]).tobytes()
+        frame = (BitStream('uint4=0') + inav[0:196]).tobytes()
         crc_frame = libqzsl6tool.rtk_crc24q(frame, len(frame))
         if crc_frame != crc.tobytes():
             return msg + self.trace.msg(0, f'Word {wt:2d} CRC error: {crc_frame.hex()} != {crc.hex}', fg='red')
@@ -423,13 +423,13 @@ class GalInav:
         msg += self.decode_sar(svid, sar)
         return msg
 
-    def decode_osnma(self, svid, osnma):
+    def decode_osnma(self, svid: int, osnma: BitStream) -> str:
         ''' not implemented
             open service navigation message authentication (OSNMA)
         '''
         return ''
 
-    def decode_sar(self, svid, sar):
+    def decode_sar(self, svid: int, sar: BitStream) -> str:
         ''' returns when there is a decoded message
             search and rescue (SAR), ref.[1], sect.4.3.8
         '''
@@ -446,8 +446,8 @@ class GalInav:
         if sl.u != self.sar_sl[svid]:     # disagreement in current and previous short/long ident.
             self.sar_part  [svid] = 0     # clear all states
             self.sar_sl    [svid] = sl.u
-            self.sar_beacon[svid] = bitstring.BitStream()
-            self.sar_param [svid] = bitstring.BitStream()
+            self.sar_beacon[svid] = BitStream()
+            self.sar_param [svid] = BitStream()
             return ""
         self.sar_part[svid] += 1
         msg = f"\nSAR E{svid:02d} {'long' if self.sar_sl else 'short'} part {self.sar_part[svid]}"
@@ -461,8 +461,8 @@ class GalInav:
                 msg += f' beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
                 self.sar_part  [svid] = 0  # clear all states
                 self.sar_sl    [svid] = sl.u
-                self.sar_beacon[svid] = bitstring.BitStream()
-                self.sar_param [svid] = bitstring.BitStream()
+                self.sar_beacon[svid] = BitStream()
+                self.sar_param [svid] = BitStream()
             return msg
         self.sar_param[svid] += data  # message parts 5-8 are for parameter
         if self.sar_part[svid] < 8:   # SAR long message
@@ -470,8 +470,8 @@ class GalInav:
         msg += f' beacon={self.sar_beacon[svid].hex} code={self.sar_code[svid]} param={self.sar_param[svid].hex}'
         self.sar_part  [svid] = 0  # clear all states
         self.sar_sl    [svid] = sl.u
-        self.sar_beacon[svid] = bitstring.BitStream()
-        self.sar_param [svid] = bitstring.BitStream()
+        self.sar_beacon[svid] = BitStream()
+        self.sar_param [svid] = BitStream()
         return msg
 
 
@@ -488,7 +488,7 @@ if __name__ == '__main__':
     try:
         raw = sys.stdin.buffer.read(30)
         while raw:
-            payload = bitstring.ConstBitStream(raw)
+            payload = BitStream(raw)
             svid = payload.read(8).u
             inav = payload.read(LEN_INAV)
             payload.pos += 4  # spare

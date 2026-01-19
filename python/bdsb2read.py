@@ -4,7 +4,7 @@
 # bdsb2read.py: BeiDou B2b message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2024-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2024-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -26,6 +26,7 @@ PREAMBLE_BCNAV3 = b'\xeb\x90'  # preamble for BDS B2b message
 import argparse
 import os
 import sys
+from typing import TextIO
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
@@ -34,7 +35,7 @@ import libssr
 import libtrace
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     This code needs bitstring module.
@@ -43,7 +44,7 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 
-def slot2satname(slot):
+def slot2satname(slot: int) -> str:
     ''' returns satellite name from mask slot
         slot: satellite slot position
             slot   1- 63: BDS
@@ -66,9 +67,9 @@ class BdsB2():
     epoch  =  0  # epoch in second within one BDT day
     iodssr = -1  # issue of data indicating configuration change of data generation
     iodp   = -1  # issue of data indicating the PRN mask change
-    mask   = bitstring.BitStream(255)  # satellite mask
+    mask   = BitStream(255)  # satellite mask
 
-    def __init__(self, trace, stat):
+    def __init__(self, trace: libtrace.Trace, stat: bool) -> None:
         self.trace = trace
         self.stat  = stat
         self.ssr   = libssr.Ssr(trace)
@@ -77,8 +78,8 @@ class BdsB2():
         if self.stat:
             self.ssr.show_cssr_stat()
 
-    def decode(self, raw, prn_s):
-        rawb = bitstring.ConstBitStream(raw)
+    def decode(self, raw: bytes, prn_s: int) -> str | None:
+        rawb= BitStream(raw)
         preamble   = rawb.read( 16)
         prn        = rawb.read(  6).u
         rawb.pos   += 6  # reserved
@@ -96,7 +97,7 @@ class BdsB2():
             self.trace.show(0, msg)
             self.trace.show(2, mesdata.hex)
             return
-        pad = bitstring.Bits('uint2=0')  # padding for byte alignment
+        pad = BitStream('uint2=0')  # padding for byte alignment
         frame = (pad + mestype + mesdata).tobytes()
         crc_test = libqzsl6tool.rtk_crc24(frame)
         if crc.tobytes() != crc_test:
@@ -120,7 +121,7 @@ class BdsB2():
         self.trace.show(0, msg)
         # self.trace.show(2,  mesdata.hex)
 
-    def decode_b2b_1(self, mesdata):
+    def decode_b2b_1(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 1
             satellite mask
         '''
@@ -141,7 +142,7 @@ class BdsB2():
         msg += self.trace.msg(2, f'\nMask: {self.mask.bin}')
         return msg
 
-    def decode_b2b_2(self, mesdata):
+    def decode_b2b_2(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 2
             satellite orbit correction and user range accuracy index
         '''
@@ -167,7 +168,7 @@ class BdsB2():
         mesdata.pos += 19  # reserved
         return msg
 
-    def decode_b2b_3(self, mesdata):
+    def decode_b2b_3(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 3
             differential code bias
         '''
@@ -191,7 +192,7 @@ class BdsB2():
                 msg += self.trace.msg(1, f'\n{satname} {libssr.sigmask2signame_b2b(satsys, sigcode):{libssr.FMT_GSIG}}      {cb*0.017:{libssr.FMT_CB}}')
         return msg
 
-    def decode_b2b_4(self, mesdata):
+    def decode_b2b_4(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 4
             satellite clock correction
         '''
@@ -222,7 +223,7 @@ class BdsB2():
         mesdata.pos += 10  # reserved
         return msg
 
-    def decode_b2b_5(self, mesdata):
+    def decode_b2b_5(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 5
             user range accuracy index
         '''
@@ -251,7 +252,7 @@ class BdsB2():
         mesdata.pos += 6  # reserved
         return msg
 
-    def decode_b2b_6(self, mesdata):
+    def decode_b2b_6(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 6
             clock coreection and orbit correction - combination 1
         '''
@@ -300,7 +301,7 @@ class BdsB2():
                 msg += self.trace.msg(1, f'{accuracy:{libssr.FMT_URA}}')
         return msg
 
-    def decode_b2b_7(self, mesdata):
+    def decode_b2b_7(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 7
             clock coreection and orbit correction - combination 2
         '''
@@ -343,7 +344,7 @@ class BdsB2():
             msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr} {radial*0.0016:{libssr.FMT_ORB}} {along*0.0064:{libssr.FMT_ORB}} {cross*0.0064:{libssr.FMT_ORB}} {libssr.ura2dist(urai):{libssr.FMT_URA}}')
         return msg
 
-    def decode_b2b_10(self, mesdata):
+    def decode_b2b_10(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 10
             ephemeris, DIF1, SIF1, AIF1, SISMA
         '''
@@ -378,7 +379,7 @@ class BdsB2():
         msg = self.trace.msg(0, f'EPH  {libssr.epoch2timedate(sow)} TOE={toe} sattype={sattype}', fg='cyan')
         return msg
 
-    def decode_b2b_30(self, mesdata):
+    def decode_b2b_30(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 30
             Clock, TGD, Ionosphere, BDT-UTC, EOP, SISA, HS
         '''
@@ -431,7 +432,7 @@ class BdsB2():
         msg = self.trace.msg(0, f'CLK  {libgnsstime.gps2utc(wn, sow, "BDS")}', fg='cyan')
         return msg
 
-    def decode_b2b_40(self, mesdata):
+    def decode_b2b_40(self, mesdata: BitStream) -> str:
         ''' decode B2b message type 40
             BGT0, MidiAlmana, WNa
         '''
@@ -473,7 +474,7 @@ class BdsB2():
         msg = self.trace.msg(0, f'ALM  {libgnsstime.gps2utc(wn0bgto, t0bgto, "BDS")}', fg='cyan')
         return msg
 
-    def decode_b2b_63(self, mesdata):
+    def decode_b2b_63(self, mesdata: BitStream) -> str:
         ''' decode B2b null message type 63
             null message
         '''

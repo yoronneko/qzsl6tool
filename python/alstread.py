@@ -4,7 +4,7 @@
 # alstread.py: Allystar HD9310 option C raw data read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -15,6 +15,7 @@
 import argparse
 import os
 import sys
+from typing import TextIO
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
@@ -27,7 +28,7 @@ class AllystarReceiver:
     last_gpst = 0    # last received GPS time
     l6        = b''  # L6 message
 
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace):
         self.trace = trace
 
     def read(self):  # ref. [1]
@@ -65,7 +66,7 @@ class AllystarReceiver:
         if flag & 0x04                         : self.err += "TOW "
         return True
 
-    def select_sat(self, s_prn):
+    def select_sat(self, s_prn: int) -> None:
         ''' selects satellite and displays message '''
         self.p_prn  = 0    # PRN    of satellite that has the strongest C/No
         self.p_snr  = 0    # C/No   of satellite that has the strongest C/No

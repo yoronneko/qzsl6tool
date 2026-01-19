@@ -1,5 +1,9 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.6 (2026-01-19)
+
+- CLAS transmission pattern (qzsl6read.py)
+
 ## ver.0.1.5 (2025-06-08)
 
 - Version display (all apps)

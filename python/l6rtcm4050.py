@@ -4,7 +4,7 @@
 # l6rtcm4050.py: QZS L6 message to RTCM message type 4050 conversion
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2024-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2024-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -23,7 +23,7 @@ import libtrace
 from   rtcmread import send_rtcm
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     This code needs bitstring module.
@@ -49,19 +49,18 @@ def write_rtcm4050(l6msg):
         l6msg: 2000 bit (250 byte)
         rtcm:  1776 bit (222 byte)
     '''
-    l6 = bitstring.BitStream(l6msg)
+    l6 = BitStream(l6msg)
     l6.pos += 32  # Preamble 0x1ACFFC1D
     prn   = l6.read(8)  # PRN number
     mtid  = l6.read(8)  # Message type ID
     alert = l6.read(1)  # Alert flag
-    rtcm  =  bitstring.BitArray()                     # RTCM message type 4050
-    rtcm  += bitstring.Bits(uint=4050,    length=12)  # message type 4050
-    rtcm  += bitstring.Bits(uint=0,       length= 4)  # reserved
-    rtcm  += bitstring.Bits(uint=0,       length=20)  # TOW (time of week), but it is unknown
-    rtcm  += bitstring.Bits(uint=0,       length= 4)  # number of correction error bits, but it is also unknown
-    rtcm  += bitstring.Bits(uint=prn.u,   length= 8)  # pseudo-random noise number
-    rtcm  += bitstring.Bits(uint=mtid.u,  length= 8)  # CSSR message type ID (4073)
-    rtcm  += bitstring.Bits(uint=alert.u, length= 1)  # alert flag
+    rtcm   = BitStream(uint=4050,    length=12)  # message type 4050
+    rtcm  += BitStream(uint=0,       length= 4)  # reserved
+    rtcm  += BitStream(uint=0,       length=20)  # TOW (time of week), but it is unknown
+    rtcm  += BitStream(uint=0,       length= 4)  # number of correction error bits, but it is also unknown
+    rtcm  += BitStream(uint=prn.u,   length= 8)  # pseudo-random noise number
+    rtcm  += BitStream(uint=mtid.u,  length= 8)  # CSSR message type ID (4073)
+    rtcm  += BitStream(uint=alert.u, length= 1)  # alert flag
     rtcm  += l6[49:-256]                              # L6 message without preamble and RS error correction bits
     send_rtcm(sys.stdout, rtcm)
 

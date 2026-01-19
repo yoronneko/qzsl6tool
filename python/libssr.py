@@ -4,7 +4,7 @@
 # libssr.py: library for SSR and compact SSR message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi
+# Copyright (c) 2022-2026 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -34,7 +34,7 @@ import sys
 import libtrace
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     This code needs bitstring module.
@@ -95,7 +95,7 @@ CLASGRID   = [       # CLAS grid, [location, number of grid, ([lat, lon]), ..., 
 ["ISLAND (OKINOSHIMA)", 1, [(20.44, 136.09),],],
 ]
 
-def epoch2time(epoch):
+def epoch2time(epoch: int) -> str:
     ''' convert epoch to time
         epoch: epoch in second (0-86400)
     '''
@@ -105,11 +105,11 @@ def epoch2time(epoch):
     return f'{hour:02d}:{min:02d}:{sec:02d}'
     # return f'{hour:02d}:{min:02d}:{sec:02d} ({epoch})'
 
-def epoch2timedate(epoch):
+def epoch2timedate(epoch: int) -> str:
     ''' convert epoch to time plus date'''
     return f'{epoch2time(epoch%86400)}+{epoch//86400}'
 
-def gnssid2satsys(gnssid):
+def gnssid2satsys(gnssid: int) -> str:
     ''' convert gnss id to satellite system '''
     if   gnssid == 0: satsys = 'G'  # GPS
     elif gnssid == 1: satsys = 'R'  # GLONASS
@@ -121,7 +121,7 @@ def gnssid2satsys(gnssid):
     else            : satsys = '?'  # reserved
     return satsys
 
-def sigmask2signame(satsys, sigmask):
+def sigmask2signame(satsys: str, sigmask: int) -> str:
     ''' convert satellite system and signal mask to signal name '''
     signame = f'satsys={satsys} sigmask={sigmask}'
     if satsys == 'G':
@@ -144,7 +144,7 @@ def sigmask2signame(satsys, sigmask):
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
     return signame
 
-def sigmask2signame_b2b(satsys, sigmask):
+def sigmask2signame_b2b(satsys: str, sigmask: int) -> str:
     ''' convert satellite system and signal mask to signal name '''
     signame = f'satsys={satsys} sigmask={sigmask}'
     if satsys == 'G':
@@ -160,7 +160,7 @@ def sigmask2signame_b2b(satsys, sigmask):
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
     return signame
 
-def ura2dist(ura):
+def ura2dist(ura: BitStream) -> float:
     ''' converts user range accuracy (URA) code to accuracy in distance [mm] '''
     dist = 0.0
     if   ura.b == '000000':   # undefined or unknown
@@ -198,10 +198,10 @@ class Ssr:
     stat_both  = 0      # stat: bit number of other information
     stat_bnull = 0      # stat: bit number of null
 
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
 
-    def ssr_decode_head(self, payload, satsys, mtype):
+    def ssr_decode_head(self, payload: BitStream, satsys: str, mtype: str) -> str:
         ''' stores ssr_epoch, ssr_interval, ssr_mmi, ssr_iod, ssr_nsat'''
         # bit format of ssr_epoch changes according to satellite system
         bw = 20 if satsys != 'R' else 17
@@ -222,7 +222,7 @@ class Ssr:
         msg += f' IODSSR={self.ssr_iod:{FMT_IODSSR}} Provider={self.ssr_pid} Solution={self.ssr_sid}'
         return self.trace.msg(2, msg)
 
-    def ssr_decode_orbit(self, payload, satsys):
+    def ssr_decode_orbit(self, payload: BitStream, satsys: str) -> str:
         ''' decodes SSR orbit correction and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 4  # ref. [2]
@@ -244,7 +244,7 @@ class Ssr:
         msg = self.trace.msg(0, f"{strsat}(IOD={self.ssr_iod} nsat={self.ssr_nsat}{' cont.' if self.ssr_mmi else ''})") + msg1
         return msg
 
-    def ssr_decode_clock(self, payload, satsys):
+    def ssr_decode_clock(self, payload: BitStream, satsys: str) -> str:
         ''' decodes SSR clock correction and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 4  # ref. [2]
@@ -262,7 +262,7 @@ class Ssr:
         msg = self.trace.msg(0, f"{strsat}(nsat={self.ssr_nsat} iod={self.ssr_iod}{' cont.' if self.ssr_mmi else ''})") + msg1
         return msg
 
-    def ssr_decode_code_bias(self, payload, satsys):
+    def ssr_decode_code_bias(self, payload: BitStream, satsys: str) -> str:
         ''' decodes SSR code bias and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 4   # ref. [2]
@@ -282,7 +282,7 @@ class Ssr:
         msg = self.trace.msg(0, f"{strsat}(IOD={self.ssr_iod} nsat={self.ssr_nsat}{' cont.' if self.ssr_mmi else ''})") + msg1
         return msg
 
-    def ssr_decode_ura(self, payload, satsys):
+    def ssr_decode_ura(self, payload: BitStream, satsys: str) -> str:
         ''' decodes SSR user range accuracy and returns string '''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 4  # ref. [2]
@@ -300,7 +300,7 @@ class Ssr:
         msg = self.trace.msg(0, f"{strsat}(IOD={self.ssr_iod} nsat={self.ssr_nsat}{' cont.' if self.ssr_mmi else ''})") + msg1
         return msg
 
-    def ssr_decode_hr_clock(self, payload, satsys):
+    def ssr_decode_hr_clock(self, payload: BitStream, satsys: str) -> str:
         '''decodes SSR high rate clock and returns string'''
         # bit format of satid changes according to satellite system
         if   satsys == 'J': bw = 4
@@ -316,7 +316,7 @@ class Ssr:
         msg = self.trace.msg(0, f"{strsat}(IOD={self.ssr_iod} nsat={self.ssr_nsat}{' cont.' if self.ssr_mmi else ''})") + msg1
         return msg
 
-    def decode_cssr(self, payload):
+    def decode_cssr(self, payload: BitStream) -> str:
         ''' calls cssr decode functions and returns decoded string '''
         if not self.decode_cssr_head(payload):
             return 'Could not decode CSSR header'
@@ -342,7 +342,7 @@ class Ssr:
             msg += f' Epoch={etime} ({self.hepoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr}{" cont." if self.mmi else ""}'
         return msg
 
-    def show_cssr_stat(self):
+    def show_cssr_stat(self) -> None:
         bit_total = self.stat_bsat + self.stat_bsig + self.stat_both + \
                 self.stat_bnull
         msg = f'stat n_sat {self.stat_nsat} n_sig {self.stat_nsig} ' + \
@@ -351,7 +351,7 @@ class Ssr:
               f'bit_total {bit_total}'
         self.trace.show(0, msg)
 
-    def decode_cssr_head(self, payload):
+    def decode_cssr_head(self, payload: BitStream) -> bool:
         ''' decode CSSR header and returns True if success '''
         self.msgnum  = 0
         self.subtype = 0
@@ -385,7 +385,7 @@ class Ssr:
         self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}", fg='red')
         return False
 
-    def _decode_mask(self, payload, ssr_type):
+    def _decode_mask(self, payload: BitStream, ssr_type: str) -> bool:
         ''' decode mask information and returns True if success
             ssr_type: cssr or has
         '''
@@ -394,13 +394,13 @@ class Ssr:
         len_payload = len(payload)
         if len_payload < payload.pos + 4:
             return False
-        ngnss = payload.read('u4')  # number of GNSS
+        ngnss = payload.read(4).u  # number of GNSS
         if len_payload < payload.pos + 61 * ngnss:
             return False
         satsys   = [''               for _ in range(ngnss)]
         nsatmask = [0                for _ in range(ngnss)]
         nsigmask = [0                for _ in range(ngnss)]
-        cellmask = [bitstring.Bits() for _ in range(ngnss)]
+        cellmask = [BitStream() for _ in range(ngnss)]
         navmsg   = [0                for _ in range(ngnss)]
         gsys     = {}
         gsig     = {}
@@ -429,7 +429,7 @@ class Ssr:
             if cmavail:
                 bcellmask = payload.read(ncell)
             else:
-                bcellmask = bitstring.ConstBitStream('0b1') * ncell
+                bcellmask = BitStream('0b1') * ncell
             nm = 0  # navigation message (HAS)
             if ssr_type == 'has':
                 nm = payload.read(3).u
@@ -477,15 +477,15 @@ class Ssr:
         self.stat_bnull = 0
         return True
 
-    def decode_cssr_st1(self, payload):
+    def decode_cssr_st1(self, payload: BitStream) -> bool:
         ''' decode CSSR ST1 mask message and returns True if success '''
         return self._decode_mask(payload, 'cssr')
 
-    def decode_has_mask(self, has_msg):
+    def decode_has_mask(self, has_msg: BitStream) -> bool:
         ''' decode HAS mask message and returns True if success '''
         return self._decode_mask(has_msg, 'has')
 
-    def decode_cssr_st2(self, payload):
+    def decode_cssr_st2(self, payload: BitStream) -> bool:
         ''' decode CSSR ST2 orbit message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -506,7 +506,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def decode_has_orbit(self, payload):
+    def decode_has_orbit(self, payload: BitStream) -> bool:
         ''' decode HAS orbit message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -530,7 +530,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def decode_cssr_st3(self, payload):
+    def decode_cssr_st3(self, payload: BitStream) -> bool:
         ''' decode CSSR ST3 clock message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -547,7 +547,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def decode_has_ckful(self, payload):
+    def decode_has_ckful(self, payload: BitStream) -> bool:
         ''' decode HAS clock full message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -572,7 +572,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def decode_has_cksub(self, payload):
+    def decode_has_cksub(self, payload: BitStream) -> bool:
         ''' decode HAS clock subset message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -599,7 +599,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def _decode_code_bias(self, payload, ssr_type):
+    def _decode_code_bias(self, payload: BitStream, ssr_type: str) -> bool:
         ''' decode code bias information and returns True if success
             ssr_type: cssr or has
         '''
@@ -632,15 +632,15 @@ class Ssr:
         self.stat_bsig += payload.pos - stat_pos
         return True
 
-    def decode_cssr_st4(self, payload):
+    def decode_cssr_st4(self, payload: BitStream) -> bool:
         ''' decode CSSR ST4 code bias message and returns True if success '''
         return self._decode_code_bias(payload, 'cssr')
 
-    def decode_has_cbias(self, payload):
+    def decode_has_cbias(self, payload: BitStream) -> bool:
         ''' decode HAS code bias message and returns True if success '''
         return self._decode_code_bias(payload, 'has')
 
-    def decode_cssr_st5(self, payload):
+    def decode_cssr_st5(self, payload: BitStream) -> bool:
         ''' decode CSSR ST5 phase bias message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -663,7 +663,7 @@ class Ssr:
         self.stat_bsig += payload.pos - stat_pos
         return True
 
-    def decode_has_pbias(self, payload):
+    def decode_has_pbias(self, payload: BitStream) -> bool:
         ''' decode HAS phase bias message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -689,7 +689,7 @@ class Ssr:
         self.stat_bsig += payload.pos - stat_pos
         return True
 
-    def decode_cssr_st6(self, payload):
+    def decode_cssr_st6(self, payload: BitStream) -> bool:
         ''' decode CSSR ST6 network bias message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -701,7 +701,7 @@ class Ssr:
         svmask = {}
         for satsys in self.satsys:
             ngsys = len(self.gsys[satsys])
-            svmask[satsys] = bitstring.Bits('0b1')*ngsys
+            svmask[satsys] = BitStream('0b1')*ngsys
         msg1 = f"ST6 code_bias={'on' if f_cb else 'off'} phase_bias={'on' if f_pb else 'off'} network_bias={'on' if f_nb else 'off'}"
         msg1 += "\nST6 SAT signal_name    "
         if f_cb:
@@ -746,7 +746,7 @@ class Ssr:
         self.stat_bsig += payload.pos - stat_pos - 3
         return True
 
-    def decode_cssr_st7(self, payload):
+    def decode_cssr_st7(self, payload: BitStream) -> bool:
         ''' decode CSSR ST7 user range accuracy message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -764,7 +764,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def decode_cssr_st8(self, payload):
+    def decode_cssr_st8(self, payload: BitStream) -> bool:
         ''' decode CSSR ST8 STEC message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -823,7 +823,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos - 7
         return True
 
-    def decode_cssr_st9(self, payload):
+    def decode_cssr_st9(self, payload: BitStream) -> bool:
         ''' decode CSSR ST9 trop correction message and returns True if success '''
         len_payload = len(payload)
         if len_payload < payload.pos + 2 + 1 + 5:
@@ -874,7 +874,7 @@ class Ssr:
         self.stat_both += payload.pos
         return True
 
-    def decode_cssr_st10(self, payload):
+    def decode_cssr_st10(self, payload: BitStream) -> bool:
         ''' decode CSSR ST10 auxiliary message and returns True if success '''
         len_payload = len(payload)
         if len_payload < payload.pos + 5:
@@ -889,7 +889,7 @@ class Ssr:
         self.stat_both += payload.pos
         return True
 
-    def decode_cssr_st11(self, payload):
+    def decode_cssr_st11(self, payload: BitStream) -> bool:
         ''' decode CSSR ST11 network correction message and returns True if success '''
         len_payload = len(payload)
         stat_pos    = payload.pos
@@ -902,7 +902,7 @@ class Ssr:
         svmask = {}
         for satsys in self.satsys:
             ngsys = len(self.gsys[satsys])
-            svmask[satsys] = bitstring.Bits('0b1')*ngsys
+            svmask[satsys] = BitStream('0b1')*ngsys
         if f_n:
             if len_payload < payload.pos + 5:
                 return False
@@ -961,7 +961,7 @@ class Ssr:
             self.stat_bsat -= 5
         return True
 
-    def decode_cssr_st12(self, payload):
+    def decode_cssr_st12(self, payload: BitStream) -> bool:
         ''' decode CSSR ST12 network and troposphere corrections message and returns True if success '''
         len_payload = len(payload)
         if len_payload < payload.pos + 2 + 2 + 5 + 6:
@@ -1074,7 +1074,7 @@ class Ssr:
         self.stat_bsat += payload.pos - stat_pos
         return True
 
-    def decode_mdcppp_iono_head(self, payload):
+    def decode_mdcppp_iono_head(self, payload: BitStream) -> bool:
         ''' decode MADOCA-PPP ionosphere correction header and returns True if success '''
         self.msgnum  = 0
         self.subtype = 0
@@ -1122,7 +1122,7 @@ class Ssr:
         self.trace.show(0, f"MDCCPPP-Iono msgnum should be 1 or 2 ({self.msgnum}), ST{self.subtype}, size {len(payload.bin)} bits\nMDCPPP dump: {payload.bin}", fg='red')
         return False
 
-    def decode_mdcppp_mt1(self, payload):  # ref. [3]
+    def decode_mdcppp_mt1(self, payload: BitStream) -> bool:  # ref. [3]
         ''' decodes MADOCA-PPP MT1 messages and returns True if success '''
         len_payload = len(payload)
         msg1 = f'MT1 Epoch={epoch2timedate(self.epoch)} UI={CSSR_UI[self.ui]:2d}s({self.ui}) MMI={self.mmi} IODSSR={self.iodssr} Region={self.region_id}{"*" if self.region_alert else" "} {self.len_msg}bit {"cont." if self.mmi else ""} NumAreas={self.n_areas}'
@@ -1150,7 +1150,7 @@ class Ssr:
         self.trace.show(1, msg1)
         return True
 
-    def decode_mdcppp_mt2(self, payload):  # ref. [3]
+    def decode_mdcppp_mt2(self, payload: BitStream) -> bool:  # ref. [3]
         ''' decoding MADOCA-PPP MT2 messages and returns True if success '''
         len_payload = len(payload)
         bw = [                                  # bit width of a single STEC correction

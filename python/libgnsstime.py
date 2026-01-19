@@ -4,7 +4,7 @@
 # libgnsstime.py: GNSS time and universal coordinated time (UTC) conversion
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 
@@ -17,7 +17,7 @@ import libqzsl6tool
 
 FORMAT_DT = "%Y-%m-%d %H:%M:%S"
 
-def epoch_info(gsys):
+def epoch_info(gsys: str ='GPS') -> tuple[datetime.datetime, int, int]:
     ''' returns epoch leapsec, and rollover from GNSS's epoch
         gsys (GNSS system) is either GPS, GAL, or BDS'''
     if gsys == 'GPS':
@@ -36,14 +36,14 @@ def epoch_info(gsys):
         raise Exception(f'unknown satellite system: {gsys}')
     return epoch, leapsec, rollover
 
-def gps2utc(weekno, tow, gsys='GPS'):
+def gps2utc(weekno: int, tow: int, gsys: str ='GPS') -> str:
     epoch, leapsec, rollover = epoch_info(gsys)
     elapsed = datetime.timedelta(
         weeks   = weekno + rollover * 1024,
         seconds = tow - leapsec)
     return datetime.datetime.strftime(epoch + elapsed, FORMAT_DT)
 
-def utc2gps(current, gsys='GPS'):
+def utc2gps(current: datetime.datetime, gsys: str ='GPS') -> str:
     epoch, leapsec, rollover = epoch_info(gsys)
     elapsed = current - epoch + datetime.timedelta(seconds=leapsec)
     weekno  = elapsed.days // 7 - rollover * 1024
