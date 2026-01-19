@@ -4,13 +4,14 @@
 # libtrace.py: library for trace function
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2024 Satoshi Takahashi
+# Copyright (c) 2022-2026 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 
 import sys
+from typing import TextIO
 
-def fg_color(color='default'):  # foreground color
+def fg_color(color: str ='default') -> str:  # foreground color
     '''
     color:
         black, red, green, yellow, blue, magenta, cyan, white, default
@@ -28,7 +29,7 @@ def fg_color(color='default'):  # foreground color
         print(f"undefined foreground color: {color}", file=sys.stderr)
         sys.exit(1)
 
-def bg_color(color='default'):  # background color
+def bg_color(color: str ='default') -> str:  # background color
     '''
     color:
         black, red, green, yellow, blue, magenta, cyan, gray, default
@@ -46,7 +47,7 @@ def bg_color(color='default'):  # background color
         print(f"undefined background color: {color}", file=sys.stderr)
         sys.exit(1)
 
-def text_dec(style='default'):  # text decoration
+def text_dec(style: str ='default') -> str:  # text decoration
     '''
     style:
         default, bold, dark, italic, underline, bling, hblink, reverse, hide, strike
@@ -66,33 +67,33 @@ def text_dec(style='default'):  # text decoration
         sys.exit(1)
     return result
 
-def err(*args):
+def err(*args: object) -> None:
     print(fg_color('red'), end='', file=sys.stderr)
     for arg in args:
         print(arg, end='', file=sys.stderr)
     print(fg_color(), file=sys.stderr)
 
-def warn(*args):
+def warn(*args: object) -> None:
     print(fg_color('yellow'), end='', file=sys.stderr)
     for arg in args:
         print(arg, end='', file=sys.stderr)
     print(fg_color(), file=sys.stderr)
 
-def info(*args):
+def info(*args: object) -> None:
     print(fg_color('green'), end='', file=sys.stderr)
     for arg in args:
         print(arg, end='', file=sys.stderr)
     print(fg_color(), file=sys.stderr)
 
 class Trace:
-    def __init__(self, fp=sys.stdout, t_level=0, is_forced=False):
-        self.fp      = fp
-        self.t_level = t_level
-        self.colored = False
+    def __init__(self, fp: TextIO | None = sys.stdout, t_level: int = 0, is_forced: bool = False) -> None:
+        self.fp     : TextIO | None = fp
+        self.t_level: int           = t_level
+        self.colored: bool          = False
         if fp and (is_forced or fp.isatty()):
             self.colored = True
 
-    def msg(self, level, arg, fg='', bg='', dec=''):
+    def msg(self, level: int, arg: str, fg: str ='', bg: str ='', dec: str ='') -> str:
         '''
         returns colorize argument when level is lower than t_level
         arg: string to be output to self.fp
@@ -116,7 +117,7 @@ class Trace:
             if fg : message += fg_color()
         return message
 
-    def show(self, level, arg, fg='', bg='', dec='', end='\n'):
+    def show(self, level: int, arg: str, fg: str ='', bg: str ='', dec: str ='', end: str ='\n') -> None:
         '''
         prints colorize argument when level is lower than t_level
         arg: string to be output to self.fp

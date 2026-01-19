@@ -4,7 +4,7 @@
 # libqzsl6tool.py: library for SSR and compact SSR message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2025 Satoshi Takahashi
+# Copyright (c) 2025-2026 Satoshi Takahashi
 # Copyright (c) 2007-2020 by T.TAKASU
 #
 # The function of rtk_crc24q () is from rtkcmn.c of RTKLIB 2.4.3b34,
@@ -16,7 +16,7 @@
 #     v.2.4.3b34, Apr. 2020.
 #     https://github.com/tomojitakasu/RTKLIB
 
-VERSION = "0.1.5"
+VERSION = "0.1.6"
 
 # CRC24Q for RTCM3, (1+x)(x^23+x^17+x^13+x^12+x^11+x^9+x^8+x^7+x^5+x^3+1)
 # following code is from RTKLIB 2.4.3b34 [1], rtkcmn.c
@@ -56,18 +56,18 @@ tbl_CRC24Q = [
 0x42FA2F,0xC4B6D4,0xC82F22,0x4E63D9,0xD11CCE,0x575035,0x5BC9C3,0xDD8538
 ]
 
-def rtk_crc24q(buff, length):
-    crc = 0
+def rtk_crc24q(buff: bytes, length: int) -> bytes:
+    crc: int = 0
     for i in range(length):
         crc = ((crc << 8) & 0xffffff) ^ tbl_CRC24Q[(crc >> 16) ^ buff[i]]
     return crc.to_bytes(3, 'big')
 
-def rtk_crc24(data):
+def rtk_crc24(data: bytes) -> bytes:
     ''' calculate CRC24 for BDS B2b message
         g(x) = x^24 + x^23 + x^18 + x^17 + x^14 + x^11 + x^10 + x^7 + x^6 + x^5 + x^4 + x^3 + x + 1
         data:   data to be calculated
     '''
-    crc = 0
+    crc: int = 0
     for byte in data:
         crc ^= byte << 16
         for _ in range(8):
@@ -79,8 +79,8 @@ def rtk_crc24(data):
     return crc.to_bytes(3, 'big')
 
 
-def crc16_ccitt(data):
-    crc = 0
+def crc16_ccitt(data: bytes) -> bytes:
+    crc: int = 0
     polynomial = 0x1021
     for byte in data:
         crc ^= byte << 8
@@ -92,15 +92,15 @@ def crc16_ccitt(data):
             crc &= 0xffff
     return crc.to_bytes(2,'little')
 
-def checksum(payload):
-    csum1 = 0
-    csum2 = 0
+def checksum(payload: bytes) -> tuple[int, int]:
+    csum1: int = 0
+    csum2: int = 0
     for b in payload:
         csum1 = (csum1 + b    ) & 0xff
         csum2 = (csum1 + csum2) & 0xff
     return csum1, csum2
 
-def u4perm(inblk, outblk):
+def u4perm(inblk: bytes, outblk: bytearray) -> None:
     ''' permutation of endian for decode raw message '''
     if len(inblk) % 4 != 0:
         raise Exception(f"Septentrio raw u32 should be multiple of 4 (actual {len(inblk)}).")

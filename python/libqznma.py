@@ -4,7 +4,7 @@
 # libqznma.py: library for decoding QZNMA
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023-2024 Satoshi Takahashi
+# Copyright (c) 2023-2026 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -19,7 +19,7 @@ sys.path.append(__file__)
 import libtrace
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     This code needs bitstring module.
@@ -32,12 +32,12 @@ L_RESERVED = 543  # length of reserved bits in bits
 L_SIGNAT   = 512  # length of signature in bits
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
-        self.rds1 = bitstring.ConstBitStream()
-        self.rds2 = bitstring.ConstBitStream()
+        self.rds1 = BitStream()
+        self.rds2 = BitStream()
 
-    def decode(self, payload):
+    def decode(self, payload: BitStream) -> str:
         '''decode reformat digital signature (RDS) in L6E
         [1] p.67 Fig.6-52, 6-53, and 6-54'''
         if len(payload) != 1695:
@@ -47,12 +47,10 @@ class Qznma:
         reserved = payload.read(L_RESERVED)
         if reserved.any(1):
             self.trace.show(2, f"QZNMA reserved dump: {reserved.bin}")
-        message = '      '
-        message += self.decode_rds(rds1)
-        message += self.decode_rds(rds2)
+        message = ' ' + self.decode_rds(rds1) + self.decode_rds(rds2)
         return message
 
-    def decode_rds(self, rds):
+    def decode_rds(self, rds: BitStream) -> str:
         '''decodes reformat digital signature
         [1] p.43 Table 6-2 GPS LNAV RDS Message
         '''

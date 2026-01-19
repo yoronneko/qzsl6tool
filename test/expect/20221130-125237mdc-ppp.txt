@@ -1,7 +1,7 @@
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF0 DP0 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF0 DP0 (inactive) (inactive) 
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
 205 Hitachi-Ota:1  MADOCA-PPP  (syncing)
@@ -67,8 +67,8 @@ ST1 E33 E1B+C E5aI+Q
 ST1 E36 E1B+C E5aI+Q
 ST1 J02 L1C/A L1C(D+P) L2CM+L L5I+Q
 ST1 J03 L1C/A L1C(D+P) L2CM+L L5I+Q
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 Clk/Eph LNAV: ST1 ST2...
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 Clk/Eph LNAV: ST2...
 ST2 SAT IODE radial[m] along[m] cross[m]
 ST2 G01   52    0.2832  -1.1200   0.9856
 ST2 G03   66    0.1040  -0.6144  -0.3712
@@ -196,13 +196,13 @@ ST3 E36   0.309
 ST3 J02   1.598
 ST3 J03   0.882
 CSSR null data 562 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP3 (Clk/Eph LNAV) ST2 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP3 Clk/Eph LNAV: ST2 ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  QZNMA       SF1 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF1 DP5 (inactive) (inactive) 
 ST7 SAT URA[mm]
 ST7 G01    5.75
 ST7 G03   19.25
@@ -330,12 +330,12 @@ ST3 E36   0.310
 ST3 J02   1.598
 ST3 J03   0.882
 CSSR null data 319 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP1 (Clk/Eph LNAV) ST7 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP1 Clk/Eph LNAV: ST7 ST3
 CSSR null data 1695 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF2 DP2 (Clk/Eph LNAV) (null)
+204 Hitachi-Ota:1  MADOCA-PPP  SF2 DP2 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 (Clk/Eph LNAV) (null)
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 (Clk/Eph LNAV) ST4...
+204 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 Clk/Eph LNAV: (null)
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 Clk/Eph LNAV: ST4...
 ST4 SAT sinal_name      code_bias[m]
 ST4 G01 L1C/A                 -1.100
 ST4 G01 L1Z-tracking          -1.400
@@ -572,7 +572,7 @@ ST4 J03 L1C/A                  0.140
 ST4 J03 L1C(D+P)               0.140
 ST4 J03 L2CM+L                 0.240
 ST4 J03 L5I+Q                  0.140
-205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 (Clk/Eph LNAV) ST4 ST3...
+205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 Clk/Eph LNAV: ST4 ST3...
 ST3 SAT   c0[m]
 ST3 G01   0.131
 ST3 G03   1.494
@@ -637,13 +637,13 @@ ST3 E36   0.310
 ST3 J02   1.598
 ST3 J03   0.885
 CSSR null data 1496 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP3 (Clk/Eph LNAV) ST3
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP3 Clk/Eph LNAV: ST3
 CSSR null data 1695 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP4 (Clk/Eph LNAV) (null)
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP5 (Clk/Eph LNAV) (null)
-204 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP5 Clk/Eph LNAV: (null)
+204 Hitachi-Ota:1  QZNMA       SF3 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF3 DP5 (inactive) (inactive) 
 ST3 SAT   c0[m]
 ST3 G01   0.131
 ST3 G03   1.494
@@ -708,13 +708,13 @@ ST3 E36   0.310
 ST3 J02   1.598
 ST3 J03   0.885
 CSSR null data 728 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP1 (Clk/Eph LNAV) ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP1 Clk/Eph LNAV: ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP2 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP2 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP3 (Clk/Eph LNAV) (null)
-204 Hitachi-Ota:1  MADOCA-PPP  SF5 DP1 (Clk/Eph LNAV) ST5...
-204 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 (Clk/Eph LNAV) ST5...
+205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP3 Clk/Eph LNAV: (null)
+204 Hitachi-Ota:1  MADOCA-PPP  SF5 DP1 Clk/Eph LNAV: ST5...
+204 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 Clk/Eph LNAV: ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
 ST5 G01 L1C/A              -0.264       0
 ST5 G01 L1Z-tracking       -0.264       0
@@ -1015,13 +1015,13 @@ ST3 E36   0.310
 ST3 J02   1.597
 ST3 J03   0.874
 CSSR null data 86 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP3 (Clk/Eph LNAV) ST5 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP3 Clk/Eph LNAV: ST5 ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP4 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP5 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  QZNMA       SF5 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF5 DP5 (inactive) (inactive) 
 ST3 SAT   c0[m]
 ST3 G01   0.131
 ST3 G03   1.494
@@ -1086,11 +1086,11 @@ ST3 E36   0.310
 ST3 J02   1.598
 ST3 J03   0.869
 CSSR null data 728 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP1 (Clk/Eph LNAV) ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP1 Clk/Eph LNAV: ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP2 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP2 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 Clk/Eph LNAV: (null)
 ST1 G01 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
 ST1 G03 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
 ST1 G04 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
@@ -1153,8 +1153,8 @@ ST1 E33 E1B+C E5aI+Q
 ST1 E36 E1B+C E5aI+Q
 ST1 J02 L1C/A L1C(D+P) L2CM+L L5I+Q
 ST1 J03 L1C/A L1C(D+P) L2CM+L L5I+Q
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 Clk/Eph LNAV: ST1 ST2...
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 Clk/Eph LNAV: ST2...
 ST2 SAT IODE radial[m] along[m] cross[m]
 ST2 G01   52    0.2800  -1.1200   0.9856
 ST2 G03   66    0.1024  -0.6080  -0.3712
@@ -1282,13 +1282,13 @@ ST3 E36   0.309
 ST3 J02   1.597
 ST3 J03   0.869
 CSSR null data 562 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP3 (Clk/Eph LNAV) ST2 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP3 Clk/Eph LNAV: ST2 ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  QZNMA       SF1 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF1 DP5 (inactive) (inactive) 
 ST7 SAT URA[mm]
 ST7 G01    5.75
 ST7 G03   19.25
@@ -1416,12 +1416,12 @@ ST3 E36   0.309
 ST3 J02   1.597
 ST3 J03   0.870
 CSSR null data 319 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP1 (Clk/Eph LNAV) ST7 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP1 Clk/Eph LNAV: ST7 ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP2 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP2 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 (Clk/Eph LNAV) (null)
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 (Clk/Eph LNAV) ST4...
+205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP3 Clk/Eph LNAV: (null)
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP1 Clk/Eph LNAV: ST4...
 ST4 SAT sinal_name      code_bias[m]
 ST4 G01 L1C/A                 -1.100
 ST4 G01 L1Z-tracking          -1.400
@@ -1658,7 +1658,7 @@ ST4 J03 L1C/A                  0.140
 ST4 J03 L1C(D+P)               0.140
 ST4 J03 L2CM+L                 0.240
 ST4 J03 L5I+Q                  0.140
-205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 (Clk/Eph LNAV) ST4 ST3...
+205 Hitachi-Ota:1  MADOCA-PPP  SF3 DP2 Clk/Eph LNAV: ST4 ST3...
 ST3 SAT   c0[m]
 ST3 G01   0.128
 ST3 G03   1.491
@@ -1723,13 +1723,13 @@ ST3 E36   0.307
 ST3 J02   1.595
 ST3 J03   0.869
 CSSR null data 1496 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP3 (Clk/Eph LNAV) ST3
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP3 Clk/Eph LNAV: ST3
 CSSR null data 1695 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP4 (Clk/Eph LNAV) (null)
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+204 Hitachi-Ota:1  MADOCA-PPP  SF3 DP5 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  QZNMA       SF3 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF3 DP5 (inactive) (inactive) 
 ST3 SAT   c0[m]
 ST3 G01   0.128
 ST3 G03   1.491
@@ -1794,13 +1794,13 @@ ST3 E36   0.307
 ST3 J02   1.595
 ST3 J03   0.869
 CSSR null data 728 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP1 (Clk/Eph LNAV) ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP1 Clk/Eph LNAV: ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP2 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP2 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP3 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP1 (Clk/Eph LNAV) ST5...
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 (Clk/Eph LNAV) ST5...
+205 Hitachi-Ota:1  MADOCA-PPP  SF4 DP3 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP1 Clk/Eph LNAV: ST5...
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP2 Clk/Eph LNAV: ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
 ST5 G01 L1C/A              -0.264       0
 ST5 G01 L1Z-tracking       -0.264       0
@@ -2101,13 +2101,13 @@ ST3 E36   0.307
 ST3 J02   1.592
 ST3 J03   0.867
 CSSR null data 86 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP3 (Clk/Eph LNAV) ST5 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP3 Clk/Eph LNAV: ST5 ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP4 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  MADOCA-PPP  SF5 DP5 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  QZNMA       SF5 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF5 DP5 (inactive) (inactive) 
 ST3 SAT   c0[m]
 ST3 G01   0.130
 ST3 G03   1.493
@@ -2172,11 +2172,11 @@ ST3 E36   0.309
 ST3 J02   1.595
 ST3 J03   0.862
 CSSR null data 728 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP1 (Clk/Eph LNAV) ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP1 Clk/Eph LNAV: ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP2 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP2 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF6 DP3 Clk/Eph LNAV: (null)
 ST1 G01 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
 ST1 G03 L1C/A L1Z-tracking L2CM+L L2Z-tracking L5I+Q
 ST1 G04 L1C/A L1Z-tracking L1C(D+P) L2CM+L L2Z-tracking L5I+Q
@@ -2239,8 +2239,8 @@ ST1 E33 E1B+C E5aI+Q
 ST1 E36 E1B+C E5aI+Q
 ST1 J02 L1C/A L1C(D+P) L2CM+L L5I+Q
 ST1 J03 L1C/A L1C(D+P) L2CM+L L5I+Q
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 (Clk/Eph LNAV) ST1 ST2...
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 (Clk/Eph LNAV) ST2...
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP1 Clk/Eph LNAV: ST1 ST2...
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP2 Clk/Eph LNAV: ST2...
 ST2 SAT IODE radial[m] along[m] cross[m]
 ST2 G01   52    0.2768  -1.1200   0.9856
 ST2 G03   66    0.1008  -0.6080  -0.3712
@@ -2368,13 +2368,13 @@ ST3 E36   0.309
 ST3 J02   1.597
 ST3 J03   0.872
 CSSR null data 562 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP3 (Clk/Eph LNAV) ST2 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP3 Clk/Eph LNAV: ST2 ST3
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 (Clk/Eph LNAV) (null)
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP4 Clk/Eph LNAV: (null)
 CSSR null data 1695 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 (Clk/Eph LNAV) (null)
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
-205 Hitachi-Ota:1  QZNMA       (inactive) (inactive) 
+205 Hitachi-Ota:1  MADOCA-PPP  SF1 DP5 Clk/Eph LNAV: (null)
+205 Hitachi-Ota:1  QZNMA       SF1 DP5 (inactive) (inactive) 
+205 Hitachi-Ota:1  QZNMA       SF1 DP5 (inactive) (inactive) 
 ST7 SAT URA[mm]
 ST7 G01    5.75
 ST7 G03   19.25
@@ -2502,4 +2502,4 @@ ST3 E36   0.310
 ST3 J02   1.597
 ST3 J03   0.870
 CSSR null data 319 bits
-205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP1 (Clk/Eph LNAV) ST7 ST3
+205 Hitachi-Ota:1  MADOCA-PPP  SF2 DP1 Clk/Eph LNAV: ST7 ST3

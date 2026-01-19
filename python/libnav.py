@@ -4,7 +4,7 @@
 # libnav.py: library for navigation message processing
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2024 Satoshi Takahashi
+# Copyright (c) 2022-2026 Satoshi Takahashi
 #
 # Released under BSD 2-clause license.
 #
@@ -17,31 +17,45 @@
 #     Service, IS-QZSS-PNT-005, Oct. 2022.
 
 # constants
-PI = 3.1415926535898            # Ratio of a circle's circumference
-MU = 3.986004418  * (10**14)    # Geocentric gravitational constant [m^3/s^2]
-OE = 7.2921151467 * (10**(-5))  # Mean angular velocity of the Earth [rad/s]
-C  = 299792458                  # Speed of light [m/s]
-N_GPSSAT = 63   # maximum number of GPS     satellites
-N_GLOSAT = 63   # maximum number of GLONASS satellites
-N_GALSAT = 63   # maximum number of Galileo satellites
-N_QZSSAT = 11   # maximum number of QZSS    satellites
-N_BDSAT  = 63   # maximum number of BeiDou  satellites
-N_IRNSAT = 12   # maximum number of NavIC   satellites
-
+PI      : float = 3.1415926535898            # Ratio of a circle's circumference
+MU      : float = 3.986004418  * (10**14)    # Geocentric gravitational constant [m^3/s^2]
+OE      : float = 7.2921151467 * (10**(-5))  # Mean angular velocity of the Earth [rad/s]
+C       : int   = 299792458                  # Speed of light [m/s]
+N_GPSSAT: int   = 63   # maximum number of GPS     satellites
+N_GLOSAT: int   = 63   # maximum number of GLONASS satellites
+N_GALSAT: int   = 63   # maximum number of Galileo satellites
+N_QZSSAT: int   = 11   # maximum number of QZSS    satellites
+N_BDSAT : int   = 63   # maximum number of BeiDou  satellites
+N_IRNSAT: int   = 12   # maximum number of NavIC   satellites
 # format definitions
-FMT_IODC = '<4d'  # format string for issue of data clock
-FMT_IODE = '<4d'  # format string for issue of data ephemeris
+FMT_IODC: str   = '<4d'  # format string for issue of data clock
+FMT_IODE: str   = '<4d'  # format string for issue of data ephemeris
+
+import os
+import sys
+
+sys.path.append(os.path.dirname(__file__))
+import libtrace
+
+try:
+    from bitstring import BitStream
+except ModuleNotFoundError:
+    libtrace.err('''\
+    The code needs bitstring module.
+    Please install this module such as \"pip install bitstring\".
+    ''')
+    sys.exit(1)
 
 class NavNull:
     pass
 
 class NavGps:
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_GPSSAT)]
         self.alm   = [NavNull() for _ in range(N_GPSSAT)]
 
-    def decode_rtcm(self, payload):
+    def decode_rtcm(self, payload: BitStream) -> str:
         ''' read and decode RTCM GPS navigation messages '''
         svid   = payload.read( 6)  # satellite id, DF009
         if svid.u < 1 or svid.u > N_GPSSAT:
@@ -85,7 +99,7 @@ class NavGps:
             msg += self.trace.msg(0, f' unhealthy({e.svh.u:02x})', fg='red')
         return msg
 
-    def convert(self, svid):
+    def convert(self, svid: int) -> NavNull:
         ''' decode GPS ephemeris '''
         e       = self.eph[svid-1]
         d       = NavNull()
@@ -130,12 +144,12 @@ class NavGps:
 class NavGlo:
     ''' GLONASS ephemeris data '''
 
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_GLOSAT)]
         self.alm   = [NavNull() for _ in range(N_GLOSAT)]
 
-    def decode_rtcm(self, payload):
+    def decode_rtcm(self, payload: BitStream) -> str:
         ''' read and decode RTCM GLONASS ephemeris '''
         svid    = payload.read( 6)  # satellite id, DF038
         if svid.u < 1 or svid.u > N_GLOSAT:
@@ -182,7 +196,7 @@ class NavGlo:
         return msg
 
 class NavGal:
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_GALSAT)]
         self.alm   = [NavNull() for _ in range(N_GALSAT)]
@@ -190,7 +204,7 @@ class NavGal:
         self.svid2 = -1  # Galileo almanac for SV2
         self.svid3 = -1  # Galileo almanac for SV3
 
-    def decode_rtcm(self, payload, mtype):
+    def decode_rtcm(self, payload: BitStream, mtype: str) -> str:
         ''' read and decode RTCM Galileo ephemeris '''
         svid    = payload.read( 6)     # satellite id, DF252
         if svid.u < 1 or svid.u > N_GALSAT:
@@ -249,12 +263,12 @@ class NavGal:
         return msg
 
 class NavQzs(NavGps):
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_QZSSAT)]
         self.alm   = [NavNull() for _ in range(N_QZSSAT)]
 
-    def decode_rtcm(self, payload):
+    def decode_rtcm(self, payload: BitStream) -> str:
         ''' read and decode RTCM QZSS ephemeris '''
         svid   = payload.read( 4)  # satellite id, DF429
         if svid.u < 1 or svid.u > N_QZSSAT:
@@ -303,12 +317,12 @@ class NavQzs(NavGps):
         return msg
 
 class NavBds:
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_BDSAT)]
         self.alm   = [NavNull() for _ in range(N_BDSAT)]
 
-    def decode_rtcm(self, payload):
+    def decode_rtcm(self, payload: BitStream) -> str:
         ''' read and decode RTCM BeiDou ephemeris '''
         svid   = payload.read( 6)  # satellite id, DF488
         if svid.u < 1 or svid.u > N_BDSAT:
@@ -347,12 +361,12 @@ class NavBds:
         return msg
 
 class NavIrn:
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph = [NavNull() for _ in range(N_IRNSAT)]
         self.alm = [NavNull() for _ in range(N_IRNSAT)]
 
-    def decode_rtcm(self, payload):
+    def decode_rtcm(self, payload: BitStream) -> str:
         ''' read and decode RTCM IRNSS ephemeris '''
         svid    = payload.read( 6)  # satellite id, DF516
         if svid.u < 1 or svid.u > N_IRNSAT:

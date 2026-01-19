@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CODEDIR=../python/
-#CODEDIR=
+CODEDIR=
 
 COL_RED='\033[31m'
 COL_GRN='\033[32m'

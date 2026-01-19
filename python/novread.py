@@ -4,7 +4,7 @@
 # novread.py: NovAtel receiver raw message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 #
@@ -14,14 +14,15 @@
 import argparse
 import os
 import sys
+from typing import TextIO
 
 sys.path.append(os.path.dirname(__file__))
 import libgnsstime
 import libqzsl6tool
 import libtrace
 
-LEN_CNAV_PAGE = 62  # C/NAV page size is 492 bit (61.5 byte)
-NOV_MSG_NAME = {    # dictionary for obtaining message name from ID
+LEN_CNAV_PAGE: int = 62  # C/NAV page size is 492 bit (61.5 byte)
+NOV_MSG_NAME : dict[int, str] = {    # dictionary for obtaining message name from ID
        8: 'IONUTC'         ,
       41: 'RAWEPHEM'       ,
       43: 'RANGE'          ,
@@ -40,49 +41,66 @@ NOV_MSG_NAME = {    # dictionary for obtaining message name from ID
     2239: 'GALCNAVRAWPAGE' ,
 }
 
-def crc32(data):
-    polynomial = 0xedb88320
-    crc = 0
+def crc32(data: bytes) -> bytes:
+    polynomial: int = 0xedb88320
+    crc: int = 0
     for byte in data:
-        tmp2 = (crc ^ byte) & 0xff
+        tmp2: int = (crc ^ byte) & 0xff
         for _ in range(8):
             if tmp2 & 1:
                 tmp2 = (tmp2 >> 1) ^ polynomial
             else:
                 tmp2 = tmp2 >> 1
-        tmp1 = (crc >> 8) & 0x00ffffff
+        tmp1: int = (crc >> 8) & 0x00ffffff
         crc = tmp1 ^ tmp2
     return crc.to_bytes(4,'little')
 
 class NovReceiver:
-    def __init__(self, trace):
-        self.trace = trace
+    def __init__(self, trace: libtrace.Trace) -> None:
+        self.trace: libtrace.Trace = trace
+        self.payload : bytes = bytes()
+        self.msg_id  : int = 0
+        self.msg_type: int = 0
+        self.port    : int = 0
+        self.msg_len : int = 0
+        self.seq     : int = 0
+        self.t_idle  : int = 0
+        self.t_stat  : int = 0
+        self.gpsw    : int = 0
+        self.gpst    : int = 0
+        self.stat    : int = 0
+        self.reserved: int = 0
+        self.ver     : int = 0
+        self.msg_name: str = ''
+        self.satid   : int = 0
+        self.raw     : bytes = bytes()
 
-    def read(self):
+
+    def read(self) -> bool:
         ''' reads standard input as NovAtel raw, [1]
             and returns true if successful '''
         while True:
-            sync = bytes(3)
+            sync: bytes = bytes(3)
             while sync != b'\xaa\x44\x12':
-                b = sys.stdin.buffer.read(1)
+                b: bytes = sys.stdin.buffer.read(1)
                 if not b:
                     return False
                 sync = sync[1:3] + b
-            head_len = sys.stdin.buffer.read(1)
+            head_len: bytes = sys.stdin.buffer.read(1)
             if not head_len:
                 return False
-            u_head_len = int.from_bytes(head_len, 'little')
-            head = sys.stdin.buffer.read(u_head_len - 4)
+            u_head_len: int = int.from_bytes(head_len, 'little')
+            head: bytes = sys.stdin.buffer.read(u_head_len - 4)
             if not head:
                 return False
             self.parse_head(head)
-            payload = sys.stdin.buffer.read(self.msg_len)
+            payload: bytes = sys.stdin.buffer.read(self.msg_len)
             if not payload:
                 return False
-            crc = sys.stdin.buffer.read(4)
+            crc: bytes = sys.stdin.buffer.read(4)
             if not crc:
                 return False
-            crc_cal = crc32(sync + head_len + head + payload)
+            crc_cal: bytes = crc32(sync + head_len + head + payload)
             if crc == crc_cal:
                 break
             else:
@@ -91,9 +109,9 @@ class NovReceiver:
         self.payload = payload
         return True
 
-    def parse_head(self, head):
+    def parse_head(self, head: bytes) -> None:
         ''' stores header info '''
-        pos = 0
+        pos: int = 0
         if len(head) != 24:
             self.trace.show(0, f'warning: header length mismatch: {len(head)} != 24', fg='yellow')
         self.msg_id   = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
@@ -110,14 +128,14 @@ class NovReceiver:
         self.ver      = int.from_bytes(head[pos:pos+2], 'little'); pos += 2
         self.msg_name = NOV_MSG_NAME.get(self.msg_id, f"MT{self.msg_id}")
 
-    def qzssrawsubframe(self):
+    def qzssrawsubframe(self) -> str:
         ''' returns hex-decoded message
             ref.[1], p.822 3.148 QZSSRAWSUBFRAME (1330)
         '''
         payload = self.payload
         if len(payload) != 4+4+32+4:
-            self.trace.show(0, f"message length mismatch: {len(payload)} != {4+4+32+4}", fg='red')
-            return False
+            return self.trace.msg(0, f"message length mismatch: {len(payload)} != {4+4+32+4}", fg='red')
+
         pos = 0
         prn   = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
         sfid  = int.from_bytes(payload[pos:pos+ 4], 'little'); pos +=  4
@@ -131,16 +149,15 @@ class NovReceiver:
             raw.hex()
         return msg
 
-    def galcnavrawpage(self):
+    def galcnavrawpage(self) -> str:
         ''' returns hex-decoded messages and stores CNAV messages
             ref.[1], p.591 3.40 GALCNAVRAWPAGE (2239)
         '''
         payload = self.payload
         if len(payload) != 4+4+2+2+58:
-            self.trace.show(0, f"message length mismatch: {len(payload)} != {4+4+2+2+58}", fg='red')
-            return False
+            return self.trace.msg(0, f"message length mismatch: {len(payload)} != {4+4+2+2+58}", fg='red')
         pos = 0
-        sig_ch  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
+        sig_ch  = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4  # signal channel, not used
         prn     = int.from_bytes(payload[pos:pos+4], 'little'); pos +=  4
         msg_id  = int.from_bytes(payload[pos:pos+2], 'little'); pos +=  2
         page_id = int.from_bytes(payload[pos:pos+2], 'little'); pos +=  2
@@ -171,11 +188,14 @@ if __name__ == '__main__':
         '-m', '--message', action='store_true',
         help='show display messages to stderr')
     args = parser.parse_args()
-    fp_disp, fp_raw = sys.stdout, None
+    fp_disp: TextIO | None = sys.stdout
+    fp_raw : TextIO | None = None
     if args.e6b:
-        fp_disp, fp_raw = None, sys.stdout
+        fp_disp: TextIO | None = None
+        fp_raw : TextIO | None = sys.stdout
     if args.qlnav:
-        fp_disp, fp_raw = None, sys.stdout
+        fp_disp: TextIO | None = None
+        fp_raw : TextIO | None = sys.stdout
     if args.message:  # send display messages to stderr
         fp_disp = sys.stderr
     trace = libtrace.Trace(fp_disp, 0, args.color)
@@ -193,8 +213,9 @@ if __name__ == '__main__':
             rcv.trace.show(0, msg)
             if (args.e6b   and rcv.msg_name == 'GALCNAVRAWPAGE' ) or \
                (args.qlnav and rcv.msg_name == 'QZSSRAWSUBFRAME'):
-                fp_raw.buffer.write(rcv.raw)
-                fp_raw.flush()
+                if fp_raw:
+                    fp_raw.buffer.write(rcv.raw)
+                    fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())

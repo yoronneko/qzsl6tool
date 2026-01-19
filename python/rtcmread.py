@@ -4,7 +4,7 @@
 # rtcmread.py: RTCM message read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2022-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2022-2026 Satoshi Takahashi, all rights reserved.
 # Released under BSD 2-clause license.
 #
 # References:
@@ -23,6 +23,7 @@
 import argparse
 import os
 import sys
+from typing import TextIO
 
 sys.path.append(os.path.dirname(__file__))
 import libecef
@@ -32,7 +33,7 @@ import libssr
 import libtrace
 
 try:
-    import bitstring
+    from bitstring import BitStream
 except ModuleNotFoundError:
     libtrace.err('''\
     This code needs bitstring module.
@@ -51,9 +52,9 @@ class Rtcm:
     '''RTCM message process class'''
 
     readbuf = b''  # read buffer, used as static variable
-    payload = bitstring.ConstBitStream()
+    payload = BitStream()
 
-    def __init__(self, trace):
+    def __init__(self, trace: libtrace.Trace) -> None:
         self.trace   = trace
         self.eph_gps = libnav.NavGps(trace)  # GPS     ephemeris
         self.eph_glo = libnav.NavGlo(trace)  # GLONASS ephemeris
@@ -63,7 +64,7 @@ class Rtcm:
         self.eph_irn = libnav.NavIrn(trace)  # NavIC   ephemeris
         self.ssr     = libssr.Ssr(trace)
 
-    def read(self):
+    def read(self) -> bool:
         '''returns true if successfully reading an RTCM message'''
         BUFMAX = 1000  # maximum length of buffering RTCM message
         BUFADD =   20  # length of buffering additional RTCM message
@@ -104,10 +105,10 @@ class Rtcm:
             else:  # read properly
                 self.readbuf = self.readbuf[pos+3+mlen+3:]
                 break
-        self.payload = bitstring.ConstBitStream(bp)
+        self.payload = BitStream(bp)
         return True
 
-    def decode(self):
+    def decode(self) -> None:
         msgnum = self.payload.read('u12')  # message number
         satsys = msgnum2satsys(msgnum)
         mtype  = msgnum2mtype(msgnum)
@@ -167,7 +168,7 @@ class Rtcm:
             msg += self.trace.msg(0, f' packet size mismatch: expected {len(self.payload.bin)}, actual {self.payload.pos}', fg='red')
         self.trace.show(0, msg)
 
-    def decode_ant_info(self, msgnum):
+    def decode_ant_info(self, msgnum: int) -> str:
         '''returns decoded antenna and receiver information '''
         str_ant = ''
         str_ser = ''
@@ -199,7 +200,7 @@ class Rtcm:
         if str_rsn   != '': msg += f' s/n {str_rsn}'
         return msg
 
-    def decode_antenna_position(self, msgnum):
+    def decode_antenna_position(self, msgnum: int) -> str:
         ''' returns decoded position and antenna height if available '''
         stid  = self.payload.read(12).u  # station id, DF003
         self.payload.pos +=  6           # reserved ITRF year, DF921
@@ -225,7 +226,7 @@ class Rtcm:
             msg += f'(+{ahgt*1e-4:.3f})'
         return msg
 
-    def decode_code_phase_bias(self):
+    def decode_code_phase_bias(self) -> str:
         '''decodes code-and-phase bias for GLONASS'''
         stid  = self.payload.read(12).u  # reference station id, DF003
         cpbi = self.payload.read( 1).u   # code-phase bias ind, DF421
@@ -248,7 +249,7 @@ class Rtcm:
             msg += f'L2P={l2p*0.02}'
         return msg
 
-    def decode_obs(self, satsys, mtype):
+    def decode_obs(self, satsys: str, mtype: str) -> str:
         ''' decodes observation message and returns message '''
         be = 30 if satsys != 'R' else 27  # bit format of epoch time
         bp = 24 if satsys != 'R' else 25  # bit format of pseudorange
@@ -315,7 +316,7 @@ class Rtcm:
                 msg += f'{satsys}{satid+119:3} '
         return msg + self.trace.msg(1, msg1)
 
-    def decode_msm(self, satsys, mtype):
+    def decode_msm(self, satsys: str, mtype: str) -> str:
         ''' decodes MSM message and returns message '''
         stid   = self.payload.read(12).u  # reference station id, DF003
         epoch  = self.payload.read(30).u  # GNSS epoch time, DF004
@@ -428,7 +429,7 @@ class Rtcm:
                 msg1 += ' *'  # denotes half-cycle ambiguity
         return msg + self.trace.msg(1, msg1)
 
-def send_rtcm(fp, rtcm_payload):
+def send_rtcm(fp: TextIO | None, rtcm_payload: BitStream) -> None:
     if not fp:
         return
     r = rtcm_payload.tobytes()
@@ -438,7 +439,7 @@ def send_rtcm(fp, rtcm_payload):
     fp.buffer.write(rtcm_crc)
     fp.flush()
 
-def msgnum2satsys(msgnum):  # message number to satellite system
+def msgnum2satsys(msgnum: int) -> str:  # message number to satellite system
     satsys = ''
     if   msgnum in {1001, 1002, 1003, 1004, 1019, 1071, 1072, 1073, 1074,
              1075, 1076, 1077, 1057, 1058, 1059, 1060, 1061, 1062, 11}:
@@ -462,7 +463,7 @@ def msgnum2satsys(msgnum):  # message number to satellite system
         satsys = 'I'
     return satsys
 
-def msgnum2mtype(msgnum):  # message number to message type
+def msgnum2mtype(msgnum: int) -> str:  # message number to message type
     mtype = f'MT{msgnum:<4d}'
     if   msgnum in {1001, 1009}                  : mtype = 'Obs L1'
     elif msgnum in {1002, 1010}                  : mtype = 'Obs Full L1'
@@ -489,7 +490,7 @@ def msgnum2mtype(msgnum):  # message number to message type
     elif msgnum == 4050                          : mtype = 'Raw CSSR'
     return mtype
 
-def sigmask2signame(satsys, sigmask):
+def sigmask2signame(satsys: str, sigmask: int) -> str:
     ''' convert satellite system and signal mask to signal name '''
     signame = f'{satsys}{sigmask}'
     if   satsys == 'G':  # DF395, ref.[1] Table 3.5-91
@@ -511,13 +512,13 @@ def sigmask2signame(satsys, sigmask):
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
     return signame
 
-def t_lti1(i):
+def t_lti1(i: int) -> int:
     ''' lock time indication table in ms, Table 3.5-74'''
     return [
         0, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288
     ][i]
 
-def t_lti2(i):
+def t_lti2(i: int) -> int:
     ''' lock time indication table in ms, Table 3.5-75 '''
     if i <= 63:
         return i

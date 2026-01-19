@@ -4,7 +4,7 @@
 # psdrread.py: Pocket SDR log read
 # A part of QZS L6 Tool, https://github.com/yoronneko/qzsl6tool
 #
-# Copyright (c) 2023-2025 Satoshi Takahashi, all rights reserved.
+# Copyright (c) 2023-2026 Satoshi Takahashi, all rights reserved.
 #
 # Released under BSD 2-clause license.
 
