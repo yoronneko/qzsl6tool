@@ -16,7 +16,7 @@
 #     v.2.4.3b34, Apr. 2020.
 #     https://github.com/tomojitakasu/RTKLIB
 
-VERSION = "0.1.6"
+VERSION = "0.1.7"
 
 # CRC24Q for RTCM3, (1+x)(x^23+x^17+x^13+x^12+x^11+x^9+x^8+x^7+x^5+x^3+1)
 # following code is from RTKLIB 2.4.3b34 [1], rtkcmn.c

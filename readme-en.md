@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.6
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.7
 
 ![QZS L6 Tool](docs/img/qzsl6tool.png)
 
@@ -18,6 +18,18 @@
 - It is intended for use on the command line of Linux or macOS.
 - Python 3.8 or later is required. The ``bitstring`` module and the ``galois`` module are required.  
 ``pip3 install bitstring galois``
+- With a Docker environment such as Docker Desktop, this tool can also be used on Windows inside a Linux container. The Docker image includes the Python runtime, ``nc``, and ``str2str`` from RTKLIB 2.4.3 b34.
+
+```bash
+docker build -t qzsl6tool .
+```
+
+When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container.
+
+```bash
+docker run --rm -v C:\data:/data qzsl6tool "cat /data/sample.l6 | qzsl6read.py -t 2"
+docker run --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+```
 
 ## Satellite Signal Display
 

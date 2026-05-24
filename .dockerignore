@@ -1,0 +1,16 @@
+.git
+.gitignore
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+test/*.txt
+test/*.rtcm
+test/*.l6
+test/*.l1s
+test/*.e6b
+test/*.b2b
+test/*.inav
+test/*.lnav

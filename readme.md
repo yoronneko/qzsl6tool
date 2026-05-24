@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.6
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.7
 
 ![QZS L6 Tool](docs/img/qzsl6tool.png)
 
@@ -18,6 +18,18 @@
 - LinuxやmacOSのコマンドラインで利用することを想定しています。
 - Python 3.7以降が必要です。``bitstring``モジュールと``galois``モジュールが必要です。  
 ``pip3 install bitstring galois``
+- Docker DesktopなどのDocker環境では、Windows上でもLinuxコンテナ内で本ツールを利用できます。DockerイメージにはPython実行環境、``nc``、RTKLIB 2.4.3 b34の``str2str``が含まれます。
+
+```bash
+docker build -t qzsl6tool .
+```
+
+Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerShellのパイプにバイナリを流さず、入力取得とパイプ処理をコンテナ内で完結させてください。
+
+```bash
+docker run --rm -v C:\data:/data qzsl6tool "cat /data/sample.l6 | qzsl6read.py -t 2"
+docker run --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+```
 
 ## 衛星信号表示
 
