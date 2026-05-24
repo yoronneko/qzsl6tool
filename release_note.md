@@ -1,5 +1,11 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.7 (2026-05-24)
+
+- Added Dockerfile for Windows usage through Docker Desktop.
+- Docker image includes Python dependencies, netcat, and RTKLIB 2.4.3 b34 str2str.
+- Added Docker usage notes to README files.
+
 ## ver.0.1.6 (2026-01-19)
 
 - CLAS transmission pattern (qzsl6read.py)
