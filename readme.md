@@ -20,16 +20,20 @@
 ``pip3 install bitstring galois``
 - Docker DesktopなどのDocker環境では、Windows上でもLinuxコンテナ内で本ツールを利用できます。DockerイメージにはPython実行環境、``nc``、RTKLIB 2.4.3 b34の``str2str``が含まれます。
 
+Dockerイメージのビルド
+
 ```bash
 docker build -t qzsl6tool .
 ```
 
-Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerShellのパイプにバイナリを流さず、入力取得とパイプ処理をコンテナ内で完結させてください。
+作成したDockerイメージの実行
 
 ```bash
-docker run --rm -v C:\data:/data qzsl6tool "cat /data/sample.l6 | qzsl6read.py -t 2"
-docker run --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+docker run -t --rm -v .:/mnt qzsl6tool "qzsl6read.py < sample/2022001A.l6"
+docker run -t --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 ```
+
+Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerShellのパイプにバイナリを流さず、上述のように入力取得とパイプ処理をコンテナ内で完結させてください。また、Windows git CLIにてこのリポジトリーをダウンロードする際には、Pythonコード行末に改行CRが混入しないよう、あらかじめ``git config --global core.autocrlf input``を実行しておいてください。
 
 ## 衛星信号表示
 
