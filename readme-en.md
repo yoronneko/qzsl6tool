@@ -33,7 +33,7 @@ docker run -t --rm -v .:/mnt qzsl6tool "qzsl6read.py < sample/2022001A.l6"
 docker run -t --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 ```
 
-When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container like above.　For avoding CR inclusion in line ends of a Python code, please execute ``git config --global core.autocrlf input`` before cloning this repository with Windows git CLI.
+When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container like above.　For avoiding CR inclusion in line ends of a Python code, please execute ``git config --global core.autocrlf input`` before cloning this repository with Windows Git CLI.
 
 ## Satellite Signal Display
 
