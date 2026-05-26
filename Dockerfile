@@ -28,7 +28,7 @@ RUN python -m pip install --no-cache-dir --upgrade pip \
     && python -m pip install --no-cache-dir -r /root/qzsl6tool/requirements.txt
 
 COPY . /root/qzsl6tool
-WORKDIR /root/qzsl6tool
+WORKDIR /mnt
 
 ENTRYPOINT ["/bin/bash", "-c"]
 CMD ["qzsl6read.py -h"]

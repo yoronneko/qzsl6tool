@@ -20,16 +20,20 @@
 ``pip3 install bitstring galois``
 - With a Docker environment such as Docker Desktop, this tool can also be used on Windows inside a Linux container. The Docker image includes the Python runtime, ``nc``, and ``str2str`` from RTKLIB 2.4.3 b34.
 
+Building a Docker image
+
 ```bash
 docker build -t qzsl6tool .
 ```
 
-When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container.
+Executing a docker image
 
 ```bash
-docker run --rm -v C:\data:/data qzsl6tool "cat /data/sample.l6 | qzsl6read.py -t 2"
-docker run --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+docker run -t --rm -v .:/mnt qzsl6tool -c "qzsl6read.py < sample/2022001A.l6"
+docker run -t --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 ```
+
+When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container like above.　For avoding CR inclusion in line ends of a Python code, please execute ``git config --global core.autocrlf input`` before cloning this repository with Windows git CLI.
 
 ## Satellite Signal Display
 
