@@ -29,7 +29,7 @@ docker build -t qzsl6tool .
 Executing a docker image
 
 ```bash
-docker run -t --rm -v .:/mnt qzsl6tool -c "qzsl6read.py < sample/2022001A.l6"
+docker run -t --rm -v .:/mnt qzsl6tool "qzsl6read.py < sample/2022001A.l6"
 docker run -t --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 ```
 
