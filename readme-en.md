@@ -18,7 +18,7 @@
 - It is intended for use on the command line of Linux or macOS.
 - Python 3.8 or later is required. The ``bitstring`` module and the ``galois`` module are required.  
 ``pip3 install bitstring galois``
-- With a Docker environment such as Docker Desktop, this tool can also be used on Windows inside a Linux container. The Docker image includes the Python runtime, ``nc``, and ``str2str`` from RTKLIB 2.4.3 b34.
+- With a Docker environment such as Docker Desktop, this tool can also be used on Windows, macOS, Linux, and Raspberry Pi OS inside a Linux container. The Docker image includes the Python runtime, ``nc``, and ``str2str`` from RTKLIB 2.4.3 b34.
 
 Building a Docker image
 
@@ -29,8 +29,9 @@ docker build -t qzsl6tool .
 Executing a docker image
 
 ```bash
-docker run -t --rm -v .:/mnt qzsl6tool "qzsl6read.py < sample/2022001A.l6"
-docker run -t --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < sample/2022001A.l6"
+docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+docker run -it --rm qzsl6tool "cd /root/qzsl6tool/test; ./do_test.sh"
 ```
 
 When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container like above.　For avoiding CR inclusion in line ends of a Python code, please execute ``git config --global core.autocrlf input`` before cloning this repository with Windows Git CLI.
