@@ -29,12 +29,15 @@ docker build -t qzsl6tool .
 Executing a docker image
 
 ```bash
-docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < sample/2022001A.l6"
-docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 docker run -it --rm qzsl6tool "cd /root/qzsl6tool/test; ./do_test.sh"
+docker run -it --rm qzsl6tool "qzsl6read.py < /root/qzsl6tool/sample/2022001A.l6"
+docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
+docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < my_l6_data.l6"
 ```
 
-When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container like above.　For avoiding CR inclusion in line ends of a Python code, please execute ``git config --global core.autocrlf input`` before cloning this repository with Windows Git CLI.
+When handling GNSS binary data on Windows, do not pass the binary stream through ``cmd.exe`` or PowerShell pipes. Keep input acquisition and the processing pipeline inside the container like above.
+
+Those who use Windows Git CLI, please execute ``git config --global core.autocrlf input`` before cloning this repository. This is to avoid CR inclusion in line ends of a Python code.
 
 ## Satellite Signal Display
 
