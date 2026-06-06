@@ -16,7 +16,7 @@
 ## Operating Environment
 
 - It is intended for use on the command line of Linux or macOS.
-- Python 3.8 or later is required.
+- Python 3.10 or later is required.
 - With a Docker environment such as Docker Desktop, this tool can also be used on Windows, macOS, Linux, and Raspberry Pi OS inside a Linux container. The Docker image includes the Python runtime, ``nc``, and ``str2str`` from RTKLIB 2.4.3 b34.
 
 Installing from PyPI
