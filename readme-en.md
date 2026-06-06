@@ -97,5 +97,5 @@ This project is licensed under the [BSD 2-clause license](https://opensource.org
 
 Users are permitted to use this program for commercial and non-commercial purposes, with or without modification, but this copyright notice is required. The function rtk_crc24q() in ``librtcm.py`` utilizes the achievements of [RTKLIB](https://github.com/tomojitakasu/RTKLIB) ver.2.4.3b34.
 
-Copyright (c) 2022-2024 by Satoshi Takahashi  
+Copyright (c) 2022-2026 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU

@@ -97,5 +97,5 @@ Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerSh
 
 利用者は、商用・非商用、修正の有無を問わず、このプログラムを利用できますが、この著作権表示が必要です。``librtcm.py``の関数 rtk_crc24q ()に[RTKLIB](https://github.com/tomojitakasu/RTKLIB) ver.2.4.3b34の成果を利用しています。
 
-Copyright (c) 2022-2024 by Satoshi Takahashi  
+Copyright (c) 2022-2026 by Satoshi Takahashi  
 Copyright (c) 2007-2020 by Tomoji TAKASU
