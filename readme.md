@@ -16,7 +16,7 @@
 ## 動作環境
 
 - LinuxやmacOSのコマンドラインで利用することを想定しています。
-- Python 3.8以降が必要です。
+- Python 3.10以降が必要です。
 - Docker DesktopなどのDocker環境では、Windows上、macOS上、Linux上、Raspberry Pi OS上でもLinuxコンテナ内で本ツールを利用できます。DockerイメージにはPython実行環境、``nc``、RTKLIB 2.4.3 b34の``str2str``が含まれます。
 
 PyPIからのインストール
