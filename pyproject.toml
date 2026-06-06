@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qzsl6tool"
+version = "0.1.7"
+description = "Command-line tools for reading and converting GNSS messages, including QZSS L6, RTCM, Galileo HAS, and BeiDou PPP-B2b data."
+readme = "readme-en.md"
+requires-python = ">=3.8"
+license = "BSD-2-Clause"
+license-files = ["license.txt"]
+authors = [
+    { name = "Satoshi Takahashi", email = "git@s-taka.org" },
+]
+dependencies = [
+    "bitstring",
+    "galois",
+    "numpy",
+]
+keywords = [
+    "GNSS",
+    "QZSS",
+    "RTCM",
+    "CLAS",
+    "MADOCA",
+    "Galileo HAS",
+    "BeiDou",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Natural Language :: Japanese",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Homepage = "https://github.com/yoronneko/qzsl6tool"
+Repository = "https://github.com/yoronneko/qzsl6tool"
+Documentation = "https://github.com/yoronneko/qzsl6tool/tree/main/docs"
+"Release Notes" = "https://github.com/yoronneko/qzsl6tool/blob/main/release_note.md"
+"Bug Tracker" = "https://github.com/yoronneko/qzsl6tool/issues"
+
+[tool.setuptools]
+py-modules = [
+    "alstread",
+    "bdsb2read",
+    "gale6read",
+    "galinavread",
+    "l6rtcm4050",
+    "libecef",
+    "libgnsstime",
+    "libnav",
+    "libqznma",
+    "libqzsl6tool",
+    "libssr",
+    "libtrace",
+    "novread",
+    "psdrread",
+    "qzsl1sread",
+    "qzsl6read",
+    "rtcmread",
+    "septread",
+    "ubxread",
+]
+script-files = [
+    "python/alstread.py",
+    "python/bdsb2read.py",
+    "python/ecef2llh.py",
+    "python/gale6read.py",
+    "python/galinavread.py",
+    "python/gps2utc.py",
+    "python/l6rtcm4050.py",
+    "python/llh2ecef.py",
+    "python/novread.py",
+    "python/psdrread.py",
+    "python/qzsl1sread.py",
+    "python/qzsl6read.py",
+    "python/rtcmread.py",
+    "python/septread.py",
+    "python/ubxread.py",
+    "python/utc2gps.py",
+]
+
+[tool.setuptools.package-dir]
+"" = "python"

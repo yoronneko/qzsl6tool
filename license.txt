@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 QZS L6 Tool: quasi-zenith satellite L6-band tool
 
-Released under The 2-Cluse BSD License
+Released under The 2-Clause BSD License
 https://opensource.org/licenses/BSD-2-Clause
 
 Redistribution and use in source and binary forms, with or without modification,

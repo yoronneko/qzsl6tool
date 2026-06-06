@@ -16,9 +16,18 @@
 ## Operating Environment
 
 - It is intended for use on the command line of Linux or macOS.
-- Python 3.8 or later is required. The ``bitstring`` module and the ``galois`` module are required.  
-``pip3 install bitstring galois``
+- Python 3.8 or later is required.
 - With a Docker environment such as Docker Desktop, this tool can also be used on Windows, macOS, Linux, and Raspberry Pi OS inside a Linux container. The Docker image includes the Python runtime, ``nc``, and ``str2str`` from RTKLIB 2.4.3 b34.
+
+Installing from PyPI
+
+```bash
+python3 -m pip install qzsl6tool
+qzsl6read.py < sample/2022001A.l6
+str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py
+```
+
+The PyPI package installs the required Python dependencies such as ``bitstring``, ``galois``, and ``numpy``. External command-line tools such as ``nc`` and RTKLIB ``str2str`` should be installed separately when needed.
 
 Building a Docker image
 
