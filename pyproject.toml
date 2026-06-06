@@ -7,7 +7,7 @@ name = "qzsl6tool"
 version = "0.1.7"
 description = "Command-line tools for reading and converting GNSS messages, including QZSS L6, RTCM, Galileo HAS, and BeiDou PPP-B2b data."
 readme = "readme-en.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = "BSD-2-Clause"
 license-files = ["license.txt"]
 authors = [
