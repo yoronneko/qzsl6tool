@@ -429,9 +429,7 @@ def icd_test():
     '''self test described in [1] attached file,
     Galileo-HAS-SIS-ICD_1.0_Annex_D_HAS_Message_Decoding_Example.txt
     To execute this ICD test,
-    python
-    >>> import gale6read
-    >>> gale6read.icd_test()
+    gale6read.py --icd-test
     '''
     trace    = libtrace.Trace(t_level=1)
     gale6    = GalE6(trace)
@@ -496,7 +494,13 @@ if __name__ == '__main__':
     parser.add_argument(
         '-t', '--trace', type=int, default=0,
         help='show display verbosely: 1=detail, 2=bit image.')
+    parser.add_argument(
+        '--icd-test', action='store_true',
+        help='execute the self test described in the Galileo HAS ICD and exit.')
     args = parser.parse_args()
+    if args.icd_test:
+        icd_test()
+        sys.exit(0)
     fp_disp = sys.stdout
     if args.trace < 0:
         libtrace.err(f'trace level should be positive ({args.trace}).')

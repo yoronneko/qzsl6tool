@@ -99,48 +99,6 @@ class NavGps:
             msg += self.trace.msg(0, f' unhealthy({e.svh.u:02x})', fg='red')
         return msg
 
-    def convert(self, svid: int) -> NavNull:
-        ''' decode GPS ephemeris '''
-        e       = self.eph[svid-1]
-        d       = NavNull()
-        d.m0    = e.m0.i   * 2**(-31)*PI  # mean anomaly at reference time
-        d.e     = e.e.u    * 2**(-33)     # eccentricity
-        d.a12   = e.a12.u  * 2**(-19)     # square root of the semi-major axis
-        d.t0e   = e.t0e.u  * 60           # ephemeris reference time
-        d.omg0  = e.omg0.i * 2**(-31)*PI  # longitude of ascending node of orbital plane
-        d.i0    = e.i0.i   * 2**(-31)*PI  # inclination angle at reference time
-        d.omg   = e.omg.i  * 2**(-31)*PI  # argument of perigee
-        d.idot  = e.idot.i * 2**(-43)*PI  # rate of change of inclination angle
-        d.dn    = e.dn.i   * 2**(-43)*PI  # mean motion difference from computed value
-        d.omgd  = e.omgd.i * 2**(-43)*PI  # rate of change of right ascension
-        d.cuc   = e.cuc.i  * 2**(-29)     # cos harmonic correction term to the argument of latitude
-        d.cus   = e.cus.i  * 2**(-29)     # sin harmonic correction term to the argument of latitude
-        d.crc   = e.crc.i  * 2**(-5)      # cos harmonic correction term to the orbit radius
-        d.crs   = e.crs.i  * 2**(-5)      # sin harmonic correction term to the orbit radius
-        d.cic   = e.cic.i  * 2**(-29)     # cos harmonic correction term to the angle of inclination
-        d.cis   = e.cis.i  * 2**(-29)     # sin harmonic correction term to the angle of inclination
-        d.t0c   = e.t0c.u  * 60           # clock correction data reference TOW
-        d.af0   = e.af0.i  * 2**(-34)     # SV clock bias correction coefficient
-        d.af1   = e.af1.i  * 2**(-46)     # SV clock drift correction coefficient
-        d.af2   = e.af2.i  * 2**(-59)     # SV clock drift rate correction coefficient
-        d.be5a  = e.be5a.i * 2**(-32)     # E1-E5a broadcast group delay
-        d.be5b  = e.be5b.i * 2**(-32)     # E1-E5b broadcast group delay
-        d.ai0   = e.ai0.u  * 2**(-2)      # effective ionisation level 1st order parameter
-        d.ai1   = e.ai1.i  * 2**(-8)      # effective ionisation level 2nd order parameter
-        d.a0    = e.a0.i   * 2**(-30)     # constant term of polynomial
-        d.a1    = e.a1.i   * 2**(-50)     # 1st order term of polynomial
-        d.dtls  = e.dtls.i                # leap Second count before leap second adjustment
-        d.t0t   = e.t0t.u                 # UTC data reference TOW
-        d.wn0t  = e.wn0t.u                # UTC data reference week number
-        d.wnlsf = e.wnlsf.u               # week number of leap second adjustment
-        d.dn    = e.dn.u                  # day number at the end of which a leap second adjustment becomes effective
-        d.dtlsf = e.dtlsf.i               # leap second count after leap second adjustment
-        d.a0g   = e.a0g.i  * 2**(-35)     # constant term of the polynomial describing the offset
-        d.a1g   = e.a1g.i  * 2**(-51)     # rate of change of the offset
-        d.t0g   = e.t0g.u  * 3600         # reference time for GGTO data
-        d.wn0g  = e.wn0g.u                # week number of GGTO reference
-        return d
-
 class NavGlo:
     ''' GLONASS ephemeris data '''
 

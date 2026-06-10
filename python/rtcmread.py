@@ -420,7 +420,7 @@ class Rtcm:
             psr = (df397[sat] + df398[sat] * 2**(-10) + df405 * rfpsr) * 1e-3 * libnav.C
             phr = df406 * rfphr * 1e-3 * libnav.C
             phr_rate = (df399[sat] + df404 * 1e-4) * 1e-3 * libnav.C
-            if 'MSM6' in mtype or 'MSM7':
+            if 'MSM6' in mtype or 'MSM7' in mtype:
                 t_lti = t_lti2(lti) * 1e-3  # high resolution lock time indication in second
             else:
                 t_lti = t_lti1(lti) * 1e-3  # low resolution lock time indication in second
