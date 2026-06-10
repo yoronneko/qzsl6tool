@@ -19,7 +19,6 @@
 # [3] Tomoji Takasu, Pocket SDR -An Open-Source GNSS SDR, ver. 0.11,
 #     https://github.com/tomojitakasu/PocketSDR
 
-POCKET_SDR_LDPC = 0            # change this to 1 if you use 64-ary LDPC function of Pocket SDR (ref.[3])
 LEN_BCNAV3      = 125          # BDS CNAV3 page size is 1000 sym (125 byte)
 PREAMBLE_BCNAV3 = b'\xeb\x90'  # preamble for BDS B2b message
 

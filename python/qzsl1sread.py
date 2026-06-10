@@ -70,8 +70,9 @@ class QzsL1s:
     mask_uh  : list[str] = []     # mask info for unhealthy satellite defined by MT51 (satellite health)
     iod      : list[int] = [0 for _ in range(23)]  # data issue number
 
-    def __init__(self, trace: libtrace.Trace) -> None:
+    def __init__(self, trace: libtrace.Trace, jp: bool = False) -> None:
         self.trace = trace
+        self.jp    = jp  # display DCR messages in Japanese
 
     def decode_test_mode(self, df: BitStream) -> str:  # ref.[3], sect.4.1.2.3, MT0
         ''' test mode messages solicit deleting previous messages stored in the receiver '''
@@ -273,10 +274,13 @@ class QzsL1s:
         vn   = df.read(  6).u  # version  # type: ignore
         if vn != 1:
             raise Exception(f"\nversion number should be 1 ({vn})")
-        msg = f": {self.DC2NAME_EN.get(dc, 'undefined classification')}" + \
-              f" ({self.RC2NAME_EN.get(rc, 'undefined priority')})"
+        dc2name = self.DC2NAME_JP if self.jp else self.DC2NAME_EN
+        rc2name = self.RC2NAME_JP if self.jp else self.RC2NAME_EN
+        it2name = self.IT2NAME_JP if self.jp else self.IT2NAME_EN
+        msg = f": {dc2name.get(dc, 'undefined classification')}" + \
+              f" ({rc2name.get(rc, 'undefined priority')})"
         if it != 0:
-            msg += f" {self.IT2NAME_EN.get(it, 'undefined information type')}"
+            msg += f" {it2name.get(it, 'undefined information type')}"
         msg += f" {atmo:02d}-{atda:02d} {atho:02d}:{atmi:02d} UTC"
         return msg
 
@@ -387,12 +391,15 @@ if __name__ == '__main__':
         '-t', '--trace', type=int, default=0,
         help='show display verbosely: 1=subtype detail, 2=subtype and bit image.')
     parser.add_argument(
+        '--jp', action='store_true',
+        help='show DCR (disaster and crisis management report) in Japanese.')
+    parser.add_argument(
         'l1s_files', metavar='file', nargs='*', default=None,
         help='L1S file(s) obtained from the QZS archive, https://sys.qzss.go.jp/dod/archives/slas.html')
     args = parser.parse_args()
     fp_disp = sys.stdout
     trace = libtrace.Trace(fp_disp, args.trace, args.color)
-    qzsl1s = QzsL1s(trace)
+    qzsl1s = QzsL1s(trace, args.jp)
     try:
         if args.l1s_files:  # read from file(s)
             for l1s_file in args.l1s_files:
