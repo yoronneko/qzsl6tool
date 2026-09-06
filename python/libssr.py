@@ -414,8 +414,8 @@ class Ssr:
             t_sigmask = 0
             t_gsys = []
             t_gsig = []
-            for i, val in enumerate(bsatmask):  # type: ignore
-                if val:
+            for i in range(len(bsatmask)):
+                if bsatmask[i]:
                     t_satmask += 1
                     if t_satsys == 'D':  # MADOCA-PPP gnssid workaround, ref[6]
                         t_gsys.append(f'C{i + 18:02d}') # D01->C19, D02->C20, ...
