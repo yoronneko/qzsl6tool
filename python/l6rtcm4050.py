@@ -35,10 +35,10 @@ def read_l6():  # ref. [1]
     ''' reads L6 message and returns True if success '''
     sync = bytes(4)
     while sync != b'\x1a\xcf\xfc\x1d':
-        b = sys.stdin.buffer.read(1)
-        if not b:
+        syncb = sys.stdin.buffer.read(1)
+        if not syncb:
             return None
-        sync = sync[1:4] + b
+        sync = sync[1:4] + syncb
     b = sys.stdin.buffer.read(1+1+212+32)
     if not b:
         return None

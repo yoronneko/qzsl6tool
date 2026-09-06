@@ -51,22 +51,22 @@ class UbxReceiver:
         while True:
             sync: bytes = bytes(4)
             while sync != b'\xb5\x62\x02\x13':  # ubx-rxm-sfrbx ([1], 3.17.9)
-                b = sys.stdin.buffer.read(1)
-                if not b:
+                syncb = sys.stdin.buffer.read(1)
+                if not syncb:
                     return False
-                sync = sync[1:4] + b
+                sync = sync[1:4] + syncb
             head: bytes = sys.stdin.buffer.read(10)
             if not head:
                 return False
             msg_len: int = int.from_bytes(head[0: 2], 'little')
-            gnssid: int  = int.from_bytes(head[2: 3], 'little')
-            svid  : int  = int.from_bytes(head[3: 4], 'little')
-            sigid : int  = int.from_bytes(head[4: 5], 'little')
-            freqid: int  = int.from_bytes(head[5: 6], 'little')  # unused
-            n_word: int  = int.from_bytes(head[6: 7], 'little')
-            chn   : int  = int.from_bytes(head[7: 8], 'little')  # unused
-            ver   : int  = int.from_bytes(head[8: 9], 'little')
-            res   : int  = int.from_bytes(head[9:10], 'little')  # unused
+            gnssid : int = int.from_bytes(head[2: 3], 'little')
+            svid   : int = int.from_bytes(head[3: 4], 'little')
+            sigid  : int = int.from_bytes(head[4: 5], 'little')
+            freqid : int = int.from_bytes(head[5: 6], 'little')  # unused
+            n_word : int = int.from_bytes(head[6: 7], 'little')
+            chn    : int = int.from_bytes(head[7: 8], 'little')  # unused
+            ver    : int = int.from_bytes(head[8: 9], 'little')
+            res    : int = int.from_bytes(head[9:10], 'little')  # unused
             if ver != 0x02:  # [1], sect.3.17.9
                 libtrace.err(f'ubx sfrbx version should be 2 ({ver})')
                 continue
