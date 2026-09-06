@@ -292,8 +292,7 @@ class Ssr:
         strsat = ''
         for i in range(self.ssr_nsat):
             satid = payload.read(bw).u  # satellite ID, DF068
-            ura   = payload.read( 6)  # user range accuracy, DF389
-            accuracy = ura2dist(BitStream(ura))
+            accuracy = ura2dist(BitStream(payload.read(6)))  # user range accuracy, DF389
             if accuracy != URA_INVALID:
                 msg1 += self.trace.msg(1, f'\n{satsys}{satid:02d} {accuracy:{FMT_URA}}')
                 strsat += f"{satsys}{satid:02} "
