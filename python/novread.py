@@ -82,10 +82,10 @@ class NovReceiver:
         while True:
             sync: bytes = bytes(3)
             while sync != b'\xaa\x44\x12':
-                b: bytes = sys.stdin.buffer.read(1)
-                if not b:
+                syncb: bytes = sys.stdin.buffer.read(1)
+                if not syncb:
                     return False
-                sync = sync[1:3] + b
+                sync = sync[1:3] + syncb
             head_len: bytes = sys.stdin.buffer.read(1)
             if not head_len:
                 return False

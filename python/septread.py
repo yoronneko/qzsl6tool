@@ -25,7 +25,7 @@ LEN_BCNAV3      = 125  # BDS CNAV3 page size is 1000 sym (125 byte)
 LEN_L6_FRM      = 250  # QZS L6 frame size is 2000 bit (250 byte)
 LEN_CNAV_PAGE   = 62   # GAL C/NAV page size is 492 bit (61.5 byte)
 PREAMBLE_BCNAV3 = b'\xeb\x90'  # preamble for BDS B2b message
-SEPT_MSG_NAME = {      # dictionary for obtaining message name from ID
+SEPT_MSG_NAME   = {    # dictionary for obtaining message name from ID
         4024: 'GALRawCNAV',  # ref.[1] p.282
         4069: 'QZSRawL6'  ,  # ref.[2] p.267
         4242: 'BDSRawB2b' ,  # ref.[1] p.288
@@ -44,10 +44,10 @@ class SeptReceiver:
         while True:
             sync = bytes(2)
             while sync != b'\x24\x40':
-                b = sys.stdin.buffer.read(1)
-                if not b:
+                syncb = sys.stdin.buffer.read(1)
+                if not syncb:
                     return False
-                sync = sync[1:2] + b
+                sync = sync[1:2] + syncb
             head = sys.stdin.buffer.read(6)
             if not head:
                 return False

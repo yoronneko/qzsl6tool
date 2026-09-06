@@ -87,18 +87,18 @@ class QzsL6:
         ''' reads L6 message and returns True if success in read '''
         sync: bytes = bytes(4)
         while sync != b'\x1a\xcf\xfc\x1d':
-            b: bytes = sys.stdin.buffer.read(1)
-            if not b:
+            syncb: bytes = sys.stdin.buffer.read(1)
+            if not syncb:
                 return False
-            sync = sync[1:4] + b
-        b: bytes = sys.stdin.buffer.read(1+1+212+32)
-        if not b:
+            sync = sync[1:4] + syncb
+        frame: bytes = sys.stdin.buffer.read(1+1+212+32)
+        if not frame:
             return False
         pos      : int   = 0
-        self.prn : int   = int.from_bytes(b[pos:pos+1], 'big'); pos += 1  # PRN
-        self.mtid: int   = int.from_bytes(b[pos:pos+1], 'big'); pos += 1  # message type ID
-        data     : bytes = b[pos:pos+212]; pos += 212
-        rs       : bytes = b[pos:pos+ 32]; pos +=  32  # Reed Solomon error correction (not used here)
+        self.prn : int   = int.from_bytes(frame[pos:pos+1], 'big'); pos += 1  # PRN
+        self.mtid: int   = int.from_bytes(frame[pos:pos+1], 'big'); pos += 1  # message type ID
+        data     : bytes = frame[pos:pos+212]; pos += 212
+        rs       : bytes = frame[pos:pos+ 32]; pos +=  32  # Reed Solomon error correction (not used here)
         vid = self.mtid >> 5                    # vender ID
         self.facility = "Kobe" if (self.mtid >> 4) & 1 else "Hitachi-Ota"
         self.facility += f":{(self.mtid >> 3) & 1}"
@@ -313,7 +313,6 @@ class QzsL6:
     def show_qznma_msg(self) -> str:
         ''' returns decoded QZNMA messages '''
         return f'      SF{self.sfn} DP{self.dpn}' + self.qznma.decode(self.dpart)
-        #return self.qznma.decode(self.dpart)
 
     def show_mdcppp_iono_msg(self) -> str:
         ''' returns decoded MADOCA-PPP ionospheric messages '''

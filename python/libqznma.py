@@ -30,6 +30,7 @@ except ModuleNotFoundError:
 L_RDS      = 576  # length of RDS in bits
 L_RESERVED = 543  # length of reserved bits in bits
 L_SIGNAT   = 512  # length of signature in bits
+
 class Qznma:
     "Quasi-Zenith Satellite navigation authentication  message process class"
     def __init__(self, trace: libtrace.Trace) -> None:
@@ -47,7 +48,7 @@ class Qznma:
         reserved = payload.read(L_RESERVED)
         if reserved.any(1):
             self.trace.show(2, f"QZNMA reserved dump: {reserved.bin}")
-        message = ' ' + self.decode_rds(rds1) + self.decode_rds(rds2)
+        message = ' ' + self.decode_rds(BitStream(rds1)) + self.decode_rds(BitStream(rds2))
         return message
 
     def decode_rds(self, rds: BitStream) -> str:

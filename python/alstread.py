@@ -33,13 +33,11 @@ class AllystarReceiver:
 
     def read(self):  # ref. [1]
         sync = bytes(4)
-        while True:
-            b = sys.stdin.buffer.read(1)
-            if not b:
+        while sync != b'\xf1\xd9\x02\x10':
+            syncb = sys.stdin.buffer.read(1)
+            if not syncb:
                 return False
-            sync = sync[1:4] + b
-            if sync == b'\xf1\xd9\x02\x10':
-                break
+            sync = sync[1:4] + syncb
         l6   = sys.stdin.buffer.read(266)
         csum = sys.stdin.buffer.read(2)
         if not l6 or not csum:
@@ -47,7 +45,7 @@ class AllystarReceiver:
         l6 = b'\x02\x10' + l6
         len_l6    = int.from_bytes(l6[ 2: 4], 'little')
         self.prn  = int.from_bytes(l6[ 4: 6], 'little') - 700
-        freqid    = int.from_bytes(l6[ 6: 7], 'little')
+        freqid    = int.from_bytes(l6[ 6: 7], 'little')  # not used
         len_data  = int.from_bytes(l6[ 7: 8], 'little') - 2
         self.gpsw = int.from_bytes(l6[ 8:10], 'big')
         self.gpst = int.from_bytes(l6[10:14], 'big')
@@ -58,19 +56,19 @@ class AllystarReceiver:
             self.last_gpst = self.gpst
         self.err = ""
         csum1, csum2 = libqzsl6tool.checksum(l6)
-        if csum[0] != csum1 or csum[1] != csum2: self.err += "CS "
-        if len_l6 != 264                       : self.err += "Payload "
-        if len_data !=  63                     : self.err += "Data "
-        if flag & 0x01                         : self.err += "RS "
-        if flag & 0x02                         : self.err += "Week "
-        if flag & 0x04                         : self.err += "TOW "
+        if csum[0]  != csum1 or csum[1] != csum2: self.err += "CS "
+        if len_l6   != 264                      : self.err += "Payload "
+        if len_data !=  63                      : self.err += "Data "
+        if flag     & 0x01                      : self.err += "RS "
+        if flag     & 0x02                      : self.err += "Week "
+        if flag     & 0x04                      : self.err += "TOW "
         return True
 
     def select_sat(self, s_prn: int) -> None:
         ''' selects satellite and displays message '''
         self.p_prn  = 0    # PRN    of satellite that has the strongest C/No
         self.p_snr  = 0    # C/No   of satellite that has the strongest C/No
-        self.l6 = b''  # L6 msg of satellite that has the strongest C/No
+        self.l6     = b''  # L6 msg of satellite that has the strongest C/No
         disp_msg = ''
         if self.last_gpst != self.gpst and len(self.dict_snr) != 0:
             # A change in gpst means possible sats data correction is finished.
