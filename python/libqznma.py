@@ -48,7 +48,7 @@ class Qznma:
         reserved = payload.read(L_RESERVED)
         if reserved.any(1):
             self.trace.show(2, f"QZNMA reserved dump: {reserved.bin}")
-        message = ' ' + self.decode_rds(rds1) + self.decode_rds(rds2)  # type: ignore
+        message = ' ' + self.decode_rds(BitStream(rds1)) + self.decode_rds(BitStream(rds2))
         return message
 
     def decode_rds(self, rds: BitStream) -> str:

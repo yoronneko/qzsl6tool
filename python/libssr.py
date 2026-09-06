@@ -293,7 +293,7 @@ class Ssr:
         for i in range(self.ssr_nsat):
             satid = payload.read(bw).u  # satellite ID, DF068
             ura   = payload.read( 6)  # user range accuracy, DF389
-            accuracy = ura2dist(ura)  # type: ignore
+            accuracy = ura2dist(BitStream(ura))
             if accuracy != URA_INVALID:
                 msg1 += self.trace.msg(1, f'\n{satsys}{satid:02d} {accuracy:{FMT_URA}}')
                 strsat += f"{satsys}{satid:02} "
@@ -433,7 +433,7 @@ class Ssr:
             nm = 0  # navigation message (HAS)
             if ssr_type == 'has':
                 nm = payload.read(3).u
-            cellmask[ignss]    = bcellmask  # cell mask  # type: ignore   
+            cellmask[ignss]    = BitStream(bcellmask)  # cell mask  
             satsys  [ignss]    = t_satsys   # satellite system
             nsatmask[ignss]    = t_satmask  # satellite mask
             nsigmask[ignss]    = t_sigmask  # signal mask
