@@ -166,10 +166,10 @@ class QzsL6:
 
     def show_madoca_msg(self) -> str:
         ''' returns decoded (old) MADOCA messages '''
-        self.tow   = self.dpart.read(20).u  # type: ignore
-        self.wn    = self.dpart.read(13).u  # type: ignore
+        self.tow   = self.dpart.read(20).u
+        self.wn    = self.dpart.read(13).u
         self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
-        self.dpart.pos = 0                  # type: ignore
+        self.dpart.pos = 0
         msg   = libgnsstime.gps2utc(self.wn, self.tow) + ' '
         while self.decode_madoca():
             msg += f'RTCM {self.ssr.msgnum}({self.ssr.ssr_nsat}) '
@@ -179,31 +179,31 @@ class QzsL6:
         ''' decodes (old) MADOCA messages and returns True if success '''
         if len(self.dpart) < 12:
             return False
-        msgnum = self.dpart.read(12).u  # type: ignore
+        msgnum = self.dpart.read(12).u
         if msgnum == 0:
             return False
         satsys = msgnum2satsys(msgnum)
         mtype  = msgnum2mtype (msgnum)
-        msg2 = self.ssr.ssr_decode_head(self.dpart, satsys, mtype)  # type: ignore
+        msg2 = self.ssr.ssr_decode_head(self.dpart, satsys, mtype)
         if mtype == 'SSR orbit':
-            msg = self.ssr.ssr_decode_orbit(self.dpart, satsys)     # type: ignore
+            msg = self.ssr.ssr_decode_orbit(self.dpart, satsys)
         elif mtype == 'SSR clock':
-            msg = self.ssr.ssr_decode_clock(self.dpart, satsys)     # type: ignore
+            msg = self.ssr.ssr_decode_clock(self.dpart, satsys)
         elif mtype == 'SSR code bias':
-            msg = self.ssr.ssr_decode_code_bias(self.dpart, satsys) # type: ignore
+            msg = self.ssr.ssr_decode_code_bias(self.dpart, satsys)
         elif mtype == 'SSR URA':
-            msg = self.ssr.ssr_decode_ura(self.dpart, satsys)       # type: ignore
+            msg = self.ssr.ssr_decode_ura(self.dpart, satsys)
         elif mtype == 'SSR hr clock':
-            msg = self.ssr.ssr_decode_hr_clock(self.dpart, satsys)  # type: ignore
+            msg = self.ssr.ssr_decode_hr_clock(self.dpart, satsys)
         else:
             raise Exception(f'unsupported message type: {msgnum}')
         self.trace.show(0, msg + msg2)
-        if self.dpart.pos % 8 != 0:  # byte align  # type: ignore
-            self.dpart.pos += 8 - (self.dpart.pos % 8)  # type: ignore
+        if self.dpart.pos % 8 != 0:  # byte align
+            self.dpart.pos += 8 - (self.dpart.pos % 8)
         if self.fp_rtcm:
-            send_rtcm(self.fp_rtcm, self.dpart[0:self.dpart.pos])  # type: ignore
+            send_rtcm(self.fp_rtcm, self.dpart[0:self.dpart.pos])
         self.dpart = self.dpart[self.dpart.pos:]  # discard decoded part
-        self.dpart.pos = 0  # type: ignore
+        self.dpart.pos = 0
         self.ssr.msgnum = msgnum
         return True
 
@@ -211,16 +211,16 @@ class QzsL6:
         ''' returns decoded CSSR messages '''
         if self.sf_ind:  # first data part
             self.dpn = 1
-            self.payload = BitStream(self.dpart)  # type: ignore
-            if not self.ssr.decode_cssr_head(self.payload):  # could not decode CSSR head  # type: ignore
+            self.payload = BitStream(self.dpart)
+            if not self.ssr.decode_cssr_head(self.payload):  # could not decode CSSR head
                 self.payload = BitStream()
             elif self.ssr.subtype == 1:
-                self.payload.pos = 0  # restore position  # type: ignore
+                self.payload.pos = 0  # restore position
                 self.sfn = 1
                 self.run = True
             else:
                 if self.run:  # first data part but subtype is not ST1
-                    self.payload.pos = 0  # restore position  # type: ignore
+                    self.payload.pos = 0  # restore position
                     self.sfn += 1
                 else:  # first data part but ST1 has not been received
                     self.payload = BitStream()
@@ -236,7 +236,7 @@ class QzsL6:
                 else:  # append next data part to the payload
                     pos = self.payload.pos  # save position
                     self.payload += self.dpart
-                    self.payload.pos = pos  # restore position  # type: ignore
+                    self.payload.pos = pos  # restore position
         msg = ''
         if self.sfn != 0:
             msg += f' SF{self.sfn} DP{self.dpn}'
@@ -251,7 +251,7 @@ class QzsL6:
             while self.read_cssr():  # try to decode next message
                 msg += f' ST{self.ssr.subtype}'
             if not self.payload.all(0):   # continues to next datapart
-                self.payload.pos = 0  # type: ignore
+                self.payload.pos = 0
                 msg += f' ST{self.ssr.subtype}' + self.trace.msg(0, '...', fg='yellow')
             else:  # end of message in the subframe
                 self.payload = BitStream()
@@ -260,10 +260,10 @@ class QzsL6:
                 msg += self.trace.msg(0, ' (null)', dec='dark')
                 self.payload = BitStream()
             elif self.run:  # or, continual message
-                self.payload.pos = 0  # type: ignore
+                self.payload.pos = 0
                 msg += f' ST{self.ssr.subtype}' + self.trace.msg(0, '...', 'yellow')
             else:  # ST1 mask message has not been found yet
-                self.payload.pos = 0  # type: ignore
+                self.payload.pos = 0
                 msg += self.trace.msg(0, ' (syncing)', dec='dark')
         return msg
 

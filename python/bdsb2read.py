@@ -163,7 +163,7 @@ class BdsB2():
             urai    = mesdata.read( 6)
             if slot == 0:
                 continue
-            msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr:7d}   {radial*0.0016:{libssr.FMT_ORB}}  {along*0.0064:{libssr.FMT_ORB}}  {cross*0.0064:{libssr.FMT_ORB}} {libssr.ura2dist(urai):{libssr.FMT_URA}}')  # type: ignore
+            msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr:7d}   {radial*0.0016:{libssr.FMT_ORB}}  {along*0.0064:{libssr.FMT_ORB}}  {cross*0.0064:{libssr.FMT_ORB}} {libssr.ura2dist(urai):{libssr.FMT_URA}}')
         mesdata.pos += 19  # reserved
         return msg
 
@@ -247,7 +247,7 @@ class BdsB2():
             urai = mesdata.read( 6)
             if self.mask[maskpos]:
                 continue
-            msg += self.trace.msg(1, f'\n{slot2satname(maskpos+1)} {libssr.ura2dist(urai):{libssr.FMT_URA}}')  # type: ignore
+            msg += self.trace.msg(1, f'\n{slot2satname(maskpos+1)} {libssr.ura2dist(urai):{libssr.FMT_URA}}')
         mesdata.pos += 6  # reserved
         return msg
 
@@ -295,7 +295,7 @@ class BdsB2():
             if slot == 0:
                 continue
             msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr:7d} {radial*0.0016:{libssr.FMT_ORB}} {along*0.0064:{libssr.FMT_ORB}} {cross*0.0064:{libssr.FMT_ORB}}')
-            accuracy = libssr.ura2dist(urai)  # type: ignore
+            accuracy = libssr.ura2dist(urai)
             if accuracy != libssr.URA_INVALID:
                 msg += self.trace.msg(1, f'{accuracy:{libssr.FMT_URA}}')
         return msg
@@ -340,7 +340,7 @@ class BdsB2():
             urai    = mesdata.read( 6)
             if slot == 0:
                 continue
-            msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr} {radial*0.0016:{libssr.FMT_ORB}} {along*0.0064:{libssr.FMT_ORB}} {cross*0.0064:{libssr.FMT_ORB}} {libssr.ura2dist(urai):{libssr.FMT_URA}}')  # type: ignore
+            msg += self.trace.msg(1, f'\n{slot2satname(slot)} {iodn:{libssr.FMT_IODE}} {iodcorr} {radial*0.0016:{libssr.FMT_ORB}} {along*0.0064:{libssr.FMT_ORB}} {cross*0.0064:{libssr.FMT_ORB}} {libssr.ura2dist(urai):{libssr.FMT_URA}}')
         return msg
 
     def decode_b2b_10(self, mesdata: BitStream) -> str:
