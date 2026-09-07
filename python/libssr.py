@@ -420,8 +420,8 @@ class Ssr:
                         t_gsys.append(f'C{i + 18:02d}') # D01->C19, D02->C20, ...
                     else:
                         t_gsys.append(f'{t_satsys}{i + 1:02d}')
-            for i in range(len(bsigmask)):
-                if bsigmask[i]:
+            for i, val in enumerate(bsigmask):  # type: ignore
+                if val:
                     t_sigmask += 1
                     t_gsig.append(sigmask2signame(t_satsys, i))
             ncell = t_satmask * t_sigmask
