@@ -242,7 +242,7 @@ class QzsL6:
             msg += f' SF{self.sfn} DP{self.dpn}'
             if self.vendor == "MADOCA-PPP":  # ref.[3], service ID and extension (Table 4.2.1-3)
                 msg += f' {self.servid} {self.msg_ext}:'
-            # To do: how to show the pattern ID for CLAS messages
+            # Temporarily disable CLAS pattern ID display until test/expect data is updated (format TBD).
             # if self.vendor == "CLAS":        # ref.[7], pattern ID (Table 4.1.2-2)
             #     if self.patid != 0:
             #         msg += f' P{self.patid}'
