@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qzsl6tool"
-version = "0.1.7a2"
+version = "0.1.7a3"
 description = "Command-line tools for reading and converting GNSS messages, including QZSS L6, RTCM, Galileo HAS, and BeiDou PPP-B2b data."
 readme = "readme-en.md"
 requires-python = ">=3.10"

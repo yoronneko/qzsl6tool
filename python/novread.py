@@ -209,7 +209,7 @@ if __name__ == '__main__':
                 msg = rcv.qzssrawsubframe()
             else:
                 msg = rcv.trace.msg(0, libgnsstime.gps2utc(rcv.gpsw, rcv.gpst // 1000), fg='green') + ' ' + rcv.trace.msg(0, rcv.msg_name, dec='dark')
-                rcv.raw = bytearray()
+                rcv.raw = bytes()  # raw is declared bytes (see __init__); reset, not mutated in place
             rcv.trace.show(0, msg)
             if (args.e6b   and rcv.msg_name == 'GALCNAVRAWPAGE' ) or \
                (args.qlnav and rcv.msg_name == 'QZSSRAWSUBFRAME'):

@@ -1,5 +1,10 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.7a3 (2026-09-07)
+
+- qzsl1sread.py: fixed the satellite numbering in the MT51 lockout list, which was off by one (e.g. G00 instead of G01) and inconsistent with the MT48 PRN mask.
+- Post-review cleanup of ver.0.1.7a2 (the CRC-error message of qzsl1sread.py, the NovAtel raw buffer type, and the SSR signal-mask iteration).
+
 ## ver.0.1.7a2 (2026-09-07)
 
 - ubxread.py: `--l1s` now outputs both SBAS and QZS L1S messages (the `--sbas` option was removed); added `--l1of` (GLONASS L1OF/L2OF) and `--b1i` (BeiDou B1I) options.

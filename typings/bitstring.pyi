@@ -14,7 +14,7 @@ per-call `# type: ignore` is needed.
 Only the members actually used in this codebase are declared.
 '''
 
-from typing import overload
+from typing import Iterator, overload
 
 class BitStream:
     def __init__(self, auto: object = ..., length: int | None = ..., offset: int | None = ..., **kwargs: object) -> None: ...
@@ -46,7 +46,7 @@ class BitStream:
     def __add__(self, other: "BitStream") -> "BitStream": ...
     def __mul__(self, other: int) -> "BitStream": ...
     def __rmul__(self, other: int) -> "BitStream": ...
-    def __iter__(self): ...
+    def __iter__(self) -> Iterator[bool]: ...  # iterating yields one bool per bit
 
 Bits = BitStream
 ConstBitStream = BitStream

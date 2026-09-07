@@ -420,7 +420,7 @@ class Ssr:
                         t_gsys.append(f'C{i + 18:02d}') # D01->C19, D02->C20, ...
                     else:
                         t_gsys.append(f'{t_satsys}{i + 1:02d}')
-            for i, val in enumerate(bsigmask):  # type: ignore
+            for i, val in enumerate(bsigmask):
                 if val:
                     t_sigmask += 1
                     t_gsig.append(sigmask2signame(t_satsys, i))
@@ -432,7 +432,7 @@ class Ssr:
             nm = 0  # navigation message (HAS)
             if ssr_type == 'has':
                 nm = payload.read(3).u
-            cellmask[ignss]    = BitStream(bcellmask)  # cell mask
+            cellmask[ignss]    = bcellmask  # cell mask (already a fresh BitStream from read() or repetition; no copy needed)
             satsys  [ignss]    = t_satsys   # satellite system
             nsatmask[ignss]    = t_satmask  # satellite mask
             nsigmask[ignss]    = t_sigmask  # signal mask
