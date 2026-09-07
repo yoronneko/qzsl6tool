@@ -432,7 +432,7 @@ class Ssr:
             nm = 0  # navigation message (HAS)
             if ssr_type == 'has':
                 nm = payload.read(3).u
-            cellmask[ignss]    = bcellmask  # cell mask
+            cellmask[ignss]    = BitStream(bcellmask)  # cell mask
             satsys  [ignss]    = t_satsys   # satellite system
             nsatmask[ignss]    = t_satmask  # satellite mask
             nsigmask[ignss]    = t_sigmask  # signal mask
