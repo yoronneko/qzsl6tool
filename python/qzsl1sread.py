@@ -126,15 +126,15 @@ class QzsL1s:
         self.mask_uh = []    # clear unhealthy satellite
         df.pos += 2          # spare
         for i in range(64):  # for GPS
-            if not df.read(1).u: self.mask_uh.append(f'G{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'G{i+1:02d}')
         for i in range( 9):  # for QZSS
-            if not df.read(1).u: self.mask_uh.append(f'J{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'J{i+1:02d}')
         for i in range(36):  # for GLONASS
-            if not df.read(1).u: self.mask_uh.append(f'R{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'R{i+1:02d}')
         for i in range(36):  # for Galileo
-            if not df.read(1).u: self.mask_uh.append(f'E{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'E{i+1:02d}')
         for i in range(36):  # for BeiDou
-            if not df.read(1).u: self.mask_uh.append(f'C{i:02d}')
+            if not df.read(1).u: self.mask_uh.append(f'C{i+1:02d}')
         df.pos += 29         # spare
         msg: str = ": lockout sats:"
         for sat in self.mask_uh:
