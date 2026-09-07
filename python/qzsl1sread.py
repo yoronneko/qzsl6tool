@@ -323,7 +323,7 @@ class QzsL1s:
         frame = (pad + pab + mt + df).tobytes()
         crc_test = libqzsl6tool.rtk_crc24q(frame, len(frame))
         if crc.tobytes() != crc_test:
-            msg = self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex()}", fg='red')
+            msg = self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex}", fg='red')  # crc_test is bytes (.hex() method); crc is a BitStream (.hex property)
             return msg
         mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")
         msg = self.trace.msg(0, mt_name, fg='cyan')
