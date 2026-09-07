@@ -200,7 +200,7 @@ if __name__ == '__main__':
     group.add_argument('--l1s', action='store_true',
         help='send SBAS and QZS L1S messages to stdout')
     group.add_argument('--l1of', action='store_true',
-        help='send GLO L1OF messages to stdout')
+        help='send GLO L1OF/L2OF messages to stdout')
     group.add_argument('--qzqsm', action='store_true',
         help='send QZS L1S DCR NMEA messages to stdout')
     group.add_argument('-l', '--lnav', action='store_true',
