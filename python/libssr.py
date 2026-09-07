@@ -591,7 +591,7 @@ class Ssr:
                     if len_payload < payload.pos + 13:
                         return False
                     c0 = payload.read(13)
-                    if c0.b != '1000000000000' and c0.b == '0111111111111':
+                    if c0.b != '1000000000000' and c0.b != '0111111111111':
                         msg1 += f"\nCKSUB {gsys} {c0.i*2.5e-3*multiplier:{FMT_CLK}}"
         self.trace.show(1, msg1)
         self.stat_both += stat_pos

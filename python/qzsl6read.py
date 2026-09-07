@@ -117,7 +117,7 @@ class QzsL6:
                 self.patid    = 0          # reserved pattern ID
                 # self.facility = "Unknown"  # then, the facility is not defined
             else:
-                self.patid  = (self.mtid >> 2) & 1 + 1  # ref.[7], CLAS pattern ID: 1 or 2, ref.[1] Table 4.1.2-2
+                self.patid  = ((self.mtid >> 2) & 1) + 1  # ref.[7], CLAS pattern ID: 1 or 2, ref.[1] Table 4.1.2-2
                 if (self.mtid >> 3) & 0b11 == 0b00:  # CLAS facility ID depends on pattern ID, very complex...
                     if self.patid == 1:
                         self.facility = "Hitachi-Ota:0"  # Facility 1
