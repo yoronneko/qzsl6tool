@@ -292,7 +292,7 @@ class Ssr:
         strsat = ''
         for i in range(self.ssr_nsat):
             satid = payload.read(bw).u  # satellite ID, DF068
-            accuracy = ura2dist(BitStream(payload.read(6)))  # user range accuracy, DF389
+            accuracy = ura2dist(payload.read(6))  # user range accuracy, DF389
             if accuracy != URA_INVALID:
                 msg1 += self.trace.msg(1, f'\n{satsys}{satid:02d} {accuracy:{FMT_URA}}')
                 strsat += f"{satsys}{satid:02} "
@@ -420,8 +420,8 @@ class Ssr:
                         t_gsys.append(f'C{i + 18:02d}') # D01->C19, D02->C20, ...
                     else:
                         t_gsys.append(f'{t_satsys}{i + 1:02d}')
-            for i, val in enumerate(bsigmask):  # type: ignore
-                if val:
+            for i in range(len(bsigmask)):
+                if bsigmask[i]:
                     t_sigmask += 1
                     t_gsig.append(sigmask2signame(t_satsys, i))
             ncell = t_satmask * t_sigmask
@@ -432,7 +432,7 @@ class Ssr:
             nm = 0  # navigation message (HAS)
             if ssr_type == 'has':
                 nm = payload.read(3).u
-            cellmask[ignss]    = BitStream(bcellmask)  # cell mask  
+            cellmask[ignss]    = bcellmask  # cell mask
             satsys  [ignss]    = t_satsys   # satellite system
             nsatmask[ignss]    = t_satmask  # satellite mask
             nsigmask[ignss]    = t_sigmask  # signal mask
@@ -755,7 +755,7 @@ class Ssr:
                 if len_payload < payload.pos + 6:
                     return False
                 ura = payload.read(6)  # [3], Sect.4.2.2.7
-                accuracy = ura2dist(ura)  # type: ignore
+                accuracy = ura2dist(ura)
                 if accuracy != URA_INVALID:
                     msg1 += f"\nST7 {gsys} {accuracy:{FMT_URA}}"
         self.trace.show(1, msg1)
@@ -796,7 +796,7 @@ class Ssr:
                 qi  = payload.read( 6)  # quality indicator
                 c00 = payload.read(14).i
                 if c00 != -8192:
-                    msg1 += f"\nST8 {gsys}     {ura2dist(qi):{FMT_TECU}}    {c00*0.05:{FMT_TECU}}"  # type: ignore
+                    msg1 += f"\nST8 {gsys}     {ura2dist(qi):{FMT_TECU}}    {c00*0.05:{FMT_TECU}}"
                 if 1 <= stec_type:
                     if len_payload < payload.pos + 12 + 12:
                         return False
@@ -846,7 +846,7 @@ class Ssr:
             raise Exception(f"cnid={cnid}, ngrid={ngrid} != {CLASGRID[cnid-1][1]}")
         bw = 16 if srange else 7    # bit width of residual correction
         CSSR_TROP_CORR_TYPE = ['Not included', 'Neill mapping function', 'Reserved', 'Reserved',]
-        msg1 = f"ST9 Trop Type: {CSSR_TROP_CORR_TYPE[tctype]} ({tctype}), resolution={bw}[bit] ({srange}), NID={cnid} ({CLASGRID[cnid-1][0]}), qual={ura2dist(tqi):{FMT_URA}}[mm], ngrid={ngrid}"  # type: ignore
+        msg1 = f"ST9 Trop Type: {CSSR_TROP_CORR_TYPE[tctype]} ({tctype}), resolution={bw}[bit] ({srange}), NID={cnid} ({CLASGRID[cnid-1][0]}), qual={ura2dist(tqi):{FMT_URA}}[mm], ngrid={ngrid}"
         if tctype != 1:
             self.trace.show(1, msg1)
             raise Exception(f"tctype={tctype}: we implicitly assume the tropospheric correction type (tctype) is 1. if tctype=0 (no topospheric correction), we don't know whether we read the following tropospheric correction data or not. Others are reserved.")
@@ -981,7 +981,7 @@ class Ssr:
             tqi   = payload.read(6)    # tropo quality indication
             ttype = payload.read(2).u  # tropo correction type
             t00   = payload.read(9).i  # tropo poly coeff
-            msg1 += f" qual={ura2dist(tqi)}[mm]"  # type: ignore
+            msg1 += f" qual={ura2dist(tqi)}[mm]"
             if t00 != -256:
                 msg1 += f" t00={t00*0.004:.3f}[m]"
             if 1 <= ttype:
@@ -1029,7 +1029,7 @@ class Ssr:
                     sqi = payload.read( 6)    # STEC quality indication
                     sct = payload.read( 2).u  # STEC correct type
                     c00 = payload.read(14).i
-                    msg1 += f"\nST12 STEC {gsys}  Lat.   Lon. residual[TECU] qual={ura2dist(sqi):.3f}[TECU]"  # type: ignore
+                    msg1 += f"\nST12 STEC {gsys}  Lat.   Lon. residual[TECU] qual={ura2dist(sqi):.3f}[TECU]"
                     if c00 != -8192:
                         msg1 += f" c00={c00*0.05:.3f}[TECU]"
                     if 1 <= sct:
@@ -1177,10 +1177,10 @@ class Ssr:
             elif satsys == "J": numsat = self.n_qzs
             for _ in range(numsat):
                 satid = payload.read( 6).u    # GNSS satellite ID
-                qi    = payload.read( 6)    # quality indicator
+                qi    = payload.read( 6)      # quality indicator
                 c00   = payload.read(14).i    # STEC correction coefficient C00
                 if c00 != -8192:
-                    msg1 += f'\n{satsys}{satid:02d}   {ura2dist(qi):7.2f}    {c00*0.05:{FMT_TECU}}'  # type: ignore
+                    msg1 += f'\n{satsys}{satid:02d}   {ura2dist(qi):7.2f}    {c00*0.05:{FMT_TECU}}'
                 if 1 <= self.stec_type:
                     c01 = payload.read(12).i  # STEC correction coefficient C01
                     c10 = payload.read(12).i  # STEC correction coefficient C10

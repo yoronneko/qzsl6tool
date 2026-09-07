@@ -213,7 +213,7 @@ def decode_word9(df: BitStream, nav: libnav.NavGal) -> None:
     if nav.svid2 == -1:        # if the almanac for SVID2 is not available
         df.pos += 16 + 16 + 13 + 2 + 2  # skip reading almanac for SVID2
     else:
-        a2 = nav.alm[nav.svid2.u-1]   # almanac for SVID2
+        a2 = nav.alm[nav.svid2-1]     # almanac for SVID2
         a2.m0  = df.read(16)   # m0
         a2.af0 = df.read(16)   # af0
         a2.af1 = df.read(13)   # af1
@@ -233,7 +233,7 @@ def decode_word10(df: BitStream, nav: libnav.NavGal) -> None:
     if nav.svid3 == -1:              # if the almanac for SVID3 is not available
         df.pos += 16 + 11 + 16 + 16 + 13 + 2 + 2  # skip reading almanac for SVID3
     else:
-        a3 = nav.alm[nav.svid3.u-1]  # almanac for SVID3
+        a3 = nav.alm[nav.svid3-1]    # almanac for SVID3
         a3.omg0 = df.read(16)        # omg0
         a3.omgd = df.read(11)        # omgd
         a3.m0   = df.read(16)        # m0

@@ -149,7 +149,7 @@ class UbxReceiver:
         if self.signame != 'L1S' or \
            (not args.duplicate and self.payload == self.payload_prev):
             return None
-        mt: int = self.payload[8:8+6].uint
+        mt: int = self.payload[8:8+6].u
         if mt != 43 and mt != 44:
             return None
         self.payload_prev = self.payload

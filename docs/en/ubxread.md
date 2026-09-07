@@ -2,26 +2,28 @@
 
 This program reads the raw data of u-blox ZED-F9P receiver, and extracts
 
-- QZS L1S messages (``--l1s`` option),
-- QZS L1S NMEA messages (``--qzqsm`` option),
-- SBAS (satellite based augmentation system) message (``--sbas`` option),
-- GPS/QZSS LNAV messages (``-l`` option), and
-- Galileo E1B I/NAV message (``-i`` option).
+- SBAS (satellite based augmentation system) and QZS L1S messages (``--l1s`` option),
+- GLONASS L1OF/L2OF messages (``--l1of`` option),
+- QZS L1S DCR NMEA messages (``--qzqsm`` option),
+- GPS/QZSS LNAV messages (``-l`` option),
+- BeiDou B1I messages (``--b1i`` option), and
+- Galileo E1B I/NAV messages (``-i`` option).
 
 The ``--help`` option displays the options it accepts.
 
 ```bash
 $ ubxread.py --help
-usage: ubxread.py [-h] [--l1s | --qzqsm | --sbas | -l | -i] [-d] [-c] [-m] [-p PRN]
+usage: ubxread.py [-h] [--l1s | --l1of | --qzqsm | -l | --b1i | -i] [-d] [-c] [-m] [-p PRN]
 
 u-blox message read, QZS L6 Tool ver.x.x.x
 
 options:
   -h, --help         show this help message and exit
-  --l1s              send QZS L1S messages to stdout
+  --l1s              send SBAS and QZS L1S messages to stdout
+  --l1of             send GLO L1OF/L2OF messages to stdout
   --qzqsm            send QZS L1S DCR NMEA messages to stdout
-  --sbas             send SBAS messages to stdout
   -l, --lnav         send GPS or QZS LNAV messages to stdout
+  --b1i              send BDS B1I messages to stdout
   -i, --inav         send GAL I/NAV messages to stdout
   -d, --duplicate    allow duplicate QZS L1S DCR NMEA sentences (currently, all QZS sats send the same DCR messages)
   -c, --color        apply ANSI color escape sequences even for non-terminal.

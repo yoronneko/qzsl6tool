@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.7a1
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.7a2
 
 ![QZS L6 Tool](https://raw.githubusercontent.com/yoronneko/qzsl6tool/main/docs/img/qzsl6tool.png)
 
@@ -67,14 +67,14 @@ Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerSh
 
 ## GNSS受信機データ変換
 
-| GNSS receiver | code | QZS L6 | QZS L1S | Galileo HAS | Galileo I/NAV | BeiDou B2b |
-|:----:|:---:| :-------:|:-----------:|:--------:|:---:|:---:|
-| Allystar HD9310 option C | [alstread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/alstread.md) |``-l`` option | | | | |
-| [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) | [psdrread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/psdrread.md) | ``-l`` option |  | ``-e`` option | ``-i`` option| ``-b`` option|
-| NovAtel OEM729 | [novread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/novread.md) | | | ``-e`` option | | |
-| Septentrio mosaic-X5 | [septread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/septread.md) | | | ``-e`` option | | ``-b`` option|
-| Septentrio mosaic-CLAS | [septread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/septread.md) |``-l`` option | | | | |
-| u-blox ZED-F9P | [ubxread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/ubxread.md) | | ``-l1s`` option | | ``-i`` option| |
+| GNSS receiver | code | QZS L6 | SBAS / QZS L1S | Galileo HAS | Galileo I/NAV | BeiDou B2b | GLONASS L1OF | BeiDou B1I |
+|:----:|:---:| :-------:|:-----------:|:--------:|:---:|:---:|:---:|:---:|
+| Allystar HD9310 option C | [alstread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/alstread.md) |``-l`` option | | | | | | |
+| [Pocket SDR](https://github.com/tomojitakasu/PocketSDR) | [psdrread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/psdrread.md) | ``-l`` option |  | ``-e`` option | ``-i`` option| ``-b`` option| | |
+| NovAtel OEM729 | [novread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/novread.md) | | | ``-e`` option | | | | |
+| Septentrio mosaic-X5 | [septread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/septread.md) | | | ``-e`` option | | ``-b`` option| | |
+| Septentrio mosaic-CLAS | [septread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/septread.md) |``-l`` option | | | | | | |
+| u-blox ZED-F9P | [ubxread.py](https://github.com/yoronneko/qzsl6tool/blob/main/docs/ja/ubxread.md) | | ``--l1s`` option | | ``-i`` option| | ``--l1of`` option | ``--b1i`` option |
 
 ## 時刻・座標変換
 

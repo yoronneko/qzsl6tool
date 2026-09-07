@@ -1,5 +1,14 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.7a2 (2026-09-07)
+
+- ubxread.py: `--l1s` now outputs both SBAS and QZS L1S messages (the `--sbas` option was removed); added `--l1of` (GLONASS L1OF/L2OF) and `--b1i` (BeiDou B1I) options.
+- Fixed GNSS decoder conditions and the frame detection loop in the receiver readers.
+- Fixed latent runtime errors: the CRC-error message in qzsl1sread.py (`.hex` is a property), and the SVID2/SVID3 almanac indexing in galinavread.py.
+- Temporarily disabled the CLAS pattern ID display until the test data is updated.
+- Type-checking cleanup: added a local `bitstring` type stub (`typings/bitstring.pyi`) and a `[tool.pyright]` section in `pyproject.toml` so that Pylance/pyright resolve the sources in `python/` and infer `read().u` correctly; removed all `# type: ignore` comments and redundant `BitStream()` conversions; navigation message containers (`libnav.NavNull`) now declare their dynamic attributes.
+- Documentation: updated ubxread.py docs and the README receiver tables; documented l6rtcm4050.py and previously undocumented CLI options.
+
 ## ver.0.1.7a1 (2026-06-15)
 
 - Fixed PyPI project description links to Japanese/English README files, release notes, documentation files, and the project image.

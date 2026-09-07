@@ -301,8 +301,8 @@ class GalE6():
     mid_prev          = 0     # previous message id (MID)
     num_has_pages     = 0     # number of has pages of the message id
     storing_has_pages = True  # allow storing has pages
-    haspage  = [b"" for _ in range(MAX_PAGES)]
-    hasindex = [0   for _ in range(MAX_PAGES)]
+    haspage : list[list[int]] = [[] for _ in range(MAX_PAGES)]  # page bytes as int lists, fed to galois GF()
+    hasindex: list[int]       = [0  for _ in range(MAX_PAGES)]
 
     def __init__(self, trace: libtrace.Trace, stat: bool=False) -> None:
         self.trace = trace
@@ -374,7 +374,7 @@ class GalE6():
         m = np.linalg.inv(d) @ w
         has_msg = BitStream(m.tobytes())
         self.trace.show(2, f'------ HAS decode with the pages of MID={self.mid} MS={self.ms} ------')
-        self.trace.show(2, has_msg)
+        self.trace.show(2, str(has_msg))
         self.trace.show(2, '------')
         self.decode_has_header(has_msg)
         msg = ''

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qzsl6tool"
-version = "0.1.7a1"
+version = "0.1.7a2"
 description = "Command-line tools for reading and converting GNSS messages, including QZSS L6, RTCM, Galileo HAS, and BeiDou PPP-B2b data."
 readme = "readme-en.md"
 requires-python = ">=3.10"
@@ -93,3 +93,10 @@ script-files = [
 
 [tool.setuptools.package-dir]
 "" = "python"
+
+[tool.pyright]
+# Resolve `import libnav` etc. to the sources in python/ rather than to a copy
+# of this package that may be pip-installed in site-packages.
+extraPaths = ["python"]
+# Local type stubs (typings/bitstring.pyi); "typings" is also pyright's default.
+stubPath = "typings"

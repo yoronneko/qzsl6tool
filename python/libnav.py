@@ -33,6 +33,7 @@ FMT_IODE: str   = '<4d'  # format string for issue of data ephemeris
 
 import os
 import sys
+from typing import Any
 
 sys.path.append(os.path.dirname(__file__))
 import libtrace
@@ -47,9 +48,18 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 class NavNull:
-    pass
+    ''' navigation message container
+        The decoders set ephemeris/almanac fields on it dynamically (e.g. e.wn,
+        e.iodn), so __getattr__/__setattr__ are declared to tell type checkers
+        that arbitrary attributes are allowed. Runtime behavior is unchanged:
+        __getattr__ is only consulted when normal lookup fails.
+    '''
+    def __getattr__(self, name: str) -> Any:
+        raise AttributeError(name)
+    def __setattr__(self, name: str, value: Any) -> None:
+        object.__setattr__(self, name, value)
 
-class NavGps:
+class NavGps(NavNull):
     def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_GPSSAT)]
@@ -99,7 +109,7 @@ class NavGps:
             msg += self.trace.msg(0, f' unhealthy({e.svh.u:02x})', fg='red')
         return msg
 
-class NavGlo:
+class NavGlo(NavNull):
     ''' GLONASS ephemeris data '''
 
     def __init__(self, trace: libtrace.Trace) -> None:
@@ -153,7 +163,7 @@ class NavGlo:
             msg += self.trace.msg(0, ' unhealthy', fg='red')
         return msg
 
-class NavGal:
+class NavGal(NavNull):
     def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_GALSAT)]
@@ -274,7 +284,7 @@ class NavQzs(NavGps):
             if e.svh[5]: msg += ' L1C/A'  # transmitting L1C/A
         return msg
 
-class NavBds:
+class NavBds(NavNull):
     def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph   = [NavNull() for _ in range(N_BDSAT)]
@@ -318,7 +328,7 @@ class NavBds:
             msg += self.trace.msg(0, ' unhealthy', fg='red')
         return msg
 
-class NavIrn:
+class NavIrn(NavNull):
     def __init__(self, trace: libtrace.Trace) -> None:
         self.trace = trace
         self.eph = [NavNull() for _ in range(N_IRNSAT)]

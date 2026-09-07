@@ -88,11 +88,11 @@ class QzsL1s:
     def decode_monitoring_station_info(self, df: BitStream) -> str:  # ref.[3], sect.4.1.2.6, MT47
         ''' returns decoded message '''
         msg: str = self.trace.msg(1, "\nLocation    Lat[deg]   Lon[deg] Hgt[m]")
-        for i in range(5):
-            gms_code = df.read( 6).u  # type: ignore
-            gms_lat  = df.read(15).i  # type: ignore
-            gms_lon  = df.read(15).i  # type: ignore
-            gms_hgt  = df.read( 6).u  # type: ignore
+        for _ in range(5):
+            gms_code = df.read( 6).u
+            gms_lat  = df.read(15).i
+            gms_lon  = df.read(15).i
+            gms_hgt  = df.read( 6).u
             if gms_code == 63: continue
             msg += self.trace.msg(1, f"\n{GMS2NAME.get(gms_code, 'undefined'):11s}   {gms_lat*0.005:6.3f}    {gms_lon*0.005+115.00:7.3f}   {gms_hgt*50-100:4d}")
         df.pos += 2  # spare
@@ -105,15 +105,15 @@ class QzsL1s:
         self.mask_uh  = []         # clear unhealthy satellite
         self.iodp = df.read(2).u   # PRN mask update number
         for i in range(64):        # for GPS
-            if df.read(1).u: self.mask_prn.append(f'G{i+1:02d}')  # type: ignore
+            if df.read(1).u: self.mask_prn.append(f'G{i+1:02d}')
         for i in range( 9):        # for QZSS
-            if df.read(1).u: self.mask_prn.append(f'J{i+1:02d}')  # type: ignore
+            if df.read(1).u: self.mask_prn.append(f'J{i+1:02d}')
         for i in range(36):        # for GLONASS
-            if df.read(1).u: self.mask_prn.append(f'R{i+1:02d}')  # type: ignore
+            if df.read(1).u: self.mask_prn.append(f'R{i+1:02d}')
         for i in range(36):        # for Galileo
-            if df.read(1).u: self.mask_prn.append(f'E{i+1:02d}')  # type: ignore
+            if df.read(1).u: self.mask_prn.append(f'E{i+1:02d}')
         for i in range(36):        # for BeiDou
-            if df.read(1).u: self.mask_prn.append(f'C{i+1:02d}')  # type: ignore
+            if df.read(1).u: self.mask_prn.append(f'C{i+1:02d}')
         df.pos += 29               # spare
         msg: str = f": selected sats:"
         for sat in self.mask_prn:
@@ -126,15 +126,15 @@ class QzsL1s:
         self.mask_uh = []    # clear unhealthy satellite
         df.pos += 2          # spare
         for i in range(64):  # for GPS
-            if not df.read(1).u: self.mask_uh.append(f'G{i:02d}')  # type: ignore
+            if not df.read(1).u: self.mask_uh.append(f'G{i:02d}')
         for i in range( 9):  # for QZSS
-            if not df.read(1).u: self.mask_uh.append(f'J{i:02d}')  # type: ignore
+            if not df.read(1).u: self.mask_uh.append(f'J{i:02d}')
         for i in range(36):  # for GLONASS
-            if not df.read(1).u: self.mask_uh.append(f'R{i:02d}')  # type: ignore
+            if not df.read(1).u: self.mask_uh.append(f'R{i:02d}')
         for i in range(36):  # for Galileo
-            if not df.read(1).u: self.mask_uh.append(f'E{i:02d}')  # type: ignore
+            if not df.read(1).u: self.mask_uh.append(f'E{i:02d}')
         for i in range(36):  # for BeiDou
-            if not df.read(1).u: self.mask_uh.append(f'C{i:02d}')  # type: ignore
+            if not df.read(1).u: self.mask_uh.append(f'C{i:02d}')
         df.pos += 29         # spare
         msg: str = ": lockout sats:"
         for sat in self.mask_uh:
@@ -146,12 +146,12 @@ class QzsL1s:
         ''' returns decoded message '''
         mask_sv   = [0 for _ in range(23)]  # selected satellite
         iod       = [0 for _ in range(23)]  # data issue number
-        iodi = df.read(2).u                 # IOD updating number  # type: ignore
+        iodi = df.read(2).u                 # IOD updating number
         for i in range(23):
-            mask_sv[i] = df.read(1).u  # type: ignore
+            mask_sv[i] = df.read(1).u
         for i in range(23):
-            iod[i] = df.read(8).u      # type: ignore
-        iodp = df.read(2).u            # type: ignore
+            iod[i] = df.read(8).u
+        iodp = df.read(2).u
         df.pos += 1  # spare
         if iodp != self.iodp:
             return self.trace.msg(0, f": IODP mismatch {iodp} != {self.iodp}", dec='dark')
@@ -172,16 +172,16 @@ class QzsL1s:
 
     def decode_dgps_correction(self, df: BitStream) -> str:  # ref.[3], sect.4.1.2.9, MT50
         ''' returns decoded message '''
-        iodp       = df.read(2).u  # PRN mask updating number  # type: ignore
-        iodi       = df.read(2).u  # IOD updating number  # type: ignore
-        gms_code   = df.read(6).u  # monitoring station code  # type: ignore
-        gms_health = df.read(1).u  # monitoring station health  # type: ignore
-        mask_dgps  = [False for _ in range(23)]  # mask selected satellite # type: ignore
+        iodp       = df.read(2).u  # PRN mask updating number
+        iodi       = df.read(2).u  # IOD updating number
+        gms_code   = df.read(6).u  # monitoring station code
+        gms_health = df.read(1).u  # monitoring station health
+        mask_dgps  = [False for _ in range(23)]  # mask selected satellite
         for i in range(23):
-            mask_dgps[i] = df.read(1).u  # mask selected satellite  # type: ignore
+            mask_dgps[i] = bool(df.read(1).u)  # mask selected satellite
         prc = [0 for _ in range(14)]     # pseudorange correcion
         for i in range(14):
-            prc[i] = df.read(12).i       # pseudorange correction  # type: ignore
+            prc[i] = df.read(12).i       # pseudorange correction
         df.pos += 10                     # spare
         if self.iodp == UNDEF:
             return self.trace.msg(0, " (waiting for PRN mask, MT48)", dec='dark')
@@ -263,15 +263,15 @@ class QzsL1s:
             Japan Meteorological Agency Disaster and Crisis Management Report
             ref.[2]
         '''
-        rc   = df.read(  3).u  # report classification, ref.[2], pp.12, Fig 4.1.2-1  # type: ignore
-        dc   = df.read(  4).u  # disaster classification  # type: ignore
-        atmo = df.read(  4).u  # month  # type: ignore
-        atda = df.read(  5).u  # day  # type: ignore
-        atho = df.read(  5).u  # hour  # type: ignore
-        atmi = df.read(  6).u  # minute  # type: ignore
-        it   = df.read(  2).u  # information type  # type: ignore
+        rc   = df.read(  3).u  # report classification, ref.[2], pp.12, Fig 4.1.2-1
+        dc   = df.read(  4).u  # disaster classification
+        atmo = df.read(  4).u  # month
+        atda = df.read(  5).u  # day
+        atho = df.read(  5).u  # hour
+        atmi = df.read(  6).u  # minute
+        it   = df.read(  2).u  # information type
         data = df.read(171)    # data that depends on the disaster
-        vn   = df.read(  6).u  # version  # type: ignore
+        vn   = df.read(  6).u  # version
         if vn != 1:
             raise Exception(f"\nversion number should be 1 ({vn})")
         dc2name = self.DC2NAME_JP if self.jp else self.DC2NAME_EN
@@ -322,25 +322,25 @@ class QzsL1s:
         pad = BitStream('uint6=0')  # padding for byte alignment
         frame = (pad + pab + mt + df).tobytes()
         crc_test = libqzsl6tool.rtk_crc24q(frame, len(frame))
-        if crc.tobytes() != crc_test:  # type: ignore
-            msg = self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex()}", fg='red')  # type: ignore
+        if crc.tobytes() != crc_test:
+            msg = self.trace.msg(0, f"CRC error {crc_test.hex()} != {crc.hex}", fg='red')
             return msg
-        mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")  # type: ignore
+        mt_name = self.MT2NAME.get(mt.u, f"MT {mt.u}")
         msg = self.trace.msg(0, mt_name, fg='cyan')
         if   mt_name == 'Test mode':                       # MT0
-            msg += self.decode_test_mode(df)  # type: ignore
+            msg += self.decode_test_mode(df)
         elif mt_name == 'DCR':                             # MT43
-            msg += self.decode_dcr(df)        # type: ignore
+            msg += self.decode_dcr(df)
         elif mt_name == 'Monitoring station information':  # MT47
-            msg += self.decode_monitoring_station_info(df)  # type: ignore
+            msg += self.decode_monitoring_station_info(df)
         elif mt_name == 'PRN mask':                        # MT48
-            msg += self.decode_prn_mask(df)  # type: ignore
+            msg += self.decode_prn_mask(df)
         elif mt_name == 'Data issue number':               # MT49
-            msg += self.decode_data_issue_number(df)  # type: ignore
+            msg += self.decode_data_issue_number(df)
         elif mt_name == 'DGPS correction':                 # MT50
-            msg += self.decode_dgps_correction(df)    # type: ignore
+            msg += self.decode_dgps_correction(df)
         elif mt_name == 'Satellite health':                # MT51
-            msg += self.decode_satellite_health(df)   # type: ignore
+            msg += self.decode_satellite_health(df)
         return msg
 
 def read_from_l1s_file(qzsl1s: QzsL1s, l1s_file: str, fp_disp: TextIO | None) -> None:
@@ -356,13 +356,13 @@ def read_from_l1s_file(qzsl1s: QzsL1s, l1s_file: str, fp_disp: TextIO | None) ->
             print (f"PRN {prn}", file=fp_disp)
         raw = f.buffer.read(36)
         while raw:
-            payload = BitStream(raw)  # type: ignore
-            gpsweek = payload.read(12).u             # type: ignore
-            gpstow  = payload.read(20).u             # type: ignore
+            payload = BitStream(raw)
+            gpsweek = payload.read(12).u
+            gpstow  = payload.read(20).u
             l1s     = payload.read(L_L1S)
             payload.pos += 6  # spare
             msg = qzsl1s.trace.msg(0, libgnsstime.gps2utc(gpsweek, gpstow), fg='green') + \
-                ': ' + qzsl1s.decode_l1s(l1s)        # type: ignore
+                ': ' + qzsl1s.decode_l1s(l1s)
             qzsl1s.trace.show(0, msg)
             raw = f.buffer.read(36)
 
@@ -372,10 +372,10 @@ def read_from_stdin(qzsl1s: QzsL1s,  fp_disp: TextIO | None) -> None:
     '''
     raw = sys.stdin.buffer.read(33)
     while raw:
-        payload = BitStream(raw)  # type: ignore
-        prn = payload.read(8).u                  # type: ignore
-        l1s = payload.read(L_L1S)                # type: ignore
-        payload.pos += 6  # spare # type: ignore
+        payload = BitStream(raw)
+        prn = payload.read(8).u
+        l1s = payload.read(L_L1S)
+        payload.pos += 6  # spare
         msg = qzsl1s.trace.msg(0, f'PRN{prn:3d}', fg='green') + \
             ': ' + qzsl1s.decode_l1s(l1s)
         qzsl1s.trace.show(0, msg)
