@@ -179,7 +179,7 @@ class UbxReceiver:
         ''' returns decoded raw
             format: [SVID(8)][L1OF/L2OF RAW(300)][padding(3)]...
         '''
-        if self.signame != 'L1OF' or self.signame != 'L2OF':
+        if self.signame not in ('L1OF', 'L2OF'):
             return None
         l1of = BitStream(uint=self.svid, length=8) + self.payload
         return l1of.tobytes()
@@ -188,7 +188,7 @@ class UbxReceiver:
         ''' returns decoded raw
             format: [SVID(8)][B1I/B2I RAW(300)][padding(4)]...
         '''
-        if self.signame != 'B1I' or self.signame != 'B2I':
+        if self.signame not in ('B1I', 'B2I'):
             return None
         b1i = BitStream(uint=self.svid, length=8) + self.payload
         return b1i.tobytes()
@@ -198,13 +198,15 @@ if __name__ == '__main__':
         description=f'u-blox message read, QZS L6 Tool ver.{libqzsl6tool.VERSION}')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--l1s', action='store_true',
-        help='send QZS L1S messages to stdout')
+        help='send SBAS and QZS L1S messages to stdout')
+    group.add_argument('--l1of', action='store_true',
+        help='send GLO L1OF/L2OF messages to stdout')
     group.add_argument('--qzqsm', action='store_true',
         help='send QZS L1S DCR NMEA messages to stdout')
-    group.add_argument('--sbas', action='store_true',
-        help='send SBAS messages to stdout')
     group.add_argument('-l', '--lnav', action='store_true',
         help='send GPS or QZS LNAV messages to stdout')
+    group.add_argument('--b1i', action='store_true',
+        help='send BDS B1I messages to stdout')
     group.add_argument('-i', '--inav', action='store_true',
         help='send GAL I/NAV messages to stdout')
     parser.add_argument('-d', '--duplicate', action='store_true',
@@ -218,7 +220,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     fp_disp: TextIO | None = sys.stdout
     fp_raw : TextIO | None  = None
-    if args.l1s or args.qzqsm or args.sbas or args.lnav or args.inav:
+    if args.l1s or args.qzqsm or args.lnav or args.inav or args.l1of or args.b1i:
         fp_disp = None
         fp_raw = sys.stdout
         payload_prev = BitStream()
@@ -239,6 +241,8 @@ if __name__ == '__main__':
                 elif args.qzqsm: raw = rcv.decode_qzsl1s_qzqsm(args)
                 elif args.lnav : raw = rcv.decode_gpslnav()
                 elif args.inav : raw = rcv.decode_galinav()
+                elif args.l1of : raw = rcv.decode_glol1of()
+                elif args.b1i : raw = rcv.decode_bdsb1i()
                 if raw:
                     fp_raw.buffer.write(raw)
     except (BrokenPipeError, IOError):
