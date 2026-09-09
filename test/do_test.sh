@@ -65,6 +65,9 @@ alst_conv() {
     BASENAME=20221130-125237mdc-ppp
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
+    BASENAME=20260908f
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
     echo ""
 }
 
@@ -141,6 +144,13 @@ qzs_l6() {
 
     BASENAME=20230819-085030mdc-ppp
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    BASENAME=20260908f
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    # CLAS Transmit Pattern 2 (QZS-2, PRN 194): alstread.py -l -p 194 < ../sample/20260908f.alst
+    BASENAME=20260908f-p194
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG -P 2
 
     SRCDIR=../sample/
     BASENAME=2019001A

@@ -182,6 +182,8 @@ class Ssr:
     ssr_iod    = 0      # iod ssr
     epoch      = 0      # epoch
     hepoch     = 0      # hourly epoch
+    pattern_in_iodssr: bool = False  # CLAS: bit 3 of IOD SSR is the transmit pattern indicator (IS-QZSS-L6-008 Table 4.1.2-7)
+    iod_pattern: int = 0             # CLAS transmit pattern indicated by IOD SSR (1 or 2; 0 when not applicable)
     interval   = 0      # update interval
     mmi        = 0      # multiple message indication
     satsys     = []     # array of satellite system
@@ -335,10 +337,10 @@ class Ssr:
             raise Exception(f"unknown CSSR subtype: {self.subtype}")
         msg = f'ST{self.subtype:<2d}'
         if self.subtype == 1:
-            msg += f' Epoch={epoch2timedate(self.epoch)} ({self.epoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr} {"cont." if self.mmi else ""}'
+            msg += f' Epoch={epoch2timedate(self.epoch)} ({self.epoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr}{f" P{self.iod_pattern}" if self.iod_pattern else ""} {"cont." if self.mmi else ""}'
         else:
             etime=f'{self.hepoch//60:02d}:{self.hepoch%60:02d}'
-            msg += f' Epoch={etime} ({self.hepoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr}{" cont." if self.mmi else ""}'
+            msg += f' Epoch={etime} ({self.hepoch}) UI={CSSR_UI[self.ui]:2d}s ({self.ui}) IODSSR={self.iodssr}{f" P{self.iod_pattern}" if self.iod_pattern else ""}{" cont." if self.mmi else ""}'
         return msg
 
     def show_cssr_stat(self) -> None:
@@ -380,6 +382,11 @@ class Ssr:
             self.ui     = payload.read(4).u  # update interval
             self.mmi    = payload.read(1).u  # multiple message indication
             self.iodssr = payload.read(4).u  # IOD SSR
+            if self.pattern_in_iodssr:  # CLAS: bit 3 = transmit pattern indicator, bits 2-0 = IOD SSR content
+                self.iod_pattern = (self.iodssr >> 3) + 1
+                self.iodssr      =  self.iodssr & 0b111
+            else:
+                self.iod_pattern = 0
             return True
         self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}", fg='red')
         return False
@@ -1115,7 +1122,7 @@ class Ssr:
             self.n_bds        = payload.read( 5).u  # number of BeiDou satellites, 0 (not supported)
             self.n_qzs        = payload.read( 5).u  # number of QZSS satellites
             if iodssr != self.iodssr:
-                self.trace.show(0, f"IOD SSR mismatch: {iodssr} != {iodssr}", fg='red')
+                self.trace.show(0, f"IOD SSR mismatch: {iodssr} != {self.iodssr}", fg='red')
                 return False
             return True
         self.trace.show(0, f"MDCCPPP-Iono msgnum should be 1 or 2 ({self.msgnum}), ST{self.subtype}, size {len(payload.bin)} bits\nMDCPPP dump: {payload.bin}", fg='red')

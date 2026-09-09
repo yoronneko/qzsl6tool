@@ -14,7 +14,7 @@ The ``--help`` option displays the options it accepts.
 
 ```bash
 $ qzsl6read.py --help
-usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
+usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE] [-P {1,2}]
 
 Quasi-zenith satellite (QZS) L6 message read, QZS L6 Tool ver.x.x.x
 
@@ -24,7 +24,10 @@ options:
   -m, --message         show display messages to stderr
   -r, --rtcm            send RTCM messages to stdout (it also turns off display messages unless -m is specified).
   -s, --statistics      show CSSR statistics in display messages.
-  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
+  -t TRACE, --trace TRACE
+                        show display verbosely: 1=subtype detail, 2=subtype and bit image.
+  -P {1,2}, --pattern {1,2}
+                        CLAS transmit pattern to be decoded (default 1); L6 messages of the other pattern are skipped.
 ```
 
 Terminal output is displayed in color using ANSI escape sequences. Redirecting terminal output does not print escape sequences. You can turn off color display using a redirect (``qzsl6read.py < qzss_file.l6 | cat``). On the other hand, to display colors on pagers such as ``less`` and ``lv``, use the ``-c`` option (``qzsl6read.py -c < qzss_file.l6 | lv``).
@@ -36,6 +39,8 @@ When the ``-m`` option is given, it outputs the status display to standard error
 When the ``-s`` option is given, it also outputs the statistics information.
 
 When the ``-t`` option is given, it output detail on the messages. This option needs integer argument. The value 1 produces the detailed information, and the value 2 provides bit image display in addition of the detailed information.
+
+When the ``-P`` option is given, it selects the CLAS Transmit Pattern to be decoded (1 or 2, default 1). In the CLAS multi-stream transmission (IS-QZSS-L6-008 section 4.1.1.2), Pattern 1 and Pattern 2 are independent Compact SSR streams, each augmenting up to 17 satellites with a different combination of satellites (up to 22 satellites by the logical sum of the two patterns). This program decodes only the messages of the selected pattern; messages of the other pattern are shown as ``(Pattern 2, skipped)`` and skipped. The two patterns are not merged.
 
 By using RTKLIB's ``str2str``, you can also use real-time streams.
 
@@ -51,19 +56,19 @@ For example, we extract QZS L6 raw data from Allystar receiver raw data sample `
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py
 
 199 Hitachi-Ota:1  CLAS  (syncing)
-199 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
-199 Hitachi-Ota:1  CLAS  SF1 DP2 ST4 ST7 ST11 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF1 DP3 ST12 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF1 DP4 ST12
-199 Hitachi-Ota:1  CLAS  SF1 DP5 (null)
-199 Hitachi-Ota:1  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF2 DP2 ST12...
-199 Hitachi-Ota:1  CLAS  SF2 DP3 ST12 ST6...
-199 Hitachi-Ota:1  CLAS  SF2 DP4 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF2 DP5 ST12
+199 Hitachi-Ota:1  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4...
+199 Hitachi-Ota:1  CLAS  SF1 DP2 P1: ST4 ST7 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP3 P1: ST12 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP4 P1: ST12
+199 Hitachi-Ota:1  CLAS  SF1 DP5 P1: (null)
+199 Hitachi-Ota:1  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP2 P1: ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP3 P1: ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF2 DP4 P1: ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP5 P1: ST12
 ```
 
-The first number in each line is the PRN (pseudo random noise) number, the next column is the control station (Hitachi-Ota or Kobe), the next number (0 or 1) is the transmitting system number, and the next column indicates the CLAS message. increase. ``SF`` is the subframe number, and ``DP`` is the data part number.  
+The first number in each line is the PRN (pseudo random noise) number, the next column is the control station (Hitachi-Ota or Kobe), the next number (0 or 1) is the transmitting system number, and the next column indicates the CLAS message. ``SF`` is the subframe number, ``DP`` is the data part number, and ``P1``/``P2`` is the CLAS Transmit Pattern (IS-QZSS-L6-008 Table 4.1.2-2).  
 
 Upon receiving a Subtype 1 (ST1) message, this program will start decoding the CLAS message. 
 
@@ -152,8 +157,6 @@ alstread.py -l < sample/20220326-231200mdc.alst| qzsl6read.py
 ```
 
 For example, the first line, from PRN 209 (QZS-3), is the message generated from the first of the two systems at the Hitachi-Ota control station, alert flag on (shown as asterisk), time, and RTCM message, the type and the number of augmentation satellites.
-
-Here, the included RTCM message number and the number of satellites to be augmented are displayed in parentheses.
 
 Here, the included RTCM message number and the number of satellites to be augmented are displayed in parentheses. You can display the reinforcement content by giving the ``-t 2`` option to ``qzsl6read.py``:
 

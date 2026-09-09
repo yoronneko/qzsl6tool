@@ -70,7 +70,7 @@ ST2 E34   17   -0.2656   0.1792   0.2048
 ST2 J02  161    1.7296   0.1536   0.7424
 ST2 J03  161    2.0464  -0.2624  -0.3456
 ST2 J04  161    0.0208  -0.1216  -0.1792
-196 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
+196 Hitachi-Ota:0  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4...
 ST4 SAT sinal_name      code_bias[m]
 ST4 G10 L1C/A                  0.000
 ST4 G10 L2CM+L                 0.600
@@ -162,7 +162,7 @@ ST11 E25  -0.578
 ST11 E34  -0.326
 ST11 J02  -1.285
 ST11 J04   0.550
-196 Hitachi-Ota:0  CLAS  SF1 DP2 ST4 ST7 ST11 ST6...
+196 Hitachi-Ota:0  CLAS  SF1 DP2 P1: ST4 ST7 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=12 (OGASAWARA)
 ST6 G12 L1C/A                  -0.086     3
@@ -306,8 +306,8 @@ ST6 J02 L5I+Q                   0.504     2
 ST6 J04 L1C/A                  -0.990     2
 ST6 J04 L2CM+L                 -1.416     2
 ST6 J04 L5I+Q                  -1.666     2
-196 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST12 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF1 DP4 ST12...
+196 Hitachi-Ota:0  CLAS  SF1 DP3 P1: ST6 ST12 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF1 DP4 P1: ST12...
 ST12 Trop NID=2 (OKINAWA) qual=53.0[mm] t00=0.084[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 26.42 126.87       0.024
@@ -514,7 +514,7 @@ ST12 STEC J04 28.30 129.17           0.04
 ST12 STEC J04 28.30 129.83           0.04
 ST12 STEC J04 25.83 131.23          -0.04
 CSSR null data 1681 bits
-196 Hitachi-Ota:0  CLAS  SF1 DP5 ST12
+196 Hitachi-Ota:0  CLAS  SF1 DP5 P1: ST12
 ST3 SAT   c0[m]
 ST3 G10  -1.979
 ST3 G12   1.306
@@ -598,8 +598,8 @@ ST6 J02 L5I+Q                  -1.584     2
 ST6 J04 L1C/A                   1.081     2
 ST6 J04 L2CM+L                  1.509     2
 ST6 J04 L5I+Q                   1.469     2
-196 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF2 DP2 ST12...
+196 Hitachi-Ota:0  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF2 DP2 P1: ST12...
 ST12 Trop NID=3 (KYUSYU) qual=39.5[mm] t00=0.060[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 33.16 129.50       0.000
@@ -1129,7 +1129,7 @@ ST12 STEC J04 28.84 129.50          -0.04
 ST12 STEC J04 29.38 129.50          -0.04
 ST12 STEC J04 29.92 129.50          -0.04
 ST12 STEC J04 29.92 130.16          -0.04
-196 Hitachi-Ota:0  CLAS  SF2 DP3 ST12 ST6...
+196 Hitachi-Ota:0  CLAS  SF2 DP3 P1: ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
 ST6 G10 L1C/A                  -1.159     2
@@ -1174,7 +1174,7 @@ ST6 J02 L5I+Q                  -2.037     2
 ST6 J04 L1C/A                   1.171     2
 ST6 J04 L2CM+L                  1.368     2
 ST6 J04 L5I+Q                   1.447     2
-196 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF2 DP4 P1: ST6 ST12...
 ST12 Trop NID=4 (SHIKOKU) qual=5.0[mm] t00=0.144[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 32.62 132.13      -0.032
@@ -1433,7 +1433,7 @@ ST12 STEC J04 34.23 134.11           0.04
 ST12 STEC J04 33.70 134.76           0.08
 ST12 STEC J04 34.23 134.76           0.20
 CSSR null data 1380 bits
-196 Hitachi-Ota:0  CLAS  SF2 DP5 ST12
+196 Hitachi-Ota:0  CLAS  SF2 DP5 P1: ST12
 ST3 SAT   c0[m]
 ST3 G10  -1.981
 ST3 G12   1.304
@@ -1517,7 +1517,7 @@ ST6 J02 L5I+Q                  -2.877     2
 ST6 J04 L1C/A                   1.607     2
 ST6 J04 L2CM+L                  2.182     2
 ST6 J04 L5I+Q                   2.161     2
-196 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF3 DP1 P1: ST3 ST11 ST6 ST12...
 ST12 Trop NID=5 (CHUGOKU) qual=12.5[mm] t00=0.196[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 34.23 130.82      -0.020
@@ -1775,7 +1775,7 @@ ST12 STEC J04 36.39 133.45           0.08
 ST12 STEC J04 34.77 134.11           0.04
 ST12 STEC J04 35.31 134.11           0.08
 ST12 STEC J04 35.85 134.11           0.16
-196 Hitachi-Ota:0  CLAS  SF3 DP2 ST12 ST6...
+196 Hitachi-Ota:0  CLAS  SF3 DP2 P1: ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
 ST6 G10 L1C/A                  -0.086     2
@@ -1820,7 +1820,7 @@ ST6 J02 L5I+Q                   2.053     2
 ST6 J04 L1C/A                   0.107     2
 ST6 J04 L2CM+L                  0.191     2
 ST6 J04 L5I+Q                   0.081     2
-196 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF3 DP3 P1: ST6 ST12...
 ST12 Trop NID=6 (KANSAI) qual=39.5[mm] t00=0.128[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 34.77 134.76      -0.012
@@ -2271,9 +2271,9 @@ ST12 STEC J04 36.39 137.40          -0.16
 ST12 STEC J04 36.93 137.40          -0.04
 ST12 STEC J04 37.47 137.40          -0.04
 CSSR null data 103 bits
-196 Hitachi-Ota:0  CLAS  SF3 DP4 ST12
+196 Hitachi-Ota:0  CLAS  SF3 DP4 P1: ST12
 CSSR null data 1695 bits
-196 Hitachi-Ota:0  CLAS  SF3 DP5 (null)
+196 Hitachi-Ota:0  CLAS  SF3 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G10  -1.987
 ST3 G12   1.304
@@ -2355,8 +2355,8 @@ ST6 J02 L5I+Q                   1.247     2
 ST6 J04 L1C/A                   0.218     2
 ST6 J04 L2CM+L                  0.257     2
 ST6 J04 L5I+Q                   0.391     2
-196 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF4 DP2 ST12...
+196 Hitachi-Ota:0  CLAS  SF4 DP1 P1: ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF4 DP2 P1: ST12...
 ST12 Trop NID=7 (KANTO) qual=4.25[mm] t00=0.160[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 34.77 138.05       0.012
@@ -2747,7 +2747,7 @@ ST6 J02 L5I+Q                  -1.248     2
 ST6 J04 L1C/A                  -0.894     2
 ST6 J04 L2CM+L                 -1.180     2
 ST6 J04 L5I+Q                  -1.123     2
-196 Hitachi-Ota:0  CLAS  SF4 DP3 ST12 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF4 DP3 P1: ST12 ST6 ST12...
 ST12 Trop NID=8 (TOHOKU-SOUTH) qual=17.0[mm] t00=0.248[m] offset=0.240[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 36.93 138.05      -0.008
@@ -3086,9 +3086,9 @@ ST12 STEC J04 38.55 140.69           0.00
 ST12 STEC J04 37.47 141.34          -0.20
 ST12 STEC J04 38.55 141.34          -0.08
 CSSR null data 309 bits
-196 Hitachi-Ota:0  CLAS  SF4 DP4 ST12
+196 Hitachi-Ota:0  CLAS  SF4 DP4 P1: ST12
 CSSR null data 1695 bits
-196 Hitachi-Ota:0  CLAS  SF4 DP5 (null)
+196 Hitachi-Ota:0  CLAS  SF4 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G10  -1.990
 ST3 G12   1.307
@@ -3172,8 +3172,8 @@ ST6 J02 L5I+Q                   0.402     2
 ST6 J04 L1C/A                  -0.308     2
 ST6 J04 L2CM+L                 -0.446     2
 ST6 J04 L5I+Q                  -0.389     2
-196 Hitachi-Ota:0  CLAS  SF5 DP1 ST3 ST11 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF5 DP2 ST12...
+196 Hitachi-Ota:0  CLAS  SF5 DP1 P1: ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF5 DP2 P1: ST12...
 ST12 Trop NID=9 (TOHOKU-NORTH) qual=39.5[mm] t00=0.212[m] offset=0.220[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 39.09 140.03      -0.032
@@ -3523,7 +3523,7 @@ ST6 J02 L5I+Q                  -0.599     2
 ST6 J04 L1C/A                  -2.315     2
 ST6 J04 L2CM+L                 -3.044     2
 ST6 J04 L5I+Q                  -3.344     2
-196 Hitachi-Ota:0  CLAS  SF5 DP3 ST12 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF5 DP3 P1: ST12 ST6 ST12...
 ST12 Trop NID=10 (HOKKAIDO-WEST) qual=3.5[mm] t00=0.208[m] offset=0.200[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 42.32 139.37       0.024
@@ -3910,9 +3910,9 @@ ST12 STEC J04 41.78 143.32           0.12
 ST12 STEC J04 42.32 143.32           0.12
 ST12 STEC J04 42.86 143.32           0.08
 CSSR null data 241 bits
-196 Hitachi-Ota:0  CLAS  SF5 DP4 ST12
+196 Hitachi-Ota:0  CLAS  SF5 DP4 P1: ST12
 CSSR null data 1695 bits
-196 Hitachi-Ota:0  CLAS  SF5 DP5 (null)
+196 Hitachi-Ota:0  CLAS  SF5 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G10  -1.992
 ST3 G12   1.309
@@ -3952,7 +3952,7 @@ ST11 E25   17   -0.1920  -0.3264   0.1472  -0.576
 ST11 E34   17   -0.2640   0.1792   0.2048  -0.325
 ST11 J02  161    1.7232   0.1472   0.7168  -1.290
 ST11 J04  161    0.0192  -0.1216  -0.1728   0.557
-196 Hitachi-Ota:0  CLAS  SF6 DP1 ST3 ST11 ST6...
+196 Hitachi-Ota:0  CLAS  SF6 DP1 P1: ST3 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=11 (HOKKAIDO-EAST)
 ST6 G10 L1C/A                   0.443     2
@@ -3997,7 +3997,7 @@ ST6 J02 L5I+Q                   0.256     2
 ST6 J04 L1C/A                  -0.995     2
 ST6 J04 L2CM+L                 -1.379     2
 ST6 J04 L5I+Q                  -1.350     2
-196 Hitachi-Ota:0  CLAS  SF6 DP2 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF6 DP2 P1: ST6 ST12...
 ST12 Trop NID=11 (HOKKAIDO-EAST) qual=39.5[mm] t00=0.108[m] offset=0.180[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 45.28 141.34      -0.024
@@ -4319,7 +4319,7 @@ ST12 STEC J04 43.94 144.63           0.00
 ST12 STEC J04 43.40 145.29           0.00
 ST12 STEC J04 43.94 145.29           0.00
 ST12 STEC J04 44.48 145.29           0.04
-196 Hitachi-Ota:0  CLAS  SF6 DP3 ST12 ST6...
+196 Hitachi-Ota:0  CLAS  SF6 DP3 P1: ST12 ST6...
 ST6 code_bias=on phase_bias=on network_bias=on
 ST6 SAT signal_name     code_bias[m] phase_bias[m] discontinuity NID=1 (ISHIGAKI)
 ST6 G10 L1C/A           0.000           0.161     0
@@ -4366,7 +4366,7 @@ ST6 J02 L5I+Q           0.420           1.262     2
 ST6 J04 L1C/A           0.000           1.032     2
 ST6 J04 L2CM+L         -0.020           1.308     2
 ST6 J04 L5I+Q          -0.040           1.323     2
-196 Hitachi-Ota:0  CLAS  SF6 DP4 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF6 DP4 P1: ST6 ST12...
 ST12 Trop NID=1 (ISHIGAKI) qual=2.0[mm] t00=0.088[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 24.75 125.37       0.020
@@ -4522,7 +4522,7 @@ ST12 STEC J04 24.06 123.80           0.08
 ST12 STEC J04 24.43 123.79          -0.12
 ST12 STEC J04 24.45 122.94           0.08
 CSSR null data 1391 bits
-196 Hitachi-Ota:0  CLAS  SF6 DP5 ST12
+196 Hitachi-Ota:0  CLAS  SF6 DP5 P1: ST12
 ST1 G10 L1C/A L2CM+L L2Z-tracking L5I+Q
 ST1 G12 L1C/A L2CM+L L2Z-tracking
 ST1 G13 L1C/A L2Z-tracking
@@ -4582,7 +4582,7 @@ ST2 E34   17   -0.2640   0.1792   0.2048
 ST2 J02  161    1.7296   0.1536   0.7424
 ST2 J03  161    2.0464  -0.2624  -0.3456
 ST2 J04  161    0.0192  -0.1216  -0.1792
-196 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
+196 Hitachi-Ota:0  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4...
 ST4 SAT sinal_name      code_bias[m]
 ST4 G10 L1C/A                  0.000
 ST4 G10 L2CM+L                 0.600
@@ -4674,7 +4674,7 @@ ST11 E25  -0.576
 ST11 E34  -0.325
 ST11 J02  -1.286
 ST11 J04   0.560
-196 Hitachi-Ota:0  CLAS  SF1 DP2 ST4 ST7 ST11 ST6...
+196 Hitachi-Ota:0  CLAS  SF1 DP2 P1: ST4 ST7 ST11 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=12 (OGASAWARA)
 ST6 G12 L1C/A                  -0.078     3
@@ -4818,8 +4818,8 @@ ST6 J02 L5I+Q                   0.509     2
 ST6 J04 L1C/A                  -0.960     2
 ST6 J04 L2CM+L                 -1.374     2
 ST6 J04 L5I+Q                  -1.621     2
-196 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST12 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF1 DP4 ST12...
+196 Hitachi-Ota:0  CLAS  SF1 DP3 P1: ST6 ST12 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF1 DP4 P1: ST12...
 ST12 Trop NID=2 (OKINAWA) qual=17.0[mm] t00=0.084[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 26.42 126.87       0.024
@@ -5026,7 +5026,7 @@ ST12 STEC J04 28.30 129.17           0.00
 ST12 STEC J04 28.30 129.83           0.00
 ST12 STEC J04 25.83 131.23           0.00
 CSSR null data 1681 bits
-196 Hitachi-Ota:0  CLAS  SF1 DP5 ST12
+196 Hitachi-Ota:0  CLAS  SF1 DP5 P1: ST12
 ST3 SAT   c0[m]
 ST3 G10  -1.995
 ST3 G12   1.294
@@ -5110,8 +5110,8 @@ ST6 J02 L5I+Q                  -1.561     2
 ST6 J04 L1C/A                   1.105     2
 ST6 J04 L2CM+L                  1.539     2
 ST6 J04 L5I+Q                   1.501     2
-196 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF2 DP2 ST12...
+196 Hitachi-Ota:0  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF2 DP2 P1: ST12...
 ST12 Trop NID=3 (KYUSYU) qual=39.5[mm] t00=0.060[m] offset=0.280[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 33.16 129.50       0.000
@@ -5641,7 +5641,7 @@ ST12 STEC J04 28.84 129.50          -0.04
 ST12 STEC J04 29.38 129.50          -0.04
 ST12 STEC J04 29.92 129.50          -0.04
 ST12 STEC J04 29.92 130.16          -0.04
-196 Hitachi-Ota:0  CLAS  SF2 DP3 ST12 ST6...
+196 Hitachi-Ota:0  CLAS  SF2 DP3 P1: ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
 ST6 G10 L1C/A                  -1.146     2
@@ -5686,7 +5686,7 @@ ST6 J02 L5I+Q                  -2.000     2
 ST6 J04 L1C/A                   1.197     2
 ST6 J04 L2CM+L                  1.400     2
 ST6 J04 L5I+Q                   1.481     2
-196 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF2 DP4 P1: ST6 ST12...
 ST12 Trop NID=4 (SHIKOKU) qual=5.0[mm] t00=0.144[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 32.62 132.13      -0.032
@@ -5945,7 +5945,7 @@ ST12 STEC J04 34.23 134.11           0.04
 ST12 STEC J04 33.70 134.76           0.08
 ST12 STEC J04 34.23 134.76           0.16
 CSSR null data 1354 bits
-196 Hitachi-Ota:0  CLAS  SF2 DP5 ST12
+196 Hitachi-Ota:0  CLAS  SF2 DP5 P1: ST12
 ST3 SAT   c0[m]
 ST3 G10  -1.997
 ST3 G12   1.294
@@ -6029,7 +6029,7 @@ ST6 J02 L5I+Q                  -2.848     2
 ST6 J04 L1C/A                   1.634     2
 ST6 J04 L2CM+L                  2.215     2
 ST6 J04 L5I+Q                   2.195     2
-196 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF3 DP1 P1: ST3 ST11 ST6 ST12...
 ST12 Trop NID=5 (CHUGOKU) qual=12.5[mm] t00=0.200[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 34.23 130.82      -0.020
@@ -6287,7 +6287,7 @@ ST12 STEC J04 36.39 133.45           0.12
 ST12 STEC J04 34.77 134.11           0.08
 ST12 STEC J04 35.31 134.11           0.16
 ST12 STEC J04 35.85 134.11           0.20
-196 Hitachi-Ota:0  CLAS  SF3 DP2 ST12 ST6...
+196 Hitachi-Ota:0  CLAS  SF3 DP2 P1: ST12 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
 ST6 G10 L1C/A                  -0.085     2
@@ -6332,7 +6332,7 @@ ST6 J02 L5I+Q                   2.048     2
 ST6 J04 L1C/A                   0.123     2
 ST6 J04 L2CM+L                  0.208     2
 ST6 J04 L5I+Q                   0.099     2
-196 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF3 DP3 P1: ST6 ST12...
 ST12 Trop NID=6 (KANSAI) qual=39.5[mm] t00=0.128[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 34.77 134.76      -0.012
@@ -6783,9 +6783,9 @@ ST12 STEC J04 36.39 137.40          -0.16
 ST12 STEC J04 36.93 137.40          -0.04
 ST12 STEC J04 37.47 137.40          -0.04
 CSSR null data 87 bits
-196 Hitachi-Ota:0  CLAS  SF3 DP4 ST12
+196 Hitachi-Ota:0  CLAS  SF3 DP4 P1: ST12
 CSSR null data 1695 bits
-196 Hitachi-Ota:0  CLAS  SF3 DP5 (null)
+196 Hitachi-Ota:0  CLAS  SF3 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G10  -2.014
 ST3 G12   1.296
@@ -6867,8 +6867,8 @@ ST6 J02 L5I+Q                   1.241     2
 ST6 J04 L1C/A                   0.219     2
 ST6 J04 L2CM+L                  0.257     2
 ST6 J04 L5I+Q                   0.390     2
-196 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST12...
-196 Hitachi-Ota:0  CLAS  SF4 DP2 ST12...
+196 Hitachi-Ota:0  CLAS  SF4 DP1 P1: ST3 ST11 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF4 DP2 P1: ST12...
 ST12 Trop NID=7 (KANTO) qual=0.75[mm] t00=0.156[m] offset=0.260[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 34.77 138.05       0.012
@@ -7259,7 +7259,7 @@ ST6 J02 L5I+Q                  -1.211     2
 ST6 J04 L1C/A                  -0.871     2
 ST6 J04 L2CM+L                 -1.152     2
 ST6 J04 L5I+Q                  -1.095     2
-196 Hitachi-Ota:0  CLAS  SF4 DP3 ST12 ST6 ST12...
+196 Hitachi-Ota:0  CLAS  SF4 DP3 P1: ST12 ST6 ST12...
 ST12 Trop NID=8 (TOHOKU-SOUTH) qual=17.0[mm] t00=0.248[m] offset=0.240[m]
 ST12 Trop  Lat.   Lon. residual[m]
 ST12 Trop 36.93 138.05      -0.012
@@ -7598,4 +7598,4 @@ ST12 STEC J04 38.55 140.69           0.00
 ST12 STEC J04 37.47 141.34          -0.16
 ST12 STEC J04 38.55 141.34          -0.08
 CSSR null data 299 bits
-196 Hitachi-Ota:0  CLAS  SF4 DP4 ST12
+196 Hitachi-Ota:0  CLAS  SF4 DP4 P1: ST12

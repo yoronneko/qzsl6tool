@@ -12,7 +12,7 @@ QZS L6 Tool is a Python-based CLI toolkit for displaying and converting GNSS (Gl
 pip3 install bitstring galois numpy
 ```
 
-Python 3.8+ required.
+Python 3.10+ required (`requires-python` in `pyproject.toml`).
 
 ## Running Tests
 
@@ -62,4 +62,9 @@ All reader scripts accept `-t LEVEL` (trace level). `Trace` objects from `libtra
 
 ## File naming conventions in `sample/` and `test/`
 
-Filenames follow `YYYYMMDD-HHMMSS<type>.<ext>` or `YYYYDDDX.<ext>` patterns. Extensions indicate signal type: `.l6` (QZS L6), `.e6b` (Galileo E6B HAS), `.l1s` (QZS L1S), `.inav` (Galileo I/NAV), `.b2b` (BeiDou B2b), `.rtcm` (RTCM3), `.alst`/`.psdr`/`.nov`/`.sbf`/`.ubx` (receiver-specific raw).
+Filenames follow `YYYYMMDD-HHMMSS<type>.<ext>`, `YYYYDDDX.<ext>` (QZSS archive style: day of year plus a letter), or `YYYYMMDD<h>.<ext>` (RINEX-style hourly letter: `a` = 00:00 UTC ... `x` = 23:00 UTC, e.g. `20260908f.alst` = 2026-09-08 05:00 UTC) patterns. Extensions indicate signal type: `.l6` (QZS L6), `.e6b` (Galileo E6B HAS), `.l1s` (QZS L1S), `.inav` (Galileo I/NAV), `.b2b` (BeiDou B2b), `.rtcm` (RTCM3), `.alst`/`.psdr`/`.nov`/`.sbf`/`.ubx` (receiver-specific raw).
+
+## Documentation
+
+- Please write in English for GitHub commit messages, English documentations such as readme-en.md, release_note.md, and files in docs/en/*.md.
+- Please use Japanese for conversation and Japanese documentations such as readme.md and files in docs/ja/*.md.

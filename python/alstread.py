@@ -11,6 +11,7 @@
 # References:
 # [1] Justin Yang, QZSS L6 Enabled Multi-band Multi-GNSS Receiver
 #     https://docs.datagnss.com/rtk-board/firmware/L6/L6DE_tech_intro.pdf
+# [2] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Centimeter Level Augmentation Service (IS-QZSS-L6-008), Mar. 2026.
 
 import argparse
 import os
@@ -65,7 +66,10 @@ class AllystarReceiver:
         return True
 
     def select_sat(self, s_prn: int) -> None:
-        ''' selects satellite and displays message '''
+        ''' selects satellite and displays message
+        Args:
+            s_prn (int): PRN of the satellite to select. If 0, selects the satellite with the strongest C/No.
+        '''
         self.p_prn  = 0    # PRN    of satellite that has the strongest C/No
         self.p_snr  = 0    # C/No   of satellite that has the strongest C/No
         self.l6     = b''  # L6 msg of satellite that has the strongest C/No
@@ -83,15 +87,28 @@ class AllystarReceiver:
             disp_msg  += f"---> prn {self.p_prn} (C/No {self.p_snr} dB)\n"
             self.dict_snr.clear()
             self.dict_data.clear()
-        # then, we add the current data to the dictionaries when no errors found
-        if not self.err:
-            self.dict_snr [self.prn] = self.snr
-            self.dict_data[self.prn] = self.data
         disp_msg += \
             self.trace.msg(0, f'{self.prn} ', fg='green') + \
             self.trace.msg(0, libgnsstime.gps2utc(self.gpsw, self.gpst // 1000) , fg='yellow') + \
             self.trace.msg(0, f' {self.snr}')
-        if self.err:
+        if not self.err:
+            mtid  = self.data[5]          # L6 message type ID, ref.[2] Table 4.1.2-2 (data[0:4] is the preamble, data[4] is the PRN)
+            vid   = (mtid >> 5) & 0b111   # vendor ID, 0b101 for CLAS
+            patid = (mtid >> 1) & 1       # CLAS transmit pattern ID bit: 0 = Pattern 1, 1 = Pattern 2
+            if (vid == 0b101 and patid == 1) and (self.prn != s_prn):
+                # CLAS multi-stream transmission (ref.[2] sect.4.1.1.2): Pattern 1 and Pattern 2 are
+                # independent Compact SSR streams that augment different satellite sets. Each has its
+                # own subframe/data-part sequence, ST1 mask, and IOD SSR, so the L6 output must not
+                # mix them: we output Pattern 1 only, unless the satellite is selected with -p.
+                # Nominal assignment (ref.[2] Table 4.1.1-1): Pattern 2 = QZS-2 (PRN 194) and
+                # QZS-1R (196); Pattern 1 = QZS-4 (195), QZS-5 (197), and QZS-3 (199). QZS-3 may be
+                # switched to Pattern 2 by NAQU, which is why the pattern is taken from the L6 header
+                # rather than from the PRN.
+                disp_msg += self.trace.msg(0, f' (skipped CLAS Pattern 2)', dec='dark')
+            else:
+                self.dict_snr [self.prn] = self.snr
+                self.dict_data[self.prn] = self.data
+        else:
             disp_msg += self.trace.msg(0, ' ' + self.err, fg='red')
         self.trace.show(0, disp_msg)
 
@@ -104,13 +121,13 @@ if __name__ == '__main__':
         help='apply ANSI color escape sequences even for non-terminal.')
     parser_group.add_argument(
         '-l', '--l6', action='store_true',
-        help='send QZS L6 messages to stdout (it also turns off Allystar and u-blox messages).')
+        help='send QZS L6 messages to stdout (it also turns off status display).')
     parser.add_argument(
         '-m', '--message', action='store_true',
-        help='show Allystar messages to stderr.')
+        help='show status display to stderr.')
     parser.add_argument(
         '-p', '--prn', type=int, default=0,
-        help='satellite PRN to be specified (0, 193-211).')
+        help='satellite PRN to be specified (0, 193-211); with -l, CLAS Transmit Pattern 2 messages of this satellite are also output.')
     args = parser.parse_args()
     fp_disp, fp_raw = sys.stdout, None
     if args.l6:  # QZS L6 raw message output to stdout

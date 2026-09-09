@@ -62,5 +62,6 @@ config/OpenMV/
 gnupg/random_seed
 vnc/*.log
 vnc/*.pid
+private/
 
 # EOF
