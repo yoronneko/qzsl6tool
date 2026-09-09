@@ -118,4 +118,11 @@ Note      : https://l6msg.go.gnss.go.jp/, by using:
 Note      : https://l6msg.go.gnss.go.jp/archives/2024/214/2024214A.200.l6
 Note      : dd if=aaa.l6 of=2024214A.200.l6 ibs=1000 count=30
 
+File Path : 20260908f.alst
+Date Time : 2026-09-08 05:00:00 UTC
+Duration  : 1 minute
+Note      : Allystar raw data observed at Hiroshima, JP
+Note      : with HD9310 (TAU1302) option C CLAS firmware
+Note      : curl -O https://rnav.info.hiroshima-cu.ac.jp/gnss/202609/20260908f.alst
+
 # EOF

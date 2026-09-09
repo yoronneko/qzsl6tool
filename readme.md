@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.7a3
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.8
 
 ![QZS L6 Tool](https://raw.githubusercontent.com/yoronneko/qzsl6tool/main/docs/img/qzsl6tool.png)
 
@@ -88,13 +88,22 @@ Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerSh
 ## ディレクトリ構造
 
 ```text
-├── docs/        (documentation directory)
-├── license.txt  (license description)
-├── python/      (code directory)
-├── readme-en.md (English document)
-├── readme.md    (this file, Japanese document)
-├── sample/      (sample data directory)
-└── test/        (directory to test the tools)
+├── c/               (contributed C source code)
+├── dist/            (PyPI build artifacts; generated, not tracked by git)
+├── docs/            (documentation directory)
+├── python/          (Python source code directory)
+├── sample/          (sample data directory)
+├── test/            (test tool directory)
+├── typings/         (local type stubs for pyright/Pylance)
+├── CLAUDE.md        (documentation for Claude)
+├── Dockerfile       (Docker image production procedure)
+├── license.txt      (license description)
+├── pyproject.toml   (configuration for PyPI)
+├── readme-en.md     (English document)
+├── readme.md        (this file, Japanese document)
+├── release_note.md  (release note)
+├── requirements.txt (declaration of Python package dependencies)
+└── SECURITY.md      (description of reporting security vulnerabilities responsibly)
 ```
 
 ## ライセンス

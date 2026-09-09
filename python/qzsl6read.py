@@ -9,26 +9,14 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Centimeter Level Augmentation Service,
-#     IS-QZSS-L6-005, Sept. 21, 2022.
-# [2] Global Positioning Augmentation Service Corporation (GPAS),
-#     Quasi-Zenith Satellite System Correction Data on Centimeter Level
-#     Augmentation Service for Experiment Data Format Specification,
-#     1st ed., Nov. 2017.
-# [3] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
-#     - Precise Point Positioning, IS-QZSS-MDC-002, Nov., 2023.
-# [4] Radio Technical Commission for Maritime Services (RTCM),
-#     Differential GNSS (Global Navigation Satellite Systems) Services
-#     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
+# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Centimeter Level Augmentation Service, IS-QZSS-L6-005, Sept. 21, 2022.
+# [2] Global Positioning Augmentation Service Corporation (GPAS), Quasi-Zenith Satellite System Correction Data on Centimeter Level Augmentation Service for Experiment Data Format Specification, 1st ed., Nov. 2017.
+# [3] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning, IS-QZSS-MDC-002, Nov., 2023.
+# [4] Radio Technical Commission for Maritime Services (RTCM), Differential GNSS (Global Navigation Satellite Systems) Services - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
 # [5] (obsoluted, supersededed by [7])
-# [6] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
+# [6] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
 #     - Precise Point Positioning, IS-QZSS-MDC-004-Draft, May 2025.
-# [7] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Centimeter Level Augmentation Service,
-#     IS-QZSS-L6-007, July 2025.
+# [7] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Centimeter Level Augmentation Service (IS-QZSS-L6-008), Mar. 2026.
 
 import argparse
 import os
@@ -62,7 +50,9 @@ class QzsL6:
     facility: str = ''                 # facility name
     servid  : str = ''                 # MADOCA-PPP: service ID (Iono or Clk/Eph)
     msg_ext : str = ''                 # MADOCA-PPP: extension (LNAV or CNAV)
-    patid   : int = 0b00               # CLAS: transmit pattern ID
+    patid   : int = -1                 # CLAS: transmit pattern ID bit (0: Pattern 1, 1: Pattern 2, -1: reserved/unknown), ref.[7] Table 4.1.2-2
+    pattern : int = 1                  # CLAS: transmit pattern to be decoded (1 or 2); frames of the other pattern are skipped
+    iod_pattern_noted: bool = False    # CLAS: a note on IOD SSR bit 3 vs. L6 header pattern has been shown
     sf_ind  : int = 0                  # subframe indicator (0 or 1)
     alert   : int = 0                  # alert flag (0 or 1)
     run     : bool = False             # CSSR decode in progress
@@ -99,46 +89,28 @@ class QzsL6:
         self.mtid: int   = int.from_bytes(frame[pos:pos+1], 'big'); pos += 1  # message type ID
         data     : bytes = frame[pos:pos+212]; pos += 212
         rs       : bytes = frame[pos:pos+ 32]; pos +=  32  # Reed Solomon error correction (not used here)
-        vid = self.mtid >> 5                    # vender ID
+        vid = self.mtid >> 5                    # vendor ID
         self.facility = "Kobe" if (self.mtid >> 4) & 1 else "Hitachi-Ota"
-        self.facility += f":{(self.mtid >> 3) & 1}"
         if   vid == 0b001:
             self.vendor = "MADOCA"
+            self.facility += f":{(self.mtid >> 3) & 1}"
         elif vid == 0b010:
             self.vendor  = "MADOCA-PPP"
+            self.facility += f":{(self.mtid >> 3) & 1}"
             self.servid  = "Iono" if (self.mtid >> 2) & 1 else "Clk/Eph"
             self.msg_ext = "CNAV" if (self.mtid >> 1) & 1 else "LNAV"
         elif vid == 0b011:
             self.vendor = "QZNMA"
+            self.facility += f":{(self.mtid >> 3) & 1}"
         elif vid == 0b101:
             self.vendor = "CLAS"
-            self.patid  = self.mtid >> 2 & 0b11
-            if self.patid == 0b10 or self.patid == 0b11:
-                self.patid    = 0          # reserved pattern ID
-                # self.facility = "Unknown"  # then, the facility is not defined
+            if (self.mtid >> 2) & 1 == 1:  # ref.[7] Table 4.1.2-2, transmit pattern ID "10"/"11" are reserved
+                self.facility = "(Reserved)"
+                self.patid    = -1
             else:
-                self.patid  = ((self.mtid >> 2) & 1) + 1  # ref.[7], CLAS pattern ID: 1 or 2, ref.[1] Table 4.1.2-2
-                if (self.mtid >> 3) & 0b11 == 0b00:  # CLAS facility ID depends on pattern ID, very complex...
-                    if self.patid == 1:
-                        self.facility = "Hitachi-Ota:0"  # Facility 1
-                    elif self.patid == 2:
-                        self.facility = "Kobe:0"         # Facility 3
-                elif (self.mtid >> 3) & 0b11 == 0b01:
-                    if self.patid == 2:
-                        self.facility = "Hitachi-Ota:0"  # Facility 1
-                    elif self.patid == 1:
-                        self.facility = "Kobe:0"         # Facility 3
-                elif (self.mtid >> 3) & 0b11 == 0b10:
-                    if self.patid == 1:
-                        self.facility = "Hitachi-Ota:1"  # Facility 2
-                    elif self.patid == 2:
-                        self.facility = "Kobe:1"         # Facility 4
-                elif (self.mtid >> 3) & 0b11 == 0b11:
-                    if self.patid == 2:
-                        self.facility = "Hitachi-Ota:1"  # Facility 2
-                    elif self.patid == 1:
-                        self.facility = "Kobe:1"         # Facility 4
-            # self.facility += f"({(self.mtid>>3)&0b11:02b})"
+                self.patid = (self.mtid >> 1) & 1  # pattern ID
+                facid      = (self.mtid >> 3) & 1  # facility sub ID
+                self.facility += f":{(facid + self.patid) & 1}"
         else:
             self.vendor = f"vendor 0b{vid:03b}"
         self.sf_ind = self.mtid & 1  # subframe indicator
@@ -156,6 +128,13 @@ class QzsL6:
             msg += self.show_madoca_msg()
         elif self.vendor == "MADOCA-PPP" and self.servid == "Iono":
             msg += self.show_mdcppp_iono_msg()
+        elif self.vendor == "CLAS" and self.patid + 1 != self.pattern:
+            # The two CLAS transmit patterns are independent Compact SSR streams (own SF/DP
+            # sequence, ST1 mask, and IOD SSR), so only the selected pattern is fed to the decoder.
+            if self.patid < 0:
+                msg += self.trace.msg(0, '(reserved transmit pattern, skipped)', dec='dark')
+            else:
+                msg += self.trace.msg(0, f'(Pattern {self.patid+1}, skipped)', dec='dark')
         elif self.vendor in {"CLAS", "MADOCA-PPP"}:
             msg += self.show_cssr_msg()
         elif self.vendor == "QZNMA":
@@ -209,6 +188,7 @@ class QzsL6:
 
     def show_cssr_msg(self) -> str:
         ''' returns decoded CSSR messages '''
+        self.ssr.pattern_in_iodssr = (self.vendor == "CLAS")  # ref.[7] Table 4.1.2-7
         if self.sf_ind:  # first data part
             self.dpn = 1
             self.payload = BitStream(self.dpart)
@@ -242,10 +222,8 @@ class QzsL6:
             msg += f' SF{self.sfn} DP{self.dpn}'
             if self.vendor == "MADOCA-PPP":  # ref.[3], service ID and extension (Table 4.2.1-3)
                 msg += f' {self.servid} {self.msg_ext}:'
-            # Temporarily disable CLAS pattern ID display until test/expect data is updated (format TBD).
-            # if self.vendor == "CLAS":        # ref.[7], pattern ID (Table 4.1.2-2)
-            #     if self.patid != 0:
-            #         msg += f' P{self.patid}'
+            if self.vendor == "CLAS":        # ref.[7], pattern ID (Table 4.1.2-2)
+                msg += f' P{self.patid+1}:'
         if self.read_cssr():  # found a CSSR message
             msg += f' ST{self.ssr.subtype}'
             while self.read_cssr():  # try to decode next message
@@ -276,6 +254,13 @@ class QzsL6:
         if self.ssr.msgnum != 4073:
             self.trace.show(0, f"Unknown message number: {self.ssr.msgnum}", fg='red')
             return False
+        if self.vendor == "CLAS" and self.ssr.subtype != 10 and \
+           self.ssr.iod_pattern != self.patid + 1 and not self.iod_pattern_noted:
+            # ref.[7] Table 4.1.2-7: bit 3 of IOD SSR is the CLAS transmit pattern indicator.
+            # Before the multi-stream service (IS-QZSS-L6-007, 2025-09-01) this bit was part of the
+            # IOD SSR counter, so a difference is normal for older data; it is noted once per run.
+            self.iod_pattern_noted = True
+            self.trace.show(1, f"note: IOD SSR bit 3 indicates Pattern {self.ssr.iod_pattern} while the L6 header indicates Pattern {self.patid+1} (expected for data recorded before the CLAS multi-stream service)", fg='yellow')
         # CLAS (ref.[1]) and MADOCA-PPP orbit & clock augmentation (ref.[3])
         if   self.ssr.subtype == 1:
             decoded = self.ssr.decode_cssr_st1(self.payload)
@@ -407,6 +392,9 @@ if __name__ == '__main__':
     parser.add_argument(
         '-t', '--trace', type=int, default=0,
         help='show display verbosely: 1=subtype detail, 2=subtype and bit image.')
+    parser.add_argument(
+        '-P', '--pattern', type=int, choices=[1, 2], default=1,
+        help='CLAS transmit pattern to be decoded (default 1); L6 messages of the other pattern are skipped.')
     args = parser.parse_args()
     fp_disp: TextIO | None = sys.stdout
     fp_rtcm: TextIO | None = None
@@ -420,6 +408,7 @@ if __name__ == '__main__':
     trace = libtrace.Trace(fp_disp, args.trace, args.color)
     qzsl6 = QzsL6(trace, args.statistics)
     qzsl6.fp_rtcm = fp_rtcm
+    qzsl6.pattern = args.pattern
     try:
         while qzsl6.read():
             qzsl6.show()

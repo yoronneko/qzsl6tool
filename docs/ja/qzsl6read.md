@@ -16,7 +16,7 @@ MADOCAはRTCM（Radio Technical Commission for Maritime Services） SSR（状態
 
 ```bash
 $ qzsl6read.py --help
-usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE]
+usage: qzsl6read.py [-h] [-c] [-m] [-r] [-s] [-t TRACE] [-P {1,2}]
 
 Quasi-zenith satellite (QZS) L6 message read, QZS L6 Tool ver.x.x.x
 
@@ -26,7 +26,10 @@ options:
   -m, --message         show display messages to stderr
   -r, --rtcm            send RTCM messages to stdout (it also turns off display messages unless -m is specified).
   -s, --statistics      show CSSR statistics in display messages.
-  -t TRACE, --trace TRACE show display verbosely: 1=subtype detail, 2=subtype and bit image.
+  -t TRACE, --trace TRACE
+                        show display verbosely: 1=subtype detail, 2=subtype and bit image.
+  -P {1,2}, --pattern {1,2}
+                        CLAS transmit pattern to be decoded (default 1); L6 messages of the other pattern are skipped.
 ```
 
 端末出力に対しては、ANSIエスケープ・シーケンスによりカラー表示します。端末出力のリダイレクトを行うと、エスケープ・シーケンスを出力しません。リダイレクトを利用すれば、カラー表示をオフにできます（``qzsl6read.py < qzss_file.l6 | cat``）。一方、``less``や``lv``などのページャー上でカラー表示するためには、``-c``オプションを利用します（``qzsl6read.py -c < qzss_file.l6 | lv``）。
@@ -41,6 +44,8 @@ options:
 
 ``-t``オプションを与えると、メッセージ内容の詳細が表示されます。このオプションは整数値とともに用います。数値1では詳細を、数値2ではそれに加えて、ビットイメージを表示します。
 
+``-P``オプションを与えると、復号するCLAS Transmit Pattern（1または2、デフォルトは1）を指定します。CLASのマルチストリーム伝送（IS-QZSS-L6-008 4.1.1.2）では、Pattern 1とPattern 2はそれぞれ最大17衛星を補強し、補強対象衛星の組み合わせが異なる独立したCompact SSRストリームです（両パターンの論理和により最大22衛星）。このプログラムは指定したパターンのメッセージのみを復号し、他方のパターンのメッセージは``(Pattern 2, skipped)``のように表示して読み飛ばします。両パターンの併合は行いません。
+
 RTKLIBの``str2str``を利用すると、リアルタイムストリームなども利用できます。
 ```bash
 str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | alstread.py -l | qzsl6read.py
@@ -48,26 +53,26 @@ str2str -in ntrip://ntrip.phys.info.hiroshima-cu.ac.jp:80/CLAS 2> /dev/null | al
 
 ### CLAS復号例
 
-例えば、サンプルディレクトリにあるAllystar受信機生データ``20220326-231200clas.alst``を[alstead.py](alstread.md)にてみちびきL6生データを抽出し、``qzsl6read.py``にて内容表示します。
+例えば、サンプルディレクトリにあるAllystar受信機生データ``20220326-231200clas.alst``を[alstread.py](alstread.md)にてみちびきL6生データを抽出し、``qzsl6read.py``にて内容表示します。
 
 ```bash
 alstread.py -l < sample/20220326-231200clas.alst | qzsl6read.py
 
 199 Hitachi-Ota:1  CLAS  (syncing)
-199 Hitachi-Ota:1  CLAS  SF1 DP1 ST1 ST3 ST2 ST4...
-199 Hitachi-Ota:1  CLAS  SF1 DP2 ST4 ST7 ST11 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF1 DP3 ST12 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF1 DP4 ST12
-199 Hitachi-Ota:1  CLAS  SF1 DP5 (null)
-199 Hitachi-Ota:1  CLAS  SF2 DP1 ST3 ST11 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF2 DP2 ST12...
-199 Hitachi-Ota:1  CLAS  SF2 DP3 ST12 ST6...
-199 Hitachi-Ota:1  CLAS  SF2 DP4 ST6 ST12...
-199 Hitachi-Ota:1  CLAS  SF2 DP5 ST12
+199 Hitachi-Ota:1  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4...
+199 Hitachi-Ota:1  CLAS  SF1 DP2 P1: ST4 ST7 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP3 P1: ST12 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF1 DP4 P1: ST12
+199 Hitachi-Ota:1  CLAS  SF1 DP5 P1: (null)
+199 Hitachi-Ota:1  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP2 P1: ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP3 P1: ST12 ST6...
+199 Hitachi-Ota:1  CLAS  SF2 DP4 P1: ST6 ST12...
+199 Hitachi-Ota:1  CLAS  SF2 DP5 P1: ST12
 ...
 ```
 
-各行の最初の数値はPRN（pseudo random noise）番号、次のカラムは管制局（常陸太田または神戸）、次の数値（0または1）は送信系番号、その次のカラムはCLASメッセージであることを表します。``SF``はサブフレーム番号、``DP``はデータパート番号を表します。  
+各行の最初の数値はPRN（pseudo random noise）番号、次のカラムは管制局（常陸太田または神戸）、次の数値（0または1）は送信系番号、その次のカラムはCLASメッセージであることを表します。``SF``はサブフレーム番号、``DP``はデータパート番号、``P1``/``P2``はCLAS Transmit Pattern（IS-QZSS-L6-008 Table 4.1.2-2）をそれぞれ表します。  
 
 Subtype 1 (ST1) メッセージを受信すると、このプログラムはCLASメッセージ解読を開始します。
 

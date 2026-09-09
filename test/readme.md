@@ -22,6 +22,7 @@ Allystar raw data conversion:
   20220326-231200clas.alst: Passed.
   20220326-231200mdc.alst: Passed.
   20221130-125237mdc-ppp.alst: Passed.
+  20260908f.alst: Passed.
 
 NovAtel raw data conversion:
 - GAL E6B (../python/novread.py -e)
@@ -30,12 +31,12 @@ NovAtel raw data conversion:
 
 Septentrio raw data conversion:
 - QZS L6 (../python/septread.py -l)
-  20230819-082130clas.sept: Passed.
-  20230819-085030mdc-ppp.sept: Passed.
+  20230819-082130clas.sbf: Passed.
+  20230819-085030mdc-ppp.sbf: Passed.
 - GAL E6B (../python/septread.py -e)
-  20230819-081730hasbds.sept: Passed.
+  20230819-081730hasbds.sbf: Passed.
 - BDS B2b (../python/septread.py -b)
-  20230819-081730hasbds.sept: Passed.
+  20230819-081730hasbds.sbf: Passed.
 
 u-blox raw data conversion:
 - QZS L1S (../python/ubxread.py --l1s -p 186)
@@ -49,23 +50,32 @@ QZS L6 message read (../python/qzsl6read.py -t 2):
   20221130-125237mdc-ppp.l6: Passed.
   20230819-082130clas.l6: Passed.
   20230819-085030mdc-ppp.l6: Passed.
-  2018001A.l6: Passed.
+  20260908f.l6: Passed.
+  20260908f-p194.l6: Passed.
+  2019001A.l6: Passed.
   2022001A.l6: Passed.
+  2024214A.200.l6: Passed.
 
-QZS L1S message read (../python/qzsl1sread.py ):
+QZS L1S message read (../python/qzsl1sread.py -t 2):
   20230919-114418.l1s: Passed.
 
-QZS L6 to RTCM message conversion (../python/qzsl6read.py -r)
-  20220326-231200clas.l6: Passed.
+QZS L6 old MADOCA to RTCM SSR message conversion (../python/qzsl6read.py -r)
   20220326-231200mdc.l6: Passed.
+
+QZS L6 CSSR to RTCM 4073 message conversion (../python/qzsl6read.py -r)
+  20220326-231200clas.l6: Passed.
   20221130-125237mdc-ppp.l6: Passed.
 
-RTCM message read (../python/rtcmread.py )
+QZS L6 CSSR to RTCM 4050 message conversion (../python/l6rtcm4050.py )
+  2022001A.l6: Passed.
+
+RTCM message read (../python/rtcmread.py -t 2)
   20190529hiroshima.rtcm: Passed.
-  20220326-231200clas.rtcm: Passed.
-  20220326-231200mdc.rtcm: Passed.
-  20221130-125237mdc-ppp.rtcm: Passed.
+  20210101jaxamdc.rtcm: Passed.
   20221213-010900.rtcm: Passed.
+  20220326-231200clas.4073.rtcm: Passed.
+  20220326-231200mdc.rtcm: Passed.
+  20221130-125237mdc-ppp.4073.rtcm: Passed.
 
 GAL I/NAV message read (../python/galinavread.py )
   20230919-114418.inav: Passed.

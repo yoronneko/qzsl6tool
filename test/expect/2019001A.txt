@@ -65,7 +65,7 @@ ST4 J01 L5I+Q                  1.400
 ST4 J02 L1C/A                  0.000
 ST4 J02 L2CM+L                -0.600
 ST4 J02 L5I+Q                 -0.700
-193 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4 ST5...
+193 Hitachi-Ota:0  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4 ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
 ST5 G02 L1C/A               0.000       3
 ST5 G02 L2Z-tracking        0.000       3
@@ -181,7 +181,7 @@ ST9 E11 26.64 142.16          -4.44
 ST9 E12 26.64 142.16           0.08
 ST9 J01 26.64 142.16          -1.88
 ST9 J02 26.64 142.16          34.28
-193 Hitachi-Ota:0  CLAS  SF1 DP2 ST5 ST7 ST11 ST6 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF1 DP2 P1: ST5 ST7 ST11 ST6 ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=2 (OKINAWA)
 ST6 G02 L1C/A                  -7.756     3
@@ -226,7 +226,7 @@ ST8 G30       1.50     33.75         -0.38          0.48            0.00
 ST8 E11      59.75     -3.45         -0.16          0.58            0.00
 ST8 E12      59.75     -2.30         -0.14          1.22           -0.12
 ST8 J01       6.50     -0.20         -0.24          0.74           -0.02
-193 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF1 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=2 (OKINAWA), qual=  39.50[mm], ngrid=11
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.312[m] wet_delay= 0.176[m]
 ST9 G02 26.42 126.87           0.04
@@ -342,9 +342,9 @@ ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.172[m]
 ST9 E12 25.83 131.23           0.00
 ST9 J01 25.83 131.23           0.00
 CSSR null data 1232 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP4 ST9
+193 Hitachi-Ota:0  CLAS  SF1 DP4 P1: ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF1 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.440
 ST3 G05  -0.014
@@ -414,8 +414,8 @@ ST8 G30       6.50     32.60         -0.30          0.52            0.02
 ST8 E11       5.00     -2.95          0.36          0.40           -0.08
 ST8 E12      53.00     -1.30          0.28          0.46           -0.06
 ST8 J01       0.00     -2.00         -0.16          0.44           -0.02
-193 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF2 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=3 (KYUSYU), qual=   0.25[mm], ngrid=32
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.124[m]
 ST9 G02 33.16 129.50           0.04
@@ -761,7 +761,7 @@ ST6 J01 L5I+Q                  -4.571     0
 ST6 J02 L1C/A        
 ST6 J02 L2CM+L       
 ST6 J02 L5I+Q        
-193 Hitachi-Ota:0  CLAS  SF2 DP3 ST9 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF2 DP3 P1: ST9 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=4 (SHIKOKU)
 ST8 G02      21.50    -13.95         -0.30         -0.02            0.00
 ST8 G05      21.50     -1.20         -0.42          0.00           -0.02
@@ -926,9 +926,9 @@ ST9 J01 34.23 134.76           0.00
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=14 (ISLAND (TAKESHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 128 bits
-193 Hitachi-Ota:0  CLAS  SF2 DP4 ST8 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF2 DP4 P1: ST8 ST9 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF2 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF2 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.443
 ST3 G05  -0.016
@@ -998,7 +998,7 @@ ST8 G30       6.50     27.05         -0.92          0.18            0.08
 ST8 E11       1.25     -5.50         -0.58          0.24            0.00
 ST8 E12      59.75     -2.95         -0.96          0.42            0.16
 ST8 J01      59.75     -3.45         -0.76          0.14            0.10
-193 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP1 P1: ST3 ST11 ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=5 (CHUGOKU), qual=  26.00[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.284[m] wet_delay= 0.116[m]
 ST9 G02 34.23 130.82           0.08
@@ -1150,7 +1150,7 @@ ST9 G30 35.85 134.11           0.08
 ST9 E11 35.85 134.11           0.00
 ST9 E12 35.85 134.11          -0.04
 ST9 J01 35.85 134.11           0.00
-193 Hitachi-Ota:0  CLAS  SF3 DP2 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF3 DP2 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
 ST6 G02 L1C/A                  -5.118     3
@@ -1194,7 +1194,7 @@ ST8 G30      66.50     30.85         -0.64         -0.36            0.08
 ST8 E11      19.25     -3.10         -0.38         -0.02            0.02
 ST8 E12      19.25     -0.30         -0.24          0.08           -0.04
 ST8 J01      73.25      2.10         -0.48         -0.26            0.08
-193 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=6 (KANSAI), qual=   2.75[mm], ngrid=27
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.284[m] wet_delay= 0.116[m]
 ST9 G02 34.77 134.76          -0.04
@@ -1471,9 +1471,9 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=16 (ISLAND (UOTSURI)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 443 bits
-193 Hitachi-Ota:0  CLAS  SF3 DP4 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF3 DP4 P1: ST9 ST9 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF3 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF3 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.450
 ST3 G05  -0.010
@@ -1543,7 +1543,7 @@ ST8 G30      21.50     28.75         -0.44         -0.02            0.04
 ST8 E11      17.00     -2.75         -0.40          0.16            0.10
 ST8 E12       1.25      0.10         -0.08         -0.06            0.02
 ST8 J01       7.25     -1.70         -0.44          0.12           -0.04
-193 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP1 P1: ST3 ST11 ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=7 (KANTO), qual=  26.00[mm], ngrid=22
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.264[m] wet_delay= 0.112[m]
 ST9 G02 34.77 138.05          -0.08
@@ -1765,7 +1765,7 @@ ST9 G30 33.11 139.79          -0.16
 ST9 E11 33.11 139.79           0.08
 ST9 E12 33.11 139.79           0.28
 ST9 J01 33.11 139.79           0.04
-193 Hitachi-Ota:0  CLAS  SF4 DP2 ST9 ST0...
+193 Hitachi-Ota:0  CLAS  SF4 DP2 P1: ST9 ST0...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=8 (TOHOKU-SOUTH)
 ST6 G02 L1C/A                  -4.404     3
@@ -1809,7 +1809,7 @@ ST8 G30      19.25     27.15         -0.76          0.44           -0.02
 ST8 E11      59.75     -4.35         -0.64          0.56           -0.02
 ST8 E12       1.50     -1.50         -0.60          0.50            0.06
 ST8 J01      66.50     -4.60         -1.16          0.36            0.02
-193 Hitachi-Ota:0  CLAS  SF4 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=8 (TOHOKU-SOUTH), qual=   2.75[mm], ngrid=20
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.300[m] wet_delay= 0.092[m]
 ST9 G02 36.93 138.05          -0.04
@@ -2016,9 +2016,9 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=18 (ISLAND (MINAMI-TORISHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 443 bits
-193 Hitachi-Ota:0  CLAS  SF4 DP4 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF4 DP4 P1: ST9 ST9 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF4 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF4 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.446
 ST3 G05  -0.011
@@ -2088,7 +2088,7 @@ ST8 G30       1.50     28.90         -0.44          0.24           -0.04
 ST8 E11       6.50     -3.30         -0.20          0.14            0.00
 ST8 E12       1.75      0.45         -0.16          0.40           -0.06
 ST8 J01       0.00     -3.40         -0.36          0.24           -0.10
-193 Hitachi-Ota:0  CLAS  SF5 DP1 ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP1 P1: ST3 ST11 ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=9 (TOHOKU-NORTH), qual=  26.00[mm], ngrid=18
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.276[m] wet_delay= 0.088[m]
 ST9 G02 39.09 140.03           0.08
@@ -2270,7 +2270,7 @@ ST9 G30 40.16 142.00           0.00
 ST9 E11 40.16 142.00          -0.04
 ST9 E12 40.16 142.00           0.08
 ST9 J01 40.16 142.00           0.00
-193 Hitachi-Ota:0  CLAS  SF5 DP2 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF5 DP2 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=10 (HOKKAIDO-WEST)
 ST6 G02 L1C/A                  -5.128     3
@@ -2316,7 +2316,7 @@ ST8 E11      59.75     -5.70          0.12          0.02           -0.02
 ST8 E12       6.50     -2.65         -0.20          0.34            0.04
 ST8 J01       8.00     -0.60          0.00          0.08            0.04
 ST8 J02       0.00     33.00          0.00          0.76            0.04
-193 Hitachi-Ota:0  CLAS  SF5 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=10 (HOKKAIDO-WEST), qual=  26.00[mm], ngrid=23
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.072[m]
 ST9 G02 42.32 139.37           0.04
@@ -2597,9 +2597,9 @@ ST9 J02 42.86 143.32           0.20
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=19 (ISLAND (OKINOSHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 178 bits
-193 Hitachi-Ota:0  CLAS  SF5 DP4 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF5 DP4 P1: ST9 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF5 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF5 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.443
 ST3 G05  -0.011
@@ -2659,7 +2659,7 @@ ST6 J01 L5I+Q                  -0.270     0
 ST6 J02 L1C/A        
 ST6 J02 L2CM+L       
 ST6 J02 L5I+Q        
-193 Hitachi-Ota:0  CLAS  SF6 DP1 ST3 ST11 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP1 P1: ST3 ST11 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=11 (HOKKAIDO-EAST)
 ST8 G02       1.75     -8.50         -0.16          0.20           -0.06
 ST8 G05      66.50      3.05         -0.24          0.20            0.00
@@ -2671,7 +2671,7 @@ ST8 G30       7.25     27.75         -0.26          0.20           -0.06
 ST8 E11      66.50     -2.90         -0.20          0.26           -0.02
 ST8 E12      73.25      1.30          0.38          0.66           -0.18
 ST8 J01       8.00     -0.10          0.04          0.28            0.04
-193 Hitachi-Ota:0  CLAS  SF6 DP2 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF6 DP2 P1: ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=11 (HOKKAIDO-EAST), qual=   8.00[mm], ngrid=19
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.052[m]
 ST9 G02 45.28 141.34           0.00
@@ -2915,7 +2915,7 @@ ST6 J01 L5I+Q           0.140          -5.606     1
 ST6 J02 L1C/A           0.000           2.049     0
 ST6 J02 L2CM+L          0.400           3.020     0
 ST6 J02 L5I+Q          -0.060           4.861     0
-193 Hitachi-Ota:0  CLAS  SF6 DP3 ST9 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP3 P1: ST9 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=1 (ISHIGAKI)
 ST8 G02      17.00    -10.05          0.34         -0.28           -0.18
 ST8 G05       5.75      4.10          0.08         -0.12           -0.16
@@ -3026,9 +3026,9 @@ ST9 E12 24.45 122.94           0.04
 ST9 J01 24.45 122.94          -0.04
 ST9 J02 24.45 122.94           0.04
 CSSR null data 522 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP4 ST8 ST9
+193 Hitachi-Ota:0  CLAS  SF6 DP4 P1: ST8 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF6 DP5 P1: (null)
 ST1 G02 L1C/A L2Z-tracking
 ST1 G05 L1C/A L2CM+L L2Z-tracking
 ST1 G06 L1C/A L2CM+L L2Z-tracking L5I+Q
@@ -3096,7 +3096,7 @@ ST4 J01 L5I+Q                  1.360
 ST4 J02 L1C/A                  0.000
 ST4 J02 L2CM+L                -0.520
 ST4 J02 L5I+Q                 -0.940
-193 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4 ST5...
+193 Hitachi-Ota:0  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4 ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
 ST5 G02 L1C/A               0.000       3
 ST5 G02 L2Z-tracking        0.000       3
@@ -3212,7 +3212,7 @@ ST9 E11 26.64 142.16          -4.40
 ST9 E12 26.64 142.16           0.64
 ST9 J01 26.64 142.16          -1.64
 ST9 J02 26.64 142.16          35.04
-193 Hitachi-Ota:0  CLAS  SF1 DP2 ST5 ST7 ST11 ST6 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF1 DP2 P1: ST5 ST7 ST11 ST6 ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=2 (OKINAWA)
 ST6 G02 L1C/A                  -7.734     3
@@ -3258,7 +3258,7 @@ ST8 E11      19.25     -3.50         -0.16          0.58            0.00
 ST8 E12      59.75     -1.80         -0.16          1.22           -0.12
 ST8 J01       6.50     -0.20         -0.24          0.72           -0.02
 ST8 J02       0.00     31.60         -0.32          1.58           -0.16
-193 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF1 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=2 (OKINAWA), qual=  39.50[mm], ngrid=11
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.312[m] wet_delay= 0.176[m]
 ST9 G02 26.42 126.87           0.00
@@ -3384,9 +3384,9 @@ ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.272[m] wet_delay= 0.176[m]
 ST9 E12 25.83 131.23           0.00
 ST9 J01 25.83 131.23           0.04
 CSSR null data 1101 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP4 ST9
+193 Hitachi-Ota:0  CLAS  SF1 DP4 P1: ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF1 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.293
 ST3 G05  -0.030
@@ -3458,8 +3458,8 @@ ST8 E11      17.00     -2.60          0.36          0.40           -0.06
 ST8 E12      53.00     -0.35          0.28          0.46           -0.06
 ST8 J01      66.50     -1.65         -0.16          0.44            0.00
 ST8 J02       0.00     31.05         -0.12          0.40           -0.06
-193 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF2 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=3 (KYUSYU), qual=   0.25[mm], ngrid=32
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.124[m]
 ST9 G02 33.16 129.50           0.04
@@ -3834,7 +3834,7 @@ ST9 E11 29.92 130.16           0.00
 ST9 E12 29.92 130.16           0.08
 ST9 J01 29.92 130.16           0.04
 ST9 J02 29.92 130.16           0.08
-193 Hitachi-Ota:0  CLAS  SF2 DP3 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF2 DP3 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
 ST6 G02 L1C/A                  -6.307     3
@@ -3880,7 +3880,7 @@ ST8 E11      19.25     -5.60         -0.52          0.02            0.04
 ST8 E12       6.50     -3.25         -0.62          0.08            0.18
 ST8 J01      73.25     -3.90         -0.56          0.10            0.00
 ST8 J02       0.00     29.15         -0.48          0.20            0.06
-193 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP4 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=4 (SHIKOKU), qual=   2.75[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.128[m]
 ST9 G02 32.62 132.13           0.00
@@ -4065,7 +4065,7 @@ ST9 J02 34.23 134.76           0.04
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=14 (ISLAND (TAKESHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 949 bits
-193 Hitachi-Ota:0  CLAS  SF2 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF2 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.298
 ST3 G05  -0.035
@@ -4137,7 +4137,7 @@ ST8 E11       0.00     -5.20         -0.60          0.24            0.00
 ST8 E12       5.75     -2.15         -0.96          0.42            0.16
 ST8 J01      73.25     -3.30         -0.78          0.14            0.10
 ST8 J02       0.00     29.25         -0.62          0.48            0.16
-193 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP1 P1: ST3 ST11 ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=5 (CHUGOKU), qual=  26.00[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.288[m] wet_delay= 0.116[m]
 ST9 G02 34.23 130.82           0.08
@@ -4319,7 +4319,7 @@ ST9 E11 35.85 134.11           0.00
 ST9 E12 35.85 134.11          -0.04
 ST9 J01 35.85 134.11           0.04
 ST9 J02 35.85 134.11           0.04
-193 Hitachi-Ota:0  CLAS  SF3 DP2 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF3 DP2 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
 ST6 G02 L1C/A                  -4.977     3
@@ -4364,7 +4364,7 @@ ST8 G30      66.50     31.35         -0.64         -0.36            0.08
 ST8 E11      19.25     -2.90         -0.38         -0.04            0.02
 ST8 E12      59.75      0.55         -0.24          0.06           -0.02
 ST8 J01       8.00      2.30         -0.48         -0.28            0.08
-193 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=6 (KANSAI), qual=   0.25[mm], ngrid=27
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.116[m]
 ST9 G02 34.77 134.76          -0.04
@@ -4663,13 +4663,13 @@ ST9 G30 37.47 137.40          -0.04
 ST9 E11 37.47 137.40           0.00
 ST9 E12 37.47 137.40          -0.04
 ST9 J01 37.47 137.40           0.04
-193 Hitachi-Ota:0  CLAS  SF3 DP4 ST9 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP4 P1: ST9 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=15 (ISLAND (KITA-DAITO)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=16 (ISLAND (UOTSURI)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1577 bits
-193 Hitachi-Ota:0  CLAS  SF3 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF3 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.306
 ST3 G05  -0.026
@@ -4741,8 +4741,8 @@ ST8 E11      23.75     -2.75         -0.42          0.16            0.10
 ST8 E12       0.00      1.00         -0.06         -0.04            0.00
 ST8 J01       0.00     -1.80         -0.42          0.10           -0.02
 ST8 J02       0.00     30.95         -0.42         -0.14            0.10
-193 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF4 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=7 (KANTO), qual=  26.00[mm], ngrid=22
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.264[m] wet_delay= 0.112[m]
 ST9 G02 34.77 138.05          -0.04
@@ -5053,8 +5053,8 @@ ST8 E11      66.50     -4.00         -0.60          0.56           -0.04
 ST8 E12       0.00     -0.90         -0.56          0.50            0.04
 ST8 J01       0.00     -4.25         -1.10          0.38            0.00
 ST8 J02       0.00     29.05         -0.92          0.46            0.18
-193 Hitachi-Ota:0  CLAS  SF4 DP3 ST9 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF4 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP3 P1: ST9 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=8 (TOHOKU-SOUTH), qual=   2.75[mm], ngrid=20
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.296[m] wet_delay= 0.092[m]
 ST9 G02 36.93 138.05          -0.04
@@ -5301,7 +5301,7 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=18 (ISLAND (MINAMI-TORISHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1334 bits
-193 Hitachi-Ota:0  CLAS  SF4 DP5 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF4 DP5 P1: ST9 ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.306
 ST3 G05  -0.022
@@ -5373,8 +5373,8 @@ ST8 E11       7.25     -2.85         -0.20          0.14            0.02
 ST8 E12       8.00      0.75         -0.14          0.40           -0.08
 ST8 J01      21.50     -2.80         -0.38          0.24           -0.08
 ST8 J02       0.00     31.25         -0.40          0.84           -0.02
-193 Hitachi-Ota:0  CLAS  SF5 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF5 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=9 (TOHOKU-NORTH), qual=  26.00[mm], ngrid=18
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.288[m] wet_delay= 0.088[m]
 ST9 G02 39.09 140.03           0.08
@@ -5637,8 +5637,8 @@ ST8 E11       6.50     -5.55          0.12          0.02           -0.02
 ST8 E12       0.00     -1.90         -0.20          0.36            0.04
 ST8 J01       0.00     -0.55          0.00          0.08            0.04
 ST8 J02       0.00     33.60          0.00          0.76            0.04
-193 Hitachi-Ota:0  CLAS  SF5 DP3 ST9 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF5 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP3 P1: ST9 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=10 (HOKKAIDO-WEST), qual=  26.00[mm], ngrid=23
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.068[m]
 ST9 G02 42.32 139.37           0.04
@@ -5919,7 +5919,7 @@ ST9 J02 42.86 143.32           0.24
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=19 (ISLAND (OKINOSHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1513 bits
-193 Hitachi-Ota:0  CLAS  SF5 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF5 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.309
 ST3 G05  -0.019
@@ -5979,7 +5979,7 @@ ST6 J01 L5I+Q                  -0.107     0
 ST6 J02 L1C/A        
 ST6 J02 L2CM+L       
 ST6 J02 L5I+Q        
-193 Hitachi-Ota:0  CLAS  SF6 DP1 ST3 ST11 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP1 P1: ST3 ST11 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=11 (HOKKAIDO-EAST)
 ST8 G02      46.25     -8.05         -0.16          0.20           -0.06
 ST8 G05       6.50      3.40         -0.22          0.20            0.00
@@ -5991,7 +5991,7 @@ ST8 G30       6.50     28.25         -0.24          0.20           -0.06
 ST8 E11       6.50     -2.60         -0.22          0.26            0.00
 ST8 E12       0.00      2.15          0.36          0.66           -0.18
 ST8 J01       0.00      0.10          0.06          0.30            0.04
-193 Hitachi-Ota:0  CLAS  SF6 DP2 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF6 DP2 P1: ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=11 (HOKKAIDO-EAST), qual=   8.00[mm], ngrid=19
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.052[m]
 ST9 G02 45.28 141.34          -0.04
@@ -6235,7 +6235,7 @@ ST6 J01 L5I+Q           0.180          -5.606     1
 ST6 J02 L1C/A           0.000           2.041     0
 ST6 J02 L2CM+L          0.340           3.018     0
 ST6 J02 L5I+Q           0.260           4.862     0
-193 Hitachi-Ota:0  CLAS  SF6 DP3 ST9 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP3 P1: ST9 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=1 (ISHIGAKI)
 ST8 G02      17.00     -9.95          0.30         -0.30           -0.22
 ST8 G05      53.00      4.10          0.04         -0.14           -0.18
@@ -6346,9 +6346,9 @@ ST9 E12 24.45 122.94           0.00
 ST9 J01 24.45 122.94           0.00
 ST9 J02 24.45 122.94           0.00
 CSSR null data 522 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP4 ST8 ST9
+193 Hitachi-Ota:0  CLAS  SF6 DP4 P1: ST8 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF6 DP5 P1: (null)
 ST1 G02 L1C/A L2Z-tracking
 ST1 G05 L1C/A L2CM+L L2Z-tracking
 ST1 G06 L1C/A L2CM+L L2Z-tracking L5I+Q
@@ -6416,7 +6416,7 @@ ST4 J01 L5I+Q                  1.420
 ST4 J02 L1C/A                  0.000
 ST4 J02 L2CM+L                -0.420
 ST4 J02 L5I+Q                 -0.800
-193 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4 ST5...
+193 Hitachi-Ota:0  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4 ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
 ST5 G02 L1C/A               0.000       3
 ST5 G02 L2Z-tracking        0.000       3
@@ -6532,7 +6532,7 @@ ST9 E11 26.64 142.16          -4.48
 ST9 E12 26.64 142.16           1.12
 ST9 J01 26.64 142.16          -1.72
 ST9 J02 26.64 142.16          34.36
-193 Hitachi-Ota:0  CLAS  SF1 DP2 ST5 ST7 ST11 ST6 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF1 DP2 P1: ST5 ST7 ST11 ST6 ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=2 (OKINAWA)
 ST6 G02 L1C/A                  -7.768     3
@@ -6578,7 +6578,7 @@ ST8 E11       1.25     -3.60         -0.16          0.58           -0.02
 ST8 E12       5.75     -2.00         -0.16          1.22           -0.12
 ST8 J01      66.50     -0.40         -0.26          0.72           -0.02
 ST8 J02       0.00     31.10         -0.30          1.56           -0.24
-193 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF1 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=2 (OKINAWA), qual=  39.50[mm], ngrid=11
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.312[m] wet_delay= 0.176[m]
 ST9 G02 26.42 126.87           0.04
@@ -6704,9 +6704,9 @@ ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.272[m] wet_delay= 0.176[m]
 ST9 E12 25.83 131.23           0.04
 ST9 J01 25.83 131.23           0.00
 CSSR null data 1101 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP4 ST9
+193 Hitachi-Ota:0  CLAS  SF1 DP4 P1: ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF1 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.291
 ST3 G05  -0.024
@@ -6778,8 +6778,8 @@ ST8 E11      17.00     -2.95          0.34          0.42           -0.06
 ST8 E12       5.00     -0.95          0.28          0.46           -0.06
 ST8 J01       0.00     -2.00         -0.18          0.44            0.00
 ST8 J02       0.00     30.05         -0.12          0.42           -0.06
-193 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF2 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=3 (KYUSYU), qual=   0.25[mm], ngrid=32
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.124[m]
 ST9 G02 33.16 129.50           0.00
@@ -7154,7 +7154,7 @@ ST9 E11 29.92 130.16           0.00
 ST9 E12 29.92 130.16           0.12
 ST9 J01 29.92 130.16           0.00
 ST9 J02 29.92 130.16           0.08
-193 Hitachi-Ota:0  CLAS  SF2 DP3 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF2 DP3 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
 ST6 G02 L1C/A                  -6.499     3
@@ -7200,7 +7200,7 @@ ST8 E11      17.00     -5.85         -0.52          0.04            0.02
 ST8 E12       1.25     -3.55         -0.62          0.08            0.16
 ST8 J01       0.00     -4.25         -0.54          0.10           -0.02
 ST8 J02       0.00     28.40         -0.44          0.22            0.06
-193 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP4 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=4 (SHIKOKU), qual=  10.25[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.132[m]
 ST9 G02 32.62 132.13           0.00
@@ -7385,7 +7385,7 @@ ST9 J02 34.23 134.76          -0.04
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=14 (ISLAND (TAKESHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 949 bits
-193 Hitachi-Ota:0  CLAS  SF2 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF2 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.286
 ST3 G05  -0.022
@@ -7457,7 +7457,7 @@ ST8 E11       5.00     -5.40         -0.60          0.24            0.00
 ST8 E12      53.00     -2.40         -1.00          0.40            0.16
 ST8 J01       0.00     -3.65         -0.78          0.14            0.10
 ST8 J02       0.00     28.75         -0.74          0.44            0.20
-193 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP1 P1: ST3 ST11 ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=5 (CHUGOKU), qual=   8.00[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.292[m] wet_delay= 0.116[m]
 ST9 G02 34.23 130.82           0.08
@@ -7639,7 +7639,7 @@ ST9 E11 35.85 134.11          -0.04
 ST9 E12 35.85 134.11           0.04
 ST9 J01 35.85 134.11           0.00
 ST9 J02 35.85 134.11          -0.04
-193 Hitachi-Ota:0  CLAS  SF3 DP2 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF3 DP2 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
 ST6 G02 L1C/A                  -5.172     3
@@ -7685,8 +7685,8 @@ ST8 E11       1.25     -3.25         -0.38         -0.04            0.02
 ST8 E12       5.75      0.00         -0.26          0.06           -0.02
 ST8 J01       0.00      2.05         -0.48         -0.28            0.08
 ST8 J02       0.00     35.80         -0.06         -0.70           -0.04
-193 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF3 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP3 P1: ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=6 (KANSAI), qual=   0.25[mm], ngrid=27
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.284[m] wet_delay= 0.116[m]
 ST9 G02 34.77 134.76          -0.08
@@ -8017,7 +8017,7 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=16 (ISLAND (UOTSURI)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1334 bits
-193 Hitachi-Ota:0  CLAS  SF3 DP5 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF3 DP5 P1: ST9 ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.282
 ST3 G05  -0.021
@@ -8089,8 +8089,8 @@ ST8 E11       1.75     -2.95         -0.42          0.16            0.10
 ST8 E12       0.00      0.30         -0.06          0.00            0.00
 ST8 J01       0.00     -1.90         -0.42          0.10           -0.02
 ST8 J02       0.00     30.20         -0.40         -0.10            0.10
-193 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF4 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=7 (KANTO), qual=   0.25[mm], ngrid=22
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.112[m]
 ST9 G02 34.77 138.05          -0.04
@@ -8401,8 +8401,8 @@ ST8 E11      59.75     -4.55         -0.62          0.56           -0.04
 ST8 E12       0.00     -1.60         -0.56          0.50            0.04
 ST8 J01       0.00     -4.55         -1.10          0.38            0.00
 ST8 J02       0.00     28.00         -0.96          0.50            0.16
-193 Hitachi-Ota:0  CLAS  SF4 DP3 ST9 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF4 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP3 P1: ST9 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=8 (TOHOKU-SOUTH), qual=   2.75[mm], ngrid=20
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.296[m] wet_delay= 0.092[m]
 ST9 G02 36.93 138.05          -0.04
@@ -8649,7 +8649,7 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=18 (ISLAND (MINAMI-TORISHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1334 bits
-193 Hitachi-Ota:0  CLAS  SF4 DP5 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF4 DP5 P1: ST9 ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.277
 ST3 G05  -0.024
@@ -8721,8 +8721,8 @@ ST8 E11       6.50     -3.05         -0.22          0.14            0.02
 ST8 E12       7.25      0.45         -0.14          0.40           -0.08
 ST8 J01       1.75     -3.30         -0.40          0.24           -0.06
 ST8 J02       0.00     30.40         -0.40          0.90           -0.04
-193 Hitachi-Ota:0  CLAS  SF5 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF5 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=9 (TOHOKU-NORTH), qual=   8.00[mm], ngrid=18
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.292[m] wet_delay= 0.088[m]
 ST9 G02 39.09 140.03           0.08
@@ -8985,8 +8985,8 @@ ST8 E11       0.00     -5.80          0.12          0.02           -0.02
 ST8 E12       0.00     -2.40         -0.18          0.36            0.04
 ST8 J01       0.00     -0.90          0.02          0.08            0.04
 ST8 J02       0.00     32.55          0.02          0.76            0.02
-193 Hitachi-Ota:0  CLAS  SF5 DP3 ST9 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF5 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP3 P1: ST9 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=10 (HOKKAIDO-WEST), qual=  26.00[mm], ngrid=23
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.068[m]
 ST9 G02 42.32 139.37           0.08
@@ -9267,7 +9267,7 @@ ST9 J02 42.86 143.32           0.24
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=19 (ISLAND (OKINOSHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1513 bits
-193 Hitachi-Ota:0  CLAS  SF5 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF5 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.275
 ST3 G05  -0.029
@@ -9327,7 +9327,7 @@ ST6 J01 L5I+Q                  -0.290     0
 ST6 J02 L1C/A        
 ST6 J02 L2CM+L       
 ST6 J02 L5I+Q        
-193 Hitachi-Ota:0  CLAS  SF6 DP1 ST3 ST11 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP1 P1: ST3 ST11 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=11 (HOKKAIDO-EAST)
 ST8 G02       6.50     -8.25         -0.16          0.20           -0.06
 ST8 G05       6.50      3.25         -0.22          0.20            0.00
@@ -9339,7 +9339,7 @@ ST8 G30       1.75     28.00         -0.22          0.20           -0.06
 ST8 E11      66.50     -3.00         -0.22          0.26            0.00
 ST8 E12       2.00      1.60          0.34          0.66           -0.18
 ST8 J01       0.00     -0.20          0.06          0.30            0.04
-193 Hitachi-Ota:0  CLAS  SF6 DP2 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF6 DP2 P1: ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=11 (HOKKAIDO-EAST), qual=   8.00[mm], ngrid=19
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.052[m]
 ST9 G02 45.28 141.34           0.00
@@ -9583,7 +9583,7 @@ ST6 J01 L5I+Q           0.100          -5.607     1
 ST6 J02 L1C/A           0.000           2.048     0
 ST6 J02 L2CM+L          0.260           3.029     0
 ST6 J02 L5I+Q           0.080           4.871     0
-193 Hitachi-Ota:0  CLAS  SF6 DP3 ST9 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP3 P1: ST9 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=1 (ISHIGAKI)
 ST8 G02      17.00     -9.90          0.24         -0.30           -0.28
 ST8 G05      17.00      4.25          0.16         -0.12           -0.12
@@ -9694,9 +9694,9 @@ ST9 E12 24.45 122.94           0.04
 ST9 J01 24.45 122.94           0.00
 ST9 J02 24.45 122.94           0.04
 CSSR null data 522 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP4 ST8 ST9
+193 Hitachi-Ota:0  CLAS  SF6 DP4 P1: ST8 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF6 DP5 P1: (null)
 ST1 G02 L1C/A L2Z-tracking
 ST1 G05 L1C/A L2CM+L L2Z-tracking
 ST1 G06 L1C/A L2CM+L L2Z-tracking L5I+Q
@@ -9764,7 +9764,7 @@ ST4 J01 L5I+Q                  1.420
 ST4 J02 L1C/A                  0.000
 ST4 J02 L2CM+L                -0.400
 ST4 J02 L5I+Q                 -0.780
-193 Hitachi-Ota:0  CLAS  SF1 DP1 ST1 ST3 ST2 ST4 ST5...
+193 Hitachi-Ota:0  CLAS  SF1 DP1 P1: ST1 ST3 ST2 ST4 ST5...
 ST5 SAT signal_name phase_bias[m]       discontinuity
 ST5 G02 L1C/A               0.000       3
 ST5 G02 L2Z-tracking        0.000       3
@@ -9881,7 +9881,7 @@ ST9 E11 26.64 142.16          -4.64
 ST9 E12 26.64 142.16           0.64
 ST9 J01 26.64 142.16          -1.60
 ST9 J02 26.64 142.16          34.20
-193 Hitachi-Ota:0  CLAS  SF1 DP2 ST5 ST7 ST11 ST6 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF1 DP2 P1: ST5 ST7 ST11 ST6 ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=2 (OKINAWA)
 ST6 G02 L1C/A                  -7.799     3
@@ -9927,7 +9927,7 @@ ST8 E11       1.25     -3.75         -0.14          0.58           -0.02
 ST8 E12      19.25     -2.05         -0.18          1.24           -0.12
 ST8 J01      59.75     -0.35         -0.26          0.72           -0.02
 ST8 J02       0.00     31.10         -0.28          1.52           -0.24
-193 Hitachi-Ota:0  CLAS  SF1 DP3 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF1 DP3 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=2 (OKINAWA), qual=  39.50[mm], ngrid=11
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.312[m] wet_delay= 0.176[m]
 ST9 G02 26.42 126.87           0.00
@@ -10053,9 +10053,9 @@ ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.268[m] wet_delay= 0.176[m]
 ST9 E12 25.83 131.23          -0.04
 ST9 J01 25.83 131.23           0.00
 CSSR null data 1101 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP4 ST9
+193 Hitachi-Ota:0  CLAS  SF1 DP4 P1: ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF1 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF1 DP5 P1: (null)
 ST3 SAT   c0[m]
 ST3 G02   0.262
 ST3 G05  -0.035
@@ -10127,8 +10127,8 @@ ST8 E11       0.00     -2.80          0.34          0.42           -0.06
 ST8 E12       0.00     -0.60          0.28          0.48           -0.06
 ST8 J01       0.00     -2.05         -0.20          0.44            0.00
 ST8 J02       0.00     29.80         -0.14          0.42           -0.06
-193 Hitachi-Ota:0  CLAS  SF2 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF2 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=3 (KYUSYU), qual=   0.25[mm], ngrid=32
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.276[m] wet_delay= 0.124[m]
 ST9 G02 33.16 129.50           0.00
@@ -10503,7 +10503,7 @@ ST9 E11 29.92 130.16           0.00
 ST9 E12 29.92 130.16           0.08
 ST9 J01 29.92 130.16          -0.04
 ST9 J02 29.92 130.16           0.04
-193 Hitachi-Ota:0  CLAS  SF2 DP3 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF2 DP3 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=4 (SHIKOKU)
 ST6 G02 L1C/A                  -6.484     3
@@ -10549,7 +10549,7 @@ ST8 E11      53.00     -6.00         -0.52          0.02            0.02
 ST8 E12      53.00     -3.45         -0.60          0.08            0.16
 ST8 J01       1.75     -4.40         -0.54          0.10           -0.02
 ST8 J02      21.50     28.25         -0.44          0.22            0.04
-193 Hitachi-Ota:0  CLAS  SF2 DP4 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF2 DP4 P1: ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=4 (SHIKOKU), qual=   2.75[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.272[m] wet_delay= 0.128[m]
 ST9 G02 32.62 132.13           0.00
@@ -10734,7 +10734,7 @@ ST9 J02 34.23 134.76          -0.04
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=14 (ISLAND (TAKESHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 949 bits
-193 Hitachi-Ota:0  CLAS  SF2 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF2 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.259
 ST3 G05  -0.035
@@ -10806,7 +10806,7 @@ ST8 E11       1.25     -5.55         -0.60          0.26           -0.02
 ST8 E12       1.50     -2.50         -0.98          0.42            0.16
 ST8 J01       1.75     -3.70         -0.80          0.14            0.10
 ST8 J02       0.00     28.80         -0.82          0.40            0.20
-193 Hitachi-Ota:0  CLAS  SF3 DP1 ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP1 P1: ST3 ST11 ST6 ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=5 (CHUGOKU), qual=   8.00[mm], ngrid=15
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.292[m] wet_delay= 0.116[m]
 ST9 G02 34.23 130.82           0.08
@@ -10988,7 +10988,7 @@ ST9 E11 35.85 134.11           0.04
 ST9 E12 35.85 134.11          -0.08
 ST9 J01 35.85 134.11           0.04
 ST9 J02 35.85 134.11           0.04
-193 Hitachi-Ota:0  CLAS  SF3 DP2 ST9 ST6...
+193 Hitachi-Ota:0  CLAS  SF3 DP2 P1: ST9 ST6...
 ST6 code_bias=off phase_bias=on network_bias=on
 ST6 SAT signal_name     phase_bias[m] discontinuity NID=6 (KANSAI)
 ST6 G02 L1C/A                  -5.205     3
@@ -11034,8 +11034,8 @@ ST8 E11       6.50     -3.25         -0.38         -0.04            0.02
 ST8 E12      59.75      0.00         -0.26          0.06           -0.02
 ST8 J01      59.75      1.90         -0.46         -0.30            0.08
 ST8 J02       0.00     35.55         -0.08         -0.72           -0.04
-193 Hitachi-Ota:0  CLAS  SF3 DP3 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF3 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP3 P1: ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF3 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=6 (KANSAI), qual=   0.25[mm], ngrid=27
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.116[m]
 ST9 G02 34.77 134.76          -0.08
@@ -11366,7 +11366,7 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=16 (ISLAND (UOTSURI)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1334 bits
-193 Hitachi-Ota:0  CLAS  SF3 DP5 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF3 DP5 P1: ST9 ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.256
 ST3 G05  -0.034
@@ -11438,8 +11438,8 @@ ST8 E11       6.50     -2.75         -0.40          0.16            0.10
 ST8 E12      21.50      0.55         -0.08          0.00            0.00
 ST8 J01       0.00     -1.90         -0.44          0.08            0.00
 ST8 J02      17.00     30.30         -0.40         -0.08            0.08
-193 Hitachi-Ota:0  CLAS  SF4 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF4 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=7 (KANTO), qual=   0.25[mm], ngrid=22
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.272[m] wet_delay= 0.116[m]
 ST9 G02 34.77 138.05          -0.04
@@ -11750,8 +11750,8 @@ ST8 E11      59.75     -4.50         -0.62          0.56           -0.02
 ST8 E12       1.50     -1.55         -0.56          0.50            0.04
 ST8 J01      73.25     -4.60         -1.08          0.38            0.00
 ST8 J02       0.00     27.75         -1.00          0.52            0.16
-193 Hitachi-Ota:0  CLAS  SF4 DP3 ST9 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF4 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP3 P1: ST9 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF4 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=8 (TOHOKU-SOUTH), qual=   2.75[mm], ngrid=20
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.292[m] wet_delay= 0.092[m]
 ST9 G02 36.93 138.05          -0.04
@@ -11998,7 +11998,7 @@ ST9 SAT  Lat.   Lon. residual[TECU]
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=18 (ISLAND (MINAMI-TORISHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1334 bits
-193 Hitachi-Ota:0  CLAS  SF4 DP5 ST9 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF4 DP5 P1: ST9 ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.251
 ST3 G05  -0.032
@@ -12070,8 +12070,8 @@ ST8 E11       6.50     -3.15         -0.20          0.12            0.02
 ST8 E12      66.50      0.25         -0.12          0.40           -0.08
 ST8 J01      21.50     -3.35         -0.40          0.22           -0.06
 ST8 J02       0.00     30.00         -0.38          0.92           -0.06
-193 Hitachi-Ota:0  CLAS  SF5 DP1 ST3 ST11 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF5 DP2 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP1 P1: ST3 ST11 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP2 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=9 (TOHOKU-NORTH), qual=   8.00[mm], ngrid=18
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.284[m] wet_delay= 0.088[m]
 ST9 G02 39.09 140.03           0.08
@@ -12334,8 +12334,8 @@ ST8 E11       5.75     -5.80          0.12          0.02           -0.02
 ST8 E12      19.25     -2.40         -0.18          0.36            0.04
 ST8 J01      66.50     -1.10          0.02          0.08            0.04
 ST8 J02       7.25     32.10          0.06          0.76            0.02
-193 Hitachi-Ota:0  CLAS  SF5 DP3 ST9 ST6 ST8 ST9...
-193 Hitachi-Ota:0  CLAS  SF5 DP4 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP3 P1: ST9 ST6 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF5 DP4 P1: ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=10 (HOKKAIDO-WEST), qual=  26.00[mm], ngrid=23
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.280[m] wet_delay= 0.068[m]
 ST9 G02 42.32 139.37           0.08
@@ -12616,7 +12616,7 @@ ST9 J02 42.86 143.32           0.24
 ST9 Trop Type: Neill mapping function (1), resolution=16[bit] (1), NID=19 (ISLAND (OKINOSHIMA)), qual=   0.00[mm], ngrid=1
 ST9 SAT  Lat.   Lon. residual[TECU]
 CSSR null data 1513 bits
-193 Hitachi-Ota:0  CLAS  SF5 DP5 ST9 ST9
+193 Hitachi-Ota:0  CLAS  SF5 DP5 P1: ST9 ST9
 ST3 SAT   c0[m]
 ST3 G02   0.248
 ST3 G05  -0.032
@@ -12676,7 +12676,7 @@ ST6 J01 L5I+Q                  -0.361     0
 ST6 J02 L1C/A        
 ST6 J02 L2CM+L       
 ST6 J02 L5I+Q        
-193 Hitachi-Ota:0  CLAS  SF6 DP1 ST3 ST11 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP1 P1: ST3 ST11 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=11 (HOKKAIDO-EAST)
 ST8 G02       6.50     -8.20         -0.16          0.20           -0.06
 ST8 G05       1.50      3.30         -0.20          0.20           -0.02
@@ -12688,7 +12688,7 @@ ST8 G30      21.50     28.00         -0.20          0.18           -0.06
 ST8 E11      21.50     -2.95         -0.22          0.26            0.00
 ST8 E12      53.00      1.65          0.34          0.68           -0.16
 ST8 J01       0.00     -0.45          0.06          0.30            0.04
-193 Hitachi-Ota:0  CLAS  SF6 DP2 ST8 ST9...
+193 Hitachi-Ota:0  CLAS  SF6 DP2 P1: ST8 ST9...
 ST9 Trop Type: Neill mapping function (1), resolution=7[bit] (0), NID=11 (HOKKAIDO-EAST), qual=   8.00[mm], ngrid=19
 ST9 SAT  Lat.   Lon. residual[TECU] hydro_delay= 2.264[m] wet_delay= 0.052[m]
 ST9 G02 45.28 141.34           0.00
@@ -12932,7 +12932,7 @@ ST6 J01 L5I+Q           0.120          -5.607     1
 ST6 J02 L1C/A           0.000           2.031     0
 ST6 J02 L2CM+L          0.080           3.048     0
 ST6 J02 L5I+Q           0.040           4.900     0
-193 Hitachi-Ota:0  CLAS  SF6 DP3 ST9 ST6 ST8...
+193 Hitachi-Ota:0  CLAS  SF6 DP3 P1: ST9 ST6 ST8...
 ST8 SAT qual[TECU] c00[TECU] c01[TECU/deg] c10[TECU/deg] c11[TECU/deg^2] NID=1 (ISHIGAKI)
 ST8 G02      17.00     -9.75          0.28         -0.30           -0.26
 ST8 G05      53.00      4.35          0.24         -0.12           -0.12
@@ -13043,6 +13043,6 @@ ST9 E12 24.45 122.94           0.00
 ST9 J01 24.45 122.94          -0.04
 ST9 J02 24.45 122.94           0.04
 CSSR null data 522 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP4 ST8 ST9
+193 Hitachi-Ota:0  CLAS  SF6 DP4 P1: ST8 ST9
 CSSR null data 1695 bits
-193 Hitachi-Ota:0  CLAS  SF6 DP5 (null)
+193 Hitachi-Ota:0  CLAS  SF6 DP5 P1: (null)

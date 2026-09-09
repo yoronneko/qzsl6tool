@@ -1,5 +1,15 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.8 (2026-09-09)
+
+- CLAS multi-stream transmission (IS-QZSS-L6-008): the L6 message type ID is decoded per Table 4.1.2-2 (vendor ID, message generation facility, CLAS transmit pattern ID, subframe indicator). qzsl6read.py now shows the transmit pattern as `P1:` or `P2:` in every CLAS line (output format change).
+- qzsl6read.py: added `-P`/`--pattern {1,2}` (default 1) to select the CLAS transmit pattern to decode; L6 messages of the other pattern are reported and skipped so that the two Compact SSR streams are never mixed.
+- qzsl6read.py, libssr.py: bit 3 of the CLAS IOD SSR is decoded as the transmit pattern indicator (Table 4.1.2-7) and checked against the L6 header.
+- alstread.py: with `-l`, CLAS Transmit Pattern 2 messages are skipped unless the satellite is selected with `-p`; help texts corrected.
+- Added the sample data `sample/20260908f.alst` (Allystar HD9310, 2026-09-08, CLAS multi-stream period) and its tests.
+- libssr.py: fixed the IOD SSR mismatch message of the MADOCA-PPP ionospheric MT2 decoder.
+- Documentation: alstread.py and qzsl6read.py docs, README directory structure, CLAUDE.md.
+
 ## ver.0.1.7a3 (2026-09-07)
 
 - qzsl1sread.py: fixed the satellite numbering in the MT51 lockout list, which was off by one (e.g. G00 instead of G01) and inconsistent with the MT48 PRN mask.
