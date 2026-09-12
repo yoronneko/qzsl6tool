@@ -245,6 +245,7 @@ if __name__ == '__main__':
                 elif args.b1i : raw = rcv.decode_bdsb1i()
                 if raw:
                     fp_raw.buffer.write(raw)
+                    fp_raw.flush()
     except (BrokenPipeError, IOError):
         devnull = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull, sys.stdout.fileno())

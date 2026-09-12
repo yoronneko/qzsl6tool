@@ -118,6 +118,11 @@ ubx_conv() {
     BASENAME=20230919-114418
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
+    ARG='--l1s -p 128' EXT_FROM=ubx EXT_TO=sbas
+    echo "- SBAS L1C/A (QZS L1Sb) (${CODE} ${ARG})"
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
     ARG='-i' EXT_TO=inav
     echo "- GAL I/NAV (${CODE} ${ARG})"
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
@@ -170,6 +175,11 @@ qzs_l1s() {
     echo "QZS L1S message read (${CODE} ${ARG}):"
 
     SRCDIR=expect/
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    CODE=${CODEDIR}qzsl1sread.py ARG='-t 2' EXT_FROM=sbas EXT_TO=sbas.txt
+    echo "SBAS L1C/A (QZS L1Sb)  message read (${CODE} ${ARG}):"
     BASENAME=20230919-114418
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
