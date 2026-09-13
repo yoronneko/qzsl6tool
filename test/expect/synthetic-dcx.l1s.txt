@@ -1,0 +1,81 @@
+PRN186:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+PRN186:MT44: DCX (NULL message)
+SD (MT44 transmission): PRN183:on PRN184:on PRN185:off PRN186:on PRN189:on
+PRN186:MT44: DCX: Alert GEO - Tsunami (Extreme)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Japan, FMMC (L-Alert)
+onset: this week Tue 09:30 UTC, duration <6h
+library: country/region #1
+instruction: "Move to/toward 3rd floor or higher."
+ellipse: centre 35.688 139.691, semi-major 10.933[km], semi-minor 4.421[km], azimuth 45.00[deg]
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01100
+PRN186:MT44: DCX: Update FIRE - Forest fire (Severe)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Japan, Local Government
+onset: this week Tue 10:00 UTC, duration 6-12h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01100
+additional ellipse (head to): centre 35.687 139.689, semi-major 2.418[km], semi-minor 1.322[km], azimuth 45.00[deg]
+PRN186:MT44: DCX: Alert CBRNE - Air strike (Extreme)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Japan, FDMA (J-Alert)
+onset: this week Tue 06:40 UTC, duration <6h
+library: country/region #1
+instruction: "Missile launched, missile launched. It is believed that a missile was launched. Please take shelter inside buildings or underground."
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target prefectures: Hokkaido Aomori Iwate
+PRN186:MT44: DCX: Test OTHER - Test alert (Unknown)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Japan, Related Ministries (J-Alert)
+onset: not used, duration Unknown
+library: country/region #1
+instruction: "This is a test message for J-Alert."
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area codes: 01100 01202
+PRN186:MT44: DCX: Alert MET - Storm or thunderstorm (Severe)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Zambia, provider 1
+onset: next week Mon 00:00 UTC, duration 12-24h
+library: international #1
+instruction: IC-A-04 "Seek shelter in a building immediately. Stay under cover and stay informed."
+             IC-B-02 "Check with the weather services and local authorities for additional information"
+ellipse: centre 0.001 0.001, semi-major 90.407[km], semi-minor 49.439[km], azimuth 0.00[deg]
+specific settings: B2 position of the centre of the hazard 100000000000000
+hazard centre: 0.158 -9.999 (delta +0.15625 -10.00000[deg])
+extended (outside Japan): 00000000000000000000000000000000000000000000000001011010010110100101 version 1
+PRN186:MT44: DCX: Alert GEO - Earthquake (Extreme)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Italy, provider 2
+onset: this week Thu 08:00 UTC, duration <6h
+library: international #1
+instruction: IC-A-22 "Do not leave pets or livestock outside."
+             IC-B-23 "Indoors: during the quake, take shelter near a wall or a solid piece of furniture. Outside: during the quake, keep away from anything that might collapse. In a car: during the quake, stop as far away from buildings as you can. After, be prepared for aftershocks. If you are indoor, leave by the stairs."
+ellipse: centre 47.331 12.262, semi-major 19.992[km], semi-minor 8.085[km], azimuth 22.50[deg]
+specific settings: B4 quantitative and detailed information 010110001000110
+detailed information: magnitude=M6.0-6.9, seismic coefficient=5 strong, azimuth to epicentre=90.0[deg], distance to epicentre=x5
+extended (outside Japan): 00000000000000000000000000000000000000000000000000000000000000000000 version 1
+PRN186:MT44: DCX: Update FIRE - Forest fire (Severe)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Australia, provider 3
+onset: this week Sat 00:00 UTC, duration 6-12h
+library: international #2
+instruction: IC-A-27 "Avoid going outdoors. Keep away from trees, towers and masts. Keep at least 20 m away from power lines. Watch out for flying objects and falling objects."
+             IC-B-18 "Forest fire danger. Under these conditions fires may develop and spread rapidly resulting in damage to property and possible loss of human and/or animal life. Do not throw away any burning cigarettes or matches to the environment. Do not make a fire outdoors. Do not light any fireworks. Do not barbeque in open places. Vegetation is easily ignited and large areas may be affected. Follow the instructions from the local authorities."
+ellipse: centre -35.068 122.126, semi-major 49.439[km], semi-minor 27.035[km], azimuth -67.50[deg]
+specific settings: B3 secondary ellipse definition 101111000000111
+secondary ellipse: shift 2x49.439[km] along bearing 180.00[deg], size x2.00, instruction IC-C-08: "Avoid the danger area."
+extended (outside Japan): 00000000000000000000000000000000000000000000000000000000000000000000 version 1
+PRN186:MT44: DCX: Alert MET - Flood (Severe)
+SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
+Japan, FMMC (L-Alert)
+onset: this week Tue 09:30 UTC, duration <6h
+library: country/region #1
+instruction: "Stay. 3rd floor or higher."
+ellipse: centre 35.688 139.691, semi-major 10.933[km], semi-minor 4.421[km], azimuth 45.00[deg]
+specific settings: B1 improved resolution of main ellipse 100010001000000
+refined ellipse: centre 35.689631 139.691541, semi-major 10.577[km], semi-minor 4.421[km]
+target area code: 01100
