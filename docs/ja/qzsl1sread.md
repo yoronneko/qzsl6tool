@@ -173,7 +173,7 @@ target area code: 01101
 curl https://rnav.info.hiroshima-cu.ac.jp/gnss/f9p/202609/20260901e.ubx | ubxread.py --l1s -p 189 | qzsl1sread.py -t 1
 ```
 
-海外向け通報など、より多くの種類の例として、サンプルディレクトリの合成データ``synthetic-dcx.l1s``を示します。これは実際の放送ではなく、IS-QZSS-DCX-004の計算例などをもとに``test/make_synthetic_dcx.py``で作成したビットパターンです。
+海外向け通報など、より多くの種類の例として、サンプルディレクトリの合成データ``synthetic-dcx.l1s``を示します。これは実際の放送ではなく、IS-QZSS-DCX-004の計算例などをもとに``sample/make_synthetic_dcx.py``で作成したビットパターンです。
 
 ```bash
 $ qzsl1sread.py -t 1 < sample/synthetic-dcx.l1s
@@ -261,7 +261,7 @@ G09  scale_exp=1 (SF=2^-4) E11=342 E22=277 E33=504 E44=16 E12=-32 E13=-12 E14=-7
 
 みちびきのSBAS信号（PRN 137、みちびき3号機）のデータ``20260914-045300.sbas``も同様に表示できます。
 
-SBAS認証メッセージ（MT20、MT21）の例として、サンプルディレクトリの合成データ``synthetic-sbas-auth.sbas``を示します。これは実際の放送ではなく、ICAO SARPsのドラフト形式に従って``test/make_synthetic_sbas_auth.py``で作成したビットパターンです。
+SBAS認証メッセージ（MT20、MT21）の例として、サンプルディレクトリの合成データ``synthetic-sbas-auth.sbas``を示します。これは実際の放送ではなく、ICAO SARPsのドラフト形式に従って``sample/make_synthetic_sbas_auth.py``で作成したビットパターンです。
 
 ```bash
 $ qzsl1sread.py -t 1 < sample/synthetic-sbas-auth.sbas
