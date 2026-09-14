@@ -1,0 +1,853 @@
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT48: PRN mask: selected sats: G05 G10 G12 G14 G15 G18 G20 G21 G22 G23 G24 G29 J02 J03 J07 (15 sats, IODP=2)
+PRN189:MT44: DCX (NULL message)
+SD (MT44 transmission): PRN183:off PRN184:on PRN185:on PRN186:on PRN189:on
+PRN189:MT49: Data issue number: IODI=2 IODP=2
+PRN IOD
+G05  21
+G10 128
+G12  90
+G14  48
+G15  65
+G18 101
+G20 131
+G21  47
+G22  53
+G23  49
+G24  54
+G29  14
+J02 205
+J03 205
+J07 205
+ (15 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G05  -4.08
+G10  -4.04
+G15   3.24
+G18  -1.88
+G20   0.56
+G23   2.12
+G24   3.12
+J07   0.96
+ (8 sats)
+PRN189:MT47: Monitoring station information
+Location    Lat[deg]   Lon[deg] Hgt[m]
+Sapporo       43.150    141.220     50
+Sendai        38.270    140.740    200
+Hitachiota    36.580    140.550    150
+Komatsu       36.400    136.410     50
+Kobe          34.710    135.040    200
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G05  -2.68
+G15   2.96
+G18  -1.08
+G20  -0.52
+G22  -5.48
+G23   1.68
+G24   2.88
+J03   0.76
+J07   1.48
+ (9 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G15   1.76
+G18  -2.44
+G20  -1.36
+G23   0.36
+G24   1.68
+J03  -0.36
+J07   0.32
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10  -6.36
+G15   2.52
+G18  -0.72
+G20  -1.28
+G23   1.28
+G24   2.56
+J03   0.76
+J07   1.12
+ (8 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10  -7.16
+G15   1.92
+G18  -0.84
+G23   1.12
+G24   2.40
+J03   0.68
+J07   1.84
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10  -6.20
+G15   1.84
+G18  -0.92
+G23   1.04
+G24   2.28
+J03   0.52
+J07   1.44
+ (7 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G05  -4.72
+G15   1.32
+G18  -0.80
+G23   0.80
+G24   1.96
+J03   0.40
+J07   1.12
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G05  -1.32
+G10  -5.36
+G12  -5.12
+G15   3.76
+G18   1.92
+G20  -1.56
+G23   3.20
+G24   4.56
+J02  -7.24
+J03   3.32
+J07   3.80
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G05  -1.12
+G10  -6.28
+G12  -5.00
+G15   3.60
+G18   2.28
+G20  -2.40
+G23   2.88
+G24   4.64
+J02  -6.40
+J03   3.60
+J07   4.12
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G05  -1.08
+G10  -5.96
+G12  -5.64
+G15   3.96
+G18   2.52
+G20  -3.60
+G23   3.72
+G24   5.04
+J02  -6.72
+J03   3.84
+J07   3.92
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G05  -1.64
+G10  -6.16
+G12  -5.92
+G15   3.48
+G18   3.04
+G20  -4.40
+G23   3.96
+G24   5.44
+J02  -6.84
+J03   4.24
+J07   4.80
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G05  -2.44
+G10  -5.04
+G12  -6.88
+G15   3.80
+G18   3.64
+G20  -4.96
+G23   4.56
+G24   5.76
+J02  -8.92
+J03   5.00
+J07   5.48
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Chichijima
+PRN PRC[m]
+G05   0.44
+G12  -3.52
+G15   3.72
+G18   0.28
+G20   0.32
+G22 -10.12
+G23   2.44
+G24   4.08
+J02  -4.04
+J03   3.12
+J07   3.28
+ (11 sats)
+PRN189:MT44: DCX: Test CBRNE - Air strike (Unknown)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:00 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0
+PRN189:MT48: PRN mask: selected sats: G05 G10 G12 G14 G15 G18 G20 G22 G23 G24 G25 G32 J02 J03 J07 (15 sats, IODP=3)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT49: Data issue number: IODI=3 IODP=3
+PRN IOD
+G05  22
+G10 129
+G12  91
+G14  49
+G15  66
+G18 102
+G20 132
+G22  54
+G23  50
+G24  55
+G25  27
+G32  16
+J02 209
+J03 209
+J07 209
+ (15 sats)
+PRN189:MT44: DCX: Test CBRNE - Air strike (Unknown)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:00 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G05  -4.20
+G10  -3.56
+G15   3.16
+G18  -2.12
+G20   0.48
+G23   2.28
+G24   3.20
+J07   0.72
+ (8 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G05  -2.60
+G15   2.92
+G18  -1.32
+G20  -0.32
+G22  -5.56
+G23   1.96
+G24   2.92
+J03   0.60
+J07   1.36
+ (9 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G15   1.72
+G18  -2.64
+G20  -1.36
+G23   0.64
+G24   1.72
+J03  -0.24
+J07   0.16
+ (7 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10  -5.80
+G15   2.52
+G18  -1.00
+G20  -1.40
+G23   1.64
+G24   2.52
+J03   0.60
+J07   0.96
+ (8 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10  -6.64
+G15   1.80
+G18  -1.12
+G23   1.36
+G24   2.28
+J03   0.76
+J07   1.60
+ (7 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10  -5.88
+G15   1.80
+G18  -1.12
+G23   1.28
+G24   2.20
+J03   0.52
+J07   1.20
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G05  -4.04
+G10  -5.48
+G15   2.08
+G18  -0.20
+G23   1.84
+G24   2.72
+J03   1.32
+J07   1.76
+ (8 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G05  -1.56
+G10  -5.00
+G12  -5.20
+G15   3.76
+G18   1.76
+G20  -1.40
+G23   3.44
+G24   4.48
+J02  -7.24
+J03   3.32
+J07   3.60
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G05  -1.40
+G10  -5.88
+G12  -5.16
+G15   3.52
+G18   2.12
+G20  -2.44
+G23   3.12
+G24   4.60
+J02  -6.16
+J03   3.68
+J07   3.92
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G05  -1.20
+G10  -5.80
+G12  -5.56
+G15   3.84
+G18   2.44
+G20  -3.40
+G23   3.68
+G24   5.04
+J02  -6.76
+J03   3.80
+J07   3.92
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G05   0.40
+G10  -3.80
+G12  -3.44
+G15   5.64
+G18   5.24
+G20  -2.28
+G23   6.20
+G24   7.52
+G25 -24.16
+J02  -4.92
+J03   6.64
+J07   6.96
+ (12 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G05  -0.32
+G10  -3.04
+G12  -4.60
+G15   5.84
+G18   5.68
+G20  -3.16
+G23   6.68
+G24   7.80
+G25 -22.08
+J02  -7.24
+J03   7.04
+J07   7.52
+ (12 sats)
+PRN189:MT44: DCX: Test CBRNE - Attack on IT systems (Unknown)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:00 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0
+PRN189:MT50: DGPS correction: Chichijima
+PRN PRC[m]
+G05   0.24
+G12  -3.16
+G15   3.80
+G18   0.04
+G20   0.56
+G22 -10.60
+G23   2.32
+G24   4.08
+J02  -3.84
+J03   3.24
+J07   3.28
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT48: PRN mask: selected sats: G05 G10 G12 G14 G15 G18 G20 G22 G23 G24 G25 G32 J02 J03 J07 (15 sats, IODP=3)
+PRN189:MT44: DCX: Test CBRNE - Attack on IT systems (Unknown)
+SD (MT44 transmission): PRN183:off PRN184:on PRN185:on PRN186:on PRN189:on
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:00 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0
+PRN189:MT49: Data issue number: IODI=3 IODP=3
+PRN IOD
+G05  22
+G10 129
+G12  91
+G14  49
+G15  66
+G18 102
+G20 132
+G22  54
+G23  50
+G24  55
+G25  27
+G32  16
+J02 209
+J03 209
+J07 209
+ (15 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G05  -4.20
+G10  -3.84
+G15   3.24
+G18  -2.12
+G20   0.44
+G23   2.40
+G24   3.24
+J07   0.80
+ (8 sats)
+PRN189:MT47: Monitoring station information
+Location    Lat[deg]   Lon[deg] Hgt[m]
+Hiroshima     34.350    132.450     50
+Fukuoka       33.670    130.390     50
+Tanegashima   30.550    130.940    100
+Amami         28.420    129.690     50
+Itoman        26.150    127.690    100
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G05  -2.52
+G15   2.92
+G18  -1.52
+G20  -0.32
+G22  -5.64
+G23   2.00
+G24   2.92
+J03   0.76
+J07   1.40
+ (9 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G15   1.72
+G18  -2.64
+G20  -1.32
+G23   0.68
+G24   1.76
+J03  -0.28
+J07   0.12
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10  -5.64
+G15   2.60
+G18  -1.08
+G20  -1.68
+G23   1.68
+G24   2.56
+J03   0.52
+J07   1.04
+ (8 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10  -6.48
+G15   1.80
+G18  -1.20
+G23   1.24
+G24   2.24
+J03   0.84
+J07   1.56
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10  -5.80
+G15   1.80
+G18  -1.20
+G23   1.32
+G24   2.20
+J03   0.52
+J07   1.12
+ (7 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 04:05 UTC
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G05  -4.04
+G10  -5.40
+G15   2.04
+G18  -0.24
+G23   1.84
+G24   2.72
+J03   1.32
+J07   1.76
+ (8 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G05  -1.52
+G10  -4.84
+G12  -5.24
+G15   3.68
+G18   1.72
+G20  -1.12
+G23   3.36
+G24   4.44
+J02  -7.24
+J03   3.28
+J07   3.56
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 04:05 UTC
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G05  -1.52
+G10  -5.72
+G12  -5.04
+G15   3.48
+G18   2.12
+G20  -2.48
+G23   3.08
+G24   4.60
+J02  -6.12
+J03   3.64
+J07   3.96
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G05  -1.12
+G10  -5.80
+G12  -5.44
+G15   3.76
+G18   2.40
+G20  -3.24
+G23   3.64
+G24   5.00
+J02  -6.72
+J03   3.68
+J07   3.88
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 04:05 UTC
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G05   0.24
+G10  -3.80
+G12  -3.24
+G15   5.60
+G18   5.20
+G20  -2.28
+G23   6.16
+G24   7.44
+G25 -23.92
+J02  -5.08
+J03   6.72
+J07   6.96
+ (12 sats)
+PRN189:MT44: DCX: Test CBRNE - Attack with nuclear weapons (Unknown)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:01 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G05  -0.24
+G10  -3.12
+G12  -4.36
+G15   5.76
+G18   5.64
+G20  -3.36
+G23   6.52
+G24   7.80
+G25 -21.96
+J02  -7.08
+J03   7.04
+J07   7.44
+ (12 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 04:05 UTC
+PRN189:MT50: DGPS correction: Chichijima
+PRN PRC[m]
+G05   0.20
+G12  -2.84
+G15   3.80
+G18  -0.08
+G20   0.76
+G22 -10.92
+G23   2.08
+G24   4.04
+J02  -3.84
+J03   3.44
+J07   3.32
+ (11 sats)
+PRN189:MT44: DCX: Test CBRNE - Attack with nuclear weapons (Unknown)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:01 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0
+PRN189:MT48: PRN mask: selected sats: G05 G10 G12 G14 G15 G18 G20 G22 G23 G24 G25 G32 J02 J03 J07 (15 sats, IODP=3)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 04:05 UTC
+PRN189:MT49: Data issue number: IODI=3 IODP=3
+PRN IOD
+G05  22
+G10 129
+G12  91
+G14  49
+G15  66
+G18 102
+G20 132
+G22  54
+G23  50
+G24  55
+G25  27
+G32  16
+J02 209
+J03 209
+J07 209
+ (15 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G05  -4.32
+G10  -3.72
+G15   3.28
+G18  -2.16
+G20   0.48
+G23   2.52
+G24   3.16
+J07   0.80
+ (8 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 04:05 UTC
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G05  -2.48
+G15   2.96
+G18  -1.68
+G20  -0.44
+G22  -5.68
+G23   2.00
+G24   2.88
+J03   0.96
+J07   1.44
+ (9 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G15   1.68
+G18  -2.64
+G20  -1.36
+G23   0.72
+G24   1.76
+J03  -0.28
+J07   0.12
+ (7 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10  -5.64
+G15   2.56
+G18  -1.00
+G20  -1.84
+G23   1.76
+G24   2.60
+J03   0.48
+J07   1.08
+ (8 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10  -6.32
+G15   1.84
+G18  -1.28
+G23   1.24
+G24   2.20
+J03   0.84
+J07   1.48
+ (7 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10  -5.76
+G15   1.80
+G18  -1.12
+G23   1.28
+G24   2.20
+J03   0.44
+J07   1.12
+ (7 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G05  -4.16
+G10  -5.28
+G15   2.08
+G18  -0.28
+G23   1.84
+G24   2.72
+J03   1.36
+J07   1.80
+ (8 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-01 02:35 UTC
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G05  -1.60
+G10  -4.88
+G12  -4.84
+G15   3.60
+G18   1.64
+G20  -1.32
+G23   3.28
+G24   4.36
+J02  -7.04
+J03   3.28
+J07   3.52
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G05  -1.52
+G10  -5.40
+G12  -5.12
+G15   3.44
+G18   2.00
+G20  -2.52
+G23   3.24
+G24   4.56
+J02  -6.16
+J03   3.64
+J07   3.92
+ (11 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G05  -1.44
+G10  -5.56
+G12  -5.16
+G15   3.68
+G18   2.28
+G20  -3.24
+G23   3.64
+G24   5.00
+J02  -6.60
+J03   3.56
+J07   3.84
+ (11 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G05   0.20
+G10  -3.52
+G12  -2.96
+G15   5.52
+G18   5.08
+G20  -2.44
+G23   6.20
+G24   7.40
+G25 -23.84
+J02  -5.24
+J03   6.72
+J07   6.88
+ (12 sats)
+PRN189:MT43: DCR: Typhoon (Normal) 09-01 03:45 UTC
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G05  -0.40
+G10  -2.92
+G12  -4.48
+G15   5.68
+G18   5.56
+G20  -3.52
+G23   6.44
+G24   7.80
+G25 -22.12
+J02  -6.52
+J03   7.04
+J07   7.40
+ (12 sats)
+PRN189:MT44: DCX: Test CBRNE - Biological hazard (Unknown)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+Japan, FMMC (L-Alert)
+onset: this week Tue 04:01 UTC, duration 12-24h
+library: country/region #1
+instruction: ""
+specific settings: B1 improved resolution of main ellipse 000000000000000
+target area code: 01101
+extended message version 0

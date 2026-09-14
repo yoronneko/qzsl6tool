@@ -44,6 +44,7 @@ The script runs all conversions and diffs output against `expect/`. On failure i
 | `libecef.py` | ECEF ↔ LLH coordinate conversion (WGS-84). |
 | `libtrace.py` | Colored terminal output via ANSI codes. `Trace` class controls verbosity level (`-t` flag). `libtrace.err/warn/info` write to stderr. |
 | `libqznma.py` | QZSS Navigation Message Authentication (NMA) decoding. |
+| `libcamf.py` | Common Alert Message Format (CAMF) tables and decoder, used by `qzsl1sread.py` for QZS L1S DCX (MT44). |
 
 ### Data flow example
 

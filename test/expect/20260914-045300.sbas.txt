@@ -1,0 +1,833 @@
+PRN137:MT07: Fast correction degradation factor (waiting for PRN mask, MT1)
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN137:MT63: Null message
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN137:MT10: Degradation factors
+B_rrc=0.108[m] C_ltc_lsb=0.076[m] C_ltc_v1=0.00380[m/s] I_ltc_v1=256[s] C_ltc_v0=0.304[m] I_ltc_v0=100[s]
+C_geo_lsb=0.1555[m] C_geo_v=0.00415[m/s] I_geo=256[s] C_er=1.0[m]
+C_iono_step=0.871[m] I_iono=300[s] C_iono_ramp=0.000000[m/s] RSS_UDRE=0 RSS_iono=0 C_covariance=0.0
+PRN137:MT26: Ionospheric delay corrections (waiting for IGP masks, MT18)
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN137:MT63: Null message
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT09: GEO ranging function parameters
+  t0=17632[s] URA=15 a_Gf0=-1.862645149230957e-09[s] a_Gf1= 0.000e+00[s/s]
+  Xg=-2.540e+04[km]       Yg= 3.364e+04[km]       Zg= 3.081e+01[km]
+ dXg=-9.725e-01[m/s]     dYg=-2.787e-01[m/s]     dZg= 3.496e+00[m/s]
+ddXg= 0.000e+00[m/s^2]  ddYg= 0.000e+00[m/s^2]  ddZg= 0.000e+00[m/s^2]
+PRN137:MT18: Ionospheric grid point masks
+Total_IGP=2 IGP_band=7 IODI=1 IGP_mask_pattern=0 (74 IGPs)
+IGP lat[deg] lon[deg]
+ 41        5      105
+ 42       10      105
+ 43       15      105
+ 44       20      105
+ 45       25      105
+ 46       30      105
+ 47       35      105
+ 65        0      110
+ 66        5      110
+ 67       10      110
+ 68       15      110
+ 69       20      110
+ 70       25      110
+ 71       30      110
+ 72       35      110
+ 73       40      110
+ 74       45      110
+ 90        0      115
+ 91        5      115
+ 92       10      115
+ 93       15      115
+ 94       20      115
+ 95       25      115
+ 96       30      115
+ 97       35      115
+ 98       40      115
+ 99       45      115
+100       50      115
+115        0      120
+116        5      120
+117       10      120
+118       15      120
+119       20      120
+120       25      120
+121       30      120
+122       35      120
+123       40      120
+124       45      120
+125       50      120
+126       55      120
+140        0      125
+141        5      125
+142       10      125
+143       15      125
+144       20      125
+145       25      125
+146       30      125
+147       35      125
+148       40      125
+149       45      125
+150       50      125
+166        5      130
+167       10      130
+168       15      130
+169       20      130
+170       25      130
+171       30      130
+172       35      130
+173       40      130
+174       45      130
+175       50      130
+176       55      130
+177       65      130
+191        5      135
+192       10      135
+193       15      135
+194       20      135
+195       25      135
+196       30      135
+197       35      135
+198       40      135
+199       45      135
+200       50      135
+201       55      135
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN137:MT26: Ionospheric delay corrections
+IGP_band=7 IGP_block=2 IODI=1 (15 IGPs)
+IGP lat[deg] lon[deg] delay[m] GIVE[m]
+117       10      120    9.250    45.0
+118       15      120    9.875    45.0
+119       20      120    8.625    15.0
+120       25      120    4.875     6.0
+121       30      120    3.375     4.5
+122       35      120    2.875    15.0
+123       40      120    2.375    15.0
+124       45      120    2.250    15.0
+125       50      120    1.500    45.0
+126       55      120      n/a     n/a
+140        0      125    1.625    45.0
+141        5      125    8.375    45.0
+142       10      125    8.750    45.0
+143       15      125   10.375    45.0
+144       20      125    6.750     3.6
+PRN137:MT26: Ionospheric delay corrections
+IGP_band=7 IGP_block=1 IODI=1 (15 IGPs)
+IGP lat[deg] lon[deg] delay[m] GIVE[m]
+ 73       40      110    2.375    45.0
+ 74       45      110    2.250    45.0
+ 90        0      115      n/a     n/a
+ 91        5      115    9.625    45.0
+ 92       10      115    9.125    45.0
+ 93       15      115    8.125    45.0
+ 94       20      115   11.125    15.0
+ 95       25      115    8.000    45.0
+ 96       30      115    4.125    15.0
+ 97       35      115    2.875    15.0
+ 98       40      115    2.500    15.0
+ 99       45      115    2.000    45.0
+100       50      115    1.500    45.0
+115        0      120    0.000    45.0
+116        5      120    9.125    45.0
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT63: Null message
+PRN137:MT63: Null message
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN137:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN137:MT01: SBAS PRN mask
+selected sats: G01 G02 G03 G04 G05 G06 G07 G08 G09 G10 G11 G12 G13 G14 G15 G16 G17 G18 G19 G20 G21 G22 G23 G24 G25 G26 G27 G28 G29 G30 G31 G32 S137 (33 sats, IODP=1)
+PRN137:MT25: Long-term satellite error corrections
+G19  IOD=74 daf0= 0.000e+00[s]
+      dx= 0.000e+00[m]    dy= 0.000e+00[m]    dz= 0.000e+00[m]
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=0), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=0), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=0), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT07: Fast correction degradation factor
+t_lat=1[s] IODP=1
+SAT  ai  a[m/s^2] timeout_ET[s] timeout_PA[s] max_interval[s]
+G01  15   0.00580            18            12               6
+G02  15   0.00580            18            12               6
+G03  15   0.00580            18            12               6
+G04  15   0.00580            18            12               6
+G05  15   0.00580            18            12               6
+G06  15   0.00580            18            12               6
+G07  15   0.00580            18            12               6
+G08  15   0.00580            18            12               6
+G09  15   0.00580            18            12               6
+G10  15   0.00580            18            12               6
+G11  15   0.00580            18            12               6
+G12  15   0.00580            18            12               6
+G13  15   0.00580            18            12               6
+G14  15   0.00580            18            12               6
+G15  15   0.00580            18            12               6
+G16  15   0.00580            18            12               6
+G17  15   0.00580            18            12               6
+G18  15   0.00580            18            12               6
+G19  15   0.00580            18            12               6
+G20  15   0.00580            18            12               6
+G21  15   0.00580            18            12               6
+G22  15   0.00580            18            12               6
+G23  15   0.00580            18            12               6
+G24  15   0.00580            18            12               6
+G25  15   0.00580            18            12               6
+G26  15   0.00580            18            12               6
+G27  15   0.00580            18            12               6
+G28  15   0.00580            18            12               6
+G29  15   0.00580            18            12               6
+G30  15   0.00580            18            12               6
+G31  15   0.00580            18            12               6
+G32  15   0.00580            18            12               6
+S137 15   0.00580            18            12               6
+PRN137:MT26: Ionospheric delay corrections
+IGP_band=7 IGP_block=0 IODI=1 (15 IGPs)
+IGP lat[deg] lon[deg] delay[m] GIVE[m]
+ 41        5      105      n/a     n/a
+ 42       10      105      n/a     n/a
+ 43       15      105   14.375    45.0
+ 44       20      105   16.375    45.0
+ 45       25      105   12.500    45.0
+ 46       30      105    6.875    45.0
+ 47       35      105    5.875    45.0
+ 65        0      110      n/a     n/a
+ 66        5      110    5.125    45.0
+ 67       10      110    8.500    45.0
+ 68       15      110    8.875    45.0
+ 69       20      110   12.625    45.0
+ 70       25      110   10.375    45.0
+ 71       30      110    4.625    45.0
+ 72       35      110    3.500    45.0
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=1), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=1), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=1), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT25: Long-term satellite error corrections
+G28  IOD=88 daf0= 4.657e-10[s]
+      dx= 0.000e+00[m]    dy=-1.250e-01[m]    dz= 0.000e+00[m]
+PRN137:MT63: Null message
+PRN137:MT26: Ionospheric delay corrections
+IGP_band=7 IGP_block=4 IODI=1 (14 IGPs)
+IGP lat[deg] lon[deg] delay[m] GIVE[m]
+175       50      130    1.875     6.0
+176       55      130    1.500    15.0
+177       65      130      n/a     n/a
+191        5      135    0.000    45.0
+192       10      135    9.875    45.0
+193       15      135   10.500    45.0
+194       20      135    9.375    15.0
+195       25      135    6.125     4.5
+196       30      135    3.875     3.0
+197       35      135    3.000     3.0
+198       40      135    2.625     3.6
+199       45      135    2.250     4.5
+200       50      135    1.625     4.5
+201       55      135    1.500    15.0
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=2), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=2), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=2), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT28: Clock-ephemeris covariance matrix
+G32  scale_exp=2 (SF=2^-3) E11=24 E22=18 E33=17 E44=8 E12=2 E13=-6 E14=-7 E23=-6 E24=-6 E34=-12
+     relative covariance matrix (x, y, z, clock):
+      9.00000e+00  7.50000e-01 -2.25000e+00 -2.62500e+00
+      7.50000e-01  5.12500e+00 -1.87500e+00 -1.90625e+00
+     -2.25000e+00 -1.87500e+00  5.64062e+00 -1.96875e+00
+     -2.62500e+00 -1.90625e+00 -1.96875e+00  4.57812e+00
+PRN137:MT17: GEO satellite almanacs
+S137 data_ID=0 provider=MSAS service: ranging corrections integrity
+     Xg= -25347.4[km] Yg=  33680.4[km] Zg=      0.0[km] dXg=   0[m/s] dYg=   0[m/s] dZg=   0.00[m/s]
+S129 data_ID=0 provider=MSAS service: ranging corrections integrity
+     Xg=   -377.0[km] Yg=  42153.8[km] Zg=     26.0[km] dXg=   0[m/s] dYg=   0[m/s] dZg=   0.00[m/s]
+     t0=17664[s]
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=0), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=0), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=0), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT63: Null message
+PRN137:MT10: Degradation factors
+B_rrc=0.108[m] C_ltc_lsb=0.076[m] C_ltc_v1=0.00380[m/s] I_ltc_v1=256[s] C_ltc_v0=0.304[m] I_ltc_v0=100[s]
+C_geo_lsb=0.1555[m] C_geo_v=0.00415[m/s] I_geo=256[s] C_er=1.0[m]
+C_iono_step=0.871[m] I_iono=300[s] C_iono_ramp=0.000000[m/s] RSS_UDRE=0 RSS_iono=0 C_covariance=0.0
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=1), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=9
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=1), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=1), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT28: Clock-ephemeris covariance matrix
+G28  scale_exp=2 (SF=2^-3) E11=13 E22=10 E33=17 E44=8 E12=-1 E13=-1 E14=-4 E23=-1 E24=-9 E34=1
+     relative covariance matrix (x, y, z, clock):
+      2.64062e+00 -2.03125e-01 -2.03125e-01 -8.12500e-01
+     -2.03125e-01  1.57812e+00 -1.40625e-01 -1.34375e+00
+     -2.03125e-01 -1.40625e-01  4.54688e+00  4.68750e-01
+     -8.12500e-01 -1.34375e+00  4.68750e-01  2.53125e+00
+PRN137:MT63: Null message
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=2), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=2), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=2), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT25: Long-term satellite error corrections
+G15  IOD=52 daf0=-4.657e-10[s]
+      dx= 3.750e-01[m]    dy= 1.250e-01[m]    dz= 5.000e-01[m]
+PRN137:MT26: Ionospheric delay corrections
+IGP_band=7 IGP_block=3 IODI=1 (15 IGPs)
+IGP lat[deg] lon[deg] delay[m] GIVE[m]
+145       25      125    4.125     3.6
+146       30      125    3.250     3.6
+147       35      125    2.875     6.0
+148       40      125    2.625    15.0
+149       45      125    1.875    15.0
+150       50      125    1.250    45.0
+166        5      130    1.875    45.0
+167       10      130    9.500    45.0
+168       15      130    9.250    15.0
+169       20      130    9.250    15.0
+170       25      130    6.375     3.6
+171       30      130    4.000     3.6
+172       35      130    3.000     3.6
+173       40      130    2.625     4.5
+174       45      130    2.375     4.5
+PRN137:MT18: Ionospheric grid point masks
+Total_IGP=2 IGP_band=8 IODI=1 IGP_mask_pattern=0 (65 IGPs)
+IGP lat[deg] lon[deg]
+ 15        5      140
+ 16       10      140
+ 17       15      140
+ 18       20      140
+ 19       25      140
+ 20       30      140
+ 21       35      140
+ 22       40      140
+ 23       45      140
+ 24       50      140
+ 25       55      140
+ 26       65      140
+ 40        0      145
+ 41        5      145
+ 42       10      145
+ 43       15      145
+ 44       20      145
+ 45       25      145
+ 46       30      145
+ 47       35      145
+ 48       40      145
+ 49       45      145
+ 50       50      145
+ 65        0      150
+ 66        5      150
+ 67       10      150
+ 68       15      150
+ 69       20      150
+ 70       25      150
+ 71       30      150
+ 72       35      150
+ 73       40      150
+ 74       45      150
+ 75       50      150
+ 76       55      150
+ 91        5      155
+ 92       10      155
+ 93       15      155
+ 94       20      155
+ 95       25      155
+ 96       30      155
+ 97       35      155
+ 98       40      155
+ 99       45      155
+100       50      155
+117       10      160
+118       15      160
+119       20      160
+120       25      160
+121       30      160
+122       35      160
+123       40      160
+124       45      160
+125       50      160
+126       55      160
+143       15      165
+144       20      165
+145       25      165
+146       30      165
+147       35      165
+148       40      165
+149       45      165
+150       50      165
+172       35      170
+173       40      170
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=0), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=0), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=0), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT63: Null message
+PRN137:MT09: GEO ranging function parameters
+  t0=17680[s] URA=15 a_Gf0=-1.862645149230957e-09[s] a_Gf1= 0.000e+00[s/s]
+  Xg=-2.540e+04[km]       Yg= 3.364e+04[km]       Zg= 3.098e+01[km]
+ dXg=-9.719e-01[m/s]     dYg=-2.756e-01[m/s]     dZg= 3.488e+00[m/s]
+ddXg= 0.000e+00[m/s^2]  ddYg= 0.000e+00[m/s^2]  ddZg= 0.000e+00[m/s^2]
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=1), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=1), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=1), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT25: Long-term satellite error corrections
+G13  IOD=34 daf0=-1.863e-09[s]
+      dx= 0.000e+00[m]    dy= 1.375e+00[m]    dz=-7.500e-01[m]
+G18  IOD=33 daf0=-2.794e-09[s]
+      dx=-2.750e+00[m]    dy=-1.625e+00[m]    dz=-1.125e+00[m]
+G23  IOD=222 daf0=-1.397e-09[s]
+      dx=-8.750e-01[m]    dy=-1.250e+00[m]    dz= 1.000e+00[m]
+PRN137:MT63: Null message
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=2), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=2), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=2), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT25: Long-term satellite error corrections
+G10  IOD=74 daf0=-4.657e-10[s]
+      dx=-1.250e-01[m]    dy=-1.125e+00[m]    dz= 1.000e+00[m]
+PRN137:MT28: Clock-ephemeris covariance matrix
+G15  scale_exp=2 (SF=2^-3) E11=35 E22=49 E33=57 E44=8 E12=-1 E13=10 E14=34 E23=5 E24=11 E34=-2
+     relative covariance matrix (x, y, z, clock):
+      1.91406e+01 -5.46875e-01  5.46875e+00  1.85938e+01
+     -5.46875e-01  3.75312e+01  3.67188e+00  7.89062e+00
+      5.46875e+00  3.67188e+00  5.27188e+01  4.39062e+00
+      1.85938e+01  7.89062e+00  4.39062e+00  2.10156e+01
+PRN137:MT63: Null message
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=0), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=0), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14
+PRN137:MT02: Fast corrections 1
+SAT correction[m] (IODF=0), IODP=1
+G01 :     VOID, UDREI=14
+G02 :     VOID, UDREI=14
+G03 :     VOID, UDREI=14
+G04 :     VOID, UDREI=14
+G05 :     VOID, UDREI=14
+G06 :     VOID, UDREI=14
+G07 :     VOID, UDREI=14
+G08 :     VOID, UDREI=14
+G09 :     VOID, UDREI=14
+G10 :    0.000, UDREI=7
+G11 :     VOID, UDREI=14
+G12 :    0.000, UDREI=8
+G13 :    0.000, UDREI=6
+PRN137:MT28: Clock-ephemeris covariance matrix
+G18  scale_exp=2 (SF=2^-3) E11=26 E22=27 E33=28 E44=8 E12=0 E13=1 E14=5 E23=2 E24=-16 E34=21
+     relative covariance matrix (x, y, z, clock):
+      1.05625e+01  0.00000e+00  4.06250e-01  2.03125e+00
+      0.00000e+00  1.13906e+01  8.43750e-01 -6.75000e+00
+      4.06250e-01  8.43750e-01  1.23281e+01  8.76562e+00
+      2.03125e+00 -6.75000e+00  8.76562e+00  1.22812e+01
+PRN137:MT25: Long-term satellite error corrections
+G32  IOD=27 daf0=-1.397e-09[s]
+      dx= 1.250e-01[m]    dy= 1.250e-01[m]    dz= 5.000e-01[m]
+PRN137:MT28: Clock-ephemeris covariance matrix
+G13  scale_exp=2 (SF=2^-3) E11=34 E22=37 E33=38 E44=8 E12=2 E13=8 E14=25 E23=-5 E24=-4 E34=-17
+     relative covariance matrix (x, y, z, clock):
+      1.80625e+01  1.06250e+00  4.25000e+00  1.32812e+01
+      1.06250e+00  2.14531e+01 -2.64062e+00 -1.53125e+00
+      4.25000e+00 -2.64062e+00  2.39531e+01 -6.65625e+00
+      1.32812e+01 -1.53125e+00 -6.65625e+00  1.55312e+01
+PRN137:MT04: Fast corrections 3
+SAT correction[m] (IODF=1), IODP=1
+G27 :     VOID, UDREI=14
+G28 :    0.125, UDREI=10
+G29 :     VOID, UDREI=14
+G30 :     VOID, UDREI=14
+G31 :     VOID, UDREI=14
+G32 :    0.000, UDREI=8
+S137:     VOID, UDREI=14
+PRN137:MT03: Fast corrections 2
+SAT correction[m] (IODF=1), IODP=1
+G14 :     VOID, UDREI=14
+G15 :   -0.125, UDREI=7
+G16 :     VOID, UDREI=14
+G17 :     VOID, UDREI=14
+G18 :    0.000, UDREI=12
+G19 :     VOID, UDREI=14
+G20 :     VOID, UDREI=14
+G21 :     VOID, UDREI=14
+G22 :     VOID, UDREI=14
+G23 :    0.000, UDREI=6
+G24 :    0.000, UDREI=6
+G25 :    0.000, UDREI=8
+G26 :     VOID, UDREI=14

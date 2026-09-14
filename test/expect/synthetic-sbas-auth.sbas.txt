@@ -1,0 +1,17 @@
+PRN128:MT20: SBAS L1 authentication message
+beMAC1=1111111 beMAC2=2222222 aMAC=3333333
+TESLA hash point=000000000000000000000000deadbeef
+PRN128:MT21: SBAS over the air rekeying (OTAR)
+IODK_lvl3=3 page=0 level 3 key material, payload 1:
+IODK_lvl2=5 MT20_slot=2 validity: start WN=2400 frame=1000, duration 2[week] + 50000[frame]
+applicability=SBAS system technique=TESLA hash=SHA-256 valid IODK_lvl3: 0 2
+TESLA confirmed hash point=0000000000000000000000000000cafe
+PRN128:MT21: SBAS over the air rekeying (OTAR)
+IODK_lvl3=3 page=1 level 3 key material, payload 2:
+TESLA hash path salt=0000000000000000000000000000abcd
+PRN128:MT21: SBAS over the air rekeying (OTAR)
+IODK_lvl3=3 page=2 level 2 signature part 3:
+0000000000000000000000000000000000000000000000000077
+PRN128:MT21: SBAS over the air rekeying (OTAR)
+IODK_lvl3=3 page=5 level 3 key material, payload 6:
+(undefined payload) 0000000000000000000000000000000000000000000000000077

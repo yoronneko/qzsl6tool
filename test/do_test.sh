@@ -118,6 +118,11 @@ ubx_conv() {
     BASENAME=20230919-114418
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
+    ARG='--l1s -p 128' EXT_FROM=ubx EXT_TO=sbas
+    echo "- SBAS L1C/A (GAGAN PRN 128) (${CODE} ${ARG})"
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
     ARG='-i' EXT_TO=inav
     echo "- GAL I/NAV (${CODE} ${ARG})"
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
@@ -168,9 +173,36 @@ qzs_l6() {
 qzs_l1s() {
     CODE=${CODEDIR}qzsl1sread.py ARG='-t 2' EXT_FROM=l1s EXT_TO=l1s.txt
     echo "QZS L1S message read (${CODE} ${ARG}):"
+    echo "- QZS L1S actual data"
 
     SRCDIR=expect/
     BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    SRCDIR=../sample/
+    BASENAME=20260901-040000
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo "- QZS L1S synthetic data, DCX (MT44)"
+    BASENAME=synthetic-dcx
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo "- SBAS L1C/A actual data"
+    EXT_FROM=sbas EXT_TO=sbas.txt
+
+    SRCDIR=expect/
+    BASENAME=20230919-114418
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    SRCDIR=../sample/
+    BASENAME=20260912-034300
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    BASENAME=20260914-045300
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo "- SBAS L1C/A synthetic data, MT20/21 authentication"
+    BASENAME=synthetic-sbas-auth
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo ""

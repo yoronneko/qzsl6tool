@@ -1,0 +1,77 @@
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN128:MT09: GEO ranging function parameters
+  t0=42304[s] URA=14 a_Gf0=4.516914486885071e-08[s] a_Gf1= 3.638e-11[s/s]
+  Xg= 5.126e+03[km]       Yg= 4.184e+04[km]       Zg= 1.524e+01[km]
+ dXg=-1.175e+00[m/s]     dYg= 5.000e-01[m/s]     dZg= 1.244e+00[m/s]
+ddXg= 6.250e-05[m/s^2]  ddYg= 5.000e-05[m/s^2]  ddZg=-6.250e-05[m/s^2]
+PRN128:MT18: Ionospheric grid point masks
+Total_IGP=3 IGP_band=7 IODI=3 IGP_mask_pattern=0 (17 IGPs)
+IGP lat[deg] lon[deg]
+ 16        5      100
+ 17       10      100
+ 18       15      100
+ 19       20      100
+ 20       25      100
+ 21       30      100
+ 22       35      100
+ 42       10      105
+ 43       15      105
+ 44       20      105
+ 45       25      105
+ 46       30      105
+ 47       35      105
+ 68       15      110
+ 69       20      110
+ 70       25      110
+ 71       30      110
+PRN128:MT63: Null message
+PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN128:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN128:MT63: Null message
+PRN128:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN128:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN128:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN128:MT63: Null message
+PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN128:MT63: Null message
+PRN128:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN128:MT63: Null message
+PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN128:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN128:MT63: Null message
+PRN128:MT07: Fast correction degradation factor (waiting for PRN mask, MT1)
+PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
+PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
+PRN128:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
+PRN128:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
+PRN128:MT26: Ionospheric delay corrections
+IGP_band=7 IGP_block=0 IODI=3 (15 IGPs)
+IGP lat[deg] lon[deg] delay[m] GIVE[m]
+ 16        5      100   10.500    15.0
+ 17       10      100   11.625    15.0
+ 18       15      100   13.375    15.0
+ 19       20      100   10.000    15.0
+ 20       25      100    6.125    15.0
+ 21       30      100    5.375    15.0
+ 22       35      100    4.500    15.0
+ 42       10      105   11.750    45.0
+ 43       15      105   13.000    15.0
+ 44       20      105   10.250    15.0
+ 45       25      105    6.625    15.0
+ 46       30      105    5.250    45.0
+ 47       35      105    4.500    45.0
+ 68       15      110   12.875    45.0
+ 69       20      110   10.375    45.0
+PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
+PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
