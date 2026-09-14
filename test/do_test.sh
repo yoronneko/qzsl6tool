@@ -180,7 +180,7 @@ qzs_l1s() {
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     SRCDIR=../sample/
-    BASENAME=20260914-045600
+    BASENAME=20260901-040000
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
     echo "- QZS L1S synthetic data, DCX (MT44)"

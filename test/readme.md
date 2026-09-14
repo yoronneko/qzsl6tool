@@ -41,6 +41,8 @@ Septentrio raw data conversion:
 u-blox raw data conversion:
 - QZS L1S (../python/ubxread.py --l1s -p 186)
   20230919-114418.ubx: Passed.
+- SBAS L1C/A (GAGAN PRN 128) (../python/ubxread.py --l1s -p 128)
+  20230919-114418.ubx: Passed.
 - GAL I/NAV (../python/ubxread.py -i)
   20230919-114418.ubx: Passed.
 
@@ -57,7 +59,17 @@ QZS L6 message read (../python/qzsl6read.py -t 2):
   2024214A.200.l6: Passed.
 
 QZS L1S message read (../python/qzsl1sread.py -t 2):
+- QZS L1S actual data
   20230919-114418.l1s: Passed.
+  20260901-040000.l1s: Passed.
+- QZS L1S synthetic data, DCX (MT44)
+  synthetic-dcx.l1s: Passed.
+- SBAS L1C/A actual data
+  20230919-114418.sbas: Passed.
+  20260912-034300.sbas: Passed.
+  20260914-045300.sbas: Passed.
+- SBAS L1C/A synthetic data, MT20/21 authentication
+  synthetic-sbas-auth.sbas: Passed.
 
 QZS L6 old MADOCA to RTCM SSR message conversion (../python/qzsl6read.py -r)
   20220326-231200mdc.l6: Passed.
@@ -86,4 +98,4 @@ GAL E6 message read (../python/gale6read.py -t 2)
 
 BDS B2 message read (../python/bdsb2read.py -t 2 -p 60)
   20230819-081730hasbds.b2b: Passed.
-  ```
+```

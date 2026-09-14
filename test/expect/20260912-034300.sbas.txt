@@ -1,6 +1,6 @@
 PRN128:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
 PRN128:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
-PRN128:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1) (waiting for PRN mask, MT1)
+PRN128:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
 PRN128:MT63: Null message
 PRN128:MT28: Clock-ephemeris covariance matrix (waiting for PRN mask, MT1)
 PRN128:MT04: Fast corrections 3 (waiting for PRN mask, MT1)

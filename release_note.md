@@ -1,5 +1,14 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.9 (2026-09-14)
+
+- qzsl1sread.py: SBAS L1C/A message decoding (MT1-7, 9, 10, 12, 17, 18, 24-26, 28) in addition to QZS L1S, sharing the same 250-bit message structure; SBAS L1 authentication messages MT20 (TESLA) and MT21 (OTAR) per the draft ICAO SARPs.
+- qzsl1sread.py: QZS L1S DCX (MT44, IS-QZSS-DCX-004) decoding with the new `libcamf.py` (Common Alert Message Format tables and decoder); the extended-message version number is no longer required to be 1 (actual broadcasts use 0); null DCX messages are labelled `(NULL message)` at trace level 0; each output line now shows the message type number (`MTnn`).
+- qzsl1sread.py: the "waiting for PRN mask" status of MT24/MT25 is shown once instead of twice.
+- ubxread.py: flush the raw output after each message.
+- Added actual reception samples of QZS L1S (DCR/DCX during the DCX test data distribution), QZS SBAS (PRN 137), and GAGAN (PRN 128), plus synthetic DCX and SBAS authentication samples, with tests.
+- Documentation: qzsl1sread.py docs (ja/en) rewritten for SBAS, DCR/DCX, and the input formats.
+
 ## ver.0.1.8 (2026-09-09)
 
 - CLAS multi-stream transmission (IS-QZSS-L6-008): the L6 message type ID is decoded per Table 4.1.2-2 (vendor ID, message generation facility, CLAS transmit pattern ID, subframe indicator). qzsl6read.py now shows the transmit pattern as `P1:` or `P2:` in every CLAS line (output format change).

@@ -137,11 +137,13 @@ Duration  : 2 minutes
 Note      : QZS SBAS message data (PRN 137, QZS-3)
 Note      : obtained with u-blox ZED-F9P receiver at Hiroshima, JP
 
-File Path : 20260914-045600.l1s
-Date Time : 2026-09-12 04:56:00 UTC
-Duration  : 2 minutes
-Note      : QZS DCR/DCX message data (PRN 189, QZS-3)
-Note      : obtained with u-blox ZED-F9P receiver at Hiroshima, JP
+File Path : 20260901-040000.l1s
+Date Time : 2026-09-01 04:00:00 UTC
+Duration  : 2 minutes (first 120 messages)
+Note      : QZS DCR/DCX message data (PRN 189, QZS-3) during the DCX test
+Note      : data distribution, https://qzss.go.jp/technical/dod/dc-report/dcx-test-data-distribution.html
+Note      : obtained with u-blox ZED-F9P receiver at Hiroshima, JP, by using:
+Note      : curl https://rnav.info.hiroshima-cu.ac.jp/gnss/f9p/202609/20260901e.ubx | ubxread.py --l1s -p 189 | head -c 3960
 
 File Path : synthetic-sbas-auth.sbas
 Date Time : (none, SYNTHETIC data)

@@ -613,7 +613,8 @@ class QzsL1s:
         mt25sub   = df.read(106)
         prn_mask, msg = self.select_prn_mask_sbas(iodp_sbas)
         if prn_mask is None:
-            return msg + self.decode_mt25sub(mt25sub)
+            msg25 = self.decode_mt25sub(mt25sub)
+            return msg if msg25 == msg else msg + msg25  # avoid repeating the same status
         if len(prn_mask) < 13 * (msg_id-1) + 1:
             return msg + self.trace.msg(0, f" (PRN mask too short for fast correction ID {msg_id}: {len(prn_mask)} < {13 * (msg_id-1) + 1})", dec='dark')
         msg += self.trace.msg(1, f'\nSAT correction[m] (IODF={iodf})')
@@ -632,7 +633,11 @@ class QzsL1s:
         '''
         mt25sub1 = df.read(106)
         mt25sub2 = df.read(106)
-        return self.decode_mt25sub(mt25sub1) + self.decode_mt25sub(mt25sub2)
+        msg1 = self.decode_mt25sub(mt25sub1)
+        msg2 = self.decode_mt25sub(mt25sub2)
+        if msg1 == msg2:  # both halves return the same status (e.g. waiting for PRN mask); show it once
+            return msg1
+        return msg1 + msg2
 
     def decode_clock_ephemeris_covariance_matrix(self, df: BitStream) -> str:  # ref.[7], sect.A.4.4.16, MT28 (SBAS)
         '''
@@ -828,7 +833,7 @@ class QzsL1s:
                 sats.append(f'{prn}:{"abroad" if sdm[i] else "Japan"}')
         sd_msg = self.trace.msg(2, f'\nSD ({sd_name}): ' + ' '.join(sats))
         if a1 == 0 and a3 == 0 and a4 == 0 and not ext.any(1):  # NULL message, ref.[5], Table 4.3-1
-            return self.trace.msg(1, ' (NULL message)', dec='dark') + sd_msg
+            return self.trace.msg(0, ' (NULL message)', dec='dark') + sd_msg
         # CAMF
         country  = libcamf.COUNTRY.get(a2, f'country {a2}')
         provider = DCX_PROVIDER_JP.get(a3, f'provider {a3}') if a2 == 111 else f'provider {a3}'
@@ -875,8 +880,7 @@ class QzsL1s:
             else:
                 codes = [ex9.read(16).u for _ in range(4)]
                 msg += self.trace.msg(1, f'\ntarget area codes: ' + ' '.join(f'{c:05d}' for c in codes if c))
-            if vn != 1:
-                msg += self.trace.msg(0, f'\nversion number should be 1 ({vn})', fg='red')
+            msg += self.trace.msg(2, f'\nextended message version {vn}')  # not fixed to 1 in actual broadcasts
         else:  # L-Alert and local government, Table 4.2-20
             ex1 = ext.read(16).u  # target area code
             ex2 = ext.read( 1).u  # evacuate direction type
@@ -894,8 +898,7 @@ class QzsL1s:
                 az  = -90 + 180 * ex7 / pow(2, 7)
                 direction = 'head to' if ex2 else 'leave'
                 msg += self.trace.msg(1, f'\nadditional ellipse ({direction}): centre {lat:.3f} {lon:.3f}, semi-major {libcamf.RADIUS_KM[ex5]:.3f}[km], semi-minor {libcamf.RADIUS_KM[ex6]:.3f}[km], azimuth {az:.2f}[deg]')
-            if vn != 1:
-                msg += self.trace.msg(0, f'\nversion number should be 1 ({vn})', fg='red')
+            msg += self.trace.msg(2, f'\nextended message version {vn}')  # not fixed to 1 in actual broadcasts
         return msg
 
     def decode_monitoring_station_info(self, df: BitStream) -> str:  # ref.[3], sect.4.1.2.6, MT47 (L1S)

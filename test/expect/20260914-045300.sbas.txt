@@ -2,7 +2,7 @@ PRN137:MT07: Fast correction degradation factor (waiting for PRN mask, MT1)
 PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)
 PRN137:MT03: Fast corrections 2 (waiting for PRN mask, MT1)
 PRN137:MT02: Fast corrections 1 (waiting for PRN mask, MT1)
-PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1) (waiting for PRN mask, MT1)
+PRN137:MT25: Long-term satellite error corrections (waiting for PRN mask, MT1)
 PRN137:MT63: Null message
 PRN137:MT63: Null message
 PRN137:MT04: Fast corrections 3 (waiting for PRN mask, MT1)

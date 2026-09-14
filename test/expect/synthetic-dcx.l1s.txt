@@ -11,6 +11,7 @@ instruction: "Move to/toward 3rd floor or higher."
 ellipse: centre 35.688 139.691, semi-major 10.933[km], semi-minor 4.421[km], azimuth 45.00[deg]
 specific settings: B1 improved resolution of main ellipse 000000000000000
 target area code: 01100
+extended message version 1
 PRN186:MT44: DCX: Update FIRE - Forest fire (Severe)
 SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
 Japan, Local Government
@@ -20,6 +21,7 @@ instruction: ""
 specific settings: B1 improved resolution of main ellipse 000000000000000
 target area code: 01100
 additional ellipse (head to): centre 35.687 139.689, semi-major 2.418[km], semi-minor 1.322[km], azimuth 45.00[deg]
+extended message version 1
 PRN186:MT44: DCX: Alert CBRNE - Air strike (Extreme)
 SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
 Japan, FDMA (J-Alert)
@@ -28,6 +30,7 @@ library: country/region #1
 instruction: "Missile launched, missile launched. It is believed that a missile was launched. Please take shelter inside buildings or underground."
 specific settings: B1 improved resolution of main ellipse 000000000000000
 target prefectures: Hokkaido Aomori Iwate
+extended message version 1
 PRN186:MT44: DCX: Test OTHER - Test alert (Unknown)
 SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
 Japan, Related Ministries (J-Alert)
@@ -36,6 +39,7 @@ library: country/region #1
 instruction: "This is a test message for J-Alert."
 specific settings: B1 improved resolution of main ellipse 000000000000000
 target area codes: 01100 01202
+extended message version 1
 PRN186:MT44: DCX: Alert MET - Storm or thunderstorm (Severe)
 SD (service type): PRN183:Japan PRN184:Japan PRN185:Japan PRN186:Japan PRN189:abroad
 Zambia, provider 1
@@ -79,3 +83,4 @@ ellipse: centre 35.688 139.691, semi-major 10.933[km], semi-minor 4.421[km], azi
 specific settings: B1 improved resolution of main ellipse 100010001000000
 refined ellipse: centre 35.689631 139.691541, semi-major 10.577[km], semi-minor 4.421[km]
 target area code: 01100
+extended message version 1
