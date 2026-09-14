@@ -184,6 +184,7 @@ class Ssr:
     hepoch     = 0      # hourly epoch
     pattern_in_iodssr: bool = False  # CLAS: bit 3 of IOD SSR is the transmit pattern indicator (IS-QZSS-L6-008 Table 4.1.2-7)
     iod_pattern: int = 0             # CLAS transmit pattern indicated by IOD SSR (1 or 2; 0 when not applicable)
+    iodssr_mask: int = -1            # IOD SSR of the mask (ST1) currently in use; -1 until a mask is decoded
     interval   = 0      # update interval
     mmi        = 0      # multiple message indication
     satsys     = []     # array of satellite system
@@ -388,7 +389,8 @@ class Ssr:
             else:
                 self.iod_pattern = 0
             return True
-        self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits\nCSSR dump: {payload.bin}", fg='red')
+        self.trace.show(0, f"CSSR msgnum should be 4073 ({self.msgnum}), size {len(payload.bin)} bits", fg='red')
+        self.trace.show(2, f"CSSR dump: {payload.bin}", fg='red')
         return False
 
     def _decode_mask(self, payload: BitStream, ssr_type: str) -> bool:
@@ -452,6 +454,8 @@ class Ssr:
         self.nsatmask  = nsatmask  # number of satellite mask
         self.nsigmask  = nsigmask  # number of signal mask
         self.cellmask  = cellmask  # cell mask
+        if ssr_type == 'cssr':
+            self.iodssr_mask = self.iodssr  # the satellite/signal masks below belong to this IOD SSR
         self.gsys      = gsys      # dict of sat    name from system name
         self.gsig      = gsig      # dict of signal name from system name
         self.stat_nsat = 0

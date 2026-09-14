@@ -1,5 +1,5 @@
 195 Hitachi-Ota:1  CLAS  (syncing)
-199 Hitachi-Ota:1  CLAS  (syncing)
+199 Hitachi-Ota:1  CLAS  (duplicate data part, skipped)
 ST1 G10 L1C/A L2CM+L L2Z-tracking L5I+Q
 ST1 G12 L1C/A L2CM+L L2Z-tracking
 ST1 G15 L1C/A L2CM+L L2Z-tracking

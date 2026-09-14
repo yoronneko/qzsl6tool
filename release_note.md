@@ -1,5 +1,13 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.10 (2026-09-15)
+
+- qzsl6read.py: robust handling of irregular CLAS L6 streams. Occasional "CSSR msgnum should be 4073" errors with bit dumps were caused not by the ST3/ST6/ST12 decoders but by the input: a data part delivered twice (e.g. the same second received from two satellites when alstread.py switches to the strongest C/No), a lost data part, or a switch of the message generation facility (MTID bits 4-3) with a new IOD SSR before its ST1 mask arrives.
+  - A repeat of the previous data part (same MTID and content, any PRN) is skipped as `(duplicate data part, skipped)`.
+  - When a header inside a subframe is not a CSSR message, the rest of the subframe is discarded as `(decode error, waiting for next subframe)` / `(waiting for next subframe)` and decoding resumes at the next subframe start, instead of reporting an error for every remaining data part.
+  - A message whose IOD SSR differs from that of the current ST1 mask, or a change of the message generation facility, now waits for the next ST1 (`note: ... waiting for ST1` at trace level 1), since the mask determines the size of every other message.
+  - The bit dump of a bad header is shown only at trace level 2.
+
 ## ver.0.1.9 (2026-09-14)
 
 - qzsl1sread.py: SBAS L1C/A message decoding (MT1-7, 9, 10, 12, 17, 18, 24-26, 28) in addition to QZS L1S, sharing the same 250-bit message structure; SBAS L1 authentication messages MT20 (TESLA) and MT21 (OTAR) per the draft ICAO SARPs.
