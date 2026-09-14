@@ -131,6 +131,18 @@ Duration  : 14 minutes
 Note      : GAGAN SBAS message data (PRN 128, GSAT-10)
 Note      : obtained with u-blox ZED-F9P receiver at Hiroshima, JP
 
+File Path : 20260914-045300.sbas
+Date Time : 2026-09-14 04:53:00 UTC
+Duration  : 2 minutes
+Note      : QZS SBAS message data (PRN 137, QZS-3)
+Note      : obtained with u-blox ZED-F9P receiver at Hiroshima, JP
+
+File Path : 20260914-045600.l1s
+Date Time : 2026-09-12 04:56:00 UTC
+Duration  : 2 minutes
+Note      : QZS DCR/DCX message data (PRN 189, QZS-3)
+Note      : obtained with u-blox ZED-F9P receiver at Hiroshima, JP
+
 File Path : synthetic-sbas-auth.sbas
 Date Time : (none, SYNTHETIC data)
 Duration  : 5 messages

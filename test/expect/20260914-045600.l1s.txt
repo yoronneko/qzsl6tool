@@ -1,0 +1,789 @@
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT43: DCR: Weather (Priority) 09-14 00:15 UTC
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT43: DCR: Marine (Normal) 09-14 02:35 UTC
+PRN189:MT50: DGPS correction (waiting for PRN mask, MT48)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT48: PRN mask: selected sats: G10 G12 G13 G15 G18 G20 G23 G24 G25 G28 G32 J02 J03 J07 (14 sats, IODP=1)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT49: Data issue number: IODI=2 IODP=1
+PRN IOD
+G10  74
+G12  63
+G13  34
+G15  52
+G18  33
+G20  61
+G23 222
+G24  88
+G25  47
+G28  88
+G32  27
+J02 113
+J03 113
+J07 113
+ (14 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G10   1.80
+G12   2.16
+G13   1.72
+G15  -2.08
+G23   1.20
+G24   2.24
+G25  -1.00
+G32  -1.48
+J02  -4.84
+J07   0.28
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G10   1.40
+G12   1.84
+G13   1.48
+G15  -1.80
+G23   1.20
+G24   1.36
+G25  -0.76
+G32  -2.84
+J02  -3.32
+J07   1.48
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G10   1.48
+G12   2.12
+G13   1.48
+G15  -2.00
+G23   1.28
+G24   1.28
+G25  -0.40
+G32  -3.04
+J02  -2.96
+J07   0.76
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10   1.48
+G12   1.64
+G13   1.04
+G15  -3.52
+G23   1.04
+G24   0.44
+G25  -0.56
+G32  -2.56
+J07   0.96
+ (9 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10   1.72
+G12   1.52
+G13   0.84
+G15  -3.56
+G23   1.28
+G24   0.32
+G25  -0.56
+G32  -2.64
+J07   1.00
+ (9 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10   2.16
+G12   1.68
+G13   1.56
+G15  -4.12
+G23   1.76
+G24   0.36
+G25   0.16
+G32  -1.72
+J02  -3.36
+J07   1.52
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G10   1.60
+G12   0.88
+G13   0.36
+G23   1.04
+G24  -1.04
+G25  -0.92
+G32  -2.44
+J07   0.52
+ (8 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-14 02:35 UTC
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G10   3.56
+G12   3.24
+G13   2.76
+G15  -4.04
+G23   3.28
+G24   0.92
+G25   1.56
+G28  -5.96
+G32  -0.88
+J02  -1.96
+J03  -4.96
+J07   2.52
+ (12 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G10   3.96
+G12   3.76
+G13   3.24
+G15  -4.60
+G23   3.64
+G24   0.96
+G25   1.68
+G28  -6.04
+G32  -0.20
+J02  -3.12
+J03  -6.12
+J07   2.88
+ (12 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G10   6.64
+G12   5.80
+G13   5.32
+G15  -3.12
+G18 -20.00
+G23   6.36
+G24   3.00
+G25   3.56
+G28  -6.12
+G32   2.24
+J02  -3.12
+J03  -5.84
+J07   5.32
+ (13 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G10   7.80
+G12   5.84
+G13   5.68
+G15  -4.88
+G18 -14.00
+G23   7.04
+G24   2.04
+G25   3.32
+G28 -11.76
+G32   2.76
+J02  -4.36
+J03  -5.12
+J07   5.64
+ (13 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G10   7.76
+G12   5.52
+G13   5.36
+G15  -5.72
+G18 -12.80
+G23   7.24
+G24   2.04
+G25   3.08
+G28 -12.12
+G32   3.00
+J02  -4.12
+J03  -4.52
+J07   5.28
+ (13 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Chichijima
+PRN PRC[m]
+G10   2.92
+G12   4.08
+G13   3.76
+G15  -0.12
+G23   2.64
+G24   3.60
+G25  -0.40
+J02  -6.56
+J03 -10.20
+J07   0.24
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT48: PRN mask: selected sats: G10 G12 G13 G15 G18 G20 G23 G24 G25 G28 G32 J02 J03 J07 (14 sats, IODP=1)
+PRN189:MT44: DCX (NULL message)
+SD (MT44 transmission): PRN183:off PRN184:on PRN185:on PRN186:on PRN189:on
+PRN189:MT49: Data issue number: IODI=2 IODP=1
+PRN IOD
+G10  74
+G12  63
+G13  34
+G15  52
+G18  33
+G20  61
+G23 222
+G24  88
+G25  47
+G28  88
+G32  27
+J02 113
+J03 113
+J07 113
+ (14 sats)
+PRN189:MT43: DCR: Weather (Priority) 09-14 00:15 UTC
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G10   1.76
+G12   2.16
+G13   1.80
+G15  -2.00
+G23   1.20
+G24   2.24
+G25  -0.88
+G32  -1.72
+J02  -4.92
+J07   0.28
+ (10 sats)
+PRN189:MT47: Monitoring station information
+Location    Lat[deg]   Lon[deg] Hgt[m]
+Sapporo       43.150    141.220     50
+Sendai        38.270    140.740    200
+Hitachiota    36.580    140.550    150
+Komatsu       36.400    136.410     50
+Kobe          34.710    135.040    200
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G10   1.36
+G12   1.88
+G13   1.52
+G15  -1.80
+G23   1.04
+G24   1.40
+G25  -0.68
+G32  -2.84
+J02  -3.36
+J07   1.52
+ (10 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-14 02:35 UTC
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G10   1.52
+G12   2.12
+G13   1.52
+G15  -1.88
+G23   1.24
+G24   1.36
+G25  -0.32
+G32  -3.12
+J02  -3.12
+J07   0.76
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10   1.44
+G12   1.68
+G13   0.92
+G15  -3.48
+G23   1.00
+G24   0.48
+G25  -0.52
+G32  -2.52
+J07   1.00
+ (9 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10   1.72
+G12   1.52
+G13   0.88
+G15  -3.36
+G23   1.32
+G24   0.20
+G25  -0.52
+G32  -2.72
+J07   0.96
+ (9 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10   2.16
+G12   1.76
+G13   1.56
+G15  -4.12
+G23   1.76
+G24   0.36
+G25   0.12
+G32  -1.64
+J02  -3.40
+J07   1.48
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G10   1.56
+G12   0.84
+G13   0.36
+G23   1.00
+G24  -1.04
+G25  -0.92
+G32  -2.28
+J07   0.56
+ (8 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G10   3.52
+G12   3.16
+G13   2.76
+G15  -3.88
+G23   3.24
+G24   0.88
+G25   1.60
+G28  -5.84
+G32  -0.88
+J02  -2.16
+J03  -4.88
+J07   2.48
+ (12 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G10   3.88
+G12   3.80
+G13   3.32
+G15  -4.72
+G23   3.60
+G24   0.72
+G25   1.72
+G28  -6.00
+G32  -0.08
+J02  -3.08
+J03  -6.12
+J07   2.92
+ (12 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G10   6.68
+G12   5.76
+G13   5.36
+G15  -3.32
+G18 -20.00
+G23   6.40
+G24   2.96
+G25   3.72
+G28  -5.84
+G32   2.24
+J02  -3.24
+J03  -6.00
+J07   5.36
+ (13 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G10   7.80
+G12   5.80
+G13   5.76
+G15  -4.92
+G18 -14.40
+G23   7.04
+G24   2.04
+G25   3.48
+G28 -11.56
+G32   2.80
+J02  -4.32
+J03  -5.32
+J07   5.76
+ (13 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G10   7.80
+G12   5.52
+G13   5.36
+G15  -5.68
+G18 -12.92
+G23   7.24
+G24   1.96
+G25   3.20
+G28 -12.00
+G32   3.04
+J02  -4.08
+J03  -4.64
+J07   5.24
+ (13 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-14 02:35 UTC
+PRN189:MT50: DGPS correction: Chichijima
+PRN PRC[m]
+G10   2.92
+G12   3.96
+G13   3.76
+G15  -0.08
+G23   2.60
+G24   3.60
+G25  -0.28
+J02  -6.36
+J03 -10.44
+J07   0.32
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT48: PRN mask: selected sats: G10 G12 G13 G15 G18 G20 G23 G24 G25 G28 G32 J02 J03 J07 (14 sats, IODP=1)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT49: Data issue number: IODI=2 IODP=1
+PRN IOD
+G10  74
+G12  63
+G13  34
+G15  52
+G18  33
+G20  61
+G23 222
+G24  88
+G25  47
+G28  88
+G32  27
+J02 113
+J03 113
+J07 113
+ (14 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G10   1.76
+G12   2.16
+G13   1.88
+G15  -2.08
+G23   1.20
+G24   2.24
+G25  -0.84
+G32  -1.72
+J02  -4.88
+J07   0.32
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G10   1.40
+G12   1.92
+G13   1.48
+G15  -1.76
+G23   0.92
+G24   1.36
+G25  -0.48
+G32  -2.80
+J02  -3.60
+J07   1.56
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G10   1.52
+G12   2.08
+G13   1.52
+G15  -2.00
+G23   1.20
+G24   1.44
+G25  -0.28
+G32  -3.20
+J02  -3.08
+J07   0.72
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10   1.36
+G12   1.60
+G13   0.92
+G15  -3.44
+G23   0.88
+G24   0.56
+G25  -0.52
+G32  -2.28
+J07   0.92
+ (9 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10   1.72
+G12   1.48
+G13   0.88
+G15  -3.56
+G23   1.36
+G24   0.24
+G25  -0.44
+G32  -2.64
+J07   0.96
+ (9 sats)
+PRN189:MT43: DCR: Weather (Priority) 09-14 00:15 UTC
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10   2.16
+G12   1.80
+G13   1.52
+G15  -4.16
+G23   1.76
+G24   0.32
+G25   0.12
+G32  -1.60
+J02  -3.32
+J07   1.44
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Fukuoka
+PRN PRC[m]
+G10   1.48
+G12   0.88
+G13   0.32
+G23   1.00
+G24  -1.12
+G25  -0.88
+G32  -2.28
+J07   0.56
+ (8 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-14 02:35 UTC
+PRN189:MT50: DGPS correction: Tanegashima
+PRN PRC[m]
+G10   3.56
+G12   3.16
+G13   2.76
+G15  -4.08
+G23   3.20
+G24   0.76
+G25   1.60
+G28  -5.72
+G32  -0.92
+J02  -2.08
+J03  -4.72
+J07   2.52
+ (12 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Amami
+PRN PRC[m]
+G10   3.92
+G12   3.80
+G13   3.36
+G15  -4.80
+G23   3.60
+G24   0.60
+G25   1.80
+G28  -6.08
+G32  -0.16
+J02  -3.00
+J03  -6.00
+J07   2.96
+ (12 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Itoman
+PRN PRC[m]
+G10   6.76
+G12   5.76
+G13   5.40
+G15  -3.40
+G18 -20.32
+G23   6.40
+G24   2.88
+G25   3.80
+G28  -5.64
+G32   2.28
+J02  -3.12
+J03  -6.16
+J07   5.36
+ (13 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Miyako
+PRN PRC[m]
+G10   7.80
+G12   5.76
+G13   5.68
+G15  -5.08
+G18 -14.44
+G23   7.00
+G24   2.16
+G25   3.60
+G28 -11.36
+G32   2.88
+J02  -4.28
+J03  -5.40
+J07   5.72
+ (13 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Ishigaki
+PRN PRC[m]
+G10   7.84
+G12   5.48
+G13   5.32
+G15  -5.40
+G18 -12.96
+G23   7.12
+G24   1.80
+G25   3.20
+G28 -11.88
+G32   3.00
+J02  -4.20
+J03  -4.56
+J07   5.24
+ (13 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Chichijima
+PRN PRC[m]
+G10   3.00
+G12   3.96
+G13   3.84
+G15  -0.20
+G23   2.56
+G24   3.64
+G25  -0.28
+J02  -6.12
+J03 -10.72
+J07   0.32
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT48: PRN mask: selected sats: G10 G12 G13 G15 G18 G20 G23 G24 G25 G28 G32 J02 J03 J07 (14 sats, IODP=1)
+PRN189:MT44: DCX (NULL message)
+SD (MT44 transmission): PRN183:off PRN184:on PRN185:on PRN186:on PRN189:on
+PRN189:MT49: Data issue number: IODI=2 IODP=1
+PRN IOD
+G10  74
+G12  63
+G13  34
+G15  52
+G18  33
+G20  61
+G23 222
+G24  88
+G25  47
+G28  88
+G32  27
+J02 113
+J03 113
+J07 113
+ (14 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Sapporo
+PRN PRC[m]
+G10   1.72
+G12   2.00
+G13   1.84
+G15  -2.24
+G23   1.20
+G24   2.24
+G25  -0.84
+G32  -1.72
+J02  -4.48
+J07   0.32
+ (10 sats)
+PRN189:MT47: Monitoring station information
+Location    Lat[deg]   Lon[deg] Hgt[m]
+Hiroshima     34.350    132.450     50
+Fukuoka       33.670    130.390     50
+Tanegashima   30.550    130.940    100
+Amami         28.420    129.690     50
+Itoman        26.150    127.690    100
+PRN189:MT50: DGPS correction: Sendai
+PRN PRC[m]
+G10   1.36
+G12   1.84
+G13   1.44
+G15  -1.68
+G23   0.84
+G24   1.32
+G25  -0.56
+G32  -2.72
+J02  -3.40
+J07   1.56
+ (10 sats)
+PRN189:MT43: DCR: Marine (Normal) 09-14 02:35 UTC
+PRN189:MT50: DGPS correction: Hitachiota
+PRN PRC[m]
+G10   1.52
+G12   2.04
+G13   1.52
+G15  -2.08
+G23   1.24
+G24   1.40
+G25  -0.28
+G32  -3.00
+J02  -3.08
+J07   0.72
+ (10 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Komatsu
+PRN PRC[m]
+G10   1.36
+G12   1.64
+G13   0.96
+G15  -3.44
+G23   0.84
+G24   0.56
+G25  -0.56
+G32  -2.28
+J07   1.00
+ (9 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC
+PRN189:MT50: DGPS correction: Kobe
+PRN PRC[m]
+G10   1.72
+G12   1.40
+G13   0.96
+G15  -3.76
+G23   1.36
+G24   0.28
+G25  -0.40
+G32  -2.56
+J07   1.00
+ (9 sats)
+PRN189:MT44: DCX (NULL message)
+SD (service type): PRN183:Japan PRN184:abroad PRN185:abroad PRN186:Japan PRN189:Japan
+PRN189:MT50: DGPS correction: Hiroshima
+PRN PRC[m]
+G10   2.16
+G12   1.80
+G13   1.48
+G15  -4.20
+G23   1.76
+G24   0.24
+G25   0.16
+G32  -1.56
+J02  -3.28
+J07   1.44
+ (10 sats)
+PRN189:MT43: DCR: Ash Fall (Priority) 09-14 01:46 UTC

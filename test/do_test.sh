@@ -173,18 +173,23 @@ qzs_l6() {
 qzs_l1s() {
     CODE=${CODEDIR}qzsl1sread.py ARG='-t 2' EXT_FROM=l1s EXT_TO=l1s.txt
     echo "QZS L1S message read (${CODE} ${ARG}):"
+    echo "- QZS L1S actual data"
 
     SRCDIR=expect/
     BASENAME=20230919-114418
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    echo "QZS L1S DCX (MT44) message read, SYNTHETIC data (${CODE} ${ARG}):"
     SRCDIR=../sample/
+    BASENAME=20260914-045600
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo "- QZS L1S synthetic data, DCX (MT44)"
     BASENAME=synthetic-dcx
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    CODE=${CODEDIR}qzsl1sread.py ARG='-t 2' EXT_FROM=sbas EXT_TO=sbas.txt
-    echo "SBAS L1C/A (GAGAN PRN 128) message read (${CODE} ${ARG}):"
+    echo "- SBAS L1C/A actual data"
+    EXT_FROM=sbas EXT_TO=sbas.txt
+
     SRCDIR=expect/
     BASENAME=20230919-114418
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
@@ -193,7 +198,10 @@ qzs_l1s() {
     BASENAME=20260912-034300
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
-    echo "SBAS L1 authentication message read, SYNTHETIC data (${CODE} ${ARG}):"
+    BASENAME=20260914-045300
+    do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
+
+    echo "- SBAS L1C/A synthetic data, MT20/21 authentication"
     BASENAME=synthetic-sbas-auth
     do_test $CODE $EXT_FROM $EXT_TO $BASENAME $SRCDIR $ARG
 
