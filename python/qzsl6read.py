@@ -53,6 +53,9 @@ class QzsL6:
     patid   : int = -1                 # CLAS: transmit pattern ID bit (0: Pattern 1, 1: Pattern 2, -1: reserved/unknown), ref.[7] Table 4.1.2-2
     pattern : int = 1                  # CLAS: transmit pattern to be decoded (1 or 2); frames of the other pattern are skipped
     iod_pattern_noted: bool = False    # CLAS: a note on IOD SSR bit 3 vs. L6 header pattern has been shown
+    dpart_prev: bytes = b''            # previous CSSR data part (MTID and data), to skip a repeated data part
+    resync  : bool = False             # a decode error occurred; skip data parts until the next subframe start
+    facid_prev: int = -1               # CLAS: previous "message generation facility and pattern ID" bits of the MTID
     sf_ind  : int = 0                  # subframe indicator (0 or 1)
     alert   : int = 0                  # alert flag (0 or 1)
     run     : bool = False             # CSSR decode in progress
@@ -189,7 +192,28 @@ class QzsL6:
     def show_cssr_msg(self) -> str:
         ''' returns decoded CSSR messages '''
         self.ssr.pattern_in_iodssr = (self.vendor == "CLAS")  # ref.[7] Table 4.1.2-7
+        # The same data part can arrive twice: a receiver may deliver a frame twice, or the input
+        # may switch between satellites that transmit the same stream (e.g. alstread.py selecting
+        # the strongest C/No). Appending it again would corrupt the message being assembled, so a
+        # repeat of the previous data part (same MTID and content, any PRN) is skipped. Two
+        # consecutive null (all-zero) data parts are legitimate.
+        dpart_id = bytes([self.mtid]) + self.dpart.tobytes()
+        if dpart_id == self.dpart_prev and not self.dpart.all(0):
+            return self.trace.msg(0, ' (duplicate data part, skipped)', dec='dark')
+        self.dpart_prev = dpart_id
+        # ref.[7] sect.4.1.2.1(3): only messages with the same "message generation facility and
+        # CLAS transmit pattern ID" may be combined. A switch means another facility's stream,
+        # with its own mask/IOD SSR, so resynchronize on its ST1.
+        if self.vendor == "CLAS":
+            facid = (self.mtid >> 3) & 0b11
+            if self.facid_prev != -1 and facid != self.facid_prev and self.run:
+                self.trace.show(1, f"note: CLAS message generation facility changed ({self.facid_prev:02b} -> {facid:02b}), waiting for ST1", fg='yellow')
+                self.run = False
+                self.sfn = 0
+                self.payload = BitStream()
+            self.facid_prev = facid
         if self.sf_ind:  # first data part
+            self.resync = False
             self.dpn = 1
             self.payload = BitStream(self.dpart)
             if not self.ssr.decode_cssr_head(self.payload):  # could not decode CSSR head
@@ -205,6 +229,9 @@ class QzsL6:
                 else:  # first data part but ST1 has not been received
                     self.payload = BitStream()
         else:  # continual data part
+            if self.run and self.resync:  # a data part was lost or corrupted earlier in this subframe
+                self.dpn += 1
+                return f' SF{self.sfn} DP{self.dpn}' + self.trace.msg(0, ' (waiting for next subframe)', dec='dark')
             if self.run:
                 self.dpn += 1
                 if self.dpn == 6:  # data part number should be less than 6
@@ -228,13 +255,21 @@ class QzsL6:
             msg += f' ST{self.ssr.subtype}'
             while self.read_cssr():  # try to decode next message
                 msg += f' ST{self.ssr.subtype}'
-            if not self.payload.all(0):   # continues to next datapart
+            if self.ssr.msgnum not in (0, 4073):  # next header is not a CSSR message: a data part was lost or duplicated
+                msg += self.trace.msg(0, ' (decode error, waiting for next subframe)', dec='dark')
+                self.payload = BitStream()
+                self.resync = True
+            elif not self.payload.all(0):   # continues to next datapart
                 self.payload.pos = 0
                 msg += f' ST{self.ssr.subtype}' + self.trace.msg(0, '...', fg='yellow')
             else:  # end of message in the subframe
                 self.payload = BitStream()
         else:  # could not decode CSSR any messages
-            if self.run and self.ssr.subtype == 0:  # whole message is null
+            if self.run and self.ssr.msgnum not in (0, 4073):  # header is not a CSSR message: a data part was lost or duplicated
+                msg += self.trace.msg(0, ' (decode error, waiting for next subframe)', dec='dark')
+                self.payload = BitStream()
+                self.resync = True
+            elif self.run and self.ssr.subtype == 0:  # whole message is null
                 msg += self.trace.msg(0, ' (null)', dec='dark')
                 self.payload = BitStream()
             elif self.run:  # or, continual message
@@ -253,6 +288,14 @@ class QzsL6:
             return False
         if self.ssr.msgnum != 4073:
             self.trace.show(0, f"Unknown message number: {self.ssr.msgnum}", fg='red')
+            return False
+        if self.ssr.subtype not in (1, 10) and self.ssr.iodssr != self.ssr.iodssr_mask:
+            # The satellite/signal masks of ST1 define the size of every other message, so a message
+            # with another IOD SSR cannot be decoded until the new ST1 arrives (ref.[1] sect.4.1.2.2.2).
+            self.trace.show(1, f"note: IOD SSR changed ({self.ssr.iodssr_mask} -> {self.ssr.iodssr}), waiting for ST1", fg='yellow')
+            self.run = False
+            self.sfn = 0
+            self.payload = BitStream()
             return False
         if self.vendor == "CLAS" and self.ssr.subtype != 10 and \
            self.ssr.iod_pattern != self.patid + 1 and not self.iod_pattern_noted:
