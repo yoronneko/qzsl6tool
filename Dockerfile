@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12-slim AS builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG RTKLIB_REPO=https://github.com/tomojitakasu/RTKLIB.git
@@ -27,7 +27,22 @@ COPY requirements.txt /root/qzsl6tool/requirements.txt
 RUN python -m pip install --no-cache-dir --upgrade pip \
     && python -m pip install --no-cache-dir -r /root/qzsl6tool/requirements.txt
 
-COPY . /root/qzsl6tool
+FROM python:3.12-slim AS runtime
+
+ENV PATH="/root/qzsl6tool/python:${PATH}" \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /root/rtklib/app/consapp/str2str/gcc/str2str /usr/local/bin/str2str
+COPY --from=builder /root/rtklib/LICENSE.txt /usr/local/share/doc/rtklib/LICENSE.txt
+COPY --from=builder /usr/local/lib/python3.12/site-packages/ /usr/local/lib/python3.12/site-packages/
+COPY python/ /root/qzsl6tool/python/
+COPY license.txt /root/qzsl6tool/license.txt
+
 WORKDIR /mnt
 
 ENTRYPOINT ["/bin/bash", "-c"]

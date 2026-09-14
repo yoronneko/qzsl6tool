@@ -38,10 +38,16 @@ docker build -t qzsl6tool .
 作成したDockerイメージの実行
 
 ```bash
-docker run -it --rm qzsl6tool "cd /root/qzsl6tool/test; ./do_test.sh"
-docker run -it --rm qzsl6tool "qzsl6read.py < /root/qzsl6tool/sample/2022001A.l6"
+docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < /mnt/sample/2022001A.l6"
 docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < my_l6_data.l6"
+```
+
+イメージには実行環境とコードのみを含み、Git、ビルドツール、テスト、サンプルは含みません。検証用データはホスト側でcloneしてマウントします。次のコマンドは、イメージ内のPythonコードを検証します。サンプルの実行例は、このリポジトリーのルートで実行してください。
+
+```bash
+git clone https://github.com/yoronneko/qzsl6tool.git qzsl6tool-validation
+docker run -it --rm -v ./qzsl6tool-validation:/mnt -e CODEDIR=/root/qzsl6tool/python/ qzsl6tool "cd /mnt/test && bash do_test.sh"
 ```
 
 Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerShellのパイプにバイナリを流さず、上述のように入力取得とパイプ処理をコンテナ内で完結させてください。
