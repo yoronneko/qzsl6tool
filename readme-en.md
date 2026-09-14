@@ -43,7 +43,7 @@ docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.
 docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < my_l6_data.l6"
 ```
 
-The image contains only the runtime and application code, without Git, build tools, tests, or samples. Clone the validation data on the host and mount it into the container. The following command tests the Python code inside the image. Run the sample example above from the root of this repository.
+The image contains only the runtime and application code, without Git, build tools, tests, or samples. Clone the validation data on the host and mount it into the container. The following command tests the Python code inside the image. Run the sample commands above from the root of this repository.
 
 ```bash
 git clone https://github.com/yoronneko/qzsl6tool.git qzsl6tool-validation
