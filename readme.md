@@ -1,4 +1,4 @@
-# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.10
+# QZS L6 Tool: quasi-zenith satellite L6-band tool, ver.0.1.11
 
 ![QZS L6 Tool](https://raw.githubusercontent.com/yoronneko/qzsl6tool/main/docs/img/qzsl6tool.png)
 
@@ -15,44 +15,95 @@
 
 ## 動作環境
 
-- LinuxやmacOSのコマンドラインで利用することを想定しています。
-- Python 3.10以降が必要です。
-- Docker DesktopなどのDocker環境では、Windows上、macOS上、Linux上、Raspberry Pi OS上でもLinuxコンテナ内で本ツールを利用できます。DockerイメージにはPython実行環境、``nc``、RTKLIB 2.4.3 b34の``str2str``が含まれます。
+### 前提条件
 
-PyPIからのインストール
+本ツールは、次のいずれかの環境で利用できます。
+
+- **Linux・macOSで直接実行する場合**：Python 3.10以降とpipが必要です。コマンドラインから利用します。
+- **Dockerで実行する場合**：Docker Desktopなど、Linuxコンテナを実行できるDocker環境が必要です。Windows、macOS、Linux、Raspberry Pi OSで利用できます。DockerイメージにはPython実行環境、``nc``、RTKLIB 2.4.3 b34の``str2str``が含まれるため、これらをホスト側にインストールする必要はありません。
+
+### セットアップ
+
+**PyPIからインストールする場合**
+
+Linux・macOSでは、次のコマンドでインストールすると、直接実行できるようになります。
 
 ```bash
 python3 -m pip install qzsl6tool
-qzsl6read.py < sample/2022001A.l6
-str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py
 ```
 
-PyPIパッケージでは、``bitstring``、``galois``、``numpy``などのPython依存パッケージも一緒にインストールされます。``nc``やRTKLIBの``str2str``などの外部コマンドは、必要に応じて別途インストールしてください。
+``bitstring``、``galois``、``numpy``などのPython依存パッケージも一緒にインストールされます。``nc``やRTKLIBの``str2str``などの外部コマンドは、必要に応じて別途インストールしてください。
 
-Dockerイメージのビルド
+**リポジトリーの取得（Dockerのビルドやサンプルの利用に必要）**
+
+Dockerイメージをビルドする場合や、付属のサンプル・テストを利用する場合は、Gitでリポジトリーを取得します。すでに取得済みの場合は、そのリポジトリーのルートへ移動してください。
+
+WindowsのGit CLIを利用する場合は、Pythonコードの行末にCRが混入しないよう、cloneする前に次の設定を行ってください。
+
+```bash
+git config --global core.autocrlf input
+```
+
+```bash
+git clone https://github.com/yoronneko/qzsl6tool.git
+cd qzsl6tool
+```
+
+**Dockerで実行する場合**
+
+リポジトリーのルートで、次のコマンドを実行してDockerイメージをビルドします。
 
 ```bash
 docker build -t qzsl6tool .
 ```
 
-作成したDockerイメージの実行
+イメージには実行環境とコードのみが含まれ、Git、ビルドツール、テスト、サンプルは含まれません。サンプルやテストを利用する際は、次の利用例のようにホスト側のリポジトリーをコンテナにマウントします。
+
+### 利用例
+
+**PyPIからインストールしたツールの実行**
+
+付属のL6サンプルを表示するには、リポジトリーのルートで次のコマンドを実行します。
+
+```bash
+qzsl6read.py < sample/2022001A.l6
+```
+
+RTKLIBの``str2str``をインストールしている場合は、NTRIPで取得したRTCMメッセージを表示できます。
+
+```bash
+str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py
+```
+
+**Dockerでの実行**
+
+付属のL6サンプルを表示するには、リポジトリーのルートで次のコマンドを実行します。``-v .:/mnt``は、ホスト側のカレントディレクトリーをコンテナ内の``/mnt``にマウントする指定です。
 
 ```bash
 docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < /mnt/sample/2022001A.l6"
-docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
-docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < my_l6_data.l6"
 ```
 
-イメージには実行環境とコードのみを含み、Git、ビルドツール、テスト、サンプルは含みません。検証用データはホスト側でcloneしてマウントします。次のコマンドは、イメージ内のPythonコードを検証します。サンプルの実行例は、このリポジトリーのルートで実行してください。
+NTRIPで取得したRTCMメッセージを表示する場合は、次のように実行します。
 
 ```bash
-git clone https://github.com/yoronneko/qzsl6tool.git qzsl6tool-validation
-docker run -it --rm -v ./qzsl6tool-validation:/mnt -e CODEDIR=/root/qzsl6tool/python/ qzsl6tool "cd /mnt/test && bash do_test.sh"
+docker run -it --rm qzsl6tool "str2str -in ntrip://ntrip.rnav.info.hiroshima-cu.ac.jp:80/OEM7 2>/dev/null | rtcmread.py"
 ```
 
-Windows上でGNSSバイナリデータを扱う場合は、``cmd.exe``やPowerShellのパイプにバイナリを流さず、上述のように入力取得とパイプ処理をコンテナ内で完結させてください。
+自分で用意したL6データを表示する場合は、そのファイルがあるディレクトリーで次のように実行します。``my_l6_data.l6``は実際のファイル名に置き換えてください。
 
-また、Windows git CLIにてこのリポジトリーをダウンロードする際には、あらかじめ``git config --global core.autocrlf input``を実行しておいてください。Pythonコード行末に改行CRが混入させないためです。
+```bash
+docker run -it --rm -v .:/mnt qzsl6tool "qzsl6read.py < /mnt/my_l6_data.l6"
+```
+
+WindowsでGNSSバイナリデータを扱う場合は、上記の例のように、入力の取得とパイプ処理をコンテナ内で完結させてください。``cmd.exe``やPowerShellのパイプにはバイナリデータを流さないでください。
+
+**Dockerイメージ内のコードの検証**
+
+リポジトリーのルートで次のコマンドを実行すると、ホスト側のテストとサンプルを使って、イメージ内のPythonコードを検証できます。
+
+```bash
+docker run -it --rm -v .:/mnt -e CODEDIR=/root/qzsl6tool/python/ qzsl6tool "cd /mnt/test && bash do_test.sh"
+```
 
 ## 衛星信号表示
 

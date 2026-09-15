@@ -56,6 +56,7 @@ class QzsL6:
     dpart_prev: bytes = b''            # previous CSSR data part (MTID and data), to skip a repeated data part
     resync  : bool = False             # a decode error occurred; skip data parts until the next subframe start
     facid_prev: int = -1               # CLAS: previous "message generation facility and pattern ID" bits of the MTID
+    iono_rest: int = 0                 # MADOCA-PPP Iono: bits of the MT2 messages announced by MT1 that are not decoded yet
     sf_ind  : int = 0                  # subframe indicator (0 or 1)
     alert   : int = 0                  # alert flag (0 or 1)
     run     : bool = False             # CSSR decode in progress
@@ -348,6 +349,7 @@ class QzsL6:
         if self.sf_ind:  # first data part
             self.dpn = 1
             self.payload = BitStream(self.dpart)
+            self.iono_rest = 0
             if not self.ssr.decode_mdcppp_iono_head(self.payload):  # could not decode CSSR head
                 if not self.payload.all(0):
                     self.trace.show(1, f"found sf_ind but couldn't decode: {self.payload.bin}", fg='cyan')
@@ -371,7 +373,11 @@ class QzsL6:
             msg += self.brief_disp_mdcppp_iono()
             while self.read_mdcppp_iono():
                 msg += self.brief_disp_mdcppp_iono()
-            if self.payload and not self.payload.all(0):
+            if self.iono_rest > 0 or (self.payload and not self.payload.all(0)):
+                # The MT2 messages announced by MT1 are not complete yet, so the remaining bits
+                # belong to the next message: they must be kept even when they are all zero.
+                # An MT2 header starts with ten zero bits (message number 2 in 12 bits), so a
+                # partial header at the end of a data part often looks like zero padding.
                 self.payload.pos = 0
                 msg += self.trace.msg(0, '...', fg='yellow')
             else:
@@ -406,6 +412,13 @@ class QzsL6:
             self.trace.show(1, f"Unknown message number: {self.ssr.msgnum}", fg='red')
             decoded = False
         if decoded:
+            # MT1 announces the total length in bits of the MT2 messages that follow it
+            # (ref.[3], STEC coverage message). Counting them down tells whether the message
+            # set continues into the next data part.
+            if self.ssr.msgnum == 1:
+                self.iono_rest = self.ssr.len_msg
+            else:
+                self.iono_rest = max(0, self.iono_rest - self.payload.pos)
             self.payload = self.payload[self.payload.pos:]  # discard decoded part
             self.payload.pos = 0
         return decoded
