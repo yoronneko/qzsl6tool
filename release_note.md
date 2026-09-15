@@ -1,5 +1,10 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.11 (2026-09-15)
+
+- qzsl6read.py: fixed the decoding of MADOCA-PPP ionospheric correction messages. The message number of an MT2 message is 2 in 12 bits, so its header starts with ten zero bits. When a data part ended in the middle of such a header, the remaining bits were mistaken for zero padding and discarded, which shifted the bit position of every following data part and produced message numbers other than 1 or 2. The MT1 message announces the total length in bits of the MT2 messages that follow it; the remaining bits are now kept until that many bits have been decoded.
+- Documentation: reorganized the prerequisites, setup, and usage sections of the README files, and clarified the Docker examples.
+
 ## ver.0.1.10 (2026-09-15)
 
 - qzsl6read.py: robust handling of irregular CLAS L6 streams. Occasional "CSSR msgnum should be 4073" errors with bit dumps were caused not by the ST3/ST6/ST12 decoders but by the input: a data part delivered twice (e.g. the same second received from two satellites when alstread.py switches to the strongest C/No), a lost data part, or a switch of the message generation facility (MTID bits 4-3) with a new IOD SSR before its ST1 mask arrives.
