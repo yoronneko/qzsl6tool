@@ -1,5 +1,10 @@
 # Release Note on QZS L6 Tool
 
+## ver.0.1.12 (2026-10-28)
+
+- libssr.py: updated the Compact SSR signal mask of BeiDou for the new MADOCA-PPP interface specification draft (IS-QZSS-MDC-005-Draft, Oct. 2026, Table 4.2.2-9), which assigns B1C(D), B1C(P), B1C(D+P), B2a(D), B2a(P), and B2a(D+P) to the signal mask values that were previously unassigned.
+- libssr.py: an unassigned signal mask value is now displayed as `(undef)` instead of an empty string, so that such a value is visible in the output.
+
 ## ver.0.1.11 (2026-09-15)
 
 - qzsl6read.py: fixed the decoding of MADOCA-PPP ionospheric correction messages. The message number of an MT2 message is 2 in 12 bits, so its header starts with ten zero bits. When a data part ended in the middle of such a header, the remaining bits were mistaken for zero padding and discarded, which shifted the bit position of every following data part and produced message numbers other than 1 or 2. The MT1 message announces the total length in bits of the MT2 messages that follow it; the remaining bits are now kept until that many bits have been decoded.

@@ -9,25 +9,13 @@
 # Released under BSD 2-clause license.
 #
 # References:
-# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Centimeter Level Augmentation Service,
-#     IS-QZSS-L6-005, Sept. 21, 2022.
-# [2] Global Positioning Augmentation Service Corporation (GPAS),
-#     Quasi-Zenith Satellite System Correction Data on Centimeter Level
-#     Augmentation Service for Experiment Data Format Specification,
-#     1st ed., Nov. 2017.
-# [3] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
-#     - Precise Point Positioning, IS-QZSS-MDC-002, Nov., 2023.
-# [4] Radio Technical Commission for Maritime Services (RTCM),
-#     Differential GNSS (Global Navigation Satellite Systems) Services
-#     - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
-# [5] European Union Agency for the Space Programme,
-#     Galileo High Accuracy Service Signal-in-Space Interface Control
-#     Document (HAS SIS ICD), Issue 1.0 May 2022.
-# [6] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System
-#     Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation
-#     - Precise Point Positioning, IS-QZSS-MDC-004-Draft, May 2025.
+# [1] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Centimeter Level Augmentation Service, IS-QZSS-L6-005, Sept. 21, 2022.
+# [2] Global Positioning Augmentation Service Corporation (GPAS), Quasi-Zenith Satellite System Correction Data on Centimeter Level Augmentation Service for Experiment Data Format Specification, 1st ed., Nov. 2017.
+# [3] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning, IS-QZSS-MDC-002, Nov., 2023.
+# [4] Radio Technical Commission for Maritime Services (RTCM), Differential GNSS (Global Navigation Satellite Systems) Services - Version 3, RTCM Standard 10403.3, Apr. 24 2020.
+# [5] European Union Agency for the Space Programme, Galileo High Accuracy Service Signal-in-Space Interface Control Document (HAS SIS ICD), Issue 1.0 May 2022.
+# [6] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning, IS-QZSS-MDC-004-Draft, May 2025.
+# [7] Cabinet Office, Government of Japan, Quasi-Zenith Satellite System Interface Specification Multi-GNSS Advanced Orbit and Clock Augmentation - Precise Point Positioning, IS-QZSS-MDC-005-Draft, Oct. 2026.
 
 import sys
 
@@ -125,20 +113,20 @@ def sigmask2signame(satsys: str, sigmask: int) -> str:
     ''' convert satellite system and signal mask to signal name '''
     signame = f'satsys={satsys} sigmask={sigmask}'
     if satsys == 'G':
-        signame = [ "L1C/A", "L1P", "L1Z-tracking", "L1C(D)", "L1C(P)", "L1C(D+P)", "L2CM", "L2CL", "L2CM+L", "L2P", "L2Z-tracking", "L5I", "L5Q", "L5I+Q", "", ""][sigmask]
+        signame = [ "L1C/A", "L1P", "L1Z-tracking", "L1C(D)", "L1C(P)", "L1C(D+P)", "L2CM", "L2CL", "L2CM+L", "L2P", "L2Z-tracking", "L5I", "L5Q", "L5I+Q", "(undef)", "(undef)"][sigmask]
     elif satsys == 'R':
-        signame = [ "G1C/A", "G1P", "G2C/A", "G2P", "G1a(D)", "G1a(P)", "G1a(D+P)", "G2a(D)", "G2a(P)", "G2a(D+P)", "G3I", "G3Q", "G3I+Q", "", "", "", ""][sigmask]
+        signame = [ "G1C/A", "G1P", "G2C/A", "G2P", "G1a(D)", "G1a(P)", "G1a(D+P)", "G2a(D)", "G2a(P)", "G2a(D+P)", "G3I", "G3Q", "G3I+Q", "(undef)", "(undef)", "(undef)", "(undef)"][sigmask]
     elif satsys == 'E':
-        signame = [ "E1B", "E1C", "E1B+C", "E5aI", "E5aQ", "E5aI+Q", "E5bI", "E5bQ", "E5bI+Q", "E5I", "E5Q", "E5I+Q", "E6B", "E6C", "E6B+C", ""][sigmask]
-    elif satsys == 'C':
-        signame = [ "B1I", "B1Q", "B1I+Q", "B3I", "B3Q", "B3I+Q", "B2I", "B2Q", "B2I+Q", "", "", "", "", "", "", ""][sigmask]
+        signame = [ "E1B", "E1C", "E1B+C", "E5aI", "E5aQ", "E5aI+Q", "E5bI", "E5bQ", "E5bI+Q", "E5I", "E5Q", "E5I+Q", "E6B", "E6C", "E6B+C", "(undef)"][sigmask]
+    elif satsys == 'C':  # ref. [7] Table 4.2.2-9
+        signame = [ "B1I", "B1Q", "B1I+Q", "B3I", "B3Q", "B3I+Q", "B2I", "B2Q", "B2I+Q", "B1C(D)", "B1C(P)", "B1C(D+P)", "B2a(D)", "B2a(P)", "B2a(D+P)", "(undef)"][sigmask]
     elif satsys == 'D':  # MADOCA-PPP workaround for ref.[6]
-        signame = [ "B1I", "B1Q", "B1I+Q", "B3I", "B3Q", "B3I+Q", "B2bI", "B2bQ", "B2bI+Q", "B1C(D)", "B1C(P)", "B1C(D+P)", "B2a(D)", "B2a(P)", "B2a(D+P)", ""][sigmask]
+        signame = [ "B1I", "B1Q", "B1I+Q", "B3I", "B3Q", "B3I+Q", "B2bI", "B2bQ", "B2bI+Q", "B1C(D)", "B1C(P)", "B1C(D+P)", "B2a(D)", "B2a(P)", "B2a(D+P)", "(undef)"][sigmask]
     elif satsys == 'J':
-        signame = [ "L1C/A", "L1C(D)", "L1C(P)", "L1C(D+P)", "L2CM", "L2CL", "L2CM+L", "L5I", "L5Q", "L5I+Q", "", "", "", "", "", ""][sigmask]
+        signame = [ "L1C/A", "L1C(D)", "L1C(P)", "L1C(D+P)", "L2CM", "L2CL", "L2CM+L", "L5I", "L5Q", "L5I+Q", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)"][sigmask]
     elif satsys == 'S':
         signame = [
-            "L1C/A", "L5I", "L5Q", "L5I+Q", "", "", "", "", "", "", "", "", "", "", "", "", ""][sigmask]
+            "L1C/A", "L5I", "L5Q", "L5I+Q", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)"][sigmask]
     else:
         raise Exception(
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
@@ -148,13 +136,13 @@ def sigmask2signame_b2b(satsys: str, sigmask: int) -> str:
     ''' convert satellite system and signal mask to signal name '''
     signame = f'satsys={satsys} sigmask={sigmask}'
     if satsys == 'G':
-        signame = ["L1C/A", "L1P", "", "", "L1C(P)", "L1C(D+P)", "", "L2CL", "L2CM+L", "", "", "L5I", "L5Q", "L5I+Q", "", ""][sigmask]
+        signame = ["L1C/A", "L1P", "(undef)", "(undef)", "L1C(P)", "L1C(D+P)", "(undef)", "L2CL", "L2CM+L", "(undef)", "(undef)", "L5I", "L5Q", "L5I+Q", "(undef)", "(undef)"][sigmask]
     elif satsys == 'R':
-        signame = ["G1C/A", "G1P", "G2C/A", "", "", "", "", "", "", "", "", "", "", "", "", ""][sigmask]
+        signame = ["G1C/A", "G1P", "G2C/A", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)", "(undef)"][sigmask]
     elif satsys == 'E':
-        signame = ["", "E1B", "E1C", "", "E5aQ", "E5aI", "", "E5bI", "E5bQ", "", "", "E6C", "", "", "", ""][sigmask]
+        signame = ["(undef)", "E1B", "E1C", "(undef)", "E5aQ", "E5aI", "(undef)", "E5bI", "E5bQ", "(undef)", "(undef)", "E6C", "(undef)", "(undef)", "(undef)", "(undef)"][sigmask]
     elif satsys == 'C':
-        signame = ["B1I", "B1C(D)", "B1C(P)", "", "B2a(D)", "B2a(P)", "", "B2bI", "B2bQ", "", "", "", "B3I", "", "", ""][sigmask]
+        signame = ["B1I", "B1C(D)", "B1C(P)", "(undef)", "B2a(D)", "B2a(P)", "(undef)", "B2bI", "B2bQ", "(undef)", "(undef)", "(undef)", "B3I", "(undef)", "(undef)", "(undef)"][sigmask]
     else:
         raise Exception(
             f'unassigned signal name for satsys={satsys} and sigmask={sigmask}')
